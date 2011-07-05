@@ -44,7 +44,7 @@ my $url = $line[2] || '';
 -- SOME COMBO OF THESE IS REQUIRED.
 -- Look at https://duckduckgo.com/?q=perl+split
 -- The part in grey is the $synopsis and the stuff below is the $description
-my $description = $line[3] || '';
+pre my $description = $line[3] || '';
 my $synopsis = $line[4] || '';
 my $details = $line[5] || '';
 
