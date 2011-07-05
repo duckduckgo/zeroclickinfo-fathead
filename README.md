@@ -33,22 +33,21 @@ The output format from parse.xx depends on the type of content. In any case, it 
 For programming reference, the fields are:
 
 -- REQURIED: this is the name of the function.
-    my $page = $line[0] || '';
+my $page = $line[0] || '';
 
 -- Usually blank (except for things like Java, in which case it would be e.g. 'screen' for screen.width)
-    my $namespace = $line[1] || '';
+my $namespace = $line[1] || '';
 
 -- REQUIRED: this is the target URL for more information.
-    my $url = $line[2] || '';
+my $url = $line[2] || '';
 
 -- SOME COMBO OF THESE IS REQUIRED.
 -- Look at https://duckduckgo.com/?q=perl+split
 -- The part in grey is the $synopsis and the stuff below is the $description
-    my $description = $line[3] || '';
-    my $synopsis = $line[4] || '';
-    my $details = $line[5] || '';
+my $description = $line[3] || '';
+my $synopsis = $line[4] || '';
+my $details = $line[5] || '';
 
 -- Usually blank.
-    my $type = $line[6] || '';
-    my $lang = $line[7] || '';
-
+my $type = $line[6] || '';
+my $lang = $line[7] || '';
