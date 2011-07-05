@@ -22,15 +22,17 @@ function parse_out_docs(html, cb) {
 	console.error("Start parsing");
 
 	var $ = window.$;
-	var docs = $('h3').map(function(i, h3) {
-	    h3 = $(h3);
-	    var next = h3.next();
+	var docs = [ ];
+	function process_element(i, elem) {
+	    elem = $(elem);
+	    var next = elem.next();
 	    var description = '';
-	    var id = h3.attr('id') || ''
+	    var id = elem.attr('id') || ''
 	    var url = URL_BASE + '#' + id;
 	    var namespace = '';
 	    var page = id;
-	    var synopsis = h3.text();
+	    var synopsis = elem.text();
+	    var is_event = false;
 
 	    var m = id.match(/^([^\.]+)\.(.+)$/);
 	    if (m && m.length === 3) {
@@ -40,9 +42,10 @@ function parse_out_docs(html, cb) {
 	    else {
 		m = id.match(/^event_([^_]+)_/);
 		if (m && m.length === 2) {
+		    is_event = true;
 		    page = m[1];
-		    var _p = h3.prevAll('h2').first();
-		    if (_p) {
+		    var _p = elem.prevAll('h2').first();
+		    if (elem.is('h3') && _p) {
 			namespace = _p.attr('id');
 		    }
 		}
@@ -61,9 +64,30 @@ function parse_out_docs(html, cb) {
 	    };
 
 	    console.error("ret:", ret);
-	    return ret;
-	});
-	cb(docs.toArray());
+	    // return ret;
+	    docs.push(ret);
+
+	    if (namespace) {
+		var ret2 = {
+		    page: namespace + '.' + page, 
+		    description: description, 
+		    url: url, 
+		    synopsis: synopsis, 
+		    namespace: ''
+		};
+
+		if (is_event) {
+		    ret2.page = namespace + ' ' + page + ' event';
+		}
+
+		docs.push(ret2);
+	    }
+	}
+
+	$('h3').each(process_element);
+	$('h2').each(process_element);
+
+	cb(docs);
     });
 }
 
