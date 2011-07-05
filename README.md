@@ -24,6 +24,11 @@ This script is called to fetch the data.
 
 This is the script used to parse the data once it has been fetched.
 
+* project/data.url
+
+Please upload datafiles somewhere (off-repository) and then store the URL to them here. It could be to a .zip if there is a whole directory needed.
+
+.xx can be .pl or .py or .js depending on what language you use.
 
 Output Formats
 --------------
