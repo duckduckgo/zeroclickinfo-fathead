@@ -28,6 +28,8 @@ This is the script used to parse the data once it has been fetched.
 Output Formats
 --------------
 
+Please name the output file project.tsv (tab delimited) but do not store the data file(s) in the repository (as noted above).
+
 The output format from parse.xx depends on the type of content. In any case, it should be a tab delimited file, with one line per entry. Usually there is no need for newline characters, but if there is a need for some reason, escape them with a backslash like \\n.
 
 For programming reference, the fields are:
