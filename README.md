@@ -4,6 +4,7 @@ DuckDuckGo ZeroClickInfo FatHeads
 About
 -----
 
+See [[https://github.com/duckduckgo/duckduckgo/wiki]]
 
 
 Contributing
