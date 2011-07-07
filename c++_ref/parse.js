@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+// -*- tab-width: 4 -*-
+
 var fs    = require('fs');
 var jsdom = require('jsdom');
 var path  = require('path');
