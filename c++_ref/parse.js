@@ -8,12 +8,39 @@ var PATH_BASE = './data/www.cplusplus.com/reference/';
 var URL_BASE  = 'http://www.cplusplus.com/reference/';
 var JQUERY_URL = './jquery-1.5.min.js'; // 'http://code.jquery.com/jquery-1.5.min.js'; 
 
+/*
 function create_window(cb) {
     var document = jsdom.jsdom('<html><body>');
     var window = document.createWindow();
 
     jsdom.jQueryify(window, JQUERY_URL, function() {
 	cb(window, document);
+    });
+}
+*/
+
+var escaped_one_to_xml_special_map = {
+    '&amp;': '&',
+    '&quot;': '"',
+    '&apos;': "'", 
+    '&lt;': '<',
+    '&gt;': '>'
+};
+
+function decodeXml(string) {
+    return string.replace(/(&quot;|&apos;|&lt;|&gt;|&amp;)/g,
+			  function(str, item) {
+			      return escaped_one_to_xml_special_map[item];
+			  });
+}
+
+
+function create_window(cb) {
+    jsdom.env('<html><body>', [ JQUERY_URL ], function(errors, window) {
+	if (errors) {
+	    throw new Error(errors[0]);
+	}
+	cb(window, window.document);
     });
 }
 
@@ -48,11 +75,7 @@ function start_parsing(dirs, window, document, cb) {
     console.error("start_parsing: dirs:", dirs);
 
     var data = [ ];
-    function parse_file(dirs, i, data, next_cb, end_cb) {
-	if (i === dirs.length) {
-	    end_cb(data);
-	    return;
-	}
+    function parse_file(dirs, i, data) {
 
 	var _p  = path.join(PATH_BASE, dirs[i], 'index.html');
 	fetch_html(_p, function(html) {
@@ -85,7 +108,23 @@ function start_parsing(dirs, window, document, cb) {
 
 	    data.push(entry);
 
-	    if (module[0] == 'c' && module !== 'char_traits') {
+	    var global_modules = {
+		algorithm: 1, 
+		functional: 1, 
+		numeric: 1, 
+		iterator: 1, 
+		locale: 1, 
+		memory: 1, 
+		stdexcept: 1, 
+		utility: 1, 
+		typeinfo: 1, 
+		"new": 1, 
+		limits: 1, 
+		exception: 1
+	    };
+
+	    if ((module[0] == 'c' && module !== 'char_traits') || 
+		global_modules.hasOwnProperty(global_modules)) {
 		entry = {
 		    page: proc, 
 		    synopsis: fq_name + "\n" + signature, 
@@ -97,11 +136,14 @@ function start_parsing(dirs, window, document, cb) {
 
 	    // console.error("entry:", entry);
 
-	    next_cb(dirs, i+1, data, next_cb, end_cb);
+	    // next_cb(dirs, i+1, data, next_cb, end_cb);
 	});
     }
 
-    parse_file(dirs, 0, data,  parse_file, cb);
+    for (var i = 0; i < dirs.length; ++i) {
+	parse_file(dirs, i, data);
+    }
+    cb(data);
 }
 
 
@@ -112,8 +154,8 @@ function parse_all_docs(window, document, cb) {
 
 function dump_to_file(docs) {
     var _d = docs.map(function(d) {
-	return [ d.page, '', d.url, d.description, 
-		 d.synopsis, '', '', 'en' ].join('\t').replace(/\n/g, ' ');
+	return decodeXml([ d.page, '', d.url, d.description, 
+			   d.synopsis, '', '', 'en' ].join('\t').replace(/\n/g, ' '));
     });
     fs.writeFileSync('c++.docs.txt', _d.join('\n'));
 }
