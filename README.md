@@ -16,19 +16,21 @@ This repository is organized by type of content, each with its own directory. So
 
 Inside each directory are a couple of different files for specific cases. 
 
-* project/fetch.xx
+* project/fetch.sh
 
-This script is called to fetch the data. 
+This shell script is called to fetch the data. 
 
 * project/parse.xx
 
-This is the script used to parse the data once it has been fetched.
+This is the script used to parse the data once it has been fetched. .xx can be .pl or .py or .js depending on what language you use.
+
+* project/parse.sh
+
+This shell script is called to run the parser. 
 
 * project/data.url
 
 Please upload datafiles somewhere (off-repository) and then store the URL to them here. It could be to a .zip if there is a whole directory needed.
-
-.xx can be .pl or .py or .js depending on what language you use.
 
 Output Formats
 --------------
