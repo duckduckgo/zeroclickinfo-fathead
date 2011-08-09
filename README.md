@@ -32,6 +32,27 @@ This shell script is called to run the parser.
 
 Please upload datafiles somewhere (off-repository) and then store the URL to them here. It could be to a .zip if there is a whole directory needed.
 
+* project/meta.txt
+
+This is a file that gives meta information about the data source. It should have this format:
+```txt
+# This is the name of the source as people would refer to it, e.g. Wikipedia or PerlDoc
+Name: jQuery API
+
+# This is the base domain where the source pages are located.
+Domain: api.jquery.com
+
+# This is what gets put in quotes next to the source
+# It can be blank if it is a source with completely general info spanning many types of topics like Facebook.
+Type: jQuery
+
+# Whether the source is from MediaWiki (1) or not (0).
+MediaWiki: 1
+
+# Keywords uses to trigger (or prefer) the source over others.
+Keywords: jQuery
+```
+
 Output Formats
 --------------
 
