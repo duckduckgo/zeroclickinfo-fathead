@@ -35,7 +35,8 @@ Please upload datafiles somewhere (off-repository) and then store the URL to the
 * project/meta.txt
 
 This is a file that gives meta information about the data source. It should have this format:
-```perl
+
+```txt
 # This is the name of the source as people would refer to it, e.g. Wikipedia or PerlDoc
 Name: jQuery API
 
