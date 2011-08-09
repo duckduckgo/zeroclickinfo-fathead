@@ -41,11 +41,13 @@ The output format from parse.xx depends on the type of content. In any case, it 
 
 For programming reference, the fields are:
 
-* my $page = $line[0] || ''; -- REQURIED: this is the name of the function.
-* my $namespace = $line[1] || ''; -- Usually blank unless for something like JavaScript
-* my $url = $line[2] || ''; -- REQUIRED: this is the target URL for more information.
-* my $description = $line[3] || ''; -- SOME COMBO OF THESE IS REQUIRED.
-* my $synopsis = $line[4] || ''; -- Look at https://duckduckgo.com/?q=perl+split
-* my $details = $line[5] || ''; -- The part in grey is the $synopsis and the stuff below is the $description
-* my $type = $line[6] || ''; -- usually blank
-* my $lang = $line[7] || ''; -- usually blank
+```perl
+my $page = $line[0] || ''; # REQURIED: this is the name of the function.
+my $namespace = $line[1] || ''; # Usually blank unless for something like JavaScript
+my $url = $line[2] || ''; # REQUIRED: this is the target URL for more information.
+my $description = $line[3] || ''; # SOME COMBO OF THESE IS REQUIRED.
+my $synopsis = $line[4] || ''; # Look at https://duckduckgo.com/?q=perl+split
+my $details = $line[5] || ''; # The part in grey is the $synopsis and the stuff below is the $description
+my $type = $line[6] || ''; # usually blank
+my $lang = $line[7] || ''; # usually blank
+```
