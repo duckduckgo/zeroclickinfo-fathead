@@ -1,5 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+# Released under the GPL v2 license 
+# https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+
 import lxml.etree, lxml.html
 import re
 
