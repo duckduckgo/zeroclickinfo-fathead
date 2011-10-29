@@ -10,7 +10,7 @@ import re
 editlink = re.compile("action=edit"); 
 iswikipedia = re.compile("wikipedia");
 url = "https://secure.wikimedia.org/wikipedia/en/wiki/List_of_TCP_and_UDP_port_numbers"
-output = "ports.tsv"
+output = "output.txt"
 
 f = open(output, "w");
 
