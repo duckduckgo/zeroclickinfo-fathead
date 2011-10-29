@@ -49,11 +49,8 @@ project/parse.xx
 # This shell script is called to run the parser. 
 project/parse.sh
 
-# Please upload datafiles somewhere (off-repository),
-# and then store the URL to them here. 
-# It could be to a .zip if there is a whole directory needed.
-project/data.url
-
+# Please include any dependencies here.
+project/README.txt
 
 # This is a file that gives meta information about the data source. 
 project/meta.txt
