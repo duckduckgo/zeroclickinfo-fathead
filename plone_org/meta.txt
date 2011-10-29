@@ -1,15 +1,15 @@
 # This is the name of the source as people would refer to it, e.g. Wikipedia or PerlDoc
-Name: Wikipedia
+Name: Plone
 
 # This is the base domain where the source pages are located.
-Domain: en.wikipedia.org
+Domain: plone.org
 
 # This is what gets put in quotes next to the source
 # It can be blank if it is a source with completely general info spanning many types of topics like Facebook.
-Type: Port
+Type: Plone
 
 # Whether the source is from MediaWiki (1) or not (0).
-MediaWiki: 1
+MediaWiki: 0
 
 # Keywords uses to trigger (or prefer) the source over others.
-Keywords: port
+Keywords: plone

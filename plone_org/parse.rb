@@ -22,7 +22,7 @@ def parse_file(file)
     
     file_info = file.split('/')[1].gsub(/\_[09]*\.html$/,'')
     
-    categories     = 'plone'
+    categories     = ''
 
     images=""
     images         = (l/"/div/a/img").attr('src') rescue ""
