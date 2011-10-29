@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env NODE_PATH=/usr/local/lib/node_modules node
 // -*- tab-width: 4 -*-
 
 var fs    = require('fs');
@@ -7,7 +7,7 @@ var path  = require('path');
 var us    = require('underscore');
 
 
-var PATH_BASE = './data/www.cplusplus.com/reference/';
+var PATH_BASE = './download/www.cplusplus.com/reference/';
 var URL_BASE  = 'http://www.cplusplus.com/reference/';
 var JQUERY_URL = './jquery-1.5.min.js'; // 'http://code.jquery.com/jquery-1.5.min.js'; 
 
