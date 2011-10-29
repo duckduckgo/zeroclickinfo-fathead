@@ -40,6 +40,7 @@ Each directory has a structure like this:
 ```txt
 
 # This shell script is called to fetch the data. 
+# Tmp files should go in a directory called download.
 project/fetch.sh
 
 # This is the script used to parse the data once it has been fetched. 
