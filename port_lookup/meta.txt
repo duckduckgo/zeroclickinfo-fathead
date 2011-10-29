@@ -12,4 +12,4 @@ Type: Port
 MediaWiki: 1
 
 # Keywords uses to trigger (or prefer) the source over others.
-Keywords: port
+Keywords: port, tcp port, udp port, tcp, udp
