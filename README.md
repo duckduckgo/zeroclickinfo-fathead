@@ -49,8 +49,20 @@ project/parse.xx
 # This shell script is called to run the parser. 
 project/parse.sh
 
-# Please include any dependencies here.
+# Please include any dependencies here,
+# or other special instructions for people
+# trying to run it.
 project/README.txt
+
+# This is the output file.
+# Generally it should NOT be committed,
+# but if it is small (<1MB) it is useful to do so.
+project/output.txt
+
+# This is for testing.
+# Put some good queries to test, one per line.
+# You can explain them with comments above them.
+project/queries.txt
 
 # This is a file that gives meta information about the data source. 
 project/meta.txt
@@ -84,7 +96,7 @@ Keywords: jQuery
 
 ### General data file format
 
-Please name the output file project.tsv (tab delimited) but do not store the data file(s) in the repository (as noted above).
+Please name the output file output.txt (tab delimited) but do not store the data file(s) in the repository (as noted above) unless it is under 1MB.
 
 The output format from parse.xx depends on the type of content. In any case, it should be a tab delimited file, with one line per entry. Usually there is no need for newline characters, but if there is a need for some reason, escape them with a backslash like \\n.
 
