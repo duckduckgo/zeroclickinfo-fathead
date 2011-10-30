@@ -29,20 +29,12 @@ rows.each do |row|
 	paragraphs[3].search("img").remove
 	part_status = paragraphs[3].inner_html.strip
 	
-	# generate links to preview images and actual .dat files
-	case part_type
-		when "Part"
-			image_link = "/library/unofficial/images/parts/#{part_number}.png"
-			file_link = "http://www.ldraw.org/library/unofficial/parts/#{part_number}.dat"
-		when "Subpart"
-			image_link = "/library/unofficial/images/parts/s/#{part_number}.png"
-			file_link = "http://www.ldraw.org/library/unofficial/parts/s/#{part_number}.dat"
-		when "Primitive"
-			image_link = "/library/unofficial/images/p/#{part_number}.png"
-			file_link = "http://www.ldraw.org/library/unofficial/p/#{part_number}.dat"
-		when "48-Segment Primitive"
-			image_link = "/library/unofficial/images/p/48/#{part_number}.png"
-			file_link = "http://www.ldraw.org/library/unofficial/p/48/#{part_number}.dat"
+	# part_path is used to generate links to preview images and .dat files
+	part_path = case part_type
+		when "Part" then "parts"
+		when "Subpart" then "parts/s"
+		when "Primitive" then "p"
+		when "48-Segment Primitive" then "p/48"
 		else ""
 	end
 	
@@ -52,23 +44,12 @@ rows.each do |row|
 	#   labels, and links to related/required files could be derived from the
 	#   detail page for each part, which would require more page scraping,
 	#   or also from actual files (best to report Tracker's interpretation)
-	abstract = "#{part_name} (<a href=\"#{file_link}\">#{part_number}.dat</a> - #{part_status})"
+	abstract = "#{part_name} (<a href=\"http://www.ldraw.org/library/unofficial/#{part_path}/#{part_number}.dat\">#{part_path}/#{part_number}.dat</a> - #{part_status})"
 	
 	# - part_number as title to respond to search queries for number
 	#   (or use part_name to look up number based on query by name?)
 	# - unclear what types are available/appropriate for line[1]
 	# - image and source links output relative to ldraw.org
-	puts	"#{part_number}\t" + \
-			"A\t" + \
-			"\t" + \
-			"\t" + \
-			"Unofficial LDraw Part\t" + \
-			"\t" + \
-			"\t" + \
-			"\t" + \
-			"\t" + \
-			"\t" + \
-			"#{image_link}\t" + \
-			"#{abstract}\t" + \
-			"#{part_link}\n"
+	puts "#{part_number}\tA\t\t\tUnofficial LDraw Part\t\t\t\t\t\t/library/unofficial/images/#{part_path}/#{part_number}.png\t#{abstract}\t#{part_link}\n"
+
 end
