@@ -1,152 +1,227 @@
-DuckDuckGo ZeroClickInfo FatHeads
+DuckDuckGo ZeroClickInfo Goodies
 =================================
 
 About
 -----
 
-See https://github.com/duckduckgo/duckduckgo/wiki for a general overview on contributing to DuckDuckGo.
+See [the contribution page](https://github.com/duckduckgo/duckduckgo/wiki) for a general overview on contributing to DuckDuckGo.
 
-This repository is for contributing static, keyword based content to 0-click, e.g. getting a perl function reference when you search for perl split. 
+This repository is for contributing goodies, which are special tools that reveal instant answers at the top of search results, e.g. calculations or throwing dice.
+
+Most of the existing goodies are listed on the [goodies page](http://duckduckgo.com/goodies.html) and [tech goodies page](http://duckduckgo.com/tech.html).
+
+We also maintain a list of [requested goodies](https://github.com/duckduckgo/duckduckgo/wiki/Goodies), but whatever you want to attempt is welcome.
 
 
 Contributing
 ------------
 
-This repository is organized by type of content, each with its own directory. Some of those projects are in use on the live system, and some are still in development.
+First off, thank you!
 
-Inside each directory are a couple of different files for specific cases. 
 
-* project/fetch.sh
+### Process
 
-This shell script is called to fetch the data. 
+1) Make sure you're in the right place. This repo is for standalone Perl blocks that do not require any HTTP calls and where the answer is generated based on the input. For HTTP calls you probably want the [spice repo](https://github.com/duckduckgo/zeroclickinfo-spice).
 
-* project/parse.xx
+2) Develop goodie using the Structure below in either a fork or a branch (if a collaborator).
 
-This is the script used to parse the data once it has been fetched. .xx can be .pl or .py or .js depending on what language you use.
+3) Test goodie via Testing procedure below.
 
-* project/parse.sh
+4) Submit a pull request.
 
-This shell script is called to run the parser. 
+Feel free to ask questions!
 
-* project/data.url
 
-Please upload datafiles somewhere (off-repository) and then store the URL to them here. It could be to a .zip if there is a whole directory needed.
 
-* project/meta.txt
+### Structure
 
-This is a file that gives meta information about the data source. It should have this format:
+
+Each goodie has its own directory. Some of the directories are in use on the live system, and some are still in development.
+
+Each directory has a structure like this:
 
 ```txt
-# This is the name of the source as people would refer to it, e.g. Wikipedia or PerlDoc
-Name: jQuery API
+# Perl file that can be directly inserted into the live system.
+# This file is included, so does not need a shebang 
+# or a use warnings/strict line.
+goodie.pl 
 
-# This is the base domain where the source pages are located.
-Domain: api.jquery.com
+# List of test queries, one per line.
+queries.txt
 
-# This is what gets put in quotes next to the source
-# It can be blank if it is a source with completely general info spanning many types of topics like Facebook.
-Type: jQuery
-
-# Whether the source is from MediaWiki (1) or not (0).
-MediaWiki: 1
-
-# Keywords uses to trigger (or prefer) the source over others.
-Keywords: jQuery
+# OPTIONAL: helper files as needed
+goodie.txt
+goodie.html
 ```
 
-Output Formats
---------------
+### Testing
 
-Please name the output file project.tsv (tab delimited) but do not store the data file(s) in the repository (as noted above).
+**Please, please test your goodie via the goodie-test.pl script in the top level directory before making a pull request. We developed this script to make sure integration goes smoothly.**
 
-The output format from parse.xx depends on the type of content. In any case, it should be a tab delimited file, with one line per entry. Usually there is no need for newline characters, but if there is a need for some reason, escape them with a backslash like \\n.
+```
+# Test a particular query.
+# Replace goodie with the name of your directory.
+# Replace query with your query.
+./goodie-test.pl goodie query
+
+# Test the queries in queries.txt
+# Replace goodie with the name of your directory.
+./goodie-test.pl -t goodie
+```
 
 
-The general output fields are as follows. Check out http://duckduckgo.com/Perl for reference, which we will refer to in explaining the fields.
+### goodie.pl
+Within the goodie.pl file, a few things are happening, and here is an overview that references live examples, which you can review:
+
+
+1) There are some variables that are used in the system that operate outside the goodie, but which the goodie uses. Every goodie will use:
 
 ```perl
-# REQUIRED: full article title, e.g. Perl.
-my $title = $line[0] || '';
 
-# REQUIRED: A for article.
-my $type = $line[1] || '';
+# This is the instant answer that gets printed out.
+my $answer_results = '';
 
-# Only for redirects -- ask.
-my $redirect = $line[2] || '';
+# This is a name (lowercase, no spaces) that gets 
+# passed through to the API that should be defined 
+# if $answer_results is set.
+my $answer_type = '';
 
-# Ignore.
-my $otheruses = $line[3] || '';
-
-# You can put the article in multiple categories, and category pages will be created automatically.
-# E.g.: http://duckduckgo.com/c/Procedural_programming_languages
-# You would do: Procedural programming languages\\n
-# You can have several categories, separated by an escaped newline.
-my $categories = $line[4] || '';
-
-# Ignore.
-my $references = $line[5] || '';
-
-# You can reference related topics here, which get turned into links in the 0-click box.
-# On the perl example, e.g. Perl Data Language
-# You would do: [[Perl Data Language]]
-# If the link name is different, you could do [[Perl Data Language|PDL]]
-my $see_also = $line[6] || '';
-
-# Ignore.
-my $further_reading = $line[7] || '';
-
-# You can add external links that get put first when this article comes out.
-# The canonical example is an official site, which looks like:
-# [$url Official site]\\n
-# You can have several, separated by an escaped newline though only a few will be used.
-# You can also have before and after text or put multiple links in one like this.
-# Before text [$url link text] after text [$url2 second link].\\n
-my $external_links = $line[8] || '';
-
-# Ignore.
-my $disambiguation = $line[9] || '';
-
-# You can reference an external image that we will download and reformat for display.
-# You would do: [[Image:$url]]
-my $images = $line[10] || '';
-
-# This is the snippet info.
-my $abstract = $line[11] || '';
-
-# This is the full URL for the source.
-# If all the URLs are relative to the main domain, 
-# this can be relative to that domain.
-my $source_url = $line[12] || '';
-
-In all this may look like:
-
-print OUT "$page\tA\t\t\t$categories\t\t$internal_links\t\t$external_links\t\t$images\t$abstract\t$relative_url\n";
+# This is defined external to the goodie and tells you 
+# whether there is other Zero-click info, and if so, 
+# what type is it (C for category page, etc.).
+my $type = '';
 ```
 
-For programming references in particular, the fields are a bit different:
+In addition, you may want to use:
 
 ```perl
-# REQURIED: this is the name of the function.
-my $page = $line[0] || '';
 
-# Usually blank unless for something like JavaScript
-my $namespace = $line[1] || '';
+# This is used to indicate whether the results get cached or not. 
+# If the goodie is supposed to provide some kind of random output 
+# that changes per page view, then you will want to set this to 0.
+my $is_memcached = 1;
 
-# REQUIRED: this is the target URL for more information.
-my $url = $line[2] || '';
-
-# SOME COMBO OF THESE IS REQUIRED.
-# Look at https://duckduckgo.com/?q=perl+split
-# The part in grey is the $synopsis and the stuff below is the $description
-my $description = $line[3] || '';
-my $synopsis = $line[4] || '';
-my $details = $line[5] || '';
-
-# usually blank
-my $type = $line[6] || '';
-
-# usually blank
-my $lang = $line[7] || '';
 ```
 
-In the programming case, we have a parser that translates the above into the general format by compressing a lot of the fields into the $abstract field in various ways, e.g. synopsis gets put in a code block.
+Finally, you will want to use a form of the query:
+
+```perl
+
+# This is the most common form in use. 
+# It is a lower case version of the query 
+# with an initial ! and ending ? removed.
+my $q_check_lc = 'example query';
+
+# This is the raw query.
+my $q = 'Example query';
+
+# This is a lower case version of the query 
+# with sanitized spaces and special characters removed.
+my $q_internal = 'example query';
+```
+
+
+2) The goodie needs to know when to be called. This involves some kind of conditional statement that first involves the $type variable.
+
+```perl
+
+# If there is no 0-click.
+if (!$type) {
+
+}
+
+
+# If there is no other goodie. 
+# Will kill other 0-click info, e.g. Wikipedia. 
+if ($type ne 'E') {
+
+}
+
+```
+
+Secondly you want to segment the query space to queries related to that goodie. [guid](https://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/guid/goodie.pl) uses a hash to do so.
+
+```perl
+
+# Uses a hash to segment the query space.
+my %guid = (
+    'guid' => 0,
+    'uuid' => 1,
+    'globally unique identifier' => 0,
+    'universally unique identifier' => 1,
+    'rfc 4122' => 0,
+    );
+
+if ($type ne 'E' && exists $guid{$q_check_lc}) {
+
+}
+```
+
+[binary](https://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/binary/goodie.pl) uses a regular expression.
+
+```perl
+
+if (!$type && $q_check_lc =~ m/^binary (.*)$/i) {
+
+}
+```
+
+For regular expressions, we need to watch out for false positives and speed. You can do this easily by adding a lot of queries to queries.txt
+
+
+3) Once inside the conditional, the goodie formulates the answer. This could vary slightly depending on input, but results in setting the $answer_results variable. Here's what [abc](https://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/abc/goodie.pl) looks like.
+
+```perl
+if (!$type && $q_check =~ m/^\!?\s*[A-Za-z]+(\s+or\s+[A-Za-z]+)+\s*$/ ) {
+    my @choices = split(/\s+or\s+/, $q_check);
+    my $choice = int(rand(@choices));
+
+    $answer_results = $choices[$choice];
+    $answer_results .= ' (random)';
+    $answer_type = 'rand';
+}
+```
+
+
+### Notes
+
+And here are some other things to keep in mind:
+
+1) If you need a helper file, name it goodie.txt or goodie.html as needed. If you need to read in that file to be used over and over again, do it outside the conditional. For example [passphrase](https://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/passphrase/goodie.pl) reads in a list at the top.
+
+```perl
+my %passphrase = ();
+open(IN, '<passphrase/goodie.txt');
+while (my $line = <IN>) {
+    chomp($line);
+    my @res = split(/ /, $line);
+    $passphrase{$res[0]} = $res[1];
+    
+}
+close(IN);
+```
+
+Whereas if you need to read in a file for output, do it inside the conditional. For example, [public_dns](https://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/public_dns/goodie.pl) reads in a list inside.
+
+```perl
+    open(IN,"<public_dns/goodie.html");
+    while (my $line = <IN>) {
+    $answer_results .= $line;
+    }
+    close(IN);
+```
+
+
+2) If it is possible that the conditional gets called, but $answer_results still may not be set, then wrap $answer_type (and possibly other variables) in a separate conditional like in [private_network](https://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/private_network/goodie.pl).
+
+```perl
+    if ($answer_results) {
+       $answer_type = 'network';
+       $type = 'E';
+    }
+```
+
+3) Goodies should only display results when they are better than algorithmic results.
+
+4) It generally helps to give a bit of context around the answer_results, e.g. '(random password)' after a random password or 'Answer:' before.
+
