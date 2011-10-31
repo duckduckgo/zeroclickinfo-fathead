@@ -16,7 +16,7 @@ TMP_DIR=$(mktemp -d /tmp/$(basename -- $0).XXXXXXXXXX)
 sudo apt-get -y install checkinstall
 
 # python 3.2
-sudo apt-get -y install libncursesw5-dev libreadline5-dev libssl-dev libgdbm-dev libc6-dev libsqlite3-dev tk-dev libbz2-dev
+sudo apt-get -y install build-essential libncursesw5-dev libreadline5-dev libssl-dev libgdbm-dev libc6-dev libsqlite3-dev tk-dev libbz2-dev
 wget -P $TMP_DIR http://www.python.org/ftp/python/3.2.1/Python-3.2.1.tar.xz
 tar -xJf $TMP_DIR/Python-3.2.1.tar.xz -C $TMP_DIR
 pushd $TMP_DIR/Python-3.2.1 > /dev/null
