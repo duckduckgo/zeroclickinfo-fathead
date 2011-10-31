@@ -103,7 +103,7 @@ Keywords: jQuery
 
 Please name the output file output.txt (tab delimited) but do not store the data file(s) in the repository (as noted above) unless it is under 1MB.
 
-The output format from parse.xx depends on the type of content. In any case, it should be a tab delimited file, with one line per entry. Usually there is no need for newline characters, but if there is a need for some reason, escape them with a backslash like \\n.
+The output format from parse.xx depends on the type of content. In any case, it should be a tab delimited file, with one line per entry. Usually there is no need for newline characters, but if there is a need for some reason, escape them with a backslash like \\n. If you wanta newline displayed, use <br>.
 
 The general output fields are as follows. Check out http://duckduckgo.com/Perl for reference, which we will refer to in explaining the fields.
 
@@ -196,3 +196,8 @@ my $lang = $line[7] || '';
 ```
 
 Our programming reference parser then translates the above into the general format by compressing a lot of the fields into the $abstract field in various ways, e.g. synopsis gets put in a code block.
+
+
+### Notes
+
+1) There should be no duplicated in the $page (first) variable. If you have multiple things named the same things you have a number of options, e.g. a) make disambiguation pages; b) put everything in one snippet; c) pick the most general one.
