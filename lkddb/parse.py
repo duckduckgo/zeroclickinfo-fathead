@@ -21,6 +21,7 @@ class KernelConfigItem:
     self.kernelversions = kernelversions
 
   def __str__(self):
+    redirect = "%s\tR\t%s\t\t\t\t\t\t\t\t\t\t" % (self.name.split("_",1)[1],self.name)
     fields = [ self.name,
                "A",
                "",
@@ -34,7 +35,7 @@ class KernelConfigItem:
                "",
                self.help, # TODO format this nicely with other info
                self.url ]
-    return "%s\n" % ("\t".join(fields))
+    return "%s\n%s\n" % (redirect, "\t".join(fields))
 
 
 class LkddbScraper:
@@ -68,11 +69,11 @@ class LkddbScraper:
           # get name of config option
           name = config_page_xml.find("body/div/h1").text
           if name.find(":") != -1:
-            name = name.split(":")[0]
+            name = name.split(":",1)[0]
           if not multiple:
             # get short description
             li_list = list(x.text for x in config_page_xml.findall("body/div/ul/li"))
-            shorthelp = li_list[0].split(": ")[1]
+            shorthelp = li_list[0].split(": ",1)[1]
             # get full help
             help_lines = []
             for help_line in config_page_xml.xpath("body/div/h2[text()='Help text']/following::*"):
@@ -84,10 +85,10 @@ class LkddbScraper:
             if help == "(none)":
               help = ""
             # get other option info
-            type = li_list[1].split(": ")[1]
-            depends = li_list[2].split(": ")[1]
-            defined = li_list[3].split("in ")[1]
-            kernelversions = li_list[4].split(": ")[1]
+            type = li_list[1].split(": ",1)[1]
+            depends = li_list[2].split(": ",1)[1]
+            defined = li_list[3].split("in ",1)[1]
+            kernelversions = li_list[4].split(": ",1)[1]
             # TODO get "modules built: xxx" line
           else:
             # TODO handle options with more than one description (lots!)
