@@ -1,0 +1,27 @@
+#
+# Here's a query for LDraw part number 4600.
+# The expected result looks something like this:
+#
+#     4600 (Unofficial LDraw Part)
+#     Plate  2 x  2 with Wheel Holder (parts/4600.dat - 1 subfile isn't certified. (CCSF))
+#     More at LDraw Parts Tracker
+#
+# The title line (& "More at...") is linked to detail page at
+# http://ldraw.org/cgi-bin/ptdetail.cgi?f=parts/4600.dat
+# The part number in the snippet is linked directly to the file at
+# http://www.ldraw.org/library/unofficial/parts/4600.dat
+# Preview images are constant scale, so size varies among parts.
+# http://www.ldraw.org/library/unofficial/images/parts/4600.png
+#
+ldraw 4600
+
+#
+# A complementary function is to support part number lookup by name,
+# as illustrated by the query below. The result should be 4600, as above.
+#
+# However, I'm not sure how to implement support for this - is a second
+# table, with name as the first field (title), required? Or, could both
+# name and number be included in the title field, without interfering
+# with queries that specify only one or the other?
+#
+ldraw plate 2 x 2 with wheel holder
