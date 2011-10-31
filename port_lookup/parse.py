@@ -62,6 +62,8 @@ for table in tables:
 
         # Remove citenote text
         description = re.sub("\[\d*\]", "", cells[3].text_content());
+        # And [citation needed] text too
+        description = re.sub("\[citation needed\]", "", cells[3].text_content());
 
         status = cells[4].text_content();
 
@@ -78,7 +80,7 @@ for table in tables:
 
 
 for port, descriptions in ports_list.iteritems():
-    description = unicode("\\n".join(descriptions)).encode("utf-8");
+    description = unicode("<br />".join(descriptions)).encode("utf-8");
     f.write("\t".join([str(port),      # title
                     "",                # namespace
                     url,               # url
