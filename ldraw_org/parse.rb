@@ -24,7 +24,12 @@ rows.each do |row|
 	name_link = paragraphs[2].at("a")
 	part_name = name_link.inner_html
 	part_link = name_link['href']
-
+	
+	# first word of part name is conventionally part category
+	# (see http://www.ldraw.org/Article340.html for formal category spec)
+	# subparts names are typically prefixed by a tilde, which we omit
+	part_category = part_name.split.first.delete("~")
+	
 	# strip the red/yellow/green icon from status
 	paragraphs[3].search("img").remove
 	part_status = paragraphs[3].inner_html.strip
@@ -50,6 +55,6 @@ rows.each do |row|
 	#   (or use part_name to look up number based on query by name?)
 	# - unclear what types are available/appropriate for line[1]
 	# - image and source links output relative to ldraw.org
-	puts "#{part_number}\tA\t\t\tUnofficial LDraw Part\t\t\t\t\t\t/library/unofficial/images/#{part_path}/#{part_number}.png\t#{abstract}\t#{part_link}\n"
+	puts "#{part_number}\tA\t\t\t#{part_category}\t\t\t\t\t\t/library/unofficial/images/#{part_path}/#{part_number}.png\t#{abstract}\t#{part_link}\n"
 
 end
