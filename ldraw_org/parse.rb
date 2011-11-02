@@ -19,7 +19,7 @@ rows.each do |row|
 	
 	# get the type, number, name, and link for this part
 	paragraphs = row.search("p")
-	part_type = paragraphs[0].inner_html
+	part_type = paragraphs[0].inner_html.downcase
 	part_number = paragraphs[1].at("a").inner_html	
 	name_link = paragraphs[2].at("a")
 	part_name = name_link.inner_html
@@ -36,20 +36,18 @@ rows.each do |row|
 	
 	# part_path is used to generate links to preview images and .dat files
 	part_path = case part_type
-		when "Part" then "parts"
-		when "Subpart" then "parts/s"
-		when "Primitive" then "p"
-		when "48-Segment Primitive" then "p/48"
+		when "part" then "parts"
+		when "subpart" then "parts/s"
+		when "primitive" then "p"
+		when "48-segment primitive" then "p/48"
 		else ""
 	end
 	
-	# - "NAME (NUMBER.dat - STATUS)"
-	# - show part_number as LDraw path (eg "parts/s/NUMBER.dat")?
 	# - other information such as author, revision history, CATEGORY/KEYWORD
 	#   labels, and links to related/required files could be derived from the
 	#   detail page for each part, which would require more page scraping,
 	#   or also from actual files (best to report Tracker's interpretation)
-	abstract = "#{part_name} (<a href=\"http://www.ldraw.org/library/unofficial/#{part_path}/#{part_number}.dat\">#{part_path}/#{part_number}.dat</a> - #{part_status})"
+	abstract = "#{part_number}.dat is an unofficial LDraw #{part_type} titled \"#{part_name}\". Status: #{part_status} LDraw is an open standard for LEGO CAD programs that allow the user to create virtual LEGO models and scenes."
 	
 	# - part_number as title to respond to search queries for number
 	#   (or use part_name to look up number based on query by name?)
