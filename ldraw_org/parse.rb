@@ -4,18 +4,17 @@ require 'rubygems'
 require 'hpricot'
 
 # list of established part categories
-categories = ['Animal', 'Antenna', 'Arch', 'Arm', 'Bar',
-	'Baseplate','Belville', 'Boat', 'Bracket', 'Brick', 'Car', 'Cone',
-	'Container','Conveyor', 'Crane', 'Cylinder', 'Dish', 'Door',
-	'Electric', 'Exhaust','Fence', 'Figure', 'Figure Accessory', 'Flag',
-	'Forklift', 'Freestyle','Garage', 'Gate', 'Glass', 'Grab', 'Hinge',
-	'Homemaker', 'Hose', 'Jack','Ladder', 'Lever', 'Magnet', 'Minifig',
-	'Minifig Accessory', 'Monorail','Panel', 'Plane', 'Plant', 'Plate',
-	'Platform', 'Propellor', 'Rack','Roadsign', 'Rock', 'Scala',
-	'Screw', 'Sheet', 'Slope', 'Staircase','Sticker', 'Support', 'Tail',
-	'Tap', 'Technic', 'Tile', 'Tipper','Tractor', 'Trailer', 'Train',
-	'Turntable', 'Tyre', 'Vehicle', 'Wedge','Wheel', 'Winch', 'Window',
-	'Windscreen', 'Wing', 'Znap']
+categories = ['Animal', 'Antenna', 'Arch', 'Arm', 'Bar', 'Baseplate',
+	'Belville', 'Boat', 'Bracket', 'Brick', 'Car', 'Cone', 'Container',
+	'Conveyor', 'Crane', 'Cylinder', 'Dish', 'Door', 'Electric',
+	'Exhaust', 'Fence', 'Figure', 'Flag', 'Forklift', 'Freestyle',
+	'Garage', 'Gate', 'Glass', 'Grab', 'Hinge', 'Homemaker', 'Hose',
+	'Jack', 'Ladder', 'Lever', 'Magnet', 'Minifig', 'Monorail', 'Panel',
+	'Plane', 'Plant', 'Plate', 'Platform', 'Propellor', 'Rack',
+	'Roadsign', 'Rock', 'Scala', 'Screw', 'Sheet', 'Slope', 'Staircase',
+	'Sticker', 'Support', 'Tail', 'Tap', 'Technic', 'Tile', 'Tipper',
+	'Tractor', 'Trailer', 'Train', 'Turntable', 'Tyre', 'Vehicle',
+	'Wedge', 'Wheel', 'Winch', 'Window', 'Windscreen', 'Wing', 'Znap']
 
 # load the requested file for scraping
 doc = Hpricot(open(ARGV[0]))
