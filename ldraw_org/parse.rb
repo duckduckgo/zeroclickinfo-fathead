@@ -3,6 +3,20 @@
 require 'rubygems'
 require 'hpricot'
 
+# list of established part categories
+categories = ['Animal', 'Antenna', 'Arch', 'Arm', 'Bar',
+	'Baseplate','Belville', 'Boat', 'Bracket', 'Brick', 'Car', 'Cone',
+	'Container','Conveyor', 'Crane', 'Cylinder', 'Dish', 'Door',
+	'Electric', 'Exhaust','Fence', 'Figure', 'Figure Accessory', 'Flag',
+	'Forklift', 'Freestyle','Garage', 'Gate', 'Glass', 'Grab', 'Hinge',
+	'Homemaker', 'Hose', 'Jack','Ladder', 'Lever', 'Magnet', 'Minifig',
+	'Minifig Accessory', 'Monorail','Panel', 'Plane', 'Plant', 'Plate',
+	'Platform', 'Propellor', 'Rack','Roadsign', 'Rock', 'Scala',
+	'Screw', 'Sheet', 'Slope', 'Staircase','Sticker', 'Support', 'Tail',
+	'Tap', 'Technic', 'Tile', 'Tipper','Tractor', 'Trailer', 'Train',
+	'Turntable', 'Tyre', 'Vehicle', 'Wedge','Wheel', 'Winch', 'Window',
+	'Windscreen', 'Wing', 'Znap']
+
 # load the requested file for scraping
 doc = Hpricot(open(ARGV[0]))
 
@@ -28,7 +42,17 @@ rows.each do |row|
 	# first word of part name is conventionally part category
 	# (see http://www.ldraw.org/Article340.html for formal category spec)
 	# subparts names are typically prefixed by a tilde, which we omit
+	# primitives are reusable forms, so we just group them as primitives
+	# categories not on this list (http://www.ldraw.org/library/tracker/ref/catkeyfaq/)
+	# get grouped as "Miscellaneous" to keep things tidy - some tracker parts have tmp names
 	part_category = part_name.split.first.delete("~")
+	if part_type == "primitive"
+		part_category = "Primitive"
+	elsif part_type == "48-segment primitive"
+		part_category = "High-Resolution Primitive"
+	elsif not categories.include?(part_category)
+		part_category = "Miscellaneous"
+	end
 	
 	# strip the red/yellow/green icon and the status code from status description
 	# (status codes documented at http://wiki.ldraw.org/index.php?title=Parts_Tracker#Status_codes)
