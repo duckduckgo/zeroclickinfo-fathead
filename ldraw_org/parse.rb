@@ -30,9 +30,10 @@ rows.each do |row|
 	# subparts names are typically prefixed by a tilde, which we omit
 	part_category = part_name.split.first.delete("~")
 	
-	# strip the red/yellow/green icon from status
+	# strip the red/yellow/green icon and the status code from status description
+	# (status codes documented at http://wiki.ldraw.org/index.php?title=Parts_Tracker#Status_codes)
 	paragraphs[3].search("img").remove
-	part_status = paragraphs[3].inner_html.strip
+	part_status = paragraphs[3].inner_html.strip.gsub(/ \([ACSHXF]+\)/, '');
 	
 	# part_path is used to generate links to preview images and .dat files
 	part_path = case part_type
