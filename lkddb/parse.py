@@ -119,8 +119,8 @@ if __name__ == '__main__':
 
   # setup logger
   logger = logging.getLogger()
-  #logger.setLevel(logging.DEBUG)
-  logger.setLevel(logging.INFO)
+  logger.setLevel(logging.DEBUG)
+#  logger.setLevel(logging.INFO)
   #logger.setLevel(logging.WARNING)
   
   # dump config items

@@ -35,7 +35,7 @@ def get_protocol_string(tcp, udp):
         return "";
 
 
-tree = lxml.html.parse("raw.dat").getroot()
+tree = lxml.html.parse("download/raw.dat").getroot()
 tables = tree.find_class("wikitable sortable")
 for table in tables:
     for row in table.findall('tr'):

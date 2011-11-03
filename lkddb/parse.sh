@@ -2,4 +2,4 @@
 
 cd $(dirname -- "$0")
 
-python3 parse.py
+python3.2 parse.py
