@@ -63,7 +63,7 @@ for table in tables:
         # Remove citenote text
         description = re.sub("\[\d*\]", "", cells[3].text_content());
         # And [citation needed] text too
-        description = re.sub("\[citation needed\]", "", cells[3].text_content());
+        description = re.sub("\[citation needed\]", "", description);
 
         status = cells[4].text_content();
 
