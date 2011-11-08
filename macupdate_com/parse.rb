@@ -40,7 +40,7 @@ def parse_file(file)
       abstract.gsub!("\n", ' ') 
       abstract.gsub!("\r", ' ') 
     end
-    puts tmp
+    # puts tmp
     puts "#{page}\tA\t\t\t#{categories}\t\t#{internal_links}\t\t#{external_links}\t\t#{images}\t#{abstract}\t#{source_url}\n"
   end
 
