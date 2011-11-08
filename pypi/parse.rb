@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+# -*- coding: utf-8 -*-
 
 require 'rubygems'
 require 'hpricot'
@@ -47,7 +48,9 @@ apps.each do |l|
         abstract.gsub!("\r", ' ') 
       end
     
-      puts "#{page}\tA\t\t\t#{categories}\t\t#{internal_links}\t\t#{external_links}\t\t#{images}\t#{abstract}\t#{source_url}\n"
+#      puts "#{page}\tA\t\t\t#{categories}\t\t#{internal_links}\t\t#{external_links}\t\t#{images}\t#{abstract}\t#{source_url}\n"
+      # Use programming format.
+      puts "#{page}\t\t#{source_url}\t#{abstract}\t\t\t\t\n"
     
     end
     

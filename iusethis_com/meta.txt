@@ -12,4 +12,4 @@ Type: Applications
 MediaWiki: 0
 
 # Keywords uses to trigger (or prefer) the source over others.
-Keywords: application, app, iphone app, windows app, osx app, mac app
+Keywords: application, software, download

@@ -7,7 +7,7 @@ var path  = require('path');
 var us    = require('underscore');
 
 
-var PATH_BASE = './data/developer.mozilla.org/en/CSS/';
+var PATH_BASE = './download/developer.mozilla.org/en/CSS/';
 var URL_BASE  = 'https://developer.mozilla.org/en/CSS/';
 var JQUERY_URL = './jquery-1.5.min.js'; // 'http://code.jquery.com/jquery-1.5.min.js'; 
 var INDEX_NAME = 'CSS_Reference';

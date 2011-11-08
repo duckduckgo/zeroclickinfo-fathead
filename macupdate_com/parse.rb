@@ -13,7 +13,8 @@ def parse_file(file)
   apps = doc/"//div[@class='appinfo']"
 
   apps.each do |l|
-    categories     = 'Mac Application'
+
+    categories     = ''
     internal_links = ''
     external_links = ''
     source_url     = (l/'/a').attr('href')
