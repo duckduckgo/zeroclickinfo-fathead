@@ -1,45 +1,52 @@
 #!/usr/bin/ruby
-
-require 'rubygems'
-require 'hpricot'
-require 'open-uri'
-require 'find'
+['rubygems', 'hpricot', 'open-uri'].each{|r|require r}
 
 DOWNLOAD_DIR='download'
 
-def parse_file(file)
+# Have logic related to previous record (to aggregate game systems for a game)
+@game_system      = []
+@external_links   = []
+@prev_page        = nil
+@images           = ''
+@text_abstract    = ''
+@page             = ''
+@source_url       = ''
 
-  doc=Hpricot(open(file))
-  apps = doc/"//ul[@class='games']/li"
-  apps.each do |l|
-    
-    tmp = (l/'//h3/a')
-    source_url     = tmp.attr('href') 
-    external_links = source_url
-    page           = tmp.inner_text.strip
-    
-    file_info = file.split('/').last.split('_')
-    
-    categories     = file_info[0] # Game System
-    internal_links = ''
-    
-    images=""
-    images         = (l/"//div[@class='thumb']/a/img").attr('src') rescue ""
-    
-    text_abstract  = (l/"//div[@class='deck']//p").inner_text
+def parse_file(file, output_file)
+   
+   doc=Hpricot(open(file))
+   apps = doc/"//a"
+   apps.each do |l|
 
-    unless text_abstract.nil? 
-      text_abstract.gsub!("\t", ' ') 
-      text_abstract.gsub!("\n", ' ') 
-      text_abstract.gsub!("\r", ' ') 
-    end
+   internal_links  = ''
+   categories      = ''
+
+   tmp            = l.inner_text.split('-')
+   # Aggregating games by name.  External links by system
+   if (not @prev_page.nil?) and tmp[0].strip.downcase != @prev_page.downcase 
+      external_links='' # Aggregate the external links into a string
+      @external_links.each_with_index{|link,i|external_links+="[#{link} #{@game_system[i]}]\\n"}
+       
+      str="#{@page}\tA\t\t\t#{categories}\t\t#{internal_links}\t\t#{external_links}\t\t#{@images}\t#{@text_abstract}\t#{@source_url}\n"
+      File.open(output_file, 'a'){|f|f.puts str}
+     
+      @images         = ''
+      @text_abstract  = ''  
+      @source_url     = ''
+      @page           = ''
+      @game_system    = []
+      @external_links = []
+       
+   end
+
+    @page           = tmp[0].strip
+    @game_system    << tmp[1].strip
+    @prev_page      = @page
+    @source_url     = l['href']
+    @external_links << @source_url
     
-    puts "#{page}\tA\t\t\t#{categories}\t\t#{internal_links}\t\t#{external_links}\t\t#{images}\t#{text_abstract}\t#{source_url}\n"
   end
 
 end
 
-#
-# Process all html files in the download directory (recursive)
-#
-Find.find('download'){|f| parse_file(f) if f=~/\.html$/}
+parse_file(ARGV[0], ARGV[1])
