@@ -27,6 +27,8 @@ rows.delete_at(0)
 rows.delete_at(-1)
 rows.delete_at(-1)
 
+parts = Hash.new()
+
 # convert each row to fathead format
 rows.each do |row|
 	
@@ -73,10 +75,19 @@ rows.each do |row|
 	#   or also from actual files (best to report Tracker's interpretation)
 	abstract = "#{part_number}.dat is an unofficial LDraw #{part_type} titled \"#{part_name}\". Status: #{part_status} LDraw is an open standard for LEGO CAD programs that allow the user to create virtual LEGO models and scenes."
 	
-	# - part_number as title to respond to search queries for number
-	#   (or use part_name to look up number based on query by name?)
-	# - unclear what types are available/appropriate for line[1]
-	# - image and source links output relative to ldraw.org
-	puts "#{part_number}\tA\t\t\t#{part_category}\t\t\t\t\t\t/library/unofficial/images/#{part_path}/#{part_number}.png\t#{abstract}\t#{part_link}\n"
-
+	# If this is not the first part we've encountered with this name, append
+	# an abbreviated clarification/description to the existing part abstract.
+	# First instance of duplicates is arbitrarily given precedence.
+	if parts.has_key?(part_number)
+		parts[part_number][11] += "<br>(#{part_path}/#{part_number}.dat is an unofficial LDraw #{part_type} titled \"#{part_name}\". Status: #{part_status})"
+	else
+		# - part_number as title to respond to search queries for number
+		#   (or use part_name to look up number based on query by name?)
+		# - unclear what types are available/appropriate for line[1]
+		# - image and source links output relative to ldraw.org
+		parts[part_number] = [part_number, 'A', '', '', part_category, '', '', '', '', '', "/library/unofficial/images/#{part_path}/#{part_number}.png", abstract, part_link];
+	end
+	
 end
+
+parts.each {|key, value| puts value.join("\t")}
