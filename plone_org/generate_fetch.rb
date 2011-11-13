@@ -18,7 +18,11 @@ doc=Hpricot(open('http://plone.org/products'))
 # (records returned in groups of 10 designated by the start index)
 #
 categories.each do |category|
+ begin
 	 doc2=Hpricot(open("http://plone.org/products?getCompatibility=any&path=/plone.org/products&portal_type=PSCProject&getCategories=#{category[0].gsub(' ','+')}&b_start:int=0"))
+ rescue
+   nil   
+ end
 	 category << (doc2/"//p[@id='numreleases']").inner_text.strip.split(' ')[0]
 	 sleep 3  # Being polite
 end

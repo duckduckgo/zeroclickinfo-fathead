@@ -10,7 +10,7 @@ import lxml.etree
 
 class KernelConfigItem:
 
-  def __init__(self,url,name,shorthelp,help,type,depends,defined,kernelversions):
+  def __init__(self,url,name,shorthelp,help,type,depends,defined,kernelversions,modules):
     self.url = url
     self.name = name
     self.shorthelp = shorthelp
@@ -19,8 +19,27 @@ class KernelConfigItem:
     self.depends = depends
     self.defined = defined
     self.kernelversions = kernelversions
+    self.modules = modules
 
   def __str__(self):
+    redirect = "%s\tR\t%s\t\t\t\t\t\t\t\t\t\t" % (self.name.split("_",1)[1],self.name)
+    # TODO format the snippet better
+    if self.help:
+      snippet = self.help
+    else:
+      snippet = ""
+    if self.type:
+      snippet = "%s\\n- type: %s" % (snippet, self.type)
+    if self.depends:
+      snippet = "%s\\n- depends on the following option(s): %s" % (snippet, self.depends)
+    if self.defined:
+      snippet = "%s\\n- defined in: %s" % (snippet, self.defined)
+    if self.kernelversions:
+      snippet = "%s\\n- available in the following Linux version(s): %s" % (snippet, self.kernelversions)
+    if self.modules:
+      snippet = "%s\\n- will build the following module(s): %s" % (snippet, self.modules)
+    if snippet.startswith("\\n"):
+      snippet = snippet[2:]
     fields = [ self.name,
                "A",
                "",
@@ -32,9 +51,9 @@ class KernelConfigItem:
                "[http://cateee.net/lkddb/web-lkddb/ Linux Kernel Driver DataBase]",
                "",
                "",
-               self.help, # TODO format this nicely with other info
+               snippet,
                self.url ]
-    return "%s\n" % ("\t".join(fields))
+    return "%s\n%s\n" % (redirect, "\t".join(fields))
 
 
 class LkddbScraper:
@@ -43,6 +62,10 @@ class LkddbScraper:
   INDEX_URL = "%sindex.html" % (BASE_URL)
 
   parser = lxml.etree.HTMLParser()
+
+  def __init__(self):
+    self.ok_count = 0
+    self.ko_count = 0
 
   def __iter__(self):
     # get main page
@@ -63,16 +86,12 @@ class LkddbScraper:
         config_page = self.get_page_from_cache(config_page_url)
         config_page_xml = lxml.etree.XML(config_page,self.parser)
         try:
-          # construct config item
           multiple = len(config_page_xml.findall("body/div/ul")) > 3
           # get name of config option
           name = config_page_xml.find("body/div/h1").text
           if name.find(":") != -1:
-            name = name.split(":")[0]
+            name = name.split(":",1)[0]
           if not multiple:
-            # get short description
-            li_list = list(x.text for x in config_page_xml.findall("body/div/ul/li"))
-            shorthelp = li_list[0].split(": ")[1]
             # get full help
             help_lines = []
             for help_line in config_page_xml.xpath("body/div/h2[text()='Help text']/following::*"):
@@ -83,21 +102,51 @@ class LkddbScraper:
             help = "\\n".join(help_lines)
             if help == "(none)":
               help = ""
+            # detect erroneous pages
+            pre_list_msg_xml = config_page_xml.xpath("body/div/h2[text()='General informations']/following::p")
+            if not pre_list_msg_xml:
+              # for some pages lxml fail to get the right xml structure
+              # eg: http://cateee.net/lkddb/web-lkddb/M25PXX_USE_FAST_READ.html (xpath query "body/div/h2[text()='General informations']" gives nothing, but "body//h2[text()='General informations']" does)
+              self.ko_count += 1
+              logger.warning("Parsing of page '%s' failed (invalid xml structure)" % (config_page_url) )
+              continue
+            pre_list_msg_xml = pre_list_msg_xml[0]
+            pre_list_msg = lxml.etree.tostring(pre_list_msg_xml,encoding="unicode",method="text").strip()
+            if pre_list_msg.endswith("error: definition not found!"):
+              # some pages are incomplete, eg: http://cateee.net/lkddb/web-lkddb/ATHEROS_AR71XX.html
+              self.ko_count += 1
+              logger.warning("Parsing of page '%s' failed (incomplete page)" % (config_page_url) )
+              continue
             # get other option info
-            type = li_list[1].split(": ")[1]
-            depends = li_list[2].split(": ")[1]
-            defined = li_list[3].split("in ")[1]
-            kernelversions = li_list[4].split(": ")[1]
-            # TODO get "modules built: xxx" line
+            li_list = list(x.text for x in config_page_xml.xpath("body/div/h2[text()='General informations']/following::ul/li") if x.text)
+            shorthelp, type, depends, defined, kernelversions, modules = None, None, None, None, None, None
+            for li in li_list:
+              if li.startswith("prompt: "):
+                shorthelp = li[8:]
+              elif li.startswith("type: "):
+                type = li[6:]
+              elif li.startswith("depends on: "):
+                depends = li[12:]
+              elif li.startswith("defined in: "):
+                defined = li[12:]
+              elif li.startswith("found in Linux kernels: "):
+                kernelversions = li[24:]
+              elif li.startswith("modules built: "):
+                modules = li[15:]
           else:
             # TODO handle options with more than one description (lots!)
             continue
-          yield KernelConfigItem(config_page_url,name,shorthelp,help,type,depends,defined,kernelversions)
+          self.ok_count += 1
+          yield KernelConfigItem(config_page_url,name,shorthelp,help,type,depends,defined,kernelversions,modules)
+        except UnicodeDecodeError:
+          # some pages contain badly encoded chars, eg: http://cateee.net/lkddb/web-lkddb/SA1100_PFS168.html
+          self.ko_count += 1
+          logger.warning("Parsing of page '%s' failed (invalid character)" % (config_page_url) )
         except:
-          # some pages are incomplete, eg: http://cateee.net/lkddb/web-lkddb/ATHEROS_AR71XX.html
-          # we give up for those pages (currently 18 on 9613 parsed pages)
+          # unknown error
+          self.ko_count += 1
           logger.warning("Parsing of page '%s' failed" % (config_page_url) )
-          #raise
+          raise
     raise StopIteration
 
   def get_page_from_cache(self,url):
@@ -120,15 +169,11 @@ if __name__ == '__main__':
   # setup logger
   logger = logging.getLogger()
   logger.setLevel(logging.DEBUG)
-#  logger.setLevel(logging.INFO)
-  #logger.setLevel(logging.WARNING)
   
   # dump config items
   scraper = LkddbScraper()
-  count = 0
   with open("output.txt","wt") as output_file:
     for config_item in scraper:
-      count += 1
       output_file.write(str(config_item))
-  logger.info("%d config items" % (count) )
+  logger.info("%d config items parsed successfully\n%d parsing errors" % (scraper.ok_count, scraper.ko_count) )
 
