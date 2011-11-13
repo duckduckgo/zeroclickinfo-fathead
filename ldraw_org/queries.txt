@@ -2,14 +2,17 @@
 # Here's a query for LDraw part number 4600.
 # The expected result looks something like this:
 #
-#     4600 (Unofficial LDraw Part)
-#     Plate  2 x  2 with Wheel Holder (parts/4600.dat - 1 subfile isn't certified. (CCSF))
+#     4600
+#     
+#     4600.dat is an unofficial LDraw part titled "Plate  2 x  2 with
+#     Wheel Holder". Status: 1 subfile isn't certified. LDraw is an open
+#     standard for LEGO CAD programs that allow the user to create virtual
+#     LEGO models and scenes
+#     
 #     More at LDraw Parts Tracker
 #
 # The title line (& "More at...") is linked to detail page at
 # http://ldraw.org/cgi-bin/ptdetail.cgi?f=parts/4600.dat
-# The part number in the snippet is linked directly to the file at
-# http://www.ldraw.org/library/unofficial/parts/4600.dat
 # Preview images are constant scale, so size varies among parts.
 # http://www.ldraw.org/library/unofficial/images/parts/4600.png
 #
