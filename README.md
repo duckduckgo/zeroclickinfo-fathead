@@ -107,14 +107,23 @@ The output format from parse.xx depends on the type of content. In any case, it 
 
 The general output fields are as follows. Check out http://duckduckgo.com/Perl for reference, which we will refer to in explaining the fields.
 
+
 ```perl
 # REQUIRED: full article title, e.g. Perl.
+# This should be unique across the data set.
 my $title = $line[0] || '';
 
-# REQUIRED: A for article.
+# REQUIRED: 
+# A for article.
+# D for disambiguation page.
+# R for redirect.
 my $type = $line[1] || '';
 
-# Only for redirects -- ask.
+# Only for redirects, e.g. 
+# an alias for a title such as
+# a common misspelling or AKA.
+# For example: Duck Duck Go -> DuckDuckGo.
+# The format is the full title of the Redirect, e.g. DuckDuckGo.
 my $redirect = $line[2] || '';
 
 # Ignore.
@@ -124,6 +133,7 @@ my $otheruses = $line[3] || '';
 # E.g.: http://duckduckgo.com/c/Procedural_programming_languages
 # You would do: Procedural programming languages\\n
 # You can have several categories, separated by an escaped newline.
+# Categories should generally end with a plural noun.
 my $categories = $line[4] || '';
 
 # Ignore.
@@ -154,6 +164,7 @@ my $disambiguation = $line[9] || '';
 my $images = $line[10] || '';
 
 # This is the snippet info.
+# It should generally be ONE readable sentence, ending in a period.
 my $abstract = $line[11] || '';
 
 # This is the full URL for the source.
@@ -165,6 +176,13 @@ In all this may look like:
 
 print OUT "$page\tA\t\t\t$categories\t\t$internal_links\t\t$external_links\t\t$images\t$abstract\t$relative_url\n";
 ```
+
+There is a pre-process script that is run on this output, which:
+* drops duplicates (on $title).
+* reduces $abstract to one sentence.
+* drops records that look like spam.
+* normalizes spacing.
+* makes sure the $abstract ends in a sentence.
 
 
 ### Programming data file format
