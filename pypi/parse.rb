@@ -6,8 +6,13 @@ require 'hpricot'
 require 'open-uri'
 
 def get_item(doc,label='Author:', child_tag="span")
-
-   (doc/"//ul[@class='nodot']/li/strong[text()='#{label}']../#{child_tag}").inner_text
+   str=''
+   begin
+      str=(doc/"//ul[@class='nodot']/li/strong[text()='#{label}']../#{child_tag}").inner_text
+   rescue
+      nil
+   end
+   return str
 end
 
 doc=Hpricot(open('download/pypy.html'))
