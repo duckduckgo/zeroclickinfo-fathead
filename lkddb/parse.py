@@ -28,8 +28,9 @@ class KernelConfigItem:
       snippet = self.help
     else:
       snippet = ""
+    """
     if self.type:
-      snippet = "%s\\n- type: %s" % (snippet, self.type)
+      snippet = "%s (%s)" % (snippet, self.type)
     if self.depends:
       snippet = "%s\\n- depends on the following option(s): %s" % (snippet, self.depends)
     if self.defined:
@@ -40,6 +41,7 @@ class KernelConfigItem:
       snippet = "%s\\n- will build the following module(s): %s" % (snippet, self.modules)
     if snippet.startswith("\\n"):
       snippet = snippet[2:]
+    """
     fields = [ self.name,
                "A",
                "",
@@ -94,8 +96,7 @@ class LkddbScraper:
           if not multiple:
             # get full help
             help_lines = []
-            for help_line in config_page_xml.xpath("body/div/h2[text()='Help text']/following::*"):
-              # TODO some lines are lost, eg: "To compile this driver as a module..." on http://cateee.net/lkddb/web-lkddb/6PACK.html
+            for help_line in config_page_xml.xpath("body/div/h2[text()='Help text']/following-sibling::*"):
               if help_line.tag != "p":
                 break
               help_lines.append(lxml.etree.tostring(help_line,encoding="unicode",method="text").replace("\n"," ").strip())
@@ -168,7 +169,7 @@ if __name__ == '__main__':
 
   # setup logger
   logger = logging.getLogger()
-  logger.setLevel(logging.DEBUG)
+  logger.setLevel(logging.WARNING)
   
   # dump config items
   scraper = LkddbScraper()
