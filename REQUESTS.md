@@ -13,6 +13,8 @@
  * Currency in X, i.e. X is Japan = Yen.
  * File extensions, e.g. .ost
  * Urbandictionary
+ * Alexa ranking, see [this thread](https://duck.co/topic/alexa-rating)
+ * Firefox about:config options, list [here](http://kb.mozillazine.org/About:config_entries)
 
 ### Being worked on
 
