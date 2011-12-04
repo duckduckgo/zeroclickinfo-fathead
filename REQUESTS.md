@@ -13,7 +13,6 @@
  * Currency in X, i.e. X is Japan = Yen.
  * File extensions, e.g. .ost
  * Urbandictionary
- * Alexa ranking, see [this thread](https://duck.co/topic/alexa-rating)
  * Firefox about:config options, list [here](http://kb.mozillazine.org/About:config_entries)
 
 ### Being worked on
@@ -24,5 +23,6 @@
  * BEING WORKED ON: [Gamespot.com](http://gamespot.com)
  * BEING WORKED ON: [Plone](http://plone.org/) (python projects)
  * BEING WORKED ON: [PyPI](http://pypi.python.org/pypi) (python packages)
+ * BEING WORKED ON: [Alexa ranking](http://www.alexa.com/topsites)
 
 ### LIVE
