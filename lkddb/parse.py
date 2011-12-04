@@ -53,7 +53,7 @@ class KernelConfigItem:
     return "%s\n%s\n" % (redirect, "\t".join(fields))
 
 
-class LkddbScraper:
+class LkddbParser:
 
   BASE_URL = "http://cateee.net/lkddb/web-lkddb/"
   INDEX_URL = "%sindex.html" % (BASE_URL)
@@ -179,9 +179,9 @@ if __name__ == '__main__':
   logger.setLevel(logging.INFO)
   
   # dump config items
-  scraper = LkddbScraper()
+  parser = LkddbParser()
   with open("output.txt","wt") as output_file:
-    for config_item in scraper:
+    for config_item in parser:
       output_file.write(str(config_item))
-  logger.warning("%d config items parsed successfully\n%d skipped pages" % (scraper.ok_count, scraper.ko_count) )
+  logger.warning("%d config items parsed successfully\n%d skipped pages" % (parser.ok_count, parser.ko_count) )
 
