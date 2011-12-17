@@ -14,6 +14,7 @@
  * File extensions, e.g. .ost
  * Urbandictionary
  * Firefox about:config options, list [here](http://kb.mozillazine.org/About:config_entries)
+ * man pages, e.g. extracting data from Debian man pages -- like at man.cx
 
 ### Being worked on
 
