@@ -1,14 +1,11 @@
-DuckDuckGo ZeroClickInfo FatHeads
+Fathead Zero-click Info Plugins
 =================================
-
-About
------
 
 See [the contribution wiki](https://github.com/duckduckgo/duckduckgo/wiki) for a general overview on contributing to DuckDuckGo.
 
-This repository is for contributing static, keyword based content to 0-click, e.g. getting a perl function reference when you search for perl split. That is, each fathead project will essentially be a datafile that relates keywords to 0-click content.
+This repository is for contributing data-based Zero-click Info plugins. Each fathead plugin produces a data file that gets used in a fuzzy keyword mapping, e.g. for getting a perl function reference when you search for perl split.
 
-We also maintain a list of [requested fathead projects](https://github.com/duckduckgo/duckduckgo/wiki/Fathead), but whatever you want to attempt is welcome.
+We maintain a list of requested fathead plugins, which are colored orange on [the Trello board](https://trello.com/board/duckduckgo-open-source-plugins/4f08e96d947729b526070890), but whatever you want to attempt is welcome!
 
 
 Contributing
@@ -19,21 +16,19 @@ First off, thank you!
 
 ### Process
 
-1) Make sure you're in the right place. This repo is for generating data files to be used statically in 0-click. Generally it involves downloading content and then re-formatting it. If you need to do something in real-time from a third-paty API you probably want the [spice repo](https://github.com/duckduckgo/zeroclickinfo-spice). For Perl stand-alone goodies that get generated on the fly based on the query you probably want the [goodies repo](https://github.com/duckduckgo/zeroclickinfo-goodies).
+1) Develop your plugin using the Structure below in either a fork or a branch (if a collaborator).
 
-2) Develop project using the Structure below in either a fork or a branch (if a collaborator).
+2) Test your plugin via Testing procedure below.
 
-3) Test goodie via Testing procedure below.
+3) Submit a pull request.
 
-4) Submit a pull request.
-
-Feel free to ask questions!
+Feel free to [ask questions](http://webchat.freenode.net/?channels=duckduckgo)!
 
 
 
 ### Structure
 
-Each fathead project has its own directory. Some of the directories are in use on the live system, and some are still in development.
+Each fathead plugin has its own directory. Some of the directories are in use on the live system, and some are still in development.
 
 Each directory has a structure like this:
 
@@ -41,36 +36,36 @@ Each directory has a structure like this:
 
 # This shell script is called to fetch the data. 
 # Tmp files should go in a directory called download.
-project/fetch.sh
+plugin/fetch.sh
 
 # This is the script used to parse the data once it has been fetched. 
 # .xx can be .pl or .py or .js depending on what language you use.
-project/parse.xx
+plugin/parse.xx
 
 # This shell script is called to run the parser. 
-project/parse.sh
+plugin/parse.sh
 
 # Please include any dependencies here,
 # or other special instructions for people
 # trying to run it.
-project/README.txt
+plugin/README.txt
 
 # This is the output file.
 # Generally it should NOT be committed,
 # but if it is small (<1MB) it is useful to do so.
-project/output.txt
+plugin/output.txt
 
 # This is an optional pointer to a URL in the cloud somewhere,
 # which contains a zip of the data files to process.
-project/data.url
+plugin/data.url
 
 # This is for testing.
 # Put some good queries to test, one per line.
 # You can explain them with comments above them.
-project/queries.txt
+plugin/queries.txt
 
 # This is a file that gives meta information about the data source. 
-project/meta.txt
+plugin/meta.txt
 ```
 
 
@@ -139,7 +134,7 @@ my $categories = $line[4] || '';
 # Ignore.
 my $references = $line[5] || '';
 
-# You can reference related topics here, which get turned into links in the 0-click box.
+# You can reference related topics here, which get turned into links in the Zero-click Info box.
 # On the perl example, e.g. Perl Data Language
 # You would do: [[Perl Data Language]]
 # If the link name is different, you could do [[Perl Data Language|PDL]]
