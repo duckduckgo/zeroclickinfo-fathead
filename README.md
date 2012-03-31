@@ -5,7 +5,7 @@ See [the contribution wiki](https://github.com/duckduckgo/duckduckgo/wiki) for a
 
 This repository is for contributing data-based Zero-click Info plugins. Each fathead plugin produces a data file that gets used in a fuzzy keyword mapping, e.g. for getting a perl function reference when you search for perl split.
 
-We maintain a list of requested fathead plugins, which are colored orange on [the Trello board](https://trello.com/board/duckduckgo-open-source-plugins/4f08e96d947729b526070890), but whatever you want to attempt is welcome!
+We maintain a list of requested fathead plugins, which are under the "fathead" tag on [Uservoice](https://duckduckgo.uservoice.com/forums/5168-plugins/category/41839-fathead), but whatever you want to attempt is welcome!
 
 
 Contributing
