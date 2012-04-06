@@ -43,19 +43,19 @@ func output(formats chan fileFormat) {
 
 	for f := range formats {
 		out := []string{
-			f.ext, // title (required)
-			"A",   // type (required)
-			"",    // redirect
-			"",    // otheruses (ignore)
-			"",    // categories
-			"",    // references (ignore)
-			"",    // see also
-			"",    // further reading (ignore)
-			"",    // external links
-			"",    // disambiguation (ignore)
-			"",    // images
-			"A file with this extension may be a " + strings.Join(f.use, ", ") + ".", // abstract
-			"",                                                                       // source url
+			f.ext,           // title (required)
+			"A",             // type (required)
+			"",              // redirect
+			"",              // otheruses (ignore)
+			"",              // categories
+			"",              // references (ignore)
+			"",              // see also
+			"",              // further reading (ignore)
+			"",              // external links
+			"",              // disambiguation (ignore)
+			"",              // images
+			abstract(f.use), // abstract
+			"",              // source url
 		}
 		_, err = file.WriteString(strings.Join(out, "\t") + "\n")
 		if err != nil {
@@ -64,8 +64,22 @@ func output(formats chan fileFormat) {
 	}
 }
 
+func abstract(uses []string) string {
+	var a string
+	// Basic "a" vs "an"; not entirely correct, but close.
+	if !strings.HasPrefix(uses[0], "for ") {
+		switch uses[0][0] {
+		case 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U':
+			a = "an "
+		default:
+			a = "a "
+		}
+	}
+	return "A file with this extension may be " + a + strings.Join(uses, ", ") + "."
+}
+
 func cleanWikiHTML(s string) string {
-	return html.UnescapeString(wikilink(s))
+	return strings.TrimSpace(html.UnescapeString(wikilink(s)))
 }
 
 func wikilink(b string) string {
@@ -94,7 +108,7 @@ func parse(lines chan string, formats chan fileFormat) {
 				// Some extensions are used by multiple things. If this is a new extension,
 				// send the old one.
 				if thisExt := cleanWikiHTML(ext); thisExt != format.ext {
-					if format.ext != "" {
+					if format.ext != "" && len(format.use) > 0 {
 						formats <- format
 					}
 					format = fileFormat{ext: thisExt}
@@ -104,11 +118,19 @@ func parse(lines chan string, formats chan fileFormat) {
 		case parseDescription:
 			// Collect the possible uses for this extension.
 			// This is [1:] to omit a leading "|" on the line.
-			format.use = append(format.use, cleanWikiHTML(line[1:]))
+			if description := line[1:]; len(description) > 0 {
+				format.use = append(format.use, cleanWikiHTML(description))
+			}
 			state = parseApplication
 		case parseApplication:
 			if app := line[1:]; len(app) > 0 && app != "-" {
-				format.use[len(format.use)-1] += " for " + cleanWikiHTML(app)
+				appDescription := "for " + cleanWikiHTML(app)
+				// Check if there was a description.
+				if last := len(format.use) - 1; last < 0 {
+					format.use = append(format.use, appDescription)
+				} else {
+					format.use[last] += " " + appDescription
+				}
 			}
 			state = parseExtension
 		}
