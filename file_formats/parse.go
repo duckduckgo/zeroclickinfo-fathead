@@ -72,54 +72,49 @@ func wikilink(b []byte) []byte {
 	return linkRE.ReplaceAll(b, []byte("$2"))
 }
 
-func parse(lines chan []byte, formats chan fileFormat) {
-	// If description is true, this line is a file format description.
-	description := false
+const (
+	parseExtension = iota
+	parseDescription
+	parseApplication
+)
 
-	// If application is true, this line is the application using this extension.
-	application := false
+func parse(lines chan []byte, formats chan fileFormat) {
+	state := parseExtension
 
 	// The format we're currently parsing.
 	format := fileFormat{}
 
 	for line := range lines {
-		// Determine if this line specifies an extension.
-		if m := extensionRE.FindSubmatch(line); m != nil {
-			ext := m[1]
+		switch state {
+		case parseExtension:
+			// Determine if this line specifies an extension.
+			if m := extensionRE.FindSubmatch(line); m != nil {
+				ext := m[1]
 
-			// The next line will be a description.
-			description = true
+				// If a wiki link, use the link text.
+				ext = wikilink(ext)
 
-			// If a wiki link, use the link text.
-			ext = wikilink(ext)
-
-			// Some extensions are used by multiple things. If this is a new extension,
-			// send the old one.
-			if thisExt := html.UnescapeString(string(ext)); thisExt != format.ext {
-				if format.ext != "" {
-					formats <- format
+				// Some extensions are used by multiple things. If this is a new extension,
+				// send the old one.
+				if thisExt := html.UnescapeString(string(ext)); thisExt != format.ext {
+					if format.ext != "" {
+						formats <- format
+					}
+					format = fileFormat{ext: thisExt}
 				}
-				format = fileFormat{ext: thisExt}
+				state = parseDescription
 			}
-			continue
-		}
-
-		if description {
-			description = false
+		case parseDescription:
 			// Collect the possible uses for this extension.
 			// This is [1:] to omit a leading "|" on the line.
 			use := cleanWikiHTML(line[1:])
 			format.use = append(format.use, use)
-			application = true
-			continue
-		}
-
-		if application {
-			application = false
+			state = parseApplication
+		case parseApplication:
 			if app := line[1:]; len(app) > 0 && app[0] != '-' {
 				format.use[len(format.use)-1] += " for " + cleanWikiHTML(app)
 			}
-			continue
+			state = parseExtension
 		}
 	}
 	close(formats)
