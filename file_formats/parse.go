@@ -21,7 +21,7 @@ var wikiFile *string = flag.String("wikiinput", "download/data", "input Wikipedi
 
 func main() {
 	flag.Parse()
-	lines := make(chan []byte)
+	lines := make(chan string)
 	formats := make(chan fileFormat)
 
 	go readData(lines)
@@ -64,12 +64,12 @@ func output(formats chan fileFormat) {
 	}
 }
 
-func cleanWikiHTML(b []byte) string {
-	return html.UnescapeString(string(wikilink(b)))
+func cleanWikiHTML(s string) string {
+	return html.UnescapeString(wikilink(s))
 }
 
-func wikilink(b []byte) []byte {
-	return linkRE.ReplaceAll(b, []byte("$2"))
+func wikilink(b string) string {
+	return linkRE.ReplaceAllString(b, "$2")
 }
 
 const (
@@ -78,7 +78,7 @@ const (
 	parseApplication
 )
 
-func parse(lines chan []byte, formats chan fileFormat) {
+func parse(lines chan string, formats chan fileFormat) {
 	state := parseExtension
 
 	// The format we're currently parsing.
@@ -88,15 +88,12 @@ func parse(lines chan []byte, formats chan fileFormat) {
 		switch state {
 		case parseExtension:
 			// Determine if this line specifies an extension.
-			if m := extensionRE.FindSubmatch(line); m != nil {
+			if m := extensionRE.FindStringSubmatch(line); m != nil {
 				ext := m[1]
-
-				// If a wiki link, use the link text.
-				ext = wikilink(ext)
 
 				// Some extensions are used by multiple things. If this is a new extension,
 				// send the old one.
-				if thisExt := html.UnescapeString(string(ext)); thisExt != format.ext {
+				if thisExt := cleanWikiHTML(ext); thisExt != format.ext {
 					if format.ext != "" {
 						formats <- format
 					}
@@ -107,11 +104,10 @@ func parse(lines chan []byte, formats chan fileFormat) {
 		case parseDescription:
 			// Collect the possible uses for this extension.
 			// This is [1:] to omit a leading "|" on the line.
-			use := cleanWikiHTML(line[1:])
-			format.use = append(format.use, use)
+			format.use = append(format.use, cleanWikiHTML(line[1:]))
 			state = parseApplication
 		case parseApplication:
-			if app := line[1:]; len(app) > 0 && app[0] != '-' {
+			if app := line[1:]; len(app) > 0 && app != "-" {
 				format.use[len(format.use)-1] += " for " + cleanWikiHTML(app)
 			}
 			state = parseExtension
@@ -120,7 +116,7 @@ func parse(lines chan []byte, formats chan fileFormat) {
 	close(formats)
 }
 
-func readData(lines chan []byte) {
+func readData(lines chan string) {
 	wikiData, err := os.Open(*wikiFile)
 	if err != nil {
 		log.Fatal(err)
@@ -140,7 +136,7 @@ func readData(lines chan []byte) {
 		}
 
 		if !isPrefix {
-			lines <- line
+			lines <- string(line)
 		} else {
 			log.Panic("abnormally long input line -- check your data")
 		}
