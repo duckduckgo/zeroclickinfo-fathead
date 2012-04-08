@@ -1,12 +1,11 @@
-Fathead Zero-click Info Plugins
+DuckDuckGo Fathead Plugins
 =================================
 
-See [the contribution wiki](https://github.com/duckduckgo/duckduckgo/wiki) for a general overview on contributing to DuckDuckGo.
+See [DuckDuckHack](http://duckduckhack.com/) for an overview of the DuckDuckGo plugin system.
 
-This repository is for contributing data-based Zero-click Info plugins. Each fathead plugin produces a data file that gets used in a fuzzy keyword mapping, e.g. for getting a perl function reference when you search for perl split.
+This repository is for contributing fathead plugins. Each fathead plugin produces a data file that gets used in a fuzzy keyword mapping, e.g. for getting a perl function reference when you search for [perl split](https://duckduckgo.com/?q=perl+split).
 
-We maintain a list of requested fathead plugins, which are under the "fathead" tag on [Uservoice](https://duckduckgo.uservoice.com/forums/5168-plugins/category/41839-fathead), but whatever you want to attempt is welcome!
-
+Fathead plugins are in beta and both the interface and testing procedure will improve over time. However, you can work away without worrying about what any changes might do to your plugins -- we'll take care of all that.
 
 Contributing
 ------------
@@ -16,13 +15,15 @@ First off, thank you!
 
 ### Process
 
-1) Develop your plugin using the Structure below in either a fork or a branch (if a collaborator).
+1) Pick [a fathead project](https://duckduckgo.uservoice.com/forums/5168-plugins/category/41839-fathead) (or add one) and comment that you're working on it.
 
-2) Test your plugin via Testing procedure below.
+2) Develop your plugin using the Structure below [in a fork](http://help.github.com/fork-a-repo/).
 
-3) Submit a pull request.
+3) Test your plugin via Testing procedure below.
 
-Feel free to [ask questions](http://webchat.freenode.net/?channels=duckduckgo)!
+4) Submit a [pull request](http://help.github.com/send-pull-requests/).
+
+Feel free to [ask questions](http://duckduckhack.com/#faq)!
 
 
 
@@ -39,7 +40,7 @@ Each directory has a structure like this:
 plugin/fetch.sh
 
 # This is the script used to parse the data once it has been fetched. 
-# .xx can be .pl or .py or .js depending on what language you use.
+# .xx can be .pl, .py, .rb or .js depending on what language you use.
 plugin/parse.xx
 
 # This shell script is called to run the parser. 
@@ -100,7 +101,7 @@ Please name the output file output.txt (tab delimited) but do not store the data
 
 The output format from parse.xx depends on the type of content. In any case, it should be a tab delimited file, with one line per entry. Usually there is no need for newline characters, but if there is a need for some reason, escape them with a backslash like \\n. If you wanta newline displayed, use <br>.
 
-The general output fields are as follows. Check out http://duckduckgo.com/Perl for reference, which we will refer to in explaining the fields.
+The general output fields are as follows. Check out [https://duckduckgo.com/Perl](https://duckduckgo.com/Perl) for reference, which we will refer to in explaining the fields.
 
 
 ```perl
@@ -213,4 +214,4 @@ Our programming reference parser then translates the above into the general form
 
 ### Notes
 
-1) There should be no duplicated in the $page (first) variable. If you have multiple things named the same things you have a number of options, e.g. a) make disambiguation pages; b) put everything in one snippet; c) pick the most general one.
+1) There should be no duplicates in the $page (first) variable. If you have multiple things named the same things you have a number of options, e.g. a) make disambiguation pages; b) put everything in one snippet; c) pick the most general one.
