@@ -172,11 +172,11 @@ class LkddbParser:
     return page
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
   # setup logger
+  logging.basicConfig(level=logging.INFO,format="%(message)s")
   logger = logging.getLogger()
-  logger.setLevel(logging.INFO)
   
   # dump config items
   parser = LkddbParser()

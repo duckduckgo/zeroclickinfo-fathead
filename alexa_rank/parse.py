@@ -40,7 +40,7 @@ class AlexaParser:
 
   def __iter__(self):
     # construct csv parser
-    self.csv_reader = csv.reader(self.csv_file,delimiter=',',quoting=csv.QUOTE_NONE)
+    self.csv_reader = csv.reader(self.csv_file,delimiter=",",quoting=csv.QUOTE_NONE)
     return self.__next__()
 
   def __next__(self):
@@ -56,11 +56,11 @@ class AlexaParser:
     raise StopIteration
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
   # setup logger
+  logging.basicConfig(level=logging.INFO,format="%(message)s")
   logger = logging.getLogger()
-  logger.setLevel(logging.INFO)
   
   # dump config items
   parser = AlexaParser()
