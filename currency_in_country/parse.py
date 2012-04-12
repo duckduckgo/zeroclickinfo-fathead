@@ -4,6 +4,9 @@
 # Released under the GPL v2 license 
 # https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
+# Output generated for 'CurrencyIn.pm' module:
+# https://github.com/Alchymista/zeroclickinfo-goodies/tree/master/lib/DDG/Goodie
+
 import lxml.html
 import sys
 

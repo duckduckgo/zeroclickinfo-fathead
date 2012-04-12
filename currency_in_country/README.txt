@@ -10,6 +10,7 @@ One to ganerate option.txt and another one to generate hash.txt:
 DETAILS:
 
 1) Output is the file (output.txt) with list of countries and currencies with iso code in ()
+All data are tab separated values.
 For example: 
 Slovakia			Euro (EUR)
 
@@ -18,7 +19,9 @@ For example:
 Zimbabwe			Botswana pula (BWP)				
 Zimbabwe			British pound (GBP)	
 
-2) Output is the file (hash.txt). Every country takes only one line and so it easy to import into Perl module.
+2) Output is the file (hash.txt). Every country takes only one line and so it is easy to import into 'CurrencyIn.pm' module:
+https://github.com/Alchymista/zeroclickinfo-goodies/tree/master/lib/DDG/Goodie
+
 Format is Country:Currency,Currency,... each on one line
 
 For example:
