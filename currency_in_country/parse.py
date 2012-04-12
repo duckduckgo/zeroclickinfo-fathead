@@ -4,9 +4,6 @@
 # Released under the GPL v2 license 
 # https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
-# Output generated for 'CurrencyIn.pm' module:
-# https://github.com/Alchymista/zeroclickinfo-goodies/tree/master/lib/DDG/Goodie
-
 import lxml.html
 import sys
 
@@ -94,11 +91,30 @@ def output_hash():
 			description = ','.join(str(x) for x in formated_record)
 		f.write(country + ':' + description + '\n')
 	f.close()
+
+def copy_paste_hash():
+	"Output is 'copy_paste_hash.txt' with Perl 'hash table' ready for copy paste into 'CurrencyIn.pm' module"
+	output = "copy_paste_hash.txt"
+	f= open(output, "w")
+	result = []
+	for country in sorted(countries):
+		description = ""
+		formated_record = []
+				
+		for record in countries[country]:
+			iso_code = "" if record[1] == "" else (" (" + record[1] + ")")
+			currency = record[0]
+			formated_record.append(('"' + currency + iso_code + '"').encode("utf8"))
+			description = '[' + ','.join(str(x) for x in formated_record) + ']'
+		f.write('"' + country.lower() + '"' + '=>' + description + ',\n')
+	f.close()
 	
-# If '-hash' parameter then export 'hash.txt' otherwise export 'output.txt'
+# If '-hash' parameter then export 'hash.txt', if '-copy' then make copy paste ready file, otherwise export 'output.txt'
 if (len(sys.argv) > 1):
     if( sys.argv[1] == '--s' or sys.argv[1] == '-hash'):
         output_hash()
+    elif( sys.argv[1] == '--c' or sys.argv[1] == '-copy'):
+		copy_paste_hash()
     else:
 		output_txt()
 else:
