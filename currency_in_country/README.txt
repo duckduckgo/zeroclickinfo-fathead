@@ -28,8 +28,8 @@ Ascension Island:Ascension pound,Saint Helena pound (SHP)
 Australia:Australian dollar (AUD)
 
 3) Creates (copy_paste_hash.txt) where is hash table ready for copy paste to 'CurrencyIn.pm' module.
-This one seems to be prefferd method. Country name is lowercased for better comparison with user input
-but it gets capitalized on output.
+This one seems to be preferred method. Country name is lowercased for better comparison with user input,
+but it gets capitalized in search results.
 Output example:
 "abkhazia"=>["Russian ruble (RUB)"],
 "afghanistan"=>["Afghan afghani (AFN)"],
