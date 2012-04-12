@@ -5,12 +5,10 @@
 # https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
 import lxml.html
+import sys
 
 #url = "http://en.wikipedia.org/wiki/List_of_circulating_currencies"
 url = "https://secure.wikimedia.org/wikipedia/en/wiki/List_of_circulating_currencies"
-output = "output.txt"
-
-f = open(output, "w")
 
 countries = {};     # country:[[currency, code] [currency, code],...]
 country = ""        # store current country for each row
@@ -27,7 +25,7 @@ def add_currency(country, currency, iso_code, countries):
         countries[country] = [[currency, iso_code]]
 
 def clear_text(text):
-    "Clear text of anotations in []. Like 'Ascension pound[A]' contains [A]"
+    "Clear text of anotations in []. When e.g. 'Ascension pound[A]' contains [A]"
     start = text.find("[")
     if start != -1:
         text = text[:start]
@@ -51,23 +49,54 @@ for table in tables:
         iso_code = iso_code if iso_code != "None" else ""
         
         if currency != "None" and currency != "":
-            add_currency(country, currency, iso_code, countries)
+            add_currency(country[1:], currency, iso_code, countries)
 
+def output_txt():
+	"Output is 'output.txt' with tab separated values"
+	output = "output.txt"
+	f= open(output, "w")
+	
+	for country in sorted(countries):
+		for record in countries[country]:
+			iso_code = "" if record[1] == "" else ("(" + record[1] + ")")
+			currency = record[0]
+			description = (currency + " " + iso_code).encode("utf8")
+			f.write("\t".join([country,    # title
+						"",                # namespace
+						"", #url,          # url
+						description,       # description
+						"",                # synopsis
+						"",                # details
+						"",                # type
+						""                 # lang
+					   ])
+			   );
+			f.write("\n");
+	f.close()
 
-for country in sorted(countries):
-    for record in countries[country]:
-        iso_code = "" if record[1] == "" else ("(" + record[1] + ")")
-        currency = record[0]
-        description = (currency + " " + iso_code).encode("utf8")
-        f.write("\t".join([country,    # title
-                    "",                # namespace
-                    "", #url,          # url
-                    description,       # description
-                    "",                # synopsis
-                    "",                # details
-                    "",                # type
-                    ""                 # lang
-                   ])
-           );
-        f.write("\n");
-f.close()
+def output_hash():
+	"Output is 'hash.txt' with values in Perl 'hash table' ready for import"
+	#Format is Country:Currency,Currency,... each on one line
+	output = "hash.txt"
+	f= open(output, "w")
+	result = []
+	for country in sorted(countries):
+		description = ""
+		formated_record = []
+				
+		for record in countries[country]:
+			iso_code = "" if record[1] == "" else (" (" + record[1] + ")")
+			currency = record[0]
+			formated_record.append((currency + iso_code).encode("utf8"))
+			description = ','.join(str(x) for x in formated_record)
+		f.write(country + ':' + description + '\n')
+	f.close()
+	
+# If '-hash' parameter then export 'hash.txt' otherwise export 'output.txt'
+if (len(sys.argv) > 1):
+    if( sys.argv[1] == '--s' or sys.argv[1] == '-hash'):
+        output_hash()
+    else:
+		output_txt()
+else:
+    output_txt()
