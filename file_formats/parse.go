@@ -23,10 +23,12 @@ func main() {
 	flag.Parse()
 	lines := make(chan string)
 	formats := make(chan fileFormat)
+	uniqFormats := make(chan fileFormat)
 
 	go readData(lines)
 	go parse(lines, formats)
-	output(formats)
+	go uniq(formats, uniqFormats)
+	output(uniqFormats)
 }
 
 type fileFormat struct {
@@ -76,6 +78,23 @@ func abstract(uses []string) string {
 		}
 	}
 	return "A file with this extension may be " + a + strings.Join(uses, ", ") + "."
+}
+
+func uniq(formats chan fileFormat, uniqFormats chan fileFormat) {
+	uniq := make(map[string]fileFormat)
+	for f := range formats {
+		if existing, ok := uniq[f.ext]; ok {
+			existing.use = append(existing.use, f.use...)
+			uniq[f.ext] = existing
+		} else {
+			uniq[f.ext] = f
+		}
+	}
+
+	for _, f := range uniq {
+		uniqFormats <- f
+	}
+	close(uniqFormats)
 }
 
 func cleanWikiHTML(s string) string {
