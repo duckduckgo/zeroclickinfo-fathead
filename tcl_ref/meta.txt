@@ -1,0 +1,9 @@
+Name: Tcl/Tk 8.5 Manual
+
+Domain: www.tcl.tk
+
+Type: Tcl
+
+MediaWiki: 0
+
+Keywords: tcl

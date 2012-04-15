@@ -1,0 +1,19 @@
+#
+# Query:
+#
+#	tcl split
+#
+# Expected Result:
+#
+# 	split (Tcl)
+# 	
+# 		split string ?splitChars?
+# 		
+# 	Returns a list created by splitting string at each character that is the in the splitChars argument.
+# 	
+# 	More at Tcl/Tk 8.5 Manual
+#	<http://www.tcl.tk/man/tcl8.5/TclCmd/split.htm>
+#
+# (The example is based on the "perl split" example given in zeroclickinfo-fathead/README.md)
+#
+tcl split
