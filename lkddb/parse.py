@@ -90,7 +90,7 @@ class LkddbParser:
           multiple = len(config_page_xml.findall("body/div/ul")) > 3
 
           # get name of config option
-          name = config_page_xml.find("body/div/h1").text
+          name = config_page_xml.findtext("body/div/h1")
           if name.find(":") != -1:
             name = name.split(":",1)[0]
 
