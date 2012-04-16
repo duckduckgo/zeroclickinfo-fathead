@@ -20,9 +20,7 @@ First off, thank you!
 
 2) Develop your plugin using the Structure below [in a fork](http://help.github.com/fork-a-repo/).
 
-3) Test your plugin via Testing procedure below.
-
-4) Submit a [pull request](http://help.github.com/send-pull-requests/).
+3) Submit a [pull request](http://help.github.com/send-pull-requests/).
 
 Feel free to [ask questions](http://duckduckhack.com/#faq)!
 
