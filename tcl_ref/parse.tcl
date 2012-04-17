@@ -1,6 +1,6 @@
 #!/usr/bin/tclsh
 
-package require Tcl 8.5
+package require Tcl 8.4
 
 if {[llength $argv] < 2} {
 	puts stderr "Usage: parse.tcl URL_PREFIX FILE1 ?FILE2 FILE3 ...?"

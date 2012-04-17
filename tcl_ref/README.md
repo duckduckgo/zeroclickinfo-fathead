@@ -12,3 +12,7 @@ separated by `<br />`.
 Some pages in the manual do not document specific commands. Most such pages are omitted.
 
 Parsing is accomplished with gnarly and not at all fragile regular expressions. Cowabunga.
+
+## Requirements
+
+The `parse.tcl` script requires Tcl 8.4.
