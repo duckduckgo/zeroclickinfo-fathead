@@ -1,2 +1,2 @@
 mkdir -p download
-wget -P download 'http://localhost:8080/ddgdump.json' 
+wget -P download 'https://s3.amazonaws.com/DDG/ddgdump.json' 

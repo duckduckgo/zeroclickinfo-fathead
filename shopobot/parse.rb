@@ -22,7 +22,11 @@ def open(file)
     end
     image = product['image']
     url = product['url']
-    puts "#{title}\tA\t\t\t\t\t\t\t#{external_links}\t\t#{image}\t\t#{url}"
+    description = "30 Day Price History: $#{product['high']}-$#{product['low']}. "
+    if product['description']
+      description += product['description']
+    end
+    puts "#{title}\tA\t\t\t\t\t\t\t#{external_links}\t\t#{image}\t#{description}\t#{url}"
   end
 end
 
