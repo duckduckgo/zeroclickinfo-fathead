@@ -29,13 +29,13 @@ for talk in talks[1:]:
     #If it does not come from images.ted.com/images/ted, do not provide an image.
     image = soup.findAll(rel='image_src')
     if not len(image):
-        image = "None"
+        image = ""
     elif image[0].find("http://images.ted.com/images/ted"):
-        image = "None"
+        image = ""
     else:
         image = "[[Image:" + image[0]['href'] + "]]"
 
     #Write to file
-    output.write("{title}\t{article}\t\t\t{categories}\t\t{see_also}\t\t{external_links}\t\t{image}\t{abstract}\n".format(
-    title=title, article=article, categories=categories, see_also=see_also, external_links=external_links, image=image, abstract=abstract))
+    output.write("{title}\t{article}\t\t\t{categories}\t\t{see_also}\t\t{external_links}\t\t{image}\t{abstract}\t{relative_url}\n".format(
+    title=title, article=article, categories=categories, see_also=see_also, external_links=external_links, image=image, abstract=abstract, relative_url=""))
 output.close()
