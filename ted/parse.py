@@ -33,7 +33,7 @@ for talk in talks[1:]:
     elif image[0].find("http://images.ted.com/images/ted"):
         image = "None"
     else:
-        image = image[0]['href']
+        image = "[[Image:" + image[0]['href'] + "]]"
 
     #Write to file
     output.write("{title}\t{article}\t\t\t{categories}\t\t{see_also}\t\t{external_links}\t\t{image}\t{abstract}\n".format(
