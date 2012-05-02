@@ -1,0 +1,1 @@
+wget http://dl.dropbox.com/u/1358088/TEDTalks%20as%20of%2004.04.12%20-%20TEDTalks%20by%20date.csv -O download/ted.csv
