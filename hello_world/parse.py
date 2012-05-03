@@ -33,7 +33,7 @@ if __name__ == "__main__":
     
     # dump config items
     count = 0
-    with open("output.txt","wt") as output_file:
+    with open("output.txt", "wt") as output_file:
         for filepath in glob.glob('download/*/*'):
             _,filename = os.path.split(filepath)
             # ignore some "languages"
@@ -41,12 +41,18 @@ if __name__ == "__main__":
                 # fix brainfuck name
                 if filename == 'brainf*ck.bf':
                     filename = 'brainfuck.bf'
+
                 language,_ = os.path.splitext(filename)
                 with open(filepath, 'r') as f:
                     source = f.read()
+                source = source.replace('\n', '\\\n')
+                source = source.replace('\t', '\\\t')
+                    
                 item = HelloWorldItem(language, filename, source)
-                if ( count % 10 ) == 0:
+                if count % 10 == 0:
                     logger.info("%d languages processed" % count )
+
                 count += 1
                 output_file.write(str(item))
     logger.info("Parsed %d domain rankings successfully" % count)
+
