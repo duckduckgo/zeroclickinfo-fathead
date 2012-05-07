@@ -28,19 +28,7 @@ XEP-0027	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document outli
 XEP-0028	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document was removed from the XSF website and source control at the request of the author.	http://xmpp.org/extensions/xep-0028.html
 XEP-0029	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document defines the exact nature of a Jabber Identifier (JID). 	http://xmpp.org/extensions/xep-0029.html
 XEP-0030	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an XMPP protocol extension for discovering information about other XMPP entities. Two kinds of information can be discovered: (1) the identity and capabilities of an entity, including the protocols and features it supports; and (2) the items associated with an entity, such as the list of rooms hosted at a multi-user chat service.	http://xmpp.org/extensions/xep-0030.html
-XEP-0031	a									[[Image:http://xmpp.org/images/xmpp.png]]	
-Although the value and utility of contemporary instant messaging 
-systems, like Jabber, are now indisputable, current security 
-features to protect message data are generally inadequate for 
-many deployments; this is particularly true in security conscious 
-environments like large, commercial enterprises and government 
-agencies. These current features suffer from issues of 
-scalability, usability, and supported features. Furthermore, there is a 
-lack of standardization.
-
-We present a protocol to allow communities of Jabber users to 
-apply cryptographic protection to selected conversation data.
-	http://xmpp.org/extensions/xep-0031.html
+XEP-0031	a									[[Image:http://xmpp.org/images/xmpp.png]]	 Although the value and utility of contemporary instant messaging  systems, like Jabber, are now indisputable, current security  features to protect message data are generally inadequate for  many deployments; this is particularly true in security conscious  environments like large, commercial enterprises and government  agencies. These current features suffer from issues of  scalability, usability, and supported features. Furthermore, there is a  lack of standardization.  We present a protocol to allow communities of Jabber users to  apply cryptographic protection to selected conversation data. 	http://xmpp.org/extensions/xep-0031.html
 XEP-0032	a									[[Image:http://xmpp.org/images/xmpp.png]]	A URI scheme for Jabber communications.	http://xmpp.org/extensions/xep-0032.html
 XEP-0033	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an XMPP protocol extension that enables entities to include RFC822-style address headers within XMPP stanzas in order to specify multiple recipients or sub-addresses.	http://xmpp.org/extensions/xep-0033.html
 XEP-0034	a									[[Image:http://xmpp.org/images/xmpp.png]]	NOTE WELL: this specification was retracted on 2003-11-05 since the topic is addressed definitively in XMPP Core. Please refer to XMPP Core for further information.	http://xmpp.org/extensions/xep-0034.html
@@ -84,10 +72,7 @@ XEP-0071	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification 
 XEP-0072	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines methods for transporting SOAP messages over XMPP. Although the protocol supports only the request-response message exchange pattern, the protocol is formally defined as a SOAP Protocol Binding in accordance with version 1.2 of the W3C SOAP specification. In addition, a WSDL definition is defined for the purpose of advertising the availability of this protocol binding.	http://xmpp.org/extensions/xep-0072.html
 XEP-0073	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document defines a recommended suite of Jabber/XMPP protocols to be supported by basic instant messaging and presence applications. Note: This protocol suite has been obsoleted by XEP-0211 and XEP-0212.	http://xmpp.org/extensions/xep-0073.html
 XEP-0074	a									[[Image:http://xmpp.org/images/xmpp.png]]	A simple protocol for querying information for permissions.	http://xmpp.org/extensions/xep-0074.html
-XEP-0075	a									[[Image:http://xmpp.org/images/xmpp.png]]	The Jabber Object Access Protocol, or JOAP, defines a
-      mechanism for creating Jabber-accessible object servers, and
-      manipulating objects provided by those servers. It is intended
-      for development of business applications with Jabber.	http://xmpp.org/extensions/xep-0075.html
+XEP-0075	a									[[Image:http://xmpp.org/images/xmpp.png]]	The Jabber Object Access Protocol, or JOAP, defines a       mechanism for creating Jabber-accessible object servers, and       manipulating objects provided by those servers. It is intended       for development of business applications with Jabber.	http://xmpp.org/extensions/xep-0075.html
 XEP-0076	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document defines an XMPP protocol extension for flagging malicious stanzas.	http://xmpp.org/extensions/xep-0076.html
 XEP-0077	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an XMPP protocol extension for in-band registration with XMPP-based instant messaging servers and other services hosted on an XMPP network (such as groupchat rooms and gateways to non-XMPP IM services). The protocol is extensible via use of data forms, thus enabling services to gather a wide range of information during the registration process. The protocol also supports in-band password changes and cancellation of an existing registration.	http://xmpp.org/extensions/xep-0077.html
 XEP-0078	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document specifies a protocol for authentication with Jabber servers and services using the jabber:iq:auth namespace. Note Well: The protocol specified herein has been superseded in favor of SASL authentication as specified in RFC 3920 / RFC 6120, and is now obsolete.	http://xmpp.org/extensions/xep-0078.html
@@ -270,12 +255,8 @@ XEP-0254	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification 
 XEP-0255	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an XMPP protocol extension for querying a compliant server or service for information about the geographical or physical location of an entity.	http://xmpp.org/extensions/xep-0255.html
 XEP-0256	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines a way to use the Last Activity extension in XMPP presence notifications.	http://xmpp.org/extensions/xep-0256.html
 XEP-0257	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines a method to manage client certificates that can be used with SASL External to allow clients to log in without a password.	http://xmpp.org/extensions/xep-0257.html
-XEP-0258	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document describes the use of security labels in XMPP. The document specifies
-            how security label meta-data is carried in XMPP, when this meta-data should or should
-            not be provided, and how the meta-data is to be processed.	http://xmpp.org/extensions/xep-0258.html
-XEP-0259	a									[[Image:http://xmpp.org/images/xmpp.png]]	In servers that deliver messages intended for the bare JID to
-  all resources, the resource that claims a conversation notifies all
-  of the other resources of that claim.	http://xmpp.org/extensions/xep-0259.html
+XEP-0258	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document describes the use of security labels in XMPP. The document specifies             how security label meta-data is carried in XMPP, when this meta-data should or should             not be provided, and how the meta-data is to be processed.	http://xmpp.org/extensions/xep-0258.html
+XEP-0259	a									[[Image:http://xmpp.org/images/xmpp.png]]	In servers that deliver messages intended for the bare JID to   all resources, the resource that claims a conversation notifies all   of the other resources of that claim.	http://xmpp.org/extensions/xep-0259.html
 XEP-0260	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines a Jingle transport method that results in sending data via the SOCKS5 Bytestreams (S5B) protocol defined in XEP-0065. Essentially this transport method reuses XEP-0065 semantics for sending the data and defines native Jingle methods for starting and ending an S5B session.	http://xmpp.org/extensions/xep-0260.html
 XEP-0261	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines a Jingle transport method that results in sending data via the In-Band Bytestreams (IBB) protocol defined in XEP-0047. Essentially this transport method reuses XEP-0047 semantics for sending the data and defines native Jingle methods for starting and ending an IBB session.	http://xmpp.org/extensions/xep-0261.html
 XEP-0262	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines a Jingle application type for negotiating one or more sessions that use the Real-time Transport Protocol (RTP) to exchange media such as voice or video. The application type includes a straightforward mapping to Session Description Protocol (SDP) for interworking with SIP media endpoints.	http://xmpp.org/extensions/xep-0262.html
@@ -288,14 +269,9 @@ XEP-0268	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification 
 XEP-0269	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification describes methods for exchanging early media in the context of Jingle RTP sessions.	http://xmpp.org/extensions/xep-0269.html
 XEP-0270	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document defines XMPP protocol compliance levels for 2010.	http://xmpp.org/extensions/xep-0270.html
 XEP-0271	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification more clearly defines the nature of nodes as used in the Service Discovery and Publish-Subscribe extensions to the Extensible Messaging and Presence Protocol (XMPP).	http://xmpp.org/extensions/xep-0271.html
-XEP-0272	a									[[Image:http://xmpp.org/images/xmpp.png]]	
-    This specification defines an XMPP protocol extension for initiating and
-    managing multiparty voice and video conferences within an XMPP MUC
-  	http://xmpp.org/extensions/xep-0272.html
+XEP-0272	a									[[Image:http://xmpp.org/images/xmpp.png]]	     This specification defines an XMPP protocol extension for initiating and     managing multiparty voice and video conferences within an XMPP MUC   	http://xmpp.org/extensions/xep-0272.html
 XEP-0273	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an XMPP protocol extension that enables a client to exercise control over the XML stanzas it will receive from the server by instructing the server to intercept and filter inbound stanzas.	http://xmpp.org/extensions/xep-0273.html
-XEP-0274	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document discusses considerations for the design of Digital Signatures in XMPP,
-      including use cases and requirements. The document also discusses various ways XML Digital
-      Signatures could be used in XMPP.	http://xmpp.org/extensions/xep-0274.html
+XEP-0274	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document discusses considerations for the design of Digital Signatures in XMPP,       including use cases and requirements. The document also discusses various ways XML Digital       Signatures could be used in XMPP.	http://xmpp.org/extensions/xep-0274.html
 XEP-0275	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an XMPP protocol extension for communicating the reputation of any entity on the network.	http://xmpp.org/extensions/xep-0275.html
 XEP-0276	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an XMPP protocol extension that enables a user to send directed presence with a request for the target to also share presence information for the duration of a communications session.	http://xmpp.org/extensions/xep-0276.html
 XEP-0277	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines a method for microblogging over XMPP.	http://xmpp.org/extensions/xep-0277.html
@@ -306,33 +282,20 @@ XEP-0281	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document defin
 XEP-0282	a									[[Image:http://xmpp.org/images/xmpp.png]]	Multi-User Chats, distributed over several nodes in the XMPP network, using a master/slave architecture	http://xmpp.org/extensions/xep-0282.html
 XEP-0283	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document defines an XMPP protocol extension that enables a user to inform its contacts about a change in JID.	http://xmpp.org/extensions/xep-0283.html
 XEP-0284	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines a protocol that enables two or more endpoints to collaboratively edit an XML object. The protocol is intended for use mainly over the Extensible Messaging and Presence Protocol (XMPP), either by existing instant messaging clients or by specialized editing clients. However, the protocol could also be used over a direct TCP connection rather than over XMPP.	http://xmpp.org/extensions/xep-0284.html
-XEP-0285	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document provides a technical specification for Encapsulating Digital Signatures
-      in the Extensible Messaging and Presence Protocol (XMPP).	http://xmpp.org/extensions/xep-0285.html
+XEP-0285	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document provides a technical specification for Encapsulating Digital Signatures       in the Extensible Messaging and Presence Protocol (XMPP).	http://xmpp.org/extensions/xep-0285.html
 XEP-0286	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document provides background information for XMPP implementors concerned with mobile devices operating in a cellular network such as 3G.	http://xmpp.org/extensions/xep-0286.html
 XEP-0287	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document defines an XMPP protocol extension that enables XMPP entities to interact with spim filters by marking unsolicited or suspicious XMPP stanzas.	http://xmpp.org/extensions/xep-0287.html
 XEP-0288	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines a protocol for using server-to-server connections in a bidirectional way such that stanzas are sent and received on the same TCP connection.	http://xmpp.org/extensions/xep-0288.html
 XEP-0289	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document provides a protocol for reducing the bandwidth cost of local users contributing to a remote MUC over a constrained link through local proxying of the MUC room.	http://xmpp.org/extensions/xep-0289.html
-XEP-0290	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document provides a technical specification for Encapsulated Digital
-            Signatures in the Extensible Messaging and Presence Protocol (XMPP).	http://xmpp.org/extensions/xep-0290.html
+XEP-0290	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document provides a technical specification for Encapsulated Digital             Signatures in the Extensible Messaging and Presence Protocol (XMPP).	http://xmpp.org/extensions/xep-0290.html
 XEP-0291	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an approach for users to delegate certain services (e.g. pubsub) to alternative JIDs.	http://xmpp.org/extensions/xep-0291.html
 XEP-0292	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document specifies an XMPP extension for use of the vCard4 XML format in XMPP systems, with the intent of obsoleting the vcard-temp format.	http://xmpp.org/extensions/xep-0292.html
-XEP-0293	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an XMPP extension to negotiate
-  the use of the Extended RTP Profile for Real-time Transport Control
-  Protocol (RTCP)-Based Feedback (RTP/AVPF) with Jingle RTP
-  sessions	http://xmpp.org/extensions/xep-0293.html
-XEP-0294	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an XMPP extension to negotiate
-  the use of the use of RTP Header Extension as defined by RFC 5285
-  with Jingle RTP sessions	http://xmpp.org/extensions/xep-0294.html
+XEP-0293	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an XMPP extension to negotiate   the use of the Extended RTP Profile for Real-time Transport Control   Protocol (RTCP)-Based Feedback (RTP/AVPF) with Jingle RTP   sessions	http://xmpp.org/extensions/xep-0293.html
+XEP-0294	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an XMPP extension to negotiate   the use of the use of RTP Header Extension as defined by RFC 5285   with Jingle RTP sessions	http://xmpp.org/extensions/xep-0294.html
 XEP-0295	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an alternative JSON encoding for XMPP stanzas and other elements.	http://xmpp.org/extensions/xep-0295.html
 XEP-0296	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document specifies best practices to be followed by Jabber/XMPP clients about when to lock into, and unlock away from, resources.	http://xmpp.org/extensions/xep-0296.html
 XEP-0297	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document defines a protocol to forward a message from one entity to another.	http://xmpp.org/extensions/xep-0297.html
-XEP-0298	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an XMPP extension for tightly coupled
-      conference calls. It allows users who participate in multiparty Jingle
-      calls via a focus agent (mixer) to retrieve information and receive
-      notifications about the state of the call and the other participants.
-      This extension is also meant to provide a straightforward way of
-      connecting SIP and XMPP clients to the same conference room.
-    	http://xmpp.org/extensions/xep-0298.html
+XEP-0298	a									[[Image:http://xmpp.org/images/xmpp.png]]	This specification defines an XMPP extension for tightly coupled       conference calls. It allows users who participate in multiparty Jingle       calls via a focus agent (mixer) to retrieve information and receive       notifications about the state of the call and the other participants.       This extension is also meant to provide a straightforward way of       connecting SIP and XMPP clients to the same conference room.     	http://xmpp.org/extensions/xep-0298.html
 XEP-0299	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document describes implementation considerations related to video codecs for use in Jingle RTP sessions.	http://xmpp.org/extensions/xep-0299.html
 XEP-0300	a									[[Image:http://xmpp.org/images/xmpp.png]]	This document provides recommendations for the use of cryptographic hash functions in XMPP protocol extensions.	http://xmpp.org/extensions/xep-0300.html
 XEP-0301	a									[[Image:http://xmpp.org/images/xmpp.png]]	This is a specification for real-time text transmitted in-band over an XMPP session.	http://xmpp.org/extensions/xep-0301.html

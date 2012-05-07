@@ -22,6 +22,9 @@ for f in files:
     url = 'http://xmpp.org/extensions/' + number.lower() + '.html'
     abstract = tree.xpath('/xep/header/abstract')[0].text
 
+    abstract = abstract.replace('\n', ' ')
+    abstract = abstract.replace('\t', ' ')
+    
     out.write('\t'.join([number, "a", "", "", "", "", "", "", "", "",
                          "[[Image:http://xmpp.org/images/xmpp.png]]",
                          abstract,
