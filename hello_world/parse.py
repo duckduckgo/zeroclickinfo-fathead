@@ -45,8 +45,8 @@ if __name__ == "__main__":
                 language,_ = os.path.splitext(filename)
                 with open(filepath, 'r') as f:
                     source = f.read()
-                source = source.replace('\n', '\\\n')
-                source = source.replace('\t', '\\\t')
+                source = source.replace('\n', '\\\\n')
+                source = source.replace('\t', '\\\\t')
                     
                 item = HelloWorldItem(language, filename, source)
                 if count % 10 == 0:
