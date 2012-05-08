@@ -37,7 +37,7 @@ if __name__ == "__main__":
         for filepath in glob.glob('download/*/*'):
             _,filename = os.path.split(filepath)
             # ignore some "languages"
-            if filename not in ['ls.ls', 'readlink.readlink', 'whitespace.ws']:
+            if filename not in ['ls.ls', 'readlink.readlink', 'piet.png']:
                 # fix brainfuck name
                 if filename == 'brainf*ck.bf':
                     filename = 'brainfuck.bf'
