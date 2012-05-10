@@ -14,7 +14,7 @@ class HelloWorldItem:
     # a few problems:
      # 1. self.source may contain tabs
      # 2. should type or lang be non-empty?
-    fields = [ "hello world %s" % self.language,
+    fields = [ "hello world (%s)" % self.language,
                "", # namespace
                "https://github.com/leachim6/hello-world",
                "Hello World in %s (%s)" % (self.language, self.filename),
@@ -45,8 +45,10 @@ if __name__ == "__main__":
                 language,_ = os.path.splitext(filename)
                 with open(filepath, 'r') as f:
                     source = f.read()
-                source = source.replace('\n', '\\\\n')
-                source = source.replace('\t', '\\\\t')
+                source = source.replace('\\n', '~~~n')
+                source = source.replace('\n', '\\n')
+                source = source.replace('~~~n', '\\\\n')
+                source = source.replace('\t', '\\t')
                     
                 item = HelloWorldItem(language, filename, source)
                 if count % 10 == 0:
