@@ -7,8 +7,8 @@ cd $(dirname -- "$0")
 
 if $USE_STATIC_DUMP && [ $(which 7z) ]
 then
-  wget -nc 'ftp://ks384172.kimsufi.com/lkddb-dump-2011-12-03.7z'
-  7z x lkddb-dump-2011-12-03.7z 
+  wget -nc 'ftp://anonymous@ks384172.kimsufi.com/lkddb-dump-2012-05-12.7z'
+  7z x lkddb-dump-2012-05-12.7z
 else
   wget -P download -nv -r -np -nc -l 2 -w 0.1 --random-wait 'http://cateee.net/lkddb/web-lkddb/index.html'
 fi
