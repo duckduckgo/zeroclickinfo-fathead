@@ -25,10 +25,10 @@ class HelloWorldItem:
              ]
 
     output = "%s\n" % ("\t".join(fields))
-    fields[0] = '%s hello world' % self.language
-    output += "%s\n" % ("\t".join(fields))
-    fields[0] = 'hello world in %s' % self.language
-    output += "%s\n" % ("\t".join(fields))
+#    fields[0] = '%s hello world' % self.language
+#    output += "%s\n" % ("\t".join(fields))
+#    fields[0] = 'hello world in %s' % self.language
+#    output += "%s\n" % ("\t".join(fields))
     return output
 
 
