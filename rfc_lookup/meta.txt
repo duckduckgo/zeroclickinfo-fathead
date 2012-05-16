@@ -1,0 +1,5 @@
+Name: RFC Documents
+Domain: www.rfc-editor.org
+Type: Internet Standards
+MediaWiki: 0
+Keywords: RFC, rfc
