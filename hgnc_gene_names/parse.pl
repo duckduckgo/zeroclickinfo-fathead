@@ -92,6 +92,8 @@ trace("opening output file $outfile using IO::File");
 $outfh->open(">$outfile") or die "Could not open $outfile for output\n";
 trace("opened output file $outfile for writing");
 
+# put output file in utf8 mode
+$outfh->binmode(":utf8");
 
 # parse header line
 my $headerline = <$infh>;
