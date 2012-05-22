@@ -18,11 +18,12 @@ for row in reader:
 
      verse = row[3]
      url = "http://blb.org/search/preSearch.cfm?Criteria="+book+"+"+chapter
-     temp = book+" "+chapter+"\tA\t\t\tBible Verses\\n\t\t\t\t\t\t\t\t\t"+verse+"\t"+url+"\n"
+     ddgStr = "\tA\t\t\tBible Verses\\n\t\t\t\t\t\t\t\t\t"
+     temp = book+" "+chapter+ddgStr+verse+"\t"+url+"\n"
      output.write(temp)
 
      if book != "Job":
           abvName = abv[book.lower()]
           abvUrl = "http://blb.org/search/preSearch.cfm?Criteria="+abvName+"+"+chapter
-          abvTemp = abvName+" "+chapter+"\tA\t\t\tBible Verses\\n\t\t\t\t\t\t\t\t\t"+verse+"\t"+abvUrl+"\n"
+          abvTemp = abvName+" "+chapter+ddgStr+verse+"\t"+abvUrl+"\n"
           output.write(abvTemp)
