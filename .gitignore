@@ -1,1 +1,5 @@
 *.out
+download/
+alexa_rank/output.txt
+file_formats/output.txt
+hgnc_gene_names/output.txt

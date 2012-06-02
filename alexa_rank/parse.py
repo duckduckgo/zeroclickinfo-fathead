@@ -61,8 +61,8 @@ if __name__ == "__main__":
   # setup logger
   logging.basicConfig(level=logging.INFO,format="%(message)s")
   logger = logging.getLogger()
-  
-  # dump config items
+
+  # dump rankings
   parser = AlexaParser()
   count = 0
   with open("output.txt","wt") as output_file:

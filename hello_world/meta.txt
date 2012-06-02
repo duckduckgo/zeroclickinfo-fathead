@@ -1,0 +1,20 @@
+# This is the name of the source as people would refer to it,
+# e.g. Wikipedia or PerlDoc -- gets displayed on Web site.
+Name: Hello World
+
+# This is the base domain where the source pages are located.
+# Get used to get the favicon.
+Domain: www.github.com
+
+# This is what gets put in quotes next to the source
+# It can be blank if it is a source with completely 
+# general info spanning many types of topics like Facebook.
+Type: Github
+
+# Whether the source is from MediaWiki (1) or not (0).
+# Processing happens a bit differently on MediaWiki.
+MediaWiki: 0
+
+# Keywords uses to trigger (or prefer) the source over others.
+# Can seperate multiple keywords with,
+Keywords: hello world,source

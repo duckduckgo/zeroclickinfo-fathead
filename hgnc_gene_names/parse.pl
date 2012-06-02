@@ -68,10 +68,10 @@ sub error {
 # data file should be downloaded from HUGO Gene Nomenclature Committee
 # download link for "complete HGNC dataset" at: http://www.genenames.org/cgi-bin/hgnc_stats.pl
 # current download link: http://www.genenames.org/cgi-bin/hgnc_downloads.cgi?title=HGNC+output+data&hgnc_dbtag=on&preset=all&status=Approved&status=Entry+Withdrawn&status_opt=2&level=pri&=on&where=&order_by=gd_app_sym_sort&limit=&format=text&submit=submit&.cgifields=&.cgifields=level&.cgifields=chr&.cgifields=status&.cgifields=hgnc_dbtag
-my $infile = shift or die "must specify input file for parse.pl as first argument.\ne.g. parse.pl hgnc_complete_dataset.tsv.gz hgnc_gene_names.tsv\n";
+my $infile = shift or die "must specify input file for parse.pl as first argument.\ne.g. parse.pl download/hgnc_complete_dataset.tsv.gz output.txt\n";
 
 # second argument is output filename
-my $outfile = shift or die "must specify output file for parse.pl as second argument.\ne.g. parse.pl hgnc_complete_dataset.tsv.gz hgnc_gene_names.tsv\n";
+my $outfile = shift or die "must specify output file for parse.pl as second argument.\ne.g. parse.pl download/hgnc_complete_dataset.tsv.gz output.txt\n";
 
 # open input filehandle (or die trying)
 my $infh;
@@ -92,6 +92,8 @@ trace("opening output file $outfile using IO::File");
 $outfh->open(">$outfile") or die "Could not open $outfile for output\n";
 trace("opened output file $outfile for writing");
 
+# put output file in utf8 mode
+$outfh->binmode(":utf8");
 
 # parse header line
 my $headerline = <$infh>;
