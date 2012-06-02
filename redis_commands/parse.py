@@ -3,6 +3,7 @@
 
 import lxml.etree, lxml.html
 import re
+
 url = "http://redis.io"
 output = "output.txt"
 
@@ -17,12 +18,21 @@ for command in commands:
 
     for row in command.findall('a'):
         command_url = "%s/%s" % (url, row.get('href'))
+        
         for sibling in command.itersiblings():
-            data[command_url] = (row.text, sibling.text)
+            usage = ""
+            
+            for command_args in command.findall('span'):
+                usage = "Usage: %s %s" % (row.text, command_args.text.replace(' ', '').replace('\n', ' ').strip())
+
+            summary = "%s<br>%s" % (sibling.text, usage)
+
+            data[command_url] = (row.text, summary)
 
 for command_url in data.keys():
     command, summary = data[command_url]
-    summary = unicode(summary).encode("utf-8");
+    summary = unicode(summary).encode("utf-8")
+    
     f.write("\t".join([str(command),      # title
                     "",                # namespace
                     command_url,               # url
@@ -32,6 +42,6 @@ for command_url in data.keys():
                     "",                # type
                     ""                 # lang
                    ])
-           );
-    f.write("\n");
+           )
+    f.write("\n")
 f.close()
