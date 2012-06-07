@@ -44,6 +44,9 @@ func output(formats chan fileFormat) {
 	defer file.Close()
 
 	for f := range formats {
+                // Redirect ".pdf" to "pdf"
+                redirect := "." + f.ext + "\tR\t" + f.ext + "\t\t\t\t\t\t\t\t\t\t"
+
 		out := []string{
 			f.ext,           // title (required)
 			"A",             // type (required)
@@ -59,7 +62,7 @@ func output(formats chan fileFormat) {
 			abstract(f.use), // abstract
 			"",              // source url
 		}
-		_, err = file.WriteString(strings.Join(out, "\t") + "\n")
+		_, err = file.WriteString(strings.Join(out, "\t") + "\n" + redirect + "\n")
 		if err != nil {
 			log.Fatal(err)
 		}
