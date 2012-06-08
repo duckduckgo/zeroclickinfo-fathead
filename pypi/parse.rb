@@ -33,13 +33,14 @@ apps.each do |l|
       tmp           = (l/'/td[1]').inner_text  
       a=tmp.split(' ')
       page = a[0]
+        
+      next if abstract == "UNKNOWN" || abstract == ""
 
-      
-      abstract = "#{abstract}" unless a[1].nil? 
-      abstract += '.' unless abstract=~/\.$/ 
-      
+      abstract = "Package description - #{abstract}" unless a[1].nil? 
+
       # Get the License and Home Page of the project from the detail page if available
-      detail_doc=Hpricot(open(source_url))
+      # 06.07.2012 - Was having problems opening the URL so I've commented this out for now
+      detail_doc= '' #Hpricot(open(source_url))
       
       license = get_item(detail_doc,'License:')
       abstract += "  License: #{license}." unless license.nil? or license.strip==''
