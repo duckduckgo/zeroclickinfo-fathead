@@ -1,0 +1,5 @@
+Name: HTML Reference
+Domain: http://html5doctor.com
+Type: HTML5Doctor
+MediaWiki: 0
+Keywords: html,html tag,html5,html5 tag,tag
