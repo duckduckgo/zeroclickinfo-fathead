@@ -1,0 +1,5 @@
+html a
+html tag abbr
+html5 video
+html5 tag p
+tag br
