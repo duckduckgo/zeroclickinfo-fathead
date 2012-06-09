@@ -1,0 +1,986 @@
+a tag		http://dev.w3.org/html5/spec/Overview.html#the-a-element		
+<a href="http://html5doctor.com/author/jacko/">Jack Osborne</a>
+			
+abbr tag		http://html5doctor.com/the-abbr-element/		
+The <abbr title="Web Hypertext Application Technology Working Group">WHATWG</abbr> started working on HTML5 in 2004.
+			
+address tag		http://html5doctor.com/the-address-element/		
+<address>Jack Osborne</address>
+			
+area tag		http://dev.w3.org/html5/spec/Overview.html#the-area-element		
+<img src="floorplan.png" usemap="#rooms" alt="1 bedroom, a kitchen, lounge and bathroom">
+
+<map name="rooms">
+	<area shape="rect" coords="20,20,140,140" href="bedroom.html" alt="Bedroom">
+	<area shape="rect" coords="20,140,140,280" href="lounge.html" alt="Lounge">
+	<area shape="poly" coords="140,140,140,280,280,140" href="kitchen.html" alt="Kitchen">
+	<area shape="rect" coords="140,20,280,140" href="bathroom.html" alt="Bathroom">
+</map>
+			
+article tag		http://html5doctor.com/the-article-element/		
+<article>
+	<header>
+		<h4><a href="#comment-2" rel="bookmark">Comment #2</a>
+		by <a href="http://example.com/">Jack Osborne</a></h4>
+
+		<time datetime="2007-08-29T13:58Z">August 29th, 2007 at 13:58</time>
+	</header>
+	<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
+</article>
+		
+			
+aside tag		http://html5doctor.com/aside-revisited/		
+<aside>
+	<h2>Blogroll</h2>
+	<ul>
+			<li><a href="#">My Friend</a></li>
+
+			<li><a href="#">My Other Friend</a></li>
+			<li><a href="#">My Best Friend</a></li>
+	</ul>
+
+</aside>
+		
+			
+audio tag		http://html5doctor.com/native-audio-in-the-browser/		
+<audio src="music.oga" controls>
+	<a href="music.oga">Download song</a>
+
+</audio>
+			
+b tag		http://html5doctor.com/i-b-em-strong-element/		
+<b class="character">Deckard</b>: <i class="voiceover">The report would be routine retirement of a replicant which didn't make me feel any better about shooting a woman in the back. There it was again. Feeling, in myself. For her, for Rachael.</i>
+			
+base tag		http://dev.w3.org/html5/spec/Overview.html#the-base-element		
+<head>
+  <title>The Company</title>
+  <base href="http://www.example.com/">
+</head>
+			
+bdi tag		http://dev.w3.org/html5/spec/text-level-semantics.html#the-bdi-element		
+<ul>
+  <li><bdi>johnsmith</bdi> joined the site</li>
+  <li><bdi>the_guru</bdi> posted "February update"</li>
+
+  <li><bdi>????</bdi> commented on "Getting started with HTML5"</li>
+</ul>
+			
+bdo tag		http://dev.w3.org/html5/spec/text-level-semantics.html#the-bdo-element		
+
+
+  <p><bdo dir="rtl">Don't cheat by reading this in a mirror!</bdo></p>
+
+			
+blockquote tag		http://dev.w3.org/html5/spec/Overview.html#the-blockquote-element		
+<blockquote>What we have here is a quotation from another source
+</blockquote>
+			
+body tag		http://dev.w3.org/html5/spec/Overview.html#the-body-element-0		
+<body id="index">
+	<p>content</p>
+</body>
+			
+br tag		http://dev.w3.org/html5/spec/Overview.html#the-br-element		
+<br />
+			
+button tag		http://dev.w3.org/html5/spec/Overview.html#the-button-element		
+<button>Do something!</button>
+			
+canvas tag		http://html5doctor.com/an-introduction-to-the-canvas-2d-api/		
+<canvas id="myCanvas" width="300" height="150">
+Fallback content, in case the browser does not support Canvas.
+</canvas>
+			
+caption tag		http://dev.w3.org/html5/spec/Overview.html#the-caption-element		
+<table><caption>Animals on our farm</caption>
+<colgroup>
+	<col class="column1" />
+	<col class="column2" />
+
+	<col class="column3-4" span="2" />
+</colgroup>
+<tr>
+	<th>dog</th>
+	<th>cat</th>
+
+	<th>horse</th>
+	<th>iguana</th>
+</tr>
+<tr>
+	<td>5</td>
+
+	<td>2</td>
+	<td>10</td>
+	<td>500</td>
+</tr>
+
+...
+</table>
+			
+cite tag		http://dev.w3.org/html5/spec/Overview.html#the-cite-element		
+My favourite book is <cite>Introducing HTML5</cite> by Bruce and Remy
+			
+code tag		http://dev.w3.org/html5/spec/Overview.html#the-code-element		
+To get started with HTML5 you just need at this top of your page <code><!DOCTYPE html></code>
+			
+col tag		http://dev.w3.org/html5/spec/Overview.html#the-col-element		
+<table>
+
+		<colgroup>
+			<col class="column1" />
+			<col class="column2" />
+			<col class="column3-4" span="2" />
+		</colgroup>
+		<tr>
+
+			<th>dog</th>
+			<th>cat</th>
+			<th>horse</th>
+			<th>iguana</th>
+
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>2</td>
+			<td>10</td>
+
+			<td>500</td>
+		</tr>
+		...
+</table>
+			
+colgroup tag		http://dev.w3.org/html5/spec/Overview.html#the-colgroup-element		
+<table>
+	   <colgroup>
+			<col class="column1" />
+			<col class="column2" />
+			<col class="column3-4" span="2" />
+
+	   </colgroup>
+		<tr>
+			<th>dog</th>
+			<th>cat</th>
+			<th>horse</th>
+
+			<th>iguana</th>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>2</td>
+
+			<td>10</td>
+			<td>500</td>
+		</tr>
+		...
+</table>
+			
+command tag		http://dev.w3.org/html5/spec/Overview.html#the-command		
+<menu type="toolbar"><command type="radio" radiogroup="alignment" checked="checked" label="Left" icon="left.png" onclick="setAlign('left')" />
+</menu>
+			
+datalist tag		http://dev.w3.org/html5/spec/Overview.html#the-datalist-element		
+<label>Your favourite fruit:
+<input type="text" name="fruit" list="fruits">
+  <datalist id="fruits">
+	<option value="Blackberry">Blackberry</option>
+	<option value="Blackcurrant">Blackcurrant</option>
+
+	<option value="Blueberry">Blueberry</option>
+	<!-- ... -->
+  </datalist>
+</label>
+			
+dd tag		http://html5doctor.com/the-dl-element/		
+<dl>
+<dt>address</dt>
+<dd>The address element represents the contact information for the section it applies to. If it applies to the body element, then it instead applies to the document as a whole.
+</dd>
+<dt>article</dt>
+
+<dd>The article element represents a section of a page that consists of a composition that forms an independent part of a document, page, or site. This could be a forum post, a magazine or newspaper article, a Web log entry, a user-submitted comment, or any other independent item of content.</dd>
+</dl>
+			
+del tag		http://dev.w3.org/html5/spec/Overview.html#the-del-element		
+<p>My favourite colour is <del datetime="2010-10-11T01:25-07:00">blue</del> <ins datetime="2010-10-11T01:25-07:01">red</ins>, but I also like green and yellow.</p>
+			
+details tag		http://html5doctor.com/the-details-and-summary-elements/		
+<details>
+	<summary>Name & Extension:</summary>
+
+	<p><input type=text name=fn value="Pillar Magazine.pdf">
+	<p><label><input type=checkbox name=ext checked> Hide extension</label>
+</details>
+		
+			
+dfn tag		http://dev.w3.org/html5/spec/Overview.html#the-dfn-element		
+<p>While they're essential reading material for our job, the <dfn><abbr title="World Wide Web Consortium">W3C</abbr></dfn> specifications are not exactly George R. R. Martin-level reading material.</p>
+			
+div tag		http://html5doctor.com/you-can-still-use-div/		
+<div>
+	<p>content</p>
+</div>
+
+		
+			
+dl tag		http://html5doctor.com/the-dl-element/		
+<dl>
+	<dt>address</dt>
+
+	<dd>The address element represents the contact information for the section it applies to. If it applies to the body element, then it instead applies to the document as a whole.</dd>
+	<dt>article</dt>
+	<dd>The article element represents a section of a page that consists of a composition that forms an independent part of a document, page, or site. This could be a forum post, a magazine or newspaper article, a Web log entry, a user-submitted comment, or any other independent item of content.</dd>
+</dl>
+
+		
+			
+dt tag		http://html5doctor.com/the-dl-element/		
+<dl>
+<dt>address</dt>
+<dd>The address element represents the contact information for the section it applies to. If it applies to the body element, then it instead applies to the document as a whole.
+
+</dd>
+<dt>article</dt>
+<dd>The article element represents a section of a page that consists of a composition that forms an independent part of a document, page, or site. This could be a forum post, a magazine or newspaper article, a Web log entry, a user-submitted comment, or any other independent item of content.</dd>
+ </dl>
+			
+doctype tag		http://dev.w3.org/html5/spec/Overview.html#the-doctype		
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>HTML5 Doctor | Element Index</title>
+<link rel="stylesheet" href="style.css" />
+
+</head>
+<body id="home">
+<p>content</p>
+</body>
+</html>
+		
+			
+em tag		http://html5doctor.com/i-b-em-strong-element/		
+Call a doctor <em>now</em>
+			
+embed tag		http://dev.w3.org/html5/spec/Overview.html#the-embed-element		
+<embed src="movieclip.mov">
+			
+fieldset tag		http://dev.w3.org/html5/spec/Overview.html#the-fieldset-element		
+<form id="app-login" action="process.php">
+<fieldset>
+<legend>Login Details</legend>
+<div>
+  <label for="user-name">Username:</label>
+
+  <input name="user-name" type="email" placeholder="Your username is your email address" required autofocus>
+</div>
+<div>
+  <label for="password">Password:</label>
+  <input name="password" type="password" placeholder="6 digits, a combination of numbers and letters" required>
+</div>
+<div>
+  <input name="login" type="submit" value="Login">
+</div>
+</fieldset>
+</form>
+			
+figcaption tag		http://html5doctor.com/the-figure-figcaption-elements/		
+<figure>
+
+	<img ... > (or video, table etc)
+	<figcaption>A rabid unicorn goring a fairy.</figcaption>
+</figure>
+			
+figure tag		http://html5doctor.com/the-figure-figcaption-elements/		
+<figure>
+	<img ... > (or video, table etc)
+	<figcaption>A rabid unicorn goring a fairy.</figcaption>
+</figure>
+		
+			
+footer tag		http://html5doctor.com/the-footer-element-update/		
+<footer>
+	(copyright) 2009 HTML5Doctor.com
+</footer>
+			
+form tag		http://dev.w3.org/html5/spec/Overview.html#the-form-element		
+<form id="app-login" action="process.php">
+<fieldset>
+<legend>Login Details</legend>
+<div>
+  <label for="user-name">Username:</label>
+
+  <input name="user-name" type="email" placeholder="Your username is your email address" required autofocus>
+</div>
+<div>
+
+  <label for="password">Password:</label>
+  <input name="password" type="password" placeholder="6 digits, a combination of numbers and letters" required>
+</div>
+<div>
+  <input name="login" type="submit" value="Login">
+</div>
+</fieldset>
+</form>
+			
+h1-h6 tag		http://dev.w3.org/html5/spec/Overview.html#the-h1-h2-h3-h4-h5-and-h6-elements		
+<h(n)>Heading Title</h(n)>
+			
+head tag		http://dev.w3.org/html5/spec/Overview.html#the-head-element-0		
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>HTML5 Doctor | Element Index</title>
+
+<link rel="stylesheet" type="text/css" href="media/css/style.css" />
+</head>
+<body id="home">
+<p>
+content
+</p>
+</body>
+</html>
+		
+			
+header tag		http://html5doctor.com/the-header-element/		
+<header>
+	<h1>HTML5Doctor.com</h1>
+</header>
+			
+hgroup tag		http://html5doctor.com/the-hgroup-element/		
+<hgroup>
+	<h1>HTML5Doctor.com</h1>
+	<h2>helping you implement HTML5 today</h2>
+
+</hgroup>
+			
+hr tag		http://html5doctor.com/small-hr-element/		
+<p>Lorem Ipsum dolor set amet</p>
+<hr />
+<p>Lorem Ipsum dolor set amet</p>
+			
+html tag		http://dev.w3.org/html5/spec/Overview.html#the-html-element-0		
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>HTML5 Doctor | Element Index</title>
+
+<link rel="stylesheet" type="text/css" href="media/css/style.css" />
+</head>
+<body id="home">
+<p>
+content
+</p>
+</body>
+</html>
+		
+			
+i tag		http://html5doctor.com/i-b-em-strong-element/		
+The term <i>prose content</i> is defined above.
+<i class="taxonomy">Nanotyrannus</i> ("dwarf tyrant") is a genus of tyrannosaurid dinosaur, and is possibly a juvenile specimen of <i class="taxonomy">Tyrannosaurus</i>.
+
+We ate <i lang="ja-latn" title="eel">unagi</i>, <i lang="ja-latn" title="seared salmon">aburi-zake</i>, and <i lang="ja-latn" title="octopus">tako</i> sushi last night.
+			
+iframe tag		http://dev.w3.org/html5/spec/Overview.html#the-iframe-element		
+<iframe height="500" width="500" src="http://google.com"></iframe>
+			
+img tag		http://dev.w3.org/html5/spec/Overview.html#the-img-element		
+<img src="logo.gif" alt="HTML5 Doctor Logo" />
+			
+input tag		http://dev.w3.org/html5/spec/Overview.html#the-input-element		
+<form id="app-login" action="process.php">
+<fieldset>
+<legend>Login Details</legend>
+<div>
+  <label for="user-name">Username:</label>
+  <input name="user-name" type="email" placeholder="Your username is your email address" required autofocus>
+
+</div>
+<div>
+  <label for="password">Password:</label>
+  <input name="password" type="password" placeholder="6 digits, a combination of numbers and letters" required>
+</div>
+<div>
+  <input name="login" type="submit" value="Login">
+</div>
+</fieldset>
+</form>
+			
+ins tag		http://dev.w3.org/html5/spec/Overview.html#the-ins-element		
+<p>My favourite colour is <del datetime="2010-10-11T01:25-07:00">blue</del> <ins datetime="2010-10-11T01:25-07:01">red</ins>, but I also like green and yellow.</p>
+			
+kbd tag		http://dev.w3.org/html5/spec/Overview.html#the-kbd-element		
+<p>Mac users: To take a screenshot press <kbd><kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>3</kbd></kbd></p>
+			
+keygen tag		http://dev.w3.org/html5/spec/Overview.html#the-keygen-element		
+<form action="/submit_key.php" method="post" enctype="multipart/form-data">
+ <keygen name="key">
+ <input type="submit" value="Submit">
+</form>
+			
+label tag		http://dev.w3.org/html5/spec/Overview.html#the-label-element		
+<form id="app-login" action="process.php">
+<fieldset>
+<legend>Login Details</legend>
+<div>
+  <label for="un">Username:</label>
+
+  <input name="user-name" id="un" type="email" placeholder="Your username is your email address" required autofocus>
+</div>
+<div>
+  <label for="pass">Password:</label>
+  <input name="password" id="pass" type="password" placeholder="6 digits, a combination of numbers and letters" required>
+</div>
+<div>
+  <input name="login" type="submit" value="Login">
+</div>
+</fieldset>
+</form>
+			
+legend tag		http://dev.w3.org/html5/spec/Overview.html#the-legend-element		
+<form id="app-login" action="process.php">
+
+<fieldset>
+<legend>Login Details</legend>
+<div>
+  <label for="user-name">Username:</label>
+  <input name="user-name" type="email" placeholder="Your username is your email address" required autofocus>
+</div>
+
+<div>
+  <label for="password">Password:</label>
+  <input name="password" type="password" placeholder="6 digits, a combination of numbers and letters" required>
+</div>
+<div>
+  <input name="login" type="submit" value="Login">
+</div>
+</fieldset>
+</form>
+			
+li tag		http://html5doctor.com/ol-element-attributes/		
+ <ol>
+
+	<li>Ordered List Item One</li>
+	<li>Ordered List Item Two</li>
+</ol>
+		
+			
+link tag		http://dev.w3.org/html5/spec/Overview.html#the-link-element		
+<!DOCTYPE html>
+<html lang="en_UK">
+<head>
+	<meta charset="UTF-8">
+	<title>My Super Page</title>
+
+	<meta name="robots" content="index,follow" />
+	<link rel="stylesheet" href="css/style.css">
+</head>
+			
+map tag		http://dev.w3.org/html5/spec/Overview.html#the-map-element		
+<section>
+
+ <h1>Clothing</h1>
+ <img src="/images/menu.gif" alt="Select a department to go to its page." usemap="#nav">
+</section>
+ ...
+<footer>
+ <map name="nav">
+
+  <p><a href="/women/">Women</a>
+   <area alt="Women" coords="0,0,100,50" href="/women/"> |
+   <a href="/men/">Men</a>
+   <area ALT="Men" coords="0,0,100,50" href="/men/"> |
+   <A HREF="/kids/">Kids</A>
+
+   <area alt="Food" coords="0,0,100,50" href="/kids/"> |
+   </p>
+ </map>
+</footer>
+			
+mark tag		http://html5doctor.com/draw-attention-with-mark/		
+In this sentence we'll be using the mark element. <mark>HTML5</mark> Can you see where it has been used?
+			
+menu tag		http://dev.w3.org/html5/spec/Overview.html#menus		
+<menu type="toolbar">
+
+	<command type="command" disabled label="Save" icon="icons/save.png" onclick="save()">
+	<command type="command" disabled label="Publish" icon="icons/pub.png" onclick="publish()">
+</menu>
+			
+meta tag		http://dev.w3.org/html5/spec/Overview.html#meta		
+<!DOCTYPE html>
+
+<html lang="en_UK">
+<head>
+	<meta charset="UTF-8">
+	<title>My Super Page</title>
+	<meta name="robots" content="index,follow" />
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+			
+meter tag		http://html5doctor.com/measure-up-with-the-meter-tag/		
+Your score is: <meter> 2 out of 10 </meter>
+			
+nav tag		http://html5doctor.com/nav-element/		
+<nav>
+	<ul>
+			<li>Nav Link</li>
+			<li>Nav Link</li>
+
+			<li>Nav Link</li>
+	<ul>
+</nav>
+			
+noscript tag		http://dev.w3.org/html5/spec/Overview.html#the-noscript-element		
+<noscript>Oh no, you either have JavaScript turned off or your browser doesn't support JavaScript</noscript><noscript><link rel="stylesheet" href="no-js.css" /></noscript>
+			
+object tag		http://dev.w3.org/html5/spec/Overview.html#the-object-element		
+<object>
+	<param name="movie" value="http://www.youtube.com/v/XZ5TajZYW6Y?fs=1&amp;hl=en_GB"></param>
+
+	<param name="allowFullScreen" value="true"></param>
+	<param name="allowscriptaccess" value="always"></param>
+	<embed src="http://www.youtube.com/v/XZ5TajZYW6Y?fs=1&amp;hl=en_GB" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="390"></embed>
+
+</object>
+			
+ol tag		http://html5doctor.com/ol-element-attributes/		
+<ol>
+	<li>Ordered List Item One</li>
+
+	<li>Ordered List Item One</li>
+</ol>
+		
+			
+optgroup tag		http://dev.w3.org/html5/spec/Overview.html#the-optgroup-element		
+<label for="country">Country</label>
+
+<select name="country" id="country">
+<optgroup label="Europe">
+	<option value="UK">UK</option>
+	<option value="Germany">Germany</option>
+	<option value="France">France</option>
+
+</optgroup>
+<optgroup label="North America">
+	<option value="">USA</option>
+	<option value="">Canada</option>
+</optgroup>
+</select>
+			
+option tag		http://dev.w3.org/html5/spec/Overview.html#the-option-element		
+<label for="country">Country</label>
+<select name="country" id="country">
+<optgroup label="Europe">
+  <option value="UK">UK</option>
+
+  <option value="Germany">Germany</option>
+  <option value="France">France</option>
+</optgroup>
+<optgroup label="North America">
+  <option value="">USA</option>
+
+  <option value="">Canada</option>
+</optgroup>
+</select>
+			
+output tag		http://html5doctor.com/the-output-element/	Represents the result of a calculation. The optional for attribute allows an explicit relationship to be made between the result of a calculation and the elements representing the values that influenced the calculation. If specified, the for attribute must contain a string consisting of an unordered set of unique, space-separated tokens, each of which must be the ID of an element in the same document. 	
+<form>
+<label for="flying">Flying Skill Level</label>
+<input name="flying-level" id="flying" type="range" min="0" max="250">
+<output for="flying" onforminput="value = flying.valueAsNumber">0</output>
+</form>
+			
+p tag		http://dev.w3.org/html5/spec/Overview.html#the-p-element		
+<p>This is an example of the p tag.</p>
+			
+param tag		http://dev.w3.org/html5/spec/Overview.html#the-param-element		
+<object>
+	<param name="movie" value="http://www.youtube.com/v/XZ5TajZYW6Y?fs=1&amp;hl=en_GB"></param>
+	<param name="allowFullScreen" value="true"></param>
+
+	<param name="allowscriptaccess" value="always"></param>
+	<embed src="http://www.youtube.com/v/XZ5TajZYW6Y?fs=1&amp;hl=en_GB" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="390"></embed>
+
+</object>
+			
+pre tag		http://dev.w3.org/html5/spec/Overview.html#the-pre-element		
+<p>The code for a basic JavaScript message is:</p><pre><script>alert("hello world");</script>
+
+</pre>
+			
+progress tag		http://dev.w3.org/html5/spec/Overview.html#the-progress-element		
+<section>
+ <p>Progress: <progress> <span id="p">0</span>% </progress> </p>
+
+ <script>
+  var progressBar = document.getElementById('p');
+  function updateProgress(newValue) {
+	progressBar.textContent = newValue;
+  }
+</script>
+</section>
+			
+q tag		http://dev.w3.org/html5/spec/Overview.html#the-q-element		
+<p>And then he said <q>I heart HTML5</q></p>
+			
+rp tag		http://html5doctor.com/ruby-rt-rp-element/		
+<ruby>??<rp>(</rp><rt>????</rt><rp>)</rp>???<rp>(</rp><rt>?????</rt><rp>)</rp></ruby>
+			
+rt tag		http://html5doctor.com/ruby-rt-rp-element/		
+<ruby>??<rp>(</rp><rt>????</rt><rp>)</rp>???<rp>(</rp><rt>?????</rt><rp>)</rp></ruby>
+			
+ruby tag		http://html5doctor.com/ruby-rt-rp-element/		
+<ruby>??<rp>(</rp><rt>????</rt><rp>)</rp>???<rp>(</rp><rt>?????</rt><rp>)</rp></ruby>
+			
+s tag		http://dev.w3.org/html5/spec/Overview.html#the-s-element		
+<p>Sale on now!</p>
+<p><s>Get up to 25% off</s></p>
+
+<p><strong>Now down to 50% off</strong></p>
+			
+samp tag		http://dev.w3.org/html5/spec/Overview.html#the-samp-element		
+<pre><samp>mike:mysite mike$ <kbd>git status</kbd>
+
+# On branch master
+nothing to commit (working directory clean)
+mike:mysite mike$</samp></pre>
+
+			
+script tag		http://dev.w3.org/html5/spec/Overview.html#script		
+<script>
+  alert('Hello World!');
+
+</script>
+			
+section tag		http://html5doctor.com/the-section-element/		
+<section>
+<h1>Level 1</h1>
+	<section>
+
+	<h1>Level 2</h1>
+		<section>
+		<h1>Level 3</h1>
+		</section>
+	</section>
+
+</section>
+			
+select tag		http://dev.w3.org/html5/spec/Overview.html#the-select-element		
+<label for="title">Title</label>
+<select id="title" name="title">
+  <option value="" selected>Please choose</option>
+
+  <option value="Mr">Mr</option>
+  <option value="Miss">Miss</option>
+  <option value="Mrs">Mrs</option>
+  <option value="Ms">Ms</option>
+
+  <option value="Dr">Dr</option>
+  <option value="Other">Other</option>
+</select>
+			
+small tag		http://html5doctor.com/small-hr-element/		
+<footer>
+	<address>
+	For more details, contact
+	<a href="mailto:hello@html5doctor.com">HTML5 Doctor</a>.
+	</address>
+	<small> (copyright) copyright HTML5 Doctor. </small>
+
+</footer>
+			
+source tag		http://dev.w3.org/html5/spec/Overview.html#the-source-element		
+<video controls>
+  <source src="video.mp4" type="video/mp4">
+  <source src="video.webm" type="video/webm">
+
+  <source src="video.ogg" type="video/ogg">
+</video>
+			
+span tag		http://dev.w3.org/html5/spec/Overview.html#the-span-element		
+<span>This is an example of the span element</span>
+			
+strong tag		http://html5doctor.com/i-b-em-strong-element/		
+<strong>Warning</strong>. This dungeon is dangerous. <strong>Avoid the ducks.</strong> Take any gold you find.
+			
+style tag		http://dev.w3.org/html5/spec/Overview.html#the-style-element		
+<style>
+  article { width:640px; margin-bottom:10px; }
+</style>
+			
+sub tag		http://dev.w3.org/html5/spec/Overview.html#the-sub-and-sup-elements		
+H<sub>2</sub>O is the chemical formula for water
+			
+summary tag		http://html5doctor.com/the-details-and-summary-elements/		
+<details>
+
+	<summary>More information </summary>
+	<p>Here is the source data that is discussed in the article ...</p>
+</details>
+			
+sup tag		http://dev.w3.org/html5/spec/Overview.html#the-sub-and-sup-elements		
+Today is the 2<sup>nd</sup> of May
+			
+table tag		http://dev.w3.org/html5/spec/Overview.html#the-table-element		
+<table>
+
+<tr>
+	<th scope="col">dog</th>
+	<th scope="col">cat</th>
+	<th scope="col">horse</th>
+
+	<th scope="col">iguana</th>
+</tr>
+<tr>
+	<td>5</td>
+	<td>2</td>
+
+	<td>10</td>
+	<td>500</td>
+</tr>
+...
+</table>
+			
+tbody tag		http://dev.w3.org/html5/spec/Overview.html#the-tbody-element		
+<table>
+<thead>
+	<tr>
+		<th scope="col">Header 1</th>
+
+		<th scope="col">Header 2</th>
+		<th scope="col">Header 3</th>
+	</tr>
+</thead>
+<tfoot>
+
+	<tr>
+		<td>Footer 1</td>
+		<td>Footer 2</td>
+		<td>Footer 3</td>
+
+	</tr>
+</tfoot>
+<tbody>
+	<tr>
+		<td>Cell 1</td>
+		<td>Cell 2</td>
+
+		<td>Cell 3</td>
+	</tr>
+	<tr>
+		<td>Cell 7</td>
+		<td>Cell 8</td>
+
+		<td>Cell 9</td>
+	</tr>
+	...
+</tbody>
+</table>
+			
+td tag		http://dev.w3.org/html5/spec/Overview.html#the-td-element		
+<table>
+<tr>
+	<th scope="col">dog</th>
+	<th scope="col">cat</th>
+
+	<th scope="col">horse</th>
+	<th scope="col">iguana</th>
+</tr>
+<tr>
+	<td>5</td>
+
+	<td>2</td>
+	<td>10</td>
+	<td>500</td>
+</tr>
+
+...
+</table>
+			
+textarea tag		http://dev.w3.org/html5/spec/Overview.html#the-textarea-element		
+<form action="process.php">
+<fieldset>
+<legend>Contact us</legend>
+
+<div>
+  <label for="name">Name:</label>
+  <input name="name" type="text" required>
+</div>
+<div>
+  <label for="email">Email:</label>
+
+  <input name="email" type="email" required>
+</div>
+<div>
+  <label for="message">Message:</label>
+  <textarea cols="50" rows="10"></textarea> 
+
+</div>
+<div>
+  <input name="send" type="submit" value="Send">
+</div>
+</fieldset>
+</form>
+			
+tfoot tag		http://dev.w3.org/html5/spec/Overview.html#the-tfoot-element		
+<table>
+<thead>
+	<tr>
+		<th scope="col">Header 1</th>
+		<th scope="col">Header 2</th>
+
+		<th scope="col">Header 3</th>
+	</tr>
+</thead>
+<tfoot>
+	<tr>
+		<td>Footer 1</td>
+
+		<td>Footer 2</td>
+		<td>Footer 3</td>
+	</tr>
+</tfoot>
+<tbody>
+
+	<tr>
+		<td>Cell 1</td>
+		<td>Cell 2</td>
+		<td>Cell 3</td>
+
+	</tr>
+	<tr>
+		<td>Cell 7</td>
+		<td>Cell 8</td>
+		<td>Cell 9</td>
+
+	</tr>
+	...
+</tbody>
+</table>
+			
+th tag		http://dev.w3.org/html5/spec/Overview.html#the-th-element		
+<table>
+
+<tr>
+	<th scope="col">dog</th>
+	<th scope="col">cat</th>
+	<th scope="col">horse</th>
+
+	<th scope="col">iguana</th>
+</tr>
+<tr>
+	<td>5</td>
+	<td>2</td>
+
+	<td>10</td>
+	<td>500</td>
+</tr>
+...
+</table>
+			
+thead tag		http://dev.w3.org/html5/spec/Overview.html#the-thead-element		
+<table>
+<thead>
+	<tr>
+		<th scope="col">Header 1</th>
+
+		<th scope="col">Header 2</th>
+		<th scope="col">Header 3</th>
+	</tr>
+</thead>
+<tfoot>
+
+	<tr>
+		<td>Footer 1</td>
+		<td>Footer 2</td>
+		<td>Footer 3</td>
+
+	</tr>
+</tfoot>
+<tbody>
+	<tr>
+		<td>Cell 1</td>
+		<td>Cell 2</td>
+
+		<td>Cell 3</td>
+	</tr>
+	<tr>
+		<td>Cell 7</td>
+		<td>Cell 8</td>
+
+		<td>Cell 9</td>
+	</tr>
+	...
+</tbody>
+</table>
+			
+time tag		http://html5doctor.com/the-time-element/		
+<time datetime="2007-08-29T13:58Z">
+August 29th, 2007 at 13:58
+</time>
+			
+title tag		http://dev.w3.org/html5/spec/Overview.html#the-title-element		
+<!DOCTYPE html>
+<html lang="en_UK">
+<head>
+	<meta charset="UTF-8">
+	<title>My Super Page</title>
+	<meta name="robots" content="index,follow" />
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+			
+tr tag		http://dev.w3.org/html5/spec/Overview.html#the-tr-element		
+<table>
+<tr>
+	<th scope="col">dog</th>
+
+	<th scope="col">cat</th>
+	<th scope="col">horse</th>
+	<th scope="col">iguana</th>
+</tr>
+
+<tr>
+	<td>5</td>
+	<td>2</td>
+	<td>10</td>
+
+	<td>500</td>
+</tr>
+...
+</table>
+			
+track tag		http://html5doctor.com/video-subtitling-and-webvtt/		
+<video src="movie.webm">
+
+	<track src="subtitles.vtt" kind="subtitles" srclang="en" label="English">
+</video>
+			
+u tag		http://html5doctor.com/u-element		
+<span itemscope itemtype="http://schema.org/Person" lang="ja-latn">
+  <u itemprop="familyName">Son</u> <span itemprop="givenName">Goku</span>
+</span>
+
+			
+ul tag		http://dev.w3.org/html5/spec/Overview.html#the-ul-element		
+<ul>
+	<li>Unordered List Item One</li>
+	<li>Unordered List Item One</li>
+
+</ul>
+		
+			
+var tag		http://dev.w3.org/html5/spec/Overview.html#the-var-element		
+<p><var>E</var> energy is equal to <var>m</var> mass multiplied by the <var>c</var> speed of light, squared.</p>
+			
+video tag		http://html5doctor.com/the-video-element/		
+<video src="video.ogv" controls poster="poster.jpg" width="320" height="240">
+<a href="video.ogv">Download song</a>
+</video>
+			
+wbr tag		http://dev.w3.org/html5/spec/Overview.html#the-wbr-element		
+html5<wbr>doctor.com
+			
