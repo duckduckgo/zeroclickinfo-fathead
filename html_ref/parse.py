@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from bs4 import BeautifulSoup
@@ -9,6 +8,14 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 
+def replace_all(text, terms):
+    """ Replaces all terms contained
+    in a dict """
+    for _from, _to in terms.items():
+        text = text.replace(_from, _to)
+    return text
+
+
 class Tag(object):
     """ Contains informations about
     a HTML tag """
@@ -16,11 +23,13 @@ class Tag(object):
         self.name = name
         self.info = info
         self.reference = reference
-        self.example = example
+        self.example = replace_all(example, {'\n': '\\\\n',
+                                             '\t': '\\\\t',
+                                             '\r': ''})
 
     def __str__(self):
         fields = [
-                '%s tag' % self.name,   # $page
+                self.name,              # $page
                 '',                     # $namespace
                 self.reference,         # $url
                 self.info,              # $description
@@ -30,11 +39,7 @@ class Tag(object):
                 ''                      # $lang
                 ]
 
-        output = '%s\n' % ('\t'.join(fields))
-
-        # preventing bugs replacing special characters
-        output = output.replace(u'\u2026', '...')  # \u2026 is "..."
-        output = output.replace(u'\xa9', '(copyright)')
+        output = '%s' % ('\t'.join(fields))
 
         return output
 
@@ -43,7 +48,7 @@ class Parser(object):
     """ Parses a HTML file to get
     all tag informations inside it """
     def __init__(self, input='download/index.html'):
-        self.soup = BeautifulSoup(open(input))
+        self.soup = BeautifulSoup(open(input), from_encoding='utf-8')
 
     def get_tags(self):
         """ Gets all tags defined in 'dl' tags """
@@ -53,7 +58,7 @@ class Parser(object):
 
             # getting info about tag
             info = ''
-            for p in tag.dt.find_all('p'):
+            for p in tag.dd.find_all('p'):
                 info += p.getText() + ' '
 
             # getting reference link and code snippet
@@ -79,5 +84,5 @@ if __name__ == '__main__':
 
     with open('output.txt', 'w') as file:
         for tag in parser.tags:
-            file.write(str(tag))
+            file.write(tag.__str__().encode('utf-8') + '\n')
             logger.info('Tag added to output: %s' % tag.name)
