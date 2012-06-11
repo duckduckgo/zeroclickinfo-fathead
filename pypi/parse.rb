@@ -35,8 +35,19 @@ apps.each do |l|
       page = a[0]
         
       next if abstract == "UNKNOWN" || abstract == ""
+      
+      # Test if the first word is an acronym
+      isAcronym = abstract =~ /^.[A-Z]/
 
-      abstract = "Package description - #{abstract}" unless a[1].nil? 
+
+      # Lowercase the first letter for formatting "Package description: abstract goes here"
+      unless isAcronym
+        firstChar = abstract.split(//).first.downcase
+        abstract.slice!(0)
+        abstract = firstChar + abstract
+      end
+      
+      abstract = "Package description: #{abstract}" unless a[1].nil? 
 
       # Get the License and Home Page of the project from the detail page if available
       # 06.07.2012 - Was having problems opening the URL so I've commented this out for now
@@ -53,10 +64,11 @@ apps.each do |l|
         abstract.gsub!("\n", ' ') 
         abstract.gsub!("\r", ' ') 
       end
-    
-#      puts "#{page}\tA\t\t\t#{categories}\t\t#{internal_links}\t\t#{external_links}\t\t#{images}\t#{abstract}\t#{source_url}\n"
+      
+      # Use general format
+      puts "#{page}\tA\t\t\t#{categories}\t\t#{internal_links}\t\t#{external_links}\t\t#{images}\t#{abstract}\t#{source_url}\n"
       # Use programming format.
-      puts "#{page}\t\t#{source_url}\t#{abstract}\t\t\t\t\n"
+#      puts "#{page}\t\t#{source_url}\t#{abstract}\t\t\t\t\n"
     
     end
     
