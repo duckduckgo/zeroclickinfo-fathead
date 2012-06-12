@@ -2,7 +2,7 @@
 
 from bs4 import BeautifulSoup
 import logging
-
+import cgi
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
@@ -23,8 +23,8 @@ class Tag(object):
         self.name = name
         self.info = info
         self.reference = reference
-        self.example = replace_all(example, {'\n': '\\\\n',
-                                             '\t': '\\\\t',
+        self.example = replace_all(example, {'\n': '\\n',
+                                             '\t': '\\t',
                                              '\r': ''})
 
     def __str__(self):
@@ -33,7 +33,7 @@ class Tag(object):
                 '',                     # $namespace
                 self.reference,         # $url
                 self.info,              # $description
-                self.example,           # $synopsis (code)
+                cgi.escape(self.example,True),  # $synopsis (code)
                 '',                     # $details
                 '',                     # $type
                 ''                      # $lang
