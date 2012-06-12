@@ -29,17 +29,17 @@ class Tag(object):
 
     def __str__(self):
         fields = [
-                self.name,              # $page
-                '',                     # $namespace
-                self.reference,         # $url
-                self.info,              # $description
-                self.example,           # $synopsis (code)
-                '',                     # $details
-                '',                     # $type
-                ''                      # $lang
+                self.name.strip(),              # $page
+                '',                             # $namespace
+                self.reference.strip(),         # $url
+                self.info.strip(),              # $description
+                self.example.strip(),           # $synopsis (code)
+                '',                             # $details
+                '',                             # $type
+                ''                              # $lang
                 ]
 
-        output = '%s' % ('\t'.join(fields))
+        output = '%s' % ('\t\t'.join(fields))
 
         return output
 
