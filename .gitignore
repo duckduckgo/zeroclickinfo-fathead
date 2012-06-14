@@ -1,4 +1,5 @@
 *.out
+*.swp
 download/
 alexa_rank/output.txt
 file_formats/output.txt
