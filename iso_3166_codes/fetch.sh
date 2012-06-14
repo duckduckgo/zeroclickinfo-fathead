@@ -1,2 +1,3 @@
-wget -O - -i data.url > raw.data
+mkdir download
+wget -O - -i data.url > download/raw.data
 

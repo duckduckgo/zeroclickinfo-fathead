@@ -7,12 +7,14 @@
 import lxml.etree, lxml.html
 import re
 
+from unidecode import unidecode
+
 url = "http://www.iso.org/iso/list-en1-semic-3.txt"
 title = "ISO 3166 Country Codes"
 article_type = "A"
 
 outp = "output.txt"
-inp = "raw.data"
+inp = "download/raw.data"
 
 #Open input file
 input_file = open( inp, "r" )
@@ -29,16 +31,28 @@ for line in input_file.readlines() :
 	pair = line.split( ';' );
 	if len( pair ) < 2 :
 		continue;
-	output_file.write( "\t".join ( [ pair[ 1 ], 
-									"",
-									url,
-									pair[ 0 ],
-									"",
-									"",
-									"",
-									"" ] ) 
-				 );
-	output_file.write( "\n" );
+        
+        abstract = "\"" + pair[1] + "\" is the ISO 3166 country code for \"" + pair[0].title() + ".\""
+        
+        abstract = unidecode(abstract)
+	
+        output_file.write( "\t".join([
+            pair[1],        # Title
+            article_type,   # Type
+            '',             # Redirect
+            '',             # Other uses
+            '',             # Categories
+            '',             # References
+            '',             # See also
+            '',             # Further reading
+            '',             # External links
+            '',             # Disambiguation
+            '',             # Images
+            abstract,       # Abstract
+            url,            # Source URL
+            ] ))
+
+        output_file.write( "\n" );
 
 input_file.close();
 output_file.close();
