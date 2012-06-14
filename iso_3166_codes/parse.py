@@ -31,10 +31,10 @@ for line in input_file.readlines() :
 	pair = line.split( ';' );
 	if len( pair ) < 2 :
 		continue;
+
+        pair[0] = unidecode(pair[0])
         
         abstract = "\"" + pair[1] + "\" is the ISO 3166 country code for \"" + pair[0].title() + ".\""
-        
-        abstract = unidecode(abstract)
 	
         output_file.write( "\t".join([
             pair[1],        # Title

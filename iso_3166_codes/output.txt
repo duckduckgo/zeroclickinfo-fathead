@@ -1,5 +1,5 @@
 AF	A										"AF" is the ISO 3166 country code for "Afghanistan."	http://www.iso.org/iso/list-en1-semic-3.txt
-AX	A										"AX" is the ISO 3166 country code for "ALand Islands."	http://www.iso.org/iso/list-en1-semic-3.txt
+AX	A										"AX" is the ISO 3166 country code for "Aland Islands."	http://www.iso.org/iso/list-en1-semic-3.txt
 AL	A										"AL" is the ISO 3166 country code for "Albania."	http://www.iso.org/iso/list-en1-semic-3.txt
 DZ	A										"DZ" is the ISO 3166 country code for "Algeria."	http://www.iso.org/iso/list-en1-semic-3.txt
 AS	A										"AS" is the ISO 3166 country code for "American Samoa."	http://www.iso.org/iso/list-en1-semic-3.txt
@@ -52,10 +52,10 @@ CG	A										"CG" is the ISO 3166 country code for "Congo."	http://www.iso.org/
 CD	A										"CD" is the ISO 3166 country code for "Congo, The Democratic Republic Of The."	http://www.iso.org/iso/list-en1-semic-3.txt
 CK	A										"CK" is the ISO 3166 country code for "Cook Islands."	http://www.iso.org/iso/list-en1-semic-3.txt
 CR	A										"CR" is the ISO 3166 country code for "Costa Rica."	http://www.iso.org/iso/list-en1-semic-3.txt
-CI	A										"CI" is the ISO 3166 country code for "COTe D'Ivoire."	http://www.iso.org/iso/list-en1-semic-3.txt
+CI	A										"CI" is the ISO 3166 country code for "Cote D'Ivoire."	http://www.iso.org/iso/list-en1-semic-3.txt
 HR	A										"HR" is the ISO 3166 country code for "Croatia."	http://www.iso.org/iso/list-en1-semic-3.txt
 CU	A										"CU" is the ISO 3166 country code for "Cuba."	http://www.iso.org/iso/list-en1-semic-3.txt
-CW	A										"CW" is the ISO 3166 country code for "CuraCAo."	http://www.iso.org/iso/list-en1-semic-3.txt
+CW	A										"CW" is the ISO 3166 country code for "Curacao."	http://www.iso.org/iso/list-en1-semic-3.txt
 CY	A										"CY" is the ISO 3166 country code for "Cyprus."	http://www.iso.org/iso/list-en1-semic-3.txt
 CZ	A										"CZ" is the ISO 3166 country code for "Czech Republic."	http://www.iso.org/iso/list-en1-semic-3.txt
 DK	A										"DK" is the ISO 3166 country code for "Denmark."	http://www.iso.org/iso/list-en1-semic-3.txt
@@ -178,11 +178,11 @@ PL	A										"PL" is the ISO 3166 country code for "Poland."	http://www.iso.org
 PT	A										"PT" is the ISO 3166 country code for "Portugal."	http://www.iso.org/iso/list-en1-semic-3.txt
 PR	A										"PR" is the ISO 3166 country code for "Puerto Rico."	http://www.iso.org/iso/list-en1-semic-3.txt
 QA	A										"QA" is the ISO 3166 country code for "Qatar."	http://www.iso.org/iso/list-en1-semic-3.txt
-RE	A										"RE" is the ISO 3166 country code for "REUnion."	http://www.iso.org/iso/list-en1-semic-3.txt
+RE	A										"RE" is the ISO 3166 country code for "Reunion."	http://www.iso.org/iso/list-en1-semic-3.txt
 RO	A										"RO" is the ISO 3166 country code for "Romania."	http://www.iso.org/iso/list-en1-semic-3.txt
 RU	A										"RU" is the ISO 3166 country code for "Russian Federation."	http://www.iso.org/iso/list-en1-semic-3.txt
 RW	A										"RW" is the ISO 3166 country code for "Rwanda."	http://www.iso.org/iso/list-en1-semic-3.txt
-BL	A										"BL" is the ISO 3166 country code for "Saint BarthELemy."	http://www.iso.org/iso/list-en1-semic-3.txt
+BL	A										"BL" is the ISO 3166 country code for "Saint Barthelemy."	http://www.iso.org/iso/list-en1-semic-3.txt
 SH	A										"SH" is the ISO 3166 country code for "Saint Helena, Ascension And Tristan Da Cunha."	http://www.iso.org/iso/list-en1-semic-3.txt
 KN	A										"KN" is the ISO 3166 country code for "Saint Kitts And Nevis."	http://www.iso.org/iso/list-en1-semic-3.txt
 LC	A										"LC" is the ISO 3166 country code for "Saint Lucia."	http://www.iso.org/iso/list-en1-semic-3.txt
