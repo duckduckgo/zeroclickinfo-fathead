@@ -39,7 +39,7 @@ class Tag(object):
                 ''                              # $lang
                 ]
 
-        output = '%s' % ('\t\t'.join(fields))
+        output = '%s' % ('\t'.join(fields))
 
         return output
 
