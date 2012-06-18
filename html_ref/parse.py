@@ -3,6 +3,7 @@
 from bs4 import BeautifulSoup
 import logging
 import cgi
+import re
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
@@ -23,7 +24,12 @@ class Tag(object):
         self.name = name
         self.info = info
         self.reference = reference
-        self.example = replace_all(example, {'\n': '\\n',
+        
+        # Remove excess padding around synopsis
+        self.example = re.sub('^\\n', '', example)
+        self.example = re.sub('\\n$', '', self.example)
+
+        self.example = replace_all(self.example, {'\n': '\\n',
                                              '\t': '\\t',
                                              '\r': ''})
 
@@ -33,9 +39,9 @@ class Tag(object):
                 '',                     # $namespace
                 self.reference,         # $url
                 self.info,              # $description
-                cgi.escape(self.example,True),  # $synopsis (code)
+                self.example,  # $synopsis (code)
                 '',                     # $details
-                '',                     # $type
+                'A',                     # $type
                 ''                      # $lang
                 ]
 
@@ -73,6 +79,7 @@ class Parser(object):
             except:
                 reference = a_tags[0]['href']  # url for W3C
 
+            reference = 'http://html5doctor.com/element-index/#' + name
             new_tag = Tag(name, info, reference, example)
             self.tags.append(new_tag)
             logger.info('Tag parsed: %s' % new_tag.name)
