@@ -25,7 +25,7 @@ for f in files:
     abstract = abstract.replace('\n', ' ')
     abstract = abstract.replace('\t', ' ')
     
-    out.write('\t'.join([number, "a", "", "", "", "", "", "", "", "",
+    out.write('\t'.join([number, "A", "", "", "", "", "", "", "", "",
                          "[[Image:http://xmpp.org/images/xmpp.png]]",
                          abstract,
                          url]) + '\n')
