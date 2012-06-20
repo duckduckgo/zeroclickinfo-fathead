@@ -21,6 +21,7 @@ for f in files:
     number = tree.xpath('/xep/header/number')[0].text
     long_name = 'XEP-%s' % number
     short_name = 'XEP-%d' % int(number)
+    short_num = '%d' % int(number)
     url = 'http://xmpp.org/extensions/' + long_name.lower() + '.html'
     abstract = tree.xpath('/xep/header/abstract')[0].text
     image = '';
@@ -36,5 +37,9 @@ for f in files:
                          image,
                          abstract,
                          url]) + '\n')
+    out.write('\t'.join([short_num, "R", long_name,
+                         "", "", "", "", "", "", "", "", "", ""]) + '\n')
+    out.write('\t'.join([number, "R", long_name,
+                         "", "", "", "", "", "", "", "", "", ""]) + '\n')
     out.write('\t'.join([short_name, "R", long_name,
                          "", "", "", "", "", "", "", "", "", ""]) + '\n')
