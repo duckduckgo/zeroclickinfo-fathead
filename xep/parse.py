@@ -21,11 +21,16 @@ for f in files:
     number = 'XEP-' + tree.xpath('/xep/header/number')[0].text
     url = 'http://xmpp.org/extensions/' + number.lower() + '.html'
     abstract = tree.xpath('/xep/header/abstract')[0].text
+    image = '';
+    
+    # The ZCI box looks weird if there is an image with a small abstract
+    if len(abstract) > 150:
+        image = '[[Image:http://xmpp.org/images/xmpp.png]]'
 
     abstract = abstract.replace('\n', ' ')
     abstract = abstract.replace('\t', ' ')
     
     out.write('\t'.join([number, "A", "", "", "", "", "", "", "", "",
-                         "[[Image:http://xmpp.org/images/xmpp.png]]",
+                         image,
                          abstract,
                          url]) + '\n')
