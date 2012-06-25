@@ -87,17 +87,18 @@ function start_parsing(dirs, window, document, cb) {
 	    document.innerHTML = html;
 	    var $ = window.$;
 
-	    $("#CH_main").html(
-		$("#CH_main").html().replace("</p>", "</p><p>")
+	    $("#I_content").html(
+		$("#I_content").html().replace("</p>", "</p><p>")
 	    );
-	    var dst = $(".docsubtop");
+	    var dst = $(".C_doc");
 	    var module = path.basename(path.dirname(dirs[i]));
 	    var proc = path.basename(dirs[i]);
-	    var desc_short = dst.next().text().trim().replace(/\n/g, "\\n");
-	    var desc_long  = dst.next().next().text().trim().replace(/\n/g, "\\n");
+	    var desc_short = $("#I_description").text().trim().replace(/\n/g, "\\n");
+	    // var desc_long  = dst.next().next().text().trim().replace(/\n/g, "\\n");
+        var desc_long = '';
 
-	    var fq_name = $('.C_doctop').text();
-	    var signature = $('.prototype').text().split(';')[0].trim();
+	    var fq_name = $('.I_file').text();
+	    var signature = $('.C_prototype').text().split(';')[0].trim();
 	    var description = desc_short + '. ' + desc_long;
 	    var title = module + ' ' + proc;
 	    var url = URL_BASE + dirs[i];
