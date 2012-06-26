@@ -2,13 +2,14 @@
 
 from BeautifulSoup import BeautifulSoup
 
+
 class Entry(object):
     def __init__(self, name, value, description):
         self.name = name
         self.value = value
         self.description = description
         self.url = 'https://github.com/duckduckgo/zeroclickinfo-fathead'
-        
+
     def __str__(self):
         fields = [
                 self.name,              # title
@@ -18,16 +19,15 @@ class Entry(object):
                 '',                     # categories
                 '',                     # references
                 '',                     # see_also
+                '',                     # further_reading
                 '',                     # external_links
                 '',                     # disambiguation
                 '',                     # images
                 self.description,       # abstract
                 self.url                # source_url
                 ]
+        return '%s' % ('\t'.join(fields))
 
-        output = '%s' % ('\t'.join(fields))
-
-        return output
 
 class Parser(object):
     def __init__(self, input='download/About:config_entries'):
