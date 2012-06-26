@@ -3,17 +3,17 @@
 require 'hpricot'
 
 # list of established part categories
-categories = ['Animal', 'Antenna', 'Arch', 'Arm', 'Bar', 'Baseplate',
-	'Belville', 'Boat', 'Bracket', 'Brick', 'Car', 'Cone', 'Container',
-	'Conveyor', 'Crane', 'Cylinder', 'Dish', 'Door', 'Electric',
-	'Exhaust', 'Fence', 'Figure', 'Flag', 'Forklift', 'Freestyle',
-	'Garage', 'Gate', 'Glass', 'Grab', 'Hinge', 'Homemaker', 'Hose',
-	'Jack', 'Ladder', 'Lever', 'Magnet', 'Minifig', 'Monorail', 'Panel',
-	'Plane', 'Plant', 'Plate', 'Platform', 'Propellor', 'Rack',
-	'Roadsign', 'Rock', 'Scala', 'Screw', 'Sheet', 'Slope', 'Staircase',
-	'Sticker', 'Support', 'Tail', 'Tap', 'Technic', 'Tile', 'Tipper',
-	'Tractor', 'Trailer', 'Train', 'Turntable', 'Tyre', 'Vehicle',
-	'Wedge', 'Wheel', 'Winch', 'Window', 'Windscreen', 'Wing', 'Znap']
+# categories = ['Animal', 'Antenna', 'Arch', 'Arm', 'Bar', 'Baseplate',
+#	'Belville', 'Boat', 'Bracket', 'Brick', 'Car', 'Cone', 'Container',
+#	'Conveyor', 'Crane', 'Cylinder', 'Dish', 'Door', 'Electric',
+#	'Exhaust', 'Fence', 'Figure', 'Flag', 'Forklift', 'Freestyle',
+#	'Garage', 'Gate', 'Glass', 'Grab', 'Hinge', 'Homemaker', 'Hose',
+#	'Jack', 'Ladder', 'Lever', 'Magnet', 'Minifig', 'Monorail', 'Panel',
+#	'Plane', 'Plant', 'Plate', 'Platform', 'Propellor', 'Rack',
+#	'Roadsign', 'Rock', 'Scala', 'Screw', 'Sheet', 'Slope', 'Staircase',
+#	'Sticker', 'Support', 'Tail', 'Tap', 'Technic', 'Tile', 'Tipper',
+#	'Tractor', 'Trailer', 'Train', 'Turntable', 'Tyre', 'Vehicle',
+#	'Wedge', 'Wheel', 'Winch', 'Window', 'Windscreen', 'Wing', 'Znap']
 
 # load the requested file for scraping
 doc = Hpricot(open(ARGV[0]))
@@ -45,14 +45,14 @@ rows.each do |row|
 	# primitives are reusable forms, so we just group them as primitives
 	# categories not on this list (http://www.ldraw.org/library/tracker/ref/catkeyfaq/)
 	# get grouped as "Miscellaneous" to keep things tidy - some tracker parts have tmp names
-	part_category = part_name.split.first.delete("~")
-	if part_type == "primitive"
-		part_category = "Primitive"
-	elsif part_type == "48-segment primitive"
-		part_category = "High-Resolution Primitive"
-	elsif not categories.include?(part_category)
-		part_category = "Miscellaneous"
-	end
+#	part_category = part_name.split.first.delete("~")
+#	if part_type == "primitive"
+#		part_category = "Primitive"
+#	elsif part_type == "48-segment primitive"
+#		part_category = "High-Resolution Primitive"
+#	elsif not categories.include?(part_category)
+#		part_category = "Miscellaneous"
+#	end
 	
 	# strip the red/yellow/green icon and the status code from status description
 	# (status codes documented at http://wiki.ldraw.org/index.php?title=Parts_Tracker#Status_codes)
@@ -72,20 +72,22 @@ rows.each do |row|
 	#   labels, and links to related/required files could be derived from the
 	#   detail page for each part, which would require more page scraping,
 	#   or also from actual files (best to report Tracker's interpretation)
-	abstract = "#{part_number}.dat is an unofficial LDraw #{part_type} titled \"#{part_name}\". Status: #{part_status} LDraw is an open standard for LEGO CAD programs that allow the user to create virtual LEGO models and scenes."
+	abstract = "#{part_number}.dat is an unofficial LDraw #{part_type} titled \"#{part_name}.\" The current status for this #{part_type} is \"#{part_status}\""
+
+        abstract.gsub!("\\", "")
 	
 	# If this is not the first part we've encountered with this name, append
 	# an abbreviated clarification/description to the existing part abstract.
 	# First instance of duplicates is arbitrarily given precedence.
-	if parts.has_key?(part_number)
-		parts[part_number][11] += "<br>(#{part_path}/#{part_number}.dat is an unofficial LDraw #{part_type} titled \"#{part_name}\". Status: #{part_status})"
-	else
+#	if parts.has_key?(part_number)
+#		parts[part_number][11] += "<br>(#{part_path}/#{part_number}.dat is an unofficial LDraw #{part_type} titled \"#{part_name.gsub("\\","")}\". Status: #{part_status})"
+#	else
 		# - part_number as title to respond to search queries for number
 		#   (or use part_name to look up number based on query by name?)
 		# - unclear what types are available/appropriate for line[1]
 		# - image and source links output relative to ldraw.org
-		parts[part_number] = [part_number, 'A', '', '', part_category, '', '', '', '', '', "/library/unofficial/images/#{part_path}/#{part_number}.png", abstract, part_link];
-	end
+		parts[part_number] = [part_number, 'A', '', '', 'LDraw Parts', '', '', '', '', '', "[[Image: http://ldraw.org/library/unofficial/images/#{part_path}/#{part_number}.png]]", abstract, part_link];
+#	end
 	
 end
 
