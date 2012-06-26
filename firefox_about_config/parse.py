@@ -7,17 +7,22 @@ class Entry(object):
         self.name = name
         self.value = value
         self.description = description
+        self.url = 'https://github.com/duckduckgo/zeroclickinfo-fathead'
         
     def __str__(self):
         fields = [
-                self.name,              # $page
-                '',                     # $namespace
-                self.value,             # $url
-                self.description,       # $description
-                '',                     # $synopsis (code)
-                '',                     # $details
-                'A',                    # $type
-                ''                      # $lang
+                self.name,              # title
+                'A',                    # type
+                '',                     # redirect
+                '',                     # otheruses
+                '',                     # categories
+                '',                     # references
+                '',                     # see_also
+                '',                     # external_links
+                '',                     # disambiguation
+                '',                     # images
+                self.description,       # abstract
+                self.url                # source_url
                 ]
 
         output = '%s' % ('\t'.join(fields))
