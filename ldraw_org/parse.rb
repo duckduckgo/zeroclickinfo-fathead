@@ -72,7 +72,11 @@ rows.each do |row|
 	#   labels, and links to related/required files could be derived from the
 	#   detail page for each part, which would require more page scraping,
 	#   or also from actual files (best to report Tracker's interpretation)
-	abstract = "#{part_number}.dat is an unofficial LDraw #{part_type} titled \"#{part_name}.\" The current status for this #{part_type} is \"#{part_status}\""
+        abstract = "#{part_number}.dat is an unofficial LDraw #{part_type} titled \"#{part_name}.\" The current status for this #{part_type} is \"#{part_status}\""
+        
+        if (part_name =~ /^(?:\~Moved to )(.*)$/) 
+            abstract = "#{part_number}.dat is an unofficial LDraw #{part_type} that has been moved to <a href=\"?q=ldraw+#{$1}\">#{$1}</a>."
+        end
 
         abstract.gsub!("\\", "")
 	
@@ -87,6 +91,7 @@ rows.each do |row|
 		# - unclear what types are available/appropriate for line[1]
 		# - image and source links output relative to ldraw.org
 		parts[part_number] = [part_number, 'A', '', '', 'LDraw Parts', '', '', '', '', '', "[[Image: http://ldraw.org/library/unofficial/images/#{part_path}/#{part_number}.png]]", abstract, part_link];
+		parts["#{part_number}.dat"] = ["#{part_number}.dat", 'A', '', '', 'LDraw Parts', '', '', '', '', '', "[[Image: http://ldraw.org/library/unofficial/images/#{part_path}/#{part_number}.png]]", abstract, part_link];
 #	end
 	
 end
