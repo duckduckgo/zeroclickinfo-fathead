@@ -55,6 +55,7 @@ class Parser(object):
                                 description += " " + element
                             except TypeError: 
                                 description += str(element)
+                        description = description.replace('\n', '\\n').strip()
                         i = -1
                         self.entries.append(Entry(name, value, description.strip()))
                     i += 1

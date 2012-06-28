@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python parse.py
+/usr/bin/env python2 parse.py
