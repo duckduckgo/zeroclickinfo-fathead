@@ -50,11 +50,11 @@ rows.each do |row|
 	# get grouped as "Miscellaneous" to keep things tidy - some tracker parts have tmp names
 	part_category = part_name.split.first.delete("~")
 	if part_type == "primitive"
-		part_category = "Primitive"
+		part_category = "Primitive LDraw Parts"
 	elsif part_type == "48-segment primitive"
-		part_category = "High-Resolution Primitive"
+		part_category = "High-Resolution Primitive LDraw Parts"
 	elsif not categories.include?(part_category)
-		part_category = "Miscellaneous"
+		part_category = "Miscellaneous LDraw Parts"
         else
                 part_category = "LDraw #{part_category.en.plural}"
 	end
