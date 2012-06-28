@@ -88,54 +88,54 @@ function start_parsing(dirs, window, document, cb) {
 	    var $ = window.$;
 
 	    $("#I_content").html(
-		$("#I_content").html().replace("</p>", "</p><p>")
+		    $("#I_content").html().replace("</p>", "</p><p>")
 	    );
 	    var dst = $(".C_doc");
 	    var module = path.basename(path.dirname(dirs[i]));
 	    var proc = path.basename(dirs[i]);
-	    var desc_short = $("#I_description").text().trim().replace(/\n/g, "\\n");
+	    var desc_short = $("#I_description").text().trim().replace(/\n/g, "\\n").replace(/\s+/g, ' ');
 	    // var desc_long  = dst.next().next().text().trim().replace(/\n/g, "\\n");
         var desc_long = '';
 
 	    var fq_name = $('.I_file').text();
-	    var signature = $('.C_prototype').text().split(';')[0].trim();
+	    var signature = $('.C_prototype').text().split(';')[0].trim().replace(/[\r\n]/g, "\\n").replace(/\s+/g, ' ');
 	    var description = desc_short + '. ' + desc_long;
 	    var title = module + ' ' + proc;
 	    var url = URL_BASE + dirs[i];
 
 	    var entry = {
-		page: title, 
-		synopsis: fq_name + "\n" + signature, 
-		description: description, 
-		url: url
+		    page: title, 
+		    synopsis: fq_name + "\n" + signature, 
+		    description: description, 
+		    url: url
 	    };
 
 	    data.push(entry);
 
 	    var global_modules = {
-		algorithm: 1, 
-		functional: 1, 
-		numeric: 1, 
-		iterator: 1, 
-		locale: 1, 
-		memory: 1, 
-		stdexcept: 1, 
-		utility: 1, 
-		typeinfo: 1, 
-		"new": 1, 
-		limits: 1, 
-		exception: 1
+		    algorithm: 1, 
+		    functional: 1, 
+		    numeric: 1, 
+		    iterator: 1, 
+		    locale: 1, 
+		    memory: 1, 
+		    stdexcept: 1, 
+		    utility: 1, 
+		    typeinfo: 1, 
+		    "new": 1, 
+		    limits: 1, 
+		    exception: 1
 	    };
 
 	    if ((module[0] == 'c' && module !== 'char_traits') || 
-		global_modules.hasOwnProperty(global_modules)) {
-		entry = {
-		    page: proc, 
-		    synopsis: fq_name + "\n" + signature, 
-		    description: description, 
-		    url: url
-		};
-		data.push(entry);
+		    global_modules.hasOwnProperty(global_modules)) {
+		    entry = {
+		        page: proc, 
+		        synopsis: fq_name + "\n" + signature, 
+		        description: description, 
+		        url: url
+		    };
+		    data.push(entry);
 	    }
 
 	    // console.error("entry:", entry);
@@ -145,7 +145,7 @@ function start_parsing(dirs, window, document, cb) {
     }
 
     for (var i = 0; i < dirs.length; ++i) {
-	parse_file(dirs, i, data);
+	    parse_file(dirs, i, data);
     }
     cb(data);
 }
@@ -166,10 +166,10 @@ function dump_to_file(docs) {
 
 function main() {
     create_window(function(window, document) {
-	parse_all_docs(window, document, function(data) {
-	    dump_to_file(data);
+	    parse_all_docs(window, document, function(data) {
+	        dump_to_file(data);
 	    console.error("DONE!!");
-	});
+	    });
     });
 }
 
