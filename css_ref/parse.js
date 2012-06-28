@@ -4,6 +4,7 @@
 var fs    = require('fs');
 var jsdom = require('jsdom');
 var path  = require('path');
+var url   = require('url');
 var us    = require('underscore');
 
 
@@ -41,10 +42,10 @@ function decodeXml(string) {
 
 function create_window(cb) {
     jsdom.env('<html><body>', [ JQUERY_URL ], function(errors, window) {
-	if (errors) {
-	    throw new Error(errors[0]);
-	}
-	cb(window, window.document);
+	    if (errors) {
+	        throw new Error(errors[0]);
+	    }
+	    cb(window, window.document);
     });
 }
 
@@ -74,7 +75,11 @@ function get_path_using_selector(window, document, selector, cb) {
 		document.innerHTML = html;
 		var $ = window.$;
 		var properties = $(selector).map(function() {
-			return $(this).text().trim().split(/\s/)[0];
+            var u = url.parse($(this).attr('href'));
+			var dirname = unescape(path.basename(u.pathname));
+            dirname = (dirname == "Article_not_found" ? '' : dirname);
+            return dirname;
+            // return $(this).text().trim().split(/\s/)[0];
 		}).toArray().filter(function(property) {
 			return property.search(/firefox/i) === -1;
 		});
@@ -83,11 +88,7 @@ function get_path_using_selector(window, document, selector, cb) {
 }
 
 function get_css_property_paths(window, document, cb) {
-	get_path_using_selector(window, document, "#section_1 li a", cb);
-}
-
-function get_css_pseudo_classes_paths(window, document, cb) {
-	get_path_using_selector(window, document, "#section_25 li a, #section_26 li a", cb);
+	get_path_using_selector(window, document, "#pageText div:first li code a", cb);
 }
 
 function start_parsing(dirs, window, document, summary_fetcher, syntax_fetcher, cb) {
@@ -124,45 +125,36 @@ function start_parsing(dirs, window, document, summary_fetcher, syntax_fetcher, 
 
 function parse_all_docs(window, document, cb) {
 	var property_paths = get_css_property_paths(window, document, function(ppaths) {
-		var pseudo_class_paths = get_css_pseudo_classes_paths(window, document, function(pcpaths) {
-			start_parsing(ppaths, window, document, function($) {
-				// Note: To screw yourself, move the dot(.) to the next line
-				return $($("#section_1 p")[0]).text().
-					trim().replace(/\n/g, " ").replace(/\s+/g, " ");
-			}, function($) {
-				return $("#section_2 pre").text().
-					trim().replace(/\n/g, " ").replace(/\s+/g, " ");
-			}, function(data) {
-				start_parsing(pcpaths, window, document, function($) {
-					return $($("#section_1 p")[0]).text().
-						trim().replace(/\n/g, " ").replace(/\s+/g, " ");
-				}, function($) {
-					return $("#section_2 pre").text().
-						trim().replace(/\n+/g, "\n").replace(/\n/g, "\\n").replace(/\s+/g, " ");
-				}, function(data2) {
-					data = data.concat(data2);
-					cb(data);
-				});
-			});
-		});
+        ppaths = ppaths.filter(function(x) { return !!x; });
+        // console.log(ppaths);
+        // return;
+		start_parsing(ppaths, window, document, function($) {
+			// Note: To screw yourself, move the dot(.) to the next line
+			return $($("#section_1 p")[0]).text().
+				trim().replace(/\n/g, " ").replace(/\s+/g, " ");
+		}, function($) {
+			return $("#section_2 pre").text().
+				trim().replace(/\n/g, " ").replace(/\s+/g, " ");
+		}, function(data) {
+			cb(data);
+        });
 	});
 }
-
 
 function dump_to_file(docs) {
     var _d = docs.map(function(d) {
 	return decodeXml([ d.page, '', d.url, d.description, 
 			   d.synopsis, '', '', 'en' ].join('\t').replace(/\n/g, ' '));
     });
-    fs.writeFileSync('css.docs.txt', _d.join('\n'));
+    fs.writeFileSync('output.txt', _d.join('\n'));
 }
 
 function main() {
     create_window(function(window, document) {
-	parse_all_docs(window, document, function(data) {
-	    dump_to_file(data);
-	    console.error("DONE!!");
-	});
+	    parse_all_docs(window, document, function(data) {
+	        dump_to_file(data);
+	        console.error("DONE!!");
+	    });
     });
 }
 
