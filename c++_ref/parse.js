@@ -161,7 +161,7 @@ function dump_to_file(docs) {
 	return decodeXml([ d.page, '', d.url, d.description, 
 			   d.synopsis, '', '', 'en' ].join('\t').replace(/\n/g, ' '));
     });
-    fs.writeFileSync('c++.docs.txt', _d.join('\n'));
+    fs.writeFileSync('output.txt', _d.join('\n'));
 }
 
 function main() {
