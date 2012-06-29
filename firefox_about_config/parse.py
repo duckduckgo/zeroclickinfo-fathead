@@ -32,6 +32,8 @@ class Entry(object):
 class Parser(object):
     def __init__(self, input='download/About:config_entries'):
         self.soup = BeautifulSoup(open(input))
+        # Requires trailing / for relative link replacement
+        self.baseURL = "http://kb.mozillazine.org/"
 
     def findEntries(self):
         self.entries = []
@@ -55,7 +57,9 @@ class Parser(object):
                                 description += " " + element
                             except TypeError: 
                                 description += str(element)
-                        description = description.replace('\n', '\\n').strip()
+                        description = description.replace('\n', '<br>').strip()
+                        expandedURL = 'href="' + self.baseURL
+                        description = description.replace('href="/', expandedURL)
                         i = -1
                         self.entries.append(Entry(name, value, description.strip()))
                     i += 1
