@@ -52,7 +52,15 @@ class Parser(object):
                     elif i == 1:
                         value = th.text
                     elif i == 2:
-                        description = ''
+                        if value:
+                            article = 'a'
+                            if value[0] == 'I': article += 'n'
+                            description = "It accepts " + article + " " + value + " value."
+                        description = name + ' is a configuration option ' \
+                                'for the Firefox web browser. ' + description + \
+                                ' Read about editing these values <a href="' \
+                                'http://kb.mozillazine.org/Editing_configuration">' \
+                                'here</a>.<br><pre>'
                         for element in th.contents:
                             try:
                                 description += " " + element
@@ -63,6 +71,7 @@ class Parser(object):
                         description = description.replace('href="/', expandedURL)
                         description = re.sub('<\s*b\s*>', '<i>', description)
                         description = re.sub('<\s*/\s*b\s*>', '</i>', description)
+                        description += '</pre>'
                         i = -1
                         self.entries.append(Entry(name, value, description.strip()))
                     i += 1
