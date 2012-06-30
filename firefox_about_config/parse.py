@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 
 from BeautifulSoup import BeautifulSoup
+import re
 
 
 class Entry(object):
@@ -60,6 +61,8 @@ class Parser(object):
                         description = description.replace('\n', '<br>').strip()
                         expandedURL = 'href="' + self.baseURL
                         description = description.replace('href="/', expandedURL)
+                        description = re.sub('<\s*b\s*>', '<i>', description)
+                        description = re.sub('<\s*/\s*b\s*>', '</i>', description)
                         i = -1
                         self.entries.append(Entry(name, value, description.strip()))
                     i += 1
