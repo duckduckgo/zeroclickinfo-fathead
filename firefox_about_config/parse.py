@@ -1,6 +1,8 @@
 #!/usr/bin/env python2
 
 from BeautifulSoup import BeautifulSoup
+import urllib
+import string
 import re
 
 
@@ -9,9 +11,10 @@ class Entry(object):
         self.name = name
         self.value = value
         self.description = description
-        self.url = 'https://github.com/duckduckgo/zeroclickinfo-fathead'
+        self.url = 'http://kb.mozillazine.org/About:config_entries'
 
     def __str__(self):
+        self.url += "#" + string.capitalize(urllib.quote(self.name.split('.')[0])) + "."
         fields = [
                 self.name,              # title
                 'A',                    # type
