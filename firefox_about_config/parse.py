@@ -50,6 +50,7 @@ class Parser(object):
                     continue
                 i = 0
                 for th in tr.findAll('td'):
+                    description = ''
                     if i == 0:
                         name = ''.join(th.b.findAll(text=True)).replace(' ','')
                     elif i == 1:
@@ -58,23 +59,26 @@ class Parser(object):
                         if value:
                             article = 'a'
                             if value[0] == 'I': article += 'n'
-                            description = "It accepts " + article + " " + value + " value."
-                        description = name + ' is a configuration option ' \
-                                'for the Firefox web browser. ' + description + \
-                                ' Read about editing these values <a href="' \
+                            optionType = "It accepts " + article + " " + value + " value."
+                        synopsis = name + ' is a configuration option ' \
+                                'for the Firefox web browser. ' + optionType + \
+                                ' Read about editing this values <a href="' \
                                 'http://kb.mozillazine.org/Editing_configuration">' \
-                                'here</a>.<br><pre>'
+                                'here</a>.<br>'
                         for element in th.contents:
                             try:
                                 description += " " + element
                             except TypeError: 
                                 description += str(element)
-                        description = description.replace('\n', '<br>').strip()
-                        expandedURL = 'href="' + self.baseURL
-                        description = description.replace('href="/', expandedURL)
-                        description = re.sub('<\s*b\s*>', '<i>', description)
-                        description = re.sub('<\s*/\s*b\s*>', '</i>', description)
-                        description += '</pre>'
+                        if description:
+                            description = '<pre>' + description
+                            description = description.replace('\n', '<br>').strip()
+                            expandedURL = 'href="' + self.baseURL
+                            description = description.replace('href="/', expandedURL)
+                            description = re.sub('<\s*b\s*>', '<i>', description)
+                            description = re.sub('<\s*/\s*b\s*>', '</i>', description)
+                            description += '</pre>'
+                        description = synopsis + description
                         i = -1
                         self.entries.append(Entry(name, value, description.strip()))
                     i += 1
