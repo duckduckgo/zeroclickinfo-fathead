@@ -61,10 +61,7 @@ class Parser(object):
                             if value[0] == 'I': article += 'n'
                             optionType = "It accepts " + article + " " + value + " value."
                         synopsis = name + ' is a configuration option ' \
-                                'for the Firefox web browser. ' + optionType + \
-                                ' Read about editing this values <a href="' \
-                                'http://kb.mozillazine.org/Editing_configuration">' \
-                                'here</a>.<br>'
+                                'for the Firefox web browser. ' + optionType
                         for element in th.contents:
                             try:
                                 description += " " + element
@@ -73,8 +70,7 @@ class Parser(object):
                         if ''.join(description.split()) != '':
                             if name == 'bidi.edit.deleteimmediately':
                                 print description
-                            description = '<pre>' + description
-                            description = description.replace('\n', '<br>').strip()
+                            description = '<pre>' + description.replace('\n', '<br>').strip()
                             expandedURL = 'href="' + self.baseURL
                             description = description.replace('href="/', expandedURL)
                             description = re.sub('<\s*b\s*>', '<i>', description)
