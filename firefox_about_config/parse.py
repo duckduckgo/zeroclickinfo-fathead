@@ -70,7 +70,9 @@ class Parser(object):
                                 description += " " + element
                             except TypeError: 
                                 description += str(element)
-                        if description:
+                        if ''.join(description.split()) != '':
+                            if name == 'bidi.edit.deleteimmediately':
+                                print description
                             description = '<pre>' + description
                             description = description.replace('\n', '<br>').strip()
                             expandedURL = 'href="' + self.baseURL
