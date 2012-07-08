@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 
-from BeautifulSoup import BeautifulSoup
+from BeautifulSoup import BeautifulSoup, NavigableString
 import urllib
 import string
 import re
@@ -59,23 +59,18 @@ class Parser(object):
                         if value:
                             article = 'a'
                             if value[0] == 'I': article += 'n'
-                            optionType = "It accepts " + article + " " + value + " value."
-                        synopsis = name + ' is a configuration option ' \
-                                'for the Firefox web browser. ' + optionType
-                        for element in th.contents:
-                            try:
-                                description += " " + element
-                            except TypeError: 
-                                description += str(element)
-                        if ''.join(description.split()) != '':
-                            if name == 'bidi.edit.deleteimmediately':
-                                print description
-                            description = '<pre>' + description.replace('\n', '<br>').strip()
-                            expandedURL = 'href="' + self.baseURL
-                            description = description.replace('href="/', expandedURL)
-                            description = re.sub('<\s*b\s*>', '<i>', description)
-                            description = re.sub('<\s*/\s*b\s*>', '</i>', description)
-                            description += '</pre>'
+                            optionType = "it accepts " + article + " " + value.lower() + "."
+                        synopsis = '"' + name + '"'  + ' is a configuration option ' \
+                                'for the Firefox web browser; ' + optionType + "<br>"
+                        for tag in th.findAll('br'):
+                            tag.insert(0, NavigableString("\n"))
+                        description = ''.join(th.findAll(text=True))
+                        description = description.rstrip().replace('\n', '<br>').strip()
+                        expandedURL = 'href="' + self.baseURL
+                        description = description.replace('href="/', expandedURL)
+                        description = re.sub('<\s*b\s*>', '<i>', description)
+                        description = re.sub('<\s*/\s*b\s*>', '</i>', description)
+                        description += '</pre>'
                         description = synopsis + description
                         i = -1
                         self.entries.append(Entry(name, value, description.strip()))
