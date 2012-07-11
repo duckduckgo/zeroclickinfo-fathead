@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-require 'rubygems'
+# require 'rubygems'
 require 'hpricot'
 require 'open-uri'
 
