@@ -1,0 +1,5 @@
+Name: Firefox about:config
+Domain: http://kb.mozillazine.org/About:config_entries
+Type: Firefox configuration
+MediaWiki: 0
+Keywords: firefox config,firefox configuration,firefox about, firefox about config,firefox about:config,ff config, ff configuration, ff about, ff about config, ff about:config
