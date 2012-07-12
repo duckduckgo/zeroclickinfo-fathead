@@ -1,4 +1,4 @@
-AUR plugin for DukcDuckGo
+ArchLinux packages plugin for DukcDuckGo
 
 Dependencies:
 
