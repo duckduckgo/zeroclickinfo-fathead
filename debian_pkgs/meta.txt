@@ -1,0 +1,15 @@
+# This is the name of the source as people would refer to it, e.g. Wikipedia or PerlDoc
+Name: Debian Packages
+
+# This is the base domain where the source pages are located.
+Domain: packages.debian.org
+
+# This is what gets put in quotes next to the source
+# It can be blank if it is a source with completely general info spanning many types of topics like Facebook.
+Type: Debian Package
+
+# Whether the source is from MediaWiki (1) or not (0).
+MediaWiki: 0
+
+# Keywords uses to trigger (or prefer) the source over others.
+Keywords: debian package,deb
