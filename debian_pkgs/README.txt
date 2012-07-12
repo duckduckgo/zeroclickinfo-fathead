@@ -1,4 +1,4 @@
-Ubuntu Packages plugin for DukcDuckGo
+Debian Packages plugin for DukcDuckGo
 
 Dependencies:
 
