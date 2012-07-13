@@ -23,37 +23,50 @@ function parse_out_docs(html, cb) {
 
 	var $ = window.$;
 	var docs = [ ];
+        function prettify_id(id) {
+            return id.replace(/^all_/, '').replace(/\./g, ' ');
+        }
+
 	function process_element(i, elem) {
 	    elem = $(elem);
 	    var next = elem.next();
 	    var description = '';
-	    var id = elem.attr('id') || ''
+            var inner_span_a = elem.find("span:first-child a");
+	    var id = inner_span_a.length == 1 ? inner_span_a.attr('id') : '';
 	    var url = URL_BASE + '#' + id;
 	    var namespace = '';
-	    var page = id;
-	    var synopsis = elem.text();
+	    var page = prettify_id(id);
+            var signature = elem.text().replace(/\s*#$/, '');
+            var signature_text = signature.replace(/\([^\)]*\)/, '');
+	    var synopsis = signature;
 	    var is_event = false;
 
-	    var m = id.match(/^([^\.]+)\.(.+)$/);
-	    if (m && m.length === 3) {
-		namespace = m[1];
-		page = m[2];
-	    }
-	    else {
-		m = id.match(/^event_([^_]+)_/);
-		if (m && m.length === 2) {
-		    is_event = true;
-		    page = m[1];
-		    var _p = elem.prevAll('h2').first();
-		    if (elem.is('h3') && _p) {
-			namespace = _p.attr('id');
+	    var m1 = signature_text.match(/^([^\.]+)\.(.+)$/); // member function
+            var m2 = signature_text.match(/^Event:\ \'([^\']+)\'/); // event
+            var m3 = signature_text.match(/^([^\.]+)$/); // global free-standing function
+
+	    if (m1 && m1.length === 3) {
+		namespace = m1[1];
+		page = m1[2];
+            } else if (m2 && m2.length == 2) {
+		is_event = true;
+		page = m2[1];
+		var _p = elem.prevAll('h2').first();
+		if (elem.is('h3') && _p) {
+                    var nsm = _p.text().match(/Class:\ ([^#]+)/);
+                    if (nsm && nsm.length == 2) {
+			namespace = nsm[1].split('.').reverse()[0];
 		    }
 		}
+	    } else if (m3 && m3.length == 2) {
+                page = m3[1];
 	    }
 
 	    if (next.is('p')) {
 		description = next.text();
-	    }
+	    } else if (next.next().is('p')) {
+                description = next.next().text();
+            }
 
 	    var ret = {
 		page: page, 
@@ -96,7 +109,7 @@ function dump_to_file(docs) {
 	return [ d.page, d.namespace, d.url, d.description, 
 		 d.synopsis, '', '', 'en' ].join('\t').replace(/\n/g, ' ');
     });
-    fs.writeFileSync('output.txt', _d.join('\n'));
+    fs.writeFileSync('output.txt', _d.join('\n') + "\n");
 }
 
 function main() {
