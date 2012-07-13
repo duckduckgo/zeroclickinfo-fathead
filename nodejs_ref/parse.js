@@ -1,9 +1,9 @@
 var fs    = require('fs');
 var jsdom = require('jsdom');
-var sqlite = require('sqlite');
 
-var FILE_NAME = './all-0.4.7.html';
-var URL_BASE  = 'http://nodejs.org/docs/v0.4.7/api/all.html';
+var FILE_NAME = './all.html';
+var URL_BASE  = 'http://nodejs.org/api/all.html';
+var JQUERY_URL = './jquery-1.5.min.js'; // 'http://code.jquery.com/jquery-1.5.min.js'; 
 
 function fetch_html(local, cb) {
     var html = fs.readFileSync(FILE_NAME).toString();
@@ -14,7 +14,7 @@ function fetch_html(local, cb) {
 // create table docs(page text not null, namespace text not null, url text not null, description text not null, synopsis text not null, details text not null, type text not null, lang text not null);
 
 function parse_out_docs(html, cb) {
-    jsdom.env(html, [ 'http://code.jquery.com/jquery-1.5.min.js' ], function(errors, window) {
+    jsdom.env(html, [ JQUERY_URL ], function(errors, window) {
 	if (!window) {
 	    throw new Error("Arghh!!");
 	}
@@ -91,48 +91,12 @@ function parse_out_docs(html, cb) {
     });
 }
 
-function insert_next(db, docs, cb) {
-    if (docs.length === 0) {
-	db.close(function() { });
-	return;
-    }
-    var d = docs[0];
-
-    var sql = "INSERT INTO docs(page, namespace, url, description, " + 
-	"synopsis, details, type, lang) " + 
-	"VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    var args = [ d.page, d.namespace, d.url, d.description, 
-		 d.synopsis, '', '', 'en' 
-	       ];
-    console.error("args:", args);
-
-    db.execute(sql, args, function (error, rows) {
-	if (error) {
-	    throw error;
-	}
-	docs.shift();
-	cb(db, docs, insert_next);
-    });
-
-}
-
-function dump_to_db(docs) {
-    var db = new sqlite.Database();
-
-    db.open("nodejs.sqlite3", function (error) {
-	if (error) {
-	    throw error;
-	}
-	insert_next(db, docs, insert_next);
-    });
-}
-
 function dump_to_file(docs) {
     var _d = docs.map(function(d) {
 	return [ d.page, d.namespace, d.url, d.description, 
 		 d.synopsis, '', '', 'en' ].join('\t').replace(/\n/g, ' ');
     });
-    fs.writeFileSync('nodejs.docs.txt', _d.join('\n'));
+    fs.writeFileSync('output.txt', _d.join('\n'));
 }
 
 function main() {
