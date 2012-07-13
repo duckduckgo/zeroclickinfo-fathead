@@ -268,7 +268,7 @@ while(my $line = <$infh>) {
     }
     
     # end intro sentence
-    $description .= ".";
+    # $description .= ".";
     
     # add synonyms and previous names (if present)
     my %aka;
@@ -292,7 +292,7 @@ while(my $line = <$infh>) {
 	    $name =~ s/\"//g;
 	    $aka{$name} = 1;
 	}
-	$description .= " Also known as ".join(", ", sort keys %aka).".";
+	$description .= ", also known as ".join(", ", sort keys %aka).".";
     }
     
     # add general and specialist links
