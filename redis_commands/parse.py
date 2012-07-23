@@ -17,7 +17,7 @@ data = {}
 for command in commands:
 
     for row in command.findall('a'):
-        command_url = "%s/%s" % (url, row.get('href'))
+        command_url = "%s%s" % (url, row.get('href'))
         
         for sibling in command.itersiblings():
             usage = ""
