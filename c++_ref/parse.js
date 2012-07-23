@@ -106,7 +106,7 @@ function start_parsing(dirs, window, document, cb) {
 	    var entry = {
 		    page: title, 
 		    synopsis: fq_name + "\n" + signature, 
-		    description: description, 
+		    description: "\"" + title + "\" is used to " + description.toLowerCase(), 
 		    url: url
 	    };
 
