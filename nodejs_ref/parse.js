@@ -1,9 +1,9 @@
 var fs    = require('fs');
 var jsdom = require('jsdom');
-var sqlite = require('sqlite');
 
-var FILE_NAME = './all-0.4.7.html';
-var URL_BASE  = 'http://nodejs.org/docs/v0.4.7/api/all.html';
+var FILE_NAME = './all.html';
+var URL_BASE  = 'http://nodejs.org/api/all.html';
+var JQUERY_URL = './jquery-1.5.min.js'; // 'http://code.jquery.com/jquery-1.5.min.js'; 
 
 function fetch_html(local, cb) {
     var html = fs.readFileSync(FILE_NAME).toString();
@@ -14,7 +14,7 @@ function fetch_html(local, cb) {
 // create table docs(page text not null, namespace text not null, url text not null, description text not null, synopsis text not null, details text not null, type text not null, lang text not null);
 
 function parse_out_docs(html, cb) {
-    jsdom.env(html, [ 'http://code.jquery.com/jquery-1.5.min.js' ], function(errors, window) {
+    jsdom.env(html, [ JQUERY_URL ], function(errors, window) {
 	if (!window) {
 	    throw new Error("Arghh!!");
 	}
@@ -23,37 +23,50 @@ function parse_out_docs(html, cb) {
 
 	var $ = window.$;
 	var docs = [ ];
+        function prettify_id(id) {
+            return id.replace(/^all_/, '').replace(/\./g, ' ');
+        }
+
 	function process_element(i, elem) {
 	    elem = $(elem);
 	    var next = elem.next();
 	    var description = '';
-	    var id = elem.attr('id') || ''
+            var inner_span_a = elem.find("span:first-child a");
+	    var id = inner_span_a.length == 1 ? inner_span_a.attr('id') : '';
 	    var url = URL_BASE + '#' + id;
 	    var namespace = '';
-	    var page = id;
-	    var synopsis = elem.text();
+	    var page = prettify_id(id);
+            var signature = elem.text().replace(/\s*#$/, '');
+            var signature_text = signature.replace(/\([^\)]*\)/, '');
+	    var synopsis = signature;
 	    var is_event = false;
 
-	    var m = id.match(/^([^\.]+)\.(.+)$/);
-	    if (m && m.length === 3) {
-		namespace = m[1];
-		page = m[2];
-	    }
-	    else {
-		m = id.match(/^event_([^_]+)_/);
-		if (m && m.length === 2) {
-		    is_event = true;
-		    page = m[1];
-		    var _p = elem.prevAll('h2').first();
-		    if (elem.is('h3') && _p) {
-			namespace = _p.attr('id');
+	    var m1 = signature_text.match(/^([^\.]+)\.(.+)$/); // member function
+            var m2 = signature_text.match(/^Event:\ \'([^\']+)\'/); // event
+            var m3 = signature_text.match(/^([^\.]+)$/); // global free-standing function
+
+	    if (m1 && m1.length === 3) {
+		namespace = m1[1];
+		page = m1[2];
+            } else if (m2 && m2.length == 2) {
+		is_event = true;
+		page = m2[1];
+		var _p = elem.prevAll('h2').first();
+		if (elem.is('h3') && _p) {
+                    var nsm = _p.text().match(/Class:\ ([^#]+)/);
+                    if (nsm && nsm.length == 2) {
+			namespace = nsm[1].split('.').reverse()[0];
 		    }
 		}
+	    } else if (m3 && m3.length == 2) {
+                page = m3[1];
 	    }
 
 	    if (next.is('p')) {
 		description = next.text();
-	    }
+	    } else if (next.next().is('p')) {
+                description = next.next().text();
+            }
 
 	    var ret = {
 		page: page, 
@@ -91,48 +104,12 @@ function parse_out_docs(html, cb) {
     });
 }
 
-function insert_next(db, docs, cb) {
-    if (docs.length === 0) {
-	db.close(function() { });
-	return;
-    }
-    var d = docs[0];
-
-    var sql = "INSERT INTO docs(page, namespace, url, description, " + 
-	"synopsis, details, type, lang) " + 
-	"VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    var args = [ d.page, d.namespace, d.url, d.description, 
-		 d.synopsis, '', '', 'en' 
-	       ];
-    console.error("args:", args);
-
-    db.execute(sql, args, function (error, rows) {
-	if (error) {
-	    throw error;
-	}
-	docs.shift();
-	cb(db, docs, insert_next);
-    });
-
-}
-
-function dump_to_db(docs) {
-    var db = new sqlite.Database();
-
-    db.open("nodejs.sqlite3", function (error) {
-	if (error) {
-	    throw error;
-	}
-	insert_next(db, docs, insert_next);
-    });
-}
-
 function dump_to_file(docs) {
     var _d = docs.map(function(d) {
 	return [ d.page, d.namespace, d.url, d.description, 
 		 d.synopsis, '', '', 'en' ].join('\t').replace(/\n/g, ' ');
     });
-    fs.writeFileSync('nodejs.docs.txt', _d.join('\n'));
+    fs.writeFileSync('output.txt', _d.join('\n') + "\n");
 }
 
 function main() {
