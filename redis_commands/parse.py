@@ -23,21 +23,22 @@ for command in commands:
             usage = ""
             
             for command_args in command.findall('span'):
-                usage = "Usage: %s %s" % (row.text, command_args.text.replace(' ', '').replace('\n', ' ').strip())
+                usage = "%s %s" % (row.text, command_args.text.replace(' ', '').replace('\n', ' ').strip())
 
-            summary = "%s<br>%s" % (sibling.text, usage)
+            summary = "%s" % (sibling.text)
 
-            data[command_url] = (row.text, summary)
+            data[command_url] = (row.text, summary, usage)
 
 for command_url in data.keys():
-    command, summary = data[command_url]
+    command, summary, usage = data[command_url]
     summary = unicode(summary).encode("utf-8")
+    usage = unicode(usage).encode("utf-8")
     
     f.write("\t".join([str(command),      # title
                     "",                # namespace
                     command_url,               # url
                     summary,       # description
-                    "",                # synopsis
+                    usage,                # synopsis
                     "",                # details
                     "",                # type
                     ""                 # lang
