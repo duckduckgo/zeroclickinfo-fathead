@@ -60,7 +60,7 @@ func output(formats chan fileFormat) {
 			"",              // disambiguation (ignore)
 			"",              // images
 			abstract(f.use), // abstract
-			"",              // source url
+			"https://en.wikipedia.org/wiki/List_of_file_formats_(alphabetical)#" + f.ext,              // source url
 		}
 		_, err = file.WriteString(strings.Join(out, "\t") + "\n" + redirect + "\n")
 		if err != nil {
