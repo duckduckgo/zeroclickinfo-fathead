@@ -25,14 +25,14 @@ for command in commands:
             for command_args in command.findall('span'):
                 usage = "%s %s" % (row.text, command_args.text.replace(' ', '').replace('\n', ' ').strip())
 
-            summary = "%s" % (sibling.text)
+            summary = "%s." % (re.sub('\.$', '', sibling.text))
 
             data[command_url] = (row.text, summary, usage)
 
 for command_url in data.keys():
     command, summary, usage = data[command_url]
     summary = unicode(summary).encode("utf-8")
-    usage = unicode(usage).encode("utf-8")
+    usage = unicode(summary).encode("utf-8")
     
     f.write("\t".join([str(command),      # title
                     "",                # namespace
