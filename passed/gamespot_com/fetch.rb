@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-['rubygems','hpricot','open-uri','find'].each{|r|require r}
+['hpricot','open-uri','find'].each{|r|require r}
 
 DOWNLOAD_DIR='download'
 INDEX_PAGE='_index.html'

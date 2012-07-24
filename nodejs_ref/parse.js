@@ -1,7 +1,7 @@
 var fs    = require('fs');
 var jsdom = require('jsdom');
 
-var FILE_NAME = './all.html';
+var FILE_NAME = './download/all.html';
 var URL_BASE  = 'http://nodejs.org/api/all.html';
 var JQUERY_URL = './jquery-1.5.min.js'; // 'http://code.jquery.com/jquery-1.5.min.js'; 
 
