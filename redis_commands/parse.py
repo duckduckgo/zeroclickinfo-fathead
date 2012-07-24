@@ -32,7 +32,7 @@ for command in commands:
 for command_url in data.keys():
     command, summary, usage = data[command_url]
     summary = unicode(summary).encode("utf-8")
-    usage = unicode(summary).encode("utf-8")
+    usage = unicode(usage).encode("utf-8")
     
     f.write("\t".join([str(command),      # title
                     "",                # namespace
