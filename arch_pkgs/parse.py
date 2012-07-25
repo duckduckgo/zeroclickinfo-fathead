@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import logging
 import os
 import re
+from unidecode import unidecode
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
@@ -21,7 +22,13 @@ class Package(object):
     """ Contains informations about an Arch package"""
     def __init__(self, name, info, reference, arch):
         self.name = name
-        self.info = info
+        
+        info = unidecode(info)
+
+        if info[1].islower() or info[1] == ' ':
+            info = info[0].lower() + info[1:]
+
+        self.info = "Package description: %s." % (info)
         self.reference = reference
         self.arch = arch
         
