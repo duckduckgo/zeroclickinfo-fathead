@@ -12,18 +12,21 @@ abv = {
 
 # name\tA\t\t\tBible Verses\\n\t\t\t\t\t\t\t\t\tverse\turl\n
 
+ddgStr = "\tA\t\t\tBible Verses\\n\t\t\t\t\t\t\t\t\t"
+
 for row in reader:
      book = row[0]
-     chapter = row[1]+":"+row[2]
+     chapter = "{0}:{1}".format(row[1],row[2])
 
      verse = row[3]
-     url = "http://blb.org/search/preSearch.cfm?Criteria="+book+"+"+chapter
-     ddgStr = "\tA\t\t\tBible Verses\\n\t\t\t\t\t\t\t\t\t"
-     temp = book+" "+chapter+ddgStr+verse+"\t"+url+"\n"
+     url = "http://blb.org/search/preSearch.cfm?Criteria={0}+{1}".format(book,chapter)
+     temp = "{0} {1}{2}{3}\t{4}\n".format(book,chapter,ddgStr,verse,url)
      output.write(temp)
 
      if book != "Job":
           abvName = abv[book.lower()]
-          abvUrl = "http://blb.org/search/preSearch.cfm?Criteria="+abvName+"+"+chapter
-          abvTemp = abvName+" "+chapter+ddgStr+verse+"\t"+abvUrl+"\n"
+          abvUrl = "http://blb.org/search/preSearch.cfm?Criteria={0}+{1}".format(abvName,chapter)
+          redirect = "{0} {1}".format(book,chapter)
+          ddgStrRedir = "\tR\t{0}\t\t\t\\n\t\t\t\t\t\t\t\t\t".format(redirect)
+          abvTemp = "{0} {1}{2}\n".format(abvName,chapter,ddgStrRedir)
           output.write(abvTemp)
