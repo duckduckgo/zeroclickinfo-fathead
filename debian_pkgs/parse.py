@@ -52,7 +52,7 @@ class Parser(object):
         for line in self.input:
 
             if '(' in line:
-                data = re.match('(.*?) \(.*\) (.*)', line).groups()
+                data = re.match('(.*?) \(.*?\) (.*)', line).groups()
                 name = data[0]
                 info = data[1]
             else:
@@ -62,6 +62,15 @@ class Parser(object):
 
             # fix for agda-bin package; removing non-ascii characters
             info = filter(lambda x: x in string.printable, info)
+
+            if '[' in info:
+                data = re.match('\[(.*?)\] (.*)', info)
+                if data:
+                    data = data.groups()
+                    info = data[1] + ' [' + data[0] + ']'
+                else:
+                    info = re.sub('\[(.*?)\]', '', info)
+
             info = info.rstrip('\n')
 
             reference = self.UBUNTU_PKGS_URL + '/' + name
