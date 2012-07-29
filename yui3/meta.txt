@@ -1,0 +1,5 @@
+Name: YUI Library
+Domain: yuilibrary.com
+Type: YUI 3 Module
+MediaWiki: 0
+Keywords: yui, yui 3, yui3
