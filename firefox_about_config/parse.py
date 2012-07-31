@@ -7,14 +7,13 @@ import re
 
 
 class Entry(object):
-    def __init__(self, name, value, description):
+    def __init__(self, name, value, description, url):
         self.name = name
         self.value = value
         self.description = description
-        self.url = 'http://kb.mozillazine.org/About:config_entries'
+        self.url = url
 
     def __str__(self):
-        self.url += "#" + string.capitalize(urllib.quote(self.name.split('.')[0])) + "."
         fields = [
                 self.name,              # title
                 'A',                    # type
@@ -41,6 +40,7 @@ class Parser(object):
 
     def findEntries(self):
         self.entries = []
+        headers = map(lambda x: x.string, self.soup.findAll('h1')[2:])
         table = self.soup.findAll('div', id="bodyContent")[0]
         for table in table.findAll('table'):
             header = True
@@ -53,6 +53,11 @@ class Parser(object):
                     description = ''
                     if i == 0:
                         name = ''.join(th.b.findAll(text=True)).replace(' ','')
+                        anchor = string.capitalize(urllib.quote(name.split('.')[0])) + "."
+                        if anchor in headers:
+                            url = self.baseURL + 'About:config_entries#' + anchor
+                        else:
+                            url = self.baseURL + 'About:config_entries'
                     elif i == 1:
                         value = th.text
                     elif i == 2:
@@ -70,10 +75,10 @@ class Parser(object):
                         description = description.replace('href="/', expandedURL)
                         description = re.sub('<\s*b\s*>', '<i>', description)
                         description = re.sub('<\s*/\s*b\s*>', '</i>', description)
-                        description += '</pre>'
+                        description = '<blockquote>' + description + '</blockquote>'
                         description = synopsis + description
                         i = -1
-                        self.entries.append(Entry(name, value, description.strip()))
+                        self.entries.append(Entry(name, value, description.strip(), url))
                     i += 1
 
 
