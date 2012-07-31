@@ -18,7 +18,7 @@ sub duck_escape {
     # I don't know how exactly escaping works, but I hope that this
     # trick won't do too much damage with tricky data (not like such
     # data is planned, but it's better to be prepared for that).
-    $string =~ s{ ( [\n\t] | \\ (?= \\* [\n\t] ) ) }{$replaces{$1}}gmsx;
+    $string =~ s{ ( [\n\t] | \\ (?= [\\\n\t] ) ) }{$replaces{$1}}gmsx;
     $string;
 }
 
