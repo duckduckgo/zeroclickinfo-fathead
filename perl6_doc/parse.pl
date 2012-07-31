@@ -54,9 +54,6 @@ for my $file ( grep {-f} readdir $dh ) {
 
                     # <h1> stores name of class.
                     if ( $tags[-2] eq 'h1' ) {
-                        # Shouldn't happen. If it does then either
-                        # documentation format changed or somebody
-                        # forgot specifying description.
                         $current_field = {class => $dtext, method => $file};
                         push @fields, $current_field;
                     }
