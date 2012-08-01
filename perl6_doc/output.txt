@@ -2,7 +2,7 @@ Numeric.conj	A			Perl 6 Numeric							<pre><code>multi method conj(Numeric:D) re
 conj	R	Numeric.conj									
 Match.postmatch	A			Perl 6 Match							Returns the part of the original string following the match.	http://doc.perl6.org/type/Match#postmatch
 postmatch	R	Match.postmatch									
-Numeric.sqrt	A			Perl 6 Numeric							<pre><code>mulit sub    sqrt(Numeric:D) returns Numeric:D&#10;mulit method sqrt(Numeric:D) returns Numeric:D</pre></code>Returns a square root of the number. For real numbers the positive square root is returned.	http://doc.perl6.org/type/Numeric#sqrt
+Numeric.sqrt	A			Perl 6 Numeric							<pre><code>mulit sub    sqrt(Numeric:D) returns Numeric:D<br>mulit method sqrt(Numeric:D) returns Numeric:D</pre></code>Returns a square root of the number. For real numbers the positive square root is returned.	http://doc.perl6.org/type/Numeric#sqrt
 sqrt	R	Numeric.sqrt									
 Real.floor	A			Perl 6 Real							<pre><code>method floor(Real:D) returns Int:D</pre></code>Return the largest integer not greater than the number.	http://doc.perl6.org/type/Real#floor
 floor	R	Real.floor									
@@ -14,9 +14,9 @@ Mu.print	A			Perl 6 Mu							<pre><code>multi method print() returns Bool:D</pre
 print	R	Mu.print									
 Enum.key	A			Perl 6 Enum							<pre><code>multi method key(Enum:D:)</pre></code>Returns the key part of the Enum.	http://doc.perl6.org/type/Enum#key
 key	R	Enum.key									
-Str.chop	A			Perl 6 Str							<pre><code>multi sub    chop(Str:D)  returns Str:D&#10;multi method chop(Str:D:) returns Str:D</pre></code>Returns the string with one character removed from the end.	http://doc.perl6.org/type/Str#chop
+Str.chop	A			Perl 6 Str							<pre><code>multi sub    chop(Str:D)  returns Str:D<br>multi method chop(Str:D:) returns Str:D</pre></code>Returns the string with one character removed from the end.	http://doc.perl6.org/type/Str#chop
 chop	R	Str.chop									
-Str.fc	A			Perl 6 Str							<pre><code>multi sub    fc(Str:D ) returns Str:D&#10;multi method fc(Str:D:) returns Str:D </pre></code>Does a Unicode "fold case" operation suitable for doing caseless string comparisons. (In general, the returned string is unlikely to be useful for any purpose other than comparison.)	http://doc.perl6.org/type/Str#fc
+Str.fc	A			Perl 6 Str							<pre><code>multi sub    fc(Str:D ) returns Str:D<br>multi method fc(Str:D:) returns Str:D </pre></code>Does a Unicode "fold case" operation suitable for doing caseless string comparisons. (In general, the returned string is unlikely to be useful for any purpose other than comparison.)	http://doc.perl6.org/type/Str#fc
 fc	R	Str.fc									
 Backtrace::Frame.code	A			Perl 6 Backtrace::Frame							<pre><code>method code(Backtrace::Frame:D)</pre></code>Returns the code object into which .file and .line point, if avaialble.	http://doc.perl6.org/type/Backtrace%3A%3AFrame#code
 code	R	Backtrace::Frame.code									
@@ -35,7 +35,7 @@ Complex.isNaN	A			Perl 6 Complex							<pre><code>method isNaN(Complex:D:) retur
 isNaN	R	Complex.isNaN									
 Date.truncated-to	A			Perl 6 Date							<pre><code>method truncated-to(Date:D: :$year, :$month, :$week)</pre></code>Returns a Date truncated to the first day of its year, month or week. For example	http://doc.perl6.org/type/Date#truncated-to
 truncated-to	R	Date.truncated-to									
-Mu.gist	A			Perl 6 Mu							<pre><code>multi sub    gist(Mu) returns Str&#10;multi method gist()   returns Str</pre></code>Returns a string representation of the invocant, optimized for fast recognition by humans.	http://doc.perl6.org/type/Mu#gist
+Mu.gist	A			Perl 6 Mu							<pre><code>multi sub    gist(Mu) returns Str<br>multi method gist()   returns Str</pre></code>Returns a string representation of the invocant, optimized for fast recognition by humans.	http://doc.perl6.org/type/Mu#gist
 Date.gist	A			Perl 6 Date							<pre><code>multi method gist(Date:D:) returns Str:D</pre></code>Returns the date in YYYY-MM-DD format (ISO 8601)	http://doc.perl6.org/type/Date#gist
 Exception.gist	A			Perl 6 Exception							<pre><code>multi method gist(Exception:D:)</pre></code>Returns whatever the exception printer should produce for this exception. The default implementation returns message and backtrace separated by a newline.	http://doc.perl6.org/type/Exception#gist
 gist	D								[[Mu.gist]]\n[[Date.gist]]\n[[Exception.gist]]			
@@ -45,19 +45,19 @@ Range.excludes_min	A			Perl 6 Range							<pre><code>method excludes_min(Range:D
 excludes_min	R	Range.excludes_min									
 IO.prompt	A			Perl 6 IO							<pre><code>my $name = prompt("Hi, what's your name?");</pre></code>Prints out a string to the standard output and waits for the user to type in something and finish with an ENTER. Returns the string typed in without the trailing newline.	http://doc.perl6.org/type/IO#prompt
 prompt	R	IO.prompt									
-Str.tc	A			Perl 6 Str							<pre><code>multi sub    tc(Str:D ) returns Str:D&#10;multi method tc(Str:D:) returns Str:D</pre></code>Does a Unicode "titlecase" operation, that is changes the first character in the string to title case, or to upper case if the character has no title case mapping	http://doc.perl6.org/type/Str#tc
+Str.tc	A			Perl 6 Str							<pre><code>multi sub    tc(Str:D ) returns Str:D<br>multi method tc(Str:D:) returns Str:D</pre></code>Does a Unicode "titlecase" operation, that is changes the first character in the string to title case, or to upper case if the character has no title case mapping	http://doc.perl6.org/type/Str#tc
 tc	R	Str.tc									
 Match.hash	A			Perl 6 Match							Returns a hash of named submatches.	http://doc.perl6.org/type/Match#hash
 hash	R	Match.hash									
-List.rotate	A			Perl 6 List							<pre><code>multi sub    rotate(@list,  Int:D $n = 1) returns List:D&#10;multi method rotate(List:D: Int:D $n = 1) returns List:D</pre></code>Returns the list rotated by $n elements.	http://doc.perl6.org/type/List#rotate
+List.rotate	A			Perl 6 List							<pre><code>multi sub    rotate(@list,  Int:D $n = 1) returns List:D<br>multi method rotate(List:D: Int:D $n = 1) returns List:D</pre></code>Returns the list rotated by $n elements.	http://doc.perl6.org/type/List#rotate
 rotate	R	List.rotate									
 Date.is-leap-year	A			Perl 6 Date							<pre><code>method is-leap-year($year = self.year) returns Bool:D</pre></code>Returns True if $year is a leap year. Can be called as a class method if the year is provided.	http://doc.perl6.org/type/Date#is-leap-year
 is-leap-year	R	Date.is-leap-year									
 Date.days-in-month	A			Perl 6 Date							<pre><code>method days-in-month(year = self.year, month = self.month) returns Int:D</pre></code>Returns the number of days in a month, where year and month default to that of the invocant. If both year and month are provided, it can be called as a class method.	http://doc.perl6.org/type/Date#days-in-month
 days-in-month	R	Date.days-in-month									
-Str.chars	A			Perl 6 Str							<pre><code>multi sub    chars(Str:D ) returns Int:D&#10;multi method chars(Str:D:) returns Int:D</pre></code>Returns the number of characters in the string in the current (lexically scoped) idea of what a normal character is, usually graphemes.	http://doc.perl6.org/type/Str#chars
+Str.chars	A			Perl 6 Str							<pre><code>multi sub    chars(Str:D ) returns Int:D<br>multi method chars(Str:D:) returns Int:D</pre></code>Returns the number of characters in the string in the current (lexically scoped) idea of what a normal character is, usually graphemes.	http://doc.perl6.org/type/Str#chars
 chars	R	Str.chars									
-Str.rindex	A			Perl 6 Str							<pre><code>multi sub    rindex(Str:D $haystack, Str:D $needle, Int $startpos = $haystack.chars) returns StrPos&#10;multi method rindex(Str:D $haystack: Str:D $needle, Int $startpos = $haystack.chars) returns StrPos</pre></code>Returns the last position of $needle in $haystack not after $startpos. Returns an undefined value if $needle wasn't found.	http://doc.perl6.org/type/Str#rindex
+Str.rindex	A			Perl 6 Str							<pre><code>multi sub    rindex(Str:D $haystack, Str:D $needle, Int $startpos = $haystack.chars) returns StrPos<br>multi method rindex(Str:D $haystack: Str:D $needle, Int $startpos = $haystack.chars) returns StrPos</pre></code>Returns the last position of $needle in $haystack not after $startpos. Returns an undefined value if $needle wasn't found.	http://doc.perl6.org/type/Str#rindex
 rindex	R	Str.rindex									
 Date.month	A			Perl 6 Date							<pre><code>method month(Date:D:) returns Int:D</pre></code>Returns the month of the date (1..12)	http://doc.perl6.org/type/Date#month
 month	R	Date.month									
@@ -77,24 +77,24 @@ IO.dir	A			Perl 6 IO							<pre><code>sub dir Cool $path = '.', Mu :$test = none
 dir	R	IO.dir									
 Buf.decode	A			Perl 6 Buf							<pre><code>multi method decode(Buf:D: Str:D $encoding = 'UTF-8') returns Str:D</pre></code>Applies an encoding to turn the buffer into a Str.	http://doc.perl6.org/type/Buf#decode
 decode	R	Buf.decode									
-Parameter.parcel	A			Perl 6 Parameter							<pre><code>sub f(&#92;$parcel) {&#10;    $parcel = 5;&#10;}&#10;f(my $x);   # works&#10;f(42);      # dies in the assignment</pre></code>Returns True for parcel parameters.	http://doc.perl6.org/type/Parameter#parcel
+Parameter.parcel	A			Perl 6 Parameter							<pre><code>sub f(&#92;$parcel) {<br>    $parcel = 5;<br>}<br>f(my $x);   # works<br>f(42);      # dies in the assignment</pre></code>Returns True for parcel parameters.	http://doc.perl6.org/type/Parameter#parcel
 parcel	R	Parameter.parcel									
-List.unshift	A			Perl 6 List							<pre><code>multi sub    unshift(List:D, *@values) returns List:D&#10;multi method unshift(List:D: *@values) returns List:D</pre></code>Adds the @values to the start of the list, and returns the modified list. Fails if @values is infinite.	http://doc.perl6.org/type/List#unshift
+List.unshift	A			Perl 6 List							<pre><code>multi sub    unshift(List:D, *@values) returns List:D<br>multi method unshift(List:D: *@values) returns List:D</pre></code>Adds the @values to the start of the list, and returns the modified list. Fails if @values is infinite.	http://doc.perl6.org/type/List#unshift
 unshift	R	List.unshift									
-Str.uc	A			Perl 6 Str							<pre><code>multi sub    uc(Str:D ) returns Str:D&#10;multi method uc(Str:D:) returns Str:D</pre></code>Returns an uppercase version of the string.	http://doc.perl6.org/type/Str#uc
+Str.uc	A			Perl 6 Str							<pre><code>multi sub    uc(Str:D ) returns Str:D<br>multi method uc(Str:D:) returns Str:D</pre></code>Returns an uppercase version of the string.	http://doc.perl6.org/type/Str#uc
 uc	R	Str.uc									
 Grammar.parsefile	A			Perl 6 Grammar							<pre><code>method parsefile(Grammar:D: $filename, :$rule = 'TOP', :$actions) returns Match:D</pre></code>Matches the grammar against the contents of file $fielname, using $rule as start rule, optionally applying $actions as actions object.	http://doc.perl6.org/type/Grammar#parsefile
 parsefile	R	Grammar.parsefile									
-Parameter.type_captures	A			Perl 6 Parameter							<pre><code>sub a(::T ::U $x) { }&#10;say &amp;a.signature.params[0].type_captures;   # T U</pre></code>Returns a list of variable names of type captures associated with this parameter.	http://doc.perl6.org/type/Parameter#type_captures
+Parameter.type_captures	A			Perl 6 Parameter							<pre><code>sub a(::T ::U $x) { }<br>say &amp;a.signature.params[0].type_captures;   # T U</pre></code>Returns a list of variable names of type captures associated with this parameter.	http://doc.perl6.org/type/Parameter#type_captures
 type_captures	R	Parameter.type_captures									
-List.reduce	A			Perl 6 List							<pre><code>multi sub    reduce(&amp;with, *@elems)&#10;multi method reduce(List:D: &amp;with)</pre></code>Applies &amp;with to the first and the second value of the list, then to the result of that calculation and the third value and so on. Returns a single item generated that way.	http://doc.perl6.org/type/List#reduce
+List.reduce	A			Perl 6 List							<pre><code>multi sub    reduce(&amp;with, *@elems)<br>multi method reduce(List:D: &amp;with)</pre></code>Applies &amp;with to the first and the second value of the list, then to the result of that calculation and the third value and so on. Returns a single item generated that way.	http://doc.perl6.org/type/List#reduce
 reduce	R	List.reduce									
 Exception.throw	A			Perl 6 Exception							<pre><code>method throw(Exception:D:)</pre></code>Throws the exception.	http://doc.perl6.org/type/Exception#throw
 throw	R	Exception.throw									
 Code.arity	A			Perl 6 Code							<pre><code>method arity(Code:D:) returns Int:D</pre></code>Returns the minimum number of positional arguments that must be passed in order to call the code object. Any optional or slurpy parameters in the code object's Signature do not contribute, nor do named parameters.	http://doc.perl6.org/type/Code#arity
 Signature.arity	A			Perl 6 Signature							<pre><code>method arity(Signature:D:) returns Int:D</pre></code>Returns the minimal number of positional arguments required to satisfy the signature.	http://doc.perl6.org/type/Signature#arity
 arity	D								[[Code.arity]]\n[[Signature.arity]]			
-Str.ord	A			Perl 6 Str							<pre><code>multi sub ord   (Str:D)  returns Int:D&#10;multi method ord(Str:D:) returns Int:D</pre></code>Returns the codepoint number of the first character of the string	http://doc.perl6.org/type/Str#ord
+Str.ord	A			Perl 6 Str							<pre><code>multi sub ord   (Str:D)  returns Int:D<br>multi method ord(Str:D:) returns Int:D</pre></code>Returns the codepoint number of the first character of the string	http://doc.perl6.org/type/Str#ord
 ord	R	Str.ord									
 Real.truncate	A			Perl 6 Real							<pre><code>method truncate(Real:D) returns Int:D</pre></code>Rounds the number towards zero.	http://doc.perl6.org/type/Real#truncate
 truncate	R	Real.truncate									
@@ -105,15 +105,15 @@ Code.Str	A			Perl 6 Code							<pre><code>multi method Str(Code:D:) returns Str:
 Date.Str	A			Perl 6 Date							<pre><code>multi method Str(Date:D:) returns Str:D</pre></code>Returns the date in YYYY-MM-DD format (ISO 8601)	http://doc.perl6.org/type/Date#Str
 Match.Str	A			Perl 6 Match							Returns the matched text.	http://doc.perl6.org/type/Match#Str
 Str	D								[[Mu.Str]]\n[[List.Str]]\n[[Backtrace.Str]]\n[[Code.Str]]\n[[Date.Str]]\n[[Match.Str]]			
-Mu.perl	A			Perl 6 Mu							<pre><code>multi sub    perl(Mu) returns Str&#10;multi method perl()   returns Str</pre></code>Returns a Perlish representation of the object (i.e., can usually be reparsed to regenerate the object).	http://doc.perl6.org/type/Mu#perl
+Mu.perl	A			Perl 6 Mu							<pre><code>multi sub    perl(Mu) returns Str<br>multi method perl()   returns Str</pre></code>Returns a Perlish representation of the object (i.e., can usually be reparsed to regenerate the object).	http://doc.perl6.org/type/Mu#perl
 perl	R	Mu.perl									
 Match.chunks	A			Perl 6 Match							Returns a list of pairs, with the index or submatch name as key and the submatches as values. The list is ordered by starting position of the submatches.	http://doc.perl6.org/type/Match#chunks
 chunks	R	Match.chunks									
-Str.index	A			Perl 6 Str							<pre><code>multi sub    index(Str:D, Str:D $needle, Int $startpos = 0) returns StrPos&#10;multi method index(Str:D: Str:D $needle, Int $startpos = 0) returns StrPos</pre></code>Searches for $needle in the string starting from $startpos. It returns the offset into the string where $needle was found, and an undefined value if it was not found.	http://doc.perl6.org/type/Str#index
+Str.index	A			Perl 6 Str							<pre><code>multi sub    index(Str:D, Str:D $needle, Int $startpos = 0) returns StrPos<br>multi method index(Str:D: Str:D $needle, Int $startpos = 0) returns StrPos</pre></code>Searches for $needle in the string starting from $startpos. It returns the offset into the string where $needle was found, and an undefined value if it was not found.	http://doc.perl6.org/type/Str#index
 index	R	Str.index									
 Str.length	A			Perl 6 Str							Perl 6 does not have a length function. See X&lt;chars&gt; or X&lt;elems&gt;.	http://doc.perl6.org/type/Str#length
 length	R	Str.length									
-List.sort	A			Perl 6 List							<pre><code>multi sub    sort(*@elems)      returns List:D&#10;multi sub    sort(&amp;by, *@elems) returns List:D&#10;multi method sort(List:D:)      returns List:D&#10;multi method sort(List:D:, &amp;by) returns List:D</pre></code>Sorts the list, smallest element first. By default &lt; infix:&lt;cmp &gt;&gt; is used for comparing list elements.	http://doc.perl6.org/type/List#sort
+List.sort	A			Perl 6 List							<pre><code>multi sub    sort(*@elems)      returns List:D<br>multi sub    sort(&amp;by, *@elems) returns List:D<br>multi method sort(List:D:)      returns List:D<br>multi method sort(List:D:, &amp;by) returns List:D</pre></code>Sorts the list, smallest element first. By default &lt; infix:&lt;cmp &gt;&gt; is used for comparing list elements.	http://doc.perl6.org/type/List#sort
 sort	R	List.sort									
 Date.today	A			Perl 6 Date							<pre><code>method today() returns Date:D</pre></code>Returns a Date object for the current day.	http://doc.perl6.org/type/Date#today
 today	R	Date.today									
@@ -121,29 +121,29 @@ Mu.CREATE	A			Perl 6 Mu							<pre><code>method CREATE() returns Mu:D</pre></cod
 CREATE	R	Mu.CREATE									
 Mu.bless	A			Perl 6 Mu							<pre><code>method bless(Mu $candidate, *%attrinit) returns Mu:D</pre></code>Lower-level object construction method than new.	http://doc.perl6.org/type/Mu#bless
 bless	R	Mu.bless									
-List.kv	A			Perl 6 List							<pre><code>multi sub    kv($list)  returns List:D&#10;multi method kv(List:D:) returns List:D</pre></code>Returns an interleaved list of indexes and values. For example	http://doc.perl6.org/type/List#kv
+List.kv	A			Perl 6 List							<pre><code>multi sub    kv($list)  returns List:D<br>multi method kv(List:D:) returns List:D</pre></code>Returns an interleaved list of indexes and values. For example	http://doc.perl6.org/type/List#kv
 EnumMap.kv	A			Perl 6 EnumMap							<pre><code>method kv(EnumMap:D:) returns List:D</pre></code>Returns a list of keys and values interleaved.	http://doc.perl6.org/type/EnumMap#kv
 Pair.kv	A			Perl 6 Pair							<pre><code>multi method kv(Pair:D:) returns Parcel:D</pre></code>Returns a two-element Parcel with the key and value parts o Pair, in that order. This method is a special case of the same-named method on Hash, which returns all its entries as a list of keys and values.	http://doc.perl6.org/type/Pair#kv
 kv	D								[[List.kv]]\n[[EnumMap.kv]]\n[[Pair.kv]]			
 Numeric.Real	A			Perl 6 Numeric							<pre><code>method Real(Numeric:D:) returns Real:D</pre></code>If this Numeric is equivalent to a Real, return that Real. Fail with X::Numeric::Real otherwise.	http://doc.perl6.org/type/Numeric#Real
 Real	R	Numeric.Real									
-Str.tcuc	A			Perl 6 Str							<pre><code>multi sub    tcuc(Str:D ) returns Str:D&#10;multi method tcuc(Str:D:) returns Str:D</pre></code>Turns the first character to title case, and all other characters to upper case	http://doc.perl6.org/type/Str#tcuc
+Str.tcuc	A			Perl 6 Str							<pre><code>multi sub    tcuc(Str:D ) returns Str:D<br>multi method tcuc(Str:D:) returns Str:D</pre></code>Turns the first character to title case, and all other characters to upper case	http://doc.perl6.org/type/Str#tcuc
 tcuc	R	Str.tcuc									
 Parameter.optional	A			Perl 6 Parameter							Returns True for optional parameters.	http://doc.perl6.org/type/Parameter#optional
 optional	R	Parameter.optional									
-Str.substr	A			Perl 6 Str							<pre><code>multi sub    substr(Str:D $s, Int:D $from, Int:D $chars = $s.chars - $from) returns Str:D&#10;multi method substr(Str:D $s: Int:D $from, Int:D $chars = $s.chars - $from) returns Str:D</pre></code>Returns a part of the string, starting from the character with index $from (where the first character has index 0) and with length $chars.	http://doc.perl6.org/type/Str#substr
+Str.substr	A			Perl 6 Str							<pre><code>multi sub    substr(Str:D $s, Int:D $from, Int:D $chars = $s.chars - $from) returns Str:D<br>multi method substr(Str:D $s: Int:D $from, Int:D $chars = $s.chars - $from) returns Str:D</pre></code>Returns a part of the string, starting from the character with index $from (where the first character has index 0) and with length $chars.	http://doc.perl6.org/type/Str#substr
 substr	R	Str.substr									
-List.grep	A			Perl 6 List							<pre><code>multi sub    grep(Mu $matcher, *@elems) returns List:D&#10;multi method grep(List:D:  Mu $matcher) returns List:D</pre></code>Returns a lazy list of elements against which $matcher smart-matches. The elements are returned in the order in which they appear in the original list.	http://doc.perl6.org/type/List#grep
+List.grep	A			Perl 6 List							<pre><code>multi sub    grep(Mu $matcher, *@elems) returns List:D<br>multi method grep(List:D:  Mu $matcher) returns List:D</pre></code>Returns a lazy list of elements against which $matcher smart-matches. The elements are returned in the order in which they appear in the original list.	http://doc.perl6.org/type/List#grep
 grep	R	List.grep									
 Parameter.copy	A			Perl 6 Parameter							Returns True for is copy parameters.	http://doc.perl6.org/type/Parameter#copy
 copy	R	Parameter.copy									
-List.classify	A			Perl 6 List							<pre><code>multi sub    classify(&amp;mapper, *@values) returns Hash:D&#10;multi method classify(List:D: &amp;mapper)   returns Hash:D</pre></code>classify transforms a list or array of values into a hash representing the classification of those values according to a mapper; each hash key represents the classification for one or more of the incoming list values, and the corresponding hash value contains an array of those list values classified by the mapper into the category of the associated key. For example:	http://doc.perl6.org/type/List#classify
+List.classify	A			Perl 6 List							<pre><code>multi sub    classify(&amp;mapper, *@values) returns Hash:D<br>multi method classify(List:D: &amp;mapper)   returns Hash:D</pre></code>classify transforms a list or array of values into a hash representing the classification of those values according to a mapper; each hash key represents the classification for one or more of the incoming list values, and the corresponding hash value contains an array of those list values classified by the mapper into the category of the associated key. For example:	http://doc.perl6.org/type/List#classify
 classify	R	List.classify									
-Str.split	A			Perl 6 Str							<pre><code>multi sub    split(  Str:D $delimiter, Str:D $input, $limit = Inf, :$all) returns Positional&#10;multi sub    split(Regex:D $delimiter, Str:D $input, $limit = Inf, :$all) returns Positional</pre></code>Splits a string up into pieces based on delimiters found in the string.	http://doc.perl6.org/type/Str#split
+Str.split	A			Perl 6 Str							<pre><code>multi sub    split(  Str:D $delimiter, Str:D $input, $limit = Inf, :$all) returns Positional<br>multi sub    split(Regex:D $delimiter, Str:D $input, $limit = Inf, :$all) returns Positional</pre></code>Splits a string up into pieces based on delimiters found in the string.	http://doc.perl6.org/type/Str#split
 split	R	Str.split									
 Str.trim-leading	A			Perl 6 Str							Remove the white-space charecters from the beginning of a string. See also trim.	http://doc.perl6.org/type/Str#trim-leading
 trim-leading	R	Str.trim-leading									
-Numeric.exp	A			Perl 6 Numeric							<pre><code>multi sub    exp(Numeric:D, Numeric:D $base = e) returns Numeric:D&#10;multi method exp(Numeric:D: Numeric:D $base = e) returns Numeric:D</pre></code>Returns $base to the power of the number, or e to the power of the number if called without a second argument.	http://doc.perl6.org/type/Numeric#exp
+Numeric.exp	A			Perl 6 Numeric							<pre><code>multi sub    exp(Numeric:D, Numeric:D $base = e) returns Numeric:D<br>multi method exp(Numeric:D: Numeric:D $base = e) returns Numeric:D</pre></code>Returns $base to the power of the number, or e to the power of the number if called without a second argument.	http://doc.perl6.org/type/Numeric#exp
 exp	R	Numeric.exp									
 Enum.value	A			Perl 6 Enum							<pre><code>multi method value(Enum:D:)</pre></code>Returns the value part of the Enum.	http://doc.perl6.org/type/Enum#value
 Pair.value	A			Perl 6 Pair							<pre><code>multi method value(Pair:D:) is rw</pre></code>Returns the value part of the Pair.	http://doc.perl6.org/type/Pair#value
@@ -152,29 +152,29 @@ Complex.re	A			Perl 6 Complex							<pre><code>method re(Complex:D:) returns Rea
 re	R	Complex.re									
 Bool.prefix:<so>	A			Perl 6 Bool							<pre><code>multi sub prefix:&lt;so&gt;(Mu) returns Bool:D</pre></code>Coerces its argument to Bool, has looser precedence than &lt; prefix:&lt;? &gt;&gt;.	http://doc.perl6.org/type/Bool#prefix%3A%3Cso%3E
 prefix:<so>	R	Bool.prefix:<so>									
-List.values	A			Perl 6 List							<pre><code>multi sub    values($list)  returns List:D&#10;multi method values(List:D:) returns List:D</pre></code>Returns a copy of the list.	http://doc.perl6.org/type/List#values
+List.values	A			Perl 6 List							<pre><code>multi sub    values($list)  returns List:D<br>multi method values(List:D:) returns List:D</pre></code>Returns a copy of the list.	http://doc.perl6.org/type/List#values
 EnumMap.values	A			Perl 6 EnumMap							<pre><code>method values(EnumMap:D:) returns List:D</pre></code>Returns a list of all values in the EnumMap.	http://doc.perl6.org/type/EnumMap#values
 values	D								[[List.values]]\n[[EnumMap.values]]			
 Backtrace.full	A			Perl 6 Backtrace							<pre><code>multi method full(Backtrace:D:) returns Str:D:</pre></code>Returns a full string representation of the backtrace, including hidden frames, compiler-specific frames and those from the setting.	http://doc.perl6.org/type/Backtrace#full
 full	R	Backtrace.full									
-List.push	A			Perl 6 List							<pre><code>multi sub    push(List:D, *@values) returns List:D&#10;multi method push(List:D: *@values) returns List:D</pre></code>Adds the @values to the end of the list, and returns the modified list. Fails for infinite lists.	http://doc.perl6.org/type/List#push
+List.push	A			Perl 6 List							<pre><code>multi sub    push(List:D, *@values) returns List:D<br>multi method push(List:D: *@values) returns List:D</pre></code>Adds the @values to the end of the list, and returns the modified list. Fails for infinite lists.	http://doc.perl6.org/type/List#push
 Hash.push	A			Perl 6 Hash							<pre><code>multi method push(Hash:D: *@new)</pre></code>Adds the @new elements to the hash with the same semantics as hash assignment, but with three exceptions:	http://doc.perl6.org/type/Hash#push
 push	D								[[List.push]]\n[[Hash.push]]			
 IO.changed	A			Perl 6 IO							<pre><code>"path/to/file".IO.changed()</pre></code>Timestamp when the inode was last changed.	http://doc.perl6.org/type/IO#changed
 changed	R	IO.changed									
-List.shift	A			Perl 6 List							<pre><code>multi sub    shift(List:D )&#10;multi method shift(List:D:)</pre></code>Removes and returns the first item from the list. Fails for an empty list.	http://doc.perl6.org/type/List#shift
+List.shift	A			Perl 6 List							<pre><code>multi sub    shift(List:D )<br>multi method shift(List:D:)</pre></code>Removes and returns the first item from the list. Fails for an empty list.	http://doc.perl6.org/type/List#shift
 shift	R	List.shift									
 Parameter.type	A			Perl 6 Parameter							Returns the nominal type constraint of the paramter.	http://doc.perl6.org/type/Parameter#type
 type	R	Parameter.type									
 Int.div	A			Perl 6 Int							<pre><code>multi sub infix:&lt;div&gt;(Int:D, Int:D) returns Int:D</pre></code>Does an integer division, rounded down.	http://doc.perl6.org/type/Int#div
 div	R	Int.div									
-Str.tclc	A			Perl 6 Str							<pre><code>multi sub    tclc(Str:D ) returns Str:D&#10;multi method tclc(Str:D:) returns Str:D</pre></code>Turns the first character to title case, and all other characters to lower case	http://doc.perl6.org/type/Str#tclc
+Str.tclc	A			Perl 6 Str							<pre><code>multi sub    tclc(Str:D ) returns Str:D<br>multi method tclc(Str:D:) returns Str:D</pre></code>Turns the first character to title case, and all other characters to lower case	http://doc.perl6.org/type/Str#tclc
 tclc	R	Str.tclc									
 Backtrace::Frame.is-hidden	A			Perl 6 Backtrace::Frame							<pre><code>method is-hidden(Backtrace::Frame:D) return Bool:D</pre></code>Returns True if the frame is marked as hidden with the is hidden_from_backtrace trait.	http://doc.perl6.org/type/Backtrace%3A%3AFrame#is-hidden
 is-hidden	R	Backtrace::Frame.is-hidden									
 Range.bounds	A			Perl 6 Range							<pre><code>method bounds(Range:D:) returns Positional</pre></code>Returns a list consisting of the start and end point.	http://doc.perl6.org/type/Range#bounds
 bounds	R	Range.bounds									
-List.keys	A			Perl 6 List							<pre><code>multi sub    keys($list)  returns List:D&#10;multi method keys(List:D:) returns List:D</pre></code>Returns a list of indexes into the list (i.e., 0..(@list.elems-1)).	http://doc.perl6.org/type/List#keys
+List.keys	A			Perl 6 List							<pre><code>multi sub    keys($list)  returns List:D<br>multi method keys(List:D:) returns List:D</pre></code>Returns a list of indexes into the list (i.e., 0..(@list.elems-1)).	http://doc.perl6.org/type/List#keys
 EnumMap.keys	A			Perl 6 EnumMap							<pre><code>method keys(EnumMap:D:) returns List:D</pre></code>Returns a list of all keys in the EnumMap.	http://doc.perl6.org/type/EnumMap#keys
 keys	D								[[List.keys]]\n[[EnumMap.keys]]			
 Rational.norm	A			Perl 6 Rational							<pre><code>method norm(Rational:D:) returns Rational:D</pre></code>Returns a normalized Rational object, ie with positive denominator, and numerator and denominator coprime.	http://doc.perl6.org/type/Rational#norm
@@ -192,15 +192,15 @@ Exception.message	A			Perl 6 Exception							<pre><code>method message(Exception
 message	R	Exception.message									
 Str.ords	A			Perl 6 Str							<pre><code>multi method ords(Str:D:) returns Positional</pre></code>Returns a list of codepoint numbers, one for each character in the string.	http://doc.perl6.org/type/Str#ords
 ords	R	Str.ords									
-List.splice	A			Perl 6 List							<pre><code>multi sub    splice(@list,  $start, $elems? *@replacement) returns List:D&#10;multi method splice(List:D: $start, $elems? *@replacement) returns List:D</pre></code>Deletes $elems elements starting from index $start from the list, returns them and replaces them by @replacement. If $elems is omitted, all the elements starting from index $start are deleted.	http://doc.perl6.org/type/List#splice
+List.splice	A			Perl 6 List							<pre><code>multi sub    splice(@list,  $start, $elems? *@replacement) returns List:D<br>multi method splice(List:D: $start, $elems? *@replacement) returns List:D</pre></code>Deletes $elems elements starting from index $start from the list, returns them and replaces them by @replacement. If $elems is omitted, all the elements starting from index $start are deleted.	http://doc.perl6.org/type/List#splice
 splice	R	List.splice									
-Str.lc	A			Perl 6 Str							<pre><code>multi sub    lc(Str:D ) returns Str:D&#10;multi method lc(Str:D:) returns Str:D</pre></code>Returns a lower-case version of the string.	http://doc.perl6.org/type/Str#lc
+Str.lc	A			Perl 6 Str							<pre><code>multi sub    lc(Str:D ) returns Str:D<br>multi method lc(Str:D:) returns Str:D</pre></code>Returns a lower-case version of the string.	http://doc.perl6.org/type/Str#lc
 lc	R	Str.lc									
 Match.orig	A			Perl 6 Match							Returns the original string that the regex was matched against.	http://doc.perl6.org/type/Match#orig
 orig	R	Match.orig									
 Match.caps	A			Perl 6 Match							Returns a list of pairs, with the index or submatch name as key and the submatches as values. The list is ordered by starting position of the submatches.	http://doc.perl6.org/type/Match#caps
 caps	R	Match.caps									
-List.map	A			Perl 6 List							<pre><code>multi sub    map(&amp;code, *@elems) returns List:D&#10;multi method map(List:D: &amp;code) returns List:D</pre></code>Invokes &amp;code for each element and gathers the return values in another list and returns it. This happens lazily, ie &amp;code is only invoked when the return values are accessed.	http://doc.perl6.org/type/List#map
+List.map	A			Perl 6 List							<pre><code>multi sub    map(&amp;code, *@elems) returns List:D<br>multi method map(List:D: &amp;code) returns List:D</pre></code>Invokes &amp;code for each element and gathers the return values in another list and returns it. This happens lazily, ie &amp;code is only invoked when the return values are accessed.	http://doc.perl6.org/type/List#map
 map	R	List.map									
 Parameter.constraints	A			Perl 6 Parameter							Returns additional constraints on the parameter (usually as an all-Junction).	http://doc.perl6.org/type/Parameter#constraints
 constraints	R	Parameter.constraints									
@@ -225,17 +225,17 @@ Rational.nude	A			Perl 6 Rational							<pre><code>method nude(Rational:D:) retu
 nude	R	Rational.nude									
 Date.day-of-year	A			Perl 6 Date							<pre><code>method day-of-year(Date:D:) returns Int:D</pre></code>Returns the day of the year (1..366).	http://doc.perl6.org/type/Date#day-of-year
 day-of-year	R	Date.day-of-year									
-List.join	A			Perl 6 List							<pre><code>multi sub    join($separator, *@list) returns Str:D&#10;multi method join(List:D: $separator) returns Str:D</pre></code>Treats the elements of the list as strings, interleaves them with $separator and concatenates everything into a single string.	http://doc.perl6.org/type/List#join
+List.join	A			Perl 6 List							<pre><code>multi sub    join($separator, *@list) returns Str:D<br>multi method join(List:D: $separator) returns Str:D</pre></code>Treats the elements of the list as strings, interleaves them with $separator and concatenates everything into a single string.	http://doc.perl6.org/type/List#join
 join	R	List.join									
 IO.modified	A			Perl 6 IO							<pre><code>"path/to/file".IO.modified()</pre></code>Timestamp when the file was last modified.	http://doc.perl6.org/type/IO#modified
 modified	R	IO.modified									
-Numeric.abs	A			Perl 6 Numeric							<pre><code>multi sub    abs(Numeric:D ) returns Real:D&#10;multi method abs(Numeric:D:) returns Real:D</pre></code>Returns the absolute value of the number.	http://doc.perl6.org/type/Numeric#abs
+Numeric.abs	A			Perl 6 Numeric							<pre><code>multi sub    abs(Numeric:D ) returns Real:D<br>multi method abs(Numeric:D:) returns Real:D</pre></code>Returns the absolute value of the number.	http://doc.perl6.org/type/Numeric#abs
 abs	R	Numeric.abs									
 Any.one	A			Perl 6 Any							Interprets the invocant as a list and creates an one-Junction from it.	http://doc.perl6.org/type/Any#one
 one	R	Any.one									
 Numeric.Num	A			Perl 6 Numeric							<pre><code>method Num(Numeric:D:) returns Num:D</pre></code>If this Numeric is equivalent to a Real, return that Real as a Num as accurately as is possible. Fail with X::Numeric::Real otherwise.	http://doc.perl6.org/type/Numeric#Num
 Num	R	Numeric.Num									
-List.pairs	A			Perl 6 List							<pre><code>multi sub    pairs($list)   returns List:D&#10;multi method pairs(List:D:) returns List:D</pre></code>Returns a list of pairs, with the indexes as keys and the list values as values.	http://doc.perl6.org/type/List#pairs
+List.pairs	A			Perl 6 List							<pre><code>multi sub    pairs($list)   returns List:D<br>multi method pairs(List:D:) returns List:D</pre></code>Returns a list of pairs, with the indexes as keys and the list values as values.	http://doc.perl6.org/type/List#pairs
 EnumMap.pairs	A			Perl 6 EnumMap							<pre><code>method pairs(EnumMap:D:) returns List:D</pre></code>Returns a list of all pairs in the EnumMap.	http://doc.perl6.org/type/EnumMap#pairs
 Pair.pairs	A			Perl 6 Pair							<pre><code>multi method pairs(Pair:D:)</pre></code>Returns a list of one Pair, namely this one.	http://doc.perl6.org/type/Pair#pairs
 pairs	D								[[List.pairs]]\n[[EnumMap.pairs]]\n[[Pair.pairs]]			
@@ -246,9 +246,9 @@ Any.none	A			Perl 6 Any							Interprets the invocant as a list and creates an n
 none	R	Any.none									
 Grammar.parse	A			Perl 6 Grammar							<pre><code>method parse(Grammar:D: $str, :$rule = 'TOP', :$actions) returns Match:D</pre></code>Matches the grammar against $str, using $rule as start rule, optionally applying $actions as actions object.	http://doc.perl6.org/type/Grammar#parse
 parse	R	Grammar.parse									
-Str.flip	A			Perl 6 Str							<pre><code>multi sub    flip(Str:D ) returns Str:D&#10;multi method flip(Str:D:) returns Str:D</pre></code>Returns the string reversed character by character.	http://doc.perl6.org/type/Str#flip
+Str.flip	A			Perl 6 Str							<pre><code>multi sub    flip(Str:D ) returns Str:D<br>multi method flip(Str:D:) returns Str:D</pre></code>Returns the string reversed character by character.	http://doc.perl6.org/type/Str#flip
 flip	R	Str.flip									
-List.elems	A			Perl 6 List							<pre><code>multi sub    elems($list)  returns Int:D&#10;multi method elems(List:D:) returns Int:D</pre></code>Returns the number of elements in the list.	http://doc.perl6.org/type/List#elems
+List.elems	A			Perl 6 List							<pre><code>multi sub    elems($list)  returns Int:D<br>multi method elems(List:D:) returns Int:D</pre></code>Returns the number of elements in the list.	http://doc.perl6.org/type/List#elems
 Buf.elems	A			Perl 6 Buf							<pre><code>multi method elems(Buf:D:) returns Int:D</pre></code>Returns the number of elements of the buffer.	http://doc.perl6.org/type/Buf#elems
 EnumMap.elems	A			Perl 6 EnumMap							<pre><code>method elems(EnumMap:D:) returns Int:D:</pre></code>Returns the number of pairs stored in the EnumMap.	http://doc.perl6.org/type/EnumMap#elems
 elems	D								[[List.elems]]\n[[Buf.elems]]\n[[EnumMap.elems]]			
@@ -270,7 +270,7 @@ IO.accessed	A			Perl 6 IO							<pre><code>"path/to/file".IO.accessed()</pre></c
 accessed	R	IO.accessed									
 Backtrace::Frame.is-setting	A			Perl 6 Backtrace::Frame							<pre><code>method is-setting(Backtrace::Frame:D) return Bool:D</pre></code>Returns True if the frame is part of a setting.	http://doc.perl6.org/type/Backtrace%3A%3AFrame#is-setting
 is-setting	R	Backtrace::Frame.is-setting									
-Int.chr	A			Perl 6 Int							<pre><code>multi sub    chr(Int:D ) returns Str:D&#10;multi method chr(Int:D:) returns Str:D</pre></code>Returns a one-character string, by interpreting the integer as a Unicode codepoint number and converting it the corresponding character.	http://doc.perl6.org/type/Int#chr
+Int.chr	A			Perl 6 Int							<pre><code>multi sub    chr(Int:D ) returns Str:D<br>multi method chr(Int:D:) returns Str:D</pre></code>Returns a one-character string, by interpreting the integer as a Unicode codepoint number and converting it the corresponding character.	http://doc.perl6.org/type/Int#chr
 chr	R	Int.chr									
 Any.any	A			Perl 6 Any							Interprets the invocant as a list and creates an any-Junction from it.	http://doc.perl6.org/type/Any#any
 any	R	Any.any									
@@ -278,7 +278,7 @@ Mu.ACCEPTS	A			Perl 6 Mu							<pre><code>multi method ACCEPTS(Mu:U: $other)</pr
 Any.ACCEPTS	A			Perl 6 Any							<pre><code>multi method ACCEPTS(Any:D: Mu $other)</pre></code>Returns True if $other === self (ie it checks object identity).	http://doc.perl6.org/type/Any#ACCEPTS
 Code.ACCEPTS	A			Perl 6 Code							<pre><code>multi method ACCEPTS(Code:D: Mu $topic)</pre></code>Usually calls the code object and passes $topic as an argument. However, when called on a code object that takes no arguments, the code object is invoked with no arguments and $topic is dropped. The result of the call is returned.	http://doc.perl6.org/type/Code#ACCEPTS
 Numeric.ACCEPTS	A			Perl 6 Numeric							<pre><code>multi method ACCEPTS(Numeric:D: $other)</pre></code>Returns True if $other is numerically the same as the invocant.	http://doc.perl6.org/type/Numeric#ACCEPTS
-EnumMap.ACCEPTS	A			Perl 6 EnumMap							<pre><code>multi method ACCEPTS(EnumMap:D: Positional $topic)&#10;multi method ACCEPTS(EnumMap:D: Cool:D     $topic)&#10;multi method ACCEPTS(EnumMap:D: Regex      $topic)&#10;multi method ACCEPTS(EnumMap:D: Any        $topic)</pre></code>Used in smart-matching if the right-hand side is an EnumMap.	http://doc.perl6.org/type/EnumMap#ACCEPTS
+EnumMap.ACCEPTS	A			Perl 6 EnumMap							<pre><code>multi method ACCEPTS(EnumMap:D: Positional $topic)<br>multi method ACCEPTS(EnumMap:D: Cool:D     $topic)<br>multi method ACCEPTS(EnumMap:D: Regex      $topic)<br>multi method ACCEPTS(EnumMap:D: Any        $topic)</pre></code>Used in smart-matching if the right-hand side is an EnumMap.	http://doc.perl6.org/type/EnumMap#ACCEPTS
 ACCEPTS	D								[[Mu.ACCEPTS]]\n[[Any.ACCEPTS]]\n[[Code.ACCEPTS]]\n[[Numeric.ACCEPTS]]\n[[EnumMap.ACCEPTS]]			
 Version.plus	A			Perl 6 Version							<pre><code>method plus(Version:D:) returns Bool:D</pre></code>Returns True if comparisons against this version allow larger versions too.	http://doc.perl6.org/type/Version#plus
 plus	R	Version.plus									
@@ -286,11 +286,11 @@ Parameter.invocant	A			Perl 6 Parameter							Returns True if the parameter is t
 invocant	R	Parameter.invocant									
 Str.ucfirst	A			Perl 6 Str							Perl 6 does not have a ucfirst function. See X&lt;tc&gt;.	http://doc.perl6.org/type/Str#ucfirst
 ucfirst	R	Str.ucfirst									
-List.pop	A			Perl 6 List							<pre><code>multi sub    pop(List:D )&#10;multi method pop(List:D:)</pre></code>Removes and returns the last item from the list, fails for an empty list.	http://doc.perl6.org/type/List#pop
+List.pop	A			Perl 6 List							<pre><code>multi sub    pop(List:D )<br>multi method pop(List:D:)</pre></code>Removes and returns the last item from the list, fails for an empty list.	http://doc.perl6.org/type/List#pop
 pop	R	List.pop									
 Date.year	A			Perl 6 Date							<pre><code>method year(Date:D:) returns Int:D</pre></code>Returns the year of the date	http://doc.perl6.org/type/Date#year
 year	R	Date.year									
-Mu.Bool	A			Perl 6 Mu							<pre><code>multi sub    Bool(Mu) returns Bool:D&#10;multi method Bool()   returns Bool:D</pre></code>Returns False on the type object, and True otherwise.	http://doc.perl6.org/type/Mu#Bool
+Mu.Bool	A			Perl 6 Mu							<pre><code>multi sub    Bool(Mu) returns Bool:D<br>multi method Bool()   returns Bool:D</pre></code>Returns False on the type object, and True otherwise.	http://doc.perl6.org/type/Mu#Bool
 List.Bool	A			Perl 6 List							<pre><code>multi method Bool(List:D:) returns Bool:D</pre></code>Returns True if the list has at least one element, and False for the empty list.	http://doc.perl6.org/type/List#Bool
 Buf.Bool	A			Perl 6 Buf							<pre><code>multi method Bool(Buf:D:)</pre></code>Returns False if and only if the buffer is empty.	http://doc.perl6.org/type/Buf#Bool
 Numeric.Bool	A			Perl 6 Numeric							<pre><code>multi method Bool(Numeric:D:)</pre></code>Returns False if the number is equivalent to zero, and True otherwise.	http://doc.perl6.org/type/Numeric#Bool
@@ -310,24 +310,24 @@ capture	R	Parameter.capture
 Mu.clone	A			Perl 6 Mu							<pre><code>method clone(*%twiddles)</pre></code>Creates a shallow clone of the invocant. If named arguments are passed to it, their values are used in every place where an attribute name matches the name of a named argument.	http://doc.perl6.org/type/Mu#clone
 clone	R	Mu.clone									
 Mu.new	A			Perl 6 Mu							<pre><code>multi method new(*%attrinit)</pre></code>Default method for constructing (create + initialize) new objects of a class. This method expects only named arguments which are then used to initialize attributes with accessors of the same name.	http://doc.perl6.org/type/Mu#new
-Backtrace.new	A			Perl 6 Backtrace							<pre><code>proto method new(*@, *%) {*}&#10;multi method new()</pre></code>Creates a new backtrace, using its calling location as the origin of the backtrace.	http://doc.perl6.org/type/Backtrace#new
+Backtrace.new	A			Perl 6 Backtrace							<pre><code>proto method new(*@, *%) {*}<br>multi method new()</pre></code>Creates a new backtrace, using its calling location as the origin of the backtrace.	http://doc.perl6.org/type/Backtrace#new
 Buf.new	A			Perl 6 Buf							<pre><code>method new(*@codes)</pre></code>Creates a Buf from a list of integers.	http://doc.perl6.org/type/Buf#new
-Complex.new	A			Perl 6 Complex							<pre><code>proto method new(*@, *%) {*} returns Complex:D&#10;multi method new(Real $re, Real $im) returns Complex:D</pre></code>Creates a new Complex object from real and imaginary parts.	http://doc.perl6.org/type/Complex#new
-Date.new	A			Perl 6 Date							<pre><code>proto method new() {*}&#10;multi method new($year,   $month,  $day) returns Date:D&#10;multi method new(:$year, :$month, :$day) returns Date:D&#10;multi method new(Str $date)              returns Date:D&#10;multi method new(DateTime:D $dt)         returns Date:D</pre></code>Creates a new Date object, either from a tripple of (year, month, day) integers, or from a string of the form YYYY-MM-DD (ISO 8601), or from a DateTime object.	http://doc.perl6.org/type/Date#new
-EnumMap.new	A			Perl 6 EnumMap							<pre><code>proto method new(*@, *%) {*}&#10;multi method new(*@args, *%pairs) </pre></code>Creates a new EnumMap from a list of alternating keys and values, with the same semantics as described for hash assigning in the Hash documentation.	http://doc.perl6.org/type/EnumMap#new
+Complex.new	A			Perl 6 Complex							<pre><code>proto method new(*@, *%) {*} returns Complex:D<br>multi method new(Real $re, Real $im) returns Complex:D</pre></code>Creates a new Complex object from real and imaginary parts.	http://doc.perl6.org/type/Complex#new
+Date.new	A			Perl 6 Date							<pre><code>proto method new() {*}<br>multi method new($year,   $month,  $day) returns Date:D<br>multi method new(:$year, :$month, :$day) returns Date:D<br>multi method new(Str $date)              returns Date:D<br>multi method new(DateTime:D $dt)         returns Date:D</pre></code>Creates a new Date object, either from a tripple of (year, month, day) integers, or from a string of the form YYYY-MM-DD (ISO 8601), or from a DateTime object.	http://doc.perl6.org/type/Date#new
+EnumMap.new	A			Perl 6 EnumMap							<pre><code>proto method new(*@, *%) {*}<br>multi method new(*@args, *%pairs) </pre></code>Creates a new EnumMap from a list of alternating keys and values, with the same semantics as described for hash assigning in the Hash documentation.	http://doc.perl6.org/type/EnumMap#new
 Rational.new	A			Perl 6 Rational							<pre><code>method new(NuT:D $numerator, DenomT:D $denominator) returns Rational:D</pre></code>Creates a new rational object from numerator and denominator.	http://doc.perl6.org/type/Rational#new
 Version.new	A			Perl 6 Version							<pre><code>method new(Str:d $s)</pre></code>Creates a Version from a string $s. The string is combed for the numeric, alphabetic, and wildcard components of the version object. Any characters other than alphanumerics and asterisks are assumed to be equivalent to a dot. A dot is also assumed between any adjacent numeric and alphabetic characters.	http://doc.perl6.org/type/Version#new
 new	D								[[Mu.new]]\n[[Backtrace.new]]\n[[Buf.new]]\n[[Complex.new]]\n[[Date.new]]\n[[EnumMap.new]]\n[[Rational.new]]\n[[Version.new]]			
-Str.comb	A			Perl 6 Str							<pre><code>multi sub    comb(Str:D   $matcher, Str:D $input, $limit = Inf, Bool :$match) &#10;multi sub    comb(Regex:D $matcher, Str:D $input, $limit = Inf, Bool :$match) &#10;multi method comb(Str:D $input:)&#10;multi method comb(Str:D $input: Str:D   $matcher, $limit = Inf, Bool :$match) &#10;multi method comb(Str:D $input: Regex:D $matcher, $limit = Inf, Bool :$match) </pre></code>Searches for $matcher in $input and returns a list of all matches (as Str by default, or as Match if $match is True), limited to at most $limit matches.	http://doc.perl6.org/type/Str#comb
+Str.comb	A			Perl 6 Str							<pre><code>multi sub    comb(Str:D   $matcher, Str:D $input, $limit = Inf, Bool :$match) <br>multi sub    comb(Regex:D $matcher, Str:D $input, $limit = Inf, Bool :$match) <br>multi method comb(Str:D $input:)<br>multi method comb(Str:D $input: Str:D   $matcher, $limit = Inf, Bool :$match) <br>multi method comb(Str:D $input: Regex:D $matcher, $limit = Inf, Bool :$match) </pre></code>Searches for $matcher in $input and returns a list of all matches (as Str by default, or as Match if $match is True), limited to at most $limit matches.	http://doc.perl6.org/type/Str#comb
 comb	R	Str.comb									
 Enum.invert	A			Perl 6 Enum							<pre><code>multi method invert(Enum:D:) returns Enum:D</pre></code>Returns a new Enum with the original enum's value as the key, and the original enum's key as value.	http://doc.perl6.org/type/Enum#invert
 EnumMap.invert	A			Perl 6 EnumMap							<pre><code>method invert(EnumMap:D:) returns List:D</pre></code>Returns a list of pairs, but with key and value exchanged.	http://doc.perl6.org/type/EnumMap#invert
 invert	D								[[Enum.invert]]\n[[EnumMap.invert]]			
-Mu.defined	A			Perl 6 Mu							<pre><code>multi sub    defined(Mu) returns Bool:D&#10;multi method defined()   returns Bool:D</pre></code>Returns False on the type object, and True otherwise.	http://doc.perl6.org/type/Mu#defined
+Mu.defined	A			Perl 6 Mu							<pre><code>multi sub    defined(Mu) returns Bool:D<br>multi method defined()   returns Bool:D</pre></code>Returns False on the type object, and True otherwise.	http://doc.perl6.org/type/Mu#defined
 defined	R	Mu.defined									
 Real.ceiling	A			Perl 6 Real							<pre><code>method ceiling(Real:D) returns Int:D</pre></code>Returns the smallest integer not less than the number.	http://doc.perl6.org/type/Real#ceiling
 ceiling	R	Real.ceiling									
-Str.wordcase	A			Perl 6 Str							<pre><code>multi sub    wordcase(Str:D  :&amp;filter = &amp;lc, :%exceptions = set()) returns Str&#10;multi method wordcase(Str:D: :&amp;filter = &amp;lc, :%exceptions = set()) returns Str</pre></code>Performs a Unicode titlecase operation on the first character of each word of the string (as defined by a regex « boundary), and forces the rest of the letters through a filter that defaults to lc. After this operation, if any exceptions are supplied and if the word is found in the set of exceptions, the first character is also forced through the filter. Note that the exceptions must be spelled with an initial titlecase, such as "By" or "And", to produce "by" or "and".	http://doc.perl6.org/type/Str#wordcase
+Str.wordcase	A			Perl 6 Str							<pre><code>multi sub    wordcase(Str:D  :&amp;filter = &amp;lc, :%exceptions = set()) returns Str<br>multi method wordcase(Str:D: :&amp;filter = &amp;lc, :%exceptions = set()) returns Str</pre></code>Performs a Unicode titlecase operation on the first character of each word of the string (as defined by a regex « boundary), and forces the rest of the letters through a filter that defaults to lc. After this operation, if any exceptions are supplied and if the word is found in the set of exceptions, the first character is also forced through the filter. Note that the exceptions must be spelled with an initial titlecase, such as "By" or "And", to produce "by" or "and".	http://doc.perl6.org/type/Str#wordcase
 wordcase	R	Str.wordcase									
 Parameter.default	A			Perl 6 Parameter							Returns a closure that upon invocation returns the default value for this parameter, or Any if no default was provided.	http://doc.perl6.org/type/Parameter#default
 default	R	Parameter.default									
@@ -335,9 +335,9 @@ List.pick	A			Perl 6 List							<pre><code>multi method pick(List:D: $count = 1)
 pick	R	List.pick									
 Complex.im	A			Perl 6 Complex							<pre><code>method im(Complex:D:) returns Real:D</pre></code>Returns the imaginary part of the complex number.	http://doc.perl6.org/type/Complex#im
 im	R	Complex.im									
-List.end	A			Perl 6 List							<pre><code>multi sub    end($list)  returns Int:D&#10;multi method end(List:D:) returns Int:D</pre></code>Returns the index of the last element.	http://doc.perl6.org/type/List#end
+List.end	A			Perl 6 List							<pre><code>multi sub    end($list)  returns Int:D<br>multi method end(List:D:) returns Int:D</pre></code>Returns the index of the last element.	http://doc.perl6.org/type/List#end
 end	R	List.end									
-List.reverse	A			Perl 6 List							<pre><code>multi sub    reverse(*@list ) returns List:D&#10;multi method reverse(List:D:) returns List:D</pre></code>Returns a list with the same elements in reverse order.	http://doc.perl6.org/type/List#reverse
+List.reverse	A			Perl 6 List							<pre><code>multi sub    reverse(*@list ) returns List:D<br>multi method reverse(List:D:) returns List:D</pre></code>Returns a list with the same elements in reverse order.	http://doc.perl6.org/type/List#reverse
 reverse	R	List.reverse									
 Signature.params	A			Perl 6 Signature							<pre><code>method params(Signature:D:) returns Positional</pre></code>Returns the list of Parameter objects that make up the signature.	http://doc.perl6.org/type/Signature#params
 params	R	Signature.params									
@@ -352,15 +352,15 @@ day-of-week	R	Date.day-of-week
 Numeric.Rat	A			Perl 6 Numeric							<pre><code>method Rat(Numeric:D: Real $epsilon = 1.0e-6) returns Rat:D</pre></code>If this Numeric is equivalent to a Real, return a Rat which is within $epsilon of that Real's value. Fail with X::Numeric::Real otherwise.	http://doc.perl6.org/type/Numeric#Rat
 Real.Rat	A			Perl 6 Real							<pre><code>method Rat(Real:D: Real $epsilon = 1e-6)</pre></code>Converts the number to a Rat with the precision $epsilon.	http://doc.perl6.org/type/Real#Rat
 Rat	D								[[Numeric.Rat]]\n[[Real.Rat]]			
-Str.lines	A			Perl 6 Str							<pre><code>multi sub    lines(Str:D $input, $limit = Inf) returns Positional&#10;multi method lines(Str:D $input: $limit = Inf) returns Positional</pre></code>Returns a list of lines (without trailing newline characters), i.e. the same as a call to $input.comb( / ^^ &#92;N* /, $limit ) would.	http://doc.perl6.org/type/Str#lines
+Str.lines	A			Perl 6 Str							<pre><code>multi sub    lines(Str:D $input, $limit = Inf) returns Positional<br>multi method lines(Str:D $input: $limit = Inf) returns Positional</pre></code>Returns a list of lines (without trailing newline characters), i.e. the same as a call to $input.comb( / ^^ &#92;N* /, $limit ) would.	http://doc.perl6.org/type/Str#lines
 lines	R	Str.lines									
-Str.words	A			Perl 6 Str							<pre><code>multi sub    words(Str:D $input, $limit = Inf) returns Positional&#10;multi method words(Str:D $input: $limit = Inf) returns Positional</pre></code>Returns a list of non-whitespace bits, i.e. the same as a call to $input.comb( / &#92;S+ /, $limit ) would.	http://doc.perl6.org/type/Str#words
+Str.words	A			Perl 6 Str							<pre><code>multi sub    words(Str:D $input, $limit = Inf) returns Positional<br>multi method words(Str:D $input: $limit = Inf) returns Positional</pre></code>Returns a list of non-whitespace bits, i.e. the same as a call to $input.comb( / &#92;S+ /, $limit ) would.	http://doc.perl6.org/type/Str#words
 words	R	Str.words									
-Numeric.log10	A			Perl 6 Numeric							<pre><code>multi sub    log10(Numeric:D ) returns Numeric:D&#10;multi method log10(Numeric:D:) returns Numeric:D</pre></code>Calculates the logarithm to base 10.	http://doc.perl6.org/type/Numeric#log10
+Numeric.log10	A			Perl 6 Numeric							<pre><code>multi sub    log10(Numeric:D ) returns Numeric:D<br>multi method log10(Numeric:D:) returns Numeric:D</pre></code>Calculates the logarithm to base 10.	http://doc.perl6.org/type/Numeric#log10
 log10	R	Numeric.log10									
 Mu.say	A			Perl 6 Mu							<pre><code>multi method say() returns Bool:D</pre></code>Prints value to $*OUT after stringification using .gist method with newline at end.	http://doc.perl6.org/type/Mu#say
 say	R	Mu.say									
-Numeric.log	A			Perl 6 Numeric							<pre><code>multi sub    log(Numeric:D, Numeric $base = e) returns Numeric:D&#10;multi method log(Numeric:D: Numeric $base = e) returns Numeric:D</pre></code>Calculates the logarithm to base $base. Defaults to the natural logarithm.	http://doc.perl6.org/type/Numeric#log
+Numeric.log	A			Perl 6 Numeric							<pre><code>multi sub    log(Numeric:D, Numeric $base = e) returns Numeric:D<br>multi method log(Numeric:D: Numeric $base = e) returns Numeric:D</pre></code>Calculates the logarithm to base $base. Defaults to the natural logarithm.	http://doc.perl6.org/type/Numeric#log
 log	R	Numeric.log									
 Str.sprintf	A			Perl 6 Str							<pre><code>multi sub sprintf ( Str:D $format, *@args) returns Str:D</pre></code>This function is mostly identical to the C library sprintf function.	http://doc.perl6.org/type/Str#sprintf
 sprintf	R	Str.sprintf									
@@ -370,11 +370,11 @@ Pair.fmt	A			Perl 6 Pair							<pre><code>multi method fmt(Pair:D:) returns Str:
 fmt	R	Pair.fmt									
 Exception.rethrow	A			Perl 6 Exception							<pre><code>method rethrow(Exception:D:)</pre></code>Rethrows an exception that has already been thrown at least once. This is different from throw in that it preserves the original backtrace.	http://doc.perl6.org/type/Exception#rethrow
 rethrow	R	Exception.rethrow									
-List.first	A			Perl 6 List							<pre><code>multi sub    first(Mu $matcher, *@elems)&#10;multi method first(List:D:  Mu $matcher)</pre></code>Returns the first item of the list which smart-matches against $matcher.	http://doc.perl6.org/type/List#first
+List.first	A			Perl 6 List							<pre><code>multi sub    first(Mu $matcher, *@elems)<br>multi method first(List:D:  Mu $matcher)</pre></code>Returns the first item of the list which smart-matches against $matcher.	http://doc.perl6.org/type/List#first
 first	R	List.first									
 Date.prev	A			Perl 6 Date							<pre><code>method prev(Date:D:) return Date:D</pre></code>Returns the previous day	http://doc.perl6.org/type/Date#prev
 prev	R	Date.prev									
-Real.rand	A			Perl 6 Real							<pre><code>sub term:&lt;rand&gt; returns Num:D&#10;method rand(Real:D:) returns Real:D</pre></code>Returns a pseudo-random number between zero and the number.	http://doc.perl6.org/type/Real#rand
+Real.rand	A			Perl 6 Real							<pre><code>sub term:&lt;rand&gt; returns Num:D<br>method rand(Real:D:) returns Real:D</pre></code>Returns a pseudo-random number between zero and the number.	http://doc.perl6.org/type/Real#rand
 rand	R	Real.rand									
 Range.min	A			Perl 6 Range							<pre><code>method min(Range:D:)</pre></code>Returns the start point of the range.	http://doc.perl6.org/type/Range#min
 min	R	Range.min									
@@ -386,7 +386,7 @@ Numeric.roots	A			Perl 6 Numeric							<pre><code>multi method roots(Numeric:D: 
 roots	R	Numeric.roots									
 Pair.cmp	A			Perl 6 Pair							<pre><code>multi sub infix:&lt;cmp&gt;(Pair:D, Pair:D)</pre></code>The type-agnostic comparator; compares two Pairs. Compares first their key parts, and then compares the value parts if the keys are equal.	http://doc.perl6.org/type/Pair#cmp
 cmp	R	Pair.cmp									
-Str.chomp	A			Perl 6 Str							<pre><code>multi sub    chomp(Str:D ) returns Str:D&#10;multi method chomp(Str:D:) returns Str:D</pre></code>Returns the string with a logical newline removed from the end.	http://doc.perl6.org/type/Str#chomp
+Str.chomp	A			Perl 6 Str							<pre><code>multi sub    chomp(Str:D ) returns Str:D<br>multi method chomp(Str:D:) returns Str:D</pre></code>Returns the string with a logical newline removed from the end.	http://doc.perl6.org/type/Str#chomp
 chomp	R	Str.chomp									
 Version.parts	A			Perl 6 Version							<pre><code>method parts(Version:D:) returns List:D</pre></code>Returns the list of parts that make up this Version object	http://doc.perl6.org/type/Version#parts
 parts	R	Version.parts									
