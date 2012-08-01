@@ -1,4 +1,4 @@
-use 5.006;
+use 5.010;
 use strictures 1;
 use autodie;
 use Encode;
@@ -17,7 +17,7 @@ sub duck_escape(_) {
 }
 
 sub duck_line {
-    join( "\t", @_ ) . "\n";
+    join "\t", @_;
 }
 
 my %functions;
@@ -99,7 +99,7 @@ for my $function ( keys %functions ) {
             . duck_escape( $definition{prototype} )
             . '</pre></code>'
             : q[];
-        print duck_line(
+        say duck_line(
             "$definition{class}.$function",
             'A',
             q[],
@@ -119,11 +119,11 @@ for my $function ( keys %functions ) {
     }
     if ( @definitions == 1 ) {
         my %definition = %{ $definitions[0] };
-        print duck_line( $function, 'R', "$definition{class}.$function",
+        say duck_line( $function, 'R', "$definition{class}.$function",
             q[], q[], q[], q[], q[], q[], q[], q[], q[], );
     }
     else {
-        print duck_line( $function, 'D', q[], q[], q[], q[], q[], q[], q[],
+        say duck_line( $function, 'D', q[], q[], q[], q[], q[], q[], q[],
             join( '\n', map {"[[$_->{class}.$function]]"} @definitions ),
             q[], q[], q[], );
     }
