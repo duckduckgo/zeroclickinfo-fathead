@@ -13,7 +13,7 @@ sub duck_escape(_) {
     my ($string) = @_;
 
     # &#10; is valid HTML and it works in <pre> blocks
-    encode_entities( $string, "<>&\n\t" );
+    encode_entities( $string, "<>&\n\t\\" );
 }
 
 sub duck_line {
