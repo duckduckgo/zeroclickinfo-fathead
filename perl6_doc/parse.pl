@@ -2,27 +2,25 @@ use 5.006;
 use strictures 1;
 use autodie;
 use Encode;
+use HTML::Entities;
 use HTML::Parser;
 use URI::Escape;
 binmode STDOUT, ':encoding(UTF-8)';
 chdir 'download/doc.perl6.org/routine';
 opendir my $dh, '.';
 
-sub duck_escape {
-    my %replaces = (
-        '\\' => '\\\\',
-        "\n" => '\n',
-        "\t" => '\t',
-    );
+sub duck_escape(_) {
     my ($string) = @_;
-    # I don't know how exactly escaping works, but I hope that this
-    # trick won't do too much damage with tricky data (not like such
-    # data is planned, but it's better to be prepared for that).
-    $string =~ s{ ( [\n\t] | \\ (?= [\\\n\t] ) ) }{$replaces{$1}}gmsx;
-    $string;
+
+    # &#10; is valid HTML and it works in <pre> blocks
+    encode_entities( $string, "<>&\n\t" );
 }
 
-my @fields;
+sub duck_line {
+    join( "\t", @_ ) . "\n";
+}
+
+my %functions;
 
 # Only files count, magical directories like '.' shouldn't
 for my $file ( grep {-f} readdir $dh ) {
@@ -30,6 +28,7 @@ for my $file ( grep {-f} readdir $dh ) {
     my $current_field;
     my $description;
     my $p;
+    $functions{$file} = [];
     my $parser = HTML::Parser->new(
         api_version => 3,
 
@@ -48,14 +47,14 @@ for my $file ( grep {-f} readdir $dh ) {
         ],
         text_h => [
             sub {
-                my ( $dtext ) = @_;
+                my ($dtext) = @_;
                 $dtext = decode 'UTF-8', $dtext;
                 if ( @tags > 2 ) {
 
                     # <h1> stores name of class.
                     if ( $tags[-2] eq 'h1' ) {
-                        $current_field = {class => $dtext, method => $file};
-                        push @fields, $current_field;
+                        $current_field = { class => $dtext };
+                        push $functions{$file}, $current_field;
                     }
 
                     # First paragraph after <h2> is description.
@@ -78,23 +77,54 @@ for my $file ( grep {-f} readdir $dh ) {
         ],
         end_h => [
             sub {
+
                 # If current tag is <p> then turn off <p> mode.
                 if ( pop @tags eq 'p' && $p ) {
                     $current_field->{description} = $description;
                     undef $description;
                     $p = 0;
                 }
-            }
+            },
         ],
     )->parse_file($file);
 }
 
-for my $field (@fields) {
-    my %field = %$field;
-    print duck_escape($field{class}), '.', duck_escape($field{method}),
-          " (Perl 6)\t\thttp://doc.perl6.org/type/",
-          uri_escape_utf8($field{class}), '#',
-          uri_escape_utf8($field{method}), "\t",
-          duck_escape($field{description} || q[]), "\t",
-          duck_escape($field{prototype} || q[]), "\t\t\t\n";
+for my $function ( keys %functions ) {
+    my @definitions = @{ $functions{$function} };
+    for (@definitions) {
+        my %definition = %$_;
+        my $code
+            = $definition{prototype}
+            ? '<pre><code>'
+            . duck_escape( $definition{prototype} )
+            . '</pre></code>'
+            : q[];
+        print duck_line(
+            "$definition{class}.$function",
+            'A',
+            q[],
+            q[],
+            "Perl 6 $definition{class}",
+            q[],
+            q[],
+            q[],
+            q[],
+            q[],
+            q[],
+            $code . duck_escape $definition{description},
+            'http://doc.perl6.org/type/'
+                . uri_escape_utf8( $definition{class} ) . '#'
+                . uri_escape_utf8($function),
+        );
+    }
+    if ( @definitions == 1 ) {
+        my %definition = %{ $definitions[0] };
+        print duck_line( $function, 'R', "$definition{class}.$function",
+            q[], q[], q[], q[], q[], q[], q[], q[], q[], );
+    }
+    else {
+        print duck_line( $function, 'D', q[], q[], q[], q[], q[], q[], q[],
+            join( '\n', map {"[[$_->{class}.$function]]"} @definitions ),
+            q[], q[], q[], );
+    }
 }
