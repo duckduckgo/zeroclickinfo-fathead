@@ -126,7 +126,7 @@ for my $function ( keys %functions ) {
     }
     else {
         say duck_line( $function, 'D', q[], q[], q[], q[], q[], q[], q[],
-            join( '\n', map {"[[$_->{class}.$function]]"} @definitions ),
+            join( '\n', map {"*[[$_->{class}.$function]], making some information available"} @definitions ),
             q[], q[], q[], );
     }
 }
