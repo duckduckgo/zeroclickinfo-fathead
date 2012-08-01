@@ -5,3 +5,4 @@
 mkdir -p download
 cd download
 wget -np -nc -r -l 2 http://doc.perl6.org/
+cd ..
