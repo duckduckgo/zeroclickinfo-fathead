@@ -77,7 +77,7 @@ IO.dir	A			Perl 6 IO							<pre><code>sub dir Cool $path = '.', Mu :$test = none
 dir	R	IO.dir									
 Buf.decode	A			Perl 6 Buf							<pre><code>multi method decode(Buf:D: Str:D $encoding = 'UTF-8') returns Str:D</pre></code>Applies an encoding to turn the buffer into a Str.	http://doc.perl6.org/type/Buf#decode
 decode	R	Buf.decode									
-Parameter.parcel	A			Perl 6 Parameter							<pre><code>sub f(\$parcel) {&#10;    $parcel = 5;&#10;}&#10;f(my $x);   # works&#10;f(42);      # dies in the assignment</pre></code>Returns True for parcel parameters.	http://doc.perl6.org/type/Parameter#parcel
+Parameter.parcel	A			Perl 6 Parameter							<pre><code>sub f(&#92;$parcel) {&#10;    $parcel = 5;&#10;}&#10;f(my $x);   # works&#10;f(42);      # dies in the assignment</pre></code>Returns True for parcel parameters.	http://doc.perl6.org/type/Parameter#parcel
 parcel	R	Parameter.parcel									
 List.unshift	A			Perl 6 List							<pre><code>multi sub    unshift(List:D, *@values) returns List:D&#10;multi method unshift(List:D: *@values) returns List:D</pre></code>Adds the @values to the start of the list, and returns the modified list. Fails if @values is infinite.	http://doc.perl6.org/type/List#unshift
 unshift	R	List.unshift									
@@ -305,7 +305,7 @@ Match.ast	A			Perl 6 Match							Returns the AST (ie payload).	http://doc.perl6.
 ast	R	Match.ast									
 Parameter.readonly	A			Perl 6 Parameter							Returns True for read-only parameters (the default).	http://doc.perl6.org/type/Parameter#readonly
 readonly	R	Parameter.readonly									
-Parameter.capture	A			Perl 6 Parameter							<pre><code>sub f(\capture) { }</pre></code>Returns True for parameters that capture the rest of the argument list.	http://doc.perl6.org/type/Parameter#capture
+Parameter.capture	A			Perl 6 Parameter							<pre><code>sub f(&#92;capture) { }</pre></code>Returns True for parameters that capture the rest of the argument list.	http://doc.perl6.org/type/Parameter#capture
 capture	R	Parameter.capture									
 Mu.clone	A			Perl 6 Mu							<pre><code>method clone(*%twiddles)</pre></code>Creates a shallow clone of the invocant. If named arguments are passed to it, their values are used in every place where an attribute name matches the name of a named argument.	http://doc.perl6.org/type/Mu#clone
 clone	R	Mu.clone									
@@ -352,9 +352,9 @@ day-of-week	R	Date.day-of-week
 Numeric.Rat	A			Perl 6 Numeric							<pre><code>method Rat(Numeric:D: Real $epsilon = 1.0e-6) returns Rat:D</pre></code>If this Numeric is equivalent to a Real, return a Rat which is within $epsilon of that Real's value. Fail with X::Numeric::Real otherwise.	http://doc.perl6.org/type/Numeric#Rat
 Real.Rat	A			Perl 6 Real							<pre><code>method Rat(Real:D: Real $epsilon = 1e-6)</pre></code>Converts the number to a Rat with the precision $epsilon.	http://doc.perl6.org/type/Real#Rat
 Rat	D								[[Numeric.Rat]]\n[[Real.Rat]]			
-Str.lines	A			Perl 6 Str							<pre><code>multi sub    lines(Str:D $input, $limit = Inf) returns Positional&#10;multi method lines(Str:D $input: $limit = Inf) returns Positional</pre></code>Returns a list of lines (without trailing newline characters), i.e. the same as a call to $input.comb( / ^^ \N* /, $limit ) would.	http://doc.perl6.org/type/Str#lines
+Str.lines	A			Perl 6 Str							<pre><code>multi sub    lines(Str:D $input, $limit = Inf) returns Positional&#10;multi method lines(Str:D $input: $limit = Inf) returns Positional</pre></code>Returns a list of lines (without trailing newline characters), i.e. the same as a call to $input.comb( / ^^ &#92;N* /, $limit ) would.	http://doc.perl6.org/type/Str#lines
 lines	R	Str.lines									
-Str.words	A			Perl 6 Str							<pre><code>multi sub    words(Str:D $input, $limit = Inf) returns Positional&#10;multi method words(Str:D $input: $limit = Inf) returns Positional</pre></code>Returns a list of non-whitespace bits, i.e. the same as a call to $input.comb( / \S+ /, $limit ) would.	http://doc.perl6.org/type/Str#words
+Str.words	A			Perl 6 Str							<pre><code>multi sub    words(Str:D $input, $limit = Inf) returns Positional&#10;multi method words(Str:D $input: $limit = Inf) returns Positional</pre></code>Returns a list of non-whitespace bits, i.e. the same as a call to $input.comb( / &#92;S+ /, $limit ) would.	http://doc.perl6.org/type/Str#words
 words	R	Str.words									
 Numeric.log10	A			Perl 6 Numeric							<pre><code>multi sub    log10(Numeric:D ) returns Numeric:D&#10;multi method log10(Numeric:D:) returns Numeric:D</pre></code>Calculates the logarithm to base 10.	http://doc.perl6.org/type/Numeric#log10
 log10	R	Numeric.log10									
