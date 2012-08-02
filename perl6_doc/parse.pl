@@ -125,8 +125,20 @@ for my $function ( keys %functions ) {
             q[], q[], q[], q[], q[], q[], q[], q[], q[], );
     }
     else {
-        say duck_line( $function, 'D', q[], q[], q[], q[], q[], q[], q[],
-            join( '\n', map {"*[[$_->{class}.$function]], making some information available"} @definitions ),
-            q[], q[], q[], );
+        say duck_line(
+            $function,
+            'D', q[], q[], q[], q[], q[],
+            q[], q[],
+            join(
+                '\n',
+                map {
+                    "*[[$_->{class}.$function]], "
+                        . duck_escape lcfirst $_->{description}
+                } @definitions
+            ),
+            q[],
+            q[],
+            q[],
+        );
     }
 }
