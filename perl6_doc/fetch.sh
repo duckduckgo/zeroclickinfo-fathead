@@ -4,5 +4,6 @@
 # production usage).
 mkdir -p download
 cd download
-wget -np -nc -r -l 2 http://doc.perl6.org/
+wget -np -nc -r -l 2 -I /type/ http://doc.perl6.org/type/
+rm doc.perl6.org/type/*.html*
 cd ..

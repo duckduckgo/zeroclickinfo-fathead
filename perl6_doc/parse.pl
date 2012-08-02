@@ -6,7 +6,7 @@ use HTML::Entities;
 use HTML::Parser;
 use URI::Escape;
 binmode STDOUT, ':encoding(UTF-8)';
-chdir 'download/doc.perl6.org/routine';
+chdir 'download/doc.perl6.org/type';
 opendir my $dh, '.';
 
 sub duck_escape(_) {
@@ -18,19 +18,18 @@ sub duck_escape(_) {
     $string;
 }
 
-sub duck_line {
-    join "\t", @_;
-}
-
 my %functions;
+my %types;
+my %methods;
 
 # Only files count, magical directories like '.' shouldn't
-for my $file ( grep {-f} readdir $dh ) {
+my @files = grep {-f} readdir $dh;
+my %files = map { $_ => 1 } @files;
+for my $file (@files) {
     my @tags;
     my $current_field;
-    my $description;
     my $p;
-    $functions{$file} = [];
+    my $class;
     my $parser = HTML::Parser->new(
         api_version => 3,
 
@@ -41,9 +40,6 @@ for my $file ( grep {-f} readdir $dh ) {
             sub {
                 my ($tagname) = @_;
                 push @tags, $tagname;
-                if ( $p && $tagname eq 'p' ) {
-                    $description = q[];
-                }
             },
             'tagname'
         ],
@@ -54,36 +50,49 @@ for my $file ( grep {-f} readdir $dh ) {
                 if ( @tags > 2 ) {
 
                     # <h1> stores name of class.
-                    if ( $tags[-2] eq 'h1' ) {
-                        $current_field = { class => $dtext };
-                        push $functions{$file}, $current_field;
-                    }
+                    if (   $tags[-2] eq 'h1'
+                        || $tags[-2] eq 'h2'
+                        || ( $tags[-1] eq 'pre' && !$class ) )
+                    {
+                        $dtext =~ m{
+                            \A
+                            (?: Methods | Operators )
+                            .* \s+ ( \S+ ) \z
+                        }msx;
+                        $class = $1 // $class // $file;
 
-                    # First paragraph after <h2> is description.
-                    elsif ( $tags[-2] eq 'h2' ) {
-                        $p = 1;
+                        # Declare new field to store data
+                        if ( $tags[-2] ne 'h1' || $1 ) {
+                            $current_field = { class => $class };
+                            push @{ $types{$file} }, $current_field;
+                            $p = 1;
+                        }
                     }
 
                     # <pre> stores method prototype.
-                    elsif ( $tags[-1] eq 'pre' && $current_field->{class} ) {
-                        $current_field->{prototype} ||= $dtext;
+                    if ( $tags[-1] eq 'pre' ) {
+                        $current_field->{prototype} //= $dtext;
+                    }
+
+                    # First paragraph after <h2> is method name.
+                    elsif ( $tags[-2] eq 'h2' ) {
+                        $current_field->{method} = $dtext;
+                        $methods{$class}{$dtext} = $current_field;
                     }
 
                     # In <p> mode, every text is part of description.
                     elsif ($p) {
-                        $description .= $dtext;
+                        $current_field->{description} .= $dtext;
                     }
+
                 }
             },
             'dtext'
         ],
         end_h => [
             sub {
-
                 # If current tag is <p> then turn off <p> mode.
                 if ( pop @tags eq 'p' && $p ) {
-                    $current_field->{description} = $description;
-                    undef $description;
                     $p = 0;
                 }
             },
@@ -91,54 +100,85 @@ for my $file ( grep {-f} readdir $dh ) {
     )->parse_file($file);
 }
 
-for my $function ( keys %functions ) {
-    my @definitions = @{ $functions{$function} };
+# Prepare disambig table
+for my $type ( keys %types ) {
+    my @definitions = @{ $types{$type} };
     for (@definitions) {
         my %definition = %$_;
-        my $code
-            = $definition{prototype}
-            ? '<pre><code>'
-            . duck_escape( $definition{prototype} )
-            . '</pre></code>'
-            : q[];
-        say duck_line(
-            "$definition{class}.$function",
-            'A',
-            q[],
-            q[],
-            "Perl 6 $definition{class}",
-            q[],
-            q[],
-            q[],
-            q[],
-            q[],
-            q[],
-            $code . duck_escape $definition{description},
-            'http://doc.perl6.org/type/'
-                . uri_escape_utf8( $definition{class} ) . '#'
-                . uri_escape_utf8($function),
-        );
+        $_->{description} =~ s/ \n | (?<= [.!?] \s ) .*? \z //gmsx;
+        if ( $definition{method} && $definition{method} !~ / \s /msx ) {
+            $functions{ $definition{method} }{ $definition{class} }++;
+        }
     }
-    if ( @definitions == 1 ) {
-        my %definition = %{ $definitions[0] };
-        say duck_line( $function, 'R', "$definition{class}.$function",
-            q[], q[], q[], q[], q[], q[], q[], q[], q[], );
-    }
-    else {
-        say duck_line(
-            $function,
-            'D', q[], q[], q[], q[], q[],
-            q[], q[],
-            join(
-                '\n',
-                map {
-                    "*[[$_->{class}.$function]], "
-                        . duck_escape lcfirst $_->{description}
-                } @definitions
-            ),
-            q[],
-            q[],
-            q[],
-        );
+}
+for my $type ( sort keys %types ) {
+    for ( @{ $types{$type} } ) {
+        my %function = %$_;
+
+        # Skip field if field doesn't seem valid.
+        next
+            if !$function{description} && !$function{prototype}
+            || lc $function{description} eq 'methods'
+            || $function{class} ne $type && !$function{method}
+            || $function{method} && !$functions{ $function{method} };
+
+        my $functions
+            = $function{method}
+            ? keys %{ $functions{ $function{method} } }
+            : 0;
+
+        if ( $function{class} eq $type ) {
+            my @line = (q[]) x 13;
+            $line[0] = duck_escape $function{class}
+                . ( $function{method} ? ".$function{method}" : q[] );
+            $line[1]  = 'A';
+            $line[4]  = "Perl 6 " . duck_escape $function{class};
+            $line[11] = (
+                $function{prototype}
+                ? '<pre><code>'
+                    . duck_escape( $function{prototype} )
+                    . '</code></pre>'
+                : q[]
+            ) . duck_escape $function{description};
+            $line[12]
+                = 'http://doc.perl6.org/type/'
+                . uri_escape_utf8($type)
+                . (
+                $function{method}
+                ? '#' . uri_escape_utf8 $function{method}
+                : q[]
+                );
+            say join "\t", @line;
+
+            if ( $function{method} && !$types{ $function{method} } ) {
+                if ( $functions == 1 ) {
+                    my @redirect = (q[]) x 13;
+                    $redirect[0] = duck_escape $function{method};
+                    $redirect[1] = 'R';
+                    $redirect[2]
+                        = duck_escape "$function{class}.$function{method}";
+                    say join "\t", @redirect;
+                }
+                elsif ( $functions > 1 ) {
+                    my @disambig = (q[]) x 13;
+                    $disambig[0] = duck_escape $function{method};
+                    $disambig[1] = 'D';
+                    $disambig[9] = join '\n', map {
+                        duck_escape "*[[$_.$function{method}]], "
+                            . lcfirst $methods{$_}{ $function{method} }
+                            {description}
+                    } sort keys %{ $functions{ $function{method} } };
+                    say join "\t", @disambig;
+                    $functions{ $function{method} } = {};
+                }
+            }
+        }
+        else {
+            my @redirect = (q[]) x 13;
+            $redirect[0] = duck_escape "$type.$function{method}";
+            $redirect[1] = 'R';
+            $redirect[2] = duck_escape "$function{class}.$function{method}";
+            say join "\t", @redirect;
+        }
     }
 }
