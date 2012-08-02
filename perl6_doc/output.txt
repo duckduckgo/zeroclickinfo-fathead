@@ -1,3 +1,22 @@
+AST	A			Perl 6 AST							<pre><code>class AST { }</code></pre>An AST or Abstract Syntax Tree is a partially processed representation of a program. ASTs are return values of the quasi quoting construct, and are typically used withing macros to generate code that is inserted in the calling location of the macro.	http://doc.perl6.org/type/AST
+AST.ACCEPTS	R	Any.ACCEPTS										
+AST.any	R	Any.any										
+AST.all	R	Any.all										
+AST.one	R	Any.one										
+AST.none	R	Any.none										
+AST.defined	R	Mu.defined										
+AST.Bool	R	Mu.Bool										
+AST.Str	R	Mu.Str										
+AST.gist	R	Mu.gist										
+AST.perl	R	Mu.perl										
+AST.clone	R	Mu.clone										
+AST.new	R	Mu.new										
+AST.bless	R	Mu.bless										
+AST.CREATE	R	Mu.CREATE										
+AST.print	R	Mu.print										
+AST.say	R	Mu.say										
+AST.ACCEPTS	R	Mu.ACCEPTS										
+AST.WHICH	R	Mu.WHICH										
 Any	A			Perl 6 Any							<pre><code>class Any is Mu { ... }</code></pre>While Mu is the root of the Perl 6 class hirarchy, Any is the class that serves as a default base class for new classes, and as the base class for most built-in classes.	http://doc.perl6.org/type/Any
 Any.ACCEPTS	A			Perl 6 Any							<pre><code>multi method ACCEPTS(Any:D: Mu $other)</code></pre>Returns True if $other === self (ie it checks object identity).	http://doc.perl6.org/type/Any#ACCEPTS
 ACCEPTS	D								*[[Any.ACCEPTS]], returns True if $other === self (ie it checks object identity).\n*[[Code.ACCEPTS]], usually calls the code object and passes $topic as an argument. \n*[[EnumMap.ACCEPTS]], used in smart-matching if the right-hand side is an EnumMap.\n*[[Mu.ACCEPTS]], performs a type check. \n*[[Numeric.ACCEPTS]], returns True if $other is numerically the same as the invocant.\n*[[Whatever.ACCEPTS]], returns True.			
@@ -68,9 +87,10 @@ Array.print	R	Mu.print
 Array.say	R	Mu.say										
 Array.ACCEPTS	R	Mu.ACCEPTS										
 Array.WHICH	R	Mu.WHICH										
+Associative	A			Perl 6 Associative							<pre><code>role Associative { }</code></pre>A common role for types that support name-based lookup through &lt; postcircumfix:&lt;{ } &gt;&gt;, for example Hash and EnumMap. 	http://doc.perl6.org/type/Associative
 Backtrace	A			Perl 6 Backtrace							<pre><code>class Backtrace is List { ... }</code></pre>A backtrace shows the dynamic call stack, usually leading up to a point where an exception was thrown.	http://doc.perl6.org/type/Backtrace
 Backtrace.new	A			Perl 6 Backtrace							<pre><code>proto method new(*@, *%) {*}<br>multi method new()</code></pre>Creates a new backtrace, using its calling location as the origin of the backtrace.	http://doc.perl6.org/type/Backtrace#new
-new	D								*[[Backtrace.new]], creates a new backtrace, using its calling location as the origin of the backtrace.\n*[[Buf.new]], creates a Buf from a list of integers.\n*[[Complex.new]], creates a new Complex object from real and imaginary parts.\n*[[EnumMap.new]], creates a new EnumMap from a list of alternating keys and values, with the same semantics as described for hash assigning in the Hash documentation.\n*[[Mu.new]], default method for constructing (create + initialize) new objects of a class. \n*[[Rational.new]], creates a new rational object from numerator and denominator.			
+new	D								*[[Backtrace.new]], creates a new backtrace, using its calling location as the origin of the backtrace.\n*[[Buf.new]], creates a Buf from a list of integers.\n*[[Complex.new]], creates a new Complex object from real and imaginary parts.\n*[[Date.new]], creates a new Date object, either from a tripple of (year, month, day) integers, or from a string of the form YYYY-MM-DD (ISO 8601), or from a DateTime object.\n*[[EnumMap.new]], creates a new EnumMap from a list of alternating keys and values, with the same semantics as described for hash assigning in the Hash documentation.\n*[[Mu.new]], default method for constructing (create + initialize) new objects of a class. \n*[[Rational.new]], creates a new rational object from numerator and denominator.\n*[[Version.new]], creates a Version from a string $s. 			
 Backtrace.Str	A			Perl 6 Backtrace							<pre><code>multi method Str(Backtrace:D:) returns Str:D:</code></pre>Returns a concise string representation of the backtrace, omitting routines marked as is hidden_from_backtrace, and at the discretion of the implementor, also some routines from the setting.	http://doc.perl6.org/type/Backtrace#Str
 Backtrace.full	A			Perl 6 Backtrace							<pre><code>multi method full(Backtrace:D:) returns Str:D:</code></pre>Returns a full string representation of the backtrace, including hidden frames, compiler-specific frames and those from the setting.	http://doc.perl6.org/type/Backtrace#full
 full	R	Backtrace.full										
@@ -119,6 +139,39 @@ Backtrace.print	R	Mu.print
 Backtrace.say	R	Mu.say										
 Backtrace.ACCEPTS	R	Mu.ACCEPTS										
 Backtrace.WHICH	R	Mu.WHICH										
+Backtrace::Frame	A			Perl 6 Backtrace::Frame							<pre><code>class Backtrace::Frame { }</code></pre>A single backtrace frame. It identifies a location in the source code.	http://doc.perl6.org/type/Backtrace%3A%3AFrame
+Backtrace::Frame.file	A			Perl 6 Backtrace::Frame							<pre><code>method file(Backtrace::Frame:D) returns Str</code></pre>Returns the file name.	http://doc.perl6.org/type/Backtrace%3A%3AFrame#file
+file	R	Backtrace::Frame.file										
+Backtrace::Frame.line	A			Perl 6 Backtrace::Frame							<pre><code>method line(Backtrace::Frame:D) returns Int</code></pre>Returns the line number (line numbers start to count from 1).	http://doc.perl6.org/type/Backtrace%3A%3AFrame#line
+line	R	Backtrace::Frame.line										
+Backtrace::Frame.code	A			Perl 6 Backtrace::Frame							<pre><code>method code(Backtrace::Frame:D)</code></pre>Returns the code object into which .file and .line point, if avaialble.	http://doc.perl6.org/type/Backtrace%3A%3AFrame#code
+code	R	Backtrace::Frame.code										
+Backtrace::Frame.subname	A			Perl 6 Backtrace::Frame							<pre><code>method subname(Backtrace::Frame:D) returns Str</code></pre>Returns the name of the enclosing subroutine.	http://doc.perl6.org/type/Backtrace%3A%3AFrame#subname
+subname	R	Backtrace::Frame.subname										
+Backtrace::Frame.is-hidden	A			Perl 6 Backtrace::Frame							<pre><code>method is-hidden(Backtrace::Frame:D) return Bool:D</code></pre>Returns True if the frame is marked as hidden with the is hidden_from_backtrace trait.	http://doc.perl6.org/type/Backtrace%3A%3AFrame#is-hidden
+is-hidden	R	Backtrace::Frame.is-hidden										
+Backtrace::Frame.is-routine	A			Perl 6 Backtrace::Frame							<pre><code>method is-routine(Backtrace::Frame:D) return Bool:D</code></pre>Return True if the frame point into a routine (and not into a mere Block).	http://doc.perl6.org/type/Backtrace%3A%3AFrame#is-routine
+is-routine	R	Backtrace::Frame.is-routine										
+Backtrace::Frame.is-setting	A			Perl 6 Backtrace::Frame							<pre><code>method is-setting(Backtrace::Frame:D) return Bool:D</code></pre>Returns True if the frame is part of a setting.	http://doc.perl6.org/type/Backtrace%3A%3AFrame#is-setting
+is-setting	R	Backtrace::Frame.is-setting										
+Backtrace::Frame.ACCEPTS	R	Any.ACCEPTS										
+Backtrace::Frame.any	R	Any.any										
+Backtrace::Frame.all	R	Any.all										
+Backtrace::Frame.one	R	Any.one										
+Backtrace::Frame.none	R	Any.none										
+Backtrace::Frame.defined	R	Mu.defined										
+Backtrace::Frame.Bool	R	Mu.Bool										
+Backtrace::Frame.Str	R	Mu.Str										
+Backtrace::Frame.gist	R	Mu.gist										
+Backtrace::Frame.perl	R	Mu.perl										
+Backtrace::Frame.clone	R	Mu.clone										
+Backtrace::Frame.new	R	Mu.new										
+Backtrace::Frame.bless	R	Mu.bless										
+Backtrace::Frame.CREATE	R	Mu.CREATE										
+Backtrace::Frame.print	R	Mu.print										
+Backtrace::Frame.say	R	Mu.say										
+Backtrace::Frame.ACCEPTS	R	Mu.ACCEPTS										
+Backtrace::Frame.WHICH	R	Mu.WHICH										
 Block	A			Perl 6 Block							<pre><code>class Block is Code { }</code></pre>A Block is a code object meant for small-scale code reuse. A block is created syntactically by a list of statements enclosed in curly brackets.	http://doc.perl6.org/type/Block
 Block.ACCEPTS	R	Code.ACCEPTS										
 Block.arity	R	Code.arity										
@@ -192,12 +245,13 @@ Buf.print	R	Mu.print
 Buf.say	R	Mu.say										
 Buf.ACCEPTS	R	Mu.ACCEPTS										
 Buf.WHICH	R	Mu.WHICH										
+Callable	A			Perl 6 Callable							<pre><code>role Callable { ... }</code></pre>Role for objects which support calling them. It's used in Block, Routine, Sub, Method, Submethod and Macro types.	http://doc.perl6.org/type/Callable
 Code	A			Perl 6 Code							<pre><code>class Code is Any does Callable { ... }</code></pre>Code is the ultimate base class of all code objects in Perl 6. It exposes functionality that all code objects have. While thunks are directly of type Code, most code objects (such as those resulting from blocks, subroutines or methods) will be of some subclass of Code.	http://doc.perl6.org/type/Code
 Code.ACCEPTS	A			Perl 6 Code							<pre><code>multi method ACCEPTS(Code:D: Mu $topic)</code></pre>Usually calls the code object and passes $topic as an argument. However, when called on a code object that takes no arguments, the code object is invoked with no arguments and $topic is dropped. The result of the call is returned.	http://doc.perl6.org/type/Code#ACCEPTS
 Code.arity	A			Perl 6 Code							<pre><code>method arity(Code:D:) returns Int:D</code></pre>Returns the minimum number of positional arguments that must be passed in order to call the code object. Any optional or slurpy parameters in the code object's Signature do not contribute, nor do named parameters.	http://doc.perl6.org/type/Code#arity
-arity	R	Code.arity										
+arity	D								*[[Code.arity]], returns the minimum number of positional arguments that must be passed in order to call the code object. \n*[[Signature.arity]], returns the minimal number of positional arguments required to satisfy the signature.			
 Code.count	A			Perl 6 Code							<pre><code>method count(Code:D:) returns Real:D</code></pre>Returns the maximum number of positional arguments that may be passed when calling the code object. For code objects that can accept any number of positional arguments (that is, they have a slurpy parameter), count will return Inf. Named parameters do not contribute.	http://doc.perl6.org/type/Code#count
-count	R	Code.count										
+count	D								*[[Code.count]], returns the maximum number of positional arguments that may be passed when calling the code object. \n*[[Signature.count]], returns the maximal number of positional arguments which can be bound to the signature. 			
 Code.signature	A			Perl 6 Code							<pre><code>multi method signature(Code:D:) returns Signature:D</code></pre>Returns the Signature object for this code object, which describes its parameters.	http://doc.perl6.org/type/Code#signature
 signature	R	Code.signature										
 Code.Str	A			Perl 6 Code							<pre><code>multi method Str(Code:D:) returns Str:D</code></pre>Returns the name of the code object.	http://doc.perl6.org/type/Code#Str
@@ -281,6 +335,72 @@ Cool.print	R	Mu.print
 Cool.say	R	Mu.say										
 Cool.ACCEPTS	R	Mu.ACCEPTS										
 Cool.WHICH	R	Mu.WHICH										
+Cursor	A			Perl 6 Cursor							<pre><code>class Cursor { }</code></pre>A Cursor object is used interally by the regex engine in regex matches to keep track of the current position, backtracking waypoints and information about capturing groups.	http://doc.perl6.org/type/Cursor
+Cursor.ACCEPTS	R	Any.ACCEPTS										
+Cursor.any	R	Any.any										
+Cursor.all	R	Any.all										
+Cursor.one	R	Any.one										
+Cursor.none	R	Any.none										
+Cursor.defined	R	Mu.defined										
+Cursor.Bool	R	Mu.Bool										
+Cursor.Str	R	Mu.Str										
+Cursor.gist	R	Mu.gist										
+Cursor.perl	R	Mu.perl										
+Cursor.clone	R	Mu.clone										
+Cursor.new	R	Mu.new										
+Cursor.bless	R	Mu.bless										
+Cursor.CREATE	R	Mu.CREATE										
+Cursor.print	R	Mu.print										
+Cursor.say	R	Mu.say										
+Cursor.ACCEPTS	R	Mu.ACCEPTS										
+Cursor.WHICH	R	Mu.WHICH										
+Date	A			Perl 6 Date							<pre><code>class Date { }</code></pre>A Date is an immutable object identifying a day in the Gregorian calendar.	http://doc.perl6.org/type/Date
+Date.new	A			Perl 6 Date							<pre><code>proto method new() {*}<br>multi method new($year,   $month,  $day) returns Date:D<br>multi method new(:$year, :$month, :$day) returns Date:D<br>multi method new(Str $date)              returns Date:D<br>multi method new(DateTime:D $dt)         returns Date:D</code></pre>Creates a new Date object, either from a tripple of (year, month, day) integers, or from a string of the form YYYY-MM-DD (ISO 8601), or from a DateTime object.	http://doc.perl6.org/type/Date#new
+Date.today	A			Perl 6 Date							<pre><code>method today() returns Date:D</code></pre>Returns a Date object for the current day.	http://doc.perl6.org/type/Date#today
+today	R	Date.today										
+Date.year	A			Perl 6 Date							<pre><code>method year(Date:D:) returns Int:D</code></pre>Returns the year of the date	http://doc.perl6.org/type/Date#year
+year	R	Date.year										
+Date.month	A			Perl 6 Date							<pre><code>method month(Date:D:) returns Int:D</code></pre>Returns the month of the date (1..12)	http://doc.perl6.org/type/Date#month
+month	R	Date.month										
+Date.day	A			Perl 6 Date							<pre><code>method day(Date:D:) returns Int:D</code></pre>Returns the day of the month of the date (1..31)	http://doc.perl6.org/type/Date#day
+day	R	Date.day										
+Date.day-of-week	A			Perl 6 Date							<pre><code>method day-of-week(Date:D:) returns Int:D</code></pre>Returns the day of the week, where 0 is Sunday, 1 is Monday etc.	http://doc.perl6.org/type/Date#day-of-week
+day-of-week	R	Date.day-of-week										
+Date.day-of-year	A			Perl 6 Date							<pre><code>method day-of-year(Date:D:) returns Int:D</code></pre>Returns the day of the year (1..366).	http://doc.perl6.org/type/Date#day-of-year
+day-of-year	R	Date.day-of-year										
+Date.day-of-month	A			Perl 6 Date							<pre><code>method day-of-month(Date:D:) returns Int:D</code></pre>Returns the day of the month of the date (1..31). Synonymous to the day method.	http://doc.perl6.org/type/Date#day-of-month
+day-of-month	R	Date.day-of-month										
+Date.truncated-to	A			Perl 6 Date							<pre><code>method truncated-to(Date:D: :$year, :$month, :$week)</code></pre>Returns a Date truncated to the first day of its year, month or week. For example	http://doc.perl6.org/type/Date#truncated-to
+truncated-to	R	Date.truncated-to										
+Date.succ	A			Perl 6 Date							<pre><code>method succ(Date:D:) returns Date:D</code></pre>Returns the following day	http://doc.perl6.org/type/Date#succ
+succ	D								*[[Date.succ]], returns the following day\n*[[Numeric.succ]], returns the number incremented by one (successor).\n*[[Str.succ]], returns the string incremented by one.			
+Date.days-in-month	A			Perl 6 Date							<pre><code>method days-in-month(year = self.year, month = self.month) returns Int:D</code></pre>Returns the number of days in a month, where year and month default to that of the invocant. If both year and month are provided, it can be called as a class method.	http://doc.perl6.org/type/Date#days-in-month
+days-in-month	R	Date.days-in-month										
+Date.is-leap-year	A			Perl 6 Date							<pre><code>method is-leap-year($year = self.year) returns Bool:D</code></pre>Returns True if $year is a leap year. Can be called as a class method if the year is provided.	http://doc.perl6.org/type/Date#is-leap-year
+is-leap-year	R	Date.is-leap-year										
+Date.prev	A			Perl 6 Date							<pre><code>method prev(Date:D:) return Date:D</code></pre>Returns the previous day	http://doc.perl6.org/type/Date#prev
+prev	R	Date.prev										
+Date.Str	A			Perl 6 Date							<pre><code>multi method Str(Date:D:) returns Str:D</code></pre>Returns the date in YYYY-MM-DD format (ISO 8601)	http://doc.perl6.org/type/Date#Str
+Date.gist	A			Perl 6 Date							<pre><code>multi method gist(Date:D:) returns Str:D</code></pre>Returns the date in YYYY-MM-DD format (ISO 8601)	http://doc.perl6.org/type/Date#gist
+gist	D								*[[Date.gist]], returns the date in YYYY-MM-DD format (ISO 8601)\n*[[Exception.gist]], returns whatever the exception printer should produce for this exception. \n*[[Mu.gist]], returns a string representation of the invocant, optimized for fast recognition by humans.			
+Date.ACCEPTS	R	Any.ACCEPTS										
+Date.any	R	Any.any										
+Date.all	R	Any.all										
+Date.one	R	Any.one										
+Date.none	R	Any.none										
+Date.defined	R	Mu.defined										
+Date.Bool	R	Mu.Bool										
+Date.Str	R	Mu.Str										
+Date.gist	R	Mu.gist										
+Date.perl	R	Mu.perl										
+Date.clone	R	Mu.clone										
+Date.new	R	Mu.new										
+Date.bless	R	Mu.bless										
+Date.CREATE	R	Mu.CREATE										
+Date.print	R	Mu.print										
+Date.say	R	Mu.say										
+Date.ACCEPTS	R	Mu.ACCEPTS										
+Date.WHICH	R	Mu.WHICH										
 Duration	A			Perl 6 Duration							<pre><code>class Duration is Cool does Real { }</code></pre>A Duration represents a length of time in atomic seconds, with fractions. Like an Instant, it is epoch-agnostic. In numeric contexts (situations where a Duration is used as a number), a Duration will return either a Rat or a FatRat representing the number of seconds it holds.	http://doc.perl6.org/type/Duration
 Duration.Rat	R	Real.Rat										
 Duration.rand	R	Real.rand										
@@ -376,7 +496,6 @@ rethrow	R	Exception.rethrow
 Exception.fail	A			Perl 6 Exception							<pre><code>method fail(Exception:D:)</code></pre>Same as fail $exception; i.e., it exits the calling Routine and returns the exception wrapped in a Failure object.	http://doc.perl6.org/type/Exception#fail
 fail	R	Exception.fail										
 Exception.gist	A			Perl 6 Exception							<pre><code>multi method gist(Exception:D:)</code></pre>Returns whatever the exception printer should produce for this exception. The default implementation returns message and backtrace separated by a newline.	http://doc.perl6.org/type/Exception#gist
-gist	D								*[[Exception.gist]], returns whatever the exception printer should produce for this exception. \n*[[Mu.gist]], returns a string representation of the invocant, optimized for fast recognition by humans.			
 Exception.ACCEPTS	R	Any.ACCEPTS										
 Exception.any	R	Any.any										
 Exception.all	R	Any.all										
@@ -395,6 +514,29 @@ Exception.print	R	Mu.print
 Exception.say	R	Mu.say										
 Exception.ACCEPTS	R	Mu.ACCEPTS										
 Exception.WHICH	R	Mu.WHICH										
+Grammar	A			Perl 6 Grammar							<pre><code>class Grammar is Cursor { }</code></pre>Grammar is the superclass that classes automatically get when they are declared with the grammar keyword instead of class.	http://doc.perl6.org/type/Grammar
+Grammar.parse	A			Perl 6 Grammar							<pre><code>method parse(Grammar:D: $str, :$rule = 'TOP', :$actions) returns Match:D</code></pre>Matches the grammar against $str, using $rule as start rule, optionally applying $actions as actions object.	http://doc.perl6.org/type/Grammar#parse
+parse	R	Grammar.parse										
+Grammar.parsefile	A			Perl 6 Grammar							<pre><code>method parsefile(Grammar:D: $filename, :$rule = 'TOP', :$actions) returns Match:D</code></pre>Matches the grammar against the contents of file $fielname, using $rule as start rule, optionally applying $actions as actions object.	http://doc.perl6.org/type/Grammar#parsefile
+parsefile	R	Grammar.parsefile										
+Grammar.ACCEPTS	R	Any.ACCEPTS										
+Grammar.any	R	Any.any										
+Grammar.all	R	Any.all										
+Grammar.one	R	Any.one										
+Grammar.none	R	Any.none										
+Grammar.defined	R	Mu.defined										
+Grammar.Bool	R	Mu.Bool										
+Grammar.Str	R	Mu.Str										
+Grammar.gist	R	Mu.gist										
+Grammar.perl	R	Mu.perl										
+Grammar.clone	R	Mu.clone										
+Grammar.new	R	Mu.new										
+Grammar.bless	R	Mu.bless										
+Grammar.CREATE	R	Mu.CREATE										
+Grammar.print	R	Mu.print										
+Grammar.say	R	Mu.say										
+Grammar.ACCEPTS	R	Mu.ACCEPTS										
+Grammar.WHICH	R	Mu.WHICH										
 Hash	A			Perl 6 Hash							<pre><code>class Hash is EnumMap { }</code></pre>A Hash is a mutable mapping from keys to values (called dictionary, hash table or map in other programming languages). The values are all scalar containers, which means you can assign to them.	http://doc.perl6.org/type/Hash
 Hash.push	A			Perl 6 Hash							<pre><code>multi method push(Hash:D: *@new)</code></pre>Adds the @new elements to the hash with the same semantics as hash assignment, but with three exceptions:	http://doc.perl6.org/type/Hash#push
 push	D								*[[Hash.push]], adds the @new elements to the hash with the same semantics as hash assignment, but with three exceptions:\n*[[List.push]], adds the @values to the end of the list, and returns the modified list. 			
@@ -424,6 +566,34 @@ Hash.print	R	Mu.print
 Hash.say	R	Mu.say										
 Hash.ACCEPTS	R	Mu.ACCEPTS										
 Hash.WHICH	R	Mu.WHICH										
+IO.dir	A			Perl 6 IO							<pre><code>sub dir Cool $path = '.', Mu :$test = none('.', '..')</code></pre>Returns a list of IO::File and IO::Dir objects for the files and directories found in the $path. If $path is not given assumes the current directory.	http://doc.perl6.org/type/IO#dir
+dir	R	IO.dir										
+IO.prompt	A			Perl 6 IO							<pre><code>my $name = prompt("Hi, what's your name?");</code></pre>Prints out a string to the standard output and waits for the user to type in something and finish with an ENTER. Returns the string typed in without the trailing newline.	http://doc.perl6.org/type/IO#prompt
+prompt	R	IO.prompt										
+IO.modified	A			Perl 6 IO							<pre><code>"path/to/file".IO.modified()</code></pre>Timestamp when the file was last modified.	http://doc.perl6.org/type/IO#modified
+modified	R	IO.modified										
+IO.accessed	A			Perl 6 IO							<pre><code>"path/to/file".IO.accessed()</code></pre>Timestamp when the file was last accessed.	http://doc.perl6.org/type/IO#accessed
+accessed	R	IO.accessed										
+IO.changed	A			Perl 6 IO							<pre><code>"path/to/file".IO.changed()</code></pre>Timestamp when the inode was last changed.	http://doc.perl6.org/type/IO#changed
+changed	R	IO.changed										
+IO.ACCEPTS	R	Any.ACCEPTS										
+IO.any	R	Any.any										
+IO.all	R	Any.all										
+IO.one	R	Any.one										
+IO.none	R	Any.none										
+IO.defined	R	Mu.defined										
+IO.Bool	R	Mu.Bool										
+IO.Str	R	Mu.Str										
+IO.gist	R	Mu.gist										
+IO.perl	R	Mu.perl										
+IO.clone	R	Mu.clone										
+IO.new	R	Mu.new										
+IO.bless	R	Mu.bless										
+IO.CREATE	R	Mu.CREATE										
+IO.print	R	Mu.print										
+IO.say	R	Mu.say										
+IO.ACCEPTS	R	Mu.ACCEPTS										
+IO.WHICH	R	Mu.WHICH										
 Instant	A			Perl 6 Instant							<pre><code>class Instant is Cool does Real { }</code></pre>An Instant is a particular moment in time measured in atomic seconds, with fractions. It is not tied to or aware of any epoch.	http://doc.perl6.org/type/Instant
 Instant.Rat	R	Real.Rat										
 Instant.rand	R	Real.rand										
@@ -482,6 +652,20 @@ Int.print	R	Mu.print
 Int.say	R	Mu.say										
 Int.ACCEPTS	R	Mu.ACCEPTS										
 Int.WHICH	R	Mu.WHICH										
+Junction	A			Perl 6 Junction							<pre><code>class Junction is Mu { }</code></pre>A junction is an unordered composite value of zero or more values. Junctions autothread over many operations, which means that the operation is carried out for each junction element (also known as eigenstate), and the result is junction of the return values of all those operators.	http://doc.perl6.org/type/Junction
+Junction.defined	R	Mu.defined										
+Junction.Bool	R	Mu.Bool										
+Junction.Str	R	Mu.Str										
+Junction.gist	R	Mu.gist										
+Junction.perl	R	Mu.perl										
+Junction.clone	R	Mu.clone										
+Junction.new	R	Mu.new										
+Junction.bless	R	Mu.bless										
+Junction.CREATE	R	Mu.CREATE										
+Junction.print	R	Mu.print										
+Junction.say	R	Mu.say										
+Junction.ACCEPTS	R	Mu.ACCEPTS										
+Junction.WHICH	R	Mu.WHICH										
 List	A			Perl 6 List							<pre><code>my class List is Iterable does Positional { .. }</code></pre>List stores items sequentially and potentially lazily.	http://doc.perl6.org/type/List
 List.elems	A			Perl 6 List							<pre><code>multi sub    elems($list)  returns Int:D<br>multi method elems(List:D:) returns Int:D</code></pre>Returns the number of elements in the list.	http://doc.perl6.org/type/List#elems
 List.end	A			Perl 6 List							<pre><code>multi sub    end($list)  returns Int:D<br>multi method end(List:D:) returns Int:D</code></pre>Returns the index of the last element.	http://doc.perl6.org/type/List#end
@@ -658,7 +842,6 @@ Numeric.conj	A			Perl 6 Numeric							<pre><code>multi method conj(Numeric:D) re
 conj	R	Numeric.conj										
 Numeric.Bool	A			Perl 6 Numeric							<pre><code>multi method Bool(Numeric:D:)</code></pre>Returns False if the number is equivalent to zero, and True otherwise.	http://doc.perl6.org/type/Numeric#Bool
 Numeric.succ	A			Perl 6 Numeric							<pre><code>method succ(Numerid:D:)</code></pre>Returns the number incremented by one (successor).	http://doc.perl6.org/type/Numeric#succ
-succ	D								*[[Numeric.succ]], returns the number incremented by one (successor).\n*[[Str.succ]], returns the string incremented by one.			
 Numeric.pred	A			Perl 6 Numeric							<pre><code>method pred(Numerid:D:)</code></pre>Returns the number decremented by one (predecessor).	http://doc.perl6.org/type/Numeric#pred
 pred	D								*[[Numeric.pred]], returns the number decremented by one (predecessor).\n*[[Str.pred]], returns the string decremented by one.			
 Pair	A			Perl 6 Pair							<pre><code>class Pair is Enum { ... }</code></pre>Consists of two parts, a key and a value. Pairs can be seen as the atomic units in Hashes, and they are also used in conjunction with named arguments and parameters.	http://doc.perl6.org/type/Pair
@@ -904,6 +1087,29 @@ Routine.print	R	Mu.print
 Routine.say	R	Mu.say										
 Routine.ACCEPTS	R	Mu.ACCEPTS										
 Routine.WHICH	R	Mu.WHICH										
+Signature	A			Perl 6 Signature							<pre><code>class Signature { ... }</code></pre>A signature is a static description of the parameter list of a code object. That is, it describes what and how many arguments you need to pass to it for invocation.	http://doc.perl6.org/type/Signature
+Signature.params	A			Perl 6 Signature							<pre><code>method params(Signature:D:) returns Positional</code></pre>Returns the list of Parameter objects that make up the signature.	http://doc.perl6.org/type/Signature#params
+params	R	Signature.params										
+Signature.arity	A			Perl 6 Signature							<pre><code>method arity(Signature:D:) returns Int:D</code></pre>Returns the minimal number of positional arguments required to satisfy the signature.	http://doc.perl6.org/type/Signature#arity
+Signature.count	A			Perl 6 Signature							<pre><code>method count(Signature:D:) returns Real:D</code></pre>Returns the maximal number of positional arguments which can be bound to the signature. Returns Inf if there is a slurpy positional parameter.	http://doc.perl6.org/type/Signature#count
+Signature.ACCEPTS	R	Any.ACCEPTS										
+Signature.any	R	Any.any										
+Signature.all	R	Any.all										
+Signature.one	R	Any.one										
+Signature.none	R	Any.none										
+Signature.defined	R	Mu.defined										
+Signature.Bool	R	Mu.Bool										
+Signature.Str	R	Mu.Str										
+Signature.gist	R	Mu.gist										
+Signature.perl	R	Mu.perl										
+Signature.clone	R	Mu.clone										
+Signature.new	R	Mu.new										
+Signature.bless	R	Mu.bless										
+Signature.CREATE	R	Mu.CREATE										
+Signature.print	R	Mu.print										
+Signature.say	R	Mu.say										
+Signature.ACCEPTS	R	Mu.ACCEPTS										
+Signature.WHICH	R	Mu.WHICH										
 Str	A			Perl 6 Str							<pre><code>class Str is Cool does Stringy { }</code></pre>Built-in class for strings. Objects of type Str are immutable.	http://doc.perl6.org/type/Str
 Str.chop	A			Perl 6 Str							<pre><code>multi sub    chop(Str:D)  returns Str:D<br>multi method chop(Str:D:) returns Str:D</code></pre>Returns the string with one character removed from the end.	http://doc.perl6.org/type/Str#chop
 chop	R	Str.chop										
@@ -982,6 +1188,30 @@ Str.say	R	Mu.say
 Str.ACCEPTS	R	Mu.ACCEPTS										
 Str.WHICH	R	Mu.WHICH										
 Stringy	A			Perl 6 Stringy							<pre><code>role Stringy { ... }</code></pre>Common role for string types (such as Str) and types that can act as strings (such as Cat).	http://doc.perl6.org/type/Stringy
+Version	A			Perl 6 Version							<pre><code>class Version { }</code></pre>Version objects identify version of software components (and potentially other entities). Perl 6 uses them internally for versioning modules.	http://doc.perl6.org/type/Version
+Version.new	A			Perl 6 Version							<pre><code>method new(Str:d $s)</code></pre>Creates a Version from a string $s. The string is combed for the numeric, alphabetic, and wildcard components of the version object. Any characters other than alphanumerics and asterisks are assumed to be equivalent to a dot. A dot is also assumed between any adjacent numeric and alphabetic characters.	http://doc.perl6.org/type/Version#new
+Version.parts	A			Perl 6 Version							<pre><code>method parts(Version:D:) returns List:D</code></pre>Returns the list of parts that make up this Version object	http://doc.perl6.org/type/Version#parts
+parts	R	Version.parts										
+Version.plus	A			Perl 6 Version							<pre><code>method plus(Version:D:) returns Bool:D</code></pre>Returns True if comparisons against this version allow larger versions too.	http://doc.perl6.org/type/Version#plus
+plus	R	Version.plus										
+Version.ACCEPTS	R	Any.ACCEPTS										
+Version.any	R	Any.any										
+Version.all	R	Any.all										
+Version.one	R	Any.one										
+Version.none	R	Any.none										
+Version.defined	R	Mu.defined										
+Version.Bool	R	Mu.Bool										
+Version.Str	R	Mu.Str										
+Version.gist	R	Mu.gist										
+Version.perl	R	Mu.perl										
+Version.clone	R	Mu.clone										
+Version.new	R	Mu.new										
+Version.bless	R	Mu.bless										
+Version.CREATE	R	Mu.CREATE										
+Version.print	R	Mu.print										
+Version.say	R	Mu.say										
+Version.ACCEPTS	R	Mu.ACCEPTS										
+Version.WHICH	R	Mu.WHICH										
 Whatever	A			Perl 6 Whatever							<pre><code>class Whatever { }</code></pre>Whatever is a class whose objects don't really do much; it gets its semantic from other routines that accept Whatever-objects as markers to do something special. The * literal in term position creates a Whatever object.	http://doc.perl6.org/type/Whatever
 Whatever.ACCEPTS	A			Perl 6 Whatever							<pre><code>multi method ACCEPTS(Whatever:D: Mu $other)</code></pre>Returns True.	http://doc.perl6.org/type/Whatever#ACCEPTS
 Whatever.ACCEPTS	R	Any.ACCEPTS										
@@ -1026,3 +1256,105 @@ WhateverCode.print	R	Mu.print
 WhateverCode.say	R	Mu.say										
 WhateverCode.ACCEPTS	R	Mu.ACCEPTS										
 WhateverCode.WHICH	R	Mu.WHICH										
+X::AdHoc	A			Perl 6 X::AdHoc							<pre><code>class X::AdHoc is Exception { ... }</code></pre>X::AdHoc is the type into which objects are wrapped if they are thrown as exceptions, but don't inherit from Exception.	http://doc.perl6.org/type/X%3A%3AAdHoc
+X::AdHoc.payload	A			Perl 6 X::AdHoc							<pre><code>method payload(X::AdHoc:D)</code></pre>Returns the original object which was passed to die.	http://doc.perl6.org/type/X%3A%3AAdHoc#payload
+payload	R	X::AdHoc.payload										
+X::AdHoc.message	R	Exception.message										
+X::AdHoc.backtrace	R	Exception.backtrace										
+X::AdHoc.throw	R	Exception.throw										
+X::AdHoc.rethrow	R	Exception.rethrow										
+X::AdHoc.fail	R	Exception.fail										
+X::AdHoc.gist	R	Exception.gist										
+X::AdHoc.ACCEPTS	R	Any.ACCEPTS										
+X::AdHoc.any	R	Any.any										
+X::AdHoc.all	R	Any.all										
+X::AdHoc.one	R	Any.one										
+X::AdHoc.none	R	Any.none										
+X::AdHoc.defined	R	Mu.defined										
+X::AdHoc.Bool	R	Mu.Bool										
+X::AdHoc.Str	R	Mu.Str										
+X::AdHoc.gist	R	Mu.gist										
+X::AdHoc.perl	R	Mu.perl										
+X::AdHoc.clone	R	Mu.clone										
+X::AdHoc.new	R	Mu.new										
+X::AdHoc.bless	R	Mu.bless										
+X::AdHoc.CREATE	R	Mu.CREATE										
+X::AdHoc.print	R	Mu.print										
+X::AdHoc.say	R	Mu.say										
+X::AdHoc.ACCEPTS	R	Mu.ACCEPTS										
+X::AdHoc.WHICH	R	Mu.WHICH										
+X::Comp	A			Perl 6 X::Comp							<pre><code>role X::Comp is Exception { }</code></pre>Common role for compile-time errors.	http://doc.perl6.org/type/X%3A%3AComp
+X::Comp.message	R	Exception.message										
+X::Comp.backtrace	R	Exception.backtrace										
+X::Comp.throw	R	Exception.throw										
+X::Comp.rethrow	R	Exception.rethrow										
+X::Comp.fail	R	Exception.fail										
+X::Comp.gist	R	Exception.gist										
+X::Comp.ACCEPTS	R	Any.ACCEPTS										
+X::Comp.any	R	Any.any										
+X::Comp.all	R	Any.all										
+X::Comp.one	R	Any.one										
+X::Comp.none	R	Any.none										
+X::Comp.defined	R	Mu.defined										
+X::Comp.Bool	R	Mu.Bool										
+X::Comp.Str	R	Mu.Str										
+X::Comp.gist	R	Mu.gist										
+X::Comp.perl	R	Mu.perl										
+X::Comp.clone	R	Mu.clone										
+X::Comp.new	R	Mu.new										
+X::Comp.bless	R	Mu.bless										
+X::Comp.CREATE	R	Mu.CREATE										
+X::Comp.print	R	Mu.print										
+X::Comp.say	R	Mu.say										
+X::Comp.ACCEPTS	R	Mu.ACCEPTS										
+X::Comp.WHICH	R	Mu.WHICH										
+X::Syntax	A			Perl 6 X::Syntax							<pre><code>role X::Syntax does X::Comp { }</code></pre>Common role for syntax errors thrown by the compiler.	http://doc.perl6.org/type/X%3A%3ASyntax
+X::Syntax.message	R	Exception.message										
+X::Syntax.backtrace	R	Exception.backtrace										
+X::Syntax.throw	R	Exception.throw										
+X::Syntax.rethrow	R	Exception.rethrow										
+X::Syntax.fail	R	Exception.fail										
+X::Syntax.gist	R	Exception.gist										
+X::Syntax.ACCEPTS	R	Any.ACCEPTS										
+X::Syntax.any	R	Any.any										
+X::Syntax.all	R	Any.all										
+X::Syntax.one	R	Any.one										
+X::Syntax.none	R	Any.none										
+X::Syntax.defined	R	Mu.defined										
+X::Syntax.Bool	R	Mu.Bool										
+X::Syntax.Str	R	Mu.Str										
+X::Syntax.gist	R	Mu.gist										
+X::Syntax.perl	R	Mu.perl										
+X::Syntax.clone	R	Mu.clone										
+X::Syntax.new	R	Mu.new										
+X::Syntax.bless	R	Mu.bless										
+X::Syntax.CREATE	R	Mu.CREATE										
+X::Syntax.print	R	Mu.print										
+X::Syntax.say	R	Mu.say										
+X::Syntax.ACCEPTS	R	Mu.ACCEPTS										
+X::Syntax.WHICH	R	Mu.WHICH										
+X::Syntax::NegatedPair	A			Perl 6 X::Syntax::NegatedPair							<pre><code>class X::Syntax::NegatedPair does X::Syntax { }</code></pre>Thrown if a colonpair illegally has a value, for example :!a(1). This is an error because the ! negation implies that the value is False.	http://doc.perl6.org/type/X%3A%3ASyntax%3A%3ANegatedPair
+X::Syntax::NegatedPair.message	R	Exception.message										
+X::Syntax::NegatedPair.backtrace	R	Exception.backtrace										
+X::Syntax::NegatedPair.throw	R	Exception.throw										
+X::Syntax::NegatedPair.rethrow	R	Exception.rethrow										
+X::Syntax::NegatedPair.fail	R	Exception.fail										
+X::Syntax::NegatedPair.gist	R	Exception.gist										
+X::Syntax::NegatedPair.ACCEPTS	R	Any.ACCEPTS										
+X::Syntax::NegatedPair.any	R	Any.any										
+X::Syntax::NegatedPair.all	R	Any.all										
+X::Syntax::NegatedPair.one	R	Any.one										
+X::Syntax::NegatedPair.none	R	Any.none										
+X::Syntax::NegatedPair.defined	R	Mu.defined										
+X::Syntax::NegatedPair.Bool	R	Mu.Bool										
+X::Syntax::NegatedPair.Str	R	Mu.Str										
+X::Syntax::NegatedPair.gist	R	Mu.gist										
+X::Syntax::NegatedPair.perl	R	Mu.perl										
+X::Syntax::NegatedPair.clone	R	Mu.clone										
+X::Syntax::NegatedPair.new	R	Mu.new										
+X::Syntax::NegatedPair.bless	R	Mu.bless										
+X::Syntax::NegatedPair.CREATE	R	Mu.CREATE										
+X::Syntax::NegatedPair.print	R	Mu.print										
+X::Syntax::NegatedPair.say	R	Mu.say										
+X::Syntax::NegatedPair.ACCEPTS	R	Mu.ACCEPTS										
+X::Syntax::NegatedPair.WHICH	R	Mu.WHICH										

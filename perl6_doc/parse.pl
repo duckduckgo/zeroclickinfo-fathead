@@ -23,7 +23,7 @@ my %types;
 my %methods;
 
 # Only files count, magical directories like '.' shouldn't
-my @files = grep {-f && / \A \w+ \z /msx} readdir $dh;
+my @files = grep {-f && / \A [\w:]+ \z /msx} readdir $dh;
 my %files = map { $_ => 1 } @files;
 for my $file (@files) {
     my @tags;
