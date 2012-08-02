@@ -23,7 +23,7 @@ my %types;
 my %methods;
 
 # Only files count, magical directories like '.' shouldn't
-my @files = grep {-f} readdir $dh;
+my @files = grep {-f && / \A \w+ \z /msx} readdir $dh;
 my %files = map { $_ => 1 } @files;
 for my $file (@files) {
     my @tags;
@@ -82,6 +82,7 @@ for my $file (@files) {
 
                     # In <p> mode, every text is part of description.
                     elsif ($p) {
+                        $dtext =~ s/ \n //gmsx;
                         $current_field->{description} .= $dtext;
                     }
 
@@ -105,7 +106,6 @@ for my $type ( keys %types ) {
     my @definitions = @{ $types{$type} };
     for (@definitions) {
         my %definition = %$_;
-        $_->{description} =~ s/ \n | (?<= [.!?] \s ) .*? \z //gmsx;
         if ( $definition{method} && $definition{method} !~ / \s /msx ) {
             $functions{ $definition{method} }{ $definition{class} }++;
         }
@@ -114,7 +114,6 @@ for my $type ( keys %types ) {
 for my $type ( sort keys %types ) {
     for ( @{ $types{$type} } ) {
         my %function = %$_;
-
         # Skip field if field doesn't seem valid.
         next
             if !$function{description} && !$function{prototype}
@@ -164,9 +163,10 @@ for my $type ( sort keys %types ) {
                     $disambig[0] = duck_escape $function{method};
                     $disambig[1] = 'D';
                     $disambig[9] = join '\n', map {
+                        my $description = $methods{$_}{$function{method}}{description};
+                        $description =~ s/ \n | (?<= [.!?] \s ) .*? \z //gmsx;
                         duck_escape "*[[$_.$function{method}]], "
-                            . lcfirst $methods{$_}{ $function{method} }
-                            {description}
+                            . lcfirst $description
                     } sort keys %{ $functions{ $function{method} } };
                     say join "\t", @disambig;
                     $functions{ $function{method} } = {};
