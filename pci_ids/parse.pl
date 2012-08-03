@@ -5,7 +5,7 @@ use strict;
 
 open my $fh, '<', 'download/pci.ids';
 
-my (@vendors, @devices, @subdevices) = [];
+my (@vendors, @devices, @subdevices) = ();
 my %key = (
     0 => sub { s/^(....)\ //; push @vendors, { "id" => $1, "name" => $_, "devices" => [] } },
     1 => sub { s/^(....)\ //; push %{$vendors[-1]}->{devices}, { "id" => $1, "name" => $_, "subdevices" => [] } },
