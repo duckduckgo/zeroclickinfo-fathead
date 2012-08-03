@@ -7,8 +7,20 @@ open my $fh, '<', 'download/pci.ids';
 
 my (@vendors, @devices, @subdevices) = ();
 my %key = (
-    0 => sub { s/^(....)\ //; push @vendors, { "id" => $1, "name" => $_, "devices" => [] } },
-    1 => sub { s/^(....)\ //; push %{$vendors[-1]}->{devices}, { "id" => $1, "name" => $_, "subdevices" => [] } },
+    0 => sub {
+        s/^(....)\ //;
+        push @vendors, {
+            "id" => $1,
+            "name" => $_,
+            "devices" => [] }
+    },
+    1 => sub {
+        s/^(....)\ //;
+        push %{$vendors[-1]}->{devices}, {
+            "id" => $1,
+            "name" => $_,
+            "subdevices" => [] }
+    },
     2 => sub {
         s/^(....)\ (....)\ //;
         return if not $2;
@@ -22,12 +34,13 @@ while (<$fh>) {
     next if m/^#|^\s+$/;
     $key{length $1}->(s/^(\t{0,2})//);
 }
-my $line = 0;
 foreach my $vendor (@vendors) {
-    next if ++$line == 1;
-    print %{$vendor}->{id};
-    print %{$vendor}->{name};
-#    foreach my $device (%{$vendor}->{devices}_) {
-#        print $device;
-#    }
+    if (scalar @{%{$vendor}->{devices}} > 0) {
+        foreach my $device (@{%{$vendor}->{devices}}) {
+            print %{$vendor}->{id} . " $device->{id}"
+                . (chomp $device->{name}) . " " . %{$vendor}->{name};
+        }
+    } else {
+        print %{$vendor}->{id} . " " . %{$vendor}->{name};
+    }
 }
