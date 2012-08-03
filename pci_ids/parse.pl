@@ -35,8 +35,11 @@ while (<$fh>) {
     $key{length $1}->(s/^(\t{0,2})//);
 }
 foreach my $vendor (@vendors) {
+    print "$vendor->{id} $vendor->{name}\n";
     if (scalar @{$vendor->{devices}} > 0) {
         foreach my $device (@{$vendor->{devices}}) {
+            print "$vendor->{id} $device->{id}"
+                . "$device->{name} $vendor->{name}\n";
             if (scalar @{$device->{subdevices}} > 0) {
                 foreach my $subdevice (@{$device->{subdevices}}) {
                     print "$vendor->{id} $device->{id} "
@@ -45,12 +48,7 @@ foreach my $vendor (@vendors) {
                         . "$vendor->{name} $device->{name} "
                         . "$subdevice->{subsystem_name}\n";
                 }
-            } else {
-                print "$vendor->{id} $device->{id}"
-                    . "$device->{name} $vendor->{name}\n";
             }
         }
-    } else {
-        print "$vendor->{id} $vendor->{name}\n";
     }
 }
