@@ -16,7 +16,7 @@ my %key = (
     },
     1 => sub {
         s/^(....)\ //;
-        push %{$vendors[-1]}->{devices}, {
+        push $vendors[-1]{devices}, {
             "id" => $1,
             "name" => $_,
             "subdevices" => [] }
@@ -24,7 +24,7 @@ my %key = (
     2 => sub {
         s/^(....)\ (....)\ //;
         return if not $2;
-        push %{$vendors[-1]}->{devices}[-1]{subdevices}, {
+        push $vendors[-1]{devices}[-1]{subdevices}, {
             "subvendor" => $1,
             "subdevice" => $2,
             "subsystem_name" => $_ };
@@ -35,12 +35,22 @@ while (<$fh>) {
     $key{length $1}->(s/^(\t{0,2})//);
 }
 foreach my $vendor (@vendors) {
-    if (scalar @{%{$vendor}->{devices}} > 0) {
-        foreach my $device (@{%{$vendor}->{devices}}) {
-            print %{$vendor}->{id} . " $device->{id}"
-                . (chomp $device->{name}) . " " . %{$vendor}->{name};
+    if (scalar @{$vendor->{devices}} > 0) {
+        foreach my $device (@{$vendor->{devices}}) {
+            if (scalar @{$device->{subdevices}} > 0) {
+                foreach my $subdevice (@{$device->{subdevices}}) {
+                    print $vendor->{id} . " $device->{id} "
+                        . $subdevice->{subvendor} . " "
+                        . $subdevice->{subdevice} . " "
+                        . $vendor->{name} . " $device->{name} "
+                        . $subdevice->{subsystem_name};
+                }
+            } else {
+                print $vendor->{id} . " $device->{id}"
+                    . (chomp $device->{name}) . " " . $vendor->{name};
+            }
         }
     } else {
-        print %{$vendor}->{id} . " " . %{$vendor}->{name};
+        print $vendor->{id} . " " . $vendor->{name};
     }
 }
