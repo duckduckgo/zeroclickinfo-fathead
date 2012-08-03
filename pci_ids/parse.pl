@@ -36,21 +36,21 @@ while (<$fh>) {
     $key{length $1}->(s/^(\t{0,2})//);
 }
 foreach my $vendor (@vendors) {
-    print "$vendor->{id} $vendor->{name}\n";
+#    print "$vendor->{id} $vendor->{name}\n";
     $queries{$vendor->{id}} = $vendor->{name};
     if (scalar @{$vendor->{devices}} > 0) {
         foreach my $device (@{$vendor->{devices}}) {
-            print "$vendor->{id} $device->{id}"
-                . "$device->{name} $vendor->{name}\n";
+#            print "$vendor->{id} $device->{id}"
+#                . "$device->{name} $vendor->{name}\n";
             $queries{"$vendor->{id} $device->{id}"} =
                 "$device->{name} $vendor->{name}";
             if (scalar @{$device->{subdevices}} > 0) {
                 foreach my $subdevice (@{$device->{subdevices}}) {
-                    print "$vendor->{id} $device->{id} "
-                        . "$subdevice->{subvendor} "
-                        . "$subdevice->{subdevice} "
-                        . "$vendor->{name} $device->{name} "
-                        . "$subdevice->{subsystem_name}\n";
+#                    print "$vendor->{id} $device->{id} "
+#                        . "$subdevice->{subvendor} "
+#                        . "$subdevice->{subdevice} "
+#                        . "$vendor->{name} $device->{name} "
+#                        . "$subdevice->{subsystem_name}\n";
                     $queries{"$vendor->{id} $device->{id}"
                             . "$subdevice->{subvendor} "
                             . "$subdevice->{subdevice} "} =
@@ -61,3 +61,23 @@ foreach my $vendor (@vendors) {
         }
     }
 }
+
+open my $output, '>', 'output.txt';
+map {
+    print $output join "\t", (
+        "$_",                               # title
+        "A",                                # type
+        "",                                 # redirect
+        "",                                 # otheruses
+        "",                                 # categories
+        "",                                 # references
+        "",                                 # see_also
+        "",                                 # further_reading
+        "",                                 # external_links
+        "",                                 # disambiguation
+        "",                                 # images
+        "$queries{$_}",                     # abstract
+        "http://pciids.sourceforge.net/\n"    # source_url
+    );
+} keys %queries;
+
