@@ -37,13 +37,14 @@ while (<$fh>) {
 }
 foreach my $vendor (@vendors) {
 #    print "$vendor->{id} $vendor->{name}\n";
-    $queries{$vendor->{id}} = $vendor->{name};
+    $queries{$vendor->{id}} = "Vendor: $vendor->{name}";
     if (scalar @{$vendor->{devices}} > 0) {
         foreach my $device (@{$vendor->{devices}}) {
 #            print "$vendor->{id} $device->{id}"
 #                . "$device->{name} $vendor->{name}\n";
             $queries{"$vendor->{id} $device->{id}"} =
-                "$vendor->{name} $device->{name}";
+                "Vendor: $vendor->{name}<br>"
+                . "Device: $device->{name}";
             if (scalar @{$device->{subdevices}} > 0) {
                 foreach my $subdevice (@{$device->{subdevices}}) {
 #                    print "$vendor->{id} $device->{id} "
@@ -54,7 +55,9 @@ foreach my $vendor (@vendors) {
                     $queries{"$vendor->{id} $device->{id}"
                             . "$subdevice->{subvendor} "
                             . "$subdevice->{subdevice} "} =
-                                "$vendor->{name} $device->{name}"
+                                "Vendor: $vendor->{name}<br>"
+                                . "Device: $device->{name}<br>"
+                                . "Subdevice/subvendor: "
                                 . "$subdevice->{subsystem_name}";
                 }
             }
