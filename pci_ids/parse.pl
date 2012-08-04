@@ -5,7 +5,7 @@ use strict;
 
 open my $fh, '<', 'download/pci.ids';
 
-my (@vendors, @devices, @subdevices) = ();
+my @vendors = ();
 my %queries = ();
 my %key = (
     0 => sub {
