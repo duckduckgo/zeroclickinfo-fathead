@@ -4,12 +4,12 @@
 import re
 from BeautifulSoup import BeautifulSoup
 from collections import defaultdict
-# We use defaultdict to append duplicates, but output only the first entry
+# Use defaultdict to append duplicates, but output only the first entry
 
 modules = defaultdict(list)
 
 def normalize(string):
-    ''' -> Remove parantheses endings from module names 
+    ''' -> Remove parantheses part from ending of module names
         -> Remove YUI from module name
     '''
     return re.sub('( ?\(.*\)$|YUI\ ?[2-3]?[ -]?)', '', string)
@@ -17,10 +17,10 @@ def normalize(string):
 # Parse the official modules
 official_soup = BeautifulSoup(open('data/official.html'))
 for module in official_soup.findAll('li', {'class' : 'component'}):
-    modules[module.a.text].append( dict(link = module.a['href'], 
+    modules[module.a.text].append( dict(link = 'http://yuilibrary.com' + module.a['href'], 
                                         name = module.a.text,
-                                        descr = module.a['data-tooltip'] + '<br />(This is an official module)') 
-                                 )
+                                        descr = module.a['data-tooltip'] + '<br />(This is an official module)') )
+
 # Parse the community supported gallery modules
 gallery_soup = BeautifulSoup(open('data/gallery.html'))
 for module in gallery_soup.findAll('a', href = re.compile('/gallery/show/.+')):
@@ -32,19 +32,24 @@ for module in gallery_soup.findAll('a', href = re.compile('/gallery/show/.+')):
     else:
         descr = h4.next.next + '<br />(This is a gallery module)'
 
-    modules[normalize(module.text)].append( dict(link = module['href'], 
+    modules[normalize(module.text)].append( dict(link = 'http://yuilibrary.com' + module['href'], 
                                                  descr = descr, 
                                                  name = module.text) )
 
-f = open('output.txt', 'w');
-for name, value in modules.items():
-    f.write('\t'.join([name,      
-                        '',             
-                        'http://yuilibrary.com' + value[0]['link'],            
-                        value[0]['descr'].replace('\n', '<br />'), 
-                        '',             
-                        '',             
-                        '',             
-                        ''              
-                       ]) + "\n")
-f.close()
+with open('output.txt', 'w') as f:
+    for name, value in modules.items():
+        f.write('\t'.join([
+                         name, # title
+                         'A', # type
+                         '', # redirect
+                         '', # otheruses
+                         '', # categories
+                         '', # references
+                         '', # see_also
+                         '', # further_reading
+                         '', # external_links
+                         '', # disambiguation
+                         '', # images
+                         value[0]['descr'], # abstract
+                         value[0]['link'] # source_url
+                    ]) + "\n")
