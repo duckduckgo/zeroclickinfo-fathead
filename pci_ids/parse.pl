@@ -37,18 +37,13 @@ while (<$fh>) {
     next if m/^#|^\s+$/;
     $key{length $1}->(s/^(\t{0,2})//);
 }
-my $i = 0;
 foreach my $vendor (@vendors) {
-    print ++$i . "\n";
-#    print "$vendor->{id} $vendor->{name}\n";
     $queries{$vendor->{id}} = {
         "abstract" =>"<i>Vendor</i>: $vendor->{name}",
         "category" => "<i>PCI vendor ID</i>: $vendor->{id}"
     };
     if (scalar @{$vendor->{devices}} > 0) {
         foreach my $device (@{$vendor->{devices}}) {
-#            print "$vendor->{id} $device->{id}"
-#                . "$device->{name} $vendor->{name}\n";
             $queries{"$vendor->{id} $device->{id}"} = {
                 "abstract" => "<i>Vendor</i>: $vendor->{name}<br>"
                             . "<i>Device</i>: $device->{name}",
@@ -56,11 +51,6 @@ foreach my $vendor (@vendors) {
             };
             if (scalar @{$device->{subdevices}} > 0) {
                 foreach my $subdevice (@{$device->{subdevices}}) {
-#                    print "$vendor->{id} $device->{id} "
-#                        . "$subdevice->{subvendor} "
-#                        . "$subdevice->{subdevice} "
-#                        . "$vendor->{name} $device->{name} "
-#                        . "$subdevice->{subsystem_name}\n";
                     $queries{"$vendor->{id} $device->{id}"
                             . "$subdevice->{subvendor} "
                             . "$subdevice->{subdevice}"} = {
@@ -85,7 +75,8 @@ map {
         "A",                                # type
         "",                                 # redirect
         "",                                 # otheruses
-        $queries{$_}->{category},           # categories
+        exists $queries{$_}->{category} ?
+            $queries{$_}->{category} : "",  # categories
         "",                                 # references
         "",                                 # see_also
         "",                                 # further_reading
