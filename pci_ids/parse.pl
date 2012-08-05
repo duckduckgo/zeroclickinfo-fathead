@@ -57,7 +57,7 @@ foreach my $vendor (@vendors) {
                             . "$subdevice->{subdevice}"} = {
                                 "abstract" => "<i>Subdevice/subvendor</i>: "
                                     . "$subdevice->{subsystem_name}<br>"
-                                    . "<i>Device</i>:"
+                                    . "<i>Device</i>: "
                                     . "$device->{name}<br>"
                                     . "<i>Vendor</i>: $vendor->{name}<br>",
                                 "category" => $category ? "PCI vendor ID "
