@@ -42,16 +42,16 @@ foreach my $vendor (@vendors) {
     print ++$i . "\n";
 #    print "$vendor->{id} $vendor->{name}\n";
     $queries{$vendor->{id}} = {
-        "abstract" =>"Vendor: $vendor->{name}",
-        "category" => "PCI vendor ID $vendor->{id}"
+        "abstract" =>"<i>Vendor</i>: $vendor->{name}",
+        "category" => "<i>PCI vendor ID</i>: $vendor->{id}"
     };
     if (scalar @{$vendor->{devices}} > 0) {
         foreach my $device (@{$vendor->{devices}}) {
 #            print "$vendor->{id} $device->{id}"
 #                . "$device->{name} $vendor->{name}\n";
             $queries{"$vendor->{id} $device->{id}"} = {
-                "abstract" => "Vendor: $vendor->{name}<br>"
-                            . "Device: $device->{name}",
+                "abstract" => "<i>Vendor</i>: $vendor->{name}<br>"
+                            . "<i>Device</i>: $device->{name}",
                 "category" => "PCI vendor ID $vendor->{id}"
             };
             if (scalar @{$device->{subdevices}} > 0) {
@@ -64,9 +64,10 @@ foreach my $vendor (@vendors) {
                     $queries{"$vendor->{id} $device->{id}"
                             . "$subdevice->{subvendor} "
                             . "$subdevice->{subdevice}"} = {
-                                "abstract" => "Vendor: $vendor->{name}<br>"
-                                    . "Device: $device->{name}<br>"
-                                    . "Subdevice/subvendor: "
+                                "abstract" => "<i>Vendor</i>:"
+                                    . "$vendor->{name}<br>"
+                                    . "<i>Device</i>: $device->{name}<br>"
+                                    . "<i>Subdevice/subvendor</i>: "
                                     . "$subdevice->{subsystem_name}",
                                 "category" => "PCI vendor ID "
                                              . "$vendor->{id}"
