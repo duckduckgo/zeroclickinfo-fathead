@@ -38,16 +38,17 @@ while (<$fh>) {
     $key{length $1}->(s/^(\t{0,2})//);
 }
 foreach my $vendor (@vendors) {
+    my $category = scalar @{$vendor->{devices}} > 10 ? 1 : 0;
     $queries{$vendor->{id}} = {
         "abstract" =>"<i>Vendor</i>: $vendor->{name}",
-        "category" => "<i>PCI vendor ID</i>: $vendor->{id}"
     };
     if (scalar @{$vendor->{devices}} > 0) {
         foreach my $device (@{$vendor->{devices}}) {
             $queries{"$vendor->{id} $device->{id}"} = {
                 "abstract" => "<i>Vendor</i>: $vendor->{name}<br>"
                             . "<i>Device</i>: $device->{name}",
-                "category" => "PCI vendor ID $vendor->{id}"
+                "category" => $category ? "PCI vendor ID $vendor->{id}"
+                                : ""
             };
             if (scalar @{$device->{subdevices}} > 0) {
                 foreach my $subdevice (@{$device->{subdevices}}) {
@@ -59,8 +60,8 @@ foreach my $vendor (@vendors) {
                                     . "<i>Device</i>: $device->{name}<br>"
                                     . "<i>Subdevice/subvendor</i>: "
                                     . "$subdevice->{subsystem_name}",
-                                "category" => "PCI vendor ID "
-                                             . "$vendor->{id}"
+                                "category" => $category ? "PCI vendor ID "
+                                             . "$vendor->{id}" : ""
                     };
                 }
             }
