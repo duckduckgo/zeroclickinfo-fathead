@@ -52,7 +52,7 @@ foreach my $vendor (@vendors) {
             };
             if (scalar @{$device->{subdevices}} > 0) {
                 foreach my $subdevice (@{$device->{subdevices}}) {
-                    $queries{"$vendor->{id} $device->{id}"
+                    $queries{"$vendor->{id} $device->{id} "
                             . "$subdevice->{subvendor} "
                             . "$subdevice->{subdevice}"} = {
                                 "abstract" => "<i>Subdevice/subvendor</i>: "
