@@ -72,20 +72,21 @@ foreach my $vendor (@vendors) {
 open my $output, '>', 'output.txt';
 map {
     print $output join "\t", (
-        $_,                                 # title
-        "A",                                # type
-        "",                                 # redirect
-        "",                                 # otheruses
-        exists $queries{$_}->{category} ?
-            $queries{$_}->{category} : "",  # categories
-        "",                                 # references
-        "",                                 # see_also
-        "",                                 # further_reading
-        "",                                 # external_links
-        "",                                 # disambiguation
-        "",                                 # images
-        $queries{$_}->{abstract},           # abstract
-        "http://pciids.sourceforge.net/\n"  # source_url
+        $_,                                  # title
+        "A",                                 # type
+        "",                                  # redirect
+        "",                                  # otheruses
+        "PCI IDs\\n"
+        . (exists $queries{$_}->{category} ?
+            $queries{$_}->{category} : ""),  # categories
+        "",                                  # references
+        "",                                  # see_also
+        "",                                  # further_reading
+        "",                                  # external_links
+        "",                                  # disambiguation
+        "",                                  # images
+        $queries{$_}->{abstract},            # abstract
+        "http://pciids.sourceforge.net/\n"   # source_url
     );
 } keys %queries;
 
