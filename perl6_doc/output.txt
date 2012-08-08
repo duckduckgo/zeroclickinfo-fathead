@@ -1,22 +1,3 @@
-AST	A			Perl 6 AST							<pre><code>class AST { }</code></pre>An AST or Abstract Syntax Tree is a partially processed representation of a program. ASTs are return values of the quasi quoting construct, and are typically used withing macros to generate code that is inserted in the calling location of the macro.	http://doc.perl6.org/type/AST
-AST.ACCEPTS	R	Any.ACCEPTS										
-AST.any	R	Any.any										
-AST.all	R	Any.all										
-AST.one	R	Any.one										
-AST.none	R	Any.none										
-AST.defined	R	Mu.defined										
-AST.Bool	R	Mu.Bool										
-AST.Str	R	Mu.Str										
-AST.gist	R	Mu.gist										
-AST.perl	R	Mu.perl										
-AST.clone	R	Mu.clone										
-AST.new	R	Mu.new										
-AST.bless	R	Mu.bless										
-AST.CREATE	R	Mu.CREATE										
-AST.print	R	Mu.print										
-AST.say	R	Mu.say										
-AST.ACCEPTS	R	Mu.ACCEPTS										
-AST.WHICH	R	Mu.WHICH										
 Any	A			Perl 6 Any							<pre><code>class Any is Mu { ... }</code></pre>While Mu is the root of the Perl 6 class hirarchy, Any is the class that serves as a default base class for new classes, and as the base class for most built-in classes.	http://doc.perl6.org/type/Any
 Any.ACCEPTS	A			Perl 6 Any							<pre><code>multi method ACCEPTS(Any:D: Mu $other)</code></pre>Returns True if $other === self (ie it checks object identity).	http://doc.perl6.org/type/Any#ACCEPTS
 ACCEPTS	D								*[[Any.ACCEPTS]], returns True if $other === self (ie it checks object identity).\n*[[Code.ACCEPTS]], usually calls the code object and passes $topic as an argument. \n*[[EnumMap.ACCEPTS]], used in smart-matching if the right-hand side is an EnumMap.\n*[[Mu.ACCEPTS]], performs a type check. \n*[[Numeric.ACCEPTS]], returns True if $other is numerically the same as the invocant.\n*[[Whatever.ACCEPTS]], returns True.			
@@ -172,30 +153,6 @@ Backtrace::Frame.print	R	Mu.print
 Backtrace::Frame.say	R	Mu.say										
 Backtrace::Frame.ACCEPTS	R	Mu.ACCEPTS										
 Backtrace::Frame.WHICH	R	Mu.WHICH										
-Block	A			Perl 6 Block							<pre><code>class Block is Code { }</code></pre>A Block is a code object meant for small-scale code reuse. A block is created syntactically by a list of statements enclosed in curly brackets.	http://doc.perl6.org/type/Block
-Block.ACCEPTS	R	Code.ACCEPTS										
-Block.arity	R	Code.arity										
-Block.count	R	Code.count										
-Block.signature	R	Code.signature										
-Block.Str	R	Code.Str										
-Block.ACCEPTS	R	Any.ACCEPTS										
-Block.any	R	Any.any										
-Block.all	R	Any.all										
-Block.one	R	Any.one										
-Block.none	R	Any.none										
-Block.defined	R	Mu.defined										
-Block.Bool	R	Mu.Bool										
-Block.Str	R	Mu.Str										
-Block.gist	R	Mu.gist										
-Block.perl	R	Mu.perl										
-Block.clone	R	Mu.clone										
-Block.new	R	Mu.new										
-Block.bless	R	Mu.bless										
-Block.CREATE	R	Mu.CREATE										
-Block.print	R	Mu.print										
-Block.say	R	Mu.say										
-Block.ACCEPTS	R	Mu.ACCEPTS										
-Block.WHICH	R	Mu.WHICH										
 Bool	A			Perl 6 Bool							<pre><code>enum Bool &lt;False True&gt;</code></pre>An enum for boolean true/false decisions	http://doc.perl6.org/type/Bool
 Bool.prefix:&lt;?&gt;	A			Perl 6 Bool							<pre><code>multi sub prefix:&lt;?&gt;(Mu) returns Bool:D</code></pre>Coerces its argument to Bool.	http://doc.perl6.org/type/Bool#prefix%3A%3C%3F%3E
 prefix:&lt;?&gt;	R	Bool.prefix:&lt;?&gt;										
@@ -844,6 +801,25 @@ Numeric.Bool	A			Perl 6 Numeric							<pre><code>multi method Bool(Numeric:D:)</
 Numeric.succ	A			Perl 6 Numeric							<pre><code>method succ(Numerid:D:)</code></pre>Returns the number incremented by one (successor).	http://doc.perl6.org/type/Numeric#succ
 Numeric.pred	A			Perl 6 Numeric							<pre><code>method pred(Numerid:D:)</code></pre>Returns the number decremented by one (predecessor).	http://doc.perl6.org/type/Numeric#pred
 pred	D								*[[Numeric.pred]], returns the number decremented by one (predecessor).\n*[[Str.pred]], returns the string decremented by one.			
+ObjAt	A			Perl 6 ObjAt							<pre><code>class ObjAt { }</code></pre>Objects of type ObjAt are the return value of .WHICH calls on other objects, and identify an object uniquely.	http://doc.perl6.org/type/ObjAt
+ObjAt.ACCEPTS	R	Any.ACCEPTS										
+ObjAt.any	R	Any.any										
+ObjAt.all	R	Any.all										
+ObjAt.one	R	Any.one										
+ObjAt.none	R	Any.none										
+ObjAt.defined	R	Mu.defined										
+ObjAt.Bool	R	Mu.Bool										
+ObjAt.Str	R	Mu.Str										
+ObjAt.gist	R	Mu.gist										
+ObjAt.perl	R	Mu.perl										
+ObjAt.clone	R	Mu.clone										
+ObjAt.new	R	Mu.new										
+ObjAt.bless	R	Mu.bless										
+ObjAt.CREATE	R	Mu.CREATE										
+ObjAt.print	R	Mu.print										
+ObjAt.say	R	Mu.say										
+ObjAt.ACCEPTS	R	Mu.ACCEPTS										
+ObjAt.WHICH	R	Mu.WHICH										
 Pair	A			Perl 6 Pair							<pre><code>class Pair is Enum { ... }</code></pre>Consists of two parts, a key and a value. Pairs can be seen as the atomic units in Hashes, and they are also used in conjunction with named arguments and parameters.	http://doc.perl6.org/type/Pair
 Pair.value	A			Perl 6 Pair							<pre><code>multi method value(Pair:D:) is rw</code></pre>Returns the value part of the Pair.	http://doc.perl6.org/type/Pair#value
 Pair.cmp	A			Perl 6 Pair							<pre><code>multi sub infix:&lt;cmp&gt;(Pair:D, Pair:D)</code></pre>The type-agnostic comparator; compares two Pairs. Compares first their key parts, and then compares the value parts if the keys are equal.	http://doc.perl6.org/type/Pair#cmp
@@ -1053,40 +1029,6 @@ Real.conj	R	Numeric.conj
 Real.Bool	R	Numeric.Bool										
 Real.succ	R	Numeric.succ										
 Real.pred	R	Numeric.pred										
-Routine	A			Perl 6 Routine							<pre><code>class Routine is Block { }</code></pre>A Routine is a code object meant for larger unities of code than Block. Routine is the common superclass for Sub and Method, the two primary code objects for code reuse.	http://doc.perl6.org/type/Routine
-Routine.multi	A			Perl 6 Routine							<pre><code>method multi(Routine:D:) returns Bool:D</code></pre>Returns True if the routine is a multi sub or method.	http://doc.perl6.org/type/Routine#multi
-multi	R	Routine.multi										
-Routine.candidates	A			Perl 6 Routine							<pre><code>method candidates(Routine:D:) returns Positional:D</code></pre>Returns a list of multi candidates, or a one-element list with itself if it's not a multi	http://doc.perl6.org/type/Routine#candidates
-candidates	R	Routine.candidates										
-Routine.wrap	A			Perl 6 Routine							<pre><code>method wrap(Routine:D: &amp;wrapper)</code></pre>Wraps (ie in-place modifies) the routine. That means a call to this routine first calls &amp;wrapper, which then can (but doesn't have to) call the original routine with the callsame, callwith, nextsame and nextwith dispatchers. The return value from the routine is also the return value from the wrapper.	http://doc.perl6.org/type/Routine#wrap
-wrap	R	Routine.wrap										
-Routine.unwrap	A			Perl 6 Routine							<pre><code>method unwrap(Routine:D: $wraphandler)</code></pre>Restores the original routine after it has been wrapped with wrap.	http://doc.perl6.org/type/Routine#unwrap
-unwrap	R	Routine.unwrap										
-Routine.yada	A			Perl 6 Routine							<pre><code>method yada(Routine:D:) returns Bool:D</code></pre>Returns True if the routine is a stub	http://doc.perl6.org/type/Routine#yada
-yada	R	Routine.yada										
-Routine.ACCEPTS	R	Code.ACCEPTS										
-Routine.arity	R	Code.arity										
-Routine.count	R	Code.count										
-Routine.signature	R	Code.signature										
-Routine.Str	R	Code.Str										
-Routine.ACCEPTS	R	Any.ACCEPTS										
-Routine.any	R	Any.any										
-Routine.all	R	Any.all										
-Routine.one	R	Any.one										
-Routine.none	R	Any.none										
-Routine.defined	R	Mu.defined										
-Routine.Bool	R	Mu.Bool										
-Routine.Str	R	Mu.Str										
-Routine.gist	R	Mu.gist										
-Routine.perl	R	Mu.perl										
-Routine.clone	R	Mu.clone										
-Routine.new	R	Mu.new										
-Routine.bless	R	Mu.bless										
-Routine.CREATE	R	Mu.CREATE										
-Routine.print	R	Mu.print										
-Routine.say	R	Mu.say										
-Routine.ACCEPTS	R	Mu.ACCEPTS										
-Routine.WHICH	R	Mu.WHICH										
 Signature	A			Perl 6 Signature							<pre><code>class Signature { ... }</code></pre>A signature is a static description of the parameter list of a code object. That is, it describes what and how many arguments you need to pass to it for invocation.	http://doc.perl6.org/type/Signature
 Signature.params	A			Perl 6 Signature							<pre><code>method params(Signature:D:) returns Positional</code></pre>Returns the list of Parameter objects that make up the signature.	http://doc.perl6.org/type/Signature#params
 params	R	Signature.params										
@@ -1308,53 +1250,3 @@ X::Comp.print	R	Mu.print
 X::Comp.say	R	Mu.say										
 X::Comp.ACCEPTS	R	Mu.ACCEPTS										
 X::Comp.WHICH	R	Mu.WHICH										
-X::Syntax	A			Perl 6 X::Syntax							<pre><code>role X::Syntax does X::Comp { }</code></pre>Common role for syntax errors thrown by the compiler.	http://doc.perl6.org/type/X%3A%3ASyntax
-X::Syntax.message	R	Exception.message										
-X::Syntax.backtrace	R	Exception.backtrace										
-X::Syntax.throw	R	Exception.throw										
-X::Syntax.rethrow	R	Exception.rethrow										
-X::Syntax.fail	R	Exception.fail										
-X::Syntax.gist	R	Exception.gist										
-X::Syntax.ACCEPTS	R	Any.ACCEPTS										
-X::Syntax.any	R	Any.any										
-X::Syntax.all	R	Any.all										
-X::Syntax.one	R	Any.one										
-X::Syntax.none	R	Any.none										
-X::Syntax.defined	R	Mu.defined										
-X::Syntax.Bool	R	Mu.Bool										
-X::Syntax.Str	R	Mu.Str										
-X::Syntax.gist	R	Mu.gist										
-X::Syntax.perl	R	Mu.perl										
-X::Syntax.clone	R	Mu.clone										
-X::Syntax.new	R	Mu.new										
-X::Syntax.bless	R	Mu.bless										
-X::Syntax.CREATE	R	Mu.CREATE										
-X::Syntax.print	R	Mu.print										
-X::Syntax.say	R	Mu.say										
-X::Syntax.ACCEPTS	R	Mu.ACCEPTS										
-X::Syntax.WHICH	R	Mu.WHICH										
-X::Syntax::NegatedPair	A			Perl 6 X::Syntax::NegatedPair							<pre><code>class X::Syntax::NegatedPair does X::Syntax { }</code></pre>Thrown if a colonpair illegally has a value, for example :!a(1). This is an error because the ! negation implies that the value is False.	http://doc.perl6.org/type/X%3A%3ASyntax%3A%3ANegatedPair
-X::Syntax::NegatedPair.message	R	Exception.message										
-X::Syntax::NegatedPair.backtrace	R	Exception.backtrace										
-X::Syntax::NegatedPair.throw	R	Exception.throw										
-X::Syntax::NegatedPair.rethrow	R	Exception.rethrow										
-X::Syntax::NegatedPair.fail	R	Exception.fail										
-X::Syntax::NegatedPair.gist	R	Exception.gist										
-X::Syntax::NegatedPair.ACCEPTS	R	Any.ACCEPTS										
-X::Syntax::NegatedPair.any	R	Any.any										
-X::Syntax::NegatedPair.all	R	Any.all										
-X::Syntax::NegatedPair.one	R	Any.one										
-X::Syntax::NegatedPair.none	R	Any.none										
-X::Syntax::NegatedPair.defined	R	Mu.defined										
-X::Syntax::NegatedPair.Bool	R	Mu.Bool										
-X::Syntax::NegatedPair.Str	R	Mu.Str										
-X::Syntax::NegatedPair.gist	R	Mu.gist										
-X::Syntax::NegatedPair.perl	R	Mu.perl										
-X::Syntax::NegatedPair.clone	R	Mu.clone										
-X::Syntax::NegatedPair.new	R	Mu.new										
-X::Syntax::NegatedPair.bless	R	Mu.bless										
-X::Syntax::NegatedPair.CREATE	R	Mu.CREATE										
-X::Syntax::NegatedPair.print	R	Mu.print										
-X::Syntax::NegatedPair.say	R	Mu.say										
-X::Syntax::NegatedPair.ACCEPTS	R	Mu.ACCEPTS										
-X::Syntax::NegatedPair.WHICH	R	Mu.WHICH										
