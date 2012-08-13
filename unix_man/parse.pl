@@ -1,119 +1,76 @@
-#!/usr/bin/env perl
+#!/usr/bin/env perl -w
 use Cwd qw(chdir);
 
-
-# for each man page file, grab Name and Synopsis if possible
+# for each man page file, grab Name, and Synopsis if possible
 
 use encoding "utf8";
 chdir downloads;
 @cmdlist = `ls`;
 
+sub parse_name {
 
-foreach $item (@cmdlist) 
+	$string = $_[0];
+	$string =~ s/<[a-zA-Z]*>//g;
+	$string =~ s/<\/[a-zA-Z]*>//g;	
+	$string =~ s/[\s]+[-]+[\s]+/\t/g;	
+	$string =~ s/[\s\t]*$//g;
+	return $string;
+}
+sub parse_syn {
+	$string = $_[0];
+	$string =~ s/[\n\t]//g;
+	$string =~ s/<[a-zA-Z\s"'!-]*>//g;
+	$string =~ s/<[0-9a-zA-Z:_"=\/-;\s!.]*>//g;
+	$string =~ s/<[!a-zA-Z_=";0-9.\/:\s-]*//g;
+	$string =~ s/[a-zA-Z_=";0-9.\/:\s-]*>//g;
+	$string =~ s/<\/[a-z]*>//g;	
+	$string =~ s/[\s\t]*$//g;
+	$string =~ s/google.*//g; # brute forcing google ads....
+	return $string;
+}
+# for each HTML manpage in downloads/
+foreach $cmd (@cmdlist) 
 {
-	my $data_file = $item;
-	open DATA, "$data_file" or die "can't open $data_file $!";
-	# print the name. if there's a synopsis, print that too. stop at the next <h2> 
-	while ($line = <DATA>)
+	open MANPAGE, "$cmd" or die "Cannot open file: $cmd";
+	# print the Name section of each manpage. 
+	# if there's a Synopsis, print that too. stop at the next <h2>, or bail if the synopsis is too long. (max 5 lines) 
+	# I imposed the 5 line limit for the Synopsis because some commands have a REALLY long one, 
+	# and it wouldn't be suitable for a fathead plugin.
+
+	# For each line in the manpage,
+	while ($line = <MANPAGE>)
 	{
+		# If you find the name section...
 		if ($line =~ m/<h2>Name/) {
-			$nextline = <DATA>;
-			if (!($nextline =~ /^[\s]*$/)) {
-				$nextline =~ s/<[a-zA-Z]*>//g;
-				$nextline =~ s/<\/[a-zA-Z]*>//g;	
-				$nextline =~ s/[\s]+[-]+[\s]+/\t/g;	
-				$name = $nextline;
-			} else {
-				while ($nextline =~ /^[\s]*$/) {
-					$nextline = <DATA>;
+			$nextline = <MANPAGE>;
+			if ($nextline =~ /^[\s]*$/) {
+				while ($nextline =~ /^[\s\t]*$/) { # skip the blank lines.
+					$nextline = <MANPAGE>;
 				}
-				$nextline =~ s/<[a-z]*>//g;
-				$nextline =~ s/<\/[a-z]*>//g;	
-				$nextline =~ s/[\s]+[-]+[\s]+/\t/g;	
-				$name = $nextline;
-			}	       
+			}
+				$name = &parse_name($nextline);
 		}
 
+		# Continuing with the same manpage, If you find the Synopsis section....
 		if ($line =~ m/<h2>Synopsis/) {
-			$nextline = <DATA>;
-			if (!($nextline =~ /^[\s]*$/)) {
-				chomp($nextline);
-				$nextline =~ s/[\n\t]//g;
-				$nextline =~ s/<[a-zA-Z\s"'!-]*>//g;
-				$nextline =~ s/<[0-9a-zA-Z:_"=\/-;\s!.]*>//g;
-				$nextline =~ s/<[!a-zA-Z_=";0-9.\/:\s-]*//g;
-				$nextline =~ s/[a-zA-Z_=";0-9.\/:\s-]*>//g;
-				$nextline =~ s/<\/[a-z]*>//g;	
-				$nextline =~ s/google.*//g;
-				@synopsis = ($nextline);
-				$nextline = <DATA>;
-				$max = 0;
-				while (!($nextline =~ m/<h2>/)) {
-					last if ($max > 5);
-					chomp($nextline);
-					$nextline =~ s/[\t\n]//g;
-					$nextline =~ s/<[a-z]*>//g;
-					$nextline =~ s/<[0-9a-zA-Z:_"=\/-;\s!.]*>//g;
-					$nextline =~ s/<[!a-zA-Z_=";0-9.\/:\s-]*//g;
-					$nextline =~ s/[a-zA-Z_=";0-9.\/:\s-]*>//g;
-					$nextline =~ s/google.*//g;
-					$nextline =~ s/<\/[a-z]*>//g;	
-					push(@synopsis, $nextline);
-					$nextline = <DATA>;
-					$max++;
-					
+			$nextline = <MANPAGE>;
+			$max = 0;
+			if ($nextline =~ m/^[\s]*$/) {
+				while ($nextline =~ m/^[\s\t]*$/) {
+					$nextline = <MANPAGE>;
 				}
-			} else {
-				while ($nextline =~ /^[\s\t]*$/) {
-					$nextline = <DATA>;
-				}
-				chomp($newline);
-				$nextline =~ s/[\t\n]//g;
-				$nextline =~ s/<[a-zA-Z\s"'!-\/_;=`]*>//g;
-				$nextline =~ s/<[0-9a-zA-Z:_"=\/-;\s!.]*>//g;
-				$nextline =~ s/<[!a-zA-Z_=";0-9.\/:\s-]*//g;
-				$nextline =~ s/[a-zA-Z_=";0-9.\/:\s-]*>//g;
-				$nextline =~ s/<\/[a-zA-Z]*>//g;	
-				$nextline =~ s/google.*//g;
-				@synopsis = ($nextline);
-				$nextline = <DATA>;
-				$max = 0;
+			}
+				my @synopsis;
 				while (!($nextline =~ m/<h[2-3]>/)) {
 					last if ($max > 5);
-					chomp($nexline);
-					$nextline =~ s/<[a-z]*>//g;
-					$nextline =~ s/[\n\t]//g;
-					$nextline =~ s/<[0-9a-zA-Z:_"=\/-;\s!.]*>//g;
-					$nextline =~ s/<[!a-zA-Z_=";0-9.\/:\s-]*//g;
-					$nextline =~ s/[a-zA-Z_=";0-9.\/:\s-]*>//g;
-					$nextline =~ s/<\/[a-z]*>//g;	
-					$nextline =~ s/google.*//g;
-					push(@synopsis, $nextline);
-					$nextline = <DATA>;
+					push(@synopsis, &parse_syn($nextline));
+					$nextline = <MANPAGE>;
 					$max++;
-					
 				}
-				
-			} 
-		}
-			
-	}
-	chomp($name);
-	$name =~ s/^[\s\t\n]+//g;
-	$name =~ s/[\s\t\n]+$//g;
-	#for ($i = 0; $i < $#synopsis + 1; $i++) {	
-	#	if (@synopsis[$i] =~ m/^[\s\t]*$/) {
-	#		splice(@synopsis,$i,1);
-	#		$i = $i - 1;
-	#	}
-	#	if (@synopsis[$i] =~ m/^$/) {
-	#		splice(@synopsis,$i,1);
-	#		$i = $i - 1;
-	#	}
-	#}
-	chomp(@synopsis);
-	print "$name\t@synopsis\n";
-}
 
-close (DATA);
+			} 
+	}
+	print "$name\t@synopsis\n";
+	close (MANPAGE);
+}
 exit 0;
