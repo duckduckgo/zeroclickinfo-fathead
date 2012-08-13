@@ -6,24 +6,26 @@ chdir downloads;
 @cmdlist = `ls`; 
 
 sub parse_name {
-	$string = $_[0];
-	$string =~ s/<[a-zA-Z]*>//g;
-	$string =~ s/<\/[a-zA-Z]*>//g;	
-	$string =~ s/[\s]+[-]+[\s]+/\t/g;	
-	$string =~ s/[\s\t]*$//g;
-	return $string;
+	for ($str = $_[0]) { 
+		s/<[a-zA-Z]*>//g;
+		s/<\/[a-zA-Z]*>//g;	
+		s/[\s]+[-]+[\s]+/\t/g;	
+		s/[\s\t]*$//g;
+	}
+	return $str;
 }
 sub parse_syn {
-	$string = $_[0];
-	$string =~ s/[\n\t]//g;
-	$string =~ s/<[a-zA-Z\s"'!-]*>//g;
-	$string =~ s/<[0-9a-zA-Z:_"=\/-;\s!.]*>//g;
-	$string =~ s/<[!a-zA-Z_=";0-9.\/:\s-]*//g;
-	$string =~ s/[a-zA-Z_=";0-9.\/:\s-]*>//g;
-	$string =~ s/<\/[a-z]*>//g;	
-	$string =~ s/[\s\t]*$//g;
-	$string =~ s/google.*//g; # brute forcing google ads....
-	return $string;
+	for ($str = $_[0]) {
+		s/[\n\t]//g;
+		s/<[a-zA-Z\s"'!-]*>//g;
+		s/<[0-9a-zA-Z:_"=\/-;\s!.]*>//g;
+		s/<[!a-zA-Z_=";0-9.\/:\s-]*//g;
+		s/[a-zA-Z_=";0-9.\/:\s-]*>//g;
+		s/<\/[a-z]*>//g;	
+		s/[\s\t]*$//g;
+		s/google.*//g; # brute forcing google ads....
+	}
+	return $str;
 }
 # for each HTML manpage in downloads/
 foreach $cmd (@cmdlist) 
@@ -50,21 +52,25 @@ foreach $cmd (@cmdlist)
 
 		# Continuing with the same manpage, If you find the Synopsis section....
 		if ($line =~ m/<h2>Synopsis/) {
-			$nextline = <MANPAGE>;
 			$max = 0;
-			if ($nextline =~ m/^[\s]*$/) {
-				while ($nextline =~ m/^[\s\t]*$/) {
+			if ($nextline =~ m/^[\s\t]*$/ || $nextline =~ m/^$/) {
+				while ($nextline =~ m/^[\s\t]*$/ || $nextline =~ m/^$/) {
 					$nextline = <MANPAGE>;
 				}
 			}
-				@synopsis = (&parse_syn($nextline)); # "initialize" array
+			@synopsis = ();
 				while (!($nextline =~ m/<h[2-3]>/)) {
 					last if ($max > 5);
-					push(@synopsis, &parse_syn($nextline));
+					$nextline = &parse_syn($nextline);
+					if ($nextline =~ m/^[\s\t]*$/) {
+						next;
+					}
+					push(@synopsis, $nextline);
 					$nextline = <MANPAGE>;
 					$max++;
+				} continue {
+					$nextline = <MANPAGE>;
 				}
-
 			} 
 	}
 	print "$name\t@synopsis\n";
