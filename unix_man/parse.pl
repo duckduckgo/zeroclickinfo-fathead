@@ -1,14 +1,11 @@
-#!/usr/bin/env perl -w
-use Cwd qw(chdir);
-
-# for each man page file, grab Name, and Synopsis if possible
-
+#!/usr/bin/env perl 
 use encoding "utf8";
+use Cwd qw(chdir);
+# for each man page file, grab Name, and Synopsis if possible
 chdir downloads;
-@cmdlist = `ls`;
+@cmdlist = `ls`; 
 
 sub parse_name {
-
 	$string = $_[0];
 	$string =~ s/<[a-zA-Z]*>//g;
 	$string =~ s/<\/[a-zA-Z]*>//g;	
@@ -60,7 +57,7 @@ foreach $cmd (@cmdlist)
 					$nextline = <MANPAGE>;
 				}
 			}
-				my @synopsis;
+				@synopsis = (&parse_syn($nextline)); # "initialize" array
 				while (!($nextline =~ m/<h[2-3]>/)) {
 					last if ($max > 5);
 					push(@synopsis, &parse_syn($nextline));
