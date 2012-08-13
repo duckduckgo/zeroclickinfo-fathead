@@ -15,4 +15,4 @@ cd download
 # However their robots.txt they allow DuckDuckGo to crawl the site so the -e robots=off option could probably be taken off.
 # consider --header="accept-encoding: gzip" for compression, I couldn't test it because 
 # linux.die.net only allows certain agents to crawl their site
-wget -e robots=off --reject html,css,png,ico,gif,style --wait 2 -nd -r http://linux.die.net/man/ 
+wget -e robots=off --reject html,css,png,ico,gif,style --wait 3 -nH -r http://linux.die.net/man/ 
