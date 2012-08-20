@@ -14,12 +14,15 @@ def normalize(string):
     '''
     return re.sub('( ?\(.*\)$|YUI\ ?[2-3]?[ -]?)', '', string)
 
+def get_descr_string(type, descr):
+    return '''<b>Type:</b> %s<br /><b>Description:</b> %s''' %(type, re.sub('(\n|\r)', '<br />', descr))
+
 # Parse the official modules
 official_soup = BeautifulSoup(open('data/official.html'))
 for module in official_soup.findAll('li', {'class' : 'component'}):
-    modules[module.a.text].append( dict(link = 'http://yuilibrary.com' + module.a['href'], 
-                                        name = module.a.text,
-                                        descr = module.a['data-tooltip'] + '<br />(This is an official module)') )
+    modules[module.a.text].append(dict(link = 'http://yuilibrary.com' + module.a['href'], 
+                                       name = module.a.text,
+                                       descr = get_descr_string('Official', module.a['data-tooltip'])))
 
 # Parse the community supported gallery modules
 gallery_soup = BeautifulSoup(open('data/gallery.html'))
@@ -28,13 +31,13 @@ for module in gallery_soup.findAll('a', href = re.compile('/gallery/show/.+')):
         continue
     h4 = module.findNext('h4')
     if h4.span:
-        descr = h4.span.next.next + '<br />(This is a gallery module, available on CDN)'
+        descr = get_descr_string('Gallery, available on CDN', h4.span.next.next)
     else:
-        descr = h4.next.next + '<br />(This is a gallery module)'
+        descr = get_descr_string('Gallery', h4.next.next)
 
-    modules[normalize(module.text)].append( dict(link = 'http://yuilibrary.com' + module['href'], 
+    modules[normalize(module.text)].append(dict(link = 'http://yuilibrary.com' + module['href'], 
                                                  descr = descr, 
-                                                 name = module.text) )
+                                                 name = module.text))
 
 with open('output.txt', 'w') as f:
     for name, value in modules.items():
