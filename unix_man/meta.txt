@@ -1,10 +1,10 @@
 # This is the name of the source as people would refer to it,
 # e.g. Wikipedia or PerlDoc -- gets displayed on Web site.
-Name: linux.die.net
+Name: LinuxCommand.org 
 
 # This is the base domain where the source pages are located.
 # Get used to get the favicon.
-Domain: http://linux.die.net/man
+Domain: http://www.linuxcommand.org/
 
 # This is what gets put in quotes next to the source
 # It can be blank if it is a source with completely 

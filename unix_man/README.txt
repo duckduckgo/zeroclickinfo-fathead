@@ -1,7 +1,6 @@
 UNIX man-page fathead plugin for DuckDuckGo.
 
-This plugin generates a brief description about UNIX commands, such as ls. 
-Source: http://linux.die.net/
+Source: http://www.linuxcommand.org/
 
 Dependencies: 
 ----------------
