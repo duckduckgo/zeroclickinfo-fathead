@@ -1,9 +1,6 @@
 #!/bin/bash 
 
-
-# fetch from first source, linuxcommand.org
 wget -rqP download --reject php,images,jpg,js,css,png,ico,gif,style --wait 1 -nH -nd http://linuxcommand.org/smp_{a..z}.php
-
 
 # just in case a second source is needed in the future, tldp.org
 #wget --wait 1 -nH -nd -r http://www.tldp.org/manpages/man-html/man-html-20070604.tar.bz2 
