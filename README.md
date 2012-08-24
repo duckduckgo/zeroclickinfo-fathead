@@ -182,36 +182,13 @@ There is a pre-process script that is run on this output, which:
 * makes sure the $abstract ends in a sentence.
 
 
-### Programming data file format
+#### Code blocks
 
-For programming references in particular, the fields are a bit different because we like to show code blocks and do some additional transformations to make finding the documentation a bit easier.
+If you want to include a code snippet or another pre-formatted example in the
+abstract, like the [perl](https://duckduckgo.com/?q=perl+open) Fathead, wrap
+the code block like this:
 
-```perl
-# REQURIED: this is the name of the function.
-my $page = $line[0] || '';
-
-# Usually blank unless for something like JavaScript
-my $namespace = $line[1] || '';
-
-# REQUIRED: this is the target URL for more information.
-my $url = $line[2] || '';
-
-# SOME COMBO OF THESE IS REQUIRED.
-# Look at https://duckduckgo.com/?q=perl+split
-# The part in grey is the $synopsis and the stuff below is the $description
-my $description = $line[3] || '';
-my $synopsis = $line[4] || '';
-my $details = $line[5] || '';
-
-# usually blank
-my $type = $line[6] || '';
-
-# usually blank
-my $lang = $line[7] || '';
-```
-
-Our programming reference parser then translates the above into the general format by compressing a lot of the fields into the $abstract field in various ways, e.g. synopsis gets put in a code block.
-
+`<pre><code>code block goes here</code></pre>`
 
 ### Notes
 
