@@ -15,7 +15,7 @@ def normalize(string):
     return re.sub('( ?\(.*\)$|YUI\ ?[2-3]?[ -]?)', '', string)
 
 def get_descr_string(type, descr):
-    return '''<b>Type:</b> %s<br /><b>Description:</b> %s''' %(type, re.sub('(\n|\r)', '<br />', descr))
+    return '''<i>Type</i>: %s<br /><i>Description</i>: %s''' %(type, re.sub('(\n|\r)', '<br />', descr))
 
 # Parse the official modules
 official_soup = BeautifulSoup(open('data/official.html'))
