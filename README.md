@@ -188,7 +188,9 @@ If you want to include a code snippet or another pre-formatted example in the
 abstract, like the [perl](https://duckduckgo.com/?q=perl+open) Fathead, wrap
 the code block like this:
 
-`<pre><code>code block goes here</code></pre>`
+```html
+<pre><code>code block goes here</code></pre>
+```
 
 ### Notes
 
