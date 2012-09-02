@@ -60,7 +60,7 @@ foreach my $page (@cmdlist)
 	my $url="http://linuxcommand.org/man_pages/$page".$section.'.html';
 	# If output is borked somehow and you need it in unicode, uncomment the next line.
 	# binmode(STDOUT, ":utf8");
-	print "$page\tA\t\t\t\t\t\t\t\t\t\t$description <pre>@synopsis</pre>\t$url\n";
+	print "$page\tA\t\t\t\t\t\t\t\t\t\t<pre><code>@synopsis</code></pre>$description\t$url\n";
 	# print "$page\t\t$url\t$description\t@synopsis\t\t\t\n";
 	close (MANPAGE);
 }
