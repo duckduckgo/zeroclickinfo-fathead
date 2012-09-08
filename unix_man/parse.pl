@@ -1,6 +1,7 @@
 #!/usr/bin/env perl 
 use strict;
 use warnings;
+use encoding 'UTF-8';
 # for each man page file, grab Name, and Synopsis if possible
 
 sub strip {
@@ -41,7 +42,7 @@ foreach my $page (@cmdlist)
 		# Continuing with the same manpage, If you find the Synopsis section....
 		if ($line =~ m/<h2>Synopsis/i) {
 			$nextline = <MANPAGE>;
-			while (!($nextline =~ m/<h2>/i)) {
+			while (!($nextline =~ m/<h2>/i) && !($nextline =~ m/^[\s\t]+$/) && !($nextline =~ m/^$/)) {
 				last if ($max > 8);
 				$nextline = &strip($nextline);
 				if ($nextline =~ /^[\s\t]*$/ || $nextline =~ /^$/) {
@@ -60,7 +61,14 @@ foreach my $page (@cmdlist)
 	my $url="http://linuxcommand.org/man_pages/$page".$section.'.html';
 	# If output is borked somehow and you need it in unicode, uncomment the next line.
 	# binmode(STDOUT, ":utf8");
+<<<<<<< HEAD
 	print "$page\tA\t\t\t\t\t\t\t\t\t\t<pre><code>@synopsis</code></pre>$description\t$url\n";
+=======
+	print "$page\tA\t\t\t\t\t\t\t\t\t\t";
+	print "<pre><code>@synopsis</code></pre>" if (@synopsis);
+	print "$page($section) is a Bash built-in.<br />" if ($description =~ m/^bash,/);
+	print "$description\t$url\n";
+>>>>>>> fixing encoding and synopsis issue
 	# print "$page\t\t$url\t$description\t@synopsis\t\t\t\n";
 	close (MANPAGE);
 }
