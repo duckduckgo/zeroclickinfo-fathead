@@ -65,7 +65,7 @@ foreach my $page (@cmdlist)
 			}
 				while (!($nextline =~ m/<h2>/i) && !($nextline =~ m/^[\s\t]+$/) && !($nextline =~ m/^$/)) {
 				$description .= &strip($nextline);
-				$nextline = <MANPAGE>;
+				last if !($nextline = <MANPAGE>);
 				}
 		}
 		# Continuing with the same manpage, If you find the Synopsis section....
