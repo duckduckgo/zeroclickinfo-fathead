@@ -63,7 +63,10 @@ foreach my $page (@cmdlist)
 			while ($nextline =~ /^[\s\t]*$/ || $nextline =~ /^$/) { # skip the blank lines.
 				$nextline = <MANPAGE>;
 			}
-			$description = &strip($nextline);
+				while (!($nextline =~ m/<h2>/i) && !($nextline =~ m/^[\s\t]+$/) && !($nextline =~ m/^$/)) {
+				$description .= &strip($nextline);
+				$nextline = <MANPAGE>;
+				}
 		}
 		# Continuing with the same manpage, If you find the Synopsis section....
 		if ($line =~ m/<h2>Synopsis/i || $line =~ m/SYNOPSIS/) {
