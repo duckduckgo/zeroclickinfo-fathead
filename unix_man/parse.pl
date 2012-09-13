@@ -96,21 +96,12 @@ foreach my $page (@cmdlist)
 	my $url="http://linuxcommand.org/man_pages/$page".$section.'.html';
 	# If output is borked somehow and you need it in unicode, uncomment the next line.
 	# binmode(STDOUT, ":utf8");
-<<<<<<< HEAD
-	print "$page\tA\t\t\t\t\t\t\t\t\t\t<pre><code>@synopsis</code></pre>$description\t$url\n";
-=======
 	print "$page\tA\t\t\t\t\t\t\t\t\t\t";
 	print "<pre><code>@synopsis</code></pre>" if (@synopsis);
-<<<<<<< HEAD
-	print "$page($section) is a Bash built-in.<br />" if ($description =~ m/^bash,/);
-	print "$description\t$url\n";
->>>>>>> fixing encoding and synopsis issue
 	# print "$page\t\t$url\t$description\t@synopsis\t\t\t\n";
-=======
 	print "$page($section) is a Bash built-in.<br />" if ($description =~ m/^bash,/); 
 	print "$description\t" if ($description);
 	print "$url\n";
->>>>>>> separate parsing for bash built-ins
 	close (MANPAGE);
 }
 exit 0;
