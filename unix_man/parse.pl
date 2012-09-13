@@ -14,7 +14,11 @@ sub strip {
 	return $_[0];
 }
 
+<<<<<<< HEAD
 my @builtins = ( 'alias', 'bg', 'bind','break', 'builtin', 'cd', 'command', 'compgen', 'complete', 'continue', 'declare','dirs', 'disown', 'enable', 'eval', 'exec', 'exit', 'export', 'fc', 'getopts', 'hash', 'help', 'history', 'jobs', 'let', 'local', 'local', 'logout', 'popd', 'pushd', 'read', 'readonly', 'return', 'set', 'shift', 'shopt', 'source', 'suspend', 'times', 'trap', 'type', 'typeset', 'ulimit', 'umask', 'unalias', 'unset', 'wait', 'fg' );
+=======
+my @builtins = ( 'alias', 'bg', 'bind','break', 'builtin', 'cd', 'command', 'compgen', 'complete', 'continue', 'declare','dirs', 'disown', 'enable', 'eval', 'exec', 'exit', 'export', 'fc', 'getopts', 'hash', 'help', 'history', 'jobs', 'let', 'local', 'local', 'logout', 'popd', 'pushd', 'read', 'readonly', 'return', 'set', 'shift', 'shopt', 'source', 'suspend', 'times', 'trap', 'type', 'typeset', 'ulimit', 'umask', 'unalias', 'unset', 'wait', 'fg' ); 
+>>>>>>> 40f44fd346986606a19746a5f45082ada140fbe2
 my %builtins;
 foreach (@builtins) {
 	$builtins{$_} = 1;
@@ -98,7 +102,10 @@ foreach my $page (@cmdlist)
 	# binmode(STDOUT, ":utf8");
 	print "$page\tA\t\t\t\t\t\t\t\t\t\t";
 	print "<pre><code>@synopsis</code></pre>" if (@synopsis);
+<<<<<<< HEAD
 	# print "$page\t\t$url\t$description\t@synopsis\t\t\t\n";
+=======
+>>>>>>> 40f44fd346986606a19746a5f45082ada140fbe2
 	print "$page($section) is a Bash built-in.<br />" if ($description =~ m/^bash,/); 
 	print "$description\t" if ($description);
 	print "$url\n";
