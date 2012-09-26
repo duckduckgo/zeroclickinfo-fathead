@@ -1,7 +1,8 @@
 #!/usr/bin/env perl 
 use strict;
 use warnings;
-use encoding 'UTF-8';
+use encoding 'utf8';
+use Encode;
 # for each man page file, grab Name, and Synopsis if possible
 
 sub strip {
@@ -34,7 +35,7 @@ foreach my $page (@cmdlist)
 	$page =~ s/[0-9][.]html//;
 	$section =~ s/[a-z0-9A-Z]*([0-9])[.]html/$1/;
 	if (exists $builtins{$page})	{
-		while ($line = <MANPAGE>) {
+		while ($line = encode('utf8', <MANPAGE>)) {
 			if ($line =~ m/^[\s]*<B>$page/ && ($line =~ m/.*\[+/ || $line =~ m/<I>/) ) {
 				$line =~ s/^[\s\t]+//;
 				chomp($line);
@@ -95,7 +96,7 @@ foreach my $page (@cmdlist)
 	$synopsis[-1] =~ s/<br \/>//g if @synopsis >= 1;
 	my $url="http://linuxcommand.org/man_pages/$page".$section.'.html';
 	# If output is borked somehow and you need it in unicode, uncomment the next line.
-	# binmode(STDOUT, ":utf8");
+	binmode(STDOUT, ":utf8");
 	print "$page\tA\t\t\t\t\t\t\t\t\t\t";
 	print "<pre><code>@synopsis</code></pre>" if (@synopsis);
 	# print "$page\t\t$url\t$description\t@synopsis\t\t\t\n";
