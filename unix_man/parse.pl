@@ -11,7 +11,7 @@ sub strip {
 	return $line; 
 }
 
-my @builtins = qw( alias bg bindbreak builtin cd command compgen complete continue declaredirs disown enable eval exec exit export fc getopts hash help history jobs let local local logout popd pushd read readonly return set shift shopt source suspend times trap type typeset ulimit umask unalias unset wait fg ); 
+my @builtins = qw( alias bg bind break builtin cd command compgen complete continue declare dirs disown enable eval exec exit export fc getopts hash help history jobs let local local logout popd pushd read readonly return set shift shopt source suspend times trap type typeset ulimit umask unalias unset wait fg ); 
 my %builtins;
 foreach (@builtins) {
 	$builtins{$_} = 1;
@@ -92,7 +92,7 @@ foreach my $page (@cmdlist)
 	$synopsis[-1] =~ s/<br \/>//g if @synopsis >= 1;
 	my $url="http://linuxcommand.org/man_pages/$page".$section.'.html';
 	# If output is borked somehow and you need it in unicode, uncomment the next line.
-	binmode(STDOUT, ":utf8");
+	# binmode(STDOUT, ":utf8");
 	print "$page\tA\t\t\t\t\t\t\t\t\t\t";
 	print "<pre><code>@synopsis</code></pre>" if (@synopsis);
 	# print "$page\t\t$url\t$description\t@synopsis\t\t\t\n";
