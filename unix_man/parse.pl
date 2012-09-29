@@ -30,8 +30,8 @@ foreach my $page (@cmdlist)
 	my $section = $page;
 	$page =~ s/[0-9][.]html//;
 	$section =~ s/[a-z0-9A-Z]*([0-9])[.]html/$1/;
-	if (exists $builtins{$page})	{
-		while ($line = encode('utf8', <$manpage>)) {
+	if (exists $builtins{$page})	{ 
+		while ($line = decode('utf8', <$manpage>)) {
 			if ($line =~ m/^[\s]*<B>$page/ && ($line =~ m/.*\[+/ || $line =~ m/<I>/) ) {
 				$line =~ s/^[\s\t]+//;
 				chomp($line);
@@ -96,7 +96,7 @@ foreach my $page (@cmdlist)
 	print "$page\tA\t\t\t\t\t\t\t\t\t\t";
 	print "<pre><code>@synopsis</code></pre>" if (@synopsis);
 	# print "$page\t\t$url\t$description\t@synopsis\t\t\t\n";
-	print "$description\t" if ($description);
-	print "$url\n";
+	print "$description" if ($description);
+	print "\t$url\n";
 	close ($manpage);
 }
