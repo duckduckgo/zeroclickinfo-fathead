@@ -31,7 +31,7 @@ foreach my $page (@cmdlist)
 	$page =~ s/[0-9][.]html//;
 	$section =~ s/[a-z0-9A-Z]*([0-9])[.]html/$1/;
 	if (exists $builtins{$page})	{ 
-		while ($line = decode('utf8', <$manpage>)) {
+		while ($line = decode('utf8', <$manpage>, Encode::FB_QUIET)) {
 			if ($line =~ m/^[\s]*<B>$page/ && ($line =~ m/.*\[+/ || $line =~ m/<I>/) ) {
 				$line =~ s/^[\s\t]+//;
 				chomp($line);
