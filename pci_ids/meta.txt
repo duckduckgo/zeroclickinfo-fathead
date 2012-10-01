@@ -1,0 +1,5 @@
+Name: PCI IDs
+Domain: http://pciids.sourceforge.net/
+Type: PCI
+MediaWiki: 0
+Keywords: pci, pcid, pci id
