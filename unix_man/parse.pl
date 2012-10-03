@@ -10,11 +10,15 @@ sub strip {
 	$line =~ s/<[a-zA-Z]*>|<\/[a-zA-Z]*>|[\s\t]*$|^[\s\t]*//g;
 	return $line; 
 }
-
+my @discard = qw ( perlfork perlapio perlartistic );
 my @builtins = qw( alias bg bind break builtin cd command compgen complete continue declare dirs disown enable eval exec exit export fc getopts hash help history jobs let local local logout popd pushd read readonly return set shift shopt source suspend times trap type typeset ulimit umask unalias unset wait fg ); 
 my %builtins;
+my %discard;
 foreach (@builtins) {
 	$builtins{$_} = 1;
+}
+foreach (@discard) {
+	$discard{$_} = 1;
 }
 my @cmdlist = `ls download`;
 chomp(@cmdlist);
@@ -30,6 +34,9 @@ foreach my $page (@cmdlist)
 	my $section = $page;
 	$page =~ s/[0-9][.]html//;
 	$section =~ s/[a-z0-9A-Z]*([0-9])[.]html/$1/;
+	if (exists $discard{$page})	{
+		next;
+	}	       
 	if (exists $builtins{$page})	{ 
 		while ($line = decode('utf8', <$manpage>, Encode::FB_QUIET)) {
 			if ($line =~ m/^[\s]*<B>$page/ && ($line =~ m/.*\[+/ || $line =~ m/<I>/) ) {
@@ -55,7 +62,7 @@ foreach my $page (@cmdlist)
 	while ($line = <$manpage>)
 	{
 		# If you find the name section...
-		if ($line =~ m/<h2>Name/i || $line =~ m/NAME/) {
+		if ($line =~ m/<h2>Name/i || $line =~ m/NAME[\s\t]*$/) {
 			$nextline = <$manpage>;
 			while ($nextline =~ /^[\s\t]*$/ || $nextline =~ /^$/) { # skip the blank lines.
 				$nextline = <$manpage>;
@@ -94,9 +101,9 @@ foreach my $page (@cmdlist)
 	# If output is borked somehow and you need it in unicode, uncomment the next line.
 	# binmode(STDOUT, ":utf8");
 	print "$page\tA\t\t\t\t\t\t\t\t\t\t";
+	print "$description" if ($description);
 	print "<pre><code>@synopsis</code></pre>" if (@synopsis);
 	# print "$page\t\t$url\t$description\t@synopsis\t\t\t\n";
-	print "$description" if ($description);
 	print "\t$url\n";
 	close ($manpage);
 }
