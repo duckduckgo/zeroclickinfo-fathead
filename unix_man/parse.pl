@@ -10,16 +10,13 @@ sub strip {
 	$line =~ s/<[a-zA-Z]*>|<\/[a-zA-Z]*>|[\s\t]*$|^[\s\t]*//g;
 	return $line; 
 }
-my @discard = qw ( perlfork perlapio perlartistic );
+
+# there's gotta be a better/regex-y way of doing this...especially for the perldeltas
+my @discard = qw ( perlfork perlapio perlartistic perldelta perlfunc perlmodstyle perlvar perl5005delta perl561delta perl56delta perl570delta perl571delta perl5004delta perl572delta perl573delta perl581delta perl582delta perl583delta perl584delta perl585delta perl58delta perlport );
+
 my @builtins = qw( alias bg bind break builtin cd command compgen complete continue declare dirs disown enable eval exec exit export fc getopts hash help history jobs let local local logout popd pushd read readonly return set shift shopt source suspend times trap type typeset ulimit umask unalias unset wait fg ); 
-my %builtins;
-my %discard;
-foreach (@builtins) {
-	$builtins{$_} = 1;
-}
-foreach (@discard) {
-	$discard{$_} = 1;
-}
+my %discard = map { $_ => 1 } @discard;
+my %builtins = map { $_ => 1 } @builtins;
 my @cmdlist = `ls download`;
 chomp(@cmdlist);
 # for each HTML manpage in download/
@@ -35,6 +32,7 @@ foreach my $page (@cmdlist)
 	$page =~ s/[0-9][.]html//;
 	$section =~ s/[a-z0-9A-Z]*([0-9])[.]html/$1/;
 	if (exists $discard{$page})	{
+		close($manpage);
 		next;
 	}	       
 	if (exists $builtins{$page})	{ 
@@ -43,6 +41,8 @@ foreach my $page (@cmdlist)
 				$line =~ s/^[\s\t]+//;
 				chomp($line);
 				$line =~ s/$/<br \/>/;
+				$line =~ s/^[\s]*//;
+				chomp($line);
 				push(@synopsis, $line);
 				$line = <$manpage>;
 				while ($line =~ m/<B>$page/ || $line =~ m/\[+/) {
@@ -85,9 +85,10 @@ foreach my $page (@cmdlist)
 					next;
 				}
 				$nextline =~ s/[\s][\s]*/ /g;
-				$nextline =~ s/$/<br \/>/;
+				$nextline =~ s/[\s]*$/<br \/>/;
 				push(@synopsis, $nextline);
 				$max++;
+				
 			} continue {
 				$nextline = <$manpage>;
 			}
@@ -98,11 +99,10 @@ foreach my $page (@cmdlist)
 	next if (!$description && !@synopsis);	
 	$synopsis[-1] =~ s/<br \/>//g if @synopsis >= 1;
 	my $url="http://linuxcommand.org/man_pages/$page".$section.'.html';
-	# If output is borked somehow and you need it in unicode, uncomment the next line.
-	# binmode(STDOUT, ":utf8");
 	print "$page\tA\t\t\t\t\t\t\t\t\t\t";
 	print "$description" if ($description);
-	print "<pre><code>@synopsis</code></pre>" if (@synopsis);
+	# print automatically interpolates @synopsis and adds spaces. I don't want spaces, so join() was used.
+	print "<pre><code>" . join("", @synopsis) . "</code></pre>" if (@synopsis);
 	# print "$page\t\t$url\t$description\t@synopsis\t\t\t\n";
 	print "\t$url\n";
 	close ($manpage);
