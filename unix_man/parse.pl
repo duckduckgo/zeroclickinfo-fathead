@@ -15,10 +15,12 @@ sub strip {
 my @discard = qw ( perlfork perlapio perlartistic perldelta perlfunc perlmodstyle perlvar perl5005delta perl561delta perl56delta perl570delta perl571delta perl5004delta perl572delta perl573delta perl581delta perl582delta perl583delta perl584delta perl585delta perl58delta perlport );
 
 my @builtins = qw( alias bg bind break builtin cd command compgen complete continue declare dirs disown enable eval exec exit export fc getopts hash help history jobs let local local logout popd pushd read readonly return set shift shopt source suspend times trap type typeset ulimit umask unalias unset wait fg ); 
+
 my %discard = map { $_ => 1 } @discard;
 my %builtins = map { $_ => 1 } @builtins;
 my @cmdlist = `ls download`;
 chomp(@cmdlist);
+
 # for each HTML manpage in download/
 foreach my $page (@cmdlist) 
 {
@@ -42,7 +44,6 @@ foreach my $page (@cmdlist)
 				chomp($line);
 				$line =~ s/$/<br \/>/;
 				$line =~ s/^[\s]*//;
-				chomp($line);
 				push(@synopsis, $line);
 				$line = <$manpage>;
 				while ($line =~ m/<B>$page/ || $line =~ m/\[+/) {
@@ -53,7 +54,6 @@ foreach my $page (@cmdlist)
 					$line = <$manpage>;
 				}
 				last;
-
 			}
 		}
 		
@@ -103,7 +103,6 @@ foreach my $page (@cmdlist)
 	print "$description" if ($description);
 	# print automatically interpolates @synopsis and adds spaces. I don't want spaces, so join() was used.
 	print "<pre><code>" . join("", @synopsis) . "</code></pre>" if (@synopsis);
-	# print "$page\t\t$url\t$description\t@synopsis\t\t\t\n";
 	print "\t$url\n";
 	close ($manpage);
 }
