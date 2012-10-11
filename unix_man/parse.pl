@@ -68,7 +68,7 @@ foreach my $page (@cmdlist)
 				$nextline = <$manpage>;
 			}
 				while ($nextline !~ m/<h2>/i && $nextline !~ m/^[\s\t]+$/ && $nextline !~ m/^$/) {
-				$description .= &strip($nextline);
+				$description .= " " . &strip($nextline);
 				last if !($nextline = <$manpage>);
 				}
 		}
