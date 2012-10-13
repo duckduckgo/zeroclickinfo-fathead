@@ -68,7 +68,13 @@ foreach my $page (@cmdlist)
 				$nextline = <$manpage>;
 			}
 				while ($nextline !~ m/<h2>/i && $nextline !~ m/^[\s\t]+$/ && $nextline !~ m/^$/) {
+				if ($description =~  m/-$/) {
+				       $description =~ s/-$//; # strip trailing hyphens...
+				       $description .= &strip($nextline);
+			       } else {
+			       			       
 				$description .= " " . &strip($nextline);
+			}
 				last if !($nextline = <$manpage>);
 				}
 		}
