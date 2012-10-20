@@ -1,0 +1,5 @@
+Name: Lua reference manual
+Domain: lua.org
+Type: Lua function/variable
+MediaWiki: 0
+Keywords: lua,lua manual
