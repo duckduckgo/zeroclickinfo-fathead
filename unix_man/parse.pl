@@ -106,9 +106,9 @@ foreach my $page (@cmdlist)
 	$synopsis[-1] =~ s/<br \/>//g if @synopsis >= 1;
 	my $url="http://linuxcommand.org/man_pages/$page".$section.'.html';
 	print "$page\tA\t\t\t\t\t\t\t\t\t\t";
+	print "<pre><code>" . join("", @synopsis) . "</code></pre>" if (@synopsis);
 	print "$description" if ($description);
 	# print automatically interpolates @synopsis and adds spaces. I don't want spaces, so join() was used.
-	print "<pre><code>" . join("", @synopsis) . "</code></pre>" if (@synopsis);
 	print "\t$url\n";
 	close ($manpage);
 }
