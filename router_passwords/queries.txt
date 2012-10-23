@@ -1,0 +1,3 @@
+belkin password
+default belkin password
+default belkin router password
