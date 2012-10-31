@@ -34,13 +34,21 @@ for row in reader:
      name = "{0} {1}".format(book, chapter)
      verse = row[3]
      url = "http://blb.org/search/preSearch.cfm?Criteria={0}+{1}".format(book,chapter)
-     
-     temp = newStr(name, "A", "\t", "Bible Verses\\n", verse, url)
+
+     chapterSpace = "{0} {1}".format(row[1],row[2]) # e.g. 1 23
+     nameSpace = "{0} {1}".format(book, chapterSpace)
+
+     temp = newStr(name, "A", "\t", "Bible Verses\\n", verse, url) + \
+            newStr(nameSpace, "A", "\t", "Bible Verses\\n", verse, url)
+
      output.write(temp)
 
      if book != "Job":
           abvBook = abv[book.lower()] # e.g. Gen
           abvName = "{0} {1}".format(abvBook, chapter)
           abvUrl = "http://blb.org/search/preSearch.cfm?Criteria={0}".format(abvName)
-          abvTemp = newStr(abvName, "R", name, "\t", "\t", "\t")
-          output.write(abvTemp)
+          abvNameSpace = "{0} {1}".format(abvBook, chapterSpace)
+          temp = newStr(abvName, "R", name, "\t", "\t", "\t") + \
+                 newStr(abvNameSpace, "R", name, "\t", "\t", "\t")
+
+          output.write(temp)
