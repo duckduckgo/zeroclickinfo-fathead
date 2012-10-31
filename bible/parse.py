@@ -39,7 +39,7 @@ for row in reader:
      nameSpace = "{0} {1}".format(book, chapterSpace)
 
      temp = newStr(name, "A", "\t", "Bible Verses\\n", verse, url) + \
-            newStr(nameSpace, "A", "\t", "Bible Verses\\n", verse, url)
+            newStr(nameSpace, "R", name, "\t", "\t", "\t")
 
      output.write(temp)
 
