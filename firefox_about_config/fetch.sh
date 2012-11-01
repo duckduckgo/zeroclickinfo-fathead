@@ -2,5 +2,5 @@
 
 mkdir download
 cd download
-wget http://kb.mozillazine.org/About:config_entries
+wget "$(cat ../data.url)"
 cd ../
