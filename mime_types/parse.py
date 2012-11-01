@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 import mimetypes
 mimetypes.init()
 OUTPUT = "output.txt"
