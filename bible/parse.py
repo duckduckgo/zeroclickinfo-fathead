@@ -35,12 +35,12 @@ for row in reader:
      verse = row[3]
      url = "http://blb.org/search/preSearch.cfm?Criteria={0}+{1}".format(book,chapter)
      
-     temp = newStr(name, "A", "", "Bible Verses", verse, url)
+     temp = newStr(name, "A", "\t", "Bible Verses\\n", verse, url)
      output.write(temp)
 
      if book != "Job":
           abvBook = abv[book.lower()] # e.g. Gen
           abvName = "{0} {1}".format(abvBook, chapter)
           abvUrl = "http://blb.org/search/preSearch.cfm?Criteria={0}".format(abvName)
-          abvTemp = newStr(abvName, "R", name, "", "", "")
+          abvTemp = newStr(abvName, "R", name, "\t", "\t", "\t")
           output.write(abvTemp)
