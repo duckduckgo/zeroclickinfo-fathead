@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 import csv
 
 reader = csv.reader(open("download/kjv.txt", "rb"), delimiter="\t")
