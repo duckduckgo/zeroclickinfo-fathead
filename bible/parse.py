@@ -38,8 +38,8 @@ for row in reader:
      chapterSpace = "{0} {1}".format(row[1],row[2]) # e.g. 1 23
      nameSpace = "{0} {1}".format(book, chapterSpace)
 
-     temp = newStr(name, "A", "\t", "Bible Verses\\n", verse, url) + \
-            newStr(nameSpace, "R", name, "\t", "\t", "\t")
+     temp = newStr(name, "A", "", "Bible Verses\\n", verse, url) + \
+            newStr(nameSpace, "R", name, "", "", "")
 
      output.write(temp)
 
@@ -48,7 +48,7 @@ for row in reader:
           abvName = "{0} {1}".format(abvBook, chapter)
           abvUrl = "http://blb.org/search/preSearch.cfm?Criteria={0}".format(abvName)
           abvNameSpace = "{0} {1}".format(abvBook, chapterSpace)
-          temp = newStr(abvName, "R", name, "\t", "\t", "\t") + \
-                 newStr(abvNameSpace, "R", name, "\t", "\t", "\t")
+          temp = newStr(abvName, "R", name, "", "", "") + \
+                 newStr(abvNameSpace, "R", name, "", "", "")
 
           output.write(temp)
