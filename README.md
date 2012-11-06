@@ -171,7 +171,7 @@ my $source_url = $line[12] || '';
 
 In all this may look like:
 
-print OUT "$page\tA\t\t\t$categories\t\t$internal_links\t\t$external_links\t\t$images\t$abstract\t$relative_url\n";
+print OUT "$title\t$type\t\t\t$categories\t\t$see_also\t\t$external_links\t\t$images\t$abstract\t$source_url\n";
 ```
 
 There is a pre-process script that is run on this output, which:
