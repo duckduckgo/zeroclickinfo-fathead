@@ -23,6 +23,7 @@ topics => "everyday_goodies", "geek", "sysadmin";
 categories => "computing_info", "software";
 
 attribution
-    github => ['https://github.com/whee', 'whee'];
+    github => ['https://github.com/whee', 'whee'],
+    web => ['http://smaertness.net', 'Brian Hetro'];
 
 1;
