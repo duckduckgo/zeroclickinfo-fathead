@@ -20,7 +20,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/hgnc_g
 
 topics => "science", "special_interest";
 
-categories => "facts", "reference";
+category => "reference";
 
 attribution
     github => ['https://github.com/jrandall', 'jrandall'],

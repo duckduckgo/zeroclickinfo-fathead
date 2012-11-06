@@ -20,7 +20,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/hello_
 
 topics => "geek", "programming";
 
-categories => "computing_info", "programming", "software";
+category => "programming";
 
 attribution
     twitter => ['https://twitter.com/jperla', 'jperla'],

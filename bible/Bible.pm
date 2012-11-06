@@ -22,7 +22,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/bible"
 
 topics => "everyday_goodies", "special_interest";
 
-categories => "reference";
+category => "reference";
 
 attribution
     github => ['https://github.com/MithrandirAgain', 'MithrandirAgain'],

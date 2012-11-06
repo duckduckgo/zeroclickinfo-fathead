@@ -22,7 +22,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/arch_p
 
 topics => "geek", "sysadmin", "special_interest";
 
-categories => "computing_info", "software";
+category => "software";
 
 attribution
     github => ['https://github.com/mrshu', 'mrshu'],

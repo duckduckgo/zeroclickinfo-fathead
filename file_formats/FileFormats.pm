@@ -20,7 +20,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/file_f
 
 topics => "everyday_goodies", "geek", "sysadmin";
 
-categories => "computing_info", "software";
+category => "computing_info";
 
 attribution
     github => ['https://github.com/whee', 'whee'],
