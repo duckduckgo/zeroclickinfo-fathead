@@ -2,9 +2,9 @@ package DDG::Fathead::MIMETypes;
 
 use DDG::Fathead;
 
-primary_example_queries ".jpg mime";
+primary_example_queries => ".jpg mime";
 
-secondary_example_queries
+secondary_example_queries =>
     "mime type pdf",
     "mp4 mime";
 
@@ -18,9 +18,9 @@ source "Wikipedia";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/mime_types";
 
-topics "geek", "web_design", "special_interest";
+topics => "geek", "web_design", "special_interest";
 
-category "reference";
+category => "reference";
 
 attribution
     github => ['https://github.com/vaishaks', 'vaishaks'],

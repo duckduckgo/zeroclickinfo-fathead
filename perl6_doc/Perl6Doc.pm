@@ -2,9 +2,9 @@ package DDG::Fathead::Perl6Doc;
 
 use DDG::Fathead;
 
-primary_example_queries "perl 6 str";
+primary_example_queries => "perl 6 str";
 
-secondary_example_queries
+secondary_example_queries =>
     "Str.rindex",
     "Int.div perl6";
 
@@ -18,9 +18,9 @@ source "Perl 6 Documentation";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/perl6_doc";
 
-topics "geek", "programming", "sysadmin";
+topics => "geek", "programming", "sysadmin";
 
-category "reference";
+category => "reference";
 
 attribution
     github => ['https://github.com/GlitchMr', 'GlitchMr'],

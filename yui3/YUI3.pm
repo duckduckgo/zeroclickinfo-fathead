@@ -2,9 +2,9 @@ package DDG::Fathead::YUI3;
 
 use DDG::Fathead;
 
-primary_example_queries "yui accordion";
+primary_example_queries => "yui accordion";
 
-secondary_example_queries
+secondary_example_queries =>
     "widget yui";
 
 description "YUI module reference";
@@ -17,9 +17,9 @@ source "YUI Library";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/yui3";
 
-topics "geek", "programming", "web_design";
+topics => "geek", "programming", "web_design";
 
-category "reference";
+category => "reference";
 
 attribution
     github => ['https://github.com/gaganpreet', 'gaganpreet'],

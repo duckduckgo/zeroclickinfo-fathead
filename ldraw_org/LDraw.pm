@@ -2,9 +2,9 @@ package DDG::Fathead::LDraw;
 
 use DDG::Fathead;
 
-primary_example_queries "3815c63.dat";
+primary_example_queries => "3815c63.dat";
 
-secondary_example_queries
+secondary_example_queries =>
     "ldraw 2545",
     "2594";
 
@@ -18,9 +18,9 @@ source "LDraw Parts Tracker";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/ldraw_org";
 
-topics "special_interest";
+topics => "special_interest";
 
-category "reference";
+category => "reference";
 
 attribution
     github => ['https://github.com/anoved', 'anoved'],

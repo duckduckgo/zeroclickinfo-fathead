@@ -2,9 +2,9 @@ package DDG::Fathead::HelloWorld;
 
 use DDG::Fathead;
 
-primary_example_queries "hello world perl";
+primary_example_queries => "hello world perl";
 
-secondary_example_queries
+secondary_example_queries =>
     "javascript hello world",
     "hello world in c";
 
@@ -18,9 +18,9 @@ source "GitHub";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/hello_world";
 
-topics "geek", "programming";
+topics => "geek", "programming";
 
-category "programming";
+category => "programming";
 
 attribution
     twitter => ['https://twitter.com/jperla', 'jperla'],

@@ -2,9 +2,9 @@ package DDG::Fathead::NodeJS;
 
 use DDG::Fathead;
 
-primary_example_queries "node address";
+primary_example_queries => "node address";
 
-secondary_example_queries
+secondary_example_queries =>
     "server nodejs";
 
 description "NodeJS reference";
@@ -17,9 +17,9 @@ source "node.js";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/nodejs_ref";
 
-topics "geek", "programming";
+topics => "geek", "programming";
 
-category "reference";
+category => "reference";
 
 attribution
     github => ['https://github.com/dhruvbird', 'dhruvbird'],
