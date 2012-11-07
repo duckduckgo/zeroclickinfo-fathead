@@ -2,9 +2,9 @@ package DDG::Fathead::ArchPkgs;
 
 use DDG::Fathead;
 
-primary_example_queries => "arch awesome";
+primary_example_queries "arch awesome";
 
-secondary_example_queries =>
+secondary_example_queries
     "pacman rxvt",
     "gcc arch package",
     "nmap arch linux package",
@@ -20,9 +20,9 @@ source "Arch Linux";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/arch_pkgs";
 
-topics => "geek", "sysadmin", "special_interest";
+topics "geek", "sysadmin", "special_interest";
 
-category => "software";
+category "software";
 
 attribution
     github => ['https://github.com/mrshu', 'mrshu'],

@@ -2,9 +2,9 @@ package DDG::Fathead::UnixMan;
 
 use DDG::Fathead;
 
-primary_example_queries => "man nmap";
+primary_example_queries "man nmap";
 
-secondary_example_queries =>
+secondary_example_queries
     "wc man";
 
 description "UNIX man page reference";
@@ -17,9 +17,9 @@ source "LinuxCommand.org";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/unix_man";
 
-topics => "geek", "sysadmin";
+topics "geek", "sysadmin";
 
-category => "software";
+category "software";
 
 attribution
     github => ['https://github.com/flaming-toast', 'flaming-toast'],

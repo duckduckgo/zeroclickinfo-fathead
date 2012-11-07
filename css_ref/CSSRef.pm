@@ -2,9 +2,9 @@ package DDG::Fathead::CSSRef;
 
 use DDG::Fathead;
 
-primary_example_queries => "text-align css";
+primary_example_queries "text-align css";
 
-secondary_example_queries =>
+secondary_example_queries
     "css background-color";
 
 description "CSS reference";
@@ -17,9 +17,9 @@ source "Mozilla Developer Network";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/css_ref";
 
-topics => "geek", "web_design";
+topics "geek", "web_design";
 
-category => "reference";
+category "reference";
 
 attribution
     github => ['https://github.com/dhruvbird', 'dhruvbird'],

@@ -2,9 +2,9 @@ package DDG::Fathead::PyPI;
 
 use DDG::Fathead;
 
-primary_example_queries => "pypi beautifulsoup";
+primary_example_queries "pypi beautifulsoup";
 
-secondary_example_queries =>
+secondary_example_queries
     "django pip",
     "pylons python package";
 
@@ -18,9 +18,9 @@ source "Python Package Index";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/pypi";
 
-topics => "geek", "sysadmin", "programming";
+topics "geek", "sysadmin", "programming";
 
-category => "software";
+category "software";
 
 attribution
     github => ['https://github.com/ezgraphs', 'ezgraphs'];

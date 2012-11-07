@@ -2,9 +2,9 @@ package DDG::Fathead::TclRef;
 
 use DDG::Fathead;
 
-primary_example_queries => "tcl tclsh";
+primary_example_queries "tcl tclsh";
 
-secondary_example_queries =>
+secondary_example_queries
     "tcl tk",
     "tk split";
 
@@ -18,9 +18,9 @@ source "Tcl Developer Xchange";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/tcl_ref";
 
-topics => "geek", "programming";
+topics "geek", "programming";
 
-category => "reference";
+category "reference";
 
 attribution
     github => ['https://github.com/anoved', 'anoved'],

@@ -2,9 +2,9 @@ package DDG::Fathead::XEP;
 
 use DDG::Fathead;
 
-primary_example_queries => "XEP-0170";
+primary_example_queries "XEP-0170";
 
-secondary_example_queries =>
+secondary_example_queries
     "xmpp 226",
     "41 xep";
 
@@ -18,9 +18,9 @@ source "XMPP Standards Foundation";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/xep";
 
-topics => "geek", "sysadmin", "special_interest";
+topics "geek", "sysadmin", "special_interest";
 
-category => "software";
+category "software";
 
 attribution
     github => ['https://github.com/metajack', 'metajack'],
