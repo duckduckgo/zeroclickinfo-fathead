@@ -2,9 +2,9 @@ package DDG::Fathead::Java;
 
 use DDG::Fathead;
 
-primary_example_queries => "java string";
+primary_example_queries "java string";
 
-secondary_example_queries =>
+secondary_example_queries
     "integer java";
 
 description "Java reference";
@@ -17,9 +17,9 @@ source "Oracle";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/java";
 
-topics => "geek", "programming";
+topics "geek", "programming";
 
-category => "reference";
+category "reference";
 
 attribution
     github => ['https://github.com/boyter', 'boyter'],

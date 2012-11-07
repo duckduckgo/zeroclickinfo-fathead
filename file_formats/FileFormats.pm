@@ -2,9 +2,9 @@ package DDG::Fathead::FileFormats;
 
 use DDG::Fathead;
 
-primary_example_queries => "file .cat";
+primary_example_queries "file .cat";
 
-secondary_example_queries =>
+secondary_example_queries
     "file extension .pdf",
     "psd file";
 
@@ -18,9 +18,9 @@ source "Wikipedia";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/file_formats";
 
-topics => "everyday_goodies", "geek", "sysadmin";
+topics "everyday_goodies", "geek", "sysadmin";
 
-category => "computing_info";
+category "computing_info";
 
 attribution
     github => ['https://github.com/whee', 'whee'],

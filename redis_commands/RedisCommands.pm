@@ -2,9 +2,9 @@ package DDG::Fathead::RedisCommands;
 
 use DDG::Fathead;
 
-primary_example_queries => "redis rpush";
+primary_example_queries "redis rpush";
 
-secondary_example_queries =>
+secondary_example_queries
     "info redis";
 
 description "Redis command reference";
@@ -17,9 +17,9 @@ source "Redis";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/redis_commands";
 
-topics => "geek", "sysadmin";
+topics "geek", "sysadmin";
 
-category => "reference";
+category "reference";
 
 attribution
     github => ['https://github.com/djworth', 'djworth'],

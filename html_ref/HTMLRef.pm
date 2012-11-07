@@ -2,9 +2,9 @@ package DDG::Fathead::HTMLRef;
 
 use DDG::Fathead;
 
-primary_example_queries => "html abbr";
+primary_example_queries "html abbr";
 
-secondary_example_queries =>
+secondary_example_queries
     "html 5 article",
     "canvas html5";
 
@@ -18,9 +18,9 @@ source "HTML5 Doctor";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/html_ref";
 
-topics => "geek", "everyday_goodies", "web_design";
+topics "geek", "everyday_goodies", "web_design";
 
-category => "reference";
+category "reference";
 
 attribution
     github => ['https://github.com/lucassmagal', 'lucassmagal'],

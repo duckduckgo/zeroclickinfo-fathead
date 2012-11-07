@@ -2,9 +2,9 @@ package DDG::Fathead::FirefoxAboutConfig;
 
 use DDG::Fathead;
 
-primary_example_queries => "firefox keyword.url";
+primary_example_queries "firefox keyword.url";
 
-secondary_example_queries =>
+secondary_example_queries
     "bidi.numeral",
     "browser.cache.disk.capacity about:config",
     "plugin.scan.plid.all firefox config";
@@ -19,9 +19,9 @@ source "MozillaZine";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/firefox_about_config";
 
-topics => "geek", "sysadmin", "special_interest";
+topics "geek", "sysadmin", "special_interest";
 
-category => "software";
+category "software";
 
 attribution
     github => ['https://github.com/nospampleasemam', 'nospampleasemam'],

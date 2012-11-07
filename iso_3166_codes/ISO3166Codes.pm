@@ -2,9 +2,9 @@ package DDG::Fathead::ISO3166Codes;
 
 use DDG::Fathead;
 
-primary_example_queries => "iso tk";
+primary_example_queries "iso tk";
 
-secondary_example_queries =>
+secondary_example_queries
     "us iso";
 
 description "ISO 3166 country codes";
@@ -17,9 +17,9 @@ source "ISO";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/iso_3166_codes";
 
-topics => "geography", "travel", "special_interest";
+topics "geography", "travel", "special_interest";
 
-category => "geography";
+category "geography";
 
 attribution
     github => ['https://github.com/cjfarrar', 'cjfarrar'],
