@@ -1,4 +1,4 @@
-package DDG::Fathead::NodeJS;
+package DDG::Fathead::NodejsRef;
 
 use DDG::Fathead;
 

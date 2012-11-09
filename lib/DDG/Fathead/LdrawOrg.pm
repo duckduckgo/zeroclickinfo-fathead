@@ -1,4 +1,4 @@
-package DDG::Fathead::LDraw;
+package DDG::Fathead::LdrawOrg;
 
 use DDG::Fathead;
 

@@ -1,4 +1,4 @@
-package DDG::Fathead::YUI3;
+package DDG::Fathead::Yui3;
 
 use DDG::Fathead;
 

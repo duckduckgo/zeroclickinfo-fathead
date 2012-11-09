@@ -1,4 +1,4 @@
-package DDG::Fathead::HTMLRef;
+package DDG::Fathead::HtmlRef;
 
 use DDG::Fathead;
 

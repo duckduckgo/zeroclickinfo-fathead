@@ -1,4 +1,4 @@
-package DDG::Fathead::CSSRef;
+package DDG::Fathead::CssRef;
 
 use DDG::Fathead;
 

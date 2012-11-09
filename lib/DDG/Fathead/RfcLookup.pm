@@ -1,4 +1,4 @@
-package DDG::Fathead::RFC;
+package DDG::Fathead::RfcLookup;
 
 use DDG::Fathead;
 

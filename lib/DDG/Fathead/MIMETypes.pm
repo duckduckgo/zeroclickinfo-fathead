@@ -1,4 +1,4 @@
-package DDG::Fathead::MIMETypes;
+package DDG::Fathead::MimeTypes;
 
 use DDG::Fathead;
 

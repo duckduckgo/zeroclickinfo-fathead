@@ -1,4 +1,4 @@
-package DDG::Fathead::HGNCGeneNames;
+package DDG::Fathead::HgncGeneNames;
 
 use DDG::Fathead;
 

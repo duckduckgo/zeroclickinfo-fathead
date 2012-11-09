@@ -1,4 +1,4 @@
-package DDG::Fathead::PyPI;
+package DDG::Fathead::Pypi;
 
 use DDG::Fathead;
 

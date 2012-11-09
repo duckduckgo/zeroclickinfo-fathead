@@ -1,4 +1,4 @@
-package DDG::Fathead::XEP;
+package DDG::Fathead::Xep;
 
 use DDG::Fathead;
 

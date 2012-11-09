@@ -1,4 +1,4 @@
-package DDG::Fathead::ISO3166Codes;
+package DDG::Fathead::Iso3166Codes;
 
 use DDG::Fathead;
 

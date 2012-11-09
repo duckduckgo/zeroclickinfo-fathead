@@ -1,4 +1,4 @@
-package DDG::Fathead::Plone;
+package DDG::Fathead::PloneOrg;
 
 use DDG::Fathead;
 
