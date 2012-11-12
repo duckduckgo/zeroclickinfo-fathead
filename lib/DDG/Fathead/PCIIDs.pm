@@ -1,4 +1,4 @@
-package DDG::Fathead::PCDIDs;
+package DDG::Fathead::PCIIDs;
 
 use DDG::Fathead;
 
