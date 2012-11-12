@@ -20,7 +20,7 @@ source "Blue Letter Bible";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/bible";
 
-topics "everyday_goodies", "special_interest";
+topics "everyday", "special_interest";
 
 category "reference";
 

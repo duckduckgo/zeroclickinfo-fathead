@@ -18,7 +18,7 @@ source "HTML5 Doctor";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/html_ref";
 
-topics "geek", "everyday_goodies", "web_design";
+topics "geek", "everyday", "web_design";
 
 category "reference";
 

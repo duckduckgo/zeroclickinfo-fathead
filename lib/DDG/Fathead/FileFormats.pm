@@ -18,7 +18,7 @@ source "Wikipedia";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/file_formats";
 
-topics "everyday_goodies", "geek", "sysadmin";
+topics "everyday", "geek", "sysadmin";
 
 category "computing_info";
 
