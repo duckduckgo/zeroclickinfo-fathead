@@ -108,7 +108,7 @@ source "GitHub";
 # i.e. the ones in the share/fathead/plugin/ folder.
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/hello_world";
 
-# A list of topics that are relevant to this Plugin. Choose around 1-3.
+# A list of topics that are relevant to this plugin. Choose around 1-3.
 # See supported topics:
 # https://github.com/duckduckgo/duckduckgo/blob/master/lib/DDG/Meta/Information.pm
 topics "geek", "programming";
@@ -118,7 +118,7 @@ topics "geek", "programming";
 # https://github.com/duckduckgo/duckduckgo/blob/master/lib/DDG/Meta/Information.pm
 category "programming";
 
-# Your own information so we can give you credit!
+# Your information so we can give you credit!
 # See supported types:
 # https://github.com/duckduckgo/duckduckgo/blob/master/lib/DDG/Meta/Information.pm
 attribution
