@@ -40,33 +40,33 @@ lib/Fathead/PlugIn.pm
 
 # This shell script is called to fetch the data. 
 # Tmp files should go in a directory called download.
-share/fathead/plugin/fetch.sh
+share/plugin/fetch.sh
 
 # This is the script used to parse the data once it has been fetched. 
 # .xx can be .pl, .py, .rb or .js depending on what language you use.
-share/fathead/plugin/parse.xx
+share/plugin/parse.xx
 
 # This shell script is called to run the parser. 
-share/fathead/plugin/parse.sh
+share/plugin/parse.sh
 
 # Please include any dependencies here,
 # or other special instructions for people
 # trying to run it.
-share/fathead/plugin/README.txt
+share/plugin/README.txt
 
 # This is the output file.
 # Generally it should NOT be committed,
 # but if it is small (<1MB) it is useful to do so.
-share/fathead/plugin/output.txt
+share/plugin/output.txt
 
 # This is an optional pointer to a URL in the cloud somewhere,
 # which contains a zip of the data files to process.
-share/fathead/plugin/data.url
+share/plugin/data.url
 
 # This is for testing.
 # Put some good queries to test, one per line.
 # You can explain them with comments above them.
-share/fathead/plugin/queries.txt
+share/plugin/queries.txt
 ```
 
 
