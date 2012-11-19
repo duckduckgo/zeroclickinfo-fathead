@@ -36,7 +36,7 @@ Each directory has a structure like this:
 
 # This is a Perl file that lists some meta information about the plugin.
 # See the Meta file section for more information
-lib/Fathead/PlugIn.pm
+lib/DDG/Fathead/PlugIn.pm
 
 # This shell script is called to fetch the data. 
 # Tmp files should go in a directory called download.
