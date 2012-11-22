@@ -15,7 +15,7 @@ icon_url "/i/download.oracle.com.ico";
 
 source "Oracle";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/java";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/java";
 
 topics "geek", "programming";
 

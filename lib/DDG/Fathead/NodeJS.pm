@@ -15,7 +15,7 @@ icon_url "/i/nodejs.org.ico";
 
 source "node.js";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/nodejs_ref";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/nodejs_ref";
 
 topics "geek", "programming";
 

@@ -16,7 +16,7 @@ icon_url "/i/www.genenames.org.ico";
 
 source "HGNC";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/hgnc_gene_names";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/hgnc_gene_names";
 
 topics "science", "special_interest";
 

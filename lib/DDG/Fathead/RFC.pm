@@ -15,7 +15,7 @@ icon_url "/i/www.rfc-editor.org.ico";
 
 source "RFC-Editor";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/rfc_lookup";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/rfc_lookup";
 
 topics "geek", "special_interest";
 

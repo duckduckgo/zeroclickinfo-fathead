@@ -18,7 +18,7 @@ icon_url "/i/blueletterbible.org.ico";
 
 source "Blue Letter Bible";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/bible";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/bible";
 
 topics "everyday", "special_interest";
 

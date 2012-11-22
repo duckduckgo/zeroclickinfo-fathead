@@ -16,7 +16,7 @@ icon_url "/assets/icon_wikipedia.v101.png";
 
 source "Wikipedia";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/file_formats";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/file_formats";
 
 topics "everyday", "geek", "sysadmin";
 

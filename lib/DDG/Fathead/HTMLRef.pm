@@ -16,7 +16,7 @@ icon_url "/i/html5doctor.com.ico";
 
 source "HTML5 Doctor";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/html_ref";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/html_ref";
 
 topics "geek", "everyday", "web_design";
 

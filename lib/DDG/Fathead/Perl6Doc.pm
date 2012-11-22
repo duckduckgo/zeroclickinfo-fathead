@@ -16,7 +16,7 @@ icon_url "/i/www.doc.perl6.org.ico";
 
 source "Perl 6 Documentation";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/perl6_doc";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/perl6_doc";
 
 topics "geek", "programming", "sysadmin";
 

@@ -15,7 +15,7 @@ icon_url "/i/plone.org.ico";
 
 source "Plone";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/plone_org";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/plone_org";
 
 topics "geek", "web_design", "special_interest";
 

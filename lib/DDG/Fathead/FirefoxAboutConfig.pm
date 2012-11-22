@@ -17,7 +17,7 @@ icon_url "/i/mozillazine.org.ico";
 
 source "MozillaZine";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/firefox_about_config";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/firefox_about_config";
 
 topics "geek", "sysadmin", "special_interest";
 

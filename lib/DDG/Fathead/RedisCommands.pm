@@ -15,7 +15,7 @@ icon_url "/i/redis.io.ico";
 
 source "Redis";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/redis_commands";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/redis_commands";
 
 topics "geek", "sysadmin";
 

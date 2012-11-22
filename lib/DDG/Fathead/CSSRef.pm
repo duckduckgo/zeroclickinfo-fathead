@@ -15,7 +15,7 @@ icon_url "/i/developer.mozilla.org.ico";
 
 source "Mozilla Developer Network";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/css_ref";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/css_ref";
 
 topics "geek", "web_design";
 

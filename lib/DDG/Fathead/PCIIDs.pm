@@ -15,7 +15,7 @@ name "PCIIDs";
 
 source "pciids.sourceforge.net";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/pci_ids";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/pci_ids";
 
 topics "geek", "sysadmin", "special_interest";
 
