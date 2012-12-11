@@ -34,64 +34,98 @@ Each directory has a structure like this:
 
 ```txt
 
+# This is a Perl file that lists some meta information about the plugin.
+# See the Meta file section for more information
+lib/DDG/Fathead/PlugIn.pm
+
 # This shell script is called to fetch the data. 
 # Tmp files should go in a directory called download.
-plugin/fetch.sh
+share/plugin/fetch.sh
 
 # This is the script used to parse the data once it has been fetched. 
 # .xx can be .pl, .py, .rb or .js depending on what language you use.
-plugin/parse.xx
+share/plugin/parse.xx
 
 # This shell script is called to run the parser. 
-plugin/parse.sh
+share/plugin/parse.sh
 
 # Please include any dependencies here,
 # or other special instructions for people
 # trying to run it.
-plugin/README.txt
+share/plugin/README.txt
 
 # This is the output file.
 # Generally it should NOT be committed,
 # but if it is small (<1MB) it is useful to do so.
-plugin/output.txt
+share/plugin/output.txt
 
 # This is an optional pointer to a URL in the cloud somewhere,
 # which contains a zip of the data files to process.
-plugin/data.url
+share/plugin/data.url
 
 # This is for testing.
 # Put some good queries to test, one per line.
 # You can explain them with comments above them.
-plugin/queries.txt
-
-# This is a file that gives meta information about the data source. 
-plugin/meta.txt
+share/plugin/queries.txt
 ```
 
 
-### meta.txt format.
+### Meta file
 
-```txt
-# This is the name of the source as people would refer to it,
-# e.g. Wikipedia or PerlDoc -- gets displayed on Web site.
-Name: jQuery API
+We use Perl packages to enumerate and work with plugins, so part of the plugin process is including a simple Perl file. You don't actually need to know any Perl for this! Here's an annotated example from the Hello World plugin.
 
-# This is the base domain where the source pages are located.
-# Get used to get the favicon.
-Domain: api.jquery.com
+In the interest of keeping the code clean, please remove the annotations in your own file.
 
-# This is what gets put in quotes next to the source
-# It can be blank if it is a source with completely 
-# general info spanning many types of topics like Facebook.
-Type: jQuery
+```perl
+# Replace "HelloWorld" with the name of your plugin using CamelCase
+package DDG::Fathead::HelloWorld;
 
-# Whether the source is from MediaWiki (1) or not (0).
-# Processing happens a bit differently on MediaWiki.
-MediaWiki: 1
+# All plugins should have this line
+use DDG::Fathead;
 
-# Keywords uses to trigger (or prefer) the source over others.
-# Can seperate multiple keywords with,
-Keywords: jQuery
+# This is an example search for the main use case.
+primary_example_queries "hello world perl";
+
+# This is a list of secondary use cases for the plugin.
+secondary_example_queries
+    "javascript hello world",
+    "hello world in c";
+
+# A brief description of the plugin
+description "Hello World programs in many program languages";
+
+# A unique name for the plugin
+name "HelloWorld";
+
+# Just leave this blank at first. We'll add it once we've got the plugin working.
+# So it should be: icon_url "";
+icon_url "/i/www.github.com.ico";
+
+# The name of the source. Appears as "More at {source}" in the ZCI box.
+source "GitHub";
+
+# This is kind of meta. It's the link to the main files of this plugin
+# i.e. the ones in the share/fathead/plugin/ folder.
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/hello_world";
+
+# A list of topics that are relevant to this plugin. Choose around 1-3.
+# See supported topics:
+# https://github.com/duckduckgo/duckduckgo/blob/master/lib/DDG/Meta/Information.pm
+topics "geek", "programming";
+
+# The most relevant category for this plugin. Choose only 1.
+# See supported categories:
+# https://github.com/duckduckgo/duckduckgo/blob/master/lib/DDG/Meta/Information.pm
+category "programming";
+
+# Your information so we can give you credit!
+# See supported types:
+# https://github.com/duckduckgo/duckduckgo/blob/master/lib/DDG/Meta/Information.pm
+attribution
+    twitter => ['https://twitter.com/jperla', 'jperla'],
+    web => ['http://www.jperla.com/blog', 'Joseph Perla'];
+
+1;
 ```
 
 ### General data file format
@@ -171,7 +205,7 @@ my $source_url = $line[12] || '';
 
 In all this may look like:
 
-print OUT "$page\tA\t\t\t$categories\t\t$internal_links\t\t$external_links\t\t$images\t$abstract\t$relative_url\n";
+print OUT "$title\t$type\t\t\t$categories\t\t$see_also\t\t$external_links\t\t$images\t$abstract\t$source_url\n";
 ```
 
 There is a pre-process script that is run on this output, which:
