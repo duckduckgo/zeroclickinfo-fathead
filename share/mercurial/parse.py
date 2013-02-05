@@ -32,8 +32,9 @@ for file in files:
   for i in t[0].findAll('div'):
     searchname = None
     if len(i.findAll('h2')) != 0:
-      searchname = "hg %s"%(i.findAll('h2')[0].string)
-      url = "http://www.selenic.com/mercurial/hg.1.html#%s"%(searchname)
+      hgcmd = (i.findAll('h2')[0].string)
+      searchname = "hg %s"%hgcmd
+      url = "http://www.selenic.com/mercurial/hg.1.html#%s"%(hgcmd)
     if len(i.findAll('pre')) != 0:
       synopsis = i.findAll('pre')[0].string.strip()
     if len(i.findAll('p')) != 0:
