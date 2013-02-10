@@ -1,0 +1,6 @@
+# finds all the anagrams of airplane with a length of 5 (default)
+anagram airplane
+# finds all the anagrams of "duck duck go" with a length of 6
+anagram "duck duck go" 6
+# finds all the anagrams of airplane with a length between 4 and 10
+anagram airplane 4 10
