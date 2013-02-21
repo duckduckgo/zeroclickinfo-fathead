@@ -6,7 +6,11 @@ use warnings;
 use IO::Uncompress::AnyInflate;
 use XML::LibXML::Reader;
 
+my $start_time = time;
+
 my $trace = $| = 1; # 1 = enable debug messages; 0 = disable messages
+
+trace('Starting CVE parser at ' . localtime);
 
 my $infile  = shift or die '[ERROR] Required input archive not given.';
 my $outfile = shift or die '[ERROR] Required output file not given.';
@@ -54,11 +58,16 @@ while ($reader->nextElement('item') && $reader->readState() != XML_READER_ERROR)
     );
 }
 
+trace('Finished XML tree traversal');
 trace('Closing filehandles');
 
 $infh->close();
 $outfh->close();
 $reader->close();
+
+my $end_time = time;
+
+trace('Total time: ' . ($end_time - $start_time) . ' seconds');
 
 # For debug purposes only. Displays diagnostic message if $trace is defined.
 sub trace {
