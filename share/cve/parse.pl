@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use IO::Uncompress::AnyInflate;
+use IO::Uncompress::AnyInflate qw/$AnyInflateError/;
 use XML::LibXML::Reader;
 
 my $start_time = time;
@@ -17,13 +17,12 @@ my $outfile = shift or die '[ERROR] Required output file not given.';
 
 trace("Opening input archive: $infile");
 
-my $infh  = new IO::Uncompress::AnyInflate $infile
-    or die "[ERROR] Failed to open input archive: $infile";
+my $infh  = new IO::Uncompress::AnyInflate $infile or die '[ERROR] ' . ucfirst $AnyInflateError;
 my $outfh = new IO::File;
 
 trace("Opening output file: $outfile");
 
-$outfh->open(">$outfile") or die "[ERROR] Failed to open output file: $outfile";
+$outfh->open(">$outfile") or die "[ERROR] Cannot open file: $!";
 $outfh->binmode(':utf8');
 
 trace('Creating XML::LibXML::Reader from input archive');
