@@ -26,6 +26,34 @@ trace('Creating XML::LibXML::Reader from input archive');
 
 my $reader = new XML::LibXML::Reader IO => $infh;
 
+trace('Starting XML tree traversal');
+
+# Parse XML tree as a list of <item> tags, extracting the CVE ID and description.
+while ($reader->nextElement('item') && $reader->readState() != XML_READER_ERROR) {
+    my $name = $reader->getAttribute('name');
+    my $desc = $1 if $reader->readInnerXml =~ m|<desc.*>(.*)</desc>|;
+    my $url  = "http://www.cvedetails.com/cve/$name";
+
+    trace("Adding entry for $name");
+
+    print $outfh join "\t", (
+        $name,    # Title
+        'A',      # Type
+        '',       # Redirect
+        '',       # Other uses
+        '',       # Categories
+        '',       # References
+        '',       # See also
+        '',       # Further reading
+        '',       # External links
+        '',       # Disambiguation
+        '',       # Images
+        $desc,    # Abstract
+        $url,     # Source URL
+        "\n"
+    );
+}
+
 trace('Closing filehandles');
 
 $infh->close();
