@@ -8,7 +8,7 @@ use XML::LibXML::Reader;
 
 my $start_time = time;
 
-my $trace = $| = 1; # 1 = enable debug messages; 0 = disable messages
+my $trace = $| = 0; # 1 = enable debug messages; 0 = disable messages
 
 trace('Starting CVE parser at ' . localtime);
 
