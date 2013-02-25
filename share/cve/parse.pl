@@ -34,7 +34,7 @@ trace('Starting XML tree traversal');
 # Parse XML tree as a list of <item> tags, extracting the CVE ID and description.
 while ($reader->nextElement('item') && $reader->readState() != XML_READER_ERROR) {
     my $name = $reader->getAttribute('name');
-    my $desc = $1 if $reader->readInnerXml =~ m|<desc.*>(.*)</desc>|;
+    my $desc = "Vulnerability description: $1" if $reader->readInnerXml =~ m|<desc.*>(.*)</desc>|;
     my $url  = "http://www.cvedetails.com/cve/$name";
 
     trace("Adding entry for $name");
