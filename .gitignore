@@ -1,0 +1,3 @@
+# Ignore plugin-generated files and directories.
+output.txt
+download
