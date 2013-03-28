@@ -1,2 +1,0 @@
-yui charts
-yui 3 accordion

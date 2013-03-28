@@ -1,2 +1,0 @@
-redis info 
-redis rpush

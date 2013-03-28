@@ -1,2 +1,0 @@
-perl 6 chr
-perl6 Version.new

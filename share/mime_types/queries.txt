@@ -1,3 +1,0 @@
-mime type .jpeg
-mime .torrent
-mimetype .svg
