@@ -62,11 +62,6 @@ share/plugin/output.txt
 # This is an optional pointer to a URL in the cloud somewhere,
 # which contains a zip of the data files to process.
 share/plugin/data.url
-
-# This is for testing.
-# Put some good queries to test, one per line.
-# You can explain them with comments above them.
-share/plugin/queries.txt
 ```
 
 
