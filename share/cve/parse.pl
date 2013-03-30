@@ -47,23 +47,7 @@ while ($reader->nextElement('item') && $reader->readState() != XML_READER_ERROR)
         trace("Adding entry for $name");
     }
 
-    # Add entry to output file.
-    print $outfh join "\t", (
-        $name,    # Title
-        'A',      # Type
-        '',       # Redirect
-        '',       # Other uses
-        '',       # Categories
-        '',       # References
-        '',       # See also
-        '',       # Further reading
-        '',       # External links
-        '',       # Disambiguation
-        '',       # Images
-        $desc,    # Abstract
-        $url,     # Source URL
-        "\n"
-    );
+    add_entry($outfh, $name, $desc, $url);
 }
 
 $infh->close();
@@ -93,6 +77,34 @@ sub parse_entry {
     }
 
     return ($desc, $url);
+}
+
+# Adds a given CVE entry to the output file.
+sub add_entry {
+    my ($fh, $name, $desc, $url) = @_;
+
+    print $fh join "\t", (
+        $name,    # Title
+        'A',      # Type
+        '',       # Redirect
+        '',       # Other uses
+        '',       # Categories
+        '',       # References
+        '',       # See also
+        '',       # Further reading
+        '',       # External links
+        '',       # Disambiguation
+        '',       # Images
+        $desc,    # Abstract
+        $url,     # Source URL
+        "\n"
+    );
+
+    # Add additional entry with xxxx-yyyy component for "cve" trigger keyword.
+    $name =~ s/^CVE-//;
+    print $fh join "\t", ($name, 'A',
+                          '', '', '', '', '', '', '', '', '',
+                          $desc, $url, "\n");
 }
 
 # For debug purposes only. Displays diagnostic message if $trace is defined.
