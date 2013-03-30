@@ -5,8 +5,7 @@ use DDG::Fathead;
 primary_example_queries 'cve-2009-1234';
 
 secondary_example_queries
-    'cve 2009-1234',
-    '2009-1234 cve';
+    'cve 2009-1234';
 
 description 'Common Vulnerabilities and Exposures (CVE) reference';
 
