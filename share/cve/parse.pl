@@ -101,10 +101,11 @@ sub add_entry {
     );
 
     # Add additional entry with xxxx-yyyy component for "cve" trigger keyword.
-    $name =~ s/^CVE-//;
-    print $fh join "\t", ($name, 'A',
-                          '', '', '', '', '', '', '', '', '',
-                          $desc, $url, "\n");
+    my $short = $name;
+    $short =~ s/^CVE-//;
+    print $fh join "\t", ($short, 'R',
+                          $name, '', '', '', '', '', '', '', '',
+                          '', '', "\n");
 }
 
 # For debug purposes only. Displays diagnostic message if $trace is defined.
