@@ -5,40 +5,7 @@ from collections import namedtuple
 import json, itertools, urllib, re
 
 ABSTRACT_TEMPLATE = """
-<style>
-ul.scholrly.author-stats {{ 
-    padding:0;
-    margin-top:10px;
-}}
-ul.scholrly.author-stats li {{
-    list-style: none;
-    display: block;
-    float: left;
-    margin-right:25px;
-    margin-bottom: 12px;
-}}
-ul.scholrly.author-stats li:last-child {{
-    float:;
-}}
-</style>
-<a class="snippet" href="{source_url}">
-{name} is a researcher interested in {keywords}.
-</a>
-<ul class="scholrly author-stats">
-  <li>
-    {num_coauthors}
-    <strong>Coauthors</strong>
-  </li>
-  <li>
-    {num_papers}
-    <strong>Papers</strong>
-  </li>
-  <li>
-    {num_citations}
-    <strong>Citations</strong>
-  </li>
-</ul>
-<div style="clear:left;">&nbsp;</div>
+{name} is a researcher{keyword_phrase}. {last_name} has written {num_papers} paper{paper_prefix} with {num_coauthors} coauthor{coauthor_prefix} and {num_citations} citation{citation_prefix}.
 """
 
 AUTHOR_CATEGORIES = ['researchers']
@@ -79,8 +46,7 @@ def ddg_search_url(query):
     return 'https://duckduckgo.com/?%s' % urllib.urlencode({'q':query})
 
 def format_keywords(keywords):
-    linked_kw = ['<a href="%s">%s</a>' % (ddg_search_url(kw), kw.lower())
-                 for kw in keywords]
+    linked_kw = [kw.lower() for kw in keywords]
     first_part = ', '.join(linked_kw[:-2])
     second_part = ' and '.join(linked_kw[-2:])
     parts = [part for part in [first_part, second_part] if len(part) > 0]
@@ -90,6 +56,30 @@ def output_from_row(row):
     # generate the main page
     if len(row.names) == 0 or len(row.keywords) == 0:
         return ''
+    
+    # NB these templating funcs expect n >= 0
+    def number_or_no(n):
+        return str(n) if n > 0 else 'no'
+
+    def plural_suffix(n):
+        return 's' if n > 1 or n == 0 else ''
+
+    keyword_phrase = ' interested in %s' % format_keywords(row.keywords) \
+            if len(row.keywords) > 0 else ''
+
+    # NB this is not the best way to handle last names (at all), but should
+    # work for the majority of cases right now
+    last_name = row.names[0].split()[-1]
+
+    num_coauthors = number_or_no(row.num_coauthors)
+    coauthor_prefix = plural_suffix(row.num_coauthors)
+
+    num_papers = number_or_no(row.num_papers)
+    paper_prefix = plural_suffix(row.num_papers)
+
+    num_citations = number_or_no(row.num_citations)
+    citation_prefix = plural_suffix(row.num_citations)
+
     article = DDGOutputRow(title=row.names[0],
                            type='A',
                            redirect='',
@@ -104,11 +94,14 @@ def output_from_row(row):
                            abstract=minify_whitespace(
                                ABSTRACT_TEMPLATE.format(
                                    name=row.names[0],
-                                   source_url=row.url,
-                                   num_coauthors=row.num_coauthors,
-                                   num_papers=row.num_papers,
-                                   num_citations=row.num_citations,
-                                   keywords=format_keywords(row.keywords))),
+                                   last_name=last_name,
+                                   num_coauthors=num_coauthors,
+                                   coauthor_prefix=coauthor_prefix,
+                                   num_papers=num_papers,
+                                   paper_prefix=paper_prefix,
+                                   num_citations=num_citations,
+                                   citation_prefix=citation_prefix,
+                                   keyword_phrase=keyword_phrase)),
                            source_url=row.url)
     # generate redirects for any aliases
     redirects = [DDGOutputRow(title=name, type='R',redirect=row.names[0],
