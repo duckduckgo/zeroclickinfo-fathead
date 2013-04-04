@@ -42,8 +42,8 @@ class Airport(object):
 		output = ""
 		logger.debug(self.name+';'+self.iata+';'+self.icao+';'+self.location+';'+self.index_letter)
 		fields = [
-				'',		# $unique_name
-				'A',	# $type 
+				'',	 # $unique_name
+				'A', # $type 
 				'',	 # $redirect
 				'',	 # $otheruses
 				'',	 # $categories
@@ -64,24 +64,34 @@ class Airport(object):
 		fields[0] = self.iata
 		fields[11] = iata_abstract
 		if self.iata != None and len(fields[0]) != 0:
-			output += '%s' % ('\t'.join(fields)) + '\n'
+			output += '%s' % ('\t'.join(fields))
 
 		fields[0] = self.icao
 		fields[11] = icao_abstract
 		if self.icao != None and len(self.icao) != 0:
-			output += '%s' % ('\t'.join(fields)) + '\n'
+			output += '\n%s' % ('\t'.join(fields))
 
 		fields[0] = self.location+' Airport'
 		fields[11] = location_abstract
 		if self.location != None and len(self.location) != "":
-			output += '%s' % ('\t'.join(fields))
+			output += '\n%s' % ('\t'.join(fields))+'\n'
+
+		if self.name != None:
+			location_names = self.name.split(',')
+			if (len(location_names) > 0):
+				airport_name = location_names[0]
+				if airport_name != self.location:
+					name_abstract = 'The \"'+airport_name+'\" airport corresponds to the IATA '+self.iata+' and ICAO '+self.icao+ ' near '+self.location
+					fields[0] = airport_name+' Airport'
+					fields[11] = name_abstract
+					output += '%s' % ('\t'.join(fields))+'\n'
+
 		return output
 
 
 class Parser(object):
 	""" Parses a HTML file to get all the airports codes """
 
-	
 	def __init__(self, index_letter):
 		self.soup = BeautifulSoup(open('download/'+index_letter), from_encoding='utf-8')
 		self.index_letter = index_letter
