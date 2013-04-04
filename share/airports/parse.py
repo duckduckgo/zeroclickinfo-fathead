@@ -114,12 +114,6 @@ class Parser(object):
 			else:
 				airport_location = airport_link.getText()
 
-			if airport_link != None:
-				airport_link = airport_link['href']
-				wikipedia_link = WIKIPEDIA_URL+airport_link
-			else:
-				wikipedia_link = ""
-
 			#logger.debug(data)
 			self.airports.append(
 				Airport(
