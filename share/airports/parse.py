@@ -18,6 +18,9 @@ import re
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger()
 
+WIKIPEDIA_URL = 'https://wikipedia.org'
+WIKIPEDIA_LIST_URL = 'https://en.wikipedia.org/wiki/List_of_airports_by_IATA_code:_'
+
 def replace_all(text, terms):
 	""" Replaces all terms contained
 	in a dict """
@@ -28,34 +31,31 @@ def replace_all(text, terms):
 
 class Airport(object):
 	""" Contains informations about an Airport"""
-	def __init__(self, name, iata, icao, location, reference):
+	def __init__(self, name, iata, icao, location, index_letter):
 		self.name = name
 		self.iata = iata
 		self.icao = icao
 		self.location = location
-		self.reference = reference 
+		self.index_letter = index_letter 
 
 	def __str__(self):
 		output = ""
-		logger.debug(self.name+';'+self.iata+';'+self.icao+';'+self.location+';'+self.reference)
+		logger.debug(self.name+';'+self.iata+';'+self.icao+';'+self.location+';'+self.index_letter)
 		fields = [
-				self.name,				# $unique_name
-				'A',					# $type 
-				'',						# $redirect
-				'',						# $otheruses
-				'',						# $categories
-				'',						# $references
-				'',						# $see_also
-				'',						# $further_reading
-				'',						# $external_links
-				'',						# $disambiguation
-				'',						# images
-				self.name+' in '+self.location+'. IATA: '+self.iata+' ICAO:'+self.icao,						# abstract
-				self.reference			# source url
+				'',		# $unique_name
+				'A',	# $type 
+				'',	 # $redirect
+				'',	 # $otheruses
+				'',	 # $categories
+				'',	 # $references
+				'',	 # $see_also
+				'',	 # $further_reading
+				'',	 # $external_links
+				'',	 # $disambiguation
+				'',	 # images
+				'',	 # abstract
+				WIKIPEDIA_LIST_URL+self.index_letter # source url
 				]
-
-#		if self.name != None and len(self.name) != "":
-#			output += '%s' % ('\t'.join(fields)) + '\n'
 
 		iata_abstract = 'The \"'+self.iata+'\" airport code corresponds to the '+self.location+' in '+self.name
 		icao_abstract = 'The \"'+self.icao+'\" airport code corresponds to the '+self.location+' in '+self.name
@@ -81,10 +81,10 @@ class Airport(object):
 class Parser(object):
 	""" Parses a HTML file to get all the airports codes """
 
-	WIKIPEDIA_URL = 'https://wikipedia.org'
 	
 	def __init__(self, index_letter):
 		self.soup = BeautifulSoup(open('download/'+index_letter), from_encoding='utf-8')
+		self.index_letter = index_letter
 
 	def get_airports(self):
 		self.airports = []
@@ -106,7 +106,7 @@ class Parser(object):
 
 			if airport_link != None:
 				airport_link = airport_link['href']
-				wikipedia_link = self.WIKIPEDIA_URL+airport_link
+				wikipedia_link = WIKIPEDIA_URL+airport_link
 			else:
 				wikipedia_link = ""
 
@@ -117,7 +117,7 @@ class Parser(object):
 					data[0].getText(),		# IATA
 					data[1].getText(),		# ICAO
 					airport_location,
-					wikipedia_link
+					self.index_letter
 					))
 
 if __name__ == '__main__':
