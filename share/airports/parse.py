@@ -5,9 +5,18 @@ import logging
 import os
 import re
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger()
+# The "APH" airport code corresponds to the Jacksonville International
+# Airport in Jacksonville, FL, United Sates.
 
+# Limit the entries to the code (e.g. 'JAX' ) and the airport name +
+# 'code' (e.g. 'Jacksonville International Airport code'). The latter
+# being a redirect to the former. We could also include one with the
+# word 'airport' removed (e.g. 'Jacksonville International code').
+# Having the result for the city name would cover too many searches
+# that aren't looking for the airport code.
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger()
 
 def replace_all(text, terms):
 	""" Replaces all terms contained
@@ -45,20 +54,27 @@ class Airport(object):
 				self.reference			# source url
 				]
 
-		if self.name != None and len(self.name) != "":
-			output += '%s' % ('\t'.join(fields)) + '\n'
+#		if self.name != None and len(self.name) != "":
+#			output += '%s' % ('\t'.join(fields)) + '\n'
+
+		iata_abstract = 'The \"'+self.iata+'\" airport code corresponds to the '+self.location+' in '+self.name
+		icao_abstract = 'The \"'+self.icao+'\" airport code corresponds to the '+self.location+' in '+self.name
+		location_abstract = 'The \"'+self.location+'\" airport corresponds to the IATA '+self.iata+' and ICAO '+self.icao
 
 		fields[0] = self.iata
+		fields[11] = iata_abstract
 		if self.iata != None and len(fields[0]) != 0:
 			output += '%s' % ('\t'.join(fields)) + '\n'
 
 		fields[0] = self.icao
+		fields[11] = icao_abstract
 		if self.icao != None and len(self.icao) != 0:
 			output += '%s' % ('\t'.join(fields)) + '\n'
 
-		fields[0] = self.location
+		fields[0] = self.location+' Airport'
+		fields[11] = location_abstract
 		if self.location != None and len(self.location) != "":
-			output += '%s' % ('\t'.join(fields)) + '\n'
+			output += '%s' % ('\t'.join(fields))
 		return output
 
 
@@ -109,6 +125,7 @@ if __name__ == '__main__':
 	with open('output.txt', 'w') as output:
 		for i in indexes:
 			parser = Parser(i)
+			logger.debug("Index: "+i)
 			parser.get_airports()
 			for airport in parser.airports:
 				output.write(airport.__str__().encode('utf-8'))
