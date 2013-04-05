@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from collections import namedtuple
-import json, itertools, urllib, re
+import json, itertools, urllib, re, sys
 
-ABSTRACT_TEMPLATE = """
+ABSTRACT_TEMPLATE = unicode("""
 {name} is a researcher{keyword_phrase}. {last_name} has written {num_papers} paper{paper_prefix} with {num_coauthors} coauthor{coauthor_prefix} and {num_citations} citation{citation_prefix}.
-"""
+""")
 
 AUTHOR_CATEGORIES = ['researchers']
 
@@ -35,7 +35,7 @@ DDGOutputRow = namedtuple('DDGOutputRow',
          'images', 'abstract', 'source_url'])
 
 def replace_whitespace(s):
-    return str(s).replace('\t',' ').replace('\n', ' ').replace('\r', ' ')
+    return unicode(s).replace('\t',' ').replace('\n', ' ').replace('\r', ' ')
 
 WHITESPACE_PATTERN = re.compile(r'\s+')
 
@@ -59,7 +59,7 @@ def output_from_row(row):
     
     # NB these templating funcs expect n >= 0
     def number_or_no(n):
-        return str(n) if n > 0 else 'no'
+        return unicode(n) if n > 0 else 'no'
 
     def plural_suffix(n):
         return 's' if n > 1 or n == 0 else ''
@@ -115,13 +115,15 @@ def output_from_row(row):
 
 used_names = set()
 
-with open('download/download.tsv') as data_file:
-    # read in the downloaded data, skipping the header
-    rows = (ParsedDownloadRow(*line.split('\t'))
-            for line in itertools.islice(data_file, 1, None))
-    for row in rows:
-        # make sure we don't use a name twice, since we don't do disambig
-        # pages yet
-        if all(name not in used_names and not used_names.add(name)
-            for name in row.names):
-            print(output_from_row(row))
+if __name__ == '__main__':
+    with open(sys.argv[1]) as data_file:
+        # read in the downloaded data, skipping the header
+        rows = (ParsedDownloadRow(*line.split('\t'))
+                for line in itertools.islice(data_file, 1, None))
+        with open(sys.argv[2], 'a') as output_file:
+            for row in rows:
+                # make sure we don't use a name twice, since we don't do disambig
+                # pages yet
+                if all(name not in used_names and not used_names.add(name)
+                    for name in row.names):
+                    output_file.write(output_from_row(row).encode('utf8') + '\n')

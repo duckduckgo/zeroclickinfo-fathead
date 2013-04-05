@@ -1,2 +1,2 @@
 #!/bin/bash
-python parse.py > output.txt
+python parse.py download/download.tsv output.txt
