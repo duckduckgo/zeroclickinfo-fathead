@@ -57,8 +57,9 @@ class Airport(object):
 				WIKIPEDIA_LIST_URL+self.index_letter # source url
 				]
 
-		iata_abstract = 'The \"'+self.iata+'\" airport code corresponds to the '+self.location+' in '+self.name
-		icao_abstract = 'The \"'+self.icao+'\" airport code corresponds to the '+self.location+' in '+self.name
+		iata_abstract = 'The \"'+self.iata+'\" airport code corresponds to '+self.name+' in '+self.location
+		icao_abstract = 'The \"'+self.icao+'\" airport code corresponds to '+self.name+' in '+self.location
+		name_abstract = 'The \"'+self.name+'\" corresponds to the IATA '+self.iata+' and ICAO '+self.icao+ ' near '+self.location
 		location_abstract = 'The \"'+self.location+'\" airport corresponds to the IATA '+self.iata+' and ICAO '+self.icao
 
 		fields[0] = self.iata
@@ -71,19 +72,19 @@ class Airport(object):
 		if self.icao != None and len(self.icao) != 0:
 			output += '\n%s' % ('\t'.join(fields))
 
-		fields[0] = self.location+' Airport'
+		fields[0] = self.name
 		fields[11] = location_abstract
-		if self.location != None and len(self.location) != "":
+		if self.name!= None and len(self.name) != "":
 			output += '\n%s' % ('\t'.join(fields))+'\n'
 
-		if self.name != None:
-			location_names = self.name.split(',')
-			if (len(location_names) > 0):
-				airport_name = location_names[0]
-				if airport_name != self.location:
-					name_abstract = 'The \"'+airport_name+'\" airport corresponds to the IATA '+self.iata+' and ICAO '+self.icao+ ' near '+self.location
-					fields[0] = airport_name+' Airport'
-					fields[11] = name_abstract
+		if self.location != None:
+			location_names = self.location.split(',')
+			if len(location_names) > 0:
+				airport_location_name = location_names[0]+' Airport'
+				if airport_location_name != self.name:
+					location_abstract = 'The \"'+airport_location_name+'\" corresponds to the IATA '+self.iata+' and ICAO '+self.icao+ ' near '+self.location
+					fields[0] = airport_location_name
+					fields[11] = location_abstract
 					output += '%s' % ('\t'.join(fields))+'\n'
 
 		return output
@@ -108,20 +109,20 @@ class Parser(object):
 				continue
 
 			# check if data[3] has no link look in 
-			airport_link = data[3].find('a')
+			airport_link = data[2].find('a')
 			if airport_link == None:
-				airport_link = data[2].find('a')
-			else:
-				airport_location = airport_link.getText()
+				airport_link = data[3].find('a')
+			if airport_link != None:
+				airport_name = airport_link.getText()
 
 			#logger.debug(data)
 			self.airports.append(
 				Airport(
-					data[3].getText(),		# Name
+					airport_name,
 					data[0].getText(),		# IATA
 					data[1].getText(),		# ICAO
-					airport_location,
-					self.index_letter
+					data[3].getText(),
+					self.index_letter		# Name
 					))
 
 if __name__ == '__main__':
