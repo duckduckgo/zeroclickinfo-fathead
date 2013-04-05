@@ -60,7 +60,6 @@ class Airport(object):
 		iata_abstract = 'The \"'+self.iata+'\" airport code corresponds to '+self.name+' in '+self.location
 		icao_abstract = 'The \"'+self.icao+'\" airport code corresponds to '+self.name+' in '+self.location
 		name_abstract = 'The \"'+self.name+'\" corresponds to the IATA '+self.iata+' and ICAO '+self.icao+ ' near '+self.location
-		location_abstract = 'The \"'+self.location+'\" airport corresponds to the IATA '+self.iata+' and ICAO '+self.icao
 
 		fields[0] = self.iata
 		fields[11] = iata_abstract
@@ -73,7 +72,7 @@ class Airport(object):
 			output += '\n%s' % ('\t'.join(fields))
 
 		fields[0] = self.name
-		fields[11] = location_abstract
+		fields[11] = name_abstract
 		if self.name!= None and len(self.name) != "":
 			output += '\n%s' % ('\t'.join(fields))+'\n'
 
