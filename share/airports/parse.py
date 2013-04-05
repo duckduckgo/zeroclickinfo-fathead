@@ -57,9 +57,15 @@ class Airport(object):
 				WIKIPEDIA_LIST_URL+self.index_letter # source url
 				]
 
-		iata_abstract = 'The \"'+self.iata+'\" airport code corresponds to '+self.name+' in '+self.location
-		icao_abstract = 'The \"'+self.icao+'\" airport code corresponds to '+self.name+' in '+self.location
-		name_abstract = 'The \"'+self.name+'\" corresponds to the IATA '+self.iata+' and ICAO '+self.icao+ ' near '+self.location
+		if self.icao != '':
+			abstract_icao_part = ' and the ICAO code is \"'+self.icao+'\"'
+		else:
+			abstract_icao_part = ''
+
+		iata_abstract = 'The \"'+self.iata+'\" airport code corresponds to '+self.name+' in '+self.location+abstract_icao_part
+		icao_abstract = 'The \"'+self.icao+'\" airport code corresponds to '+self.name+' in '+self.location+' and the IATA code is \"'+self.iata+'\"'
+		name_abstract = 'The IATA code for the '+self.name+' is \"'+self.iata+'\"'+abstract_icao_part
+		location_abstract = 'The '+self.name+' correspond to the IATA \"'+self.iata+'\"'+abstract_icao_part+' near '+self.location
 
 		fields[0] = self.iata
 		fields[11] = iata_abstract
@@ -81,7 +87,6 @@ class Airport(object):
 			if len(location_names) > 0:
 				airport_location_name = location_names[0]+' Airport'
 				if airport_location_name != self.name:
-					location_abstract = 'The \"'+airport_location_name+'\" corresponds to the IATA '+self.iata+' and ICAO '+self.icao+ ' near '+self.location
 					fields[0] = airport_location_name
 					fields[11] = location_abstract
 					output += '%s' % ('\t'.join(fields))+'\n'
