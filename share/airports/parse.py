@@ -66,8 +66,8 @@ class Airport(object):
 		if name_with_airport.find('Airport') == -1:
 			name_with_airport += ' Airport'
 
-		iata_abstract = 'The \"'+self.iata+'\" airport code corresponds to '+name_with_airport+' in '+self.location+abstract_icao_part
-		icao_abstract = 'The \"'+self.icao+'\" airport code corresponds to '+name_with_airport+' in '+self.location+' and the IATA code is \"'+self.iata+'\"'
+		iata_abstract = 'The IATA \"'+self.iata+'\" airport code corresponds to '+name_with_airport+' in '+self.location+abstract_icao_part
+		icao_abstract = 'The ICAO \"'+self.icao+'\" airport code corresponds to '+name_with_airport+' in '+self.location+' and the IATA code is \"'+self.iata+'\"'
 		name_abstract = 'The IATA code for the '+name_with_airport+' is \"'+self.iata+'\"'+abstract_icao_part
 		location_abstract = 'The IATA code for the '+name_with_airport+' near '+self.location+' is \"'+self.iata+'\"'+abstract_icao_part
 
