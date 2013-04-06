@@ -69,7 +69,7 @@ class Airport(object):
 		iata_abstract = 'The \"'+self.iata+'\" airport code corresponds to '+name_with_airport+' in '+self.location+abstract_icao_part
 		icao_abstract = 'The \"'+self.icao+'\" airport code corresponds to '+name_with_airport+' in '+self.location+' and the IATA code is \"'+self.iata+'\"'
 		name_abstract = 'The IATA code for the '+name_with_airport+' is \"'+self.iata+'\"'+abstract_icao_part
-		location_abstract = 'The '+name_with_airport+' correspond to the IATA \"'+self.iata+'\"'+abstract_icao_part+' near '+self.location
+		location_abstract = 'The IATA code for the '+name_with_airport+' near '+self.location+' is \"'+self.iata+'\"'+abstract_icao_part
 
 		fields[0] = self.iata
 		fields[11] = iata_abstract
