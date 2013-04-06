@@ -62,10 +62,14 @@ class Airport(object):
 		else:
 			abstract_icao_part = ''
 
-		iata_abstract = 'The \"'+self.iata+'\" airport code corresponds to '+self.name+' in '+self.location+abstract_icao_part
-		icao_abstract = 'The \"'+self.icao+'\" airport code corresponds to '+self.name+' in '+self.location+' and the IATA code is \"'+self.iata+'\"'
-		name_abstract = 'The IATA code for the '+self.name+' is \"'+self.iata+'\"'+abstract_icao_part
-		location_abstract = 'The '+self.name+' correspond to the IATA \"'+self.iata+'\"'+abstract_icao_part+' near '+self.location
+		name_with_airport = self.name
+		if name_with_airport.find('Airport') == -1:
+			name_with_airport += ' Airport'
+
+		iata_abstract = 'The \"'+self.iata+'\" airport code corresponds to '+name_with_airport+' in '+self.location+abstract_icao_part
+		icao_abstract = 'The \"'+self.icao+'\" airport code corresponds to '+name_with_airport+' in '+self.location+' and the IATA code is \"'+self.iata+'\"'
+		name_abstract = 'The IATA code for the '+name_with_airport+' is \"'+self.iata+'\"'+abstract_icao_part
+		location_abstract = 'The '+name_with_airport+' correspond to the IATA \"'+self.iata+'\"'+abstract_icao_part+' near '+self.location
 
 		fields[0] = self.iata
 		fields[11] = iata_abstract
