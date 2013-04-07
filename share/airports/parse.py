@@ -21,13 +21,11 @@ logger = logging.getLogger()
 WIKIPEDIA_URL = 'https://wikipedia.org'
 WIKIPEDIA_LIST_URL = 'https://en.wikipedia.org/wiki/List_of_airports_by_IATA_code:_'
 
-def replace_all(text, terms):
-	""" Replaces all terms contained
-	in a dict """
-	for _from, _to in terms.items():
-		text = text.replace(_from, _to)
+def append_period(text):
+	""" Append a period at the end of the sentence"""
+	if text[-1] == '\"':
+		return text[0:-1]+'.\"'
 	return text
-
 
 class Airport(object):
 	""" Contains informations about an Airport"""
@@ -70,25 +68,24 @@ class Airport(object):
 		if name_with_airport.find('airports in ') != -1:
 			name_with_airport = 'airports'
 
+		iata_abstract = 'The \"'+self.iata+'\" IATA airport code corresponds to '+name_with_airport+' in '+self.location+abstract_icao_part
+		icao_abstract = 'The \"'+self.icao+'\" ICAO airport code corresponds to '+name_with_airport+' in '+self.location+' and the IATA code is \"'+self.iata+'\"'
+		name_abstract = 'The IATA code for the '+name_with_airport+' is \"'+self.iata+'\"'+abstract_icao_part
+		location_abstract = 'The IATA code for the '+name_with_airport+' near '+self.location+' is \"'+self.iata+'\"'+abstract_icao_part
 
-		iata_abstract = 'The IATA \"'+self.iata+'\" airport code corresponds to '+name_with_airport+' in '+self.location+abstract_icao_part+'.'
-		icao_abstract = 'The ICAO \"'+self.icao+'\" airport code corresponds to '+name_with_airport+' in '+self.location+' and the IATA code is \"'+self.iata+'\".'
-		name_abstract = 'The IATA code for the '+name_with_airport+' is \"'+self.iata+'\"'+abstract_icao_part+'.'
-		location_abstract = 'The IATA code for the '+name_with_airport+' near '+self.location+' is \"'+self.iata+'\"'+abstract_icao_part+'.'
-
-		fields[0] = self.iata
-		fields[11] = iata_abstract
-		if self.iata != None and len(fields[0]) != 0:
+		if self.iata != None and len(self.iata) != 0:
+			fields[0] = self.iata
+			fields[11] = append_period(iata_abstract)
 			output += '%s' % ('\t'.join(fields))
 
-		fields[0] = self.icao
-		fields[11] = icao_abstract
 		if self.icao != None and len(self.icao) != 0:
+			fields[0] = self.icao
+			fields[11] = append_period(icao_abstract)
 			output += '\n%s' % ('\t'.join(fields))
 
-		fields[0] = self.name
-		fields[11] = name_abstract
 		if self.name!= None and len(self.name) != "":
+			fields[0] = self.name
+			fields[11] = append_period(name_abstract)
 			output += '\n%s' % ('\t'.join(fields))+'\n'
 
 		if self.location != None:
@@ -97,9 +94,8 @@ class Airport(object):
 				airport_location_name = location_names[0]+' Airport'
 				if airport_location_name != self.name:
 					fields[0] = airport_location_name
-					fields[11] = location_abstract
+					fields[11] = append_period(location_abstract)
 					output += '%s' % ('\t'.join(fields))+'\n'
-
 		return output
 
 
