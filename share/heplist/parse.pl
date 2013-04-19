@@ -30,7 +30,7 @@ getParticleTypes( "download/pdg_meson.tex", 7 );
 getParticleTypes( "download/pdg_baryon.tex", 8 );
 
 setCommonNames();
-setSpecialLinks;
+setSpecialLinks();
 
 ################################################################################
 # get mass and width
@@ -98,8 +98,6 @@ foreach my $key ( keys %particles ) {
 	$title =~ s/\\//g;
 	my $categories = "Particles\\n".$pr->{category};
 	my $see_also = "[[Particle physics]]";
-	# TODO 
-	# find .pdf file foreach particle
 	my $external_links = "[http://pdg.lbl.gov Particle Data Group]";
 	my $dispname = $pr->{cname} ? $pr->{cname} : $pr->{name};
 	my $mass;
@@ -111,6 +109,7 @@ foreach my $key ( keys %particles ) {
 	} else {
 		$mass = "not measured, ";
 	}
+
 	################################################################################
 	# construct abstract
 	my $abstract = "Properties of ".$dispname.":, ";
@@ -122,10 +121,8 @@ foreach my $key ( keys %particles ) {
 		my $width = "";
 		if( $pr->{W} ) {
 			my ( $widthunit, $widthstring ) = getNumberUnitIndex( $pr->{W} );
-			#my $werror = $pr->{Werrplus} == $pr->{Werrminus} ? " +-".$pr->{Werrplus} : " +".$pr->{Werrplus}." -".$pr->{Werrminus};
 			my $werror = ($pr->{Werrplus} == $pr->{Werrminus}) ? " \x{00B1} ".getNumberToUnit($pr->{Werrplus}, $widthunit) : " + ".getNumberToUnit($pr->{Werrplus}, $widthunit)." - ".getNumberToUnit($pr->{Werrminus}, $widthunit );
 			
-			#$width = "width: ".$pr->{W}.$werror.", ";
 			$width = "width: ".$widthstring.$werror." ".$units[$widthunit].", ";
 		};
 		$abstract .= $width;
@@ -143,7 +140,7 @@ foreach my $key ( keys %particles ) {
 	################################################################################
 
 
-	# TODO 
+	# FIXME
 	# is this the correct source_url?
 	my $source_url = "http://pdg.lbl.gov/2012/html/computer_read.html";
 	print $fout join "\t", (
@@ -271,14 +268,12 @@ sub getParticleTypes
 
 	my @dataelems = read_file( $fname, binmode => ":encoding(utf-8)" );
 	my @test = grep { /^\\multicolumn\{$ncols\}\{\|c\@\{\\tstrut\}\|\}\{[$allowednames]+\}/.../^\\end\{tabular\}$/ } @dataelems;
-	#my @test = grep { /^\\multicolumn\{$ncols\}\{\|c\@\{\\tstrut\}\|\}\{[a-zA-Z\-=0-9\\\$, ]+\}/.../^$/ } @dataelems;
  	my @datatypes = split /\\end\{tabular\}\n+/, join "", @test;
 
 	foreach my $line ( @datatypes ) {
 		my @tmp = split /\n/, $line;
 		my $ptype = $tmp[0] =~ s/^\\multicolumn\{$ncols\}\{\|c\@\{\\tstrut\}\|\}\{([$allowednames]+)\}.*/$1/ir;
 		$ptype =~ s/^ +//;
-		#say ">>>>".$ptype."<<<<";
 		
 		# remove first two lines and last one
 		shift @tmp; shift @tmp; #pop @tmp;
@@ -291,12 +286,10 @@ sub getParticleTypes
 			} elsif( $ncols == 8 ) {
 				( $pname, $qcontent, my( $p96, $p98, $p00, $p02, $p04), $p06 ) = split /\s*&\s*/;
 			}
-			# gluon is 21 (9)... 21 is used in data...
+			# gluon is 21 (9)... 21 is used in data..., 9 is for special EvtGenerators
 			$p06 = "21" if $p06 eq "21 (9)";
 			$pname =~ s/\$//g;
-			# remove \footnotemark[\digit]]
 			$pname =~ s/\\footnotemark\[[0-9]+\]//g;
-			#print "  ".$pname.": $p06\n";
 			$particles{$p06} = {
 				name		=> $pname,
 				mcnumber	=> $p06,
@@ -548,13 +541,7 @@ sub getLink
 		$link .= "-".$mass if $mass;
 		$link .= "-".$charge if $charge;
 		$link .= ".pdf";
-
-# 		$lname =~ s/\)|\\| |_//g;
-# 		$lname =~ s/\^\{?((prime)[0\+\-\*]+|[0\+\-\*]+)\}?/-$2/;
-# 		$lname =~ s/\(|\^/-/g;
-# 		$lname =~ s/--/-/g;
 	}
-	#say $pr->{name}."\t\t".$link."\t\t".$pr->{mcnumber};
 	return $link;
 }
 
@@ -564,7 +551,6 @@ sub setSpecialLinks
 	# versions of the same meson are in the same file, eg B*
 	# -> do it manually
 
-	#FIXME continue here
 	$particles{30113}{link} = "rho-1700";
 	$particles{20323}{link} = "K1-1400";
 	$particles{10441}{link} = "chi-c0-1P";
@@ -648,3 +634,4 @@ sub setSpecialLinks
 	$particles{100553}{link} = "upsilon-2S";
 	$particles{219}{link} = "a4-2040";
 }
+
