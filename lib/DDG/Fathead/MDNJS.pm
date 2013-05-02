@@ -1,4 +1,4 @@
-package DDG::Fathead::MDN;
+package DDG::Fathead::MDNJS;
 
 use DDG::Fathead;
 
@@ -10,13 +10,13 @@ secondary_example_queries
 
 description "Method signatures for core JavaScript 1.5.";
 
-name "JavaScript Reference";
+name "MDN JavaScript Reference";
 
 icon_url "";
 
-source "JavaScript";
+source "Mozilla Developer Network";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/mdn";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/mdnjs";
 
 topics "programming";
 
