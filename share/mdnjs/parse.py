@@ -1,3 +1,4 @@
+from collections import Counter
 import cgi
 import csv
 
@@ -26,31 +27,42 @@ class Standardizer(object):
       definitions. It should have the format:
         BaseObject,property,{class_property,class_function,instance_method,instance_property}
     """
-    self.d = {}
+    self.inverted_index = {}
+    self.objects = set()
     with open(specfile) as f:
       for line in f:
-        obj, prop, typ = line.strip().split(',')
-        if obj not in self.d:
-          self.d[obj] = {}
-        self.d[obj][prop] = typ
+        line = line.strip()
+        index = line.split('(')[0]
+        if index.count('.') > 1:
+          index = index.split('prototype')[-1]
+        index = index.split('.')[-1].lower().strip()
+        if index not in self.inverted_index:
+          self.inverted_index[index] = []
+        self.inverted_index[index].append(line)
 
-  def _title(self, obj, prop):
-    typ = self.d.get(obj, {}).get(prop)
-    if typ is None:
-      prop = prop[:1].lower() + prop[1:]
-      typ = self.d.get(obj, {}).get(prop)
-    if typ is None or typ not in Standardizer.TITLE_FORMATTING:
-      return
-    fmt = Standardizer.TITLE_FORMATTING[typ]
-    return fmt %(obj, prop)
+        obj = line.split('.')[0]
+        self.objects.add(obj)
+    print self.inverted_index['prototype']
 
   def standardize(self, mdn):
     """ Standardize and clean the fields within an MDN object. """
-    title = self._title(mdn.obj, mdn.prop)
-    if title:
-      mdn.title = title
+    if 'Global' in mdn.obj: 
+      mdn.obj = 'Global'
+    if mdn.obj not in self.objects:
+      return None
+    if mdn.prop.lower() == 'length':
+      print mdn.prop, mdn.obj
+    if mdn.prop.lower() not in self.inverted_index:
+      return mdn
+    for signature in self.inverted_index[mdn.prop.lower()]:
+      if signature.startswith(mdn.obj):
+        mdn.codesnippet = signature
+        mdn.title = signature.split('(')[0].strip()
+        break
+
     return mdn
-    
+
+
 class FatWriter(object):
   """ File writer for DDG Fathead files. Field orders and output format
   comply with the documentation at https://github.com/duckduckgo/
@@ -71,23 +83,18 @@ class FatWriter(object):
     'abstract',
     'source_url'
   ]
-  def __init__(self, csvfile, unique=False):
+  def __init__(self, csvfile):
     self._writer = csv.DictWriter(csvfile, FatWriter.FIELDS, delimiter="\t")
-    self.unique = True
     self.fields = set()
 
   def writerow(self, row):
     """ Write the dict row. """
-    if self.unique:
-      if row.get('title') in self.fields:
-        return
-      self.fields.add(row.get('title'))
     self._writer.writerow(row)
 
 class MDNWriter(FatWriter):
   """ An implementation of FatWriter that knows how to convert between MDN objects
       and the FatWriter spec. """
-  def writerow(self, mdn):
+  def writemdn(self, mdn):
     code = ''
     abstract = ''
     if mdn.codesnippet:
@@ -103,7 +110,7 @@ class MDNWriter(FatWriter):
       'source_url': mdn.url,
       'abstract': abstract 
     }
-    super(MDNWriter, self).writerow(d)
+    self.writerow(d)
 
 class MDN(object):
   """ A container object for an MDN article. 
@@ -175,6 +182,47 @@ class MDNParser(object):
     mdn.codesnippet = self._extract_node(codesnippet_els)
     return mdn
 
+class MDNIndexer(object):
+  def __init__(self, writer):
+    self._writer = writer
+    self.counter = Counter()
+    self.inverted_index = {}
+
+  def add(self, mdn): 
+    keyword = mdn.prop.lower()
+    self.counter[keyword] += 1
+    if keyword not in self.inverted_index:
+      self.inverted_index[keyword] = []
+    self.inverted_index[keyword].append(mdn)
+
+  def writerows(self):
+    for keyword, count in self.counter.most_common():
+      if count == 1:
+        # Write a redirect
+        d = {
+          'title': keyword,
+          'type': 'R',
+          'redirect': self.inverted_index[keyword][0].title
+        }
+      if count > 1:
+        disambig = ''
+        for mdn in self.inverted_index[keyword]:
+          if disambig:
+            disambig += '\\n'
+          if '.' in mdn.summary:
+            summary = mdn.summary[:mdn.summary.find('.') + 1]
+          else:
+            summary = mdn.summary
+          disambig += '[[%s]] %s' % (mdn.title, summary)
+        d = {
+          'title': keyword,
+          'type': 'D',
+          'disambiguation': disambig
+        }
+        # Write a disambiguation
+        pass
+      self._writer.writerow(d)
+
 def run(cachedir, cachejournal, langdefs, outfname):
   """
   Args:
@@ -184,28 +232,38 @@ def run(cachedir, cachejournal, langdefs, outfname):
       the Standardizer class for info on this spec.
     outname: The output filename.
   """
-  standardizer = Standardizer('propref.csv')
+  standardizer = Standardizer(langdefs)
   parser = MDNParser()
   journal = [l.strip().split(',') for l in open(cachejournal).read().splitlines()]
   with open(outfname, 'w') as outfile:
-    writer = MDNWriter(outfile, unique=True)
+    writer = MDNWriter(outfile)
+    indexer = MDNIndexer(writer)
     # Iterate over URLs in the sitemap ...
     for fname, url in journal:
       # ... and parse each to generate an mdn object.
       mdn = parser.parse(open(fname))
       if not mdn:
         continue
-      # The MDN urls have the format BASE/obj/prop, where
-      # BASE is some arbitrary wiki base. For example, 
-      # https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/length
+      # WARNING WARNING
+      # 
+      #  If MDN updates their URL structure, this will break. This assumes that
+      #  the URL ends with /obj/property
+      #
+      #  An improvement would be to supply this as a regex pattern to the CL
+      #
+      # WARNING WARNING
       _, obj, prop = url.rsplit('/', 2)
       mdn.url = url
       mdn.obj = obj
       mdn.prop = prop
       mdn = standardizer.standardize(mdn)
+      if mdn is None:
+        continue
       # Here we require that outputs have either a summary or a code sample.
       if mdn.summary or mdn.codesnippet:
-        writer.writerow(mdn)
+        writer.writemdn(mdn)
+        indexer.add(mdn)
+    indexer.writerows()
   
 if __name__ == '__main__':
   import argparse

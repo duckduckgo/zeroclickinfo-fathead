@@ -1,5 +1,5 @@
 #!/bin/bash
 python parse.py --out output.txt \
-                --langdefs propref.csv \
+                --langdefs ecma.csv \
                 --cachedir downloads \
                 --cachejournal ".cachejournal"

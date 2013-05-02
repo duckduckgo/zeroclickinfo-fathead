@@ -1,0 +1,206 @@
+Global.NaN
+Global.Infinity
+Global.undefined
+Global.eval (x)
+Global.escape (string)
+Global.unescape (string)
+Global.parseInt (string , radix)
+Global.parseFloat (string)
+Global.isNaN (number)
+Global.isFinite (number)
+Global.decodeURI (encodedURI)
+Global.decodeURIComponent (encodedURIComponent)
+Global.encodeURI (uri)
+Global.encodeURIComponent (uriComponent)
+Object.prototype
+Object.getPrototypeOf ( O )
+Object.getOwnPropertyDescriptor ( O, P )
+Object.getOwnPropertyNames ( O )
+Object.create ( O [, Properties] )
+Object.defineProperty ( O, P, Attributes )
+Object.defineProperties ( O, Properties )
+Object.seal ( O )
+Object.freeze ( O )
+Object.preventExtensions ( O )
+Object.isSealed ( O )
+Object.isFrozen ( O )
+Object.isExtensible ( O )
+Object.keys ( O )
+Object.prototype.constructor
+Object.prototype.toString ( )
+Object.prototype.toLocaleString ( )
+Object.prototype.valueOf ( )
+Object.prototype.hasOwnProperty (V)
+Object.prototype.isPrototypeOf (V)
+Object.prototype.propertyIsEnumerable (V)
+Function.prototype
+Function.length
+Function.prototype.constructor
+Function.prototype.toString ( )
+Function.prototype.apply (thisArg, argArray)
+Function.prototype.call (thisArg [ , arg1 [ , arg2, … ] ] )
+Function.prototype.bind (thisArg [, arg1 [, arg2, …]])
+Function.prototype.length
+Function.prototype.prototype
+Array.prototype
+Array.isArray ( arg )
+Array.prototype.constructor
+Array.prototype.toString ( )
+Array.prototype.toLocaleString ( )
+Array.prototype.concat ( [ item1 [ , item2 [ , … ] ] ] )
+Array.prototype.join (separator)
+Array.prototype.pop ( )
+Array.prototype.push ( [ item1 [ , item2 [ , … ] ] ] )
+Array.prototype.reverse ( )
+Array.prototype.shift ( )
+Array.prototype.slice (start, end)
+Array.prototype.sort (comparefn)
+Array.prototype.splice (start, deleteCount [ , item1 [ , item2 [ , … ] ] ] )
+Array.prototype.unshift ( [ item1 [ , item2 [ , … ] ] ] )
+Array.prototype.indexOf ( searchElement [ , fromIndex ] )
+Array.prototype.lastIndexOf ( searchElement [ , fromIndex ] )
+Array.prototype.every ( callbackfn [ , thisArg ] )
+Array.prototype.some ( callbackfn [ , thisArg ] )
+Array.prototype.forEach ( callbackfn [ , thisArg ] )
+Array.prototype.map ( callbackfn [ , thisArg ] )
+Array.prototype.filter ( callbackfn [ , thisArg ] )
+Array.prototype.reduce ( callbackfn [ , initialValue ] )
+Array.prototype.reduceRight ( callbackfn [ , initialValue ] )
+Function.prototype.length
+String.prototype
+String.fromCharCode ( [ char0 [ , char1 [ , … ] ] ] )
+String.prototype.constructor
+String.prototype.length
+String.prototype.toString ( )
+String.prototype.valueOf ( )
+String.prototype.charAt (pos)
+String.prototype.charCodeAt (pos)
+String.prototype.concat ( [ string1 [ , string2 [ , … ] ] ] )
+String.prototype.indexOf (searchString, position)
+String.prototype.lastIndexOf (searchString, position)
+String.prototype.localeCompare (that)
+String.prototype.match (regexp)
+String.prototype.replace (searchValue, replaceValue)
+String.prototype.search (regexp)
+String.prototype.slice (start, end)
+String.prototype.split (separator, limit)
+String.prototype.substr (start, length)
+String.prototype.substring (start, end)
+String.prototype.toLowerCase ( )
+String.prototype.toLocaleLowerCase ( )
+String.prototype.toUpperCase ( )
+String.prototype.toLocaleUpperCase ( )
+String.prototype.trim ( )
+Function.prototype.length
+Boolean.prototype
+Boolean.prototype.constructor
+Boolean.prototype.toString ( )
+Boolean.prototype.valueOf ( )
+Number.prototype
+Number.MAX_VALUE
+Number.MIN_VALUE
+Number.NaN
+Number.NEGATIVE_INFINITY
+Number.POSITIVE_INFINITY
+Number.isFinite (value)
+Number.prototype.constructor
+Number.prototype.toString ( [ radix ] )
+Number.prototype.toLocaleString()
+Number.prototype.valueOf ( )
+Number.prototype.toFixed (fractionDigits)
+Number.prototype.toExponential (fractionDigits)
+Number.prototype.toPrecision (precision)
+Math.E
+Math.LN10
+Math.LN2
+Math.LOG2E
+Math.LOG10E
+Math.PI
+Math.SQRT1_2
+Math.SQRT2
+Math.abs (x)
+Math.acos (x)
+Math.asin (x)
+Math.atan (x)
+Math.atan2 (y, x)
+Math.ceil (x)
+Math.cos (x)
+Math.exp (x)
+Math.floor (x)
+Math.log (x)
+Math.max ( [ value1 [ , value2 [ , … ] ] ] )
+Math.min ( [ value1 [ , value2 [ , … ] ] ] )
+Math.pow (x, y)
+Math.random ( )
+Math.round (x)
+Math.sin (x)
+Math.sqrt (x)
+Math.tan (x)
+Date.prototype
+Date.parse (string)
+Date.UTC (year, month [, date [, hours [, minutes [, seconds [, ms ] ] ] ] ] )
+Date.now ( )
+Date.prototype.constructor
+Date.prototype.toString ( )
+Date.prototype.toDateString ( )
+Date.prototype.toTimeString ( )
+Date.prototype.toLocaleString ( )
+Date.prototype.toLocaleDateString ( )
+Date.prototype.toLocaleTimeString ( )
+Date.prototype.valueOf ( )
+Date.prototype.getTime ( )
+Date.prototype.getFullYear ( )
+Date.prototype.getUTCFullYear ( )
+Date.prototype.getMonth ( )
+Date.prototype.getUTCMonth ( )
+Date.prototype.getDate ( )
+Date.prototype.getUTCDate ( )
+Date.prototype.getDay ( )
+Date.prototype.getUTCDay ( )
+Date.prototype.getHours ( )
+Date.prototype.getUTCHours ( )
+Date.prototype.getMinutes ( )
+Date.prototype.getUTCMinutes ( )
+Date.prototype.getSeconds ( )
+Date.prototype.getUTCSeconds ( )
+Date.prototype.getMilliseconds ( )
+Date.prototype.getUTCMilliseconds ( )
+Date.prototype.getTimezoneOffset ( )
+Date.prototype.setTime (time)
+Date.prototype.getYear ( )
+Date.prototype.setYear (year)
+Date.prototype.setMilliseconds (ms)
+Date.prototype.setUTCMilliseconds (ms)
+Date.prototype.setSeconds (sec [, ms ] )
+Date.prototype.setUTCSeconds (sec [, ms ] )
+Date.prototype.setMinutes (min [, sec [, ms ] ] )
+Date.prototype.setUTCMinutes (min [, sec [, ms ] ] )
+Date.prototype.setHours (hour [, min [, sec [, ms ] ] ] )
+Date.prototype.setUTCHours (hour [, min [, sec [, ms ] ] ] )
+Date.prototype.setDate (date)
+Date.prototype.setUTCDate (date)
+Date.prototype.setMonth (month [, date ] )
+Date.prototype.setUTCMonth (month [, date ] )
+Date.prototype.setFullYear (year [, month [, date ] ] )
+Date.prototype.setUTCFullYear (year [, month [, date ] ] )
+Date.prototype.toUTCString ( )
+Date.prototype.toGMTString ( )
+Date.prototype.toISOString ( )
+Date.prototype.toJSON ( key )
+RegExp.prototype
+RegExp.prototype.constructor
+RegExp.prototype.exec(string)
+RegExp.prototype.test(string)
+RegExp.prototype.toString()
+Function.prototype.source
+Function.prototype.global
+Function.prototype.ignoreCase
+Function.prototype.multiline
+Function.prototype.lastIndex
+Error.prototype
+Error.prototype.constructor
+Error.prototype.name
+Error.prototype.message
+Error.prototype.toString ( )
+JSON.parse ( text [ , reviver ] )
+JSON.stringify ( value [ , replacer [ , space ] ] )

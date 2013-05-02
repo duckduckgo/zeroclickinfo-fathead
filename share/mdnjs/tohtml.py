@@ -6,6 +6,7 @@ import csv
 from parse import FatWriter
 
 HTML = """
+ <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
  <style>
    body {{
      font-family: 'Helvetica Neue', 'Segoe UI', sans-serif;
@@ -35,6 +36,8 @@ ROW = """
   {abstract}
 </div>
 <a href="{source_url}">{source_url}</a>
+<p>{redirect}</p>
+<pre>{disambiguation}</pre>
 </div>
 """
 
@@ -46,8 +49,7 @@ def run(infname, outfname):
     for line in reader:
       rows.append(ROW.format(**line))
     body = '\n'.join(rows)
-    outfile.write(HTML.format(body=body))
-  
+    outfile.write(HTML.format(body=body).replace('\\n', '\n'))
 
 if __name__ == '__main__':
   infname = 'output.txt'
