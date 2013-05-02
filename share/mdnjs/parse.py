@@ -42,7 +42,6 @@ class Standardizer(object):
 
         obj = line.split('.')[0]
         self.objects.add(obj)
-    print self.inverted_index['prototype']
 
   def standardize(self, mdn):
     """ Standardize and clean the fields within an MDN object. """
@@ -50,8 +49,6 @@ class Standardizer(object):
       mdn.obj = 'Global'
     if mdn.obj not in self.objects:
       return None
-    if mdn.prop.lower() == 'length':
-      print mdn.prop, mdn.obj
     if mdn.prop.lower() not in self.inverted_index:
       return mdn
     for signature in self.inverted_index[mdn.prop.lower()]:
@@ -198,12 +195,19 @@ class MDNIndexer(object):
   def writerows(self):
     for keyword, count in self.counter.most_common():
       if count == 1:
-        # Write a redirect
-        d = {
+        mdn = self.inverted_index[keyword][0]
+        # Write a redirect on the keyword
+        self._writer.writerow({
           'title': keyword,
           'type': 'R',
+          'redirect': mdn.title
+        })
+        # Write a redirect on the object and property
+        self._writer.writerow({
+          'title': '%s %s' %(mdn.obj.lower(), mdn.prop.lower()),
+          'type': 'R',
           'redirect': self.inverted_index[keyword][0].title
-        }
+        })
       if count > 1:
         disambig = ''
         for mdn in self.inverted_index[keyword]:
@@ -220,8 +224,7 @@ class MDNIndexer(object):
           'disambiguation': disambig
         }
         # Write a disambiguation
-        pass
-      self._writer.writerow(d)
+        self._writer.writerow(d)
 
 def run(cachedir, cachejournal, langdefs, outfname):
   """
