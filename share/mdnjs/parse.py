@@ -1,6 +1,5 @@
 from collections import Counter
 import cgi
-import csv
 
 from lxml.html import parse
 from unidecode import unidecode
@@ -80,13 +79,18 @@ class FatWriter(object):
     'abstract',
     'source_url'
   ]
-  def __init__(self, csvfile):
-    self._writer = csv.DictWriter(csvfile, FatWriter.FIELDS, delimiter="\t")
-    self.fields = set()
+  def __init__(self, outfile):
+    self.outfile = outfile
 
-  def writerow(self, row):
+  def writerow(self, outdict):
     """ Write the dict row. """
-    self._writer.writerow(row)
+    row = []
+    for field in FatWriter.FIELDS:
+      col = outdict.get(field, '')
+      col = col.replace('\t', '    ')
+      col = col.replace('\n', '\\n')
+      row.append(col)
+    self.outfile.write('\t'.join(row) + '\n')
 
 class MDNWriter(FatWriter):
   """ An implementation of FatWriter that knows how to convert between MDN objects
@@ -151,7 +155,7 @@ class MDNParser(object):
       return None
     txt = nodelist[0].text_content()
     if txt:
-      return cgi.escape(unidecode(txt.strip())).replace('\n','\\n')
+      return cgi.escape(unidecode(txt.strip()))
 
   def _is_obsolete(self, tree):
     obsolete = tree.xpath('//*[contains(@class, "obsoleteHeader")]')
