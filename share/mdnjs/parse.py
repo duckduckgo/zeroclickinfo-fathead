@@ -221,7 +221,7 @@ class MDNIndexer(object):
             summary = mdn.summary[:mdn.summary.find('.') + 1]
           else:
             summary = mdn.summary
-          disambig += '[[%s]] %s' % (mdn.title, summary)
+          disambig += '*[[%s]] %s' % (mdn.title, summary)
         d = {
           'title': keyword,
           'type': 'D',
