@@ -198,20 +198,6 @@ class MDNIndexer(object):
 
   def writerows(self):
     for keyword, count in self.counter.most_common():
-      if count == 1:
-        mdn = self.inverted_index[keyword][0]
-        # Write a redirect on the keyword
-        self._writer.writerow({
-          'title': keyword,
-          'type': 'R',
-          'redirect': mdn.title
-        })
-        # Write a redirect on the object and property
-        self._writer.writerow({
-          'title': '%s %s' %(mdn.obj.lower(), mdn.prop.lower()),
-          'type': 'R',
-          'redirect': self.inverted_index[keyword][0].title
-        })
       if count > 1:
         disambig = ''
         for mdn in self.inverted_index[keyword]:
@@ -222,13 +208,28 @@ class MDNIndexer(object):
           else:
             summary = mdn.summary
           disambig += '*[[%s]] %s' % (mdn.title, summary)
-        d = {
+        # Write a disambiguation
+        self._writer.writerow({
           'title': keyword,
           'type': 'D',
           'disambiguation': disambig
-        }
-        # Write a disambiguation
-        self._writer.writerow(d)
+        })
+      for mdn in self.inverted_index[keyword]:
+        # For all entries in the inverted index, write a redirect of 
+        # of the form <object><space><property>
+        self._writer.writerow({
+          'title': '%s %s' %(mdn.obj.lower(), mdn.prop.lower()),
+          'type': 'R',
+          'redirect': mdn.title
+        })
+        # If this is the only item in the inverted index,
+        # write a primary redirect on the keyword.
+        if count == 1:
+          self._writer.writerow({
+            'title': keyword,
+            'type': 'R',
+            'redirect': mdn.title
+          })
 
 def run(cachedir, cachejournal, langdefs, outfname):
   """

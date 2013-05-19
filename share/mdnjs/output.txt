@@ -269,433 +269,497 @@ Intl.Collator	A										<pre><code>new Intl.Collator([locales [, options]])\n\n
 Intl.NumberFormat	A										<pre><code>new Intl.NumberFormat([locales [, options]])\n\nIntl.NumberFormat.call(this [, locales [, options]])</code></pre>The Intl.NumberFormat object is a constructor for objects that enable language sensitive number formatting.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/NumberFormat
 Intl.DateTimeFormat	A										<pre><code>new Intl.DateTimeFormat([locales [, options]])\n\nIntl.DateTimeFormat.call(this [, locales [, options]])</code></pre>The Intl.DateTimeFormat object is a constructor for objects that enable language sensitive date and time formatting.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/DateTimeFormat
 Number.isInteger	A										<pre><code>Number.isInteger(testValue)</code></pre>Determine whether the passed value is an integer.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Number/isInteger
-prototype	D								[[Boolean.prototype]] Represents the prototype for the Boolean constructor.\n[[String.prototype]] Represents the String prototype object.\n[[Date.prototype]] Represents the prototype for the Date constructor.\n[[Object.prototype]] Represents the Object prototype object.\n[[Function.prototype]] Represents the Function prototype object.\n[[Array.prototype]] Represents the prototype for the Array constructor.\n[[Error.prototype]] Represents the prototype for the Error constructor.\n[[RegExp.prototype]] Represents the prototype object for the RegExp constructor.\n[[Number.prototype]] Represents the prototype for the Number constructor.			
-tosource	D								[[RegExp.toSource]] Returns a string representing the source code of the object.\n[[Number.toSource]] Returns a string representing the source code of the object.\n[[Boolean.toSource]] Returns a string representing the source code of the object.\n[[Error.toSource]] Returns code that could eval to the same error.\n[[Object.toSource]] Returns a string representing the source code of the object.\n[[String.toSource]] Returns a string representing the source code of the object.\n[[Function.prototype.toSource]] Returns a string representing the source code for the function.\n[[Date.toSource]] Returns a string representing the source code of the object.\n[[Array toSource method]] Returns a string representing the source code of the array.			
-tostring	D								[[Array.prototype.toString]] Returns a string representing the specified array and its elements.\n[[Object.prototype.toString]] Returns a string representing the object.\n[[Number.prototype.toString]] Returns a string representing the specified Number object\n[[Function.prototype.toString]] Returns a string representing the source code of the function.\n[[Error.prototype.toString]] Returns a string representing the specified Error object.\n[[Date.prototype.toString]] Returns a string representing the specified Date object.\n[[String.prototype.toString]] Returns a string representing the specified object.\n[[RegExp.prototype.toString]] Returns a string representing the specified object.\n[[Boolean.prototype.toString]] Returns a string representing the specified Boolean object.			
-constructor	D								[[String.prototype.constructor]] Returns a reference to the String function that created the instance's prototype.\n[[RegExp.prototype.constructor]] Returns a reference to the RegExp function that created the instance's prototype.\n[[Object.prototype.constructor]] Returns a reference to the Object function that created the instance's prototype.\n[[Number.prototype.constructor]] Returns a reference to the Number function that created the instance's prototype.\n[[Function.prototype.constructor]] Returns a reference to the Function function that created the instance's prototype.\n[[Date.prototype.constructor]] Returns a reference to the Date function that created the instance's prototype.\n[[Boolean.prototype.constructor]] Returns a reference to the Boolean function that created the instance's prototype.\n[[Array.prototype.constructor]] Returns a reference to the Array function that created the instance's prototype.			
-valueof	D								[[Object.prototype.valueOf]] Returns the primitive value of the specified object\n[[String.prototype.valueOf]] Returns the primitive value of a String object.\n[[Number.prototype.valueOf]] Returns the primitive value of a Number object.\n[[Date.prototype.valueOf]] Returns the primitive value of a Date object.\n[[Boolean.prototype.valueOf]] Returns the primitive value of a Boolean object.			
-tolocalestring	D								[[Date.prototype.toLocaleString]] Returns a string with a language sensitive representation of this date.\n[[Number.prototype.toLocaleString]] Returns a string with a language sensitive representation of this number.\n[[Object.prototype.toLocaleString]] Returns a string representing the object.			
-length	D								[[Function.length]] Specifies the number of arguments expected by the function.\n[[String.prototype.length]] The length of a string.\n[[Array.length]] An unsigned, 32-bit integer that specifies the number of elements in an array.			
-lastindexof	D								[[Array.prototype.lastIndexOf]] Returns the last index at which a given element can be found in the array, or -1 if it is not present.\n[[String.prototype.lastIndexOf]] Returns the index within the calling String object of the last occurrence of the specified value, or -1 if not found.			
-indexof	D								[[Array.prototype.indexOf]] Returns the first index at which a given element can be found in the array, or -1 if it is not present.\n[[String.prototype.indexOf]] Returns the index within the calling String object of the first occurrence of the specified value, starting the search at fromIndex,\nreturns -1 if the value is not found.			
-name	D								[[Function.name]] The name of the function.\n[[Error.prototype.name]] A name for the type of error.			
-isfinite	D								[[Global.isFinite]] Evaluates an argument to determine whether it is a finite number.\n[[Number.isFinite]] Determine whether the passed value is finite.			
-isnan	D								[[Global.isNaN]] Determines whether a value is NaN or not.\n[[Number.isNaN]] Determine whether the passed value is NaN.			
-slice	D								[[String.prototype.slice]] Extracts a section of a string and returns a new string.\n[[Array.prototype.slice]] Returns a shallow copy of a portion of an array.			
-parse	D								[[Date.parse]] Parses a string representation of a date, and returns the number of milliseconds since January 1, 1970, 00:00:00 UTC.\n[[JSON.parse]] Parse a string as JSON, optionally transforming the value produced by parsing.			
-nan	D								[[Number.NaN]] A value representing Not-A-Number.\n[[Global.NaN]] A value representing Not-A-Number.			
-concat	D								[[Array.prototype.concat]] Returns a new array comprised of this array joined with other array(s) and/or value(s).\n[[String.prototype.concat]] Combines the text of two or more strings and returns a new string.			
-propertyisenumerable	R	Object.prototype.propertyIsEnumerable										
+prototype	D								*[[Boolean.prototype]] Represents the prototype for the Boolean constructor.\n*[[String.prototype]] Represents the String prototype object.\n*[[Date.prototype]] Represents the prototype for the Date constructor.\n*[[Object.prototype]] Represents the Object prototype object.\n*[[Function.prototype]] Represents the Function prototype object.\n*[[Array.prototype]] Represents the prototype for the Array constructor.\n*[[Error.prototype]] Represents the prototype for the Error constructor.\n*[[RegExp.prototype]] Represents the prototype object for the RegExp constructor.\n*[[Number.prototype]] Represents the prototype for the Number constructor.			
+boolean prototype	R	Boolean.prototype										
+string prototype	R	String.prototype										
+date prototype	R	Date.prototype										
+object prototype	R	Object.prototype										
+function prototype	R	Function.prototype										
+array prototype	R	Array.prototype										
+error prototype	R	Error.prototype										
+regexp prototype	R	RegExp.prototype										
+number prototype	R	Number.prototype										
+tosource	D								*[[RegExp.toSource]] Returns a string representing the source code of the object.\n*[[Number.toSource]] Returns a string representing the source code of the object.\n*[[Boolean.toSource]] Returns a string representing the source code of the object.\n*[[Error.toSource]] Returns code that could eval to the same error.\n*[[Object.toSource]] Returns a string representing the source code of the object.\n*[[String.toSource]] Returns a string representing the source code of the object.\n*[[Function.prototype.toSource]] Returns a string representing the source code for the function.\n*[[Date.toSource]] Returns a string representing the source code of the object.\n*[[Array toSource method]] Returns a string representing the source code of the array.			
+regexp tosource	R	RegExp.toSource										
+number tosource	R	Number.toSource										
+boolean tosource	R	Boolean.toSource										
+error tosource	R	Error.toSource										
+object tosource	R	Object.toSource										
+string tosource	R	String.toSource										
+function tosource	R	Function.prototype.toSource										
+date tosource	R	Date.toSource										
+array tosource	R	Array toSource method										
+tostring	D								*[[Array.prototype.toString]] Returns a string representing the specified array and its elements.\n*[[Object.prototype.toString]] Returns a string representing the object.\n*[[Number.prototype.toString]] Returns a string representing the specified Number object\n*[[Function.prototype.toString]] Returns a string representing the source code of the function.\n*[[Error.prototype.toString]] Returns a string representing the specified Error object.\n*[[Date.prototype.toString]] Returns a string representing the specified Date object.\n*[[String.prototype.toString]] Returns a string representing the specified object.\n*[[RegExp.prototype.toString]] Returns a string representing the specified object.\n*[[Boolean.prototype.toString]] Returns a string representing the specified Boolean object.			
+array tostring	R	Array.prototype.toString										
+object tostring	R	Object.prototype.toString										
+number tostring	R	Number.prototype.toString										
+function tostring	R	Function.prototype.toString										
+error tostring	R	Error.prototype.toString										
+date tostring	R	Date.prototype.toString										
+string tostring	R	String.prototype.toString										
+regexp tostring	R	RegExp.prototype.toString										
+boolean tostring	R	Boolean.prototype.toString										
+constructor	D								*[[String.prototype.constructor]] Returns a reference to the String function that created the instance's prototype.\n*[[RegExp.prototype.constructor]] Returns a reference to the RegExp function that created the instance's prototype.\n*[[Object.prototype.constructor]] Returns a reference to the Object function that created the instance's prototype.\n*[[Number.prototype.constructor]] Returns a reference to the Number function that created the instance's prototype.\n*[[Function.prototype.constructor]] Returns a reference to the Function function that created the instance's prototype.\n*[[Date.prototype.constructor]] Returns a reference to the Date function that created the instance's prototype.\n*[[Boolean.prototype.constructor]] Returns a reference to the Boolean function that created the instance's prototype.\n*[[Array.prototype.constructor]] Returns a reference to the Array function that created the instance's prototype.			
+string constructor	R	String.prototype.constructor										
+regexp constructor	R	RegExp.prototype.constructor										
+object constructor	R	Object.prototype.constructor										
+number constructor	R	Number.prototype.constructor										
+function constructor	R	Function.prototype.constructor										
+date constructor	R	Date.prototype.constructor										
+boolean constructor	R	Boolean.prototype.constructor										
+array constructor	R	Array.prototype.constructor										
+valueof	D								*[[Object.prototype.valueOf]] Returns the primitive value of the specified object\n*[[String.prototype.valueOf]] Returns the primitive value of a String object.\n*[[Number.prototype.valueOf]] Returns the primitive value of a Number object.\n*[[Date.prototype.valueOf]] Returns the primitive value of a Date object.\n*[[Boolean.prototype.valueOf]] Returns the primitive value of a Boolean object.			
+object valueof	R	Object.prototype.valueOf										
+string valueof	R	String.prototype.valueOf										
+number valueof	R	Number.prototype.valueOf										
+date valueof	R	Date.prototype.valueOf										
+boolean valueof	R	Boolean.prototype.valueOf										
+tolocalestring	D								*[[Date.prototype.toLocaleString]] Returns a string with a language sensitive representation of this date.\n*[[Number.prototype.toLocaleString]] Returns a string with a language sensitive representation of this number.\n*[[Object.prototype.toLocaleString]] Returns a string representing the object.			
+date tolocalestring	R	Date.prototype.toLocaleString										
+number tolocalestring	R	Number.prototype.toLocaleString										
+object tolocalestring	R	Object.prototype.toLocaleString										
+length	D								*[[Function.length]] Specifies the number of arguments expected by the function.\n*[[String.prototype.length]] The length of a string.\n*[[Array.length]] An unsigned, 32-bit integer that specifies the number of elements in an array.			
+function length	R	Function.length										
+string length	R	String.prototype.length										
+array length	R	Array.length										
+lastindexof	D								*[[Array.prototype.lastIndexOf]] Returns the last index at which a given element can be found in the array, or -1 if it is not present.\n*[[String.prototype.lastIndexOf]] Returns the index within the calling String object of the last occurrence of the specified value, or -1 if not found.			
+array lastindexof	R	Array.prototype.lastIndexOf										
+string lastindexof	R	String.prototype.lastIndexOf										
+indexof	D								*[[Array.prototype.indexOf]] Returns the first index at which a given element can be found in the array, or -1 if it is not present.\n*[[String.prototype.indexOf]] Returns the index within the calling String object of the first occurrence of the specified value, starting the search at fromIndex,\nreturns -1 if the value is not found.			
+array indexof	R	Array.prototype.indexOf										
+string indexof	R	String.prototype.indexOf										
+name	D								*[[Function.name]] The name of the function.\n*[[Error.prototype.name]] A name for the type of error.			
+function name	R	Function.name										
+error name	R	Error.prototype.name										
+isfinite	D								*[[Global.isFinite]] Evaluates an argument to determine whether it is a finite number.\n*[[Number.isFinite]] Determine whether the passed value is finite.			
+global isfinite	R	Global.isFinite										
+number isfinite	R	Number.isFinite										
+isnan	D								*[[Global.isNaN]] Determines whether a value is NaN or not.\n*[[Number.isNaN]] Determine whether the passed value is NaN.			
+global isnan	R	Global.isNaN										
+number isnan	R	Number.isNaN										
+slice	D								*[[String.prototype.slice]] Extracts a section of a string and returns a new string.\n*[[Array.prototype.slice]] Returns a shallow copy of a portion of an array.			
+string slice	R	String.prototype.slice										
+array slice	R	Array.prototype.slice										
+parse	D								*[[Date.parse]] Parses a string representation of a date, and returns the number of milliseconds since January 1, 1970, 00:00:00 UTC.\n*[[JSON.parse]] Parse a string as JSON, optionally transforming the value produced by parsing.			
+date parse	R	Date.parse										
+json parse	R	JSON.parse										
+nan	D								*[[Number.NaN]] A value representing Not-A-Number.\n*[[Global.NaN]] A value representing Not-A-Number.			
+number nan	R	Number.NaN										
+global nan	R	Global.NaN										
+concat	D								*[[Array.prototype.concat]] Returns a new array comprised of this array joined with other array(s) and/or value(s).\n*[[String.prototype.concat]] Combines the text of two or more strings and returns a new string.			
+array concat	R	Array.prototype.concat										
+string concat	R	String.prototype.concat										
 object propertyisenumerable	R	Object.prototype.propertyIsEnumerable										
-setmonth	R	Date.prototype.setMonth										
+propertyisenumerable	R	Object.prototype.propertyIsEnumerable										
 date setmonth	R	Date.prototype.setMonth										
-iterator	R	Iterator										
+setmonth	R	Date.prototype.setMonth										
 global iterator	R	Iterator										
-parallelarray	R	ParallelArray										
+iterator	R	Iterator										
 global parallelarray	R	ParallelArray										
-syntaxerror	R	SyntaxError										
+parallelarray	R	ParallelArray										
 global syntaxerror	R	SyntaxError										
-random	R	Math.random										
+syntaxerror	R	SyntaxError										
 math random	R	Math.random										
-imul	R	Math.imul										
+random	R	Math.random										
 math imul	R	Math.imul										
-ignorecase	R	ignoreCase										
+imul	R	Math.imul										
 regexp ignorecase	R	ignoreCase										
-getmilliseconds	R	Date.prototype.getMilliseconds										
+ignorecase	R	ignoreCase										
 date getmilliseconds	R	Date.prototype.getMilliseconds										
-max_value	R	Number.MAX_VALUE										
+getmilliseconds	R	Date.prototype.getMilliseconds										
 number max_value	R	Number.MAX_VALUE										
-ln10	R	Math.LN10										
+max_value	R	Number.MAX_VALUE										
 math ln10	R	Math.LN10										
-getownpropertydescriptor	R	Object.getOwnPropertyDescriptor										
+ln10	R	Math.LN10										
 object getownpropertydescriptor	R	Object.getOwnPropertyDescriptor										
-now	R	Date.now										
+getownpropertydescriptor	R	Object.getOwnPropertyDescriptor										
 date now	R	Date.now										
-generator	R	Generator										
+now	R	Date.now										
 global generator	R	Generator										
-isgenerator	R	Function.prototype.isGenerator										
+generator	R	Generator										
 function isgenerator	R	Function.prototype.isGenerator										
-source	R	source										
+isgenerator	R	Function.prototype.isGenerator										
 regexp source	R	source										
-multiline	R	multiline										
+source	R	source										
 regexp multiline	R	multiline										
-pow	R	Math.pow										
+multiline	R	multiline										
 math pow	R	Math.pow										
-getdate	R	Date.prototype.getDate										
+pow	R	Math.pow										
 date getdate	R	Date.prototype.getDate										
-tolocalelowercase	R	String.prototype.toLocaleLowerCase										
+getdate	R	Date.prototype.getDate										
 string tolocalelowercase	R	String.prototype.toLocaleLowerCase										
-match	R	String.prototype.match										
+tolocalelowercase	R	String.prototype.toLocaleLowerCase										
 string match	R	String.prototype.match										
-split	R	String.prototype.split										
+match	R	String.prototype.match										
 string split	R	String.prototype.split										
-startswith	R	String.startsWith										
+split	R	String.prototype.split										
 string startswith	R	String.startsWith										
-setutcmonth	R	Date.prototype.setUTCMonth										
+startswith	R	String.startsWith										
 date setutcmonth	R	Date.prototype.setUTCMonth										
-string	R	String										
+setutcmonth	R	Date.prototype.setUTCMonth										
 global string	R	String										
-utc	R	Date.UTC										
+string	R	String										
 date utc	R	Date.UTC										
-big	R	String.big										
+utc	R	Date.UTC										
 string big	R	String.big										
-sup	R	sup										
+big	R	String.big										
 string sup	R	sup										
-watch	R	Object.watch										
+sup	R	sup										
 object watch	R	Object.watch										
-toprecision	R	Number.prototype.toPrecision										
+watch	R	Object.watch										
 number toprecision	R	Number.prototype.toPrecision										
-ceil	R	Math.ceil										
+toprecision	R	Number.prototype.toPrecision										
 math ceil	R	Math.ceil										
-setdate	R	Date.prototype.setDate										
+ceil	R	Math.ceil										
 date setdate	R	Date.prototype.setDate										
-every	R	Array.prototype.every										
+setdate	R	Date.prototype.setDate										
 array every	R	Array.prototype.every										
-evalerror	R	EvalError										
+every	R	Array.prototype.every										
 global evalerror	R	EvalError										
-replace	R	String.prototype.replace										
+evalerror	R	EvalError										
 string replace	R	String.prototype.replace										
-sethours	R	Date.prototype.setHours										
+replace	R	String.prototype.replace										
 date sethours	R	Date.prototype.setHours										
-isarray	R	Array.isArray										
+sethours	R	Date.prototype.setHours										
 array isarray	R	Array.isArray										
-tolocaleuppercase	R	String.prototype.toLocaleUpperCase										
+isarray	R	Array.isArray										
 string tolocaleuppercase	R	String.prototype.toLocaleUpperCase										
-sqrt1_2	R	Math.SQRT1_2										
+tolocaleuppercase	R	String.prototype.toLocaleUpperCase										
 math sqrt1_2	R	Math.SQRT1_2										
-tolocaletimestring	R	Date.prototype.toLocaleTimeString										
+sqrt1_2	R	Math.SQRT1_2										
 date tolocaletimestring	R	Date.prototype.toLocaleTimeString										
-decodeuricomponent	R	Global.decodeURIComponent										
+tolocaletimestring	R	Date.prototype.toLocaleTimeString										
 global decodeuricomponent	R	Global.decodeURIComponent										
-getday	R	Date.prototype.getDay										
+decodeuricomponent	R	Global.decodeURIComponent										
 date getday	R	Date.prototype.getDay										
-parseint	R	Global.parseInt										
+getday	R	Date.prototype.getDay										
 global parseint	R	Global.parseInt										
-small	R	String.small										
+parseint	R	Global.parseInt										
 string small	R	String.small										
-fixed	R	String.fixed										
+small	R	String.small										
 string fixed	R	String.fixed										
-urierror	R	URIError										
+fixed	R	String.fixed										
 global urierror	R	URIError										
-caller	R	caller										
+urierror	R	URIError										
 function caller	R	caller										
-decodeuri	R	Global.decodeURI										
+caller	R	caller										
 global decodeuri	R	Global.decodeURI										
-trimleft	R	String.trimLeft										
+decodeuri	R	Global.decodeURI										
 string trimleft	R	String.trimLeft										
-reduce	R	Array.prototype.reduce										
+trimleft	R	String.trimLeft										
 array reduce	R	Array.prototype.reduce										
-freeze	R	Object.freeze										
+reduce	R	Array.prototype.reduce										
 object freeze	R	Object.freeze										
-global	R	global										
+freeze	R	Object.freeze										
 regexp global	R	global										
-datetimeformat	R	Intl.DateTimeFormat										
+global	R	global										
 global datetimeformat	R	Intl.DateTimeFormat										
-setyear	R	Date.prototype.setYear										
+datetimeformat	R	Intl.DateTimeFormat										
 date setyear	R	Date.prototype.setYear										
-localecompare	R	String.prototype.localeCompare										
+setyear	R	Date.prototype.setYear										
 string localecompare	R	String.prototype.localeCompare										
-seal	R	Object.seal										
+localecompare	R	String.prototype.localeCompare										
 object seal	R	Object.seal										
-message	R	Error.prototype.message										
+seal	R	Object.seal										
 error message	R	Error.prototype.message										
-isinteger	R	Number.isInteger										
+message	R	Error.prototype.message										
 number isinteger	R	Number.isInteger										
-getutchours	R	Date.prototype.getUTCHours										
+isinteger	R	Number.isInteger										
 date getutchours	R	Date.prototype.getUTCHours										
-arguments	R	arguments										
+getutchours	R	Date.prototype.getUTCHours										
 function arguments	R	arguments										
-getminutes	R	Date.prototype.getMinutes										
+arguments	R	arguments										
 date getminutes	R	Date.prototype.getMinutes										
-getutcmilliseconds	R	Date.prototype.getUTCMilliseconds										
+getminutes	R	Date.prototype.getMinutes										
 date getutcmilliseconds	R	Date.prototype.getUTCMilliseconds										
-gettime	R	Date.prototype.getTime										
+getutcmilliseconds	R	Date.prototype.getUTCMilliseconds										
 date gettime	R	Date.prototype.getTime										
-isextensible	R	Object.isExtensible										
+gettime	R	Date.prototype.getTime										
 object isextensible	R	Object.isExtensible										
-negative_infinity	R	Number.NEGATIVE_INFINITY										
+isextensible	R	Object.isExtensible										
 number negative_infinity	R	Number.NEGATIVE_INFINITY										
-touppercase	R	String.prototype.toUpperCase										
+negative_infinity	R	Number.NEGATIVE_INFINITY										
 string touppercase	R	String.prototype.toUpperCase										
-nosuchmethod	R	__noSuchMethod__										
+touppercase	R	String.prototype.toUpperCase										
 object nosuchmethod	R	__noSuchMethod__										
-abs	R	Math.abs										
+nosuchmethod	R	__noSuchMethod__										
 math abs	R	Math.abs										
-todatestring	R	Date.prototype.toDateString										
+abs	R	Math.abs										
 date todatestring	R	Date.prototype.toDateString										
-max	R	Math.max										
+todatestring	R	Date.prototype.toDateString										
 math max	R	Math.max										
-settime	R	Date.prototype.setTime										
+max	R	Math.max										
 date settime	R	Date.prototype.setTime										
-math	R	Math										
+settime	R	Date.prototype.setTime										
 global math	R	Math										
-log2e	R	Math.LOG2E										
+math	R	Math										
 math log2e	R	Math.LOG2E										
-bold	R	String.bold										
+log2e	R	Math.LOG2E										
 string bold	R	String.bold										
-charat	R	String.prototype.charAt										
+bold	R	String.bold										
 string charat	R	String.prototype.charAt										
-setutcseconds	R	Date.prototype.setUTCSeconds										
+charat	R	String.prototype.charAt										
 date setutcseconds	R	Date.prototype.setUTCSeconds										
-ln2	R	Math.LN2										
+setutcseconds	R	Date.prototype.setUTCSeconds										
 math ln2	R	Math.LN2										
-typeerror	R	TypeError										
+ln2	R	Math.LN2										
 global typeerror	R	TypeError										
-splice	R	Array.prototype.splice										
+typeerror	R	TypeError										
 array splice	R	Array.prototype.splice										
-toutcstring	R	Date.prototype.toUTCString										
+splice	R	Array.prototype.splice										
 date toutcstring	R	Date.prototype.toUTCString										
-getutcseconds	R	Date.prototype.getUTCSeconds										
+toutcstring	R	Date.prototype.toUTCString										
 date getutcseconds	R	Date.prototype.getUTCSeconds										
-regexp	R	RegExp										
+getutcseconds	R	Date.prototype.getUTCSeconds										
 global regexp	R	RegExp										
-unwatch	R	Object.unwatch										
+regexp	R	RegExp										
 object unwatch	R	Object.unwatch										
-search	R	String.prototype.search										
+unwatch	R	Object.unwatch										
 string search	R	String.prototype.search										
-reverse	R	Array.prototype.reverse										
+search	R	String.prototype.search										
 array reverse	R	Array.prototype.reverse										
-shift	R	Array.prototype.shift										
+reverse	R	Array.prototype.reverse										
 array shift	R	Array.prototype.shift										
-setutchours	R	Date.prototype.setUTCHours										
+shift	R	Array.prototype.shift										
 date setutchours	R	Date.prototype.setUTCHours										
-gettimezoneoffset	R	Date.prototype.getTimezoneOffset										
+setutchours	R	Date.prototype.setUTCHours										
 date gettimezoneoffset	R	Date.prototype.getTimezoneOffset										
-round	R	Math.round										
+gettimezoneoffset	R	Date.prototype.getTimezoneOffset										
 math round	R	Math.round										
-filter	R	Array.prototype.filter										
+round	R	Math.round										
 array filter	R	Array.prototype.filter										
-rangeerror	R	RangeError										
+filter	R	Array.prototype.filter										
 global rangeerror	R	RangeError										
-acos	R	Math.acos										
+rangeerror	R	RangeError										
 math acos	R	Math.acos										
-asin	R	Math.asin										
+acos	R	Math.acos										
 math asin	R	Math.asin										
-e	R	Math.E										
+asin	R	Math.asin										
 math e	R	Math.E										
-getutcday	R	Date.prototype.getUTCDay										
+e	R	Math.E										
 date getutcday	R	Date.prototype.getUTCDay										
-toexponential	R	Number.prototype.toExponential										
+getutcday	R	Date.prototype.getUTCDay										
 number toexponential	R	Number.prototype.toExponential										
-getfullyear	R	Date.prototype.getFullYear										
+toexponential	R	Number.prototype.toExponential										
 date getfullyear	R	Date.prototype.getFullYear										
-number	R	Number										
+getfullyear	R	Date.prototype.getFullYear										
 global number	R	Number										
-pop	R	Array.prototype.pop										
+number	R	Number										
 array pop	R	Array.prototype.pop										
-getprototypeof	R	Object.getPrototypeOf										
+pop	R	Array.prototype.pop										
 object getprototypeof	R	Object.getPrototypeOf										
-substr	R	String.prototype.substr										
+getprototypeof	R	Object.getPrototypeOf										
 string substr	R	String.prototype.substr										
-boolean	R	Boolean										
+substr	R	String.prototype.substr										
 global boolean	R	Boolean										
-definesetter	R	__defineSetter__										
+boolean	R	Boolean										
 object definesetter	R	__defineSetter__										
-apply	R	Function.prototype.apply										
+definesetter	R	__defineSetter__										
 function apply	R	Function.prototype.apply										
-array	R	Array										
+apply	R	Function.prototype.apply										
 global array	R	Array										
-blink	R	String.blink										
+array	R	Array										
 string blink	R	String.blink										
-getseconds	R	Date.prototype.getSeconds										
+blink	R	String.blink										
 date getseconds	R	Date.prototype.getSeconds										
-log	R	Math.log										
+getseconds	R	Date.prototype.getSeconds										
 math log	R	Math.log										
-tolocaledatestring	R	Date.prototype.toLocaleDateString										
+log	R	Math.log										
 date tolocaledatestring	R	Date.prototype.toLocaleDateString										
-isprototypeof	R	Object.prototype.isPrototypeOf										
+tolocaledatestring	R	Date.prototype.toLocaleDateString										
 object isprototypeof	R	Object.prototype.isPrototypeOf										
-create	R	Object.create										
+isprototypeof	R	Object.prototype.isPrototypeOf										
 object create	R	Object.create										
-contains	R	String.contains										
+create	R	Object.create										
 string contains	R	String.contains										
-unshift	R	Array.prototype.unshift										
+contains	R	String.contains										
 array unshift	R	Array.prototype.unshift										
-getutcminutes	R	Date.prototype.getUTCMinutes										
+unshift	R	Array.prototype.unshift										
 date getutcminutes	R	Date.prototype.getUTCMinutes										
-json	R	JSON										
+getutcminutes	R	Date.prototype.getUTCMinutes										
 global json	R	JSON										
-parsefloat	R	Global.parseFloat										
+json	R	JSON										
 global parsefloat	R	Global.parseFloat										
-call	R	Function.prototype.call										
+parsefloat	R	Global.parseFloat										
 function call	R	Function.prototype.call										
-getmonth	R	Date.prototype.getMonth										
+call	R	Function.prototype.call										
 date getmonth	R	Date.prototype.getMonth										
-strike	R	String.strike										
+getmonth	R	Date.prototype.getMonth										
 string strike	R	String.strike										
-encodeuri	R	Global.encodeURI										
+strike	R	String.strike										
 global encodeuri	R	Global.encodeURI										
-function	R	Function										
+encodeuri	R	Global.encodeURI										
 global function	R	Function										
-some	R	Array.prototype.some										
+function	R	Function										
 array some	R	Array.prototype.some										
-cos	R	Math.cos										
+some	R	Array.prototype.some										
 math cos	R	Math.cos										
-isfrozen	R	Object.isFrozen										
+cos	R	Math.cos										
 object isfrozen	R	Object.isFrozen										
-link	R	String.link										
+isfrozen	R	Object.isFrozen										
 string link	R	String.link										
-charcodeat	R	String.prototype.charCodeAt										
+link	R	String.link										
 string charcodeat	R	String.prototype.charCodeAt										
-tofixed	R	Number.prototype.toFixed										
+charcodeat	R	String.prototype.charCodeAt										
 number tofixed	R	Number.prototype.toFixed										
-italics	R	String.italics										
+tofixed	R	Number.prototype.toFixed										
 string italics	R	String.italics										
-sticky	R	sticky										
+italics	R	String.italics										
 regexp sticky	R	sticky										
-fromcharcode	R	String.fromCharCode										
+sticky	R	sticky										
 string fromcharcode	R	String.fromCharCode										
-pi	R	Math.PI										
+fromcharcode	R	String.fromCharCode										
 math pi	R	Math.PI										
-join	R	Array.prototype.join										
+pi	R	Math.PI										
 array join	R	Array.prototype.join										
-trimright	R	String.trimRight										
+join	R	Array.prototype.join										
 string trimright	R	String.trimRight										
-setmilliseconds	R	Date.prototype.setMilliseconds										
+trimright	R	String.trimRight										
 date setmilliseconds	R	Date.prototype.setMilliseconds										
-setminutes	R	Date.prototype.setMinutes										
+setmilliseconds	R	Date.prototype.setMilliseconds										
 date setminutes	R	Date.prototype.setMinutes										
-getutcdate	R	Date.prototype.getUTCDate										
+setminutes	R	Date.prototype.setMinutes										
 date getutcdate	R	Date.prototype.getUTCDate										
-error	R	Error										
+getutcdate	R	Date.prototype.getUTCDate										
 global error	R	Error										
-setfullyear	R	Date.prototype.setFullYear										
+error	R	Error										
 date setfullyear	R	Date.prototype.setFullYear										
-definegetter	R	__defineGetter__										
+setfullyear	R	Date.prototype.setFullYear										
 object definegetter	R	__defineGetter__										
-anchor	R	String.anchor										
+definegetter	R	__defineGetter__										
 string anchor	R	String.anchor										
-numberformat	R	Intl.NumberFormat										
+anchor	R	String.anchor										
 global numberformat	R	Intl.NumberFormat										
-trim	R	String.prototype.trim										
+numberformat	R	Intl.NumberFormat										
 string trim	R	String.prototype.trim										
-sort	R	Array.prototype.sort										
+trim	R	String.prototype.trim										
 array sort	R	Array.prototype.sort										
-lookupgetter	R	__lookupGetter__										
+sort	R	Array.prototype.sort										
 object lookupgetter	R	__lookupGetter__										
-fontsize	R	String.fontsize										
+lookupgetter	R	__lookupGetter__										
 string fontsize	R	String.fontsize										
-log10e	R	Math.LOG10E										
+fontsize	R	String.fontsize										
 math log10e	R	Math.LOG10E										
-is	R	Object.is										
+log10e	R	Math.LOG10E										
 object is	R	Object.is										
-lastindex	R	RegExp.lastIndex										
+is	R	Object.is										
 regexp lastindex	R	RegExp.lastIndex										
-lookupsetter	R	__lookupSetter__										
+lastindex	R	RegExp.lastIndex										
 object lookupsetter	R	__lookupSetter__										
-substring	R	String.prototype.substring										
+lookupsetter	R	__lookupSetter__										
 string substring	R	String.prototype.substring										
-endswith	R	String.endsWith										
+substring	R	String.prototype.substring										
 string endswith	R	String.endsWith										
-hasownproperty	R	Object.prototype.hasOwnProperty										
+endswith	R	String.endsWith										
 object hasownproperty	R	Object.prototype.hasOwnProperty										
-tan	R	Math.tan										
+hasownproperty	R	Object.prototype.hasOwnProperty										
 math tan	R	Math.tan										
-tojson	R	Date.prototype.toJSON										
+tan	R	Math.tan										
 date tojson	R	Date.prototype.toJSON										
-referenceerror	R	ReferenceError										
+tojson	R	Date.prototype.toJSON										
 global referenceerror	R	ReferenceError										
-issealed	R	Object.isSealed										
+referenceerror	R	ReferenceError										
 object issealed	R	Object.isSealed										
-tolocaleformat	R	toLocaleFormat										
+issealed	R	Object.isSealed										
 date tolocaleformat	R	toLocaleFormat										
-null	R	null										
+tolocaleformat	R	toLocaleFormat										
 global null	R	null										
-defineproperties	R	Object.defineProperties										
+null	R	null										
 object defineproperties	R	Object.defineProperties										
-proto	R	__proto__										
+defineproperties	R	Object.defineProperties										
 object proto	R	__proto__										
-gethours	R	Date.prototype.getHours										
+proto	R	__proto__										
 date gethours	R	Date.prototype.getHours										
-sqrt	R	Math.sqrt										
+gethours	R	Date.prototype.getHours										
 math sqrt	R	Math.sqrt										
-getyear	R	Date.prototype.getYear										
+sqrt	R	Math.sqrt										
 date getyear	R	Date.prototype.getYear										
-foreach	R	Array.prototype.forEach										
+getyear	R	Date.prototype.getYear										
 array foreach	R	Array.prototype.forEach										
-sqrt2	R	Math.SQRT2										
+foreach	R	Array.prototype.forEach										
 math sqrt2	R	Math.SQRT2										
-test	R	RegExp.prototype.test										
+sqrt2	R	Math.SQRT2										
 regexp test	R	RegExp.prototype.test										
-fontcolor	R	fontcolor										
+test	R	RegExp.prototype.test										
 string fontcolor	R	fontcolor										
-sin	R	Math.sin										
+fontcolor	R	fontcolor										
 math sin	R	Math.sin										
-map	R	Array.prototype.map										
+sin	R	Math.sin										
 array map	R	Array.prototype.map										
-min_value	R	Number.MIN_VALUE										
+map	R	Array.prototype.map										
 number min_value	R	Number.MIN_VALUE										
-infinity	R	Global.Infinity										
+min_value	R	Number.MIN_VALUE										
 global infinity	R	Global.Infinity										
-setseconds	R	Date.prototype.setSeconds										
+infinity	R	Global.Infinity										
 date setseconds	R	Date.prototype.setSeconds										
-atan	R	Math.atan										
+setseconds	R	Date.prototype.setSeconds										
 math atan	R	Math.atan										
-exec	R	RegExp.prototype.exec										
+atan	R	Math.atan										
 regexp exec	R	RegExp.prototype.exec										
-keys	R	Object.keys										
+exec	R	RegExp.prototype.exec										
 object keys	R	Object.keys										
-quote	R	String.quote										
+keys	R	Object.keys										
 string quote	R	String.quote										
-object	R	Object										
+quote	R	String.quote										
 global object	R	Object										
-intl	R	Intl										
+object	R	Object										
 global intl	R	Intl										
-stringify	R	JSON.stringify										
+intl	R	Intl										
 json stringify	R	JSON.stringify										
-setutcfullyear	R	Date.prototype.setUTCFullYear										
+stringify	R	JSON.stringify										
 date setutcfullyear	R	Date.prototype.setUTCFullYear										
-defineproperty	R	Object.defineProperty										
+setutcfullyear	R	Date.prototype.setUTCFullYear										
 object defineproperty	R	Object.defineProperty										
-setutcmilliseconds	R	Date.prototype.setUTCMilliseconds										
+defineproperty	R	Object.defineProperty										
 date setutcmilliseconds	R	Date.prototype.setUTCMilliseconds										
-floor	R	Math.floor										
+setutcmilliseconds	R	Date.prototype.setUTCMilliseconds										
 math floor	R	Math.floor										
-eval	R	Global.eval										
+floor	R	Math.floor										
 global eval	R	Global.eval										
-positive_infinity	R	Number.POSITIVE_INFINITY										
+eval	R	Global.eval										
 number positive_infinity	R	Number.POSITIVE_INFINITY										
-date	R	Date										
+positive_infinity	R	Number.POSITIVE_INFINITY										
 global date	R	Date										
-togmtstring	R	Date.prototype.toGMTString										
+date	R	Date										
 date togmtstring	R	Date.prototype.toGMTString										
-setutcminutes	R	Date.prototype.setUTCMinutes										
+togmtstring	R	Date.prototype.toGMTString										
 date setutcminutes	R	Date.prototype.setUTCMinutes										
-stack	R	stack										
+setutcminutes	R	Date.prototype.setUTCMinutes										
 error stack	R	stack										
-sub	R	sub										
+stack	R	stack										
 string sub	R	sub										
-preventextensions	R	Object.preventExtensions										
+sub	R	sub										
 object preventextensions	R	Object.preventExtensions										
-undefined	R	Global.undefined										
+preventextensions	R	Object.preventExtensions										
 global undefined	R	Global.undefined										
-reduceright	R	Array.prototype.reduceRight										
+undefined	R	Global.undefined										
 array reduceright	R	Array.prototype.reduceRight										
-bind	R	Function.prototype.bind										
+reduceright	R	Array.prototype.reduceRight										
 function bind	R	Function.prototype.bind										
-min	R	Math.min										
+bind	R	Function.prototype.bind										
 math min	R	Math.min										
-setutcdate	R	Date.prototype.setUTCDate										
+min	R	Math.min										
 date setutcdate	R	Date.prototype.setUTCDate										
-collator	R	Intl.Collator										
+setutcdate	R	Date.prototype.setUTCDate										
 global collator	R	Intl.Collator										
-getutcmonth	R	Date.prototype.getUTCMonth										
+collator	R	Intl.Collator										
 date getutcmonth	R	Date.prototype.getUTCMonth										
-atan2	R	Math.atan2										
+getutcmonth	R	Date.prototype.getUTCMonth										
 math atan2	R	Math.atan2										
-toisostring	R	Date.prototype.toISOString										
+atan2	R	Math.atan2										
 date toisostring	R	Date.prototype.toISOString										
-tolowercase	R	String.prototype.toLowerCase										
+toisostring	R	Date.prototype.toISOString										
 string tolowercase	R	String.prototype.toLowerCase										
-exp	R	Math.exp										
+tolowercase	R	String.prototype.toLowerCase										
 math exp	R	Math.exp										
-push	R	Array.prototype.push										
+exp	R	Math.exp										
 array push	R	Array.prototype.push										
-encodeuricomponent	R	Global.encodeURIComponent										
+push	R	Array.prototype.push										
 global encodeuricomponent	R	Global.encodeURIComponent										
-getutcfullyear	R	Date.prototype.getUTCFullYear										
+encodeuricomponent	R	Global.encodeURIComponent										
 date getutcfullyear	R	Date.prototype.getUTCFullYear										
-getownpropertynames	R	Object.getOwnPropertyNames										
+getutcfullyear	R	Date.prototype.getUTCFullYear										
 object getownpropertynames	R	Object.getOwnPropertyNames										
-totimestring	R	Date.prototype.toTimeString										
+getownpropertynames	R	Object.getOwnPropertyNames										
 date totimestring	R	Date.prototype.toTimeString										
+totimestring	R	Date.prototype.toTimeString										
