@@ -15,9 +15,10 @@ import re
 # Having the result for the city name would cover too many searches
 # that aren't looking for the airport code.
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
+ENCODING='utf-8'
 WIKIPEDIA_URL = 'https://wikipedia.org'
 WIKIPEDIA_LIST_URL = 'https://en.wikipedia.org/wiki/List_of_airports_by_IATA_code:_'
 
@@ -37,7 +38,7 @@ class Airport(object):
 		self.index_letter = index_letter 
 
 	def __str__(self):
-		output = ""
+		output = []
 		logger.debug(self.name+';'+self.iata+';'+self.icao+';'+self.location+';'+self.index_letter)
 		fields = [
 				'',	 # $unique_name
@@ -76,17 +77,17 @@ class Airport(object):
 		if self.iata != None and len(self.iata) != 0:
 			fields[0] = self.iata
 			fields[11] = append_period(iata_abstract)
-			output += '%s' % ('\t'.join(fields))
+			output.append('%s' % ('\t'.join(fields)))
 
 		if self.icao != None and len(self.icao) != 0:
 			fields[0] = self.icao
 			fields[11] = append_period(icao_abstract)
-			output += '\n%s' % ('\t'.join(fields))
+			output.append('%s' % ('\t'.join(fields)))
 
 		if self.name!= None and len(self.name) != "":
 			fields[0] = self.name
 			fields[11] = append_period(name_abstract)
-			output += '\n%s' % ('\t'.join(fields))+'\n'
+			output.append('%s' % ('\t'.join(fields)))
 
 		if self.location != None:
 			location_names = self.location.split(',')
@@ -95,9 +96,8 @@ class Airport(object):
 				if airport_location_name != self.name:
 					fields[0] = airport_location_name
 					fields[11] = append_period(location_abstract)
-					output += '%s' % ('\t'.join(fields))+'\n'
-		return output
-
+					output.append('%s' % ('\t'.join(fields)))
+		return '\n'.join(output)+'\n'
 
 class Parser(object):
 	""" Parses a HTML file to get all the airports codes """
@@ -142,5 +142,5 @@ if __name__ == '__main__':
 			logger.debug("Index: "+i)
 			parser.get_airports()
 			for airport in parser.airports:
-				output.write(airport.__str__().encode('utf-8'))
+				output.write(airport.__str__().encode(ENCODING))
 
