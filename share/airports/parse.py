@@ -80,18 +80,12 @@ class Airport(object):
 	def add_redirects(self,fields,output):
 		name = is_international_airport(self.name_with_airport)
 		if name != None:
+			fields[0] = name
+			fields[1] = 'R'
+			fields[2] = self.name_with_airport
 			fields[11] = ''
 			fields[12] = ''
-			if self.iata != None:
-				fields[0] = name
-				fields[1] = 'R'
-				fields[2] = self.name_with_airport
-				output.append('%s' % ('\t'.join(fields)))
-			if self.icao != None:
-				fields[0] = name
-				fields[1] = 'R'
-				fields[2] = self.name_with_airport
-				output.append('%s' % ('\t'.join(fields)))
+			output.append('%s' % ('\t'.join(fields)))
 
 	def __str__(self):
 		output = []
