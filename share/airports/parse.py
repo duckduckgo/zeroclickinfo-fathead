@@ -28,6 +28,14 @@ def append_period(text):
 		return text[0:-1]+'.\"'
 	return text
 
+def is_international_airport(text):
+	""" Returns the airport name without 'International Airport' or None """
+	index = text.rfind(' International Airport')
+	if index > 0:
+		return text[0:index]
+	else:
+		return None
+
 class Airport(object):
 	""" Contains informations about an Airport"""
 	def __init__(self, name, iata, icao, location, index_letter):
@@ -40,18 +48,21 @@ class Airport(object):
 	def add_iata(self,fields,abstract,output):
 		if self.iata != None and len(self.iata) != 0:
 			fields[0] = self.iata
+			fields[1] = 'A'
 			fields[11] = append_period(abstract)
 			output.append('%s' % ('\t'.join(fields)))
 
 	def add_icao(self,fields,abstract,output):
 		if self.icao != None and len(self.icao) != 0:
 			fields[0] = self.icao
+			fields[1] = 'A'
 			fields[11] = append_period(abstract)
 			output.append('%s' % ('\t'.join(fields)))
 
 	def add_name(self,fields,abstract,output):
 		if self.name != None and len(self.name) != "":
 			fields[0] = self.name
+			fields[1] = 'A'
 			fields[11] = append_period(abstract)
 			output.append('%s' % ('\t'.join(fields)))
 
@@ -62,15 +73,32 @@ class Airport(object):
 				airport_location_name = location_names[0]+' Airport'
 				if airport_location_name != self.name:
 					fields[0] = airport_location_name
+					fields[1] = 'A'
 					fields[11] = append_period(abstract)
 					output.append('%s' % ('\t'.join(fields)))
+
+	def add_redirects(self,fields,output):
+		name = is_international_airport(self.name_with_airport)
+		if name != None:
+			fields[11] = ''
+			fields[12] = ''
+			if self.iata != None:
+				fields[0] = name
+				fields[1] = 'R'
+				fields[2] = self.name_with_airport
+				output.append('%s' % ('\t'.join(fields)))
+			if self.icao != None:
+				fields[0] = name
+				fields[1] = 'R'
+				fields[2] = self.name_with_airport
+				output.append('%s' % ('\t'.join(fields)))
 
 	def __str__(self):
 		output = []
 		logger.debug(self.name+';'+self.iata+';'+self.icao+';'+self.location+';'+self.index_letter)
 		fields = [
 				'',	 # $unique_name
-				'A', # $type 
+				'',  # $type 
 				'',	 # $redirect
 				'',	 # $otheruses
 				'',	 # $categories
@@ -89,23 +117,26 @@ class Airport(object):
 		else:
 			abstract_icao_part = ''
 
-		name_with_airport = self.name
-		if name_with_airport.find('Airport') == -1:
-			name_with_airport += ' Airport'
+		self.name_with_airport = self.name
+		if self.name_with_airport.find('Airport') == -1:
+			self.name_with_airport += ' Airport'
 
 		# remove redundancy in airports/location names
-		if name_with_airport.find('airports in ') != -1:
-			name_with_airport = 'airports'
+		if self.name_with_airport.find('airports in ') != -1:
+			self.name_with_airport = 'airports'
 
-		iata_abstract = 'The \"'+self.iata+'\" IATA airport code corresponds to '+name_with_airport+' in '+self.location+abstract_icao_part
-		icao_abstract = 'The \"'+self.icao+'\" ICAO airport code corresponds to '+name_with_airport+' in '+self.location+' and the IATA code is \"'+self.iata+'\"'
-		name_abstract = 'The IATA code for the '+name_with_airport+' is \"'+self.iata+'\"'+abstract_icao_part
-		location_abstract = 'The IATA code for the '+name_with_airport+' near '+self.location+' is \"'+self.iata+'\"'+abstract_icao_part
+		# prepare abstracts
+		iata_abstract = 'The \"'+self.iata+'\" IATA airport code corresponds to '+self.name_with_airport+' in '+self.location+abstract_icao_part
+		icao_abstract = 'The \"'+self.icao+'\" ICAO airport code corresponds to '+self.name_with_airport+' in '+self.location+' and the IATA code is \"'+self.iata+'\"'
+		name_abstract = 'The IATA code for the '+self.name_with_airport+' is \"'+self.iata+'\"'+abstract_icao_part
+		location_abstract = 'The IATA code for the '+self.name_with_airport+' near '+self.location+' is \"'+self.iata+'\"'+abstract_icao_part
 
+		# add items
 		self.add_iata(fields,iata_abstract,output)
 		self.add_icao(fields,icao_abstract,output)
 		self.add_name(fields,name_abstract,output)
 		self.add_location(fields,location_abstract,output)
+		self.add_redirects(fields,output) # always call this last
 
 		return '\n'.join(output)+'\n'
 
