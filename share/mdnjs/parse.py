@@ -1,8 +1,8 @@
+import codecs
 from collections import Counter
 import cgi
 
 from lxml.html import parse
-from unidecode import unidecode
 
 class Standardizer(object):
   """ Standardize the titles of each entry.
@@ -28,7 +28,7 @@ class Standardizer(object):
     """
     self.inverted_index = {}
     self.objects = set()
-    with open(specfile) as f:
+    with codecs.open(specfile, 'r', 'utf-8') as f:
       for line in f:
         line = line.strip()
         index = line.split('(')[0]
@@ -155,7 +155,7 @@ class MDNParser(object):
       return None
     txt = nodelist[0].text_content()
     if txt:
-      return cgi.escape(unidecode(txt.strip()))
+      return cgi.escape(txt.strip())
 
   def _is_obsolete(self, tree):
     obsolete = tree.xpath('//*[contains(@class, "obsoleteHeader")]')
@@ -176,7 +176,7 @@ class MDNParser(object):
     if len(summary_els) == 0:
       summary_els = doc.xpath('//*[@id="wikiArticle"]/p[1]')
     codesnippet_els = doc.xpath(
-      '//*[(self::h2 or self::h3) and contains(text(), "Syntax")]/following-sibling::*[1]')
+      '//*[(self::h2 or self::h3) and contains(text(), "Syntax")]/following::*[(self::code or self::pre)]')
     mdn = MDN()
     mdn.title = self._extract_node(title_els)
     mdn.summary = self._extract_node(summary_els)
@@ -243,13 +243,13 @@ def run(cachedir, cachejournal, langdefs, outfname):
   standardizer = Standardizer(langdefs)
   parser = MDNParser()
   journal = [l.strip().split(',') for l in open(cachejournal).read().splitlines()]
-  with open(outfname, 'w') as outfile:
+  with codecs.open(outfname, 'w', 'utf-8') as outfile:
     writer = MDNWriter(outfile)
     indexer = MDNIndexer(writer)
     # Iterate over URLs in the sitemap ...
     for fname, url in journal:
       # ... and parse each to generate an mdn object.
-      mdn = parser.parse(open(fname))
+      mdn = parser.parse(codecs.open(fname, 'r', 'utf-8'))
       if not mdn:
         continue
       # WARNING WARNING
