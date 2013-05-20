@@ -37,6 +37,34 @@ class Airport(object):
 		self.location = location
 		self.index_letter = index_letter 
 
+	def add_iata(self,fields,abstract,output):
+		if self.iata != None and len(self.iata) != 0:
+			fields[0] = self.iata
+			fields[11] = append_period(abstract)
+			output.append('%s' % ('\t'.join(fields)))
+
+	def add_icao(self,fields,abstract,output):
+		if self.icao != None and len(self.icao) != 0:
+			fields[0] = self.icao
+			fields[11] = append_period(abstract)
+			output.append('%s' % ('\t'.join(fields)))
+
+	def add_name(self,fields,abstract,output):
+		if self.name != None and len(self.name) != "":
+			fields[0] = self.name
+			fields[11] = append_period(abstract)
+			output.append('%s' % ('\t'.join(fields)))
+
+	def add_location(self,fields,abstract,output):
+		if self.location != None:
+			location_names = self.location.split(',')
+			if len(location_names) > 0:
+				airport_location_name = location_names[0]+' Airport'
+				if airport_location_name != self.name:
+					fields[0] = airport_location_name
+					fields[11] = append_period(abstract)
+					output.append('%s' % ('\t'.join(fields)))
+
 	def __str__(self):
 		output = []
 		logger.debug(self.name+';'+self.iata+';'+self.icao+';'+self.location+';'+self.index_letter)
@@ -74,29 +102,11 @@ class Airport(object):
 		name_abstract = 'The IATA code for the '+name_with_airport+' is \"'+self.iata+'\"'+abstract_icao_part
 		location_abstract = 'The IATA code for the '+name_with_airport+' near '+self.location+' is \"'+self.iata+'\"'+abstract_icao_part
 
-		if self.iata != None and len(self.iata) != 0:
-			fields[0] = self.iata
-			fields[11] = append_period(iata_abstract)
-			output.append('%s' % ('\t'.join(fields)))
+		self.add_iata(fields,iata_abstract,output)
+		self.add_icao(fields,icao_abstract,output)
+		self.add_name(fields,name_abstract,output)
+		self.add_location(fields,location_abstract,output)
 
-		if self.icao != None and len(self.icao) != 0:
-			fields[0] = self.icao
-			fields[11] = append_period(icao_abstract)
-			output.append('%s' % ('\t'.join(fields)))
-
-		if self.name!= None and len(self.name) != "":
-			fields[0] = self.name
-			fields[11] = append_period(name_abstract)
-			output.append('%s' % ('\t'.join(fields)))
-
-		if self.location != None:
-			location_names = self.location.split(',')
-			if len(location_names) > 0:
-				airport_location_name = location_names[0]+' Airport'
-				if airport_location_name != self.name:
-					fields[0] = airport_location_name
-					fields[11] = append_period(location_abstract)
-					output.append('%s' % ('\t'.join(fields)))
 		return '\n'.join(output)+'\n'
 
 class Parser(object):
