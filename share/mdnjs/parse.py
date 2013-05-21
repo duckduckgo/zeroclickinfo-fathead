@@ -1,8 +1,7 @@
 import codecs
 from collections import Counter
-import cgi
 
-from lxml.html import parse
+from bs4 import BeautifulSoup
 
 class Standardizer(object):
   """ Standardize the titles of each entry.
@@ -148,39 +147,39 @@ class MDN(object):
         
 class MDNParser(object):
   """ A parser that takes an MDN wiki page and returns an MDN object. If pages change
-  causing this Fathead to break, then the xpaths in this class should be checked. """
-  def _extract_node(self, nodelist):
-    """ Pop the `first` item from the nodelist, and return its text content. """
-    if len(nodelist) < 1:
-      return None
-    txt = nodelist[0].text_content()
-    if txt:
-      return cgi.escape(txt.strip())
+  causing this Fathead to break, then the queries in this class should be checked. """
+  def _extract_node(self, node):
+    if node is not None:
+      txt = node.text
+      if txt:
+        return txt.strip()
 
-  def _is_obsolete(self, tree):
-    obsolete = tree.xpath('//*[contains(@class, "obsoleteHeader")]')
-    return len(obsolete) > 0
+  def _is_obsolete(self, soup):
+    obsolete = soup.find(_class='obsoleteHeader')
+    return obsolete is not None
 
   def parse(self, htmlfile):
     """ Parse an html file and return an mdn object.
 
     Args:
-      htmlfile: A file-like object that should parse with lxml's html parser.
+      htmlfile: A file-like object that should parse with beautiful soup's html parser.
     """
-    doc = parse(htmlfile).getroot()
-    if self._is_obsolete(doc):
+    title_el, summary_el, codesnippet_el = None, None, None
+    soup = BeautifulSoup(htmlfile)
+    if self._is_obsolete(soup):
       return None
-    title_els = doc.xpath('//*[@id="article-head"]/div/h1')
-    summary_els = doc.xpath(
-      '//*[(self::h2 or self::h3) and contains(text(), "Summary")]/following-sibling::*[1]')
-    if len(summary_els) == 0:
-      summary_els = doc.xpath('//*[@id="wikiArticle"]/p[1]')
-    codesnippet_els = doc.xpath(
-      '//*[(self::h2 or self::h3) and contains(text(), "Syntax")]/following::*[(self::code or self::pre)]')
+    title_el = soup.find('h1', class_='page-title')
+    article = soup.find(id='wikiArticle')
+    if article:
+      summary_el = article.find(
+          lambda e: e.name=='p' and e.text.strip() != '', recursive=False)
+    syntax_header = soup.find(id='Syntax')
+    if syntax_header:
+      codesnippet_el = syntax_header.find_next(['pre', 'code'])
     mdn = MDN()
-    mdn.title = self._extract_node(title_els)
-    mdn.summary = self._extract_node(summary_els)
-    mdn.codesnippet = self._extract_node(codesnippet_els)
+    mdn.title = self._extract_node(title_el)
+    mdn.summary = self._extract_node(summary_el)
+    mdn.codesnippet = self._extract_node(codesnippet_el)
     return mdn
 
 class MDNIndexer(object):
@@ -250,7 +249,7 @@ def run(cachedir, cachejournal, langdefs, outfname):
     for fname, url in journal:
       # ... and parse each to generate an mdn object.
       mdn = parser.parse(codecs.open(fname, 'r', 'utf-8'))
-      if not mdn:
+      if not mdn or not mdn.summary:
         continue
       # WARNING WARNING
       # 

@@ -37,6 +37,7 @@ Object.defineProperty	A										<pre><code>Object.defineProperty ( O, P, Attrib
 RegExp.toSource	A										<pre><code>regexp.toSource()</code></pre>Returns a string representing the source code of the object.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/RegExp/toSource
 RegExp	A										<pre><code>RegExp(pattern [, flags])\n\n/pattern/flags</code></pre>Creates a regular expression object for matching text with a pattern.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/RegExp
 Function.prototype.apply	A										<pre><code>Function.prototype.apply (thisArg, argArray)</code></pre>Calls a function with a given this value and arguments provided as an array (or an array like object).	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/apply
+Map	A										Map objects are simple key/value maps. Any value (both objects and primitive values) may be used as either a key or a value.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Map
 Array.prototype.join	A										<pre><code>Array.prototype.join (separator)</code></pre>Joins all elements of an array into a string.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/join
 Date.now	A										<pre><code>Date.now ( )</code></pre>Returns the number of milliseconds elapsed since 1 January 1970 00:00:00 UTC.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Date/now
 String.fromCharCode	A										<pre><code>String.fromCharCode ( [ char0 [ , char1 [ , … ] ] ] )</code></pre>Returns a string created by using the specified sequence of Unicode values.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/fromCharCode
@@ -48,6 +49,7 @@ Array.prototype.unshift	A										<pre><code>Array.prototype.unshift ( [ item1 
 Array.prototype.splice	A										<pre><code>Array.prototype.splice (start, deleteCount [ , item1 [ , item2 [ , … ] ] ] )</code></pre>Changes the content of an array, adding new elements while removing old elements.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/splice
 Array.prototype.shift	A										<pre><code>Array.prototype.shift ( )</code></pre>Removes the first element from an array and returns that element. This method changes the length of the array.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/shift
 Array.prototype.push	A										<pre><code>Array.prototype.push ( [ item1 [ , item2 [ , … ] ] ] )</code></pre>Mutates an array by appending the given elements and returning the new length of the array.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/push
+Set	A										Set objects let you store unique values of any type, whether primitive values or object references. Values equality is not based on the same algorithm as the one used in the === operator. Specifically, for Sets, +0 (which is strictly equal to -0) and -0 are different values. NaN can also be stored in a Set.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Set
 Array	A										<pre><code>[element0, element1, ..., elementN]\nnew Array(element0, element1, ..., elementN)\nnew Array(arrayLength)</code></pre>The JavaScript Array global object is a constructor for arrays, which are high-level, list-like objects.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array
 Array.prototype.lastIndexOf	A										<pre><code>Array.prototype.lastIndexOf ( searchElement [ , fromIndex ] )</code></pre>Returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/lastIndexOf
 Array.prototype.indexOf	A										<pre><code>Array.prototype.indexOf ( searchElement [ , fromIndex ] )</code></pre>Returns the first index at which a given element can be found in the array, or -1 if it is not present.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/indexOf
@@ -58,6 +60,7 @@ Boolean.prototype	A										<pre><code>Boolean.prototype</code></pre>Represents
 Boolean	A										<pre><code>new Boolean(value)</code></pre>The Boolean object is an object wrapper for a boolean value.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Boolean
 String.quote	A										<pre><code>str.quote()</code></pre>Returns a copy of the string, replacing various special characters in the string with their escape sequences and wrapping the result in double-quotes (").	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/quote
 Function.prototype.call	A										<pre><code>Function.prototype.call (thisArg [ , arg1 [ , arg2, … ] ] )</code></pre>Calls a function with a given this value and arguments provided individually.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/call
+WeakMap	A										WeakMaps are key/value maps in which keys are objects.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/WeakMap
 Global.isNaN	A										<pre><code>Global.isNaN (number)</code></pre>Determines whether a value is NaN or not. Be careful, this function is broken. You may be interested in ECMAScript 6 Number.isNaN.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/isNaN
 String.prototype.replace	A										<pre><code>String.prototype.replace (searchValue, replaceValue)</code></pre>Returns a new string with some or all matches of a pattern replaced by a replacement.  The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/replace
 String.prototype.concat	A										<pre><code>String.prototype.concat ( [ string1 [ , string2 [ , … ] ] ] )</code></pre>Combines the text of two or more strings and returns a new string.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/concat
@@ -85,6 +88,7 @@ String	A										<pre><code>'string text'\n"string text"\n"中文 español Engl
 Math.cos	A										<pre><code>Math.cos (x)</code></pre>Returns the cosine of a number.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math/cos
 Math.sin	A										<pre><code>Math.sin (x)</code></pre>Returns the sine of a number.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math/sin
 Global.undefined	A										<pre><code>Global.undefined</code></pre>The value undefined.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/undefined
+eval	A										<pre><code>object.eval(string)</code></pre>Evaluates a string of JavaScript code in the context of an object.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/eval
 Global.isFinite	A										<pre><code>Global.isFinite (number)</code></pre>Evaluates an argument to determine whether it is a finite number.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/isFinite
 Object.prototype.toString	A										<pre><code>Object.prototype.toString ( )</code></pre>Returns a string representing the object.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/toString
 Number.prototype.toString	A										<pre><code>Number.prototype.toString ( [ radix ] )</code></pre>Returns a string representing the specified Number object	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Number/toString
@@ -100,6 +104,7 @@ Date.prototype.toUTCString	A										<pre><code>Date.prototype.toUTCString ( )<
 Date.prototype	A										<pre><code>Date.prototype</code></pre>Represents the prototype for the Date constructor.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Date/prototype
 Object.prototype	A										<pre><code>Object.prototype</code></pre>Represents the Object prototype object.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/prototype
 Object.unwatch	A										<pre><code>object.unwatch(prop)</code></pre>Removes a watchpoint set with the watch() method.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/unwatch
+Proxy	A										Proxies are objects for which the programmer has to define the semantics in JavaScript. The default object semantics are implemented in the JavaScript engine, often written in lower-level languages like C++. Proxies let the programmer define most of the behavior of an object in JavaScript. They are said to provide a meta-programming API.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Proxy
 Function.prototype.toString	A										<pre><code>Function.prototype.toString ( )</code></pre>Returns a string representing the source code of the function.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/toString
 JSON.stringify	A										<pre><code>JSON.stringify ( value [ , replacer [ , space ] ] )</code></pre>Convert a value to JSON, optionally replacing values if a replacer function is specified, or optionally including only the specified properties if a replacer array is specified.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/JSON/stringify
 Global.encodeURI	A										<pre><code>Global.encodeURI (uri)</code></pre>Encodes a Uniform Resource Identifier (URI) by replacing each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character (will only be four escape sequences for characters composed of two "surrogate" characters).	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/encodeURI
@@ -114,6 +119,7 @@ Number.NaN	A										<pre><code>Number.NaN</code></pre>A value representing Not
 Global.NaN	A										<pre><code>Global.NaN</code></pre>A value representing Not-A-Number.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/NaN
 Object.isExtensible	A										<pre><code>Object.isExtensible ( O )</code></pre>Determines if an object is extensible (whether it can have new properties added to it).	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/isExtensible
 Number.POSITIVE_INFINITY	A										<pre><code>Number.POSITIVE_INFINITY</code></pre>A value representing the positive Infinity value.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Number/POSITIVE_INFINITY
+Function.arity	A										Specifies the number of arguments expected by the function.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/arity
 JSON.parse	A										<pre><code>JSON.parse ( text [ , reviver ] )</code></pre>Parse a string as JSON, optionally transforming the value produced by parsing.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/JSON/parse
 Function.prototype.isGenerator	A										<pre><code>result = fun.isGenerator()</code></pre>Determines whether or not a function is a generator.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/isGenerator
 Number.prototype.toFixed	A										<pre><code>Number.prototype.toFixed (fractionDigits)</code></pre>Formats a number using fixed-point notation	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Number/toFixed
@@ -122,7 +128,7 @@ __lookupGetter__	A										<pre><code>obj.__lookupGetter__(sprop)</code></pre>R
 Function.prototype	A										<pre><code>Function.prototype</code></pre>Represents the Function prototype object.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/prototype
 Error.toSource	A										<pre><code>error.toSource()</code></pre>Returns code that could eval to the same error.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Error/toSource
 Object.toSource	A										<pre><code>obj.toSource()</code></pre>Returns a string representing the source code of the object.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/toSource
-String.prototype.charCodeAt	A										<pre><code>String.prototype.charCodeAt (pos)</code></pre>Returns the numeric Unicode value of the character at the given index (except for unicode codepoints &gt; 0x10000).	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/charCodeAt
+String.prototype.charCodeAt	A										<pre><code>String.prototype.charCodeAt (pos)</code></pre>Returns the numeric Unicode value of the character at the given index (except for unicode codepoints > 0x10000).	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/charCodeAt
 Number.prototype.toLocaleString	A										<pre><code>Number.prototype.toLocaleString()</code></pre>Returns a string with a language sensitive representation of this number. The new locales and options arguments let applications specify the language whose formatting conventions should be used and customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale used and the form of the string returned are entirely implementation dependent.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Number/toLocaleString
 Object.prototype.hasOwnProperty	A										<pre><code>Object.prototype.hasOwnProperty (V)</code></pre>Returns a boolean indicating whether the object has the specified property.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/hasOwnProperty
 Error.prototype.toString	A										<pre><code>Error.prototype.toString ( )</code></pre>Returns a string representing the specified Error object.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Error/toString
@@ -158,15 +164,15 @@ String.prototype.toString	A										<pre><code>String.prototype.toString ( )</c
 String.toSource	A										<pre><code>string.toSource()</code></pre>Returns a string representing the source code of the object.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/toSource
 String.prototype.toLocaleUpperCase	A										<pre><code>String.prototype.toLocaleUpperCase ( )</code></pre>Returns the calling string value converted to upper case, according to any locale-specific case mappings.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/toLocaleUpperCase
 String.prototype.toLocaleLowerCase	A										<pre><code>String.prototype.toLocaleLowerCase ( )</code></pre>Returns the calling string value converted to lower case, according to any locale-specific case mappings.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/toLocaleLowerCase
-sup	A										<pre><code>sup()</code></pre>Causes a string to be displayed as a superscript, as if it were in a SUP tag.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/sup
-sub	A										<pre><code>sub()</code></pre>Causes a string to be displayed as a subscript, as if it were in a SUB tag.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/sub
+sup	A										Causes a string to be displayed as a superscript, as if it were in a SUP tag.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/sup
+sub	A										Causes a string to be displayed as a subscript, as if it were in a SUB tag.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/sub
 String.strike	A										<pre><code>String.strike()</code></pre>Causes a string to be displayed as struck-out text, as if it were in a STRIKE tag.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/strike
 String.small	A										<pre><code>string.small()</code></pre>Causes a string to be displayed in a small font, as if it were in a SMALL tag.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/small
 String.prototype.localeCompare	A										<pre><code>String.prototype.localeCompare (that)</code></pre>Returns a number indicating whether a reference string comes before or after or is the same as the given string in sort order. The new locales and options arguments let applications specify the language whose sort order should be used and customize the behavior of the function. In older implementations, which ignore the locales and options arguments, the locale and sort order used are entirely implementation dependent.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/localeCompare
 String.link	A										<pre><code>link(hrefAttribute)</code></pre>Creates an HTML hypertext link that requests another URL.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/link
 String.italics	A										<pre><code>String.italics()</code></pre>Causes a string to be italic, as if it were in an I tag.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/italics
-String.fontsize	A										<pre><code>string.fontsize(size)</code></pre>Causes a string to be displayed in the specified font size as if it were in a &lt;FONT SIZE="size"&gt; tag.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/fontsize
-fontcolor	A										<pre><code>fontcolor(color)</code></pre>Causes a string to be displayed in the specified color as if it were in a &lt;font color="color"&gt; tag.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/fontcolor
+String.fontsize	A										<pre><code>string.fontsize(size)</code></pre>Causes a string to be displayed in the specified font size as if it were in a <FONT SIZE="size"> tag.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/fontsize
+fontcolor	A										<pre><code>fontcolor(color)</code></pre>Causes a string to be displayed in the specified color as if it were in a <font color="color"> tag.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/fontcolor
 String.fixed	A										<pre><code>string.fixed()</code></pre>Causes a string to be displayed in fixed-pitch font as if it were in a TT tag.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/fixed
 String.prototype.constructor	A										<pre><code>String.prototype.constructor</code></pre>Returns a reference to the String function that created the instance's prototype. Note that the value of this property is a reference to the function itself, not a string containing the function's name.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/constructor
 String.prototype.charAt	A										<pre><code>String.prototype.charAt (pos)</code></pre>Returns the specified character from a string.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/charAt
@@ -243,6 +249,7 @@ URIError	A										<pre><code>new URIError([message[, fileName[, lineNumber]]])
 TypeError	A										<pre><code>new TypeError([message[, fileName[, lineNumber]]])</code></pre>Represents an error when a value is not of the expected type.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/TypeError
 SyntaxError	A										<pre><code>new SyntaxError([message[, fileName[, lineNumber]]])</code></pre>Represents an error when trying to interpret syntactically invalid code.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/SyntaxError
 RangeError	A										<pre><code>new RangeError([message[, fileName[, lineNumber]]])</code></pre>Represents an error when a number is not within the correct range allowed.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/RangeError
+__parent__	A										<pre><code>obj.__parent__</code></pre>Points to an object's context.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/Parent
 RegExp.prototype	A										<pre><code>RegExp.prototype</code></pre>Represents the prototype object for the RegExp constructor.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/RegExp/prototype
 Number.prototype	A										<pre><code>Number.prototype</code></pre>Represents the prototype for the Number constructor.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Number/prototype
 ReferenceError	A										<pre><code>new ReferenceError([message[, fileName[, linenumber]]])</code></pre>Represents an error when a non-existent variable is referenced.	https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/ReferenceError
@@ -347,6 +354,12 @@ json parse	R	JSON.parse
 nan	D								*[[Number.NaN]] A value representing Not-A-Number.\n*[[Global.NaN]] A value representing Not-A-Number.			
 number nan	R	Number.NaN										
 global nan	R	Global.NaN										
+map	D								*[[Array.prototype.map]] Creates a new array with the results of calling a provided function on every element in this array.\n*[[Map]] Map objects are simple key/value maps.			
+array map	R	Array.prototype.map										
+global map	R	Map										
+eval	D								*[[eval]] Evaluates a string of JavaScript code in the context of an object.\n*[[Global.eval]] Evaluates JavaScript code represented as a string.			
+object eval	R	eval										
+global eval	R	Global.eval										
 concat	D								*[[Array.prototype.concat]] Returns a new array comprised of this array joined with other array(s) and/or value(s).\n*[[String.prototype.concat]] Combines the text of two or more strings and returns a new string.			
 array concat	R	Array.prototype.concat										
 string concat	R	String.prototype.concat										
@@ -404,8 +417,8 @@ date utc	R	Date.UTC
 utc	R	Date.UTC										
 string big	R	String.big										
 big	R	String.big										
-string sup	R	sup										
-sup	R	sup										
+function caller	R	caller										
+caller	R	caller										
 object watch	R	Object.watch										
 watch	R	Object.watch										
 number toprecision	R	Number.prototype.toPrecision										
@@ -418,8 +431,8 @@ array every	R	Array.prototype.every
 every	R	Array.prototype.every										
 global evalerror	R	EvalError										
 evalerror	R	EvalError										
-string replace	R	String.prototype.replace										
-replace	R	String.prototype.replace										
+object getprototypeof	R	Object.getPrototypeOf										
+getprototypeof	R	Object.getPrototypeOf										
 date sethours	R	Date.prototype.setHours										
 sethours	R	Date.prototype.setHours										
 array isarray	R	Array.isArray										
@@ -442,8 +455,8 @@ string fixed	R	String.fixed
 fixed	R	String.fixed										
 global urierror	R	URIError										
 urierror	R	URIError										
-function caller	R	caller										
-caller	R	caller										
+global set	R	Set										
+set	R	Set										
 global decodeuri	R	Global.decodeURI										
 decodeuri	R	Global.decodeURI										
 string trimleft	R	String.trimLeft										
@@ -500,14 +513,20 @@ math log2e	R	Math.LOG2E
 log2e	R	Math.LOG2E										
 string bold	R	String.bold										
 bold	R	String.bold										
+object parent	R	__parent__										
+parent	R	__parent__										
 string charat	R	String.prototype.charAt										
 charat	R	String.prototype.charAt										
 date setutcseconds	R	Date.prototype.setUTCSeconds										
 setutcseconds	R	Date.prototype.setUTCSeconds										
+global weakmap	R	WeakMap										
+weakmap	R	WeakMap										
 math ln2	R	Math.LN2										
 ln2	R	Math.LN2										
 global typeerror	R	TypeError										
 typeerror	R	TypeError										
+global proxy	R	Proxy										
+proxy	R	Proxy										
 array splice	R	Array.prototype.splice										
 splice	R	Array.prototype.splice										
 date toutcstring	R	Date.prototype.toUTCString										
@@ -518,8 +537,8 @@ global regexp	R	RegExp
 regexp	R	RegExp										
 object unwatch	R	Object.unwatch										
 unwatch	R	Object.unwatch										
-string search	R	String.prototype.search										
-search	R	String.prototype.search										
+math cos	R	Math.cos										
+cos	R	Math.cos										
 array reverse	R	Array.prototype.reverse										
 reverse	R	Array.prototype.reverse										
 array shift	R	Array.prototype.shift										
@@ -536,6 +555,8 @@ global rangeerror	R	RangeError
 rangeerror	R	RangeError										
 math acos	R	Math.acos										
 acos	R	Math.acos										
+string sup	R	sup										
+sup	R	sup										
 math asin	R	Math.asin										
 asin	R	Math.asin										
 math e	R	Math.E										
@@ -550,8 +571,8 @@ global number	R	Number
 number	R	Number										
 array pop	R	Array.prototype.pop										
 pop	R	Array.prototype.pop										
-object getprototypeof	R	Object.getPrototypeOf										
-getprototypeof	R	Object.getPrototypeOf										
+string replace	R	String.prototype.replace										
+replace	R	String.prototype.replace										
 string substr	R	String.prototype.substr										
 substr	R	String.prototype.substr										
 global boolean	R	Boolean										
@@ -596,10 +617,12 @@ global function	R	Function
 function	R	Function										
 array some	R	Array.prototype.some										
 some	R	Array.prototype.some										
-math cos	R	Math.cos										
-cos	R	Math.cos										
+string search	R	String.prototype.search										
+search	R	String.prototype.search										
 object isfrozen	R	Object.isFrozen										
 isfrozen	R	Object.isFrozen										
+function arity	R	Function.arity										
+arity	R	Function.arity										
 string link	R	String.link										
 link	R	String.link										
 string charcodeat	R	String.prototype.charCodeAt										
@@ -688,8 +711,6 @@ string fontcolor	R	fontcolor
 fontcolor	R	fontcolor										
 math sin	R	Math.sin										
 sin	R	Math.sin										
-array map	R	Array.prototype.map										
-map	R	Array.prototype.map										
 number min_value	R	Number.MIN_VALUE										
 min_value	R	Number.MIN_VALUE										
 global infinity	R	Global.Infinity										
@@ -718,8 +739,6 @@ date setutcmilliseconds	R	Date.prototype.setUTCMilliseconds
 setutcmilliseconds	R	Date.prototype.setUTCMilliseconds										
 math floor	R	Math.floor										
 floor	R	Math.floor										
-global eval	R	Global.eval										
-eval	R	Global.eval										
 number positive_infinity	R	Number.POSITIVE_INFINITY										
 positive_infinity	R	Number.POSITIVE_INFINITY										
 global date	R	Date										
