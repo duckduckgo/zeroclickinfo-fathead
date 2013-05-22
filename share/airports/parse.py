@@ -52,7 +52,6 @@ class Airport(object):
 		self.international_airport_name = None
 		self.name_with_airport = None 
 
-		#logger.debug(self.name+';'+self.iata+';'+self.icao+';'+self.location+';'+self.index_letter)
 		self.abstract_icao_part = ''
 		if self.icao != '':
 			self.abstract_icao_part = self._format(Airport.abstract_icao_format)
@@ -126,6 +125,9 @@ class Airport(object):
 				'',	 # images
 				abstract,	 # abstract
 				WIKIPEDIA_LIST_URL+self._index_letter] # source url
+	
+	def __str__(self):
+		return self.name_with_airport+';'+self.iata+';'+self.icao+';'+self.location+';'+self._index_letter
 
 
 class Parser(object):
@@ -161,6 +163,36 @@ class Parser(object):
 					data[3].getText(),
 					self.index_letter)) # Name
 
+def findAndMarkDisambiguations(airports):
+	disambiguations = {}
+	for airport in airports:
+		if airport.name != None and airport.name_with_airport in disambiguations:
+			disambiguations[airport.name_with_airport].append(airport)
+		else:
+			disambiguations[airport.name_with_airport] = [airport]
+
+		if airport.airport_location_name != None and airport.airport_location_name in disambiguations:
+			if not any(map(lambda x: x.iata == airport.iata,
+					disambiguations[airport.airport_location_name])):
+				disambiguations[airport.airport_location_name].append(airport)
+		else:
+			disambiguations[airport.airport_location_name] = [airport]
+
+		if airport.international_airport_name != None and airport.international_airport_name in disambiguations:
+			if not any(map(lambda x: x.iata == airport.iata,
+					disambiguations[airport.international_airport_name])):
+				disambiguations[airport.international_airport_name].append(airport)
+		else:
+			disambiguations[airport.international_airport_name] = [airport]
+			
+	return disambiguations
+
+def print_disambiguation(airports):
+	for airport in airports:
+		print airport
+	print ""
+
+
 if __name__ == '__main__':
 	with open(OUTPUT_FILE, 'w') as output:
 		airports = []
@@ -172,13 +204,22 @@ if __name__ == '__main__':
 			parser.get_airports()
 			airports += parser.airports
 
-		# print all
+		disambiguations = findAndMarkDisambiguations(airports)
+		
+		# print all the rest
 		for airport in airports:
 			strings = []
-			airport.add_iata(strings) # safe with no disambiguation needed
-			airport.add_icao(strings) # safe with no disambiguation needed
-			airport.add_name(strings) # safe with no disambiguation needed
-			airport.add_location(strings)
-			airport.add_redirects(strings) 
+			airport.add_iata(strings)
+			airport.add_icao(strings)
+			if not airport.name_with_airport in disambiguations:
+				airport.add_name(strings)
+			if not airport.airport_location_name in disambiguations:
+				airport.add_location(strings)
+			if not airport.international_airport_name in disambiguations:
+				airport.add_redirects(strings) 
 			output.write('\n'.join(strings)+'\n')
+
+		# print disambiguations
+		map(print_disambiguation,
+				filter(lambda x: len(x) > 1, disambiguations.itervalues()))
 
