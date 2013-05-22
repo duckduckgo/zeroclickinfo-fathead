@@ -35,6 +35,21 @@ def append_period(text):
 		return text[0:-1]+'.\"'
 	return text
 
+def getFields(name,linetype,abstract=''):
+	return [name,	  # $unique_name
+			linetype, # $type 
+			'',	 # $redirect
+			'',	 # $otheruses
+			'',	 # $categories
+			'',	 # $references
+			'',	 # $see_also
+			'',	 # $further_reading
+			'',	 # $external_links
+			'',	 # $disambiguation
+			'',	 # images
+			abstract,	 # abstract
+			''] # source link
+
 class Airport(object):
 	iata_abstract_format     = 'The "{0}" IATA airport code corresponds to {2} in {3}'
 	icao_abstract_format     = 'The "{1}" ICAO airport code corresponds to {2} in {3} and the IATA code is "{0}"'
@@ -112,19 +127,9 @@ class Airport(object):
 			output.append('%s' % ('\t'.join(fields)))
 
 	def _getFields(self,name,linetype,abstract=''):
-		return [name,	  # $unique_name
-				linetype, # $type 
-				'',	 # $redirect
-				'',	 # $otheruses
-				'',	 # $categories
-				'',	 # $references
-				'',	 # $see_also
-				'',	 # $further_reading
-				'',	 # $external_links
-				'',	 # $disambiguation
-				'',	 # images
-				abstract,	 # abstract
-				WIKIPEDIA_LIST_URL+self._index_letter] # source url
+		fields = getFields(name,linetype,abstract)
+		fields[12] = WIKIPEDIA_LIST_URL+self._index_letter
+		return fields
 	
 	def __str__(self):
 		return self.name_with_airport+';'+self.iata+';'+self.icao+';'+self.location+';'+self._index_letter
@@ -167,7 +172,9 @@ def findAndMarkDisambiguations(airports):
 	disambiguations = {}
 	for airport in airports:
 		if airport.name != None and airport.name_with_airport in disambiguations:
-			disambiguations[airport.name_with_airport].append(airport)
+			if not any(map(lambda x: x.iata == airport.iata,
+					disambiguations[airport.name_with_airport])):
+				disambiguations[airport.name_with_airport].append(airport)
 		else:
 			disambiguations[airport.name_with_airport] = [airport]
 
@@ -184,14 +191,14 @@ def findAndMarkDisambiguations(airports):
 				disambiguations[airport.international_airport_name].append(airport)
 		else:
 			disambiguations[airport.international_airport_name] = [airport]
-			
 	return disambiguations
 
-def print_disambiguation(airports):
+def print_disambiguation((key,airports)):
+	fields = getFields(key,'D') 
 	for airport in airports:
-		print airport
-	print ""
-
+		if airport.name_with_airport == key or airport.airport_location_name == key or airport.international_airport_name == key:
+			fields[9] += airport.iata+' - '+airport.name+' - '+airport.location+'\n'
+	return '%s' % ('\t'.join(fields))+'\n'
 
 if __name__ == '__main__':
 	with open(OUTPUT_FILE, 'w') as output:
@@ -220,6 +227,7 @@ if __name__ == '__main__':
 			output.write('\n'.join(strings)+'\n')
 
 		# print disambiguations
-		map(print_disambiguation,
-				filter(lambda x: len(x) > 1, disambiguations.itervalues()))
+		map(output.write,map(print_disambiguation,
+				filter(lambda (x,y): len(y) > 1,
+					disambiguations.items())))
 
