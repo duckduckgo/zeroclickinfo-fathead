@@ -1,9 +1,15 @@
+#! env python
 # -*- coding: utf-8 -*-
 
 from bs4 import BeautifulSoup
 import logging
 import os
 import re
+
+# TODO look for a better way to enforce it
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 # The "APH" airport code corresponds to the Jacksonville International
 # Airport in Jacksonville, FL, United Sates.
@@ -15,10 +21,11 @@ import re
 # Having the result for the city name would cover too many searches
 # that aren't looking for the airport code.
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger()
 
-ENCODING='utf-8'
+OUTPUT_FILE = 'output.txt'
+INDEXES = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 WIKIPEDIA_URL = 'https://wikipedia.org'
 WIKIPEDIA_LIST_URL = 'https://en.wikipedia.org/wiki/List_of_airports_by_IATA_code:_'
 
@@ -28,71 +35,86 @@ def append_period(text):
 		return text[0:-1]+'.\"'
 	return text
 
-def is_international_airport(text):
-	""" Returns the airport name without 'International Airport' or None """
-	index = text.rfind(' International Airport')
-	if index > 0:
-		return text[0:index]
-	else:
-		return None
-
 class Airport(object):
+	iata_abstract_format     = 'The "{0}" IATA airport code corresponds to {2} in {3}'
+	icao_abstract_format     = 'The "{1}" ICAO airport code corresponds to {2} in {3} and the IATA code is "{0}"'
+	name_abstract_format     = 'The IATA code for the {2} is "{0}"'
+	location_abstract_format = 'The IATA code for the {2} near {3} is "{0}"'
+	abstract_icao_format     = ' and the ICAO code is "{1}"'
+
 	""" Contains informations about an Airport"""
 	def __init__(self, name, iata, icao, location, index_letter):
 		self.name = name
 		self.iata = iata
 		self.icao = icao
 		self.location = location
-		self.index_letter = index_letter 
+		self._index_letter = index_letter
+		self.international_airport_name = None
+		self.name_with_airport = None 
 
-	def add_iata(self,fields,abstract,output):
-		if self.iata != None and len(self.iata) != 0:
-			fields[0] = self.iata
-			fields[1] = 'A'
-			fields[11] = append_period(abstract)
-			output.append('%s' % ('\t'.join(fields)))
+		#logger.debug(self.name+';'+self.iata+';'+self.icao+';'+self.location+';'+self.index_letter)
+		self.abstract_icao_part = ''
+		if self.icao != '':
+			self.abstract_icao_part = self._format(Airport.abstract_icao_format)
 
-	def add_icao(self,fields,abstract,output):
-		if self.icao != None and len(self.icao) != 0:
-			fields[0] = self.icao
-			fields[1] = 'A'
-			fields[11] = append_period(abstract)
-			output.append('%s' % ('\t'.join(fields)))
+		# Put name with airport and international airport
+		self.name_with_airport = self.name
+		if self.name_with_airport.find('Airport') == -1:
+			self.name_with_airport += ' Airport'
 
-	def add_name(self,fields,abstract,output):
-		if self.name != None and len(self.name) != "":
-			fields[0] = self.name
-			fields[1] = 'A'
-			fields[11] = append_period(abstract)
-			output.append('%s' % ('\t'.join(fields)))
+		index = self.name_with_airport.rfind(' International Airport')
+		if index > 0:
+			self.international_airport_name = self.name_with_airport[0:index]
 
-	def add_location(self,fields,abstract,output):
+		self.airport_location_name = None
 		if self.location != None:
 			location_names = self.location.split(',')
 			if len(location_names) > 0:
-				airport_location_name = location_names[0]+' Airport'
-				if airport_location_name != self.name:
-					fields[0] = airport_location_name
-					fields[1] = 'A'
-					fields[11] = append_period(abstract)
-					output.append('%s' % ('\t'.join(fields)))
+				self.airport_location_name = location_names[0]+' Airport'
+				if self.airport_location_name == self.name:
+					self.airport_location_name = None
 
-	def add_redirects(self,fields,output):
-		name = is_international_airport(self.name_with_airport)
-		if name != None:
-			fields[0] = name
-			fields[1] = 'R'
+		# remove redundancy in airports/location names
+		if self.name_with_airport.find('airports in ') != -1:
+			self.name_with_airport = 'airports'
+
+	def _format(self,string):
+		return string.format(self.iata,self.icao,self.name_with_airport,self.location)
+
+	def add_iata(self,output):
+		abstract = self._format(Airport.iata_abstract_format)+self.abstract_icao_part
+		if self.iata != None and len(self.iata) != 0:
+			fields = self._getFields(self.iata,'A',append_period(abstract))
+			output.append('%s' % ('\t'.join(fields)))
+
+	def add_icao(self,output):
+		abstract = self._format(Airport.icao_abstract_format)
+		if self.icao != None and len(self.icao) != 0:
+			fields = self._getFields(self.icao,'A',append_period(abstract))
+			output.append('%s' % ('\t'.join(fields)))
+
+	def add_name(self,output):
+		abstract = self._format(Airport.name_abstract_format)+self.abstract_icao_part
+		if self.name != None and len(self.name) != "":
+			fields = self._getFields(self.name,'A',append_period(abstract))
+			output.append('%s' % ('\t'.join(fields)))
+
+	def add_location(self,output):
+		abstract = self._format(Airport.location_abstract_format)+self.abstract_icao_part
+		if self.airport_location_name != None:
+			fields = self._getFields(self.airport_location_name,'A',append_period(abstract))
+			output.append('%s' % ('\t'.join(fields)))
+
+	def add_redirects(self,output):
+		if self.international_airport_name != None:
+			fields = self._getFields(self.international_airport_name,'R')
 			fields[2] = self.name_with_airport
-			fields[11] = ''
 			fields[12] = ''
 			output.append('%s' % ('\t'.join(fields)))
 
-	def __str__(self):
-		output = []
-		logger.debug(self.name+';'+self.iata+';'+self.icao+';'+self.location+';'+self.index_letter)
-		fields = [
-				'',	 # $unique_name
-				'',  # $type 
+	def _getFields(self,name,linetype,abstract=''):
+		return [name,	  # $unique_name
+				linetype, # $type 
 				'',	 # $redirect
 				'',	 # $otheruses
 				'',	 # $categories
@@ -102,41 +124,12 @@ class Airport(object):
 				'',	 # $external_links
 				'',	 # $disambiguation
 				'',	 # images
-				'',	 # abstract
-				WIKIPEDIA_LIST_URL+self.index_letter # source url
-				]
+				abstract,	 # abstract
+				WIKIPEDIA_LIST_URL+self._index_letter] # source url
 
-		if self.icao != '':
-			abstract_icao_part = ' and the ICAO code is \"'+self.icao+'\"'
-		else:
-			abstract_icao_part = ''
-
-		self.name_with_airport = self.name
-		if self.name_with_airport.find('Airport') == -1:
-			self.name_with_airport += ' Airport'
-
-		# remove redundancy in airports/location names
-		if self.name_with_airport.find('airports in ') != -1:
-			self.name_with_airport = 'airports'
-
-		# prepare abstracts
-		iata_abstract = 'The \"'+self.iata+'\" IATA airport code corresponds to '+self.name_with_airport+' in '+self.location+abstract_icao_part
-		icao_abstract = 'The \"'+self.icao+'\" ICAO airport code corresponds to '+self.name_with_airport+' in '+self.location+' and the IATA code is \"'+self.iata+'\"'
-		name_abstract = 'The IATA code for the '+self.name_with_airport+' is \"'+self.iata+'\"'+abstract_icao_part
-		location_abstract = 'The IATA code for the '+self.name_with_airport+' near '+self.location+' is \"'+self.iata+'\"'+abstract_icao_part
-
-		# add items
-		self.add_iata(fields,iata_abstract,output)
-		self.add_icao(fields,icao_abstract,output)
-		self.add_name(fields,name_abstract,output)
-		self.add_location(fields,location_abstract,output)
-		self.add_redirects(fields,output) # always call this last
-
-		return '\n'.join(output)+'\n'
 
 class Parser(object):
 	""" Parses a HTML file to get all the airports codes """
-
 	def __init__(self, index_letter):
 		self.soup = BeautifulSoup(open('download/'+index_letter), from_encoding='utf-8')
 		self.index_letter = index_letter
@@ -149,7 +142,7 @@ class Parser(object):
 		for row in table.find_all('tr')[1::]:
 			line_number+=1
 			data = row.find_all('td')
-			if (len(data) != 4): # partial table heading
+			if len(data) != 4: # partial table heading
 				continue
 
 			# check if data[3] has no link look in 
@@ -163,19 +156,29 @@ class Parser(object):
 			self.airports.append(
 				Airport(
 					airport_name,
-					data[0].getText(),		# IATA
-					data[1].getText(),		# ICAO
+					data[0].getText(),  # IATA
+					data[1].getText(),  # ICAO
 					data[3].getText(),
-					self.index_letter		# Name
-					))
+					self.index_letter)) # Name
 
 if __name__ == '__main__':
-	indexes = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	with open('output.txt', 'w') as output:
-		for i in indexes:
+	with open(OUTPUT_FILE, 'w') as output:
+		airports = []
+
+		# parse all
+		for i in INDEXES:
 			parser = Parser(i)
 			logger.debug("Index: "+i)
 			parser.get_airports()
-			for airport in parser.airports:
-				output.write(airport.__str__().encode(ENCODING))
+			airports += parser.airports
+
+		# print all
+		for airport in airports:
+			strings = []
+			airport.add_iata(strings) # safe with no disambiguation needed
+			airport.add_icao(strings) # safe with no disambiguation needed
+			airport.add_name(strings) # safe with no disambiguation needed
+			airport.add_location(strings)
+			airport.add_redirects(strings) 
+			output.write('\n'.join(strings)+'\n')
 
