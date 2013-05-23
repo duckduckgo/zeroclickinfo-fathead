@@ -168,36 +168,30 @@ class Parser(object):
 					data[3].getText(),
 					self.index_letter)) # Name
 
+
+def addDisambituation(value,airport,disambiguations):
+	if value != None and value in disambiguations:
+		if not any(map(lambda x: x.iata == airport.iata,disambiguations[value])):
+			disambiguations[value].append(airport)
+	else:
+		disambiguations[value] = [airport]
+
 def findAndMarkDisambiguations(airports):
 	disambiguations = {}
 	for airport in airports:
-		if airport.name != None and airport.name_with_airport in disambiguations:
-			if not any(map(lambda x: x.iata == airport.iata,
-					disambiguations[airport.name_with_airport])):
-				disambiguations[airport.name_with_airport].append(airport)
-		else:
-			disambiguations[airport.name_with_airport] = [airport]
-
-		if airport.airport_location_name != None and airport.airport_location_name in disambiguations:
-			if not any(map(lambda x: x.iata == airport.iata,
-					disambiguations[airport.airport_location_name])):
-				disambiguations[airport.airport_location_name].append(airport)
-		else:
-			disambiguations[airport.airport_location_name] = [airport]
-
-		if airport.international_airport_name != None and airport.international_airport_name in disambiguations:
-			if not any(map(lambda x: x.iata == airport.iata,
-					disambiguations[airport.international_airport_name])):
-				disambiguations[airport.international_airport_name].append(airport)
-		else:
-			disambiguations[airport.international_airport_name] = [airport]
+		addDisambituation(airport.name_with_airport,airport,disambiguations)
+		addDisambituation(airport.airport_location_name,airport,disambiguations)
+		addDisambituation(airport.international_airport_name,airport,disambiguations)
 	return disambiguations
 
 def print_disambiguation((key,airports)):
 	fields = getFields(key,'D') 
 	for airport in airports:
-		if airport.name_with_airport == key or airport.airport_location_name == key or airport.international_airport_name == key:
-			fields[9] += airport.iata+' - '+airport.name+' - '+airport.location+'\n'
+		string = '*';
+		string += '[['+airport.iata+']] '
+		if airport.icao != None:
+			string += ', [['+airport.icao+']] '
+		fields[9] += string+', '+airport.location+'\\n'
 	return '%s' % ('\t'.join(fields))+'\n'
 
 if __name__ == '__main__':
