@@ -189,9 +189,7 @@ def print_disambiguation((key,airports)):
 	for airport in airports:
 		string = '*';
 		string += '[['+airport.iata+']] '
-		if airport.icao != None:
-			string += ', [['+airport.icao+']] '
-		fields[9] += string+', '+airport.location+'\\n'
+		fields[9] += string+airport.name+' in '+airport.location+'\\n'
 	return '%s' % ('\t'.join(fields))+'\n'
 
 if __name__ == '__main__':
