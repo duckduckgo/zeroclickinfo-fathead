@@ -162,10 +162,10 @@ class Parser(object):
 			#logger.debug(data)
 			self.airports.append(
 				Airport(
-					airport_name,
-					data[0].getText(),  # IATA
-					data[1].getText(),  # ICAO
-					data[3].getText(),
+					airport_name.strip(),
+					data[0].getText().strip(),  # IATA
+					data[1].getText().strip(),  # ICAO
+					data[3].getText().strip(),
 					self.index_letter)) # Name
 
 
