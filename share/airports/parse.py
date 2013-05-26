@@ -182,6 +182,12 @@ def findAndMarkDisambiguations(airports):
 		addDisambituation(airport.name_with_airport,airport,disambiguations)
 		addDisambituation(airport.airport_location_name,airport,disambiguations)
 		addDisambituation(airport.international_airport_name,airport,disambiguations)
+
+	for airport in airports:
+		if airport.icao != None and len(airport.icao) > 0 and airport.icao in disambiguations:
+			disambiguations[airport.icao].append(airport)
+		else:
+			disambiguations[airport.icao] = [airport]
 	return disambiguations
 
 def print_disambiguation((key,airports)):
@@ -209,7 +215,8 @@ if __name__ == '__main__':
 		for airport in airports:
 			strings = []
 			airport.add_iata(strings)
-			airport.add_icao(strings)
+			if len(disambiguations[airport.icao]) == 1:
+				airport.add_icao(strings)
 			if not airport.name_with_airport in disambiguations:
 				airport.add_name(strings)
 			if not airport.airport_location_name in disambiguations:
