@@ -138,7 +138,7 @@ class Airport(object):
 class Parser(object):
 	""" Parses a HTML file to get all the airports codes """
 	def __init__(self, index_letter):
-		self.soup = BeautifulSoup(open('download/'+index_letter), from_encoding='utf-8')
+		self.soup = BeautifulSoup(open('download/'+index_letter), "html5lib", from_encoding='utf-8')
 		self.index_letter = index_letter
 
 	def get_airports(self):
