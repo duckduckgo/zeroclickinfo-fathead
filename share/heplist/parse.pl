@@ -112,29 +112,54 @@ foreach my $key ( keys %particles ) {
 
 	################################################################################
 	# construct abstract
-	my $abstract = "Properties of ".$dispname.":, ";
-	$abstract .= "category: ".$pr->{category}.", ";
-	$abstract .= "charge: ".$pr->{charge}.", ";
-	$abstract .= "mass: ".$mass;
-	if( $pr->{category} ne "Quarks" && $pr->{category} ne "Leptons" ) {
-		# particle has a width
-		my $width = "";
-		if( $pr->{W} ) {
-			my ( $widthunit, $widthstring ) = getNumberUnitIndex( $pr->{W} );
-			my $werror = ($pr->{Werrplus} == $pr->{Werrminus}) ? " \x{00B1} ".getNumberToUnit($pr->{Werrplus}, $widthunit) : " + ".getNumberToUnit($pr->{Werrplus}, $widthunit)." - ".getNumberToUnit($pr->{Werrminus}, $widthunit );
-			
-			$width = "width: ".$widthstring.$werror." ".$units[$widthunit].", ";
-		};
-		$abstract .= $width;
-	}
-	$abstract .= getQuantumNumbers( $pr->{mcnumber}, $pr->{category} ).", ";
-	$abstract .= "mcnumber: ".$pr->{mcnumber}.", ";
-	
-	# get link
-	$abstract .= getLink( $pr ).", ";
-	
-	# get composition
-	$abstract .= getComposition( $pr->{mcnumber}, $pr->{category} );
+# 	my $abstract = "Properties of ".$dispname.":, ";
+# 	$abstract .= "category: ".$pr->{category}.", ";
+# 	$abstract .= "charge: ".$pr->{charge}.", ";
+# 	$abstract .= "mass: ".$mass;
+# 	if( $pr->{category} ne "Quarks" && $pr->{category} ne "Leptons" ) {
+# 		# particle has a width
+# 		my $width = "";
+# 		if( $pr->{W} ) {
+# 			my ( $widthunit, $widthstring ) = getNumberUnitIndex( $pr->{W} );
+# 			my $werror = ($pr->{Werrplus} == $pr->{Werrminus}) ? " \x{00B1} ".getNumberToUnit($pr->{Werrplus}, $widthunit) : " + ".getNumberToUnit($pr->{Werrplus}, $widthunit)." - ".getNumberToUnit($pr->{Werrminus}, $widthunit );
+# 			
+# 			$width = "width: ".$widthstring.$werror." ".$units[$widthunit].", ";
+# 		};
+# 		$abstract .= $width;
+# 	}
+# 	$abstract .= getQuantumNumbers( $pr->{mcnumber}, $pr->{category} ).", ";
+# 	$abstract .= "mcnumber: ".$pr->{mcnumber}.", ";
+# 	
+# 	# get link
+# 	$abstract .= getLink( $pr ).", ";
+# 	
+# 	# get composition
+# 	$abstract .= getComposition( $pr->{mcnumber}, $pr->{category} );
+
+	####
+	# now in HTML
+	my $abstract = "<table>";
+	$abstract .= "<tr><td colspan=2><b>Properties of ".$dispname."</b></td></tr>";
+	$abstract .= "<tr><td>Category</td><td>".$pr->{category}."</td></tr>";
+	$abstract .= "<tr><td>Category</td><td>".$pr->{charge}."</td></tr>";
+	$abstract .= "<tr><td>Category</td><td>".$mass."</td></tr>";
+ 	if( $pr->{category} ne "Quarks" && $pr->{category} ne "Leptons" ) {
+ 		# particle has a width
+ 		my $width = "";
+ 		if( $pr->{W} ) {
+ 			my ( $widthunit, $widthstring ) = getNumberUnitIndex( $pr->{W} );
+ 			my $werror = ($pr->{Werrplus} == $pr->{Werrminus}) ? " \x{00B1} ".getNumberToUnit($pr->{Werrplus}, $widthunit) : " + ".getNumberToUnit($pr->{Werrplus}, $widthunit)." - ".getNumberToUnit($pr->{Werrminus}, $widthunit );
+ 			
+ 			$width = "width: ".$widthstring.$werror." ".$units[$widthunit].", ";
+ 		};
+ 		$abstract .= "<tr><td>Category</td><td>".$width."</td></tr>";
+ 	}
+	$abstract .= "<tr><td>Category</td><td>".getQuantumNumbers( $pr->{mcnumber}, $pr->{category} )."</td></tr>";
+	$abstract .= "<tr><td>Category</td><td>".$pr->{mcnumber}."</td></tr>";
+	$abstract .= "<tr><td>Category</td><td>".getLink( $pr )."</td></tr>";
+	$abstract .= "<tr><td>Category</td><td>".getComposition( $pr->{mcnumber}, $pr->{category} )."</td></tr>";
+
+	$abstract .= "</table>";
 
 	# abstract done
 	################################################################################
