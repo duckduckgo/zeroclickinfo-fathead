@@ -51,11 +51,11 @@ def getFields(name,linetype,abstract=''):
 			''] # source link
 
 class Airport(object):
-	iata_abstract_format     = 'The "{0}" IATA airport code corresponds to {2} in {3}'
-	icao_abstract_format     = 'The "{1}" ICAO airport code corresponds to {2} in {3} and the IATA code is "{0}"'
-	name_abstract_format     = 'The IATA code for the {2} is "{0}"'
+	iata_abstract_format	 = 'The "{0}" IATA airport code corresponds to {2} in {3}'
+	icao_abstract_format	 = 'The "{1}" ICAO airport code corresponds to {2} in {3} and the IATA code is "{0}"'
+	name_abstract_format	 = 'The IATA code for the {2} is "{0}"'
 	location_abstract_format = 'The IATA code for the {2} near {3} is "{0}"'
-	abstract_icao_format     = ' and the ICAO code is "{1}"'
+	abstract_icao_format	 = ' and the ICAO code is "{1}"'
 
 	""" Contains informations about an Airport"""
 	def __init__(self, name, iata, icao, location, index_letter):
@@ -73,12 +73,13 @@ class Airport(object):
 
 		# Put name with airport and international airport
 		self.name_with_airport = self.name
-		if self.name_with_airport.find('Airport') == -1:
+		if self.name_with_airport.find('Airport') < 0:
 			self.name_with_airport += ' Airport'
 
 		index = self.name_with_airport.rfind(' International Airport')
 		if index > 0:
-			self.international_airport_name = self.name_with_airport[0:index]
+			self.international_airport_name = self.name_with_airport
+			self.name_with_airport = self.name_with_airport[0:index]
 
 		self.airport_location_name = None
 		if self.location != None:
@@ -109,8 +110,8 @@ class Airport(object):
 
 	def add_name(self,output):
 		abstract = self._format(Airport.name_abstract_format)+self.abstract_icao_part
-		if self.name != None and len(self.name) != "":
-			fields = self._getFields(self.name,'A',append_period(abstract))
+		if self.name_with_airport != None and len(self.name_with_airport) != "":
+			fields = self._getFields(self.name_with_airport,'A',append_period(abstract))
 			output.append('%s' % ('\t'.join(fields)))
 
 	def add_location(self,output):
@@ -119,10 +120,16 @@ class Airport(object):
 			fields = self._getFields(self.airport_location_name,'A',append_period(abstract))
 			output.append('%s' % ('\t'.join(fields)))
 
-	def add_redirects(self,output):
-		if self.international_airport_name != None:
-			fields = self._getFields(self.international_airport_name,'R')
-			fields[2] = self.name_with_airport
+	def add_redirects(self,output,withRedirect):
+		if self.international_airport_name == None:
+			return
+		abstract = self._format(Airport.name_abstract_format)+self.abstract_icao_part
+		fields = self._getFields(self.international_airport_name,'A',append_period(abstract))
+		output.append('%s' % ('\t'.join(fields)))
+
+		if withRedirect:
+			fields = self._getFields(self.name_with_airport,'R')
+			fields[2] = self.iata
 			fields[12] = ''
 			output.append('%s' % ('\t'.join(fields)))
 
@@ -163,11 +170,10 @@ class Parser(object):
 			self.airports.append(
 				Airport(
 					airport_name.strip(),
-					data[0].getText().strip(),  # IATA
-					data[1].getText().strip(),  # ICAO
+					data[0].getText().strip(),	# IATA
+					data[1].getText().strip(),	# ICAO
 					data[3].getText().strip(),
 					self.index_letter)) # Name
-
 
 def addDisambituation(value,airport,disambiguations):
 	if value != None and value in disambiguations:
@@ -210,19 +216,19 @@ if __name__ == '__main__':
 			airports += parser.airports
 
 		disambiguations = findAndMarkDisambiguations(airports)
-		
+
 		# print all the rest
 		for airport in airports:
 			strings = []
 			airport.add_iata(strings)
 			if len(disambiguations[airport.icao]) == 1:
 				airport.add_icao(strings)
-			if not airport.name_with_airport in disambiguations:
+			if airport.international_airport_name != None and len(disambiguations[airport.international_airport_name]) == 1:
+				airport.add_redirects(strings,not airport.name_with_airport in disambiguations) 
+			if len(disambiguations[airport.name_with_airport]) == 1:
 				airport.add_name(strings)
-			if not airport.airport_location_name in disambiguations:
+			if len(disambiguations[airport.airport_location_name]) == 1:
 				airport.add_location(strings)
-			if not airport.international_airport_name in disambiguations:
-				airport.add_redirects(strings) 
 			output.write('\n'.join(strings)+'\n')
 
 		# print disambiguations
