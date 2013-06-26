@@ -79,7 +79,7 @@ class Airport(object):
 		index = self.name_with_airport.rfind(' International Airport')
 		if index > 0:
 			self.international_airport_name = self.name_with_airport
-			self.name_with_airport = self.name_with_airport[0:index]
+			self.name_with_airport = None  # self.name_with_airport[0:index]+ ' Ariport'
 
 		self.airport_location_name = None
 		if self.location != None:
@@ -90,7 +90,7 @@ class Airport(object):
 					self.airport_location_name = None
 
 		# remove redundancy in airports/location names
-		if self.name_with_airport.find('airports in ') != -1:
+		if self.name_with_airport != None and self.name_with_airport.find('airports in ') != -1:
 			self.name_with_airport = 'airports'
 
 	def _format(self,string):
