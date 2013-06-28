@@ -79,7 +79,6 @@ class Airport(object):
 		index = self.name_with_airport.rfind(' International Airport')
 		if index > 0:
 			self.international_airport_name = self.name_with_airport
-			self.name_with_airport = None  # self.name_with_airport[0:index]+ ' Ariport'
 
 		self.airport_location_name = None
 		if self.location != None:
@@ -123,9 +122,6 @@ class Airport(object):
 	def add_redirects(self,output,withRedirect):
 		if self.international_airport_name == None:
 			return
-		abstract   = self._format(Airport.name_abstract_format)+self.abstract_icao_part
-		fields     = self._getFields(self.international_airport_name,'A',append_period(abstract))
-		output.append('%s' % ('\t'.join(fields)))
 		fields	   = self._getFields(self.international_airport_name[0:-len("Airport")-1],'R')
 		fields[2]  = self.international_airport_name
 		fields[12] = ''
