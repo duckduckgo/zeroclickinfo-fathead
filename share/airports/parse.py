@@ -202,7 +202,14 @@ def print_disambiguation((key,airports)):
 		string = '*';
 		string += '[['+airport.iata+']] '
 		fields[9] += string+airport.name+' in '+airport.location+'\\n'
-	return '%s' % ('\t'.join(fields))+'\n'
+	ret = '%s' % ('\t'.join(fields))+'\n'
+	if re.match('.*Airport',key):
+		fields = getFields(key,'R')
+		fields[2] = fields[0]
+		fields[12] = ''
+		fields[0] = fields[0]+'s'
+		ret = ret + '%s' % ('\t'.join(fields))+'\n'
+	return ret
 
 if __name__ == '__main__':
 	with open(OUTPUT_FILE, 'w') as output:
