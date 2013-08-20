@@ -40,15 +40,15 @@ Each directory has a structure like this:
 # See the Meta file section for more information
 lib/DDG/Fathead/PlugIn.pm
 
-# This shell script is called to fetch the data. 
+# This shell script is called to fetch the data.
 # Tmp files should go in a directory called download.
 share/plugin/fetch.sh
 
-# This is the script used to parse the data once it has been fetched. 
+# This is the script used to parse the data once it has been fetched.
 # .xx can be .pl, .py, .rb or .js depending on what language you use.
 share/plugin/parse.xx
 
-# This shell script is called to run the parser. 
+# This shell script is called to run the parser.
 share/plugin/parse.sh
 
 # Please include any dependencies here,
@@ -131,7 +131,7 @@ Please name the output file output.txt (tab delimited) but do not store the data
 
 The output file needs to use UTF-8 encoding so we can process it. Please make sure you write your parse scripts accordingly or we'll probably run into some problems getting it integrated.
 
-The output format from parse.xx depends on the type of content. In any case, it should be a tab delimited file, with one line per entry. Usually there is no need for newline characters, but if there is a need for some reason, escape them with a backslash like \\\n. If you wanta newline displayed, use &lt;br&gt;
+The output format from parse.xx depends on the type of content. In any case, it should be a tab delimited file, with one line per entry. Usually there is no need for newline characters, but if there is a need for some reason, escape them with a backslash like \\n. If you wanta newline displayed, use &lt;br&gt;
 
 The general output fields are as follows. Check out [https://duckduckgo.com/Perl](https://duckduckgo.com/Perl) for reference, which we will refer to in explaining the fields.
 
@@ -141,13 +141,13 @@ The general output fields are as follows. Check out [https://duckduckgo.com/Perl
 # This should be unique across the data set.
 my $title = $line[0] || '';
 
-# REQUIRED: 
+# REQUIRED:
 # A for article.
 # D for disambiguation page.
 # R for redirect.
 my $type = $line[1] || '';
 
-# Only for redirects, e.g. 
+# Only for redirects, e.g.
 # an alias for a title such as
 # a common misspelling or AKA.
 # For example: Duck Duck Go -> DuckDuckGo.
@@ -159,7 +159,7 @@ my $otheruses = $line[3] || '';
 
 # You can put the article in multiple categories, and category pages will be created automatically.
 # E.g.: http://duckduckgo.com/c/Procedural_programming_languages
-# You would do: Procedural programming languages\\n
+# You would do: Procedural programming languages\n
 # You can have several categories, separated by an escaped newline.
 # Categories should generally end with a plural noun.
 my $categories = $line[4] || '';
@@ -178,10 +178,10 @@ my $further_reading = $line[7] || '';
 
 # You can add external links that get put first when this article comes out.
 # The canonical example is an official site, which looks like:
-# [$url Official site]\\n
+# [$url Official site]\n
 # You can have several, separated by an escaped newline though only a few will be used.
 # You can also have before and after text or put multiple links in one like this.
-# Before text [$url link text] after text [$url2 second link].\\n
+# Before text [$url link text] after text [$url2 second link].\n
 my $external_links = $line[8] || '';
 
 # Ignore.
@@ -196,7 +196,7 @@ my $images = $line[10] || '';
 my $abstract = $line[11] || '';
 
 # This is the full URL for the source.
-# If all the URLs are relative to the main domain, 
+# If all the URLs are relative to the main domain,
 # this can be relative to that domain.
 my $source_url = $line[12] || '';
 
