@@ -4,23 +4,25 @@ from bs4 import BeautifulSoup
 import sys
 import string
 
-def findindex(haystack,needle):
+
+def findindex(haystack, needle):
   count = 0
   for line in haystack:
     if needle in line:
       return count
     count += 1
+    
 
-def getsection(file,start,end):
+def getsection(file_ptr, start, end):
   html = ''
-  for i in file[start:end]:
-    html = "%s\r\n%s"%(html,i)
+  for i in file_ptr[start:end]:
+    html = "%s\r\n%s" % (html,i)
   return html
 
-def getall(file):
+def getall(file_ptr):
   html = ''
-  for i in file:
-    html = "%s\r\n%s"%(html,i)
+  for i in file_ptr:
+    html = "%s\r\n%s" % (html,i)
   return html
 
 r1 = re.compile('''<.*?>''',re.DOTALL)
@@ -54,7 +56,7 @@ for (path,dirs,files) in os.walk(dir):
   if 'class-use' not in path:
     for f in files:
       dirList.append("%s/%s"%(path,f))
-
+      
 dir = "./docs/java/en/api/javax/"
 
 for (path,dirs,files) in os.walk(dir):
