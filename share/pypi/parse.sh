@@ -1,2 +1,2 @@
 #!/bin/bash
-ruby parse.rb > output.txt
+ruby parse.py > output.txt
