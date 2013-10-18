@@ -2,4 +2,4 @@ Name: Haxelib
 Domain: lib.haxe.org
 Type: Haxe
 MediaWiki: 0
-Keywords: haxelib,haxe library,
+Keywords: haxe,haxelib,haxe library,haxe package
