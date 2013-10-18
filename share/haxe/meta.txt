@@ -1,0 +1,9 @@
+Name: Haxe
+
+Domain: api.haxe.org
+
+Type: Haxe
+
+MediaWiki: 0
+
+Keywords: haxe

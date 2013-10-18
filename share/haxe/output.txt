@@ -1,0 +1,2403 @@
+Array	A										<p>An Array is a storage for values. You can access it using indexes or
+with its API.</p>
+Array.length	A										<pre>public var length:Int;</pre><p>The length of <code>this</code> Array.</p>
+Array.concat	A										<pre>public function concat(a:Array):Array;</pre><p>Returns a new Array by appending the elements of <code>a</code> to the elements of
+<code>this</code> Array.</p>
+<pre><code>This operation does not modify `this` Array.
+
+If `a` is the empty Array `[]`, a copy of `this` Array is returned.
+
+The length of the returned Array is equal to the sum of `this.length`
+and `a.length`.
+
+If `a` is `null`, the result is unspecified.
+</code></pre>
+Array.join	A										<pre>public function join(sep:String):String;</pre><p>Returns a string representation of <code>this</code> Array, with <code>sep</code> separating
+each element.</p>
+<pre><code>The result of this operation is equal to `Std.string(this[0]) + sep +
+Std.string(this[1]) + sep + ... + sep + Std.string(this[this.length-1])`
+
+If `this` is the empty Array `[]`, the result is the empty String `""`.
+If `this` has exactly one element, the result is equal to a call to
+`Std.string(this[0])`.
+
+If `sep` is null, the result is unspecified.
+</code></pre>
+Array.pop	A										<pre>public function pop():Null&lt;Array.T&gt;;</pre><p>Removes the last element of <code>this</code> Array and returns it.</p>
+<p>This operation modifies <code>this</code> Array in place.</p>
+<pre><code>If `this` has at least one element, `this.length` will decrease by 1.
+
+If `this` is the empty Array `[]`, null is returned and the length
+remains 0.
+</code></pre>
+Array.push	A										<pre>public function push(x:Array.T):Int;</pre><p>Adds the element <code>x</code> at the end of <code>this</code> Array and returns the new
+length of <code>this</code> Array.</p>
+<pre><code>This operation modifies `this` Array in place.
+
+`this.length` increases by 1.
+</code></pre>
+Array.reverse	A										<pre>public function reverse():Void;</pre><p>Reverse the order of elements of <code>this</code> Array.</p>
+<p>This operation modifies <code>this</code> Array in place.</p>
+<pre><code>If `this.length &lt; 2`, `this` remains unchanged.
+</code></pre>
+Array.shift	A										<pre>public function shift():Null&lt;Array.T&gt;;</pre><p>Removes the first element of <code>this</code> Array and returns it.</p>
+<p>This operation modifies <code>this</code> Array in place.</p>
+<pre><code>If `this` has at least one element, `this`.length and the index of each
+remaining element is decreased by 1.
+
+If `this` is the empty Array `[]`, `null` is returned and the length
+remains 0.
+</code></pre>
+Array.slice	A										<pre>public function slice(pos:Int, ?end:Int):Array;</pre><p>Creates a shallow copy of the range of <code>this</code> Array, starting at and
+including <code>pos</code>, up to but not including <code>end</code>.</p>
+<pre><code>This operation does not modify `this` Array.
+
+The elements are not copied and retain their identity.
+
+If `end` is omitted or exceeds `this.length`, it defaults to the end of
+`this` Array.
+
+If `pos` or `end` are negative, their offsets are calculated from the
+end	of `this` Array by `this.length + pos` and `this.length + end`
+respectively. If this yields a negative value, 0 is used instead.
+
+If `pos` exceeds `this.length` or if `end` exceeds or equals `pos`,
+the result is `[]`.
+</code></pre>
+Array.sort	A										<pre>public function sort(f:null):Void;</pre><p>Sorts <code>this</code> Array according to the comparison function <code>f</code>, where
+<code>f(x,y)</code> returns 0 if x == y, a positive Int if x > y and a</p>
+<pre><code>negative Int if x &lt; y.
+
+This operation modifies `this` Array in place.
+
+The sort operation is not guaranteed to be stable, which means that the
+order of equal elements may not be retained. For a stable Array sorting
+algorithm, `haxe.ds.sort.MergeSort.sort()` can be used instead.
+
+If `f` is null, the result is unspecified.
+</code></pre>
+Array.splice	A										<pre>public function splice(pos:Int, len:Int):Array;</pre><p>Removes <code>len</code> elements from <code>this</code> Array, starting at and including
+<code>pos</code>, an returns them.</p>
+<pre><code>This operation modifies `this` Array in place.
+
+If `len` is &lt; 0 or `pos` exceeds `this`.length, the result is the empty
+Array [].
+
+If `pos` is negative, its value is calculated from the end	of `this`
+Array by `this.length + pos`. If this yields a negative value, 0 is
+used instead.
+
+If the sum of the resulting values for `len` and `pos` exceed
+`this.length`, this operation will affect the elements from `pos` to the
+end of `this` Array.
+
+The length of the returned Array is equal to the new length of `this`
+Array subtracted from the original length of `this` Array. In other
+words, each element of the original `this` Array either remains in
+`this` Array or becomes an element of the returned Array.
+</code></pre>
+Array.toString	A										<pre>public function toString():String;</pre><p>Returns a string representation of <code>this</code> Array.</p>
+<p>The result will include the individual elements' String representations</p>
+<pre><code>separated by comma. The enclosing [ ] may be missing on some platforms,
+use Std.string() to get a String representation that is consistent
+across platforms.
+</code></pre>
+Array.unshift	A										<pre>public function unshift(x:Array.T):Void;</pre><p>Adds the element <code>x</code> at the start of <code>this</code> Array.</p>
+<p>This operation modifies <code>this</code> Array in place.</p>
+<pre><code>`this.length` and the index of each Array element increases by 1.
+</code></pre>
+Array.insert	A										<pre>public function insert(pos:Int, x:Array.T):Void;</pre><p>Inserts the element <code>x</code> at the position <code>pos</code>.</p>
+<p>This operation modifies <code>this</code> Array in place.</p>
+<pre><code>The offset is calculated like so:
+
+- If `pos` exceeds `this.length`, the offset is `this.length`.
+- If `pos` is negative, the offset is calculated from the end of `this`
+  Array, i.e. `this.length + pos`. If this yields a negative value, the
+  offset is 0.
+- Otherwise, the offset is `pos`.
+
+If the resulting offset does not exceed `this.length`, all elements from
+and including that offset to the end of `this` Array are moved one index
+ahead.
+</code></pre>
+Array.remove	A										<pre>public function remove(x:Array.T):Bool;</pre><p>Removes the first occurence of <code>x</code> in <code>this</code> Array.</p>
+<p>This operation modifies <code>this</code> Array in place.</p>
+<pre><code>If `x` is found by checking standard equality, it is removed from `this`
+Array and all following elements are reindexed acoordingly. The function
+then returns true.
+
+If `x` is not found, `this` Array is not changed and the function
+returns false.
+</code></pre>
+Array.copy	A										<pre>public function copy():Array;</pre><p>Returns a shallow copy of <code>this</code> Array.</p>
+<p>The elements are not copied and retain their identity, so</p>
+<pre><code>`a[i] == a.copy()[i]` is true for any valid `i`. However,
+`a == a.copy()` is always false.
+</code></pre>
+Array.iterator	A										<pre>public function iterator():Iterator&lt;Array.T&gt;;</pre><p>Returns an iterator of the Array values.</p>
+Array.map	A										<pre>public function map(f:null):Array;</pre><p>Creates a new Array by applying function <code>f</code> to all elements of <code>this</code>.</p>
+<p>The order of elements is preserved.</p>
+<pre><code>If `f` is null, the result is unspecified.
+</code></pre>
+Array.filter	A										<pre>public function filter(f:null):Array;</pre><p>Returns an Array containing those elements of <code>this</code> for which <code>f</code>
+returned true.</p>
+<pre><code>The individual elements are not duplicated and retain their identity.
+
+If `f` is null, the result is unspecified.
+</code></pre>
+Array.new	A										<pre>public function new():Void;</pre><p>Creates a new Array.</p>
+Class	A										<p>An abstract type that represents a Class.</p>
+<pre><code>See `Type` for the Haxe Reflection API.
+</code></pre>
+Date	A										<p>The Date class provides a basic structure for date and time related
+information. Date instances can be created by</p>
+<pre><code>- `new Date()` for a specific date,
+- `Date.now()` to obtain information about the current time,
+- `Date.fromTime()` with a given timestamp or
+- `Date.fromString()` by parsing from a String.
+
+There is some extra functions available in the `DateTools` class.
+
+In the context of haxe dates, a timestamp is defined as the number of
+milliseconds elapsed since 1st January 1970.
+</code></pre>
+Date.now	A										<pre>public static function now():Date;</pre><p>Returns a Date representing the current local time.</p>
+Date.fromTime	A										<pre>public static function fromTime(t:Float):Date;</pre><p>Returns a Date from timestamp <code>t</code>.</p>
+Date.fromString	A										<pre>public static function fromString(s:String):Date;</pre><p>Returns a Date from a formated string <code>s</code>, with the following accepted
+formats:</p>
+<pre><code>- `"YYYY-MM-DD hh:mm:ss"`
+- `"YYYY-MM-DD"`
+- `"hh:mm:ss"`
+
+The first two formats are expressed in local time, the third in UTC
+Epoch.
+</code></pre>
+Date.getTime	A										<pre>public function getTime():Float;</pre><p>Returns the timestamp of the date. It might only have a per-second
+precision depending on the platforms.</p>
+Date.getHours	A										<pre>public function getHours():Int;</pre><p>Returns the hours of <code>this</code> Date (0-23 range).</p>
+Date.getMinutes	A										<pre>public function getMinutes():Int;</pre><p>Returns the minutes of <code>this</code> Date (0-59 range).</p>
+Date.getSeconds	A										<pre>public function getSeconds():Int;</pre><p>Returns the seconds of the <code>this</code> Date (0-59 range).</p>
+Date.getFullYear	A										<pre>public function getFullYear():Int;</pre><p>Returns the full year of <code>this</code> Date (4-digits).</p>
+Date.getMonth	A										<pre>public function getMonth():Int;</pre><p>Returns the month of <code>this</code> Date (0-11 range).</p>
+Date.getDate	A										<pre>public function getDate():Int;</pre><p>Returns the day of <code>this</code> Date (1-31 range).</p>
+Date.getDay	A										<pre>public function getDay():Int;</pre><p>Returns the day of the week of <code>this</code> Date (0-6 range).</p>
+Date.toString	A										<pre>public function toString():String;</pre><p>Returns a string representation of <code>this</code> Date, by using the
+standard format [YYYY-MM-DD HH:MM:SS]. See <code>DateTools.format</code> for</p>
+<pre><code>other formating rules.
+</code></pre>
+Date.new	A										<pre>public function new(year:Int, month:Int, day:Int, hour:Int, min:Int, sec:Int):Void;</pre><p>Creates a new date object from the given arguments.</p>
+<pre><code>The behaviour of a Date instance is only consistent across platforms if
+the the arguments describe a valid date.
+
+- month: 0 to 11
+- day: 1 to 31
+- hour: 0 to 23
+- min: 0 to 59
+- sec: 0 to 59
+</code></pre>
+EReg	A										<p>The EReg class represents regular expressions.</p>
+<pre><code>While basic usage and patterns consistently work across platforms, some more
+complex operations may yield different results. This is a necessary trade-
+off to retain a certain level of performance.
+
+EReg instances can be created by calling the constructor, or with the
+special syntax ~/pattern/modifier
+
+EReg instances maintain an internal state, which is affected by several of
+its methods.
+
+A detailed explanation of the supported operations is available at
+http://haxe.org/doc/cross/regexp
+</code></pre>
+EReg.match	A										<pre>public function match(s:String):Bool;</pre><p>Tells if <code>this</code> regular expression matches String <code>s</code>.</p>
+<pre><code>This method modifies the internal state.
+
+If `s` is `null`, the result is unspecified.
+</code></pre>
+EReg.matched	A										<pre>public function matched(n:Int):String;</pre><p>Returns the matched sub-group <code>n</code> of <code>this</code> EReg.</p>
+<pre><code>This method should only be called after `this.match` or
+`this.matchSub`, and then operates on the String of that operation.
+
+The index `n` corresponds to the n-th set of parentheses in the pattern
+of `this` EReg. If no such sub-group exists, an exception is thrown.
+
+If `n` equals 0, the whole matched substring is returned.
+</code></pre>
+EReg.matchedLeft	A										<pre>public function matchedLeft():String;</pre><p>Returns the part to the left of the last matched substring.</p>
+<pre><code>If the most recent call to `this.match` or `this.matchSub` did not
+match anything, the result is unspecified.
+
+If the global g modifier was in place for the matching, only the
+substring to the left of the leftmost match is returned.
+
+The result does not include the matched part.
+</code></pre>
+EReg.matchedRight	A										<pre>public function matchedRight():String;</pre><p>Returns the part to the right of the last matched substring.</p>
+<pre><code>If the most recent call to `this.match` or `this.matchSub` did not
+match anything, the result is unspecified.
+
+If the global g modifier was in place for the matching, only the
+substring to the right of the leftmost match is returned.
+
+The result does not include the matched part.
+</code></pre>
+EReg.matchedPos	A										<pre>public function matchedPos():null;</pre><p>Returns the position and length of the last matched substring, within
+the String which was last used as argument to <code>this.match</code> or</p>
+<pre><code>`this.matchSub`.
+
+If the most recent call to `this.match` or `this.matchSub` did not
+match anything, the result is unspecified.
+
+If the global g modifier was in place for the matching, the position and
+length of the leftmost substring is returned.
+</code></pre>
+EReg.matchSub	A										<pre>public function matchSub(s:String, pos:Int, ?len:Int):Bool;</pre><p>Tells if <code>this</code> regular expression matches a substring of String <code>s</code>.</p>
+<pre><code>This function expects `pos` and `len` to describe a valid substring of
+`s`, or else the result is unspecified. To get more robust behavior,
+`this.matchSub(s.substr(pos,len))` can be used instead.
+
+This method modifies the internal state.
+
+If `s` is null, the result is unspecified.
+</code></pre>
+EReg.split	A										<pre>public function split(s:String):Array;</pre><p>Splits String <code>s</code> at all substrings <code>this</code> EReg matches.</p>
+<pre><code>If a match is found at the start of `s`, the result contains a leading
+empty String "" entry.
+
+If a match is found at the end of `s`, the result contains a trailing
+empty String "" entry.
+
+If two matching substrings appear next to each other, the result
+contains the empty String "" between them.
+
+By default, this method splits `s` into two parts at the first matched
+substring. If the global g modifier is in place, `s` is split at each
+matched substring.
+
+If `s` is null, the result is unspecified.
+</code></pre>
+EReg.replace	A										<pre>public function replace(s:String, by:String):String;</pre><p>Replaces the first substring of <code>s</code> which <code>this</code> EReg matches with <code>by</code>.</p>
+<pre><code>If `this` EReg does not match any substring, the result is `s`.
+
+By default, this method replaces only the first matched substring. If
+the global g modifier is in place, all matched substrings are replaced.
+
+If `by` contains `$1` to `$9`, the digit corresponds to number of a
+matched sub-group and its value is used instead. If no such sub-group
+exists, the replacement is unspecified. The string `$$` becomes `$`.
+
+If `s` or `by` are null, the result is unspecified.
+</code></pre>
+EReg.map	A										<pre>public function map(s:String, f:null):String;</pre><p>For each occurence of the pattern in the string <code>s</code>, the function <code>f</code> is called and
+can return the string that needs to be replaced. All occurences are matched anyway,</p>
+<pre><code>and setting the `g` flag might cause some incorrect behavior on some platforms.
+</code></pre>
+EReg.new	A										<pre>public function new(r:String, opt:String):Void;</pre><p>Creates a new regular expression with pattern <code>r</code> and modifiers <code>opt</code>.</p>
+<pre><code>This is equivalent to the shorthand syntax `~/r/opt`
+
+If `r` or `opt` are null, the result is unspecified.
+</code></pre>
+Enum	A										<p>An abstract type that represents an Enum type.</p>
+<pre><code>The corresponding enum instance type is `EnumValue`.
+
+See `Type` for the Haxe Reflection API.
+</code></pre>
+EnumValue	A										<p>An abstract type that represents any enum value.
+See <code>Type</code> for the Haxe Reflection API.</p>
+IntIterator	A										<p>IntIterator is used for implementing interval iterations.</p>
+<pre><code>It is usually not used explicitly, but through it's special syntax:
+`min...max`
+
+While it is possible to assign an instance of IntIterator to a variable or
+field, it is worth noting that IntIterator does not reset after being used
+in a for-loop. Subsequent uses of the same instance will then have no
+effect.
+</code></pre>
+IntIterator.min	A										<pre>private var min:Int;</pre>
+IntIterator.max	A										<pre>private var max:Int;</pre>
+IntIterator.hasNext	A										<pre>public function hasNext():Bool;</pre><p>Returns true if the iterator has other items, false otherwise.</p>
+IntIterator.next	A										<pre>public function next():Int;</pre><p>Moves to the next item of the iterator.</p>
+<pre><code>If this is called while hasNext() is false, the result is unspecified.
+</code></pre>
+IntIterator.new	A										<pre>public function new(min:Int, max:Int):Void;</pre><p>Iterates from <code>min</code> (inclusive) to <code>max</code> (exclusive).</p>
+<pre><code>If `max &lt;= min`, the iterator will not act as a countdown.
+</code></pre>
+Lambda	A										<p>The <code>Lambda</code> class is a collection of methods to support functional
+programming. It is ideally used with 'using Lambda' and then acts as an</p>
+<pre><code>extension to Iterable types.
+
+On static platforms, working with the Iterable structure might be slower
+than performing the operations directly on known types, such as Array and
+List.
+
+If the first argument to any of the methods is null, the result is
+unspecified.
+</code></pre>
+Lambda.array	A										<pre>public static function array(it:Iterable&lt;array.A&gt;):Array;</pre><p>Creates an Array from Iterable <code>it</code>.</p>
+<p>If <code>it</code> is an Array, this function returns a copy of it.</p>
+Lambda.list	A										<pre>public static function list(it:Iterable&lt;list.A&gt;):List;</pre><p>Creates a List form Iterable <code>it</code>.</p>
+<p>If <code>it</code> is a List, this function returns a copy of it.</p>
+Lambda.map	A										<pre>public static function map(it:Iterable&lt;map.A&gt;, f:null):List;</pre><p>Creates a new List by applying function <code>f</code> to all elements of <code>it</code>.</p>
+<p>The order of elements is preserved.</p>
+<pre><code>If `f` is null, the result is unspecified.
+</code></pre>
+Lambda.mapi	A										<pre>public static function mapi(it:Iterable&lt;mapi.A&gt;, f:null):List;</pre><p>Similar to map, but also passes the index of each element to <code>f</code>.</p>
+<p>The order of elements is preserved.</p>
+<pre><code>If `f` is null, the result is unspecified.
+</code></pre>
+Lambda.has	A										<pre>public static function has(it:Iterable&lt;has.A&gt;, elt:has.A):Bool;</pre><p>Tells if <code>it</code> contains <code>elt</code>.</p>
+<p>This function returns true as soon as an element is found which is equal</p>
+<pre><code>to `elt` according to the `==` operator.
+
+If no such element is found, the result is false.
+</code></pre>
+Lambda.exists	A										<pre>public static function exists(it:Iterable&lt;exists.A&gt;, f:null):Bool;</pre><p>Tells if <code>it</code> contains an element for which <code>f</code> is true.</p>
+<p>This function returns true as soon as an element is found for which a</p>
+<pre><code>call to `f` returns true.
+
+If no such element is found, the result is false.
+
+If `f` is null, the result is unspecified.
+</code></pre>
+Lambda.foreach	A										<pre>public static function foreach(it:Iterable&lt;foreach.A&gt;, f:null):Bool;</pre><p>Tells if <code>f</code> is true for all elements of <code>it</code>.</p>
+<p>This function returns false as soon as an element is found for which a</p>
+<pre><code>call to `f` returns false.
+
+If no such element is found, the result is true.
+
+In particular, this function always returns true if `it` is empty.
+
+If `f` is null, the result is unspecified.
+</code></pre>
+Lambda.iter	A										<pre>public static function iter(it:Iterable&lt;iter.A&gt;, f:null):Void;</pre><p>Calls <code>f</code> on all elements of <code>it</code>, in order.</p>
+<p>If <code>f</code> is null, the result is unspecified.</p>
+Lambda.filter	A										<pre>public static function filter(it:Iterable&lt;filter.A&gt;, f:null):List;</pre><p>Returns a List containing those elements of <code>it</code> for which <code>f</code> returned
+true.</p>
+<pre><code>If `it` is empty, the result is the empty List even if `f` is null.
+
+Otherwise if `f` is null, the result is unspecified.
+</code></pre>
+Lambda.fold	A										<pre>public static function fold(it:Iterable&lt;fold.A&gt;, f:null, first:fold.B):fold.B;</pre><p>Functional fold on Iterable <code>it</code>, using function <code>f</code> with start argument
+<code>first</code>.</p>
+<pre><code>If `it` has no elements, the result is `first`.
+
+Otherwise the first element of `it` is passed to `f` alongside `first`.
+The result of that call is then passed to `f` with the next element of
+`it`, and so on until `it` has no more elements.
+
+If `it` or `f` are null, the result is unspecified.
+</code></pre>
+Lambda.count	A										<pre>public static function count(it:Iterable&lt;count.A&gt;, ?pred:null):Int;</pre><p>Returns the number of elements in <code>it</code> for which <code>pred</code> is true, or the
+total number of elements in <code>it</code> if <code>pred</code> is null.</p>
+<pre><code>This function traverses all elements.
+</code></pre>
+Lambda.empty	A										<pre>public static function empty(it:Iterable&lt;empty.T&gt;):Bool;</pre><p>Tells if Iterable <code>it</code> does not contain any element.</p>
+Lambda.indexOf	A										<pre>public static function indexOf(it:Iterable&lt;indexOf.T&gt;, v:indexOf.T):Int;</pre><p>Returns the index of the first element <code>v</code> within Iterable <code>it</code>.</p>
+<p>This function uses operator <code>==</code> to check for equality.</p>
+<pre><code>If `v` does not exist in `it`, the result is -1.
+</code></pre>
+Lambda.find	A										<pre>public static function find(it:Iterable&lt;find.T&gt;, f:null):Null&lt;find.T&gt;;</pre><p>Returns the first element of <code>it</code> for which <code>f</code> is true.</p>
+<p>This function returns true as soon as an element is found for which a</p>
+<pre><code>call to `f` returns true.
+
+If no such element is found, the result is null.
+
+If `f` is null, the result is unspecified.
+</code></pre>
+Lambda.concat	A										<pre>public static function concat(a:Iterable&lt;concat.T&gt;, b:Iterable&lt;concat.T&gt;):List;</pre><p>Returns a new List containing all elements of Iterable <code>a</code> followed by
+all elements of Iterable <code>b</code>.</p>
+<pre><code>If `a` or `b` are null, the result is unspecified.
+</code></pre>
+List	A										<p>A linked-list of elements. The list is composed of two-elements arrays
+that are chained together. It is optimized so that adding or removing an</p>
+<pre><code>element does not imply copying the whole array content every time.
+</code></pre>
+List.h	A										<pre>private var h:Array;</pre>
+List.q	A										<pre>private var q:Array;</pre>
+List.length	A										<pre>public var length:Int;</pre><p>The length of <code>this</code> List.</p>
+List.add	A										<pre>public function add(item:List.T):Void;</pre><p>Adds element <code>item</code> at the end of <code>this</code> List.</p>
+<pre><code>`this.length` increases by 1.
+</code></pre>
+List.push	A										<pre>public function push(item:List.T):Void;</pre><p>Adds element <code>item</code> at the beginning of <code>this</code> List.</p>
+<pre><code>`this.length` increases by 1.
+</code></pre>
+List.first	A										<pre>public function first():Null&lt;List.T&gt;;</pre><p>Returns the first element of <code>this</code> List, or null if no elements exist.</p>
+<pre><code>This function does not modify `this` List.
+</code></pre>
+List.last	A										<pre>public function last():Null&lt;List.T&gt;;</pre><p>Returns the last element of <code>this</code> List, or null if no elements exist.</p>
+<pre><code>This function does not modify `this` List.
+</code></pre>
+List.pop	A										<pre>public function pop():Null&lt;List.T&gt;;</pre><p>Returns the first element of <code>this</code> List, or null if no elements exist.</p>
+<pre><code>The element is removed from `this` List.
+</code></pre>
+List.isEmpty	A										<pre>public function isEmpty():Bool;</pre><p>Tells if <code>this</code> List is empty.</p>
+List.clear	A										<pre>public function clear():Void;</pre><p>Empties <code>this</code> List.</p>
+<pre><code>This function does not traverse the elements, but simply sets the
+internal references to null and `this.length` to 0.
+</code></pre>
+List.remove	A										<pre>public function remove(v:List.T):Bool;</pre><p>Removes the first occurence of <code>v</code> in <code>this</code> List.</p>
+<pre><code>If `v` is found by checking standard equality, it is removed from `this`
+List and the function returns true.
+
+Otherwise, false is returned.
+</code></pre>
+List.iterator	A										<pre>public function iterator():Iterator&lt;List.T&gt;;</pre><p>Returns an iterator on the elements of the list.</p>
+List.toString	A										<pre>public function toString():String;</pre><p>Returns a string representation of <code>this</code> List.</p>
+<pre><code>The result is enclosed in { } with the individual elements being
+separated by a comma.
+</code></pre>
+List.join	A										<pre>public function join(sep:String):String;</pre><p>Returns a string representation of <code>this</code> List, with <code>sep</code> separating
+each element.</p>
+List.filter	A										<pre>public function filter(f:null):List;</pre><p>Returns a list filtered with <code>f</code>. The returned list will contain all
+elements for which <code>f(x) == true</code>.</p>
+List.map	A										<pre>public function map(f:null):List;</pre><p>Returns a new list where all elements have been converted by the
+function <code>f</code>.</p>
+List.new	A										<pre>public function new():Void;</pre><p>Creates a new empty list.</p>
+Main	A										
+Main.main	A										<pre>private static function main():Void;</pre>
+Map	A										<p>Map allows key to value mapping for arbitrary value types, and many key
+types.</p>
+<pre><code>This is a multi-type abstract, it is instantiated as one of its
+specialization types depending on its type parameters.
+
+A Map can be instantiated without explicit type parameters. Type inference
+will then determine the type parameters from the usage.
+
+Maps can also be created with `key1 =&gt; value1, key2 =&gt; value2` syntax.
+
+Map is an abstract type, it is not available at runtime.
+</code></pre>
+Map.this	A										<pre>private var this:IMap;</pre>
+_Map.Map_Impl_	A										
+_Map.Map_Impl_._new	A										<pre>public static function _new():IMap;</pre><p>Creates a new Map.</p>
+<pre><code>This becomes a constructor call to one of the specialization types in
+the output. The rules for that are as follows:
+
+1. if K is a `String`, `haxe.ds.StringMap` is used
+2. if K is an `Int`, `haxe.ds.IntMap` is used
+3. if K is an `EnumValue`, `haxe.ds.EnumValueMap` is used
+4. if K is any other class or structure, `haxe.ds.ObjectMap` is used
+5. if K is any other type, it causes a compile-time error
+	
+(Cpp) Map does not use weak keys on ObjectMap by default.
+</code></pre>
+_Map.Map_Impl_.set	A										<pre>public static function set(this:IMap, key:Map.K, value:Map.V):Void;</pre><p>Maps <code>key</code> to <code>value</code>.</p>
+<pre><code>If `key` already has a mapping, the previous value disappears.
+
+If `key` is null, the result is unspecified.
+</code></pre>
+_Map.Map_Impl_.get	A										<pre>public static function get(this:IMap, key:Map.K):Null&lt;Map.V&gt;;</pre><p>Returns the current mapping of <code>key</code>.</p>
+<pre><code>If no such mapping exists, null is returned.
+
+Note that a check like `map.get(key) == null` can hold for two reasons:
+
+1. the map has no mapping for `key`
+2. the map has a mapping with a value of `null`
+
+If it is important to distinguish these cases, `exists()` should be 
+used.
+
+If `key` is null, the result is unspecified.
+</code></pre>
+_Map.Map_Impl_.exists	A										<pre>public static function exists(this:IMap, key:Map.K):Bool;</pre><p>Returns true if <code>key</code> has a mapping, false otherwise.</p>
+<pre><code>If `key` is null, the result is unspecified.
+</code></pre>
+_Map.Map_Impl_.remove	A										<pre>public static function remove(this:IMap, key:Map.K):Bool;</pre><p>Removes the mapping of <code>key</code> and returns true if such a mapping existed,
+false otherwise.</p>
+<pre><code>If `key` is null, the result is unspecified.
+</code></pre>
+_Map.Map_Impl_.keys	A										<pre>public static function keys(this:IMap):Iterator&lt;Map.K&gt;;</pre><p>Returns an Iterator over the keys of <code>this</code> Map.</p>
+<pre><code>The order of keys is undefined.
+</code></pre>
+_Map.Map_Impl_.iterator	A										<pre>public static function iterator(this:IMap):Iterator&lt;Map.V&gt;;</pre><p>Returns an Iterator over the values of <code>this</code> Map.</p>
+<pre><code>The order of values is undefined.
+</code></pre>
+_Map.Map_Impl_.toString	A										<pre>public static function toString(this:IMap):String;</pre><p>Returns a String representation of <code>this</code> Map.</p>
+<pre><code>The exact representation depends on the platform and key-type.
+</code></pre>
+_Map.Map_Impl_.arrayWrite	A										<pre>public static function arrayWrite(this:IMap, k:Map.K, v:Map.V):Map.V;</pre>
+_Map.Map_Impl_.toStringMap	A										<pre>public static function toStringMap(t:IMap):haxe.ds.StringMap;</pre>
+_Map.Map_Impl_.toIntMap	A										<pre>public static function toIntMap(t:IMap):haxe.ds.IntMap;</pre>
+_Map.Map_Impl_.toEnumValueMapMap	A										<pre>public static function toEnumValueMapMap(t:IMap):haxe.ds.EnumValueMap;</pre>
+_Map.Map_Impl_.toObjectMap	A										<pre>public static function toObjectMap(t:IMap):haxe.ds.ObjectMap;</pre>
+_Map.Map_Impl_.fromStringMap	A										<pre>public static function fromStringMap(map:haxe.ds.StringMap):Map;</pre>
+_Map.Map_Impl_.fromIntMap	A										<pre>public static function fromIntMap(map:haxe.ds.IntMap):Map;</pre>
+_Map.Map_Impl_.fromObjectMap	A										<pre>public static function fromObjectMap(map:haxe.ds.ObjectMap):Map;</pre>
+IMap	A										
+IMap.get	A										<pre>public function get(k:IMap.K):Null&lt;IMap.V&gt;;</pre>
+IMap.set	A										<pre>public function set(k:IMap.K, v:IMap.V):Void;</pre>
+IMap.exists	A										<pre>public function exists(k:IMap.K):Bool;</pre>
+IMap.remove	A										<pre>public function remove(k:IMap.K):Bool;</pre>
+IMap.keys	A										<pre>public function keys():Iterator&lt;IMap.K&gt;;</pre>
+IMap.iterator	A										<pre>public function iterator():Iterator&lt;IMap.V&gt;;</pre>
+IMap.toString	A										<pre>public function toString():String;</pre>
+_Map.Hashable	A										
+Math	A										<p>This class defines mathematical functions and constants.</p>
+Math.PI	A										<pre>public static var PI:Float;</pre>
+Math.NEGATIVE_INFINITY	A										<pre>public static var NEGATIVE_INFINITY:Float;</pre><p>A special Float constant which denotes negative infinity.</p>
+<p>For example, this is the result of -1.0 / 0.0.</p>
+<pre><code>Operations with NEGATIVE_INFINITY as an operand may result in
+Operations with NEGATIVE_INFINITY as an operand may result in
+NEGATIVE_INFINITY, POSITIVE_INFINITY or NaN. For detailed information,
+see ...
+
+If this constant is converted to an Int, e.g. through Std.int(), the
+result is unspecified.
+</code></pre>
+Math.POSITIVE_INFINITY	A										<pre>public static var POSITIVE_INFINITY:Float;</pre><p>A special Float constant which denotes negative infinity.</p>
+<p>For example, this is the result of 1.0 / 0.0.</p>
+<pre><code>Operations with POSITIVE_INFINITY as an operand may result in
+NEGATIVE_INFINITY, POSITIVE_INFINITY or NaN. For detailed information,
+see ...
+
+If this constant is converted to an Int, e.g. through Std.int(), the
+result is unspecified.
+</code></pre>
+Math.NaN	A										<pre>public static var NaN:Float;</pre><p>A special Float constant which denotes an invalid number.</p>
+<p>NaN stands for "Not a Number". It occurs when a mathematically incorrect</p>
+<pre><code>operation is executed, such as taking the square root of a negative
+number: Math.sqrt(-1).
+
+All further operations with NaN as an operand will result in NaN.
+
+If this constant is converted to an Int, e.g. through Std.int(), the
+result is unspecified.
+
+In order to test if a value is NaN, you should use Math.isNaN() function.
+
+(Php) In PHP versions prior to 5.3.1 VC 9 there may be unexpected
+results when performing arithmetic operations with NaN on Windows, see:
+	https://bugs.php.net/bug.php?id=42143
+</code></pre>
+Math.abs	A										<pre>public static function abs(v:Float):Float;</pre><p>Returns the absolute value of <code>v</code>.</p>
+<p>If <code>v</code> is positive or 0, the result is unchanged. Otherwise the result</p>
+<pre><code>is -`v`.
+
+If `v` is NEGATIVE_INFINITY or POSITIVE_INFINITY, the result is
+POSITIVE_INFINITY.
+
+If `v` is NaN, the result is NaN.
+</code></pre>
+Math.min	A										<pre>public static function min(a:Float, b:Float):Float;</pre><p>Returns the smaller of values <code>a</code> and <code>b</code>.</p>
+<p>If <code>a</code> or <code>b</code> are NaN, the result is NaN.</p>
+<pre><code>If `a` or `b` are NEGATIVE_INFINITY, the result is NEGATIVE_INFINITY.
+
+If `a` and `b` are POSITIVE_INFINITY, the result is POSITIVE_INFINITY.
+</code></pre>
+Math.max	A										<pre>public static function max(a:Float, b:Float):Float;</pre><p>Returns the greater of values <code>a</code> and <code>b</code>.</p>
+<p>If <code>a</code> or <code>b</code> are NaN, the result is NaN.</p>
+<pre><code>If `a` or `b` are POSITIVE_INFINITY, the result is POSITIVE_INFINITY.
+
+If `a` and `b` are NEGATIVE_INFINITY, the result is NEGATIVE_INFINITY.
+</code></pre>
+Math.sin	A										<pre>public static function sin(v:Float):Float;</pre><p>Returns the trigonometric sine of <code>v</code>.</p>
+<p>The unit of <code>v</code> is radians.</p>
+<pre><code>If `v` is NaN or infinite, the result is NaN.
+</code></pre>
+Math.cos	A										<pre>public static function cos(v:Float):Float;</pre><p>Returns the trigonometric cosine of <code>v</code>.</p>
+<p>The unit of <code>v</code> is radians.</p>
+<pre><code>If `v` is NaN or infinite, the result is NaN.
+</code></pre>
+Math.tan	A										<pre>public static function tan(v:Float):Float;</pre>
+Math.asin	A										<pre>public static function asin(v:Float):Float;</pre>
+Math.acos	A										<pre>public static function acos(v:Float):Float;</pre>
+Math.atan	A										<pre>public static function atan(v:Float):Float;</pre>
+Math.atan2	A										<pre>public static function atan2(y:Float, x:Float):Float;</pre>
+Math.exp	A										<pre>public static function exp(v:Float):Float;</pre><p>Returns Euler's number, raised to the power of <code>v</code>.</p>
+<p>exp(1.0) is approximately 2.718281828459.</p>
+<pre><code>If `v` is POSITIVE_INFINITY, the result is POSITIVE_INFINITY.
+
+If `v` is NEGATIVE_INFINITY, the result is 0.0.
+
+If `v` is NaN, the result is NaN.
+</code></pre>
+Math.log	A										<pre>public static function log(v:Float):Float;</pre><p>Returns the natural logarithm of <code>v</code>.</p>
+<p>If <code>v</code> is negative (including NEGATIVE_INFINITY) or NaN, the result is</p>
+<pre><code>NaN.
+
+If `v` is POSITIVE_INFINITY, the result is POSITIVE_INFINITY.
+
+If `v` is 0.0, the result is NEGATIVE_INFINITY.
+
+This is the inverse operation of exp, i.e. log(exp(v)) == v always
+holds.
+</code></pre>
+Math.pow	A										<pre>public static function pow(v:Float, exp:Float):Float;</pre>
+Math.sqrt	A										<pre>public static function sqrt(v:Float):Float;</pre><p>Returns the square root of <code>v</code>.</p>
+<p>If <code>v</code> is negative (including NEGATIVE_INFINITY) or NaN, the result is</p>
+<pre><code>NaN.
+
+If `v` is POSITIVE_INFINITY, the result is POSITIVE_INFINITY.
+
+If `v` is 0.0, the result is 0.0.
+</code></pre>
+Math.round	A										<pre>public static function round(v:Float):Int;</pre><p>Rounds <code>v</code> to the nearest Int value.</p>
+<p>If v is outside of the signed Int32 range, or is NaN, NEGATIVE<em>INFINITY or POSITIVE</em>INFINITY, the result is unspecified.</p>
+<pre><code>TODO: need spec
+</code></pre>
+Math.floor	A										<pre>public static function floor(v:Float):Int;</pre><p>Returns the largest Int value that is not greater than <code>v</code>.</p>
+<p>If v is outside of the signed Int32 range, or is NaN, NEGATIVE<em>INFINITY or POSITIVE</em>INFINITY, the result is unspecified.</p>
+<pre><code>TODO: need spec
+</code></pre>
+Math.ceil	A										<pre>public static function ceil(v:Float):Int;</pre><p>Returns the smallest Int value that is not less than <code>v</code>.</p>
+<p>If v is outside of the signed Int32 range, or is NaN, NEGATIVE<em>INFINITY or POSITIVE</em>INFINITY, the result is unspecified.</p>
+<pre><code>TODO: need spec
+</code></pre>
+Math.random	A										<pre>public static function random():Float;</pre><p>Returns a pseudo-random number which is greater than or equal to 0.0,
+and less than 1.0.</p>
+Math.ffloor	A										<pre>public static function ffloor(v:Float):Float;</pre>
+Math.fceil	A										<pre>public static function fceil(v:Float):Float;</pre>
+Math.fround	A										<pre>public static function fround(v:Float):Float;</pre>
+Math.isFinite	A										<pre>public static function isFinite(f:Float):Bool;</pre><p>Tells if <code>f</code> is a finite number.</p>
+<p>If <code>f</code> is POSITIVE<em>INFINITY, NEGATIVE</em>INFINITY or NaN, the result is</p>
+<pre><code>false.
+
+Otherwise the result is true.
+</code></pre>
+Math.isNaN	A										<pre>public static function isNaN(f:Float):Bool;</pre><p>Tells if <code>f</code> is not a valid number.</p>
+<p>If <code>f</code> is NaN, the result is true.</p>
+<pre><code>Otherwise the result is false. In particular, both POSITIVE_INFINITY and
+NEGATIVE_INFINITY are not considered NaN.
+</code></pre>
+Reflect	A										<p>The Reflect API is a way to manipulate values dynamicly through an
+abstract interface in an untyped manner. Use with care.</p>
+Reflect.hasField	A										<pre>public static function hasField(o:null, field:String):Bool;</pre><p>Tells if structure <code>o</code> has a field named <code>field</code>.</p>
+<pre><code>This is only guaranteed to work for anonymous structures. Refer to
+`Type.getInstanceFields` for a function supporting class instances.
+
+If `o` or `field` are null, the result is unspecified.
+</code></pre>
+Reflect.field	A										<pre>public static function field(o:null, field:String):null;</pre><p>Returns the value of the field named <code>field</code> on object <code>o</code>.</p>
+<pre><code>If `o` is not an object or has no field named `field`, the result is
+null.
+
+If the field is defined as a property, its accessors are ignored. Refer
+to `Reflect.getProperty` for a function supporting property accessors.
+
+If `field` is null, the result is unspecified.
+
+(As3) If used on a property field, the getter will be invoked. It is
+not possible to obtain the value directly.
+</code></pre>
+Reflect.setField	A										<pre>public static function setField(o:null, field:String, value:null):Void;</pre><p>Sets the field named <code>field</code> of object <code>o</code> to value <code>value</code>.</p>
+<pre><code>If `o` has no field named `field`, this function is only guaranteed to
+work for anonymous structures.
+
+If `o` or `field` are null, the result is unspecified.
+
+(As3) If used on a property field, the setter will be invoked. It is
+not possible to set the value directly.
+</code></pre>
+Reflect.getProperty	A										<pre>public static function getProperty(o:null, field:String):null;</pre><p>Returns the value of the field named <code>field</code> on object <code>o</code>, taking
+property getter functions into account.</p>
+<pre><code>If the field is not a property, this function behaves like
+`Reflect.field`, but might be slower.
+
+If `o` or `field` are null, the result is unspecified.
+</code></pre>
+Reflect.setProperty	A										<pre>public static function setProperty(o:null, field:String, value:null):Void;</pre><p>Sets the field named <code>field</code> of object <code>o</code> to value <code>value</code>, taking
+property setter functions into account.</p>
+<pre><code>If the field is not a property, this function behaves like
+`Reflect.setField`, but might be slower.
+
+If `field` is null, the result is unspecified.
+</code></pre>
+Reflect.callMethod	A										<pre>public static function callMethod(o:null, func:null, args:Array):null;</pre><p>Call a method with the given object and arguments.</p>
+Reflect.fields	A										<pre>public static function fields(o:null):Array;</pre><p>Returns the fields of structure <code>o</code>.</p>
+<pre><code>This method is only guaranteed to work on anonymous structures. Refer to
+`Type.getInstanceFields` for a function supporting class instances.
+
+If `o` is null, the result is unspecified.
+</code></pre>
+Reflect.isFunction	A										<pre>public static function isFunction(f:null):Bool;</pre><p>Returns true if <code>f</code> is a function, false otherwise.</p>
+<pre><code>If `f` is null, the result is false.
+</code></pre>
+Reflect.compare	A										<pre>public static function compare(a:compare.T, b:compare.T):Int;</pre><p>Compares <code>a</code> and <code>b</code>.</p>
+<pre><code>If `a` is less than `b`, the result is negative. If `b` is less than
+`a`, the result is positive. If `a` and `b` are equal, the result is 0.
+
+This function is only defined if `a` and `b` are of the same type.
+
+If that type is a function, the result is unspecified and
+`Reflect.compareMethods` should be used instead.
+
+For all other types, the result is 0 if `a` and `b` are equal. If they
+are not equal, the result depends on the type and is negative if:
+
+- Numeric types: a is less than b
+- String: a is lexicographically less than b
+- Other: unspecified
+
+If `a` and `b` are null, the result is 0. If only one of them is null,
+the result is unspecified.
+</code></pre>
+Reflect.compareMethods	A										<pre>public static function compareMethods(f1:null, f2:null):Bool;</pre><p>Compares the functions <code>f1</code> and <code>f2</code>.</p>
+<pre><code>If `f1` or `f2` are not functions, the result is unspecified.
+
+Otherwise the result is true if `f1` and the `f2` are physically equal,
+false otherwise.
+</code></pre>
+Reflect.isObject	A										<pre>public static function isObject(v:null):Bool;</pre><p>Tells if <code>v</code> is an object.</p>
+<pre><code>The result is true if `v` is one of the following:
+	
+- class instance
+- structure
+- Class&lt;T&gt;
+- Enum&lt;T&gt;
+	
+Otherwise, including if `v` is null, the result is false.
+</code></pre>
+Reflect.isEnumValue	A										<pre>public static function isEnumValue(v:null):Bool;</pre><p>Tells if <code>v</code> is an enum value.</p>
+<pre><code>The result is true if `v` is of type EnumValue, i.e. an enum
+constructor.
+
+Otherwise, including if `v` is null, the result is false.
+</code></pre>
+Reflect.deleteField	A										<pre>public static function deleteField(o:null, field:String):Bool;</pre><p>Removes the field named <code>field</code> from structure <code>o</code>.</p>
+<pre><code>This method is only guaranteed to work on anonymous structures.
+
+If `o` or `field` are null, the result is unspecified.
+</code></pre>
+Reflect.copy	A										<pre>public static function copy(o:copy.T):copy.T;</pre><p>Copies the fields of structure <code>o</code>.</p>
+<pre><code>This is only guaranteed to work on anonymous structures.
+
+If `o` is null, the result is unspecified.
+</code></pre>
+Reflect.makeVarArgs	A										<pre>public static function makeVarArgs(f:null):null;</pre><p>Transform a function taking an array of arguments into a function that can
+be called with any number of arguments.</p>
+Std	A										<p>The Std class provides standard methods for manipulating basic types.</p>
+Std.is	A										<pre>public static function is(v:null, t:null):Bool;</pre><p>Tells if a value v is of the type t. Returns false if v or t are null.</p>
+Std.instance	A										<pre>public static function instance(v:null, c:Class):instance.T;</pre><p>Check if an object is an instance of the given class, then cast it.
+Returns null if the object is not an instance of the class.</p>
+<pre><code>Is not guaranteed to work with interfaces or core types such as String, Array and Date.
+</code></pre>
+Std.string	A										<pre>public static function string(s:null):String;</pre><p>Converts any value to a String.</p>
+<p>If <code>s</code> is of <code>String</code>, <code>Int</code>, <code>Float</code> or <code>Bool</code>, its value is returned.</p>
+<pre><code>If `s` is an instance of a class and that class or one of its parent classes has
+a `toString` method, that method is called. If no such method is present, the result
+is unspecified.
+
+If `s` is an enum constructor without argument, the constructor's name is returned. If
+arguments exists, the constructor's name followed by the String representations of
+the arguments is returned.
+
+If `s` is a structure, the field names along with their values are returned. The field order
+and the operator separating field names and values are unspecified.
+
+If s is null, "null" is returned.
+</code></pre>
+Std.int	A										<pre>public static function int(x:Float):Int;</pre><p>Converts a <code>Float</code> to an <code>Int</code>, rounded towards 0.</p>
+<p>If <code>x</code> is outside of the signed Int32 range, or is NaN, NEGATIVE<em>INFINITY or POSITIVE</em>INFINITY, the result is unspecified.</p>
+Std.parseInt	A										<pre>public static function parseInt(x:String):Null&lt;Int&gt;;</pre><p>Converts a <code>String</code> to an <code>Int</code>.</p>
+<p>Leading whitespaces are ignored.</p>
+<pre><code>If `x` starts with 0x or 0X, hexadecimal notation is recognized where the following digits may
+contain 0-9 and A-F.
+
+Otherwise `x` is read as decimal number with 0-9 being allowed characters. `x` may also start with
+a - to denote a negative value.
+
+In decimal mode, parsing continues until an invalid character is detected, in which case the
+result up to that point is returned. For hexadecimal notation, the effect of invalid characters
+is unspecified.
+
+Leading 0s that are not part of the 0x/0X hexadecimal notation are ignored, which means octal
+notation is not supported.
+
+If the input cannot be recognized, the result is null.
+</code></pre>
+Std.parseFloat	A										<pre>public static function parseFloat(x:String):Float;</pre><p>Converts a <code>String</code> to a <code>Float</code>.</p>
+<p>The parsing rules for <code>parseInt</code> apply here as well, with the exception of invalid input</p>
+<pre><code>resulting in a NaN value instead of null.
+
+Additionally, decimal notation may contain a single `.` to denote the start of the fractions.
+</code></pre>
+Std.random	A										<pre>public static function random(x:Int):Int;</pre><p>Return a random integer between 0 included and <code>x</code> excluded.</p>
+<p>If <code>x &lt;= 1</code>, the result is always 0.</p>
+Void	A										<p>The standard Void type. Only <code>null</code> values can be of the type <code>Void</code>.</p>
+Float	A										<p>The standard Float type, this is a double-precision IEEE 64bit float.</p>
+<pre><code>On static targets, null cannot be assigned to Float. If this is necessary,
+`Null&lt;Float&gt;` can be used instead.
+</code></pre>
+Int	A										<p>The standard Int type. Its precision depends on the platform.</p>
+<pre><code>On static targets, null cannot be assigned to Int. If this is necessary,
+`Null&lt;Int&gt;` can be used instead.
+</code></pre>
+Null	A										<p><code>Null</code> can be useful in two cases. In order to document some methods
+that accepts or can return a <code>null</code> value, or for the Flash9 compiler and AS3</p>
+<pre><code>generator to distinguish between base values that can be null and others that
+can't.
+</code></pre>
+Bool	A										<p>The standard Boolean type, which can either be true or false.</p>
+<pre><code>On static targets, null cannot be assigned to Bool. If this is necessary,
+`Null&lt;Bool&gt;` can be used instead.
+</code></pre>
+Dynamic	A										<p>Dynamic is a special type which is compatible with all other types.</p>
+<pre><code>Use of Dynamic should be minimized as it prevents several compiler
+checks and optimizations.
+</code></pre>
+Iterator	A										<p>An Iterator is a structure that permits iteration over elements of type T.</p>
+<p>Any class with matching hasNext and next fields is considered an Iterator</p>
+<pre><code>and can then be used e.g. in for-loops. This makes it easy to implement
+custom iterators.
+</code></pre>
+Iterable	A										<p>An Iterable is a data structure which has an iterator() method.
+See <code>Lambda</code> for generic functions on iterable structures.</p>
+ArrayAccess	A										<p>ArrayAccess is used to indicate a class that can be accessed using brackets.
+The type parameter represent the type of the elements stored.</p>
+String	A										<p>The basic String class.</p>
+<pre><code>A haxe String is immutable, it is not possible to modify individual
+characters. No method of this class changes the state of `this` String.
+
+Strings can be constructed using the string literal syntax "string value".
+
+String can be concatenated by using the + operator. If an operand is not a
+String, it is passed through Std.string() first.
+</code></pre>
+String.fromCharCode	A										<pre>public static function fromCharCode(code:Int):String;</pre><p>Returns the String corresponding to the character code <code>code</code>.</p>
+<pre><code>If `code` is negative or has another invalid value, the result is
+unspecified.
+</code></pre>
+String.length	A										<pre>public var length:Int;</pre><p>The number of characters in <code>this</code> String.</p>
+String.toUpperCase	A										<pre>public function toUpperCase():String;</pre><p>Returns a String where all characters of <code>this</code> String are upper case.</p>
+<pre><code>Affects the characters `a-z`. Other characters remain unchanged.
+</code></pre>
+String.toLowerCase	A										<pre>public function toLowerCase():String;</pre><p>Returns a String where all characters of <code>this</code> String are lower case.</p>
+<pre><code>Affects the characters `A-Z`. Other characters remain unchanged.
+</code></pre>
+String.charAt	A										<pre>public function charAt(index:Int):String;</pre><p>Returns the character at position <code>index</code> of <code>this</code> String.</p>
+<pre><code>If `index` is negative or exceeds `this.length`, the empty String ""
+is returned.
+</code></pre>
+String.charCodeAt	A										<pre>public function charCodeAt(index:Int):Null&lt;Int&gt;;</pre><p>Returns the character code at position <code>index</code> of <code>this</code> String.</p>
+<pre><code>If `index` is negative or exceeds `this.length`, null is returned.
+
+To obtain the character code of a single character, "x".code can be used
+instead to inline the character code at compile time. Note that this
+only works on String literals of length 1.
+</code></pre>
+String.indexOf	A										<pre>public function indexOf(str:String, ?startIndex:Int):Int;</pre><p>Returns the position of the leftmost occurence of <code>str</code> within <code>this</code>
+String.</p>
+<pre><code>If `startIndex` is given, the search is performed within the substring
+of `this` String starting from `startIndex`. Otherwise the search is
+performed within `this` String. In either case, the returned position
+is relative to the beginning of `this` String.
+
+If `str` cannot be found, -1 is returned.
+</code></pre>
+String.lastIndexOf	A										<pre>public function lastIndexOf(str:String, ?startIndex:Int):Int;</pre><p>Returns the position of the rightmost occurence of <code>str</code> within <code>this</code>
+String.</p>
+<pre><code>If `startIndex` is given, the search is performed within the substring
+of `this` String from 0 to `startIndex`. Otherwise the search is
+performed within `this` String. In either case, the returned position
+is relative to the beginning of `this` String.
+
+If `str` cannot be found, -1 is returned.
+</code></pre>
+String.split	A										<pre>public function split(delimiter:String):Array;</pre><p>Splits <code>this</code> String at each occurence of <code>delimiter</code>.</p>
+<pre><code>If `this` String is the empty String "", the result is not consistent
+across targets and may either be `[]` (on Js, Cpp) or `[""]`.
+
+If `delimiter` is the empty String "", `this` String is split into an
+Array of `this.length` elements, where the elements correspond to the
+characters of `this` String.
+
+If `delimiter` is not found within `this` String, the result is an Array
+with one element, which equals `this` String.
+
+If `delimiter` is null, the result is unspecified.
+
+Otherwise, `this` String is split into parts at each occurence of
+`delimiter`. If `this` String starts (or ends) with [delimiter}, the
+result Array contains a leading (or trailing) empty String "" element.
+Two subsequent delimiters also result in an empty String "" element.
+</code></pre>
+String.substr	A										<pre>public function substr(pos:Int, ?len:Int):String;</pre><p>Returns <code>len</code> characters of <code>this</code> String, starting at position <code>pos</code>.</p>
+<pre><code>If `len` is omitted, all characters from position `pos` to the end of
+`this` String are included.
+
+If `pos` is negative, its value is calculated from the end of `this`
+String by `this.length + pos`. If this yields a negative value, 0 is
+used instead.
+
+If the calculated position + `len` exceeds `this.length`, the characters
+from that position to the end of `this` String are returned.
+
+If `len` is negative, the result is unspecified.
+</code></pre>
+String.substring	A										<pre>public function substring(startIndex:Int, ?endIndex:Int):String;</pre><p>Returns the part of <code>this</code> String from <code>startIndex</code> to <code>endIndex</code>.</p>
+<pre><code>If `startIndex` or `endIndex` are negative, 0 is used instead.
+
+If `startIndex` exceeds `endIndex`, they are swapped.
+
+If the (possibly swapped) `endIndex` is omitted or exceeds
+`this.length`, `this.length` is used instead.
+
+If the (possibly swapped) `startIndex` exceeds `this.length`, the empty
+String "" is returned.
+</code></pre>
+String.toString	A										<pre>public function toString():String;</pre><p>Returns the String itself.</p>
+String.new	A										<pre>public function new(string:String):Void;</pre><p>Creates a copy from a given String.</p>
+StringBuf	A										<p>A String buffer is an efficient way to build a big string by appending small
+elements together.</p>
+<pre><code>Its cross-platform implementation uses String concatenation internally, but
+StringBuf may be optimized for different targets.
+
+Unlike String, an instance of StringBuf is not immutable in the sense that
+it can be passed as argument to functions which modify it by appending more
+values. However, the internal buffer cannot be modified.
+</code></pre>
+StringBuf.b	A										<pre>private var b:String;</pre>
+StringBuf.length	A										<pre>public var length:Int;</pre><p>The length of <code>this</code> StringBuf in characters.</p>
+StringBuf.get_length	A										<pre>private function get_length():Int;</pre>
+StringBuf.add	A										<pre>public function add(x:null):Void;</pre><p>Appends the representation of <code>x</code> to <code>this</code> StringBuf.</p>
+<pre><code>The exact representation of `x` may vary per platform. To get more
+consistent behavior, this function should be called with
+Std.string(x).
+
+If `x` is null, the String "null" is appended.
+</code></pre>
+StringBuf.addChar	A										<pre>public function addChar(c:Int):Void;</pre><p>Appends the character identified by <code>c</code> to <code>this</code> StringBuf.</p>
+<pre><code>If `c` is negative or has another invalid value, the result is
+unspecified.
+</code></pre>
+StringBuf.addSub	A										<pre>public function addSub(s:String, pos:Int, ?len:Int):Void;</pre><p>Appends a substring of <code>s</code> to <code>this</code> StringBuf.</p>
+<pre><code>This function expects `pos` and `len` to describe a valid substring of
+`s`, or else the result is unspecified. To get more robust behavior,
+`this.add(s.substr(pos,len))` can be used instead.
+
+If `s` or `pos` are null, the result is unspecified.
+
+If `len` is omitted or null, the substring ranges from `pos` to the end
+of `s`.
+</code></pre>
+StringBuf.toString	A										<pre>public function toString():String;</pre><p>Returns the content of <code>this</code> StringBuf as String.</p>
+<pre><code>The buffer is not emptied by this operation.
+</code></pre>
+StringBuf.new	A										<pre>public function new():Void;</pre><p>Creates a new StringBuf instance.</p>
+<pre><code>This may involve initialization of the internal buffer.
+</code></pre>
+StringTools	A										<p>This class provides advanced methods on Strings. It is ideally used with
+'using StringTools' and then acts as an extension to the String class.</p>
+<pre><code>If the first argument to any of the methods is null, the result is
+unspecified.
+</code></pre>
+StringTools.urlEncode	A										<pre>public static function urlEncode(s:String):String;</pre><p>Encode an URL by using the standard format.</p>
+StringTools.urlDecode	A										<pre>public static function urlDecode(s:String):String;</pre><p>Decode an URL using the standard format.</p>
+StringTools.htmlEscape	A										<pre>public static function htmlEscape(s:String, ?quotes:Bool):String;</pre><p>Escapes HTML special characters of the string <code>s</code>.</p>
+<p>The following replacements are made:</p>
+<pre><code>- `&amp;` becomes `&amp;amp`;
+- `&lt;` becomes `&amp;lt`;
+- `&gt;` becomes `&amp;gt`;
+
+If `quotes` is true, the following characters are also replaced:
+
+- `"` becomes `&amp;quot`;
+- `'` becomes `&amp;#039`;
+</code></pre>
+StringTools.htmlUnescape	A										<pre>public static function htmlUnescape(s:String):String;</pre><p>Unescapes HTML special characters of the string <code>s</code>.</p>
+<p>This is the inverse operation to htmlEscape, i.e. the following always</p>
+<pre><code>holds: htmlUnescape(htmlEscape(s)) == s
+
+The replacements follow:
+	
+- `&amp;amp;` becomes `&amp;`
+- `&amp;lt;` becomes `&lt;`
+- `&amp;gt;` becomes `&gt;`
+- `&amp;quot;` becomes `"`
+- `&amp;#039;` becomes `'`
+</code></pre>
+StringTools.startsWith	A										<pre>public static function startsWith(s:String, start:String):Bool;</pre><p>Tells if the string <code>s</code> starts with the string <code>start</code>.</p>
+<p>If <code>start</code> is null, the result is unspecified.</p>
+<pre><code>If `start` is the empty String "", the result is true.
+</code></pre>
+StringTools.endsWith	A										<pre>public static function endsWith(s:String, end:String):Bool;</pre><p>Tells if the string <code>s</code> ends with the string <code>end</code>.</p>
+<p>If <code>end</code> is null, the result is unspecified.</p>
+<pre><code>If `end` is the empty String "", the result is true.
+</code></pre>
+StringTools.isSpace	A										<pre>public static function isSpace(s:String, pos:Int):Bool;</pre><p>Tells if the character in the string <code>s</code> at position <code>pos</code> is a space.</p>
+<p>A character is considered to be a space character if its character code</p>
+<pre><code>is 9,10,11,12,13 or 32.
+
+If `s` is the empty String "", or if pos is not a valid position within
+`s`, the result is false.
+</code></pre>
+StringTools.ltrim	A										<pre>public static function ltrim(s:String):String;</pre><p>Removes leading space characters of <code>s</code>.</p>
+<p>This function internally calls isSpace() to decide which characters to</p>
+<pre><code>remove.
+
+If `s` is the empty String "" or consists only of space characters, the
+result is the empty String "".
+</code></pre>
+StringTools.rtrim	A										<pre>public static function rtrim(s:String):String;</pre><p>Removes trailing space characters of <code>s</code>.</p>
+<p>This function internally calls isSpace() to decide which characters to</p>
+<pre><code>remove.
+
+If `s` is the empty String "" or consists only of space characters, the
+result is the empty String "".
+</code></pre>
+StringTools.trim	A										<pre>public static function trim(s:String):String;</pre><p>Removes leading and trailing space characters of <code>s</code>.</p>
+<p>This is a convenience function for ltrim(rtrim(s)).</p>
+StringTools.lpad	A										<pre>public static function lpad(s:String, c:String, l:Int):String;</pre><p>Concatenates <code>c</code> to <code>s</code> until <code>s.length</code> is at least <code>l</code>.</p>
+<p>If <code>c</code> is the empty String "" or if <code>l</code> does not exceed <code>s.length</code>,</p>
+<pre><code>`s` is returned unchanged.
+
+If `c.length` is 1, the resulting String length is exactly `l`.
+
+Otherwise the length may exceed `l`.
+
+If `c` is null, the result is unspecified.
+</code></pre>
+StringTools.rpad	A										<pre>public static function rpad(s:String, c:String, l:Int):String;</pre><p>Appends <code>c</code> to <code>s</code> until <code>s.length</code> is at least <code>l</code>.</p>
+<p>If <code>c</code> is the empty String "" or if <code>l</code> does not exceed <code>s.length</code>,</p>
+<pre><code>`s` is returned unchanged.
+
+If `c.length` is 1, the resulting String length is exactly `l`.
+
+Otherwise the length may exceed `l`.
+
+If `c` is null, the result is unspecified.
+</code></pre>
+StringTools.replace	A										<pre>public static function replace(s:String, sub:String, by:String):String;</pre><p>Replace all occurences of the String <code>sub</code> in the String <code>s</code> by the
+String <code>by</code>.</p>
+<pre><code>If `sub` is the empty String "", `by` is inserted after each character
+of `s`. If `by` is also the empty String "", `s` remains unchanged.
+
+This is a convenience function for `s.split(sub).join(by)`.
+
+If `sub` or `by` are null, the result is unspecified.
+</code></pre>
+StringTools.hex	A										<pre>public static function hex(n:Int, ?digits:Int):String;</pre><p>Encodes <code>n</code> into a hexadecimal representation.</p>
+<p>If <code>digits</code> is specified, the resulting String is padded with "0" until</p>
+<pre><code>its length equals `digits`.
+</code></pre>
+StringTools.fastCodeAt	A										<pre>public static function fastCodeAt(s:String, index:Int):Int;</pre><p>Returns the character code at position <code>index</code> of String <code>s</code>.</p>
+<p>This method is faster than String.charCodeAt() on most platforms.</p>
+<pre><code>However, unlike String.charCodeAt(), the result is unspecified if
+`index` is negative or exceeds `s.length`.
+
+This operation is not guaranteed to work if `s` contains the \0
+character.
+</code></pre>
+StringTools.isEof	A										<pre>public static function isEof(c:Int):Bool;</pre>
+ValueType	A										<p>The diffent possible runtime types of a value.</p>
+ValueType.TNull	A										<pre>TNull</pre>
+ValueType.TInt	A										<pre>TInt</pre>
+ValueType.TFloat	A										<pre>TFloat</pre>
+ValueType.TBool	A										<pre>TBool</pre>
+ValueType.TObject	A										<pre>TObject</pre>
+ValueType.TFunction	A										<pre>TFunction</pre>
+ValueType.TClass	A										<pre>TClass</pre>
+ValueType.TEnum	A										<pre>TEnum</pre>
+ValueType.TUnknown	A										<pre>TUnknown</pre>
+Type	A										<p>The haxe Reflection API allows retrieval of type information at runtime.</p>
+<pre><code>This class complements the more lightweight Reflect class, with a focus on
+class and enum instances.
+</code></pre>
+Type.getClass	A										<pre>public static function getClass(o:getClass.T):Class;</pre><p>Returns the class of <code>o</code>, if <code>o</code> is a class instance.</p>
+<pre><code>If `o` is null or of a different type, null is returned.
+
+In general, type parameter information cannot be obtained at runtime.
+</code></pre>
+Type.getEnum	A										<pre>public static function getEnum(o:EnumValue):Enum;</pre><p>Returns the enum of enum instance <code>o</code>.</p>
+<pre><code>An enum instance is the result of using an enum constructor. Given an
+`enum Color { Red; }`, `getEnum(Red)` returns `Enum&lt;Color&gt;`.
+
+If `o` is null, null is returned.
+
+In general, type parameter information cannot be obtained at runtime.
+</code></pre>
+Type.getSuperClass	A										<pre>public static function getSuperClass(c:Class):Class;</pre><p>Returns the super-class of class <code>c</code>.</p>
+<pre><code>If `c` has no super class, null is returned.
+
+If `c` is null, the result is unspecified.
+
+In general, type parameter information cannot be obtained at runtime.
+</code></pre>
+Type.getClassName	A										<pre>public static function getClassName(c:Class):String;</pre><p>Returns the name of class <code>c</code>, including its path.</p>
+<pre><code>If `c` is inside a package, the package structure is returned dot-
+separated, with another dot separating the class name:
+`pack1.pack2.(...).packN.ClassName`
+If `c` is a sub-type of a haxe module, that module is not part of the
+package structure.
+	
+If `c` has no package, the class name is returned.
+
+If `c` is null, the result is unspecified.
+
+The class name does not include any type parameters.
+</code></pre>
+Type.getEnumName	A										<pre>public static function getEnumName(e:Enum):String;</pre><p>Returns the name of enum <code>e</code>, including its path.</p>
+<pre><code>If `e` is inside a package, the package structure is returned dot-
+separated, with another dot separating the enum name:
+`pack1.pack2.(...).packN.EnumName`
+If `e` is a sub-type of a haxe module, that module is not part of the
+package structure.
+	
+If `e` has no package, the enum name is returned.
+
+If `e` is null, the result is unspecified.
+
+The enum name does not include any type parameters.
+</code></pre>
+Type.resolveClass	A										<pre>public static function resolveClass(name:String):Class;</pre><p>Resolves a class by name.</p>
+<pre><code>If `name` is the path of an existing class, that class is returned.
+
+Otherwise null is returned.
+
+If `name` is null or the path to a different type, the result is
+unspecified.
+
+The class name must not include any type parameters.
+</code></pre>
+Type.resolveEnum	A										<pre>public static function resolveEnum(name:String):Enum;</pre><p>Resolves an enum by name.</p>
+<pre><code>If `name` is the path of an existing enum, that enum is returned.
+
+Otherwise null is returned.
+
+If `name` is null the result is unspecified.
+
+If `name` is the path to a different type, null is returned.
+
+The enum name must not include any type parameters.
+</code></pre>
+Type.createInstance	A										<pre>public static function createInstance(cl:Class, args:Array):createInstance.T;</pre><p>Creates an instance of class <code>cl</code>, using <code>args</code> as arguments to the
+class constructor.</p>
+<pre><code>This function guarantees that the class constructor is called.
+
+Default values of constructors arguments are not guaranteed to be
+taken into account.
+
+If `cl` or `args` are null, or if the number of elements in `args` does
+not match the expected number of constructor arguments, or if any
+argument has an invalid type,  or if `cl` has no own constructor, the
+result is unspecified.
+
+In particular, default values of constructor arguments are not
+guaranteed to be taken into account.
+</code></pre>
+Type.createEmptyInstance	A										<pre>public static function createEmptyInstance(cl:Class):createEmptyInstance.T;</pre><p>Creates an instance of class <code>cl</code>.</p>
+<pre><code>This function guarantees that the class constructor is not called.
+
+If `cl` is null, the result is unspecified.
+</code></pre>
+Type.createEnum	A										<pre>public static function createEnum(e:Enum, constr:String, ?params:Array):createEnum.T;</pre><p>Creates an instance of enum <code>e</code> by calling its constructor <code>constr</code> with
+arguments <code>params</code>.</p>
+<pre><code>If `e` or `constr` is null, or if enum `e` has no constructor named
+`constr`, or if the number of elements in `params` does not match the
+expected number of constructor arguments, or if any argument has an
+invalid type, the result is unspecified.
+</code></pre>
+Type.createEnumIndex	A										<pre>public static function createEnumIndex(e:Enum, index:Int, ?params:Array):createEnumIndex.T;</pre><p>Creates an instance of enum <code>e</code> by calling its constructor number
+<code>index</code> with arguments <code>params</code>.</p>
+<pre><code>The constructor indices are preserved from haxe syntax, so the first
+declared is index 0, the next index 1 etc.
+
+If `e` or `constr` is null, or if enum `e` has no constructor named
+`constr`, or if the number of elements in `params` does not match the
+expected number of constructor arguments, or if any argument has an
+invalid type, the result is unspecified.
+</code></pre>
+Type.getInstanceFields	A										<pre>public static function getInstanceFields(c:Class):Array;</pre><p>Returns a list of the instance fields of class <code>c</code>.</p>
+<pre><code>This only includes fields which are known at compile-time. In
+particular, using getInstanceFields(getClass(obj)) will not include
+any fields which were added to obj at runtime.
+
+The order of the fields in the returned Array is unspecified.
+
+If `c` is null, the result is unspecified.
+
+(As3) This method only returns instance fields that are public.
+</code></pre>
+Type.getClassFields	A										<pre>public static function getClassFields(c:Class):Array;</pre><p>Returns a list of static fields of class <code>c</code>.</p>
+<pre><code>This does not include static fields of parent classes.
+
+The order of the fields in the returned Array is unspecified.
+
+If `c` is null, the result is unspecified.
+
+(As3) This method only returns class fields that are public.
+</code></pre>
+Type.getEnumConstructs	A										<pre>public static function getEnumConstructs(e:Enum):Array;</pre><p>Returns a list of the names of all constructors of enum <code>e</code>.</p>
+<pre><code>The order of the constructor names in the returned Array is preserved
+from the original syntax.
+
+If `c` is null, the result is unspecified.
+</code></pre>
+Type.typeof	A										<pre>public static function typeof(v:null):ValueType;</pre><p>Returns the runtime type of value <code>v</code>.</p>
+<pre><code>The result corresponds to the type `v` has at runtime, which may vary
+per platform. Assumptions regarding this should be minimized to avoid
+surprises.
+</code></pre>
+Type.enumEq	A										<pre>public static function enumEq(a:enumEq.T, b:enumEq.T):Bool;</pre><p>Recursively compares two enum instances <code>a</code> and <code>b</code> by value.</p>
+<pre><code>Unlike `a == b`, this function performs a deep equality check on the
+arguments of the constructors, if exists.
+
+If `a` or `b` are null, the result is unspecified.
+</code></pre>
+Type.enumConstructor	A										<pre>public static function enumConstructor(e:EnumValue):String;</pre><p>Returns the constructor name of enum instance <code>e</code>.</p>
+<pre><code>The result String does not contain any constructor arguments.
+
+If `e` is null, the result is unspecified.
+</code></pre>
+Type.enumParameters	A										<pre>public static function enumParameters(e:EnumValue):Array;</pre><p>Returns a list of the constructor arguments of enum instance <code>e</code>.</p>
+<pre><code>If `e` has no arguments, the result is [].
+
+Otherwise the result are the values that were used as arguments to `e`,
+in the order of their declaration.
+
+If `e` is null, the result is unspecified.
+</code></pre>
+Type.enumIndex	A										<pre>public static function enumIndex(e:EnumValue):Int;</pre><p>Returns the index of enum instance <code>e</code>.</p>
+<pre><code>This corresponds to the original syntactic position of `e`. The index of
+the first declared constructor is 0, the next one is 1 etc.
+
+If `e` is null, the result is unspecified.
+</code></pre>
+Type.allEnums	A										<pre>public static function allEnums(e:Enum):Array;</pre><p>Returns a list of all constructors of enum <code>e</code> that require no
+arguments.</p>
+<pre><code>This may return the empty Array [] if all constructors of `e` require
+arguments.
+
+Otherwise an instance of `e` constructed through each of its non-
+argument constructors is returned, in the order of the constructor
+declaration.
+
+If `e` is null, the result is unspecified.
+</code></pre>
+haxe.EnumFlags	A										<p>A typed interface for bit flags. This is not a real object, only a typed
+interface for an actual Int. Each flag can be tested/set with the</p>
+<pre><code>corresponding enum instance. Up to 32 flags can be stored that way.
+
+Enum constructor indices are preserved from haxe syntax, so the first
+declared is index 0, the next index 1 etc. The methods are optimized if the
+enum instance is passed directly, e.g. as has(EnumCtor). Otherwise
+Type.enumIndex() reflection is used.
+</code></pre>
+haxe.EnumFlags.this	A										<pre>private var this:Int;</pre>
+haxe._EnumFlags.EnumFlags_Impl_	A										
+haxe._EnumFlags.EnumFlags_Impl_._new	A										<pre>public static function _new(?i:Int):Int;</pre><p>Initializes the bitflags to <code>i</code>.</p>
+haxe._EnumFlags.EnumFlags_Impl_.has	A										<pre>public static function has(this:Int, v:haxe.EnumFlags.T):Bool;</pre><p>Checks if the index of enum instance <code>v</code> is set.</p>
+<pre><code>This method is optimized if `v` is an enum instance expression such as
+SomeEnum.SomeCtor.
+
+If `v` is null, the result is unspecified.
+</code></pre>
+haxe._EnumFlags.EnumFlags_Impl_.set	A										<pre>public static function set(this:Int, v:haxe.EnumFlags.T):Void;</pre><p>Sets the index of enum instance <code>v</code>.</p>
+<pre><code>This method is optimized if `v` is an enum instance expression such as
+SomeEnum.SomeCtor.
+
+If `v` is null, the result is unspecified.
+</code></pre>
+haxe._EnumFlags.EnumFlags_Impl_.unset	A										<pre>public static function unset(this:Int, v:haxe.EnumFlags.T):Void;</pre><p>Unsets the index of enum instance <code>v</code>.</p>
+<pre><code>This method is optimized if `v` is an enum instance expression such as
+SomeEnum.SomeCtor.
+
+If `v` is null, the result is unspecified.
+</code></pre>
+haxe._EnumFlags.EnumFlags_Impl_.ofInt	A										<pre>public static function ofInt(i:Int):haxe.EnumFlags;</pre><p>Convert a integer bitflag into a typed one (this is a no-op, it does not
+have any impact on speed).</p>
+haxe._EnumFlags.EnumFlags_Impl_.toInt	A										<pre>public static function toInt(this:Int):Int;</pre><p>Convert the typed bitflag into the corresponding int value (this is a
+no-op, it doesn't have any impact on speed).</p>
+haxe.EnumTools	A										
+haxe.EnumTools.getName	A										<pre>public static function getName(e:Enum):String;</pre><p>Returns the name of enum <code>e</code>, including its path.</p>
+<pre><code>If `e` is inside a package, the package structure is returned dot-
+separated, with another dot separating the enum name:
+	pack1.pack2.(...).packN.EnumName
+If `e` is a sub-type of a haxe module, that module is not part of the
+package structure.
+	
+If `e` has no package, the enum name is returned.
+
+If `e` is null, the result is unspecified.
+
+The enum name does not include any type parameters.
+</code></pre>
+haxe.EnumTools.createByName	A										<pre>public static function createByName(e:Enum, constr:String, ?params:Array):createByName.T;</pre><p>Creates an instance of enum <code>e</code> by calling its constructor <code>constr</code> with
+arguments <code>params</code>.</p>
+<pre><code>If `e` or `constr` is null, or if enum `e` has no constructor named
+`constr`, or if the number of elements in `params` does not match the
+expected number of constructor arguments, or if any argument has an
+invalid type, the result is unspecified.
+</code></pre>
+haxe.EnumTools.createByIndex	A										<pre>public static function createByIndex(e:Enum, index:Int, ?params:Array):createByIndex.T;</pre><p>Creates an instance of enum <code>e</code> by calling its constructor number
+<code>index</code> with arguments <code>params</code>.</p>
+<pre><code>The constructor indices are preserved from haxe syntax, so the first
+declared is index 0, the next index 1 etc.
+
+If `e` or `constr` is null, or if enum `e` has no constructor named
+`constr`, or if the number of elements in `params` does not match the
+expected number of constructor arguments, or if any argument has an
+invalid type, the result is unspecified.
+</code></pre>
+haxe.EnumTools.createAll	A										<pre>public static function createAll(e:Enum):Array;</pre><p>Returns a list of all constructors of enum <code>e</code> that require no
+arguments.</p>
+<pre><code>This may return the empty Array [] if all constructors of `e` require
+arguments.
+
+Otherwise an instance of `e` constructed through each of its non-
+argument constructors is returned, in the order of the constructor
+declaration.
+
+If `e` is null, the result is unspecified.
+</code></pre>
+haxe.EnumTools.getConstructors	A										<pre>public static function getConstructors(e:Enum):Array;</pre><p>Returns a list of the names of all constructors of enum <code>e</code>.</p>
+<pre><code>The order of the constructor names in the returned Array is preserved
+from the original syntax.
+
+If `c` is null, the result is unspecified.
+</code></pre>
+haxe.EnumValueTools	A										
+haxe.EnumValueTools.equals	A										<pre>public static function equals(a:equals.T, b:equals.T):Bool;</pre><p>Recursively compares two enum instances <code>a</code> and <code>b</code> by value.</p>
+<pre><code>Unlike `a == b`, this function performs a deep equality check on the
+arguments of the constructors, if exists.
+
+If `a` or `b` are null, the result is unspecified.
+</code></pre>
+haxe.EnumValueTools.getName	A										<pre>public static function getName(e:EnumValue):String;</pre><p>Returns the constructor name of enum instance <code>e</code>.</p>
+<pre><code>The result String does not contain any constructor arguments.
+
+If `e` is null, the result is unspecified.
+</code></pre>
+haxe.EnumValueTools.getParameters	A										<pre>public static function getParameters(e:EnumValue):Array;</pre><p>Returns a list of the constructor arguments of enum instance <code>e</code>.</p>
+<pre><code>If `e` has no arguments, the result is [].
+
+Otherwise the result are the values that were used as arguments to `e`,
+in the order of their declaration.
+
+If `e` is null, the result is unspecified.
+</code></pre>
+haxe.EnumValueTools.getIndex	A										<pre>public static function getIndex(e:EnumValue):Int;</pre><p>Returns the index of enum instance <code>e</code>.</p>
+<pre><code>This corresponds to the original syntactic position of `e`. The index of
+the first declared constructor is 0, the next one is 1 etc.
+
+If `e` is null, the result is unspecified.
+</code></pre>
+haxe.Serializer	A										<p>The Serializer class can be used to encode values and objects into a String,
+from which the Unserializer class can recreate the original representation.</p>
+<pre><code>This class can be used in two ways:
+
+- create a new Serializer() instance, call its serialize() method with
+any argument and finally retrieve the String representation from
+toString()
+- call Serializer.run() to obtain the serialized representation of a
+single argument
+
+Serialization is guaranteed to work for all haxe-defined classes, but may
+or may not work for instances of external/native classes.
+
+The specification of the serialization format can be found here:
+`http://haxe.org/manual/serialization/format`
+</code></pre>
+haxe.Serializer.USE_CACHE	A										<pre>public static var USE_CACHE:Bool;</pre><p>If the values you are serializing can contain circular references or
+objects repetitions, you should set USE_CACHE to true to prevent</p>
+<pre><code>infinite loops.
+
+This may also reduce the size of serialization Strings at the expense of
+performance.
+
+This value can be changed for individual instances of Serializer by
+setting their useCache field.
+</code></pre>
+haxe.Serializer.USE_ENUM_INDEX	A										<pre>public static var USE_ENUM_INDEX:Bool;</pre><p>Use constructor indexes for enums instead of names.</p>
+<p>This may reduce the size of serialization Strings, but makes them less</p>
+<pre><code>suited for long-term storage: If constructors are removed or added from
+the enum, the indices may no longer match.
+
+This value can be changed for individual instances of Serializer by
+setting their useEnumIndex field.
+</code></pre>
+haxe.Serializer.BASE64	A										<pre>private static var BASE64:String;</pre>
+haxe.Serializer.run	A										<pre>public static function run(v:null):String;</pre><p>Serializes <code>v</code> and returns the String representation.</p>
+<p>This is a convenience function for creating a new instance of</p>
+<pre><code>Serializer, serialize `v` into it and obtain the result through a call
+to toString().
+</code></pre>
+haxe.Serializer.buf	A										<pre>private var buf:StringBuf;</pre>
+haxe.Serializer.cache	A										<pre>private var cache:Array;</pre>
+haxe.Serializer.shash	A										<pre>private var shash:haxe.ds.StringMap;</pre>
+haxe.Serializer.scount	A										<pre>private var scount:Int;</pre>
+haxe.Serializer.useCache	A										<pre>public var useCache:Bool;</pre><p>The individual cache setting for <code>this</code> Serializer instance.</p>
+<p>See USE_CACHE for a complete description.</p>
+haxe.Serializer.useEnumIndex	A										<pre>public var useEnumIndex:Bool;</pre><p>The individual enum index setting for <code>this</code> Serializer instance.</p>
+<p>See USE<em>ENUM</em>INDEX for a complete description.</p>
+haxe.Serializer.toString	A										<pre>public function toString():String;</pre><p>Return the String representation of <code>this</code> Serializer.</p>
+<p>The exact format specification can be found here:</p>
+<pre><code>http://haxe.org/manual/serialization/format
+</code></pre>
+haxe.Serializer.serializeString	A										<pre>private function serializeString(s:String):Void;</pre>
+haxe.Serializer.serializeRef	A										<pre>private function serializeRef(v:null):Bool;</pre>
+haxe.Serializer.serializeFields	A										<pre>private function serializeFields(v:null):Void;</pre>
+haxe.Serializer.serialize	A										<pre>public function serialize(v:null):Void;</pre><p>Serializes <code>v</code>.</p>
+<p>All haxe-defined values and objects with the exception of functions can</p>
+<pre><code>be serialized. Serialization of external/native objects is not
+guaranteed to work.
+
+The values of `this.useCache` and `this.useEnumIndex` may affect
+serialization output.
+</code></pre>
+haxe.Serializer.serializeException	A										<pre>public function serializeException(e:null):Void;</pre>
+haxe.Serializer.new	A										<pre>public function new():Void;</pre><p>Creates a new Serializer instance.</p>
+<p>Subsequent calls to <code>this.serialize</code> will append values to the</p>
+<pre><code>internal buffer of this String. Once complete, the contents can be
+retrieved through a call to `this.toString`.
+
+Each Serializer instance maintains its own cache if this.useCache` is
+true.
+</code></pre>
+haxe.Unserializer	A										<p>The Unserializer class is the complement to the Serializer class. It parses
+a serialization String and creates objects from the contained data.</p>
+<pre><code>This class can be used in two ways:
+
+- create a new Unserializer() instance with a given serialization
+String, then call its unserialize() method until all values are
+extracted
+- call Unserializer.run() to unserialize a single value from a given
+String
+</code></pre>
+haxe.Unserializer.BASE64	A										<pre>private static var BASE64:String;</pre>
+haxe.Unserializer.CODES	A										<pre>private static var CODES:Array;</pre>
+haxe.Unserializer.initCodes	A										<pre>private static function initCodes():Array;</pre>
+haxe.Unserializer.run	A										<pre>public static function run(v:String):null;</pre><p>Unserializes <code>v</code> and returns the according value.</p>
+<p>This is a convenience function for creating a new instance of</p>
+<pre><code>Unserializer with `v` as buffer and calling its unserialize() method
+once.
+</code></pre>
+haxe.Unserializer.buf	A										<pre>private var buf:String;</pre>
+haxe.Unserializer.pos	A										<pre>private var pos:Int;</pre>
+haxe.Unserializer.length	A										<pre>private var length:Int;</pre>
+haxe.Unserializer.cache	A										<pre>private var cache:Array;</pre>
+haxe.Unserializer.scache	A										<pre>private var scache:Array;</pre>
+haxe.Unserializer.setResolver	A										<pre>public function setResolver(r:haxe.TypeResolver&lt;&gt;):Void;</pre><p>Sets the type resolver of <code>this</code> Unserializer instance to <code>r</code>.</p>
+<p>If <code>r</code> is null, a special resolver is used which returns null for all</p>
+<pre><code>input values.
+
+See DEFAULT_RESOLVER for more information on type resolvers.
+</code></pre>
+haxe.Unserializer.getResolver	A										<pre>public function getResolver():haxe.TypeResolver&lt;&gt;;</pre><p>Gets the type resolver of <code>this</code> Unserializer instance.</p>
+<p>See DEFAULT_RESOLVER for more information on type resolvers.</p>
+haxe.Unserializer.get	A										<pre>private function get(p:Int):Int;</pre>
+haxe.Unserializer.readDigits	A										<pre>private function readDigits():Int;</pre>
+haxe.Unserializer.unserializeObject	A										<pre>private function unserializeObject(o:null):Void;</pre>
+haxe.Unserializer.unserializeEnum	A										<pre>private function unserializeEnum(edecl:Enum, tag:String):null;</pre>
+haxe.Unserializer.unserialize	A										<pre>public function unserialize():null;</pre><p>Unserializes the next part of <code>this</code> Unserializer instance and returns
+the according value.</p>
+<pre><code>This function may call `this.resolver.resolveClass` to determine a
+Class from a String, and `this.resolver.resolveEnum` to determine an
+Enum from a String.
+
+If `this` Unserializer instance contains no more or invalid data, an
+exception is thrown.
+
+This operation may fail on structurally valid data if a type cannot be
+resolved or if a field cannot be set. This can happen when unserializing
+Strings that were serialized on a different haxe target, in which the
+serialization side has to make sure not to include platform-specific
+data.
+
+Classes are created from Type.createEmptyInstance, which means their
+constructors are not called.
+</code></pre>
+haxe.Unserializer.new	A										<pre>public function new(buf:String):Void;</pre><p>Creates a new Unserializer instance, with its internal buffer
+initialized to <code>buf</code>.</p>
+<pre><code>This does not parse `buf` immediately. It is parsed only when calls to
+`this.unserialize` are made.
+
+Each Unserializer instance maintains its own cache.
+</code></pre>
+haxe.ds.BalancedTree	A										<p>BalancedTree allows key-value mapping with arbitrary keys, as long as they
+can be ordered. By default, <code>Reflect.compare</code> is used in the <code>compare</code></p>
+<pre><code>method, which can be overridden in subclasses.
+
+Operations have a logarithmic average and worst-case cost.
+
+Iteration over keys and values, using `keys` and `iterator` respectively,
+are in-order.
+</code></pre>
+haxe.ds.BalancedTree.root	A										<pre>private var root:haxe.ds.TreeNode;</pre>
+haxe.ds.BalancedTree.set	A										<pre>public function set(key:haxe.ds.BalancedTree.K, value:haxe.ds.BalancedTree.V):Void;</pre><p>Binds <code>key</code> to <code>value</code>.</p>
+<pre><code>If `key` is already bound to a value, that binding disappears.
+
+If `key` is null, the result is unspecified.
+</code></pre>
+haxe.ds.BalancedTree.get	A										<pre>public function get(key:haxe.ds.BalancedTree.K):Null&lt;haxe.ds.BalancedTree.V&gt;;</pre><p>Returns the value <code>key</code> is bound to.</p>
+<pre><code>If `key` is not bound to any value, `null` is returned.
+
+If `key` is null, the result is unspecified.
+</code></pre>
+haxe.ds.BalancedTree.remove	A										<pre>public function remove(key:haxe.ds.BalancedTree.K):Bool;</pre><p>Removes the current binding of <code>key</code>.</p>
+<pre><code>If `key` has no binding, `this` BalancedTree is unchanged and false is
+returned.
+
+Otherwise the binding of `key` is removed and true is returned.
+
+If `key` is null, the result is unspecified.
+</code></pre>
+haxe.ds.BalancedTree.exists	A										<pre>public function exists(key:haxe.ds.BalancedTree.K):Bool;</pre><p>Tells if <code>key</code> is bound to a value.</p>
+<pre><code>This method returns true even if `key` is bound to null.
+
+If `key` is null, the result is unspecified.
+</code></pre>
+haxe.ds.BalancedTree.iterator	A										<pre>public function iterator():Iterator&lt;haxe.ds.BalancedTree.V&gt;;</pre><p>Iterates over the bound values of <code>this</code> BalancedTree.</p>
+<pre><code>This operation is performed in-order.
+</code></pre>
+haxe.ds.BalancedTree.keys	A										<pre>public function keys():Iterator&lt;haxe.ds.BalancedTree.K&gt;;</pre><p>Iterates over the keys of <code>this</code> BalancedTree.</p>
+<pre><code>This operation is performed in-order.
+</code></pre>
+haxe.ds.BalancedTree.setLoop	A										<pre>private function setLoop(k:haxe.ds.BalancedTree.K, v:haxe.ds.BalancedTree.V, node:haxe.ds.TreeNode):haxe.ds.TreeNode;</pre>
+haxe.ds.BalancedTree.removeLoop	A										<pre>private function removeLoop(k:haxe.ds.BalancedTree.K, node:haxe.ds.TreeNode):haxe.ds.TreeNode;</pre>
+haxe.ds.BalancedTree.iteratorLoop	A										<pre>private function iteratorLoop(node:haxe.ds.TreeNode, acc:Array):Void;</pre>
+haxe.ds.BalancedTree.keysLoop	A										<pre>private function keysLoop(node:haxe.ds.TreeNode, acc:Array):Void;</pre>
+haxe.ds.BalancedTree.merge	A										<pre>private function merge(t1:haxe.ds.TreeNode, t2:haxe.ds.TreeNode):haxe.ds.TreeNode;</pre>
+haxe.ds.BalancedTree.minBinding	A										<pre>private function minBinding(t:haxe.ds.TreeNode):haxe.ds.TreeNode;</pre>
+haxe.ds.BalancedTree.removeMinBinding	A										<pre>private function removeMinBinding(t:haxe.ds.TreeNode):haxe.ds.TreeNode;</pre>
+haxe.ds.BalancedTree.balance	A										<pre>private function balance(l:haxe.ds.TreeNode, k:haxe.ds.BalancedTree.K, v:haxe.ds.BalancedTree.V, r:haxe.ds.TreeNode):haxe.ds.TreeNode;</pre>
+haxe.ds.BalancedTree.compare	A										<pre>private function compare(k1:haxe.ds.BalancedTree.K, k2:haxe.ds.BalancedTree.K):Int;</pre>
+haxe.ds.BalancedTree.toString	A										<pre>public function toString():String;</pre>
+haxe.ds.BalancedTree.new	A										<pre>public function new():Void;</pre><p>Creates a new BalancedTree, which is initially empty.</p>
+haxe.ds.TreeNode	A										
+haxe.ds.TreeNode.left	A										<pre>public var left:haxe.ds.TreeNode;</pre>
+haxe.ds.TreeNode.right	A										<pre>public var right:haxe.ds.TreeNode;</pre>
+haxe.ds.TreeNode.key	A										<pre>public var key:haxe.ds.TreeNode.K;</pre>
+haxe.ds.TreeNode.value	A										<pre>public var value:haxe.ds.TreeNode.V;</pre>
+haxe.ds.TreeNode._height	A										<pre>private var _height:Int;</pre>
+haxe.ds.TreeNode.toString	A										<pre>public function toString():String;</pre>
+haxe.ds.TreeNode.new	A										<pre>public function new(l:haxe.ds.TreeNode, k:haxe.ds.TreeNode.K, v:haxe.ds.TreeNode.V, r:haxe.ds.TreeNode, ?h:Int):Void;</pre>
+haxe.ds.EnumValueMap	A										<p>EnumValueMap allows mapping of enum value keys to arbitrary values.</p>
+<pre><code>Keys are compared by value and recursively over their parameters. If any
+parameter is not an enum value, `Reflect.compare` is used to compare them.
+</code></pre>
+haxe.ds.EnumValueMap.extends	A										<pre>private var extends:haxe.ds.EnumValueMap.K;</pre>
+haxe.ds.EnumValueMap.implements	A										<pre>private var implements:haxe.ds.EnumValueMap.K;</pre>
+haxe.ds.EnumValueMap.compare	A										<pre>private function compare(k1:EnumValue, k2:EnumValue):Int;</pre>
+haxe.ds.EnumValueMap.compareArgs	A										<pre>private function compareArgs(a1:Array, a2:Array):Int;</pre>
+haxe.ds.EnumValueMap.compareArg	A										<pre>private function compareArg(v1:null, v2:null):Int;</pre>
+haxe.ds.EnumValueMap.new	A										<pre>public function new():Void;</pre>
+haxe.ds.HashMap	A										
+haxe.ds._HashMap.HashMap_Impl_	A										
+haxe.ds._HashMap.HashMap_Impl_._new	A										<pre>public static function _new():null;</pre>
+haxe.ds._HashMap.HashMap_Impl_.set	A										<pre>public static function set(this:null, k:haxe.ds.HashMap.K, v:haxe.ds.HashMap.V):Void;</pre>
+haxe.ds._HashMap.HashMap_Impl_.get	A										<pre>public static function get(this:null, k:haxe.ds.HashMap.K):Null&lt;haxe.ds.HashMap.V&gt;;</pre>
+haxe.ds._HashMap.HashMap_Impl_.exists	A										<pre>public static function exists(this:null, k:haxe.ds.HashMap.K):Bool;</pre>
+haxe.ds._HashMap.HashMap_Impl_.remove	A										<pre>public static function remove(this:null, k:haxe.ds.HashMap.K):Bool;</pre>
+haxe.ds._HashMap.HashMap_Impl_.keys	A										<pre>public static function keys(this:null):Iterator&lt;haxe.ds.HashMap.K&gt;;</pre>
+haxe.ds._HashMap.HashMap_Impl_.iterator	A										<pre>public static function iterator(this:null):Iterator&lt;haxe.ds.HashMap.V&gt;;</pre>
+haxe.ds.IntMap	A										<p>IntMap allows mapping of Int keys to arbitrary values.</p>
+<pre><code>See `Map` for documentation details.
+</code></pre>
+haxe.ds.IntMap.implements	A										<pre>private var implements:Int;</pre>
+haxe.ds.IntMap.set	A										<pre>public function set(key:Int, value:haxe.ds.IntMap.T):Void;</pre><p>See <code>Map.set</code></p>
+haxe.ds.IntMap.get	A										<pre>public function get(key:Int):Null&lt;haxe.ds.IntMap.T&gt;;</pre><p>See <code>Map.get</code></p>
+haxe.ds.IntMap.exists	A										<pre>public function exists(key:Int):Bool;</pre><p>See <code>Map.exists</code></p>
+haxe.ds.IntMap.remove	A										<pre>public function remove(key:Int):Bool;</pre><p>See <code>Map.remove</code></p>
+haxe.ds.IntMap.keys	A										<pre>public function keys():Iterator&lt;Int&gt;;</pre><p>See <code>Map.keys</code></p>
+haxe.ds.IntMap.iterator	A										<pre>public function iterator():Iterator&lt;haxe.ds.IntMap.T&gt;;</pre><p>See <code>Map.iterator</code></p>
+haxe.ds.IntMap.toString	A										<pre>public function toString():String;</pre><p>See <code>Map.toString</code></p>
+haxe.ds.IntMap.new	A										<pre>public function new():Void;</pre><p>Creates a new IntMap.</p>
+haxe.ds.ObjectMap	A										<p>ObjectMap allows mapping of object keys to arbitrary values.</p>
+<pre><code>On static targets, the keys are considered to be strong references. Refer
+to `haxe.ds.WeakMap` for a weak reference version.
+
+See `Map` for documentation details.
+</code></pre>
+haxe.ds.ObjectMap.implements	A										<pre>private var implements:haxe.ds.ObjectMap.K;</pre>
+haxe.ds.ObjectMap.set	A										<pre>public function set(key:haxe.ds.ObjectMap.K, value:haxe.ds.ObjectMap.V):Void;</pre><p>See <code>Map.set</code></p>
+haxe.ds.ObjectMap.get	A										<pre>public function get(key:haxe.ds.ObjectMap.K):Null&lt;haxe.ds.ObjectMap.V&gt;;</pre><p>See <code>Map.get</code></p>
+haxe.ds.ObjectMap.exists	A										<pre>public function exists(key:haxe.ds.ObjectMap.K):Bool;</pre><p>See <code>Map.exists</code></p>
+haxe.ds.ObjectMap.remove	A										<pre>public function remove(key:haxe.ds.ObjectMap.K):Bool;</pre><p>See <code>Map.remove</code></p>
+haxe.ds.ObjectMap.keys	A										<pre>public function keys():Iterator&lt;haxe.ds.ObjectMap.K&gt;;</pre><p>See <code>Map.keys</code></p>
+haxe.ds.ObjectMap.iterator	A										<pre>public function iterator():Iterator&lt;haxe.ds.ObjectMap.V&gt;;</pre><p>See <code>Map.iterator</code></p>
+haxe.ds.ObjectMap.toString	A										<pre>public function toString():String;</pre><p>See <code>Map.toString</code></p>
+haxe.ds.ObjectMap.new	A										<pre>public function new():Void;</pre><p>Creates a new ObjectMap.</p>
+haxe.ds.StringMap	A										<p>StringMap allows mapping of String keys to arbitrary values.</p>
+<pre><code>See `Map` for documentation details.
+</code></pre>
+haxe.ds.StringMap.implements	A										<pre>private var implements:String;</pre>
+haxe.ds.StringMap.set	A										<pre>public function set(key:String, value:haxe.ds.StringMap.T):Void;</pre><p>See <code>Map.set</code></p>
+haxe.ds.StringMap.get	A										<pre>public function get(key:String):Null&lt;haxe.ds.StringMap.T&gt;;</pre><p>See <code>Map.get</code></p>
+haxe.ds.StringMap.exists	A										<pre>public function exists(key:String):Bool;</pre><p>See <code>Map.exists</code></p>
+haxe.ds.StringMap.remove	A										<pre>public function remove(key:String):Bool;</pre><p>See <code>Map.remove</code></p>
+haxe.ds.StringMap.keys	A										<pre>public function keys():Iterator&lt;String&gt;;</pre><p>See <code>Map.keys</code></p>
+haxe.ds.StringMap.iterator	A										<pre>public function iterator():Iterator&lt;haxe.ds.StringMap.T&gt;;</pre><p>See <code>Map.iterator</code></p>
+haxe.ds.StringMap.toString	A										<pre>public function toString():String;</pre><p>See <code>Map.toString</code></p>
+haxe.ds.StringMap.new	A										<pre>public function new():Void;</pre><p>Creates a new StringMap.</p>
+haxe.ds.WeakMap	A										<p>WeakMap allows mapping of object keys to arbitrary values.</p>
+<pre><code>The keys are considered to be weak references on static targets.
+
+See `Map` for documentation details.
+</code></pre>
+haxe.ds.WeakMap.implements	A										<pre>private var implements:haxe.ds.WeakMap.K;</pre>
+haxe.ds.WeakMap.set	A										<pre>public function set(key:haxe.ds.WeakMap.K, value:haxe.ds.WeakMap.V):Void;</pre><p>See <code>Map.set</code></p>
+haxe.ds.WeakMap.get	A										<pre>public function get(key:haxe.ds.WeakMap.K):Null&lt;haxe.ds.WeakMap.V&gt;;</pre><p>See <code>Map.get</code></p>
+haxe.ds.WeakMap.exists	A										<pre>public function exists(key:haxe.ds.WeakMap.K):Bool;</pre><p>See <code>Map.exists</code></p>
+haxe.ds.WeakMap.remove	A										<pre>public function remove(key:haxe.ds.WeakMap.K):Bool;</pre><p>See <code>Map.remove</code></p>
+haxe.ds.WeakMap.keys	A										<pre>public function keys():Iterator&lt;haxe.ds.WeakMap.K&gt;;</pre><p>See <code>Map.keys</code></p>
+haxe.ds.WeakMap.iterator	A										<pre>public function iterator():Iterator&lt;haxe.ds.WeakMap.V&gt;;</pre><p>See <code>Map.iterator</code></p>
+haxe.ds.WeakMap.toString	A										<pre>public function toString():String;</pre><p>See <code>Map.toString</code></p>
+haxe.ds.WeakMap.new	A										<pre>public function new():Void;</pre><p>Creates a new WeakMap.</p>
+haxe.io.Input	A										<p>An Input is an abstract reader. See other classes in the [haxe.io] package
+for several possible implementations.</p>
+haxe.io.Input.bigEndian	A										<pre>public var bigEndian:Bool;</pre>
+haxe.io.Input.readByte	A										<pre>public function readByte():Int;</pre>
+haxe.io.Input.readBytes	A										<pre>public function readBytes(s:haxe.io.Bytes, pos:Int, len:Int):Int;</pre>
+haxe.io.Input.close	A										<pre>public function close():Void;</pre>
+haxe.io.Input.set_bigEndian	A										<pre>private function set_bigEndian(b:Bool):Bool;</pre>
+haxe.io.Input.readAll	A										<pre>public function readAll(?bufsize:Int):haxe.io.Bytes;</pre>
+haxe.io.Input.readFullBytes	A										<pre>public function readFullBytes(s:haxe.io.Bytes, pos:Int, len:Int):Void;</pre>
+haxe.io.Input.read	A										<pre>public function read(nbytes:Int):haxe.io.Bytes;</pre>
+haxe.io.Input.readUntil	A										<pre>public function readUntil(end:Int):String;</pre>
+haxe.io.Input.readLine	A										<pre>public function readLine():String;</pre>
+haxe.io.Input.readFloat	A										<pre>public function readFloat():Float;</pre>
+haxe.io.Input.readDouble	A										<pre>public function readDouble():Float;</pre>
+haxe.io.Input.readInt8	A										<pre>public function readInt8():Int;</pre>
+haxe.io.Input.readInt16	A										<pre>public function readInt16():Int;</pre>
+haxe.io.Input.readUInt16	A										<pre>public function readUInt16():Int;</pre>
+haxe.io.Input.readInt24	A										<pre>public function readInt24():Int;</pre>
+haxe.io.Input.readUInt24	A										<pre>public function readUInt24():Int;</pre>
+haxe.io.Input.readInt32	A										<pre>public function readInt32():Int;</pre>
+haxe.io.Input.readString	A										<pre>public function readString(len:Int):String;</pre>
+haxe.io.BufferInput	A										
+haxe.io.BufferInput.i	A										<pre>public var i:haxe.io.Input;</pre>
+haxe.io.BufferInput.buf	A										<pre>public var buf:haxe.io.Bytes;</pre>
+haxe.io.BufferInput.available	A										<pre>public var available:Int;</pre>
+haxe.io.BufferInput.pos	A										<pre>public var pos:Int;</pre>
+haxe.io.BufferInput.refill	A										<pre>public function refill():Void;</pre>
+haxe.io.BufferInput.readByte	A										<pre>public function readByte():Int;</pre>
+haxe.io.BufferInput.readBytes	A										<pre>public function readBytes(buf:haxe.io.Bytes, pos:Int, len:Int):Int;</pre>
+haxe.io.BufferInput.new	A										<pre>public function new(i:haxe.io.Input, buf:haxe.io.Bytes, ?pos:Int, ?available:Int):Void;</pre>
+haxe.io.Bytes	A										
+haxe.io.Bytes.alloc	A										<pre>public static function alloc(length:Int):haxe.io.Bytes;</pre>
+haxe.io.Bytes.ofString	A										<pre>public static function ofString(s:String):haxe.io.Bytes;</pre>
+haxe.io.Bytes.ofData	A										<pre>public static function ofData(b:haxe.io.BytesData&lt;&gt;):haxe.io.Bytes;</pre>
+haxe.io.Bytes.fastGet	A										<pre>public static function fastGet(b:haxe.io.BytesData&lt;&gt;, pos:Int):Int;</pre><p>Read the most efficiently possible the n-th byte of the data.
+Behavior when reading outside of the available data is unspecified.</p>
+haxe.io.Bytes.length	A										<pre>public var length:Int;</pre>
+haxe.io.Bytes.get	A										<pre>public function get(pos:Int):Int;</pre>
+haxe.io.Bytes.set	A										<pre>public function set(pos:Int, v:Int):Void;</pre>
+haxe.io.Bytes.blit	A										<pre>public function blit(pos:Int, src:haxe.io.Bytes, srcpos:Int, len:Int):Void;</pre>
+haxe.io.Bytes.sub	A										<pre>public function sub(pos:Int, len:Int):haxe.io.Bytes;</pre>
+haxe.io.Bytes.compare	A										<pre>public function compare(other:haxe.io.Bytes):Int;</pre>
+haxe.io.Bytes.readString	A										<pre>public function readString(pos:Int, len:Int):String;</pre>
+haxe.io.Bytes.toString	A										<pre>public function toString():String;</pre>
+haxe.io.Bytes.toHex	A										<pre>public function toHex():String;</pre>
+haxe.io.Bytes.getData	A										<pre>public function getData():haxe.io.BytesData&lt;&gt;;</pre>
+haxe.io.Bytes.new	A										<pre>private function new(length:Int, b:haxe.io.BytesData&lt;&gt;):Void;</pre>
+haxe.io.BytesBuffer	A										
+haxe.io.BytesBuffer.b	A										<pre>private var b:Array;</pre>
+haxe.io.BytesBuffer.length	A										<pre>public var length:Int;</pre><p>The length of the buffer in bytes.</p>
+haxe.io.BytesBuffer.get_length	A										<pre>private function get_length():Int;</pre>
+haxe.io.BytesBuffer.addByte	A										<pre>public function addByte(byte:Int):Void;</pre>
+haxe.io.BytesBuffer.add	A										<pre>public function add(src:haxe.io.Bytes):Void;</pre>
+haxe.io.BytesBuffer.addBytes	A										<pre>public function addBytes(src:haxe.io.Bytes, pos:Int, len:Int):Void;</pre>
+haxe.io.BytesBuffer.getBytes	A										<pre>public function getBytes():haxe.io.Bytes;</pre><p>Returns either a copy or a reference of the current bytes.
+Once called, the buffer can no longer be used.</p>
+haxe.io.BytesBuffer.new	A										<pre>public function new():Void;</pre>
+haxe.io.BytesData	A										
+haxe.io.BytesData.c	A										<pre>private var c:Int;</pre>
+haxe.io.BytesInput	A										
+haxe.io.BytesInput.pos	A										<pre>private var pos:Int;</pre>
+haxe.io.BytesInput.len	A										<pre>private var len:Int;</pre>
+haxe.io.BytesInput.totlen	A										<pre>private var totlen:Int;</pre>
+haxe.io.BytesInput.position	A										<pre>public var position:Int;</pre><p>The current position in the stream in bytes.</p>
+haxe.io.BytesInput.length	A										<pre>public var length:Int;</pre><p>The length of the stream in bytes.</p>
+haxe.io.BytesInput.get_position	A										<pre>private function get_position():Int;</pre>
+haxe.io.BytesInput.get_length	A										<pre>private function get_length():Int;</pre>
+haxe.io.BytesInput.set_position	A										<pre>private function set_position(p:Int):Int;</pre>
+haxe.io.BytesInput.readByte	A										<pre>public function readByte():Int;</pre>
+haxe.io.BytesInput.readBytes	A										<pre>public function readBytes(buf:haxe.io.Bytes, pos:Int, len:Int):Int;</pre>
+haxe.io.BytesInput.new	A										<pre>public function new(b:haxe.io.Bytes, ?pos:Int, ?len:Int):Void;</pre>
+haxe.io.Output	A										<p>An Output is an abstract write. A specific output implementation will only
+have to override the [writeChar] and maybe the [write], [flush] and [close]</p>
+<pre><code>methods. See [File.write] and [String.write] for two ways of creating an
+Output.
+</code></pre>
+haxe.io.Output.LN2	A										<pre>private static var LN2:Float;</pre>
+haxe.io.Output.bigEndian	A										<pre>public var bigEndian:Bool;</pre>
+haxe.io.Output.writeByte	A										<pre>public function writeByte(c:Int):Void;</pre>
+haxe.io.Output.writeBytes	A										<pre>public function writeBytes(s:haxe.io.Bytes, pos:Int, len:Int):Int;</pre>
+haxe.io.Output.flush	A										<pre>public function flush():Void;</pre>
+haxe.io.Output.close	A										<pre>public function close():Void;</pre>
+haxe.io.Output.set_bigEndian	A										<pre>private function set_bigEndian(b:Bool):Bool;</pre>
+haxe.io.Output.write	A										<pre>public function write(s:haxe.io.Bytes):Void;</pre>
+haxe.io.Output.writeFullBytes	A										<pre>public function writeFullBytes(s:haxe.io.Bytes, pos:Int, len:Int):Void;</pre>
+haxe.io.Output.writeFloat	A										<pre>public function writeFloat(x:Float):Void;</pre>
+haxe.io.Output.writeDouble	A										<pre>public function writeDouble(x:Float):Void;</pre>
+haxe.io.Output.writeInt8	A										<pre>public function writeInt8(x:Int):Void;</pre>
+haxe.io.Output.writeInt16	A										<pre>public function writeInt16(x:Int):Void;</pre>
+haxe.io.Output.writeUInt16	A										<pre>public function writeUInt16(x:Int):Void;</pre>
+haxe.io.Output.writeInt24	A										<pre>public function writeInt24(x:Int):Void;</pre>
+haxe.io.Output.writeUInt24	A										<pre>public function writeUInt24(x:Int):Void;</pre>
+haxe.io.Output.writeInt32	A										<pre>public function writeInt32(x:Int):Void;</pre>
+haxe.io.Output.prepare	A										<pre>public function prepare(nbytes:Int):Void;</pre><p>Inform that we are about to write at least a specified number of bytes.
+The underlying implementation can allocate proper working space depending</p>
+<pre><code>on this information, or simply ignore it. This is not a mandatory call
+but a tip and is only used in some specific cases.
+</code></pre>
+haxe.io.Output.writeInput	A										<pre>public function writeInput(i:haxe.io.Input, ?bufsize:Int):Void;</pre>
+haxe.io.Output.writeString	A										<pre>public function writeString(s:String):Void;</pre>
+haxe.io.BytesOutput	A										
+haxe.io.BytesOutput.b	A										<pre>private var b:haxe.io.BytesBuffer;</pre>
+haxe.io.BytesOutput.length	A										<pre>public var length:Int;</pre><p>The length of the stream in bytes.</p>
+haxe.io.BytesOutput.get_length	A										<pre>private function get_length():Int;</pre>
+haxe.io.BytesOutput.writeByte	A										<pre>public function writeByte(c:Int):Void;</pre>
+haxe.io.BytesOutput.writeBytes	A										<pre>public function writeBytes(buf:haxe.io.Bytes, pos:Int, len:Int):Int;</pre>
+haxe.io.BytesOutput.getBytes	A										<pre>public function getBytes():haxe.io.Bytes;</pre>
+haxe.io.BytesOutput.new	A										<pre>public function new():Void;</pre>
+haxe.io.Eof	A										<p>This exception is raised when reading while data is no longer available in the [Input].</p>
+haxe.io.Eof.toString	A										<pre>private function toString():String;</pre>
+haxe.io.Eof.new	A										<pre>public function new():Void;</pre>
+haxe.io.Error	A										<p>The possible IO errors that can occur</p>
+haxe.io.Error.Blocked	A										<pre>Blocked</pre><p>The IO is set into nonblocking mode and some data cannot be read or written</p>
+haxe.io.Error.Overflow	A										<pre>Overflow</pre><p>An integer value is outside its allowed range</p>
+haxe.io.Error.OutsideBounds	A										<pre>OutsideBounds</pre><p>An operation on Bytes is outside of its valid range</p>
+haxe.io.Error.Custom	A										<pre>Custom</pre><p>Other errors</p>
+haxe.io.Path	A										<p>This class provides a convenient way of working with paths. It supports the
+common path formats:</p>
+<pre><code>- directory1/directory2/filename.extension
+- directory1\directory2\filename.excention
+</code></pre>
+haxe.io.Path.withoutExtension	A										<pre>public static function withoutExtension(path:String):String;</pre><p>Returns the String representation of <code>path</code> without the file extension.</p>
+<pre><code>If `path` is null, the result is unspecified.
+</code></pre>
+haxe.io.Path.withoutDirectory	A										<pre>public static function withoutDirectory(path:String):String;</pre><p>Returns the String representation of <code>path</code> without the directory.</p>
+<pre><code>If `path` is null, the result is unspecified.
+</code></pre>
+haxe.io.Path.directory	A										<pre>public static function directory(path:String):String;</pre><p>Returns the directory of <code>path</code>.</p>
+<pre><code>If the directory is null, the empty String "" is returned.
+
+If `path` is null, the result is unspecified.
+</code></pre>
+haxe.io.Path.extension	A										<pre>public static function extension(path:String):String;</pre><p>Returns the extension of <code>path</code>.</p>
+<pre><code>If the extension is null, the empty String "" is returned.
+
+If `path` is null, the result is unspecified.
+</code></pre>
+haxe.io.Path.withExtension	A										<pre>public static function withExtension(path:String, ext:String):String;</pre><p>Returns a String representation of <code>path</code> where the extension is <code>ext</code>.</p>
+<pre><code>If `path` has no extension, `ext` is added as extension.
+
+If `path` or `ext` are null, the result is unspecified.
+</code></pre>
+haxe.io.Path.addTrailingSlash	A										<pre>public static function addTrailingSlash(path:String):String;</pre><p>Adds a trailing slash to <code>path</code>, if it does not have one already.</p>
+<pre><code>If the last slash in `path` is a backslash, a backslash is appended to
+`path`.
+
+If the last slash in `path` is a slash, or if no slash is found, a slash
+is appended to `path`. In particular, this applies to the empty String
+"".
+
+If `path` is null, the result is unspecified.
+</code></pre>
+haxe.io.Path.removeTrailingSlash	A										<pre>public static function removeTrailingSlash(path:String):String;</pre><p>Removes a trailing slash from <code>path</code> if it exists.</p>
+<pre><code>If `path` does not end with a `/` or `\`, `path` is returned unchanged.
+
+Otherwise the substring of `path` excluding the trailing slash or
+backslash is returned.
+
+If `path` is null, the result is unspecified.
+</code></pre>
+haxe.io.Path.dir	A										<pre>public var dir:String;</pre><p>The directory.</p>
+<pre><code>This is the leading part of the path that is not part of the file name
+and the extension.
+
+Does not end with a `/` or `\` separator.
+
+If the path has no directory, the value is null.
+</code></pre>
+haxe.io.Path.file	A										<pre>public var file:String;</pre><p>The file name.</p>
+<pre><code>This is the part of the part between the directory and the extension.
+
+If there is no file name, e.g. for ".htaccess" or "/dir/", the value
+is the empty String "".
+</code></pre>
+haxe.io.Path.ext	A										<pre>public var ext:String;</pre><p>The file extension.</p>
+<pre><code>It is separated from the file name by a dot. This dot is not part of
+the extension.
+
+If the path has no extension, the value is null.
+</code></pre>
+haxe.io.Path.backslash	A										<pre>public var backslash:Bool;</pre><p>True if the last directory separator is a backslash, false otherwise.</p>
+haxe.io.Path.toString	A										<pre>public function toString():String;</pre><p>Returns a String representation of <code>this</code> path.</p>
+<pre><code>If `this.backslash` is true, backslash is used as directory separator,
+otherwise slash is used. This only affects the separator between
+`this.dir` and `this.file`.
+
+If `this.directory` or `this.extension` is null, their representation
+is the empty String "".
+</code></pre>
+haxe.io.Path.new	A										<pre>public function new(path:String):Void;</pre><p>Creates a new Path instance by parsing <code>path</code>.</p>
+<pre><code>Path information can be retrieved by accessing the dir, file and ext
+properties.
+</code></pre>
+haxe.io.StringInput	A										
+haxe.io.StringInput.new	A										<pre>public function new(s:String):Void;</pre>
+haxe.macro.Position	A										
+haxe.macro.Constant	A										
+haxe.macro.Constant.CInt	A										<pre>CInt</pre>
+haxe.macro.Constant.CFloat	A										<pre>CFloat</pre>
+haxe.macro.Constant.CString	A										<pre>CString</pre>
+haxe.macro.Constant.CIdent	A										<pre>CIdent</pre>
+haxe.macro.Constant.CRegexp	A										<pre>CRegexp</pre>
+haxe.macro.Binop	A										
+haxe.macro.Binop.OpAdd	A										<pre>OpAdd</pre><p><code>+</code></p>
+haxe.macro.Binop.OpMult	A										<pre>OpMult</pre><p><code>*</code></p>
+haxe.macro.Binop.OpDiv	A										<pre>OpDiv</pre><p><code>/</code></p>
+haxe.macro.Binop.OpSub	A										<pre>OpSub</pre><p><code>-</code></p>
+haxe.macro.Binop.OpAssign	A										<pre>OpAssign</pre><p><code>=</code></p>
+haxe.macro.Binop.OpEq	A										<pre>OpEq</pre><p><code>==</code></p>
+haxe.macro.Binop.OpNotEq	A										<pre>OpNotEq</pre><p><code>!=</code></p>
+haxe.macro.Binop.OpGt	A										<pre>OpGt</pre><p><code>&gt;</code></p>
+haxe.macro.Binop.OpGte	A										<pre>OpGte</pre><p><code>&gt;=</code></p>
+haxe.macro.Binop.OpLt	A										<pre>OpLt</pre><p><code>&lt;</code></p>
+haxe.macro.Binop.OpLte	A										<pre>OpLte</pre><p><code>&lt;=</code></p>
+haxe.macro.Binop.OpAnd	A										<pre>OpAnd</pre><p><code>&amp;</code></p>
+haxe.macro.Binop.OpOr	A										<pre>OpOr</pre><p><code>|</code></p>
+haxe.macro.Binop.OpXor	A										<pre>OpXor</pre><p><code>^</code></p>
+haxe.macro.Binop.OpBoolAnd	A										<pre>OpBoolAnd</pre><p><code>&amp;&amp;</code></p>
+haxe.macro.Binop.OpBoolOr	A										<pre>OpBoolOr</pre><p><code>||</code></p>
+haxe.macro.Binop.OpShl	A										<pre>OpShl</pre><p><code>&lt;&lt;</code></p>
+haxe.macro.Binop.OpShr	A										<pre>OpShr</pre><p><code>&gt;&gt;</code></p>
+haxe.macro.Binop.OpUShr	A										<pre>OpUShr</pre><p><code>&gt;&gt;&gt;</code></p>
+haxe.macro.Binop.OpMod	A										<pre>OpMod</pre><p><code>%</code></p>
+haxe.macro.Binop.OpAssignOp	A										<pre>OpAssignOp</pre><p><code>+=</code>
+<code>-=</code></p>
+<pre><code>`/=`
+`*=`
+`&lt;&lt;=`
+`&gt;&gt;=`
+`&gt;&gt;&gt;=`
+`|=`
+`&amp;=`
+`^=`
+</code></pre>
+haxe.macro.Binop.OpInterval	A										<pre>OpInterval</pre><p><code>...</code></p>
+haxe.macro.Binop.OpArrow	A										<pre>OpArrow</pre><p><code>=&gt;</code></p>
+haxe.macro.Unop	A										
+haxe.macro.Unop.OpIncrement	A										<pre>OpIncrement</pre><p><code>++</code></p>
+haxe.macro.Unop.OpDecrement	A										<pre>OpDecrement</pre><p><code>--</code></p>
+haxe.macro.Unop.OpNot	A										<pre>OpNot</pre><p><code>!</code></p>
+haxe.macro.Unop.OpNeg	A										<pre>OpNeg</pre><p><code>-</code></p>
+haxe.macro.Unop.OpNegBits	A										<pre>OpNegBits</pre><p><code>~</code></p>
+haxe.macro.Unop.meta	A										<pre>meta</pre>
+haxe.macro.Expr	A										
+haxe.macro.ExprOf	A										
+haxe.macro.Case	A										
+haxe.macro.Var	A										
+haxe.macro.Catch	A										
+haxe.macro.ExprDef	A										
+haxe.macro.ExprDef.EConst	A										<pre>EConst</pre>
+haxe.macro.ExprDef.EArray	A										<pre>EArray</pre>
+haxe.macro.ExprDef.EBinop	A										<pre>EBinop</pre>
+haxe.macro.ExprDef.EField	A										<pre>EField</pre>
+haxe.macro.ExprDef.EParenthesis	A										<pre>EParenthesis</pre>
+haxe.macro.ExprDef.EObjectDecl	A										<pre>EObjectDecl</pre>
+haxe.macro.ExprDef.EArrayDecl	A										<pre>EArrayDecl</pre>
+haxe.macro.ExprDef.ECall	A										<pre>ECall</pre>
+haxe.macro.ExprDef.ENew	A										<pre>ENew</pre>
+haxe.macro.ExprDef.EUnop	A										<pre>EUnop</pre>
+haxe.macro.ExprDef.EVars	A										<pre>EVars</pre>
+haxe.macro.ExprDef.EFunction	A										<pre>EFunction</pre>
+haxe.macro.ExprDef.EBlock	A										<pre>EBlock</pre>
+haxe.macro.ExprDef.EFor	A										<pre>EFor</pre>
+haxe.macro.ExprDef.EIn	A										<pre>EIn</pre>
+haxe.macro.ExprDef.EIf	A										<pre>EIf</pre>
+haxe.macro.ExprDef.EWhile	A										<pre>EWhile</pre>
+haxe.macro.ExprDef.ESwitch	A										<pre>ESwitch</pre>
+haxe.macro.ExprDef.ETry	A										<pre>ETry</pre>
+haxe.macro.ExprDef.EReturn	A										<pre>EReturn</pre>
+haxe.macro.ExprDef.EBreak	A										<pre>EBreak</pre>
+haxe.macro.ExprDef.EContinue	A										<pre>EContinue</pre>
+haxe.macro.ExprDef.EUntyped	A										<pre>EUntyped</pre>
+haxe.macro.ExprDef.EThrow	A										<pre>EThrow</pre>
+haxe.macro.ExprDef.ECast	A										<pre>ECast</pre>
+haxe.macro.ExprDef.EDisplay	A										<pre>EDisplay</pre>
+haxe.macro.ExprDef.EDisplayNew	A										<pre>EDisplayNew</pre>
+haxe.macro.ExprDef.ETernary	A										<pre>ETernary</pre>
+haxe.macro.ExprDef.ECheckType	A										<pre>ECheckType</pre>
+haxe.macro.ExprDef.EMeta	A										<pre>EMeta</pre>
+haxe.macro.ComplexType	A										
+haxe.macro.ComplexType.TPath	A										<pre>TPath</pre>
+haxe.macro.ComplexType.TFunction	A										<pre>TFunction</pre>
+haxe.macro.ComplexType.TAnonymous	A										<pre>TAnonymous</pre>
+haxe.macro.ComplexType.TParent	A										<pre>TParent</pre>
+haxe.macro.ComplexType.TExtend	A										<pre>TExtend</pre>
+haxe.macro.ComplexType.TOptional	A										<pre>TOptional</pre>
+haxe.macro.TypePath	A										
+haxe.macro.TypeParam	A										
+haxe.macro.TypeParam.TPType	A										<pre>TPType</pre>
+haxe.macro.TypeParam.TPExpr	A										<pre>TPExpr</pre>
+haxe.macro.TypeParamDecl	A										
+haxe.macro.Function	A										
+haxe.macro.FunctionArg	A										
+haxe.macro.MetadataEntry	A										
+haxe.macro.Metadata	A										
+haxe.macro.Field	A										
+haxe.macro.Access	A										
+haxe.macro.Access.APublic	A										<pre>APublic</pre>
+haxe.macro.Access.APrivate	A										<pre>APrivate</pre>
+haxe.macro.Access.AStatic	A										<pre>AStatic</pre>
+haxe.macro.Access.AOverride	A										<pre>AOverride</pre>
+haxe.macro.Access.ADynamic	A										<pre>ADynamic</pre>
+haxe.macro.Access.AInline	A										<pre>AInline</pre>
+haxe.macro.Access.AMacro	A										<pre>AMacro</pre>
+haxe.macro.Access.meta	A										<pre>meta</pre>
+haxe.macro.FieldType	A										
+haxe.macro.FieldType.FVar	A										<pre>FVar</pre>
+haxe.macro.FieldType.FFun	A										<pre>FFun</pre>
+haxe.macro.FieldType.FProp	A										<pre>FProp</pre>
+haxe.macro.TypeDefinition	A										
+haxe.macro.TypeDefKind	A										
+haxe.macro.TypeDefKind.TDEnum	A										<pre>TDEnum</pre>
+haxe.macro.TypeDefKind.TDStructure	A										<pre>TDStructure</pre>
+haxe.macro.TypeDefKind.TDClass	A										<pre>TDClass</pre>
+haxe.macro.TypeDefKind.TDAlias	A										<pre>TDAlias</pre>
+haxe.macro.TypeDefKind.TDAbstract	A										<pre>TDAbstract</pre>
+haxe.macro.Error	A										<p>This error can be used to handle or produce compilation errors in macros.</p>
+haxe.macro.Error.message	A										<pre>public var message:String;</pre>
+haxe.macro.Error.toString	A										<pre>private function toString():String;</pre>
+haxe.macro.Error.new	A										<pre>public function new(m:String, p:haxe.macro.Position&lt;&gt;):Void;</pre>
+haxe.macro.Ref	A										
+haxe.macro.Type	A										
+haxe.macro.Type.TMono	A										<pre>TMono</pre>
+haxe.macro.Type.TEnum	A										<pre>TEnum</pre>
+haxe.macro.Type.TInst	A										<pre>TInst</pre>
+haxe.macro.Type.TType	A										<pre>TType</pre>
+haxe.macro.Type.TFun	A										<pre>TFun</pre>
+haxe.macro.Type.TAnonymous	A										<pre>TAnonymous</pre>
+haxe.macro.Type.TDynamic	A										<pre>TDynamic</pre>
+haxe.macro.Type.TLazy	A										<pre>TLazy</pre>
+haxe.macro.Type.TAbstract	A										<pre>TAbstract</pre>
+haxe.macro.AnonType	A										
+haxe.macro.TypeParameter	A										
+haxe.macro.BaseType	A										
+haxe.macro.ClassField	A										
+haxe.macro.ClassKind	A										
+haxe.macro.ClassKind.KNormal	A										<pre>KNormal</pre>
+haxe.macro.ClassKind.KTypeParameter	A										<pre>KTypeParameter</pre>
+haxe.macro.ClassKind.KExtension	A										<pre>KExtension</pre>
+haxe.macro.ClassKind.KExpr	A										<pre>KExpr</pre>
+haxe.macro.ClassKind.KGeneric	A										<pre>KGeneric</pre>
+haxe.macro.ClassKind.KGenericInstance	A										<pre>KGenericInstance</pre>
+haxe.macro.ClassKind.KMacroType	A										<pre>KMacroType</pre>
+haxe.macro.ClassKind.KAbstractImpl	A										<pre>KAbstractImpl</pre>
+haxe.macro.ClassType	A										
+haxe.macro.EnumField	A										
+haxe.macro.EnumType	A										
+haxe.macro.DefType	A										
+haxe.macro.AbstractType	A										
+haxe.macro.MetaAccess	A										<p>MetaAccess is a wrapper for the <code>Metadata</code> array. It can be used to add
+metadata to and remove metadata from its origin.</p>
+haxe.macro.FieldKind	A										
+haxe.macro.FieldKind.FVar	A										<pre>FVar</pre>
+haxe.macro.FieldKind.FMethod	A										<pre>FMethod</pre>
+haxe.macro.VarAccess	A										
+haxe.macro.VarAccess.AccNormal	A										<pre>AccNormal</pre>
+haxe.macro.VarAccess.AccNo	A										<pre>AccNo</pre>
+haxe.macro.VarAccess.AccNever	A										<pre>AccNever</pre>
+haxe.macro.VarAccess.AccResolve	A										<pre>AccResolve</pre>
+haxe.macro.VarAccess.AccCall	A										<pre>AccCall</pre>
+haxe.macro.VarAccess.AccInline	A										<pre>AccInline</pre>
+haxe.macro.VarAccess.AccRequire	A										<pre>AccRequire</pre>
+haxe.macro.MethodKind	A										
+haxe.macro.MethodKind.MethNormal	A										<pre>MethNormal</pre>
+haxe.macro.MethodKind.MethInline	A										<pre>MethInline</pre>
+haxe.macro.MethodKind.MethDynamic	A										<pre>MethDynamic</pre>
+haxe.macro.MethodKind.MethMacro	A										<pre>MethMacro</pre>
+haxe.macro.MethodKind.meta	A										<pre>meta</pre>
+haxe.macro.TypedExpr	A										
+haxe.macro.TypedExpr.meta	A										<pre>meta</pre>
+haxe.rtti.Meta	A										<p>An api to access classes and enums metadata at runtime.</p>
+haxe.rtti.Meta.getType	A										<pre>public static function getType(t:null):null;</pre><p>Returns the metadata that were declared for the given type (class or enum)</p>
+haxe.rtti.Meta.getStatics	A										<pre>public static function getStatics(t:null):null;</pre><p>Returns the metadata that were declared for the given class static fields</p>
+haxe.rtti.Meta.getFields	A										<pre>public static function getFields(t:null):null;</pre><p>Returns the metadata that were declared for the given class fields or enum constructors</p>
+sys.FileStat	A										<p>File informations, as given by [sys.FileSystem.stat]</p>
+sys.FileSystem	A										<p>This class allows you to get information about the files and directories.</p>
+<p>See <code>sys.io.File</code> for the complementary file API.</p>
+sys.FileSystem.exists	A										<pre>public static function exists(path:String):Bool;</pre><p>Tells if the file or directory specified by <code>path</code> exists.</p>
+<p>If <code>path</code> is null, the result is unspecified.</p>
+sys.FileSystem.rename	A										<pre>public static function rename(path:String, newPath:String):Void;</pre><p>Renames/moves the file or directory specified by <code>path</code> to <code>newPath</code>.</p>
+<p>If <code>path</code> is not a valid file system entry, or if it is not accessible,</p>
+<pre><code>or if `newPath` is not accessible, an exception is thrown.
+
+If `path` or `newPath` are null, the result is unspecified.
+</code></pre>
+sys.FileSystem.stat	A										<pre>public static function stat(path:String):sys.FileStat&lt;&gt;;</pre><p>Returns <code>FileStat</code> information on the file or directory specified by
+<code>path</code>.</p>
+<pre><code>If `path` is null, the result is unspecified.
+</code></pre>
+sys.FileSystem.fullPath	A										<pre>public static function fullPath(relPath:String):String;</pre><p>Returns the full path of the file or directory specified by <code>relPath</code>,
+which is relative to the current working directory.</p>
+<pre><code>If `relPath` is null, the result is unspecified.
+</code></pre>
+sys.FileSystem.isDirectory	A										<pre>public static function isDirectory(path:String):Bool;</pre><p>Tells if the file or directory specified by <code>path</code> is a directory.</p>
+<p>If <code>path</code> is not a valid file system entry or if its destination is no</p>
+<pre><code>accessible, an exception is thrown.
+
+If `path` is null, the result is unspecified.
+</code></pre>
+sys.FileSystem.createDirectory	A										<pre>public static function createDirectory(path:String):Void;</pre><p>Creates a directory specified by <code>path</code>.</p>
+<p>This method is recursive: The parent directories don't have to exist.</p>
+<pre><code>If the directory cannot be created, an exception is thrown.
+
+If `path` is null, the result is unspecified.
+</code></pre>
+sys.FileSystem.deleteFile	A										<pre>public static function deleteFile(path:String):Void;</pre><p>Deletes the file specified by <code>path</code>.</p>
+<p>If <code>path</code> does not denote a valid file, or if that file cannot be</p>
+<pre><code>deleted, an exception is thrown.
+
+If `path` is null, the result is unspecified.
+</code></pre>
+sys.FileSystem.deleteDirectory	A										<pre>public static function deleteDirectory(path:String):Void;</pre><p>Deletes the directory specified by <code>path</code>.</p>
+<p>If <code>path</code> does not denote a valid directory, or if that directory cannot</p>
+<pre><code>be deleted, an exception is thrown.
+
+If `path` is null, the result is unspecified.
+</code></pre>
+sys.FileSystem.readDirectory	A										<pre>public static function readDirectory(path:String):Array;</pre><p>Returns the names of all files and directory in the directory specified
+by <code>path</code>.</p>
+<pre><code>If `path` does not denote a valid directory, an exception is thrown.
+
+If `path` is null, the result is unspecified.
+</code></pre>
+sys.db.Connection	A										
+sys.db.Connection.request	A										<pre>public function request(s:String):sys.db.ResultSet;</pre>
+sys.db.Connection.close	A										<pre>public function close():Void;</pre>
+sys.db.Connection.escape	A										<pre>public function escape(s:String):String;</pre>
+sys.db.Connection.quote	A										<pre>public function quote(s:String):String;</pre>
+sys.db.Connection.addValue	A										<pre>public function addValue(s:StringBuf, v:null):Void;</pre>
+sys.db.Connection.lastInsertId	A										<pre>public function lastInsertId():Int;</pre>
+sys.db.Connection.dbName	A										<pre>public function dbName():String;</pre>
+sys.db.Connection.startTransaction	A										<pre>public function startTransaction():Void;</pre>
+sys.db.Connection.commit	A										<pre>public function commit():Void;</pre>
+sys.db.Connection.rollback	A										<pre>public function rollback():Void;</pre>
+sys.db.Manager	A										<p>Record Manager : the persistent object database manager. See the tutorial on
+Haxe website to learn how to use Record.</p>
+sys.db.Manager.cnx	A										<pre>public static var cnx:sys.db.Connection;</pre>
+sys.db.Manager.lockMode	A										<pre>public static var lockMode:String;</pre>
+sys.db.Manager.cache_field	A										<pre>private static var cache_field:String;</pre>
+sys.db.Manager.object_cache	A										<pre>private static var object_cache:haxe.ds.StringMap;</pre>
+sys.db.Manager.init_list	A										<pre>private static var init_list:List;</pre>
+sys.db.Manager.KEYWORDS	A										<pre>private static var KEYWORDS:haxe.ds.StringMap;</pre>
+sys.db.Manager.set_cnx	A										<pre>private static function set_cnx(c:sys.db.Connection):sys.db.Connection;</pre>
+sys.db.Manager.nullCompare	A										<pre>public static function nullCompare(a:String, b:String, eq:Bool):String;</pre>
+sys.db.Manager.initialize	A										<pre>public static function initialize():Void;</pre>
+sys.db.Manager.cleanup	A										<pre>public static function cleanup():Void;</pre>
+sys.db.Manager.quoteAny	A										<pre>public static function quoteAny(v:null):String;</pre>
+sys.db.Manager.quoteList	A										<pre>public static function quoteList(v:String, it:Iterable&lt;null&gt;):String;</pre>
+sys.db.Manager.table_name	A										<pre>private var table_name:String;</pre>
+sys.db.Manager.table_keys	A										<pre>private var table_keys:Array;</pre>
+sys.db.Manager.all	A										<pre>public function all(?lock:Bool):List;</pre>
+sys.db.Manager.dynamicSearch	A										<pre>public function dynamicSearch(x:null, ?lock:Bool):List;</pre>
+sys.db.Manager.quote	A										<pre>private function quote(s:String):String;</pre>
+sys.db.Manager.doUpdateCache	A										<pre>private function doUpdateCache(x:sys.db.Manager.T, name:String, v:null):haxe.io.Bytes;</pre>
+sys.db.Manager.doInsert	A										<pre>private function doInsert(x:sys.db.Manager.T):Void;</pre>
+sys.db.Manager.isBinary	A										<pre>private function isBinary(t:sys.db.RecordType):Bool;</pre>
+sys.db.Manager.hasBinaryChanged	A										<pre>private function hasBinaryChanged(a:haxe.io.Bytes, b:haxe.io.Bytes):Bool;</pre>
+sys.db.Manager.doUpdate	A										<pre>private function doUpdate(x:sys.db.Manager.T):Void;</pre>
+sys.db.Manager.doDelete	A										<pre>private function doDelete(x:sys.db.Manager.T):Void;</pre>
+sys.db.Manager.doLock	A										<pre>private function doLock(i:sys.db.Manager.T):Void;</pre>
+sys.db.Manager.objectToString	A										<pre>private function objectToString(it:sys.db.Manager.T):String;</pre>
+sys.db.Manager.doSerialize	A										<pre>private function doSerialize(field:String, v:null):haxe.io.Bytes;</pre>
+sys.db.Manager.doUnserialize	A										<pre>private function doUnserialize(field:String, b:haxe.io.Bytes):null;</pre>
+sys.db.Manager.cacheObject	A										<pre>private function cacheObject(x:sys.db.Manager.T, lock:Bool):sys.db.Manager.T;</pre>
+sys.db.Manager.make	A										<pre>private function make(x:sys.db.Manager.T):Void;</pre>
+sys.db.Manager.unmake	A										<pre>private function unmake(x:sys.db.Manager.T):Void;</pre>
+sys.db.Manager.quoteField	A										<pre>private function quoteField(f:String):String;</pre>
+sys.db.Manager.addKeys	A										<pre>private function addKeys(s:StringBuf, x:null):Void;</pre>
+sys.db.Manager.unsafeExecute	A										<pre>private function unsafeExecute(sql:String):sys.db.ResultSet;</pre>
+sys.db.Manager.unsafeObject	A										<pre>public function unsafeObject(sql:String, lock:Bool):sys.db.Manager.T;</pre>
+sys.db.Manager.unsafeObjects	A										<pre>public function unsafeObjects(sql:String, lock:Bool):List;</pre>
+sys.db.Manager.unsafeCount	A										<pre>public function unsafeCount(sql:String):Int;</pre>
+sys.db.Manager.unsafeDelete	A										<pre>public function unsafeDelete(sql:String):Void;</pre>
+sys.db.Manager.unsafeGet	A										<pre>public function unsafeGet(id:null, ?lock:Bool):sys.db.Manager.T;</pre>
+sys.db.Manager.unsafeGetWithKeys	A										<pre>public function unsafeGetWithKeys(keys:null, ?lock:Bool):sys.db.Manager.T;</pre>
+sys.db.Manager.unsafeGetId	A										<pre>public function unsafeGetId(o:sys.db.Manager.T):null;</pre>
+sys.db.Manager.addCondition	A										<pre>private function addCondition(s:StringBuf, x:null):Void;</pre>
+sys.db.Manager.dbClass	A										<pre>public function dbClass():Class;</pre>
+sys.db.Manager.dbInfos	A										<pre>public function dbInfos():sys.db.RecordInfos&lt;&gt;;</pre>
+sys.db.Manager.getCnx	A										<pre>private function getCnx():sys.db.Connection;</pre>
+sys.db.Manager.getLockMode	A										<pre>private function getLockMode():String;</pre>
+sys.db.Manager.forceUpdate	A										<pre>public function forceUpdate(o:sys.db.Manager.T, field:String):Void;</pre><p>Remove the cached value for the given Object field : this will ensure
+that the value is updated when calling .update(). This is necessary if</p>
+<pre><code>you are modifying binary data in-place since the cache will be modified
+as well.
+</code></pre>
+sys.db.Manager.initRelation	A										<pre>private function initRelation(r:sys.db.RecordRelation&lt;&gt;):Void;</pre>
+sys.db.Manager.__get	A										<pre>private function __get(x:null, prop:String, key:String, lock:Null&lt;Bool&gt;):sys.db.Manager.T;</pre>
+sys.db.Manager.__set	A										<pre>private function __set(x:null, prop:String, key:String, v:sys.db.Manager.T):Void;</pre>
+sys.db.Manager.makeCacheKey	A										<pre>private function makeCacheKey(x:sys.db.Manager.T):String;</pre>
+sys.db.Manager.addToCache	A										<pre>private function addToCache(x:sys.db.Manager.T):Void;</pre>
+sys.db.Manager.removeFromCache	A										<pre>private function removeFromCache(x:sys.db.Manager.T):Void;</pre>
+sys.db.Manager.getFromCacheKey	A										<pre>private function getFromCacheKey(key:String):sys.db.Manager.T;</pre>
+sys.db.Manager.getFromCache	A										<pre>private function getFromCache(x:sys.db.Manager.T, lock:Bool):sys.db.Manager.T;</pre>
+sys.db.Manager.new	A										<pre>public function new(classval:Class):Void;</pre>
+sys.db.Mysql	A										
+sys.db.Mysql.connect	A										<pre>public static function connect(params:null):sys.db.Connection;</pre>
+sys.db.Object	A										<p>Record Object : the persistent object base type. See the tutorial on Haxe
+website to learn how to use Record.</p>
+sys.db.Object._lock	A										<pre>private var _lock:Bool;</pre>
+sys.db.Object._manager	A										<pre>private var _manager:sys.db.Manager;</pre>
+sys.db.Object.insert	A										<pre>public function insert():Void;</pre>
+sys.db.Object.update	A										<pre>public function update():Void;</pre>
+sys.db.Object.lock	A										<pre>public function lock():Void;</pre>
+sys.db.Object.delete	A										<pre>public function delete():Void;</pre>
+sys.db.Object.isLocked	A										<pre>public function isLocked():Bool;</pre>
+sys.db.Object.toString	A										<pre>public function toString():String;</pre>
+sys.db.Object.new	A										<pre>public function new():Void;</pre>
+sys.db.RecordType	A										
+sys.db.RecordType.DId	A										<pre>DId</pre>
+sys.db.RecordType.DInt	A										<pre>DInt</pre>
+sys.db.RecordType.DUId	A										<pre>DUId</pre>
+sys.db.RecordType.DUInt	A										<pre>DUInt</pre>
+sys.db.RecordType.DBigId	A										<pre>DBigId</pre>
+sys.db.RecordType.DBigInt	A										<pre>DBigInt</pre>
+sys.db.RecordType.DSingle	A										<pre>DSingle</pre>
+sys.db.RecordType.DFloat	A										<pre>DFloat</pre>
+sys.db.RecordType.DBool	A										<pre>DBool</pre>
+sys.db.RecordType.DString	A										<pre>DString</pre>
+sys.db.RecordType.DDate	A										<pre>DDate</pre>
+sys.db.RecordType.DDateTime	A										<pre>DDateTime</pre>
+sys.db.RecordType.DTimeStamp	A										<pre>DTimeStamp</pre>
+sys.db.RecordType.DTinyText	A										<pre>DTinyText</pre>
+sys.db.RecordType.DSmallText	A										<pre>DSmallText</pre>
+sys.db.RecordType.DText	A										<pre>DText</pre>
+sys.db.RecordType.DSmallBinary	A										<pre>DSmallBinary</pre>
+sys.db.RecordType.DLongBinary	A										<pre>DLongBinary</pre>
+sys.db.RecordType.DBinary	A										<pre>DBinary</pre>
+sys.db.RecordType.DBytes	A										<pre>DBytes</pre>
+sys.db.RecordType.DEncoded	A										<pre>DEncoded</pre>
+sys.db.RecordType.DSerialized	A										<pre>DSerialized</pre>
+sys.db.RecordType.DNekoSerialized	A										<pre>DNekoSerialized</pre>
+sys.db.RecordType.DFlags	A										<pre>DFlags</pre>
+sys.db.RecordType.DTinyInt	A										<pre>DTinyInt</pre>
+sys.db.RecordType.DTinyUInt	A										<pre>DTinyUInt</pre>
+sys.db.RecordType.DSmallInt	A										<pre>DSmallInt</pre>
+sys.db.RecordType.DSmallUInt	A										<pre>DSmallUInt</pre>
+sys.db.RecordType.DMediumInt	A										<pre>DMediumInt</pre>
+sys.db.RecordType.DMediumUInt	A										<pre>DMediumUInt</pre>
+sys.db.RecordType.DData	A										<pre>DData</pre>
+sys.db.RecordType.DEnum	A										<pre>DEnum</pre>
+sys.db.RecordType.DInterval	A										<pre>DInterval</pre>
+sys.db.RecordType.DNull	A										<pre>DNull</pre>
+sys.db.RecordField	A										
+sys.db.RecordRelation	A										
+sys.db.RecordInfos	A										
+sys.db._RecordMacros.SqlFunction	A										
+sys.db.RecordMacros	A										
+sys.db.RecordMacros.simpleString	A										<pre>private static var simpleString:EReg;</pre>
+sys.db.RecordMacros.getInfos	A										<pre>public static function getInfos(t:haxe.macro.Type):sys.db.RecordMacros;</pre>
+sys.db.RecordMacros.isNull	A										<pre>private var isNull:Bool;</pre>
+sys.db.RecordMacros.initGlobals	A										<pre>private function initGlobals():null;</pre>
+sys.db.RecordMacros.error	A										<pre>public function error(msg:String, pos:haxe.macro.Position&lt;&gt;):null;</pre>
+sys.db.RecordMacros.typeof	A										<pre>public function typeof(e:haxe.macro.Expr&lt;&gt;):haxe.macro.Type;</pre>
+sys.db.RecordMacros.follow	A										<pre>public function follow(t:haxe.macro.Type, ?once:Bool):haxe.macro.Type;</pre>
+sys.db.RecordMacros.getManager	A										<pre>public function getManager(t:haxe.macro.Type, p:haxe.macro.Position&lt;&gt;):sys.db.RecordMacros;</pre>
+sys.db.RecordMacros.resolveType	A										<pre>public function resolveType(name:String):haxe.macro.Type;</pre>
+sys.db.RecordMacros.makeInt	A										<pre>private function makeInt(t:haxe.macro.Type):Null&lt;Int&gt;;</pre>
+sys.db.RecordMacros.makeRecord	A										<pre>private function makeRecord(t:haxe.macro.Type):String;</pre>
+sys.db.RecordMacros.getFlags	A										<pre>private function getFlags(t:haxe.macro.Type):Array;</pre>
+sys.db.RecordMacros.makeType	A										<pre>private function makeType(t:haxe.macro.Type):sys.db.RecordType;</pre>
+sys.db.RecordMacros.makeIdent	A										<pre>private function makeIdent(e:haxe.macro.Expr&lt;&gt;):String;</pre>
+sys.db.RecordMacros.getRecordInfos	A										<pre>private function getRecordInfos(c:haxe.macro.Ref&lt;haxe.macro.ClassType&lt;&gt;&gt;):sys.db.RecordInfos&lt;&gt;;</pre>
+sys.db.RecordMacros.quoteField	A										<pre>private function quoteField(f:String):String;</pre>
+sys.db.RecordMacros.initManager	A										<pre>private function initManager(pos:haxe.macro.Position&lt;&gt;):Void;</pre>
+sys.db.RecordMacros.makeString	A										<pre>private function makeString(s:String, pos:haxe.macro.Position&lt;&gt;):null;</pre>
+sys.db.RecordMacros.makeOp	A										<pre>private function makeOp(op:String, e1:haxe.macro.Expr&lt;&gt;, e2:haxe.macro.Expr&lt;&gt;, pos:haxe.macro.Position&lt;&gt;):null;</pre>
+sys.db.RecordMacros.sqlAdd	A										<pre>private function sqlAdd(e1:haxe.macro.Expr&lt;&gt;, e2:haxe.macro.Expr&lt;&gt;, pos:haxe.macro.Position&lt;&gt;):null;</pre>
+sys.db.RecordMacros.sqlAddString	A										<pre>private function sqlAddString(sql:haxe.macro.Expr&lt;&gt;, s:String):null;</pre>
+sys.db.RecordMacros.sqlQuoteValue	A										<pre>private function sqlQuoteValue(v:haxe.macro.Expr&lt;&gt;, t:sys.db.RecordType):haxe.macro.Expr&lt;&gt;;</pre>
+sys.db.RecordMacros.sqlAddValue	A										<pre>private function sqlAddValue(sql:haxe.macro.Expr&lt;&gt;, v:haxe.macro.Expr&lt;&gt;, t:sys.db.RecordType):null;</pre>
+sys.db.RecordMacros.unifyClass	A										<pre>private function unifyClass(t:sys.db.RecordType):Int;</pre>
+sys.db.RecordMacros.tryUnify	A										<pre>private function tryUnify(t:sys.db.RecordType, rt:sys.db.RecordType):Bool;</pre>
+sys.db.RecordMacros.typeStr	A										<pre>private function typeStr(t:sys.db.RecordType):String;</pre>
+sys.db.RecordMacros.canStringify	A										<pre>private function canStringify(t:sys.db.RecordType):Bool;</pre>
+sys.db.RecordMacros.convertType	A										<pre>private function convertType(t:sys.db.RecordType):haxe.macro.ComplexType;</pre>
+sys.db.RecordMacros.unify	A										<pre>private function unify(t:sys.db.RecordType, rt:sys.db.RecordType, pos:haxe.macro.Position&lt;&gt;):Void;</pre>
+sys.db.RecordMacros.buildCmp	A										<pre>private function buildCmp(op:String, e1:haxe.macro.Expr&lt;&gt;, e2:haxe.macro.Expr&lt;&gt;, pos:haxe.macro.Position&lt;&gt;):null;</pre>
+sys.db.RecordMacros.buildNum	A										<pre>private function buildNum(op:String, e1:haxe.macro.Expr&lt;&gt;, e2:haxe.macro.Expr&lt;&gt;, pos:haxe.macro.Position&lt;&gt;):null;</pre>
+sys.db.RecordMacros.buildInt	A										<pre>private function buildInt(op:String, e1:haxe.macro.Expr&lt;&gt;, e2:haxe.macro.Expr&lt;&gt;, pos:haxe.macro.Position&lt;&gt;):null;</pre>
+sys.db.RecordMacros.buildEq	A										<pre>private function buildEq(eq:Bool, e1:haxe.macro.Expr&lt;&gt;, e2:haxe.macro.Expr&lt;&gt;, pos:haxe.macro.Position&lt;&gt;):null;</pre>
+sys.db.RecordMacros.buildDefault	A										<pre>private function buildDefault(cond:haxe.macro.Expr&lt;&gt;):null;</pre>
+sys.db.RecordMacros.getField	A										<pre>private function getField(f:null):Null&lt;sys.db.RecordField&lt;&gt;&gt;;</pre>
+sys.db.RecordMacros.buildCond	A										<pre>private function buildCond(cond:haxe.macro.Expr&lt;&gt;):null;</pre>
+sys.db.RecordMacros.ensureType	A										<pre>private function ensureType(e:haxe.macro.Expr&lt;&gt;, rt:sys.db.RecordType):null;</pre>
+sys.db.RecordMacros.checkKeys	A										<pre>private function checkKeys(econd:haxe.macro.Expr&lt;&gt;):haxe.macro.Expr&lt;&gt;;</pre>
+sys.db.RecordMacros.orderField	A										<pre>private function orderField(e:null):String;</pre>
+sys.db.RecordMacros.concatStrings	A										<pre>private function concatStrings(e:haxe.macro.Expr&lt;&gt;):haxe.macro.Expr&lt;&gt;;</pre>
+sys.db.RecordMacros.browseStrings	A										<pre>private function browseStrings(inf:null, e:haxe.macro.Expr&lt;&gt;):Void;</pre>
+sys.db.RecordMacros.buildOptions	A										<pre>private function buildOptions(eopt:haxe.macro.Expr&lt;&gt;):null;</pre>
+sys.db.RecordMacros.new	A										<pre>private function new(c:haxe.macro.Ref&lt;haxe.macro.ClassType&lt;&gt;&gt;):Void;</pre>
+sys.db.ResultSet	A										
+sys.db.ResultSet.length	A										<pre>public var length:Int;</pre>
+sys.db.ResultSet.nfields	A										<pre>public var nfields:Int;</pre>
+sys.db.ResultSet.hasNext	A										<pre>public function hasNext():Bool;</pre>
+sys.db.ResultSet.next	A										<pre>public function next():null;</pre>
+sys.db.ResultSet.results	A										<pre>public function results():List;</pre>
+sys.db.ResultSet.getResult	A										<pre>public function getResult(n:Int):String;</pre>
+sys.db.ResultSet.getIntResult	A										<pre>public function getIntResult(n:Int):Int;</pre>
+sys.db.ResultSet.getFloatResult	A										<pre>public function getFloatResult(n:Int):Float;</pre>
+sys.db.ResultSet.getFieldsNames	A										<pre>public function getFieldsNames():Null&lt;Array&gt;;</pre>
+sys.db.Sqlite	A										
+sys.db.Sqlite.open	A										<pre>public static function open(file:String):sys.db.Connection;</pre>
+sys.db.TableCreate	A										
+sys.db.TableCreate.autoInc	A										<pre>private static function autoInc(dbName:String):String;</pre>
+sys.db.TableCreate.getTypeSQL	A										<pre>public static function getTypeSQL(t:sys.db.RecordType, dbName:String):String;</pre>
+sys.db.TableCreate.create	A										<pre>public static function create(manager:sys.db.Manager, ?engine:String):Void;</pre>
+sys.db.TableCreate.exists	A										<pre>public static function exists(manager:sys.db.Manager):Bool;</pre>
+sys.db.Transaction	A										
+sys.db.Transaction.isDeadlock	A										<pre>public static function isDeadlock(e:null):Bool;</pre>
+sys.db.Transaction.runMainLoop	A										<pre>private static function runMainLoop(mainFun:null, logError:null, count:Int):Void;</pre>
+sys.db.Transaction.main	A										<pre>public static function main(cnx:sys.db.Connection, mainFun:null, ?logError:null):Void;</pre>
+sys.db.SId	A										<p>int with auto increment</p>
+sys.db.SUId	A										<p>int unsigned with auto increment</p>
+sys.db.SBigId	A										<p>big int with auto increment</p>
+sys.db.SInt	A										
+sys.db.SUInt	A										
+sys.db.SBigInt	A										
+sys.db.SSingle	A										<p>single precision float</p>
+sys.db.SFloat	A										<p>double precision float</p>
+sys.db.SBool	A										<p>use tinyint(1) to distinguish with int</p>
+sys.db.SString	A										<p>same as varchar(n)</p>
+sys.db.SDate	A										<p>date only, use SDateTime for date+time</p>
+sys.db.SDateTime	A										<p>mysql DateTime</p>
+sys.db.STimeStamp	A										<p>mysql Timestamp</p>
+sys.db.STinyText	A										<p>TinyText (up to 255 bytes)</p>
+sys.db.SSmallText	A										<p>Text (up to 64KB)</p>
+sys.db.SText	A										<p>MediumText (up to 24MB)</p>
+sys.db.SSmallBinary	A										<p>Blob type (up to 64KB)</p>
+sys.db.SLongBinary	A										<p>LongBlob type (up to 4GB)</p>
+sys.db.SBinary	A										<p>MediumBlob type (up to 24MB)</p>
+sys.db.SBytes	A										<p>same as binary(n)</p>
+sys.db.STinyInt	A										<p>one byte signed [-128...127]</p>
+sys.db.SSmallInt	A										<p>two bytes signed [-32768...32767]</p>
+sys.db.SMediumInt	A										<p>three bytes signed [-8388608...8388607]</p>
+sys.db.STinyUInt	A										<p>one byte [0...255]</p>
+sys.db.SSmallUInt	A										<p>two bytes [0...65535]</p>
+sys.db.SMediumUInt	A										<p>three bytes [0...16777215]</p>
+sys.db.SNull	A										<p>specify that this field is nullable</p>
+sys.db.SEncoded	A										<p>specify that the integer use custom encoding</p>
+sys.db.SSerialized	A										<p>haxe Serialized string</p>
+sys.db.SNekoSerialized	A										<p>native neko serialized bytes</p>
+sys.db.SFlags	A										<p>a set of bitflags of different enum values</p>
+sys.db.SFlags.x	A										<pre>private var x:sys.db.SFlags.T;</pre>
+sys.db.SSmallFlags	A										<p>same as [SFlags] but will adapt the storage size to the number of flags</p>
+sys.db.SSmallFlags.t	A										<pre>private var t:sys.db.SSmallFlags.T;</pre>
+sys.db.SData	A										<p>allow to store any value in serialized form</p>
+sys.db.SEnum	A										<p>allow to store an enum value that does not have parameters as a simple int</p>
+sys.io.File	A										<p>API for reading and writing to files.</p>
+<pre><code>See `sys.FileSystem` for the complementary file system API.
+</code></pre>
+sys.io.File.getContent	A										<pre>public static function getContent(path:String):String;</pre><p>Retrieves the content of the file specified by <code>path</code> as a String.</p>
+<pre><code>If the file does not exist or can not be read, an exception is thrown.
+
+`sys.FileSystem.exists` can be used to check for existence.
+
+If `path` is null, the result is unspecified.
+</code></pre>
+sys.io.File.saveContent	A										<pre>public static function saveContent(path:String, content:String):Void;</pre><p>Stores <code>content</code> in the file specified by <code>path</code>.</p>
+<pre><code>If the file cannot be written to, an exception is thrown.
+
+If `path` or `content` are null, the result is unspecified.
+</code></pre>
+sys.io.File.getBytes	A										<pre>public static function getBytes(path:String):haxe.io.Bytes;</pre><p>Retrieves the binary content of the file specified by <code>path</code>.</p>
+<pre><code>If the file does not exist or can not be read, an exception is thrown.
+
+`sys.FileSystem.exists` can be used to check for existence.
+
+If `path` is null, the result is unspecified.
+</code></pre>
+sys.io.File.saveBytes	A										<pre>public static function saveBytes(path:String, bytes:haxe.io.Bytes):Void;</pre><p>Stores <code>bytes</code> in the file specified by <code>path</code> in binary mode.</p>
+<pre><code>If the file cannot be written to, an exception is thrown.
+
+If `path` or `bytes` are null, the result is unspecified.
+</code></pre>
+sys.io.File.read	A										<pre>public static function read(path:String, ?binary:Bool):sys.io.FileInput;</pre><p>Returns an <code>FileInput</code> handle to the file specified by <code>path</code>.</p>
+<pre><code>If `binary` is true, the file is opened in binary mode. Otherwise it is
+opened in non-binary mode.
+
+If the file does not exist or can not be read, an exception is thrown.
+
+Operations on the returned `FileInput` handle read on the opened file.
+
+File handles should be closed via `FileInput.close` once the operation
+is complete.
+
+If `path` is null, the result is unspecified.
+</code></pre>
+sys.io.File.write	A										<pre>public static function write(path:String, ?binary:Bool):sys.io.FileOutput;</pre><p>Returns an <code>FileOutput</code> handle to the file specified by <code>path</code>.</p>
+<pre><code>If `binary` is true, the file is opened in binary mode. Otherwise it is
+opened in non-binary mode.
+
+If the file cannot be written to, an exception is thrown.
+
+Operations on the returned `FileOutput` handle write to the opened file.
+If the file existed, its previous content is overwritten.
+
+File handles should be closed via `FileOutput.close` once the operation
+is complete.
+
+If `path` is null, the result is unspecified.
+</code></pre>
+sys.io.File.append	A										<pre>public static function append(path:String, ?binary:Bool):sys.io.FileOutput;</pre><p>Similar to <code>sys.io.File.write</code>, but appends to the file if it exists
+instead of overwriting its contents.</p>
+sys.io.File.copy	A										<pre>public static function copy(srcPath:String, dstPath:String):Void;</pre><p>Copies the contents of the file specified by <code>srcPath</code> to the file
+specified by <code>dstPath</code>.</p>
+<pre><code>If the `srcPath` does not exist or cannot be read, or if the `dstPath`
+file cannot be written to, an exception is thrown.
+
+If the file at `dstPath` exists, its contents are overwritten.
+
+If `srcPath` or `dstPath` are null, the result is unspecified.
+</code></pre>
+sys.io.FileInput	A										<p>Use [sys.io.File.read] to create a [FileInput]</p>
+sys.io.FileInput.seek	A										<pre>public function seek(p:Int, pos:sys.io.FileSeek):Void;</pre>
+sys.io.FileInput.tell	A										<pre>public function tell():Int;</pre>
+sys.io.FileInput.eof	A										<pre>public function eof():Bool;</pre>
+sys.io.FileOutput	A										<p>Use [sys.io.File.write] to create a [FileOutput]</p>
+sys.io.FileOutput.seek	A										<pre>public function seek(p:Int, pos:sys.io.FileSeek):Void;</pre>
+sys.io.FileOutput.tell	A										<pre>public function tell():Int;</pre>
+sys.io.FileSeek	A										
+sys.io.FileSeek.SeekBegin	A										<pre>SeekBegin</pre>
+sys.io.FileSeek.SeekCur	A										<pre>SeekCur</pre>
+sys.io.FileSeek.SeekEnd	A										<pre>SeekEnd</pre>
+sys.io.FileSeek.meta	A										<pre>meta</pre>
+sys.io.Process	A										
+sys.io.Process.stdout	A										<pre>public var stdout:haxe.io.Input;</pre>
+sys.io.Process.stderr	A										<pre>public var stderr:haxe.io.Input;</pre>
+sys.io.Process.stdin	A										<pre>public var stdin:haxe.io.Output;</pre>
+sys.io.Process.getPid	A										<pre>public function getPid():Int;</pre>
+sys.io.Process.exitCode	A										<pre>public function exitCode():Int;</pre>
+sys.io.Process.close	A										<pre>public function close():Void;</pre>
+sys.io.Process.kill	A										<pre>public function kill():Void;</pre>
+sys.io.Process.new	A										<pre>public function new(cmd:String, args:Array):Void;</pre>
+sys.net.Host	A										<p>A given IP host name.</p>
+sys.net.Host.localhost	A										<pre>public static function localhost():String;</pre><p>Returns the local computer host name</p>
+sys.net.Host.ip	A										<pre>public var ip:Int;</pre><p>The actual IP corresponding to the host.</p>
+sys.net.Host.toString	A										<pre>public function toString():String;</pre><p>Returns the IP representation of the host</p>
+sys.net.Host.reverse	A										<pre>public function reverse():String;</pre><p>Perform a reverse-DNS query to resolve a host name from an IP.</p>
+sys.net.Host.new	A										<pre>public function new(name:String):Void;</pre><p>Creates a new Host : the name can be an IP in the form "127.0.0.1" or an host name such as "google.com", in which case
+the corresponding IP address is resolved using DNS. An exception occur if the host name could not be found.</p>
+sys.net.Socket	A										<p>A TCP socket class : allow you to both connect to a given server and exchange messages or start your own server and wait for connections.</p>
+sys.net.Socket.select	A										<pre>public static function select(read:Array, write:Array, others:Array, ?timeout:Float):null;</pre><p>Wait until one of the sockets groups is ready for the given operation :
+[read] contains sockets on which we want to wait for available data to be read,</p>
+<pre><code>[write] contains sockets on which we want to wait until we are allowed to write some data to their output buffers,
+[others] contains sockets on which we want to wait for exceptional conditions.
+[select] will block until one of the condition is met, in which case it will return the sockets for which the condition was true.
+In case a [timeout] (in seconds) is specified, select might wait at worse until the timeout expires.
+</code></pre>
+sys.net.Socket.input	A										<pre>public var input:haxe.io.Input;</pre><p>The stream on which you can read available data. By default the stream is blocking until the requested data is available,
+use [setBlocking(false)] or [setTimeout] to prevent infinite waiting.</p>
+sys.net.Socket.output	A										<pre>public var output:haxe.io.Output;</pre><p>The stream on which you can send data. Please note that in case the output buffer you will block while writing the data, use [setBlocking(false)] or [setTimeout] to prevent that.</p>
+sys.net.Socket.close	A										<pre>public function close():Void;</pre><p>Closes the socket : make sure to properly close all your sockets or you will crash when you run out of file descriptors.</p>
+sys.net.Socket.read	A										<pre>public function read():String;</pre><p>Read the whole data available on the socket.</p>
+sys.net.Socket.write	A										<pre>public function write(content:String):Void;</pre><p>Write the whole data to the socket output.</p>
+sys.net.Socket.connect	A										<pre>public function connect(host:sys.net.Host, port:Int):Void;</pre><p>Connect to the given server host/port. Throw an exception in case we couldn't sucessfully connect.</p>
+sys.net.Socket.listen	A										<pre>public function listen(connections:Int):Void;</pre><p>Allow the socket to listen for incoming questions. The parameter tells how many pending connections we can have until they get refused. Use [accept()] to accept incoming connections.</p>
+sys.net.Socket.shutdown	A										<pre>public function shutdown(read:Bool, write:Bool):Void;</pre><p>Shutdown the socket, either for reading or writing.</p>
+sys.net.Socket.bind	A										<pre>public function bind(host:sys.net.Host, port:Int):Void;</pre><p>Bind the socket to the given host/port so it can afterwards listen for connections there.</p>
+sys.net.Socket.accept	A										<pre>public function accept():sys.net.Socket;</pre><p>Accept a new connected client. This will return a connected socket on which you can read/write some data.</p>
+sys.net.Socket.peer	A										<pre>public function peer():null;</pre><p>Return the informations about the other side of a connected socket.</p>
+sys.net.Socket.host	A										<pre>public function host():null;</pre><p>Return the informations about our side of a connected socket.</p>
+sys.net.Socket.setTimeout	A										<pre>public function setTimeout(timeout:Float):Void;</pre><p>Gives a timeout after which blocking socket operations (such as reading and writing) will abort and throw an exception.</p>
+sys.net.Socket.waitForRead	A										<pre>public function waitForRead():Void;</pre><p>Block until some data is available for read on the socket.</p>
+sys.net.Socket.setBlocking	A										<pre>public function setBlocking(b:Bool):Void;</pre><p>Change the blocking mode of the socket. A blocking socket is the default behavior. A non-blocking socket will abort blocking operations immediatly by throwing a haxe.io.Error.Blocking value.</p>
+sys.net.Socket.setFastSend	A										<pre>public function setFastSend(b:Bool):Void;</pre><p>Allows the socket to immediatly send the data when written to its output : this will cause less ping but might increase the number of packets / data size, especially when doing a lot of small writes.</p>
+sys.net.Socket.new	A										<pre>public function new():Void;</pre><p>Creates a new unconnected socket.</p>
