@@ -11,7 +11,7 @@ ABSTRACT_TEMPLATE = unicode("""
 AUTHOR_CATEGORIES = ['researchers']
 
 DownloadRow = namedtuple('DownloadRow',
-        ['names','url','image_url','num_coauthors', 'num_papers',
+        ['names','url','image_url','num_papers', 'num_coauthors',
          'num_citations','keywords'])
 
 class ParsedDownloadRow(DownloadRow):
