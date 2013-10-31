@@ -1,4 +1,4 @@
-# Contributing to **Fathead**
+# Contributing to the **Fathead** repository
 
 At DuckDuckGo, we truly appreciate our community members taking the time to contribute to our open-source repositories. In an effort to ensure contributions are easy for you to make and for us to manage, we have written some guidelines that we ask our contributors to follow so that we can handle pull requests in a timely manner with as little friction as possible.
 
@@ -20,7 +20,7 @@ If you're submitting a **pull request** (bugfix/addition):
 
 ## Making Changes
 
-- Before making any changes, refer to the DuckDuckGo contributing [Guidelines](#link-to-guidelines) to ensure your changes are made in the correct fashion
+- Before making any changes, refer to the [DuckDuckHack Styleguide](https://dukgo.com/duckduckhack/styleguide_overview) to ensure your changes are made in the correct fashion
 - Make sure your commits are of a reasonable size. They shouldn't be too big (or too small)
 - Make sure your commit messages effectively explain what changes have been made, and please identify which instant answer or file has been modified:
 
@@ -65,6 +65,6 @@ If you're submitting a **pull request** (bugfix/addition):
   ```
 
 4. Add your info to the instant answer so we can give you credit for it on the [Goodies page](https://duckduckgo.com/goodies). You'll see your name or handle on the live site!
-Check out the [Metadata README](metadata.md) for detailed instructions on how to include your name and links.
+Check out the [Metadata README](https://dukgo.com/duckduckhack/metadata) for detailed instructions on how to include your name and links.
 
 5. Go into GitHub and submit a [pull request!](http://help.github.com/send-pull-requests/) to the **Fathead** repository, making sure to use the **Fathead** repository's **[Pull Request Template](https://github.com/duckduckgo/zeroclickinfo-fathead/blob/master/fathead_pr_template.md)**. This will let us know about your changes and start the conversation about integrating it into the live code.
