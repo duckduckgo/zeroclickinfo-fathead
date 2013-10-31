@@ -1,0 +1,3530 @@
+@classes = $new(null);
+@enum_to_string = function()
+    return neko.Boot.__enum_str(this)
+@serialize = function()
+    return neko.Boot.__serialize(this)
+@tag_serialize = function()
+    return neko.Boot.__tagserialize(this)
+@lazy_error = function(e)
+    return $varargs(function(_)
+        return $throw(e)
+    )
+@default__string = function()
+    return {
+        var @s = this.toString();
+        if $typeof(@s) != $tobject
+            return null;
+        return @s.__s;
+    }
+
+@closure0 = function(@this,@fun)
+    return if @fun == null
+        null
+    else
+        function() {
+            this = @this;
+            @fun();
+        }
+
+
+@closure1 = function(@this,@fun)
+    return if @fun == null
+        null
+    else
+        function(a) {
+            this = @this;
+            @fun(a);
+        }
+
+
+@closure2 = function(@this,@fun)
+    return if @fun == null
+        null
+    else
+        function(a,b) {
+            this = @this;
+            @fun(a,b);
+        }
+
+
+@closure3 = function(@this,@fun)
+    return if @fun == null
+        null
+    else
+        function(a,b,c) {
+            this = @this;
+            @fun(a,b,c);
+        }
+
+
+@closure4 = function(@this,@fun)
+    return if @fun == null
+        null
+    else
+        function(a,b,c,d) {
+            this = @this;
+            @fun(a,b,c,d);
+        }
+
+
+@closure5 = function(@this,@fun)
+    return if @fun == null
+        null
+    else
+        function(a,b,c,d,e) {
+            this = @this;
+            @fun(a,b,c,d,e);
+        }
+
+
+{
+}
+neko = $new(null);
+@classes.neko = neko;
+_Map = $new(null);
+@classes._Map = _Map;
+haxe = $new(null);
+@classes.haxe = haxe;
+haxe.ds = $new(null);
+haxe.io = $new(null);
+markdown = $new(null);
+@classes.markdown = markdown;
+sys = $new(null);
+@classes.sys = sys;
+sys.io = $new(null);
+{
+    var @tmp = $new(null);
+    neko.@Lib = @tmp;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    neko.Lib = @tmp;
+    @tmp.prototype = neko.@Lib;
+    @tmp.load = function(lib,prim,nargs) {
+        return $loader.loadprim(( (lib + String.new("@")) + prim ).__s,nargs);
+    }
+    neko.@Lib.__class__ = neko.Lib;
+}
+{
+    var @tmp = $new(null);
+    @Array = @tmp;
+    @tmp.unshift = function(x) {
+        var l = this.length;
+        this.__grow(l + 1);
+        var a = this.__a;
+        $ablit(a,1,a,0,l);
+        a[0] = x;
+        return null;
+    }
+    @tmp.toString = function() {
+        var s = StringBuf.new();
+        StringBuf.__add(s.b,String.new("["));
+        var it = this.iterator();
+        {
+            var @tmp = it;
+            while @tmp.hasNext() {
+                var i = @tmp.next();
+                {
+                    StringBuf.__add(s.b,i);
+                    if ( it.hasNext() )
+                        StringBuf.__add_char(s.b,44);
+                }
+            }
+        }
+        StringBuf.__add(s.b,String.new("]"));
+        return String.new(StringBuf.__to_string(s.b));
+    }
+    @tmp.splice = function(pos,len) {
+        if ( len < 0 )
+            return Array.new();
+        if ( pos < 0 ) {
+            pos = (this.length + pos);
+            if ( pos < 0 )
+                pos = 0;
+        }
+        if ( pos > this.length ) {
+            pos = 0;
+            len = 0;
+        }
+        else
+            if ( (pos + len) > this.length ) {
+                len = (this.length - pos);
+                if ( len < 0 )
+                    len = 0;
+            }
+
+        var a = this.__a;
+        var ret = Array.new1($asub(a,pos,len),len);
+        var end = pos + len;
+        $ablit(a,pos,a,end,this.length - end);
+        this.length -= len;
+        while ( (len -= 1) >= 0 )
+            a[this.length + len] = null
+        return ret;
+    }
+    @tmp.sort = function(f) {
+        var a = this.__a;
+        var i = 0;
+        var l = this.length;
+        while ( i < l ) {
+            var swap = false;
+            var j = 0;
+            var max = (l - i) - 1;
+            while ( j < max ) {
+                if ( f(a[j],a[j + 1]) > 0 ) {
+                    var tmp = a[j + 1];
+                    a[j + 1] = a[j];
+                    a[j] = tmp;
+                    swap = true;
+                }
+                j += 1;
+            }
+            if ( $not(swap) )
+                break;;
+            i += 1;
+        }
+        return null;
+    }
+    @tmp.slice = function(pos,end) {
+        if ( pos < 0 ) {
+            pos = (this.length + pos);
+            if ( pos < 0 )
+                pos = 0;
+        }
+        if ( end == null )
+            end = this.length
+        else
+            if ( end < 0 )
+                end = (this.length + end);
+
+        if ( end > this.length )
+            end = this.length;
+        var len = end - pos;
+        if ( len < 0 )
+            return Array.new();
+        return Array.new1($asub(this.__a,pos,len),len);
+    }
+    @tmp.shift = function() {
+        var l = this.length;
+        if ( l == 0 )
+            return null;
+        var a = this.__a;
+        var x = a[0];
+        l -= 1;
+        $ablit(a,0,a,1,l);
+        a[l] = null;
+        this.length = l;
+        return x;
+    }
+    @tmp.reverse = function() {
+        var i = 0;
+        var l = this.length;
+        var a = this.__a;
+        var half = l >> 1;
+        l -= 1;
+        while ( i < half ) {
+            var tmp = a[i];
+            a[i] = a[l - i];
+            a[l - i] = tmp;
+            i += 1;
+        }
+        return null;
+    }
+    @tmp.remove = function(x) {
+        var i = 0;
+        var l = this.length;
+        var a = this.__a;
+        while ( i < l ) {
+            if ( a[i] == x ) {
+                $ablit(a,i,a,i + 1,(l - i) - 1);
+                l -= 1;
+                this.length = l;
+                a[l] = null;
+                return true;
+            }
+            i += 1;
+        }
+        return false;
+    }
+    @tmp.push = function(x) {
+        var l = this.length;
+        this.__grow(l + 1);
+        this.__a[l] = x;
+        return l + 1;
+    }
+    @tmp.pop = function() {
+        if ( this.length == 0 )
+            return null;
+        this.length -= 1;
+        var x = this.__a[this.length];
+        this.__a[this.length] = null;
+        return x;
+    }
+    @tmp.map = function(f) {
+        var ret = Array.new1($array(),0);
+        {
+            var _g = 0;
+            var _g1 = this;
+            while ( _g < _g1.length ) {
+                var elt = _g1[_g];
+                _g += 1;
+                ret.push(f(elt));
+            }
+        }
+        return ret;
+    }
+    @tmp.length = null;
+    @tmp.join = function(sep) {
+        var s = StringBuf.new();
+        var a = this.__a;
+        var max = this.length - 1;
+        {
+            var _g1 = 0;
+            var _g = this.length;
+            while ( _g1 < _g ) {
+                var p = _g1 ++= 1;
+                StringBuf.__add(s.b,a[p]);
+                if ( p != max )
+                    StringBuf.__add(s.b,sep);
+            }
+        }
+        return String.new(StringBuf.__to_string(s.b));
+    }
+    @tmp.iterator = function() {
+        return {
+            a => this, 
+            p => 0, 
+            hasNext => function() {
+                return this.p < this.a.length;
+            }
+            , 
+            next => function() {
+                var i = this.a.__a[this.p];
+                this.p += 1;
+                return i;
+            }
+
+
+        };
+    }
+    @tmp.insert = function(pos,x) {
+        var l = this.length;
+        if ( pos < 0 ) {
+            pos = (l + pos);
+            if ( pos < 0 )
+                pos = 0;
+        }
+        if ( pos > l )
+            pos = l;
+        this.__grow(l + 1);
+        var a = this.__a;
+        $ablit(a,pos + 1,a,pos,l - pos);
+        a[pos] = x;
+        return null;
+    }
+    @tmp.filter = function(f) {
+        var ret = Array.new1($array(),0);
+        {
+            var _g = 0;
+            var _g1 = this;
+            while ( _g < _g1.length ) {
+                var elt = _g1[_g];
+                _g += 1;
+                if ( f(elt) )
+                    ret.push(elt);
+            }
+        }
+        return ret;
+    }
+    @tmp.copy = function() {
+        return Array.new1($asub(this.__a,0,this.length),this.length);
+    }
+    @tmp.concat = function(a) {
+        var a1 = this.__a;
+        var a2 = a.__a;
+        var s1 = this.length;
+        var s2 = a.length;
+        var a3 = $amake(s1 + s2);
+        $ablit(a3,0,a1,0,s1);
+        $ablit(a3,s1,a2,0,s2);
+        return Array.new1(a3,s1 + s2);
+    }
+    @tmp.__set = function(pos,v) {
+        var a = this.__a;
+        if ( this.length <= pos ) {
+            var l = pos + 1;
+            var dlen = l - $asize(a);
+            if ( dlen > 0 ) {
+                if ( dlen == 1 ) {
+                    this.__grow(l);
+                    a = this.__a;
+                }
+                else {
+                    a = $amake(l);
+                    $ablit(a,0,this.__a,0,this.length);
+                    this.__a = a;
+                }
+            }
+            this.length = l;
+        }
+        a[pos] = v;
+        return v;
+    }
+    @tmp.__neko = function() {
+        var a = this.__a;
+        var sz = $asize(a);
+        if ( sz != this.length ) {
+            a = $asub(a,0,this.length);
+            this.__a = a;
+        }
+        return a;
+    }
+    @tmp.__grow = function(l) {
+        var a = this.__a;
+        var sz = $asize(a);
+        if ( sz >= l ) {
+            this.length = l;
+            return null;
+        }
+        var big = (sz * 3) >> 1;
+        if ( big < l )
+            big = l;
+        var a2 = $amake(big);
+        $ablit(a2,0,a,0,this.length);
+        this.__a = a2;
+        this.length = l;
+        return null;
+    }
+    @tmp.__get = function(pos) {
+        return this.__a[pos];
+    }
+    @tmp.__a = null;
+    @tmp.__serialize = @serialize;
+    @tmp.__string = @default__string;
+    var @tmp = $new(null);
+    Array = @tmp;
+    @tmp.prototype = @Array;
+    @tmp.new1 = function(a,l) {
+        var inst = Array.new();
+        inst.__a = a;
+        inst.length = l;
+        return inst;
+    }
+    @tmp.__construct__ = function() {
+        this.__a = $amake(0);
+        this.length = 0;
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,@Array);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @Array.__class__ = Array;
+    @classes.Array = Array;
+}
+{
+    var @tmp = $new(null);
+    @EReg = @tmp;
+    @tmp.replace = function(s,by) {
+        var b = StringBuf.new();
+        var pos = 0;
+        var len = s.length;
+        var a = by.split(String.new("$"));
+        var first = true;
+        do  {
+            if ( $not(EReg.regexp_match(this.r,s.__s,pos,len)) )
+                break;;
+            var p = EReg.regexp_matched_pos(this.r,0);
+            if ( (p.len == 0) && $not(first) ) {
+                if ( p.pos == s.length )
+                    break;;
+                p.pos += 1;
+            }
+            {
+                var len1 = p.pos - pos;
+                StringBuf.__add_sub(b.b,s.__s,pos,if ( len1 == null )
+                    s.length - pos
+                else
+                    len1
+                );
+            }
+            if ( a.length > 0 )
+                StringBuf.__add(b.b,a[0]);
+            var i = 1;
+            while ( i < a.length ) {
+                var k = a[i];
+                var c = k.charCodeAt(0);
+                if ( (c >= 49) && (c <= 57) ) {
+                    var p1;
+                    try {
+                        p1 = EReg.regexp_matched_pos(this.r,Std.int(c) - 48);
+                    }
+                    catch @tmp {
+                        if $typeof(@tmp) == $tstring
+                            @tmp = String.new(@tmp);
+                        if neko.Boot.__instanceof(@tmp,String) {
+                            var e = @tmp;
+                            {
+                                p1 = null;
+                            }
+                        }
+                        else
+                            $rethrow(@tmp)
+                    }
+                    if ( p1 == null ) {
+                        StringBuf.__add(b.b,String.new("$"));
+                        StringBuf.__add(b.b,k);
+                    }
+                    else {
+                        if ( p1.pos >= 0 ) {
+                            var pos1 = p1.pos;
+                            var len1 = p1.len;
+                            StringBuf.__add_sub(b.b,s.__s,pos1,if ( len1 == null )
+                                s.length - pos1
+                            else
+                                len1
+                            );
+                        }
+                        {
+                            var len1 = k.length - 1;
+                            StringBuf.__add_sub(b.b,k.__s,1,if ( len1 == null )
+                                k.length - 1
+                            else
+                                len1
+                            );
+                        }
+                    }
+                }
+                else
+                    if ( c == null ) {
+                        StringBuf.__add(b.b,String.new("$"));
+                        i ++= 1;
+                        var k2 = a[i];
+                        if ( (k2 != null) && (k2.length > 0) )
+                            StringBuf.__add(b.b,k2);
+                    }
+                    else
+                        StringBuf.__add(b.b,String.new("$") + k)
+
+                i ++= 1;
+            }
+            var tot = (p.pos + p.len) - pos;
+            pos += tot;
+            len -= tot;
+            first = false;
+        }
+        while ( this.global )
+        StringBuf.__add_sub(b.b,s.__s,pos,if ( len == null )
+            s.length - pos
+        else
+            len
+        );
+        return String.new(StringBuf.__to_string(b.b));
+    }
+    @tmp.r = null;
+    @tmp.matchedPos = function() {
+        return EReg.regexp_matched_pos(this.r,0);
+    }
+    @tmp.matched = function(n) {
+        var m = EReg.regexp_matched(this.r,n);
+        if ( m == null )
+            return null
+        else
+            return String.new(m)
+        return null;
+    }
+    @tmp.match = function(s) {
+        var p = EReg.regexp_match(this.r,s.__s,0,s.length);
+        if ( p )
+            this.last = s
+        else
+            this.last = null
+        return p;
+    }
+    @tmp.last = null;
+    @tmp.global = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    EReg = @tmp;
+    @tmp.prototype = @EReg;
+    @tmp.regexp_new_options = $loader.loadprim(("regexp" + "@") + "regexp_new_options",2);
+    @tmp.regexp_matched_pos = $loader.loadprim(("regexp" + "@") + "regexp_matched_pos",2);
+    @tmp.regexp_matched = $loader.loadprim(("regexp" + "@") + "regexp_matched",2);
+    @tmp.regexp_match = $loader.loadprim(("regexp" + "@") + "regexp_match",4);
+    @tmp.__construct__ = function(r,opt) {
+        var a = opt.split(String.new("g"));
+        this.global = (a.length > 1);
+        if ( this.global )
+            opt = a.join(String.new(""));
+        this.r = EReg.regexp_new_options(r.__s,opt.__s);
+        return null;
+    }
+    @tmp.new = function(r,opt) {
+        var @o = $new(null);
+        $objsetproto(@o,@EReg);
+        $call(this.__construct__,@o,$array(r,opt));
+        return @o;
+    }
+    @EReg.__class__ = EReg;
+    @classes.EReg = EReg;
+}
+{
+    var @tmp = $new(null);
+    @Lambda = @tmp;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    Lambda = @tmp;
+    @tmp.prototype = @Lambda;
+    @tmp.indexOf = function(it,v) {
+        var i = 0;
+        {
+            var @tmp = it.iterator();
+            while @tmp.hasNext() {
+                var v2 = @tmp.next();
+                {
+                    if ( v == v2 )
+                        return i;
+                    i ++= 1;
+                }
+            }
+        }
+        return -1;
+    }
+    @Lambda.__class__ = Lambda;
+    @classes.Lambda = Lambda;
+}
+{
+    var @tmp = $new(null);
+    @List = @tmp;
+    @tmp.q = null;
+    @tmp.push = function(item) {
+        var x = $array(item,this.h);
+        this.h = x;
+        if ( this.q == null )
+            this.q = x;
+        this.length ++= 1;
+        return null;
+    }
+    @tmp.length = null;
+    @tmp.iterator = function() {
+        return {
+            h => this.h, 
+            hasNext => function() {
+                return this.h != null;
+            }
+            , 
+            next => function() {
+                if ( this.h == null )
+                    return null;
+                var x = this.h[0];
+                this.h = this.h[1];
+                return x;
+            }
+
+
+        };
+    }
+    @tmp.h = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    List = @tmp;
+    @tmp.prototype = @List;
+    @tmp.__construct__ = function() {
+        this.length = 0;
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,@List);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @List.__class__ = List;
+    @classes.List = List;
+}
+{
+    var @tmp = $new(null);
+    @IMap = @tmp;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    IMap = @tmp;
+    @tmp.prototype = @IMap;
+    @IMap.__class__ = IMap;
+    @classes.IMap = IMap;
+}
+{
+    var @tmp = $new(null);
+    @Markdown = @tmp;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    Markdown = @tmp;
+    @tmp.prototype = @Markdown;
+    @tmp.renderHtml = function(blocks) {
+        return markdown.HtmlRenderer.new().render(blocks);
+    }
+    @tmp.markdownToHtml = function(markdown) {
+        var document = Document.new();
+        try {
+            var lines = EReg.new(String.new("\n\r"),String.new("g")).replace(markdown,String.new("\n")).split(String.new("\n"));
+            document.parseRefLinks(lines);
+            var blocks = document.parseLines(lines);
+            return Markdown.renderHtml(blocks);
+        }
+        catch @tmp {
+            if $typeof(@tmp) == $tstring
+                @tmp = String.new(@tmp);
+            if true {
+                var e = @tmp;
+                {
+                    return (String.new("<pre>") + Std.string(e)) + String.new("</pre>");
+                }
+            }
+            else
+                $rethrow(@tmp)
+        }
+        return null;
+    }
+    @Markdown.__class__ = Markdown;
+    @classes.Markdown = Markdown;
+}
+{
+    var @tmp = $new(null);
+    @Document = @tmp;
+    @tmp.refLinks = null;
+    @tmp.parseRefLinks = function(lines) {
+        var indent = String.new("^[ ]{0,3}");
+        var id = String.new("\\[([^\\]]+)\\]");
+        var quote = String.new("\"[^\"]+\"");
+        var apos = String.new("'[^']+'");
+        var paren = String.new("\\([^)]+\\)");
+        var link = EReg.new(((((((((String.new("") + indent) + id) + String.new(":\\s+(\\S+)\\s*(")) + quote) + String.new("|")) + apos) + String.new("|")) + paren) + String.new("|)\\s*$"),String.new(""));
+        {
+            var _g1 = 0;
+            var _g = lines.length;
+            while ( _g1 < _g ) {
+                var i = _g1 ++= 1;
+                if ( $not(link.match(lines[i])) )
+                    continue;
+                var id1 = link.matched(1);
+                var url = link.matched(2);
+                var title = link.matched(3);
+                if ( title == String.new("") )
+                    title = null
+                else
+                    title = title.substring(1,title.length - 1)
+                id1 = id1.toLowerCase();
+                {
+                    var value = Link.new(id1,url,title);
+                    $hset(this.refLinks.h,id1.__s,value,null);
+                }
+                lines[i] = String.new("");
+            }
+        }
+        return null;
+    }
+    @tmp.parseLines = function(lines) {
+        var parser = markdown.BlockParser.new(lines,this);
+        var blocks = Array.new1($array(),0);
+        while ( $not(( parser.pos >= parser.lines.length )) ) {
+            var _g = 0;
+            var _g1 = markdown.BlockSyntax.get_syntaxes();
+            while ( _g < _g1.length ) {
+                var syntax = _g1[_g];
+                _g += 1;
+                if ( syntax.canParse(parser) ) {
+                    var block = syntax.parse(parser);
+                    if ( block != null )
+                        blocks.push(block);
+                    break;;
+                }
+            }
+        }
+        return blocks;
+    }
+    @tmp.parseInline = function(text) {
+        return markdown.InlineParser.new(text,this).parse();
+    }
+    @tmp.linkResolver = null;
+    @tmp.inlineSyntaxes = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    Document = @tmp;
+    @tmp.prototype = @Document;
+    @tmp.__construct__ = function() {
+        this.refLinks = haxe.ds.StringMap.new();
+        this.inlineSyntaxes = Array.new1($array(),0);
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,@Document);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @Document.__class__ = Document;
+    @classes.Document = Document;
+}
+{
+    var @tmp = $new(null);
+    @Link = @tmp;
+    @tmp.url = null;
+    @tmp.title = null;
+    @tmp.id = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    Link = @tmp;
+    @tmp.prototype = @Link;
+    @tmp.__construct__ = function(id,url,title) {
+        this.id = id;
+        this.url = url;
+        this.title = title;
+        return null;
+    }
+    @tmp.new = function(id,url,title) {
+        var @o = $new(null);
+        $objsetproto(@o,@Link);
+        $call(this.__construct__,@o,$array(id,url,title));
+        return @o;
+    }
+    @Link.__class__ = Link;
+    @classes.Link = Link;
+}
+{
+    var @tmp = $new(null);
+    @Math = @tmp;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    Math = @tmp;
+    @tmp.prototype = @Math;
+    @tmp.floor = function(v) {
+        return 0;
+    }
+    @tmp.ceil = function(v) {
+        return 0;
+    }
+    @tmp.__rnd = null;
+    @tmp.POSITIVE_INFINITY = null;
+    @tmp.PI = null;
+    @tmp.NaN = null;
+    @tmp.NEGATIVE_INFINITY = null;
+    @Math.__class__ = Math;
+    @classes.Math = Math;
+}
+{
+    var @tmp = $new(null);
+    @Parser = @tmp;
+    @tmp.printType = function(type) {
+        var doc = type.elementsNamed(String.new("haxe_doc")).next();
+        if ( doc != null )
+            doc = doc.firstChild();
+        var docText;
+        if ( doc == null )
+            docText = String.new("")
+        else
+            docText = doc.get_nodeValue()
+        if ( docText.length == 0 )
+            return null;
+        {
+            var x = type.get(String.new("path"));
+            StringBuf.__add(this.buf.b,x);
+        }
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,65);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        docText = Parser.MARKDOWN_FILTER.replace(docText,String.new("\n"));
+        {
+            var x = Markdown.markdownToHtml(docText);
+            StringBuf.__add(this.buf.b,x);
+        }
+        StringBuf.__add_char(this.buf.b,10);
+        return null;
+    }
+    @tmp.printField = function(field,path,inEnum) {
+        var accessors = String.new("");
+        if ( field.exists(String.new("public")) && (field.get(String.new("public")) == String.new("1")) )
+            accessors += String.new("public ")
+        else
+            accessors += String.new("private ")
+        if ( field.exists(String.new("static")) && (field.get(String.new("static")) == String.new("1")) )
+            accessors += String.new("static ");
+        var x_s = field.elementsNamed(String.new("x"));
+        var f_s = field.elementsNamed(String.new("f"));
+        var c_s = field.elementsNamed(String.new("c"));
+        var code;
+        if ( inEnum )
+            code = field.get_nodeName()
+        else
+            code = (accessors + ( if ( x_s.hasNext() )
+                {((String.new("var ") + field.get_nodeName()) + String.new(":")) + Parser.resolvePath(x_s.next())} + String.new(";")
+            else
+                if ( f_s.hasNext() ) {
+                    var f = f_s.next();
+                    var fcs;
+                    {
+                        var _g = Array.new1($array(),0);
+                        {
+                            var @tmp = f.elements();
+                            while @tmp.hasNext() {
+                                var e = @tmp.next();
+                                _g.push(Parser.resolvePath(e));
+                            }
+                        }
+                        fcs = _g;
+                    }
+                    var args;
+                    {
+                        var _g1 = Array.new1($array(),0);
+                        {
+                            var _g2 = 0;
+                            var _g3 = f.get(String.new("a")).split(String.new(":"));
+                            while ( _g2 < _g3.length ) {
+                                var s = _g3[_g2];
+                                _g2 += 1;
+                                if ( s.length > 0 )
+                                    _g1.push(s);
+                            }
+                        }
+                        args = _g1;
+                    }
+                    var argsStr = ( {
+                        var _g2 = Array.new1($array(),0);
+                        {
+                            var _g4 = 0;
+                            var _g3 = args.length;
+                            while ( _g4 < _g3 ) {
+                                var i = _g4 ++= 1;
+                                _g2.push(((String.new("") + args[i]) + String.new(":")) + fcs[i]);
+                            }
+                        }
+                        _g2;
+                    }
+                     ).join(String.new(", "));
+                    var ret = fcs.pop();
+                    {((((String.new("function ") + field.get_nodeName()) + String.new("(")) + argsStr) + String.new("):")) + ret} + String.new(";");
+                }
+                else
+                    if ( c_s.hasNext() )
+                        {((String.new("var ") + field.get_nodeName()) + String.new(":")) + Parser.resolvePath(c_s.next())} + String.new(";")
+                    else
+                        return null
+
+
+             ))
+        var doc = field.elementsNamed(String.new("haxe_doc")).next();
+        if ( doc != null )
+            doc = doc.firstChild();
+        var docText;
+        if ( doc == null )
+            docText = String.new("")
+        else
+            docText = doc.get_nodeValue()
+        {
+            var x = (path + String.new(".")) + field.get_nodeName();
+            StringBuf.__add(this.buf.b,x);
+        }
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,65);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add_char(this.buf.b,9);
+        StringBuf.__add(this.buf.b,String.new("<pre>"));
+        {
+            var x = StringTools.htmlEscape(code,null);
+            StringBuf.__add(this.buf.b,x);
+        }
+        StringBuf.__add(this.buf.b,String.new("</pre>"));
+        docText = Parser.MARKDOWN_FILTER.replace(docText,String.new("\n"));
+        {
+            var x = Markdown.markdownToHtml(docText);
+            StringBuf.__add(this.buf.b,x);
+        }
+        StringBuf.__add_char(this.buf.b,10);
+        return null;
+    }
+    @tmp.buf = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    Parser = @tmp;
+    @tmp.prototype = @Parser;
+    @tmp.resolvePath = function(x) {
+        var _g = x.get_nodeName();
+        switch ( _g ){
+        String.new("t") => 
+            return ((x.get(String.new("path")) + String.new("<")) + ( {
+                var _g1 = Array.new1($array(),0);
+                {
+                    var @tmp = x.elements();
+                    while @tmp.hasNext() {
+                        var e = @tmp.next();
+                        _g1.push(Parser.resolvePath(e));
+                    }
+                }
+                _g1;
+            }
+             ).join(String.new(", "))) + String.new(">")
+        default => 
+            return x.get(String.new("path"))
+        }
+        return null;
+    }
+    @tmp.main = function() {
+        Parser.new(Xml.parse(sys.io.File.getContent(String.new("downloads/api.xml"))).firstElement());
+        return null;
+    }
+    @tmp.MARKDOWN_FILTER = null;
+    @tmp.__construct__ = function(x) {
+        this.buf = StringBuf.new();
+        {
+            var @tmp = x.elements();
+            while @tmp.hasNext() {
+                var type = @tmp.next();
+                {
+                    this.printType(type);
+                    {
+                        var @tmp = type.elements();
+                        while @tmp.hasNext() {
+                            var field = @tmp.next();
+                            if ( field.get_nodeName() != String.new("haxe_doc") )
+                                this.printField(field,type.get(String.new("path")),type.get_nodeName() == String.new("enum"));
+                        }
+                    }
+                }
+            }
+        }
+        var encBuf = haxe.Utf8.encode(String.new(StringBuf.__to_string(this.buf.b)));
+        sys.io.File.saveContent(String.new("output.txt"),encBuf);
+        return null;
+    }
+    @tmp.new = function(x) {
+        var @o = $new(null);
+        $objsetproto(@o,@Parser);
+        $call(this.__construct__,@o,$array(x));
+        return @o;
+    }
+    @Parser.__class__ = Parser;
+    @classes.Parser = Parser;
+}
+{
+    var @tmp = $new(null);
+    @Reflect = @tmp;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    Reflect = @tmp;
+    @tmp.prototype = @Reflect;
+    @tmp.hasField = function(o,field) {
+        return ($typeof(o) == $tobject) && $objfield(o,$fasthash(field.__s));
+    }
+    @tmp.compare = function(a,b) {
+        return $compare(a,b);
+    }
+    @Reflect.__class__ = Reflect;
+    @classes.Reflect = Reflect;
+}
+{
+    var @tmp = $new(null);
+    neko.@Boot = @tmp;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    neko.Boot = @tmp;
+    @tmp.prototype = neko.@Boot;
+    @tmp.__unserialize = function(v) {
+        if ( $typeof(v) != $tarray )
+            $throw(String.new("Invalid serialized class data"));
+        {
+            var _g1 = 0;
+            var _g = $asize(v);
+            while ( _g1 < _g ) {
+                var i = _g1 ++= 1;
+                if ( $typeof(v[i]) != $tstring )
+                    $throw(String.new("Invalid serialized class data"));
+            }
+        }
+        var cl = neko.Boot.__classes;
+        {
+            var _g1 = 0;
+            var _g = $asize(v);
+            while ( _g1 < _g ) {
+                var i = _g1 ++= 1;
+                cl = $objget(cl,$hash(v[i]));
+                if ( cl == null )
+                    $throw(String.new("Class not found ") + Std.string(v));
+            }
+        }
+        if ( $typeof(cl) == $tobject ) {
+            if ( (cl.__name__ != null) || (cl.__ename__ != null) )
+                return cl.prototype;
+            if ( (cl.__enum__ != null) && ($typeof(cl.tag) == $tstring) )
+                return cl;
+        }
+        $throw(String.new("Invalid class ") + Std.string(v));
+        return null;
+    }
+    @tmp.__tmp_str = function() {
+        return String.new("<...>").__s;
+    }
+    @tmp.__tagserialize = function(o) {
+        var n = o.__enum__.__ename__;
+        var x = $amake(n.length + 1);
+        {
+            var _g1 = 0;
+            var _g = n.length;
+            while ( _g1 < _g ) {
+                var i = _g1 ++= 1;
+                x[i] = n[i].__s;
+            }
+        }
+        x[n.length] = o.tag;
+        return x;
+    }
+    @tmp.__serialize = function(o) {
+        if ( o.__class__ != null ) {
+            var n = o.__class__.__name__;
+            var x = $amake(n.length);
+            {
+                var _g1 = 0;
+                var _g = n.length;
+                while ( _g1 < _g ) {
+                    var i = _g1 ++= 1;
+                    x[i] = n[i].__s;
+                }
+            }
+            return x;
+        }
+        if ( o.__enum__ != null ) {
+            var n = o.__enum__.__ename__;
+            var x = $amake(n.length);
+            {
+                var _g1 = 0;
+                var _g = n.length;
+                while ( _g1 < _g ) {
+                    var i = _g1 ++= 1;
+                    x[i] = n[i].__s;
+                }
+            }
+            return x;
+        }
+        $throw(String.new("Can't serialize"));
+        return null;
+    }
+    @tmp.__interfLoop = function(cc,cl) {
+        if ( cc == null )
+            return false;
+        if ( cc == cl )
+            return true;
+        var intf = cc.__interfaces__;
+        if ( intf != null ) {
+            var _g1 = 0;
+            var _g = intf.length;
+            while ( _g1 < _g ) {
+                var i = _g1 ++= 1;
+                var i1 = intf[i];
+                if ( (i1 == cl) || neko.Boot.__interfLoop(i1,cl) )
+                    return true;
+            }
+        }
+        return neko.Boot.__interfLoop(cc.__super__,cl);
+    }
+    @tmp.__instanceof = function(o,cl) {
+        if ( cl == Dynamic )
+            return true;
+        {
+            var _g = $typeof(o);
+            switch ( _g ){
+            1 => 
+                return (cl == Int) || (cl == Float)
+            2 => 
+                return (cl == Float) || ((cl == Int) && ($int(o) == o))
+            3 => 
+                return cl == Bool
+            5 => 
+                {
+                    if ( cl == null )
+                        return false;
+                    return ((neko.Boot.__interfLoop(o.__class__,cl) || (o.__enum__ == cl)) || ((cl == Class) && (o.__name__ != null))) || ((cl == Enum) && (o.__ename__ != null));
+                }
+
+            default => 
+                return false
+            }
+        }
+        return null;
+    }
+    @tmp.__init = function() {
+        $exports.__unserialize = neko.Boot.__unserialize;
+        $exports.__classes = neko.Boot.__classes;
+        return null;
+    }
+    @tmp.__enum_str = function(e) {
+        if ( e.args == null )
+            return e.tag;
+        var s = e.tag + String.new("(").__s;
+        var i = 0;
+        var l = $asize(e.args);
+        var old = e.__string;
+        e.__string = neko.Boot.__tmp_str;
+        while ( i < l ) {
+            if ( i != 0 )
+                s += String.new(",").__s;
+            try {
+                s += $string(e.args[i]);
+            }
+            catch @tmp {
+                if $typeof(@tmp) == $tstring
+                    @tmp = String.new(@tmp);
+                if true {
+                    var err = @tmp;
+                    {
+                        s += neko.Boot.__tmp_str();
+                    }
+                }
+                else
+                    $rethrow(@tmp)
+            }
+            i += 1;
+        }
+        e.__string = old;
+        return s + String.new(")").__s;
+    }
+    neko.@Boot.__class__ = neko.Boot;
+}
+{
+    var @tmp = $new(null);
+    @Std = @tmp;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    Std = @tmp;
+    @tmp.prototype = @Std;
+    @tmp.string = function(s) {
+        return String.new($string(s));
+    }
+    @tmp.is = function(v,t) {
+        return neko.Boot.__instanceof(v,t);
+    }
+    @tmp.int = function(x) {
+        if ( x < 0 )
+            return Math.ceil(x);
+        return Math.floor(x);
+    }
+    @Std.__class__ = Std;
+    @classes.Std = Std;
+}
+{
+    var @tmp = $new(null);
+    @String = @tmp;
+    @tmp.toUpperCase = function() {
+        var s = this.__s;
+        var l = this.length;
+        var s2 = $scopy(s);
+        var i = 0;
+        while ( i < l ) {
+            var c = $sget(s,i);
+            if ( (c >= 97) && (c <= 122) )
+                $sset(s2,i,(c - 97) + 65);
+            i ++= 1;
+        }
+        return String.new(s2);
+    }
+    @tmp.toString = function() {
+        return this;
+    }
+    @tmp.toLowerCase = function() {
+        var s = this.__s;
+        var l = this.length;
+        var s2 = $scopy(s);
+        var i = 0;
+        while ( i < l ) {
+            var c = $sget(s,i);
+            if ( (c >= 65) && (c <= 90) )
+                $sset(s2,i,(c - 65) + 97);
+            i ++= 1;
+        }
+        return String.new(s2);
+    }
+    @tmp.substring = function(startIndex,endIndex) {
+        if ( endIndex == null )
+            endIndex = this.length
+        else
+            if ( endIndex < 0 )
+                endIndex = 0
+            else
+                if ( endIndex > this.length )
+                    endIndex = this.length;
+
+
+        if ( startIndex < 0 )
+            startIndex = 0
+        else
+            if ( startIndex > this.length )
+                startIndex = this.length;
+
+        if ( startIndex > endIndex ) {
+            var tmp = startIndex;
+            startIndex = endIndex;
+            endIndex = tmp;
+        }
+        return this.substr(startIndex,endIndex - startIndex);
+    }
+    @tmp.substr = function(pos,len) {
+        if ( len == 0 )
+            return String.new("");
+        var sl = this.length;
+        if ( len == null )
+            len = sl;
+        if ( pos == null )
+            pos = 0;
+        if ( (pos != 0) && (len < 0) )
+            return String.new("");
+        if ( pos < 0 ) {
+            pos = (sl + pos);
+            if ( pos < 0 )
+                pos = 0;
+        }
+        else
+            if ( len < 0 )
+                len = ((sl + len) - pos);
+
+        if ( (pos + len) > sl )
+            len = (sl - pos);
+        if ( (pos < 0) || (len <= 0) )
+            return String.new("");
+        return String.new($ssub(this.__s,pos,len));
+    }
+    @tmp.split = function(delimiter) {
+        var l = String.__split(this.__s,delimiter.__s);
+        var a = Array.new();
+        if ( l == null ) {
+            a.push(String.new(""));
+            return a;
+        }
+        do  {
+            a.push(String.new(l[0]));
+            l = l[1];
+        }
+        while ( l != null )
+        return a;
+    }
+    @tmp.length = null;
+    @tmp.lastIndexOf = function(str,startIndex) {
+        var last = -1;
+        if ( startIndex == null )
+            startIndex = $ssize(this.__s);
+        while ( true ) {
+            var p;
+            try {
+                p = $sfind(this.__s,last + 1,str.__s);
+            }
+            catch @tmp {
+                if $typeof(@tmp) == $tstring
+                    @tmp = String.new(@tmp);
+                if true {
+                    var e = @tmp;
+                    {
+                        p = null;
+                    }
+                }
+                else
+                    $rethrow(@tmp)
+            }
+            if ( (p == null) || (p > startIndex) )
+                return last;
+            last = p;
+        }
+        return null;
+    }
+    @tmp.indexOf = function(str,startIndex) {
+        var p;
+        try {
+            p = $sfind(this.__s,if ( startIndex == null )
+                0
+            else
+                startIndex
+            ,str.__s);
+        }
+        catch @tmp {
+            if $typeof(@tmp) == $tstring
+                @tmp = String.new(@tmp);
+            if true {
+                var e = @tmp;
+                {
+                    p = null;
+                }
+            }
+            else
+                $rethrow(@tmp)
+        }
+        if ( p == null )
+            return -1;
+        return p;
+    }
+    @tmp.charCodeAt = function(index) {
+        return $sget(this.__s,index);
+    }
+    @tmp.charAt = function(index) {
+        try {
+            var s = $smake(1);
+            $sset(s,0,$sget(this.__s,index));
+            return String.new(s);
+        }
+        catch @tmp {
+            if $typeof(@tmp) == $tstring
+                @tmp = String.new(@tmp);
+            if true {
+                var e = @tmp;
+                {
+                    return String.new("");
+                }
+            }
+            else
+                $rethrow(@tmp)
+        }
+        return null;
+    }
+    @tmp.__radd = function(s) {
+        return String.new($string(s) + this.__s);
+    }
+    @tmp.__compare = function(o) {
+        return $compare(this.__s,o.__s);
+    }
+    @tmp.__add = function(s) {
+        return String.new(this.__s + $string(s));
+    }
+    @tmp.__serialize = @serialize;
+    @tmp.__string = @default__string;
+    var @tmp = $new(null);
+    String = @tmp;
+    @tmp.prototype = @String;
+    @tmp.fromCharCode = function(code) {
+        var s = $smake(1);
+        $sset(s,0,code);
+        return String.new(s);
+    }
+    @tmp.__split = $loader.loadprim(("std" + "@") + "string_split",2);
+    @tmp.__is_String = null;
+    @tmp.__construct__ = function(string) {
+        if ( $typeof(string) != $tstring )
+            string = $string(string);
+        this.__s = string;
+        this.length = $ssize(string);
+        return null;
+    }
+    @tmp.new = function(string) {
+        var @o = $new(null);
+        $objsetproto(@o,@String);
+        $call(this.__construct__,@o,$array(string));
+        return @o;
+    }
+    @String.__class__ = String;
+    @classes.String = String;
+}
+{
+    var @tmp = $new(null);
+    @StringBuf = @tmp;
+    @tmp.b = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    StringBuf = @tmp;
+    @tmp.prototype = @StringBuf;
+    @tmp.__to_string = $loader.loadprim(("std" + "@") + "buffer_string",1);
+    @tmp.__make = $loader.loadprim(("std" + "@") + "buffer_new",0);
+    @tmp.__add_sub = $loader.loadprim(("std" + "@") + "buffer_add_sub",4);
+    @tmp.__add_char = $loader.loadprim(("std" + "@") + "buffer_add_char",2);
+    @tmp.__add = $loader.loadprim(("std" + "@") + "buffer_add",2);
+    @tmp.__construct__ = function() {
+        this.b = StringBuf.__make();
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,@StringBuf);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @StringBuf.__class__ = StringBuf;
+    @classes.StringBuf = StringBuf;
+}
+{
+    var @tmp = $new(null);
+    @StringTools = @tmp;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    StringTools = @tmp;
+    @tmp.prototype = @StringTools;
+    @tmp.trim = function(s) {
+        return StringTools.ltrim(StringTools.rtrim(s));
+    }
+    @tmp.startsWith = function(s,start) {
+        return (s.length >= start.length) && (s.substr(0,start.length) == start);
+    }
+    @tmp.rtrim = function(s) {
+        var l = s.length;
+        var r = 0;
+        while ( (r < l) && StringTools.isSpace(s,(l - r) - 1) )
+            r ++= 1
+        if ( r > 0 )
+            return s.substr(0,l - r)
+        else
+            return s
+        return null;
+    }
+    @tmp.ltrim = function(s) {
+        var l = s.length;
+        var r = 0;
+        while ( (r < l) && StringTools.isSpace(s,r) )
+            r ++= 1
+        if ( r > 0 )
+            return s.substr(r,l - r)
+        else
+            return s
+        return null;
+    }
+    @tmp.isSpace = function(s,pos) {
+        var c = s.charCodeAt(pos);
+        return ((c > 8) && (c < 14)) || (c == 32);
+    }
+    @tmp.htmlEscape = function(s,quotes) {
+        s = s.split(String.new("&")).join(String.new("&amp;")).split(String.new("<")).join(String.new("&lt;")).split(String.new(">")).join(String.new("&gt;"));
+        if ( quotes )
+            return s.split(String.new("\"")).join(String.new("&quot;")).split(String.new("'")).join(String.new("&#039;"))
+        else
+            return s
+        return null;
+    }
+    @tmp.endsWith = function(s,end) {
+        var elen = end.length;
+        var slen = s.length;
+        return (slen >= elen) && (s.substr(slen - elen,elen) == end);
+    }
+    @StringTools.__class__ = StringTools;
+    @classes.StringTools = StringTools;
+}
+{
+    XmlType = $new(null);
+    XmlType = XmlType;
+    XmlType.prototype = {
+        __enum__ => XmlType, 
+        __serialize => @serialize, 
+        __string => @enum_to_string
+
+    };
+    @classes.XmlType = XmlType;
+}
+{
+    var @tmp = $new(null);
+    @Xml = @tmp;
+    @tmp.nodeType = null;
+    @tmp.get_nodeValue = function() {
+        if ( (this.nodeType == Xml.Element) || (this.nodeType == Xml.Document) )
+            $throw(String.new("bad nodeType"));
+        return this._nodeValue;
+    }
+    @tmp.get_nodeName = function() {
+        if ( this.nodeType != Xml.Element )
+            $throw(String.new("bad nodeType"));
+        return this._nodeName;
+    }
+    @tmp.get = function(att) {
+        if ( this.nodeType != Xml.Element )
+            $throw(String.new("bad nodeType"));
+        {
+            var o = this._attributes;
+            if ( $typeof(o) != $tobject )
+                return null
+            else
+                return $objget(o,$fasthash(att.__s))
+        }
+        return null;
+    }
+    @tmp.firstElement = function() {
+        if ( this._children == null )
+            $throw(String.new("bad nodetype"));
+        {
+            var _g1 = 0;
+            var _g = this._children.length;
+            while ( _g1 < _g ) {
+                var cur = _g1 ++= 1;
+                var n = this._children[cur];
+                if ( n.nodeType == Xml.Element )
+                    return n;
+            }
+        }
+        return null;
+    }
+    @tmp.firstChild = function() {
+        if ( this._children == null )
+            $throw(String.new("bad nodetype"));
+        return this._children[0];
+    }
+    @tmp.exists = function(att) {
+        if ( this.nodeType != Xml.Element )
+            $throw(String.new("bad nodeType"));
+        return Reflect.hasField(this._attributes,att);
+    }
+    @tmp.elementsNamed = function(name) {
+        name = $array(name);
+        {
+            if ( this._children == null )
+                $throw(String.new("bad nodetype"));
+            return {
+                cur => 0, 
+                x => this._children, 
+                hasNext => function() {
+                    var k = this.cur;
+                    var l = this.x.length;
+                    while ( k < l ) {
+                        var n = this.x[k];
+                        if ( (n.nodeType == Xml.Element) && (n._nodeName == name[0]) )
+                            break;;
+                        k ++= 1;
+                    }
+                    this.cur = k;
+                    return k < l;
+                }
+                , 
+                next => function() {
+                    var k = this.cur;
+                    var l = this.x.length;
+                    while ( k < l ) {
+                        var n = this.x[k];
+                        k ++= 1;
+                        if ( (n.nodeType == Xml.Element) && (n._nodeName == name[0]) ) {
+                            this.cur = k;
+                            return n;
+                        }
+                    }
+                    return null;
+                }
+
+
+            };
+        }
+    }
+    @tmp.elements = function() {
+        if ( this._children == null )
+            $throw(String.new("bad nodetype"));
+        return {
+            cur => 0, 
+            x => this._children, 
+            hasNext => function() {
+                var k = this.cur;
+                var l = this.x.length;
+                while ( k < l ) {
+                    if ( this.x[k].nodeType == Xml.Element )
+                        break;;
+                    k += 1;
+                }
+                this.cur = k;
+                return k < l;
+            }
+            , 
+            next => function() {
+                var k = this.cur;
+                var l = this.x.length;
+                while ( k < l ) {
+                    var n = this.x[k];
+                    k += 1;
+                    if ( n.nodeType == Xml.Element ) {
+                        this.cur = k;
+                        return n;
+                    }
+                }
+                return null;
+            }
+
+
+        };
+    }
+    @tmp.addChild = function(x) {
+        if ( this._children == null )
+            $throw(String.new("bad nodetype"));
+        if ( x._parent != null )
+            x._parent._children.remove(x);
+        x._parent = this;
+        this._children.push(x);
+        return null;
+    }
+    @tmp._parent = null;
+    @tmp._nodeValue = null;
+    @tmp._nodeName = null;
+    @tmp._children = null;
+    @tmp._attributes = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    Xml = @tmp;
+    @tmp.prototype = @Xml;
+    @tmp.parse = function(str) {
+        var x = Xml.new();
+        x._children = Array.new();
+        var parser = {
+            cur => x, 
+            xml => function(name,att) {
+                var x1 = Xml.new();
+                x1._parent = this.cur;
+                x1.nodeType = Xml.Element;
+                x1._nodeName = String.new(name);
+                x1._attributes = att;
+                x1._children = Array.new();
+                {
+                    var f = $objfields(att);
+                    var i = 0;
+                    var l = $asize(f);
+                    while ( i < l ) {
+                        $objset(att,f[i],String.new($objget(att,f[i])));
+                        i ++= 1;
+                    }
+                    this.cur.addChild(x1);
+                    this.cur = x1;
+                }
+                return null;
+            }
+            , 
+            cdata => function(text) {
+                var x1 = Xml.new();
+                x1._parent = this.cur;
+                x1.nodeType = Xml.CData;
+                x1._nodeValue = String.new(text);
+                this.cur.addChild(x1);
+                return null;
+            }
+            , 
+            pcdata => function(text) {
+                var x1 = Xml.new();
+                x1._parent = this.cur;
+                x1.nodeType = Xml.PCData;
+                x1._nodeValue = String.new(text);
+                this.cur.addChild(x1);
+                return null;
+            }
+            , 
+            comment => function(text) {
+                var x1 = Xml.new();
+                x1._parent = this.cur;
+                if ( $sget(text,0) == 63 ) {
+                    x1.nodeType = Xml.ProcessingInstruction;
+                    text = String.new(text);
+                    text = text.substr(1,text.length - 2);
+                }
+                else {
+                    x1.nodeType = Xml.Comment;
+                    text = String.new(text);
+                }
+                x1._nodeValue = text;
+                this.cur.addChild(x1);
+                return null;
+            }
+            , 
+            doctype => function(text) {
+                var x1 = Xml.new();
+                x1._parent = this.cur;
+                x1.nodeType = Xml.DocType;
+                x1._nodeValue = String.new(text).substr(1,null);
+                var p = this.cur;
+                p.addChild(x1);
+                return null;
+            }
+            , 
+            done => function() {
+                this.cur = this.cur._parent;
+                return null;
+            }
+
+
+        };
+        Xml._parse(str.__s,parser);
+        x.nodeType = Xml.Document;
+        return x;
+    }
+    @tmp._parse = $loader.loadprim(("std" + "@") + "parse_xml",2);
+    @tmp.ProcessingInstruction = null;
+    @tmp.PCData = null;
+    @tmp.Element = null;
+    @tmp.Document = null;
+    @tmp.DocType = null;
+    @tmp.Comment = null;
+    @tmp.CData = null;
+    @tmp.__construct__ = function() {
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,@Xml);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @Xml.__class__ = Xml;
+    @classes.Xml = Xml;
+}
+{
+    var @tmp = $new(null);
+    haxe.@Utf8 = @tmp;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    haxe.Utf8 = @tmp;
+    @tmp.prototype = haxe.@Utf8;
+    @tmp.utf8_buf_content = $loader.loadprim(("std" + "@") + "utf8_buf_content",1);
+    @tmp.utf8_buf_alloc = $loader.loadprim(("std" + "@") + "utf8_buf_alloc",1);
+    @tmp.utf8_buf_add = $loader.loadprim(("std" + "@") + "utf8_buf_add",2);
+    @tmp.encode = function(s) {
+        s = s.__s;
+        var sl = $ssize(s);
+        var buf = haxe.Utf8.utf8_buf_alloc(sl);
+        var i = 0;
+        while ( i < sl ) {
+            haxe.Utf8.utf8_buf_add(buf,$sget(s,i));
+            i += 1;
+        }
+        return String.new(haxe.Utf8.utf8_buf_content(buf));
+    }
+    haxe.@Utf8.__class__ = haxe.Utf8;
+}
+{
+    var @tmp = $new(null);
+    haxe.ds.@StringMap = @tmp;
+    @tmp.keys = function() {
+        var l = $array(List.new());
+        $hiter(this.h,function(k,_) {
+            l[0].push(String.new(k));
+            return null;
+        }
+        );
+        return l[0].iterator();
+    }
+    @tmp.h = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    haxe.ds.StringMap = @tmp;
+    @tmp.prototype = haxe.ds.@StringMap;
+    @tmp.__construct__ = function() {
+        this.h = $hnew(0);
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,haxe.ds.@StringMap);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__interfaces__ = $array(IMap);
+    haxe.ds.@StringMap.__class__ = haxe.ds.StringMap;
+}
+{
+    var @tmp = $new(null);
+    haxe.io.@Bytes = @tmp;
+    @tmp.length = null;
+    @tmp.b = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    haxe.io.Bytes = @tmp;
+    @tmp.prototype = haxe.io.@Bytes;
+    @tmp.__construct__ = function(length,b) {
+        this.length = length;
+        this.b = b;
+        return null;
+    }
+    @tmp.new = function(length,b) {
+        var @o = $new(null);
+        $objsetproto(@o,haxe.io.@Bytes);
+        $call(this.__construct__,@o,$array(length,b));
+        return @o;
+    }
+    haxe.io.@Bytes.__class__ = haxe.io.Bytes;
+}
+{
+    var @tmp = $new(null);
+    haxe.io.@Eof = @tmp;
+    @tmp.toString = function() {
+        return String.new("Eof");
+    }
+    @tmp.__serialize = @serialize;
+    @tmp.__string = @default__string;
+    var @tmp = $new(null);
+    haxe.io.Eof = @tmp;
+    @tmp.prototype = haxe.io.@Eof;
+    haxe.io.@Eof.__class__ = haxe.io.Eof;
+}
+{
+    @G0 = $new(null);
+    haxe.io.Error = @G0;
+    @G0.prototype = {
+        __enum__ => @G0, 
+        __serialize => @serialize, 
+        __string => @enum_to_string
+
+    };
+    @G0.Overflow = {
+        var @tmp = {
+            tag => "Overflow", 
+            index => 1, 
+            __serialize => @tag_serialize
+
+        };
+        $objsetproto(@tmp,@G0.prototype);
+        @tmp;
+    }
+    @G0.OutsideBounds = {
+        var @tmp = {
+            tag => "OutsideBounds", 
+            index => 2, 
+            __serialize => @tag_serialize
+
+        };
+        $objsetproto(@tmp,@G0.prototype);
+        @tmp;
+    }
+    @G0.Custom = function(e) {
+        var @tmp = {
+            tag => "Custom", 
+            index => 3, 
+            args => $array(e)
+
+        };
+        $objsetproto(@tmp,@G0.prototype);
+        @tmp;
+    }
+    @G0.Blocked = {
+        var @tmp = {
+            tag => "Blocked", 
+            index => 0, 
+            __serialize => @tag_serialize
+
+        };
+        $objsetproto(@tmp,@G0.prototype);
+        @tmp;
+    }
+}
+{
+    var @tmp = $new(null);
+    haxe.io.@Output = @tmp;
+    @tmp.writeString = function(s) {
+        var b = haxe.io.Bytes.new(s.length,s.__s);
+        this.writeFullBytes(b,0,b.length);
+        return null;
+    }
+    @tmp.writeFullBytes = function(s,pos,len) {
+        while ( len > 0 ) {
+            var k = this.writeBytes(s,pos,len);
+            pos += k;
+            len -= k;
+        }
+        return null;
+    }
+    @tmp.writeBytes = function(s,pos,len) {
+        var k = len;
+        var b = s.b;
+        while ( k > 0 ) {
+            this.writeByte($sget(b,pos));
+            pos ++= 1;
+            k --= 1;
+        }
+        return len;
+    }
+    @tmp.writeByte = function(c) {
+        $throw(String.new("Not implemented"));
+        return null;
+    }
+    @tmp.close = function() {
+        return null;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    haxe.io.Output = @tmp;
+    @tmp.prototype = haxe.io.@Output;
+    haxe.io.@Output.__class__ = haxe.io.Output;
+}
+{
+    var @tmp = $new(null);
+    markdown.@Node = @tmp;
+    @tmp.accept = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.Node = @tmp;
+    @tmp.prototype = markdown.@Node;
+    markdown.@Node.__class__ = markdown.Node;
+}
+{
+    var @tmp = $new(null);
+    markdown.@NodeVisitor = @tmp;
+    @tmp.visitText = null;
+    @tmp.visitElementBefore = null;
+    @tmp.visitElementAfter = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.NodeVisitor = @tmp;
+    @tmp.prototype = markdown.@NodeVisitor;
+    markdown.@NodeVisitor.__class__ = markdown.NodeVisitor;
+}
+{
+    var @tmp = $new(null);
+    markdown.@ElementNode = @tmp;
+    @tmp.tag = null;
+    @tmp.children = null;
+    @tmp.attributes = null;
+    @tmp.accept = function(visitor) {
+        if ( visitor.visitElementBefore(this) ) {
+            {
+                var _g = 0;
+                var _g1 = this.children;
+                while ( _g < _g1.length ) {
+                    var child = _g1[_g];
+                    _g += 1;
+                    child.accept(visitor);
+                }
+            }
+            visitor.visitElementAfter(this);
+        }
+        return null;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.ElementNode = @tmp;
+    @tmp.prototype = markdown.@ElementNode;
+    @tmp.text = function(tag,text) {
+        return markdown.ElementNode.new(tag,Array.new1($array(markdown.TextNode.new(text)),1));
+    }
+    @tmp.empty = function(tag) {
+        return markdown.ElementNode.new(tag,null);
+    }
+    @tmp.__construct__ = function(tag,children) {
+        this.tag = tag;
+        this.children = children;
+        this.attributes = haxe.ds.StringMap.new();
+        return null;
+    }
+    @tmp.new = function(tag,children) {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@ElementNode);
+        $call(this.__construct__,@o,$array(tag,children));
+        return @o;
+    }
+    @tmp.__interfaces__ = $array(markdown.Node);
+    markdown.@ElementNode.__class__ = markdown.ElementNode;
+}
+{
+    var @tmp = $new(null);
+    markdown.@TextNode = @tmp;
+    @tmp.text = null;
+    @tmp.accept = function(visitor) {
+        visitor.visitText(this);
+        return null;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.TextNode = @tmp;
+    @tmp.prototype = markdown.@TextNode;
+    @tmp.__construct__ = function(text) {
+        this.text = text;
+        return null;
+    }
+    @tmp.new = function(text) {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@TextNode);
+        $call(this.__construct__,@o,$array(text));
+        return @o;
+    }
+    @tmp.__interfaces__ = $array(markdown.Node);
+    markdown.@TextNode.__class__ = markdown.TextNode;
+}
+{
+    var @tmp = $new(null);
+    markdown.@BlockParser = @tmp;
+    @tmp.pos = null;
+    @tmp.matchesNext = function(ereg) {
+        if ( this.get_next() == null )
+            return false;
+        return ereg.match(this.get_next());
+    }
+    @tmp.matches = function(ereg) {
+        if ( this.pos >= this.lines.length )
+            return false;
+        return ereg.match(this.lines[this.pos]);
+    }
+    @tmp.lines = null;
+    @tmp.get_next = function() {
+        if ( this.pos >= (this.lines.length - 1) )
+            return null;
+        return this.lines[this.pos + 1];
+    }
+    @tmp.document = null;
+    @tmp.advance = function() {
+        this.pos ++= 1;
+        return null;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.BlockParser = @tmp;
+    @tmp.prototype = markdown.@BlockParser;
+    @tmp.__construct__ = function(lines,document) {
+        this.lines = lines;
+        this.document = document;
+        this.pos = 0;
+        return null;
+    }
+    @tmp.new = function(lines,document) {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@BlockParser);
+        $call(this.__construct__,@o,$array(lines,document));
+        return @o;
+    }
+    markdown.@BlockParser.__class__ = markdown.BlockParser;
+}
+{
+    var @tmp = $new(null);
+    markdown.@BlockSyntax = @tmp;
+    @tmp.parseChildLines = function(parser) {
+        var childLines = Array.new1($array(),0);
+        while ( $not(( parser.pos >= parser.lines.length )) ) {
+            if ( $not(this.get_pattern().match(parser.lines[parser.pos])) )
+                break;;
+            childLines.push(this.get_pattern().matched(1));
+            parser.advance();
+        }
+        return childLines;
+    }
+    @tmp.parse = function(parser) {
+        return null;
+    }
+    @tmp.get_pattern = function() {
+        return null;
+    }
+    @tmp.get_canEndBlock = function() {
+        return true;
+    }
+    @tmp.canParse = function(parser) {
+        return this.get_pattern().match(parser.lines[parser.pos]);
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.BlockSyntax = @tmp;
+    @tmp.prototype = markdown.@BlockSyntax;
+    @tmp.__properties__ = {
+        get_syntaxes => "get_syntaxes"
+
+    };
+    @tmp.syntaxes = null;
+    @tmp.isAtBlockEnd = function(parser) {
+        if ( parser.pos >= parser.lines.length )
+            return true;
+        {
+            var _g = 0;
+            var _g1 = markdown.BlockSyntax.get_syntaxes();
+            while ( _g < _g1.length ) {
+                var syntax = _g1[_g];
+                _g += 1;
+                if ( syntax.canParse(parser) && syntax.get_canEndBlock() )
+                    return true;
+            }
+        }
+        return false;
+    }
+    @tmp.get_syntaxes = function() {
+        if ( markdown.BlockSyntax.syntaxes == null )
+            markdown.BlockSyntax.syntaxes = Array.new1($array(markdown.EmptyBlockSyntax.new(),markdown.BlockHtmlSyntax.new(),markdown.SetextHeaderSyntax.new(),markdown.HeaderSyntax.new(),markdown.CodeBlockSyntax.new(),markdown.GitHubCodeBlockSyntax.new(),markdown.BlockquoteSyntax.new(),markdown.HorizontalRuleSyntax.new(),markdown.UnorderedListSyntax.new(),markdown.OrderedListSyntax.new(),markdown.ParagraphSyntax.new()),11);
+        return markdown.BlockSyntax.syntaxes;
+    }
+    @tmp.RE_UL = null;
+    @tmp.RE_SETEXT = null;
+    @tmp.RE_OL = null;
+    @tmp.RE_INDENT = null;
+    @tmp.RE_HTML = null;
+    @tmp.RE_HR = null;
+    @tmp.RE_HEADER = null;
+    @tmp.RE_EMPTY = null;
+    @tmp.RE_CODE = null;
+    @tmp.RE_BLOCKQUOTE = null;
+    @tmp.__construct__ = function() {
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@BlockSyntax);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    markdown.@BlockSyntax.__class__ = markdown.BlockSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@EmptyBlockSyntax = @tmp;
+    @tmp.parse = function(parser) {
+        parser.advance();
+        return null;
+    }
+    @tmp.get_pattern = function() {
+        return markdown.BlockSyntax.RE_EMPTY;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.EmptyBlockSyntax = @tmp;
+    @tmp.prototype = markdown.@EmptyBlockSyntax;
+    @tmp.__construct__ = function() {
+        $call(markdown.BlockSyntax.__construct__,this,$array());
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@EmptyBlockSyntax);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__super__ = markdown.BlockSyntax;
+    $objsetproto(markdown.@EmptyBlockSyntax,markdown.@BlockSyntax);
+    markdown.@EmptyBlockSyntax.__class__ = markdown.EmptyBlockSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@SetextHeaderSyntax = @tmp;
+    @tmp.parse = function(parser) {
+        var re = markdown.BlockSyntax.RE_SETEXT;
+        re.match(parser.get_next());
+        var tag;
+        if ( re.matched(1).charAt(0) == String.new("=") )
+            tag = String.new("h1")
+        else
+            tag = String.new("h2")
+        var contents = parser.document.parseInline(parser.lines[parser.pos]);
+        parser.advance();
+        parser.advance();
+        return markdown.ElementNode.new(tag,contents);
+    }
+    @tmp.canParse = function(parser) {
+        return parser.matchesNext(markdown.BlockSyntax.RE_SETEXT);
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.SetextHeaderSyntax = @tmp;
+    @tmp.prototype = markdown.@SetextHeaderSyntax;
+    @tmp.__construct__ = function() {
+        $call(markdown.BlockSyntax.__construct__,this,$array());
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@SetextHeaderSyntax);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__super__ = markdown.BlockSyntax;
+    $objsetproto(markdown.@SetextHeaderSyntax,markdown.@BlockSyntax);
+    markdown.@SetextHeaderSyntax.__class__ = markdown.SetextHeaderSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@HeaderSyntax = @tmp;
+    @tmp.parse = function(parser) {
+        this.get_pattern().match(parser.lines[parser.pos]);
+        parser.advance();
+        var level = this.get_pattern().matched(1).length;
+        var contents = parser.document.parseInline(StringTools.trim(this.get_pattern().matched(2)));
+        return markdown.ElementNode.new(String.new("h") + level,contents);
+    }
+    @tmp.get_pattern = function() {
+        return markdown.BlockSyntax.RE_HEADER;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.HeaderSyntax = @tmp;
+    @tmp.prototype = markdown.@HeaderSyntax;
+    @tmp.__construct__ = function() {
+        $call(markdown.BlockSyntax.__construct__,this,$array());
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@HeaderSyntax);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__super__ = markdown.BlockSyntax;
+    $objsetproto(markdown.@HeaderSyntax,markdown.@BlockSyntax);
+    markdown.@HeaderSyntax.__class__ = markdown.HeaderSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@BlockquoteSyntax = @tmp;
+    @tmp.parse = function(parser) {
+        var childLines = this.parseChildLines(parser);
+        var children = parser.document.parseLines(childLines);
+        return markdown.ElementNode.new(String.new("blockquote"),children);
+    }
+    @tmp.get_pattern = function() {
+        return markdown.BlockSyntax.RE_BLOCKQUOTE;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.BlockquoteSyntax = @tmp;
+    @tmp.prototype = markdown.@BlockquoteSyntax;
+    @tmp.__construct__ = function() {
+        $call(markdown.BlockSyntax.__construct__,this,$array());
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@BlockquoteSyntax);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__super__ = markdown.BlockSyntax;
+    $objsetproto(markdown.@BlockquoteSyntax,markdown.@BlockSyntax);
+    markdown.@BlockquoteSyntax.__class__ = markdown.BlockquoteSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@CodeBlockSyntax = @tmp;
+    @tmp.parseChildLines = function(parser) {
+        var childLines = Array.new1($array(),0);
+        while ( $not(( parser.pos >= parser.lines.length )) )
+            if ( this.get_pattern().match(parser.lines[parser.pos]) ) {
+                childLines.push(this.get_pattern().matched(1));
+                parser.advance();
+            }
+            else {
+                var nextMatch;
+                if ( parser.get_next() != null )
+                    nextMatch = this.get_pattern().match(parser.get_next())
+                else
+                    nextMatch = false
+                if ( (StringTools.trim(parser.lines[parser.pos]) == String.new("")) && nextMatch ) {
+                    childLines.push(String.new(""));
+                    childLines.push(this.get_pattern().matched(1));
+                    parser.advance();
+                    parser.advance();
+                }
+                else
+                    break;
+            }
+
+        return childLines;
+    }
+    @tmp.parse = function(parser) {
+        var childLines = this.parseChildLines(parser);
+        childLines.push(String.new(""));
+        var escaped = StringTools.htmlEscape(childLines.join(String.new("\n")),null);
+        return markdown.ElementNode.new(String.new("pre"),Array.new1($array(markdown.ElementNode.text(String.new("code"),escaped)),1));
+    }
+    @tmp.get_pattern = function() {
+        return markdown.BlockSyntax.RE_INDENT;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.CodeBlockSyntax = @tmp;
+    @tmp.prototype = markdown.@CodeBlockSyntax;
+    @tmp.__construct__ = function() {
+        $call(markdown.BlockSyntax.__construct__,this,$array());
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@CodeBlockSyntax);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__super__ = markdown.BlockSyntax;
+    $objsetproto(markdown.@CodeBlockSyntax,markdown.@BlockSyntax);
+    markdown.@CodeBlockSyntax.__class__ = markdown.CodeBlockSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@GitHubCodeBlockSyntax = @tmp;
+    @tmp.parseChildLines = function(parser) {
+        var childLines = Array.new1($array(),0);
+        parser.advance();
+        while ( $not(( parser.pos >= parser.lines.length )) )
+            if ( $not(this.get_pattern().match(parser.lines[parser.pos])) ) {
+                childLines.push(parser.lines[parser.pos]);
+                parser.advance();
+            }
+            else {
+                parser.advance();
+                break;;
+            }
+
+        return childLines;
+    }
+    @tmp.parse = function(parser) {
+        var syntax = this.get_pattern().matched(1);
+        var childLines = this.parseChildLines(parser);
+        return markdown.ElementNode.new(String.new("pre"),Array.new1($array(markdown.ElementNode.text(String.new("code"),StringTools.htmlEscape(childLines.join(String.new("\n")),null))),1));
+    }
+    @tmp.get_pattern = function() {
+        return markdown.BlockSyntax.RE_CODE;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.GitHubCodeBlockSyntax = @tmp;
+    @tmp.prototype = markdown.@GitHubCodeBlockSyntax;
+    @tmp.__construct__ = function() {
+        $call(markdown.BlockSyntax.__construct__,this,$array());
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@GitHubCodeBlockSyntax);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__super__ = markdown.BlockSyntax;
+    $objsetproto(markdown.@GitHubCodeBlockSyntax,markdown.@BlockSyntax);
+    markdown.@GitHubCodeBlockSyntax.__class__ = markdown.GitHubCodeBlockSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@HorizontalRuleSyntax = @tmp;
+    @tmp.parse = function(parser) {
+        parser.advance();
+        return markdown.ElementNode.empty(String.new("hr"));
+    }
+    @tmp.get_pattern = function() {
+        return markdown.BlockSyntax.RE_HR;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.HorizontalRuleSyntax = @tmp;
+    @tmp.prototype = markdown.@HorizontalRuleSyntax;
+    @tmp.__construct__ = function() {
+        $call(markdown.BlockSyntax.__construct__,this,$array());
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@HorizontalRuleSyntax);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__super__ = markdown.BlockSyntax;
+    $objsetproto(markdown.@HorizontalRuleSyntax,markdown.@BlockSyntax);
+    markdown.@HorizontalRuleSyntax.__class__ = markdown.HorizontalRuleSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@BlockHtmlSyntax = @tmp;
+    @tmp.parse = function(parser) {
+        var childLines = Array.new1($array(),0);
+        while ( $not(( parser.pos >= parser.lines.length )) && $not(parser.matches(markdown.BlockSyntax.RE_EMPTY)) ) {
+            childLines.push(parser.lines[parser.pos]);
+            parser.advance();
+        }
+        return markdown.TextNode.new(childLines.join(String.new("\n")));
+    }
+    @tmp.get_pattern = function() {
+        return markdown.BlockSyntax.RE_HTML;
+    }
+    @tmp.get_canEndBlock = function() {
+        return false;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.BlockHtmlSyntax = @tmp;
+    @tmp.prototype = markdown.@BlockHtmlSyntax;
+    @tmp.__construct__ = function() {
+        $call(markdown.BlockSyntax.__construct__,this,$array());
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@BlockHtmlSyntax);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__super__ = markdown.BlockSyntax;
+    $objsetproto(markdown.@BlockHtmlSyntax,markdown.@BlockSyntax);
+    markdown.@BlockHtmlSyntax.__class__ = markdown.BlockHtmlSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@ListItem = @tmp;
+    @tmp.lines = null;
+    @tmp.forceBlock = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.ListItem = @tmp;
+    @tmp.prototype = markdown.@ListItem;
+    @tmp.__construct__ = function(lines) {
+        this.forceBlock = false;
+        this.lines = lines;
+        return null;
+    }
+    @tmp.new = function(lines) {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@ListItem);
+        $call(this.__construct__,@o,$array(lines));
+        return @o;
+    }
+    markdown.@ListItem.__class__ = markdown.ListItem;
+}
+{
+    var @tmp = $new(null);
+    markdown.@ParagraphSyntax = @tmp;
+    @tmp.parse = function(parser) {
+        var childLines = Array.new1($array(),0);
+        while ( $not(markdown.BlockSyntax.isAtBlockEnd(parser)) ) {
+            childLines.push(parser.lines[parser.pos]);
+            parser.advance();
+        }
+        var contents = parser.document.parseInline(childLines.join(String.new("\n")));
+        return markdown.ElementNode.new(String.new("p"),contents);
+    }
+    @tmp.get_canEndBlock = function() {
+        return false;
+    }
+    @tmp.canParse = function(parser) {
+        return true;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.ParagraphSyntax = @tmp;
+    @tmp.prototype = markdown.@ParagraphSyntax;
+    @tmp.__construct__ = function() {
+        $call(markdown.BlockSyntax.__construct__,this,$array());
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@ParagraphSyntax);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__super__ = markdown.BlockSyntax;
+    $objsetproto(markdown.@ParagraphSyntax,markdown.@BlockSyntax);
+    markdown.@ParagraphSyntax.__class__ = markdown.ParagraphSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@ListSyntax = @tmp;
+    @tmp.parse = function(parser) {
+        parser = $array(parser);
+        {
+            var items = $array(Array.new1($array(),0));
+            var childLines = $array(Array.new1($array(),0));
+            var endItem = function() {
+                if ( childLines[0].length > 0 ) {
+                    items[0].push(markdown.ListItem.new(childLines[0]));
+                    childLines[0] = Array.new1($array(),0);
+                }
+                return null;
+            }
+            ;
+            var match = $array(null);
+            var tryMatch = function(pattern) {
+                match[0] = pattern;
+                return pattern.match(parser[0].lines[parser[0].pos]);
+            }
+            ;
+            var afterEmpty = false;
+            while ( $not(( parser[0].pos >= parser[0].lines.length )) ) {
+                if ( tryMatch(markdown.BlockSyntax.RE_EMPTY) )
+                    childLines[0].push(String.new(""))
+                else
+                    if ( tryMatch(markdown.BlockSyntax.RE_UL) || tryMatch(markdown.BlockSyntax.RE_OL) ) {
+                        endItem();
+                        childLines[0].push(match[0].matched(1));
+                    }
+                    else
+                        if ( tryMatch(markdown.BlockSyntax.RE_INDENT) )
+                            childLines[0].push(match[0].matched(1))
+                        else
+                            if ( markdown.BlockSyntax.isAtBlockEnd(parser[0]) )
+                                break;
+                            else {
+                                if ( (childLines[0].length > 0) && (childLines[0][childLines[0].length - 1] == String.new("")) )
+                                    break;;
+                                childLines[0].push(parser[0].lines[parser[0].pos]);
+                            }
+
+
+
+                parser[0].advance();
+            }
+            endItem();
+            {
+                var _g1 = 0;
+                var _g = items[0].length;
+                while ( _g1 < _g ) {
+                    var i = _g1 ++= 1;
+                    var len = items[0][i].lines.length;
+                    {
+                        var _g3 = 1;
+                        var _g2 = len + 1;
+                        while ( _g3 < _g2 ) {
+                            var jj = _g3 ++= 1;
+                            var j = len - jj;
+                            if ( markdown.BlockSyntax.RE_EMPTY.match(items[0][i].lines[j]) ) {
+                                if ( i < (items[0].length - 1) ) {
+                                    items[0][i].forceBlock = true;
+                                    items[0][i + 1].forceBlock = true;
+                                }
+                                items[0][i].lines.pop();
+                            }
+                            else
+                                break;
+                        }
+                    }
+                }
+            }
+            var itemNodes = Array.new1($array(),0);
+            {
+                var _g = 0;
+                while ( _g < items[0].length ) {
+                    var item = items[0][_g];
+                    _g += 1;
+                    var blockItem = item.forceBlock || (item.lines.length > 1);
+                    var blocksInList = Array.new1($array(markdown.BlockSyntax.RE_BLOCKQUOTE,markdown.BlockSyntax.RE_HEADER,markdown.BlockSyntax.RE_HR,markdown.BlockSyntax.RE_INDENT,markdown.BlockSyntax.RE_UL,markdown.BlockSyntax.RE_OL),6);
+                    if ( $not(blockItem) ) {
+                        var _g1 = 0;
+                        while ( _g1 < blocksInList.length ) {
+                            var pattern = blocksInList[_g1];
+                            _g1 += 1;
+                            if ( pattern.match(item.lines[0]) ) {
+                                blockItem = true;
+                                break;;
+                            }
+                        }
+                    }
+                    if ( blockItem ) {
+                        var children = parser[0].document.parseLines(item.lines);
+                        itemNodes.push(markdown.ElementNode.new(String.new("li"),children));
+                    }
+                    else {
+                        var contents = parser[0].document.parseInline(item.lines[0]);
+                        itemNodes.push(markdown.ElementNode.new(String.new("li"),contents));
+                    }
+                }
+            }
+            return markdown.ElementNode.new(this.listTag,itemNodes);
+        }
+    }
+    @tmp.listTag = null;
+    @tmp.get_canEndBlock = function() {
+        return false;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.ListSyntax = @tmp;
+    @tmp.prototype = markdown.@ListSyntax;
+    @tmp.__construct__ = function(listTag) {
+        $call(markdown.BlockSyntax.__construct__,this,$array());
+        this.listTag = listTag;
+        return null;
+    }
+    @tmp.new = function(listTag) {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@ListSyntax);
+        $call(this.__construct__,@o,$array(listTag));
+        return @o;
+    }
+    @tmp.__super__ = markdown.BlockSyntax;
+    $objsetproto(markdown.@ListSyntax,markdown.@BlockSyntax);
+    markdown.@ListSyntax.__class__ = markdown.ListSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@UnorderedListSyntax = @tmp;
+    @tmp.get_pattern = function() {
+        return markdown.BlockSyntax.RE_UL;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.UnorderedListSyntax = @tmp;
+    @tmp.prototype = markdown.@UnorderedListSyntax;
+    @tmp.__construct__ = function() {
+        $call(markdown.ListSyntax.__construct__,this,$array(String.new("ul")));
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@UnorderedListSyntax);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__super__ = markdown.ListSyntax;
+    $objsetproto(markdown.@UnorderedListSyntax,markdown.@ListSyntax);
+    markdown.@UnorderedListSyntax.__class__ = markdown.UnorderedListSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@OrderedListSyntax = @tmp;
+    @tmp.get_pattern = function() {
+        return markdown.BlockSyntax.RE_OL;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.OrderedListSyntax = @tmp;
+    @tmp.prototype = markdown.@OrderedListSyntax;
+    @tmp.__construct__ = function() {
+        $call(markdown.ListSyntax.__construct__,this,$array(String.new("ol")));
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@OrderedListSyntax);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__super__ = markdown.ListSyntax;
+    $objsetproto(markdown.@OrderedListSyntax,markdown.@ListSyntax);
+    markdown.@OrderedListSyntax.__class__ = markdown.OrderedListSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@HtmlRenderer = @tmp;
+    @tmp.visitText = function(text) {
+        StringBuf.__add(this.buffer.b,text.text);
+        return null;
+    }
+    @tmp.visitElementBefore = function(element) {
+        if ( (String.new(StringBuf.__to_string(this.buffer.b)) != String.new("")) && markdown.HtmlRenderer.BLOCK_TAGS.match(element.tag) )
+            StringBuf.__add(this.buffer.b,String.new("\n"));
+        StringBuf.__add(this.buffer.b,String.new("<") + element.tag);
+        var attributeNames;
+        {
+            var _g = Array.new1($array(),0);
+            {
+                var @tmp = element.attributes.keys();
+                while @tmp.hasNext() {
+                    var k = @tmp.next();
+                    _g.push(k);
+                }
+            }
+            attributeNames = _g;
+        }
+        attributeNames.sort(Reflect.compare);
+        {
+            var _g1 = 0;
+            while ( _g1 < attributeNames.length ) {
+                var name = attributeNames[_g1];
+                _g1 += 1;
+                {
+                    var x = (((String.new(" ") + name) + String.new("=\"")) + $hget(element.attributes.h,name.__s,null)) + String.new("\"");
+                    StringBuf.__add(this.buffer.b,x);
+                }
+            }
+        }
+        if ( element.children == null ) {
+            StringBuf.__add(this.buffer.b,String.new(" />"));
+            return false;
+        }
+        else {
+            StringBuf.__add(this.buffer.b,String.new(">"));
+            return true;
+        }
+        return null;
+    }
+    @tmp.visitElementAfter = function(element) {
+        StringBuf.__add(this.buffer.b,(String.new("</") + element.tag) + String.new(">"));
+        return null;
+    }
+    @tmp.render = function(nodes) {
+        this.buffer = StringBuf.new();
+        {
+            var _g = 0;
+            while ( _g < nodes.length ) {
+                var node = nodes[_g];
+                _g += 1;
+                node.accept(this);
+            }
+        }
+        return String.new(StringBuf.__to_string(this.buffer.b));
+    }
+    @tmp.buffer = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.HtmlRenderer = @tmp;
+    @tmp.prototype = markdown.@HtmlRenderer;
+    @tmp.BLOCK_TAGS = null;
+    @tmp.__construct__ = function() {
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@HtmlRenderer);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__interfaces__ = $array(markdown.NodeVisitor);
+    markdown.@HtmlRenderer.__class__ = markdown.HtmlRenderer;
+}
+{
+    var @tmp = $new(null);
+    markdown.@InlineSyntax = @tmp;
+    @tmp.tryMatch = function(parser) {
+        if ( this.pattern.match(parser.get_currentSource()) && (this.pattern.matchedPos().pos == 0) ) {
+            parser.writeText();
+            if ( this.onMatch(parser) )
+                parser.consume(this.pattern.matched(0).length);
+            return true;
+        }
+        return false;
+    }
+    @tmp.pattern = null;
+    @tmp.onMatch = function(parser) {
+        return false;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.InlineSyntax = @tmp;
+    @tmp.prototype = markdown.@InlineSyntax;
+    @tmp.__construct__ = function(pattern) {
+        this.pattern = EReg.new(pattern,String.new("m"));
+        return null;
+    }
+    @tmp.new = function(pattern) {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@InlineSyntax);
+        $call(this.__construct__,@o,$array(pattern));
+        return @o;
+    }
+    markdown.@InlineSyntax.__class__ = markdown.InlineSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@TextSyntax = @tmp;
+    @tmp.substitute = null;
+    @tmp.onMatch = function(parser) {
+        if ( this.substitute == null ) {
+            parser.advanceBy(this.pattern.matched(0).length);
+            return false;
+        }
+        parser.addNode(markdown.TextNode.new(this.substitute));
+        return true;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.TextSyntax = @tmp;
+    @tmp.prototype = markdown.@TextSyntax;
+    @tmp.__construct__ = function(pattern,substitute) {
+        $call(markdown.InlineSyntax.__construct__,this,$array(pattern));
+        this.substitute = substitute;
+        return null;
+    }
+    @tmp.new = function(pattern,substitute) {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@TextSyntax);
+        $call(this.__construct__,@o,$array(pattern,substitute));
+        return @o;
+    }
+    @tmp.__super__ = markdown.InlineSyntax;
+    $objsetproto(markdown.@TextSyntax,markdown.@InlineSyntax);
+    markdown.@TextSyntax.__class__ = markdown.TextSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@AutolinkSyntax = @tmp;
+    @tmp.onMatch = function(parser) {
+        var url = this.pattern.matched(1);
+        var anchor = markdown.ElementNode.text(String.new("a"),StringTools.htmlEscape(url,null));
+        $hset(anchor.attributes.h,String.new("href").__s,url,null);
+        parser.addNode(anchor);
+        return true;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.AutolinkSyntax = @tmp;
+    @tmp.prototype = markdown.@AutolinkSyntax;
+    @tmp.__construct__ = function() {
+        $call(markdown.InlineSyntax.__construct__,this,$array(String.new("<((http|https|ftp)://[^>]*)>")));
+        return null;
+    }
+    @tmp.new = function() {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@AutolinkSyntax);
+        $call(this.__construct__,@o,$array());
+        return @o;
+    }
+    @tmp.__super__ = markdown.InlineSyntax;
+    $objsetproto(markdown.@AutolinkSyntax,markdown.@InlineSyntax);
+    markdown.@AutolinkSyntax.__class__ = markdown.AutolinkSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@TagSyntax = @tmp;
+    @tmp.tag = null;
+    @tmp.onMatchEnd = function(parser,state) {
+        parser.addNode(markdown.ElementNode.new(this.tag,state.children));
+        return true;
+    }
+    @tmp.onMatch = function(parser) {
+        parser.stack.push(markdown.TagState.new(parser.pos,parser.pos + this.pattern.matched(0).length,this));
+        return true;
+    }
+    @tmp.endPattern = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.TagSyntax = @tmp;
+    @tmp.prototype = markdown.@TagSyntax;
+    @tmp.__construct__ = function(pattern,tag,end) {
+        $call(markdown.InlineSyntax.__construct__,this,$array(pattern));
+        this.tag = tag;
+        this.endPattern = EReg.new(if ( end == null )
+            pattern
+        else
+            end
+        ,String.new("m"));
+        return null;
+    }
+    @tmp.new = function(pattern,tag,end) {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@TagSyntax);
+        $call(this.__construct__,@o,$array(pattern,tag,end));
+        return @o;
+    }
+    @tmp.__super__ = markdown.InlineSyntax;
+    $objsetproto(markdown.@TagSyntax,markdown.@InlineSyntax);
+    markdown.@TagSyntax.__class__ = markdown.TagSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@LinkSyntax = @tmp;
+    @tmp.onMatchEnd = function(parser,state) {
+        var url;
+        var title;
+        if ( (this.endPattern.matched(1) == null) || (this.endPattern.matched(1) == String.new("")) ) {
+            if ( this.linkResolver == null )
+                return false;
+            if ( state.children.length != 1 )
+                return false;
+            if ( $not(Std.is(state.children[0],markdown.TextNode)) )
+                return false;
+            var link = state.children[0];
+            var node = this.linkResolver(link.text);
+            if ( node == null )
+                return false;
+            parser.addNode(node);
+            return true;
+        }
+        if ( (this.endPattern.matched(3) != null) && (this.endPattern.matched(3) != String.new("")) ) {
+            url = this.endPattern.matched(3);
+            title = this.endPattern.matched(4);
+            if ( StringTools.startsWith(url,String.new("<")) && StringTools.endsWith(url,String.new(">")) )
+                url = url.substring(1,url.length - 1);
+        }
+        else {
+            var id = this.endPattern.matched(2);
+            if ( id == String.new("") )
+                id = parser.source.substring(state.startPos + 1,parser.pos);
+            id = id.toLowerCase();
+            var link = $hget(parser.document.refLinks.h,id.__s,null);
+            if ( link == null )
+                return false;
+            url = link.url;
+            title = link.title;
+        }
+        var anchor = markdown.ElementNode.new(String.new("a"),state.children);
+        {
+            var value = StringTools.htmlEscape(url,null);
+            $hset(anchor.attributes.h,String.new("href").__s,value,null);
+        }
+        if ( (title != null) && (title != String.new("")) ) {
+            var value = StringTools.htmlEscape(title,null);
+            $hset(anchor.attributes.h,String.new("title").__s,value,null);
+        }
+        parser.addNode(anchor);
+        return true;
+    }
+    @tmp.linkResolver = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.LinkSyntax = @tmp;
+    @tmp.prototype = markdown.@LinkSyntax;
+    @tmp.linkPattern = null;
+    @tmp.__construct__ = function(linkResolver) {
+        $call(markdown.TagSyntax.__construct__,this,$array(String.new("\\["),null,markdown.LinkSyntax.linkPattern));
+        this.linkResolver = linkResolver;
+        return null;
+    }
+    @tmp.new = function(linkResolver) {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@LinkSyntax);
+        $call(this.__construct__,@o,$array(linkResolver));
+        return @o;
+    }
+    @tmp.__super__ = markdown.TagSyntax;
+    $objsetproto(markdown.@LinkSyntax,markdown.@TagSyntax);
+    markdown.@LinkSyntax.__class__ = markdown.LinkSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@CodeSyntax = @tmp;
+    @tmp.onMatch = function(parser) {
+        parser.addNode(markdown.ElementNode.text(String.new("code"),StringTools.htmlEscape(this.pattern.matched(1),null)));
+        return true;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.CodeSyntax = @tmp;
+    @tmp.prototype = markdown.@CodeSyntax;
+    @tmp.__construct__ = function(pattern) {
+        $call(markdown.InlineSyntax.__construct__,this,$array(pattern));
+        return null;
+    }
+    @tmp.new = function(pattern) {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@CodeSyntax);
+        $call(this.__construct__,@o,$array(pattern));
+        return @o;
+    }
+    @tmp.__super__ = markdown.InlineSyntax;
+    $objsetproto(markdown.@CodeSyntax,markdown.@InlineSyntax);
+    markdown.@CodeSyntax.__class__ = markdown.CodeSyntax;
+}
+{
+    var @tmp = $new(null);
+    markdown.@InlineParser = @tmp;
+    @tmp.writeTextRange = function(start,end) {
+        if ( end > start ) {
+            var text = this.source.substring(start,end);
+            var nodes = this.stack[this.stack.length - 1].children;
+            if ( (nodes.length > 0) && Std.is(nodes[nodes.length - 1],markdown.TextNode) ) {
+                var lastNode = nodes[nodes.length - 1];
+                var newNode = markdown.TextNode.new((String.new("") + lastNode.text) + text);
+                nodes[nodes.length - 1] = newNode;
+            }
+            else
+                nodes.push(markdown.TextNode.new(text))
+        }
+        return null;
+    }
+    @tmp.writeText = function() {
+        this.writeTextRange(this.start,this.pos);
+        this.start = this.pos;
+        return null;
+    }
+    @tmp.syntaxes = null;
+    @tmp.start = null;
+    @tmp.stack = null;
+    @tmp.source = null;
+    @tmp.pos = null;
+    @tmp.parse = function() {
+        this.stack.push(markdown.TagState.new(0,0,null));
+        while ( $not(this.get_isDone()) ) {
+            var matched = false;
+            {
+                var _g1 = 1;
+                var _g = this.stack.length;
+                while ( _g1 < _g ) {
+                    var i = _g1 ++= 1;
+                    if ( this.stack[this.stack.length - i].tryMatch(this) ) {
+                        matched = true;
+                        break;;
+                    }
+                }
+            }
+            if ( matched )
+                continue;
+            {
+                var _g = 0;
+                var _g1 = this.syntaxes;
+                while ( _g < _g1.length ) {
+                    var syntax = _g1[_g];
+                    _g += 1;
+                    if ( syntax.tryMatch(this) ) {
+                        matched = true;
+                        break;;
+                    }
+                }
+            }
+            if ( matched )
+                continue;
+            this.advanceBy(1);
+        }
+        return this.stack[0].close(this);
+    }
+    @tmp.get_isDone = function() {
+        return this.pos == this.source.length;
+    }
+    @tmp.get_currentSource = function() {
+        return this.source.substring(this.pos,this.source.length);
+    }
+    @tmp.document = null;
+    @tmp.consume = function(length) {
+        this.pos += length;
+        this.start = this.pos;
+        return null;
+    }
+    @tmp.advanceBy = function(length) {
+        this.pos += length;
+        return null;
+    }
+    @tmp.addNode = function(node) {
+        this.stack[this.stack.length - 1].children.push(node);
+        return null;
+    }
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.InlineParser = @tmp;
+    @tmp.prototype = markdown.@InlineParser;
+    @tmp.defaultSyntaxes = null;
+    @tmp.__construct__ = function(source,document) {
+        this.start = 0;
+        this.pos = 0;
+        this.source = source;
+        this.document = document;
+        this.stack = Array.new1($array(),0);
+        if ( document.inlineSyntaxes != null ) {
+            this.syntaxes = Array.new1($array(),0);
+            {
+                var _g = 0;
+                var _g1 = document.inlineSyntaxes;
+                while ( _g < _g1.length ) {
+                    var syntax = _g1[_g];
+                    _g += 1;
+                    this.syntaxes.push(syntax);
+                }
+            }
+            {
+                var _g = 0;
+                var _g1 = markdown.InlineParser.defaultSyntaxes;
+                while ( _g < _g1.length ) {
+                    var syntax = _g1[_g];
+                    _g += 1;
+                    this.syntaxes.push(syntax);
+                }
+            }
+        }
+        else
+            this.syntaxes = markdown.InlineParser.defaultSyntaxes
+        this.syntaxes.insert(1,markdown.LinkSyntax.new(document.linkResolver));
+        return null;
+    }
+    @tmp.new = function(source,document) {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@InlineParser);
+        $call(this.__construct__,@o,$array(source,document));
+        return @o;
+    }
+    markdown.@InlineParser.__class__ = markdown.InlineParser;
+}
+{
+    var @tmp = $new(null);
+    markdown.@TagState = @tmp;
+    @tmp.tryMatch = function(parser) {
+        if ( this.syntax.endPattern.match(parser.get_currentSource()) && (this.syntax.endPattern.matchedPos().pos == 0) ) {
+            this.close(parser);
+            return true;
+        }
+        return false;
+    }
+    @tmp.syntax = null;
+    @tmp.startPos = null;
+    @tmp.endPos = null;
+    @tmp.close = function(parser) {
+        var index = Lambda.indexOf(parser.stack,this);
+        var unmatchedTags = parser.stack.splice(index + 1,parser.stack.length - index);
+        {
+            var _g = 0;
+            while ( _g < unmatchedTags.length ) {
+                var unmatched = unmatchedTags[_g];
+                _g += 1;
+                parser.writeTextRange(unmatched.startPos,unmatched.endPos);
+                {
+                    var _g1 = 0;
+                    var _g2 = unmatched.children;
+                    while ( _g1 < _g2.length ) {
+                        var child = _g2[_g1];
+                        _g1 += 1;
+                        this.children.push(child);
+                    }
+                }
+            }
+        }
+        parser.writeText();
+        parser.stack.pop();
+        if ( parser.stack.length == 0 )
+            return this.children;
+        if ( this.syntax.onMatchEnd(parser,this) )
+            parser.consume(this.syntax.endPattern.matched(0).length)
+        else {
+            parser.start = this.startPos;
+            parser.advanceBy(this.syntax.endPattern.matched(0).length);
+        }
+        return null;
+    }
+    @tmp.children = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    markdown.TagState = @tmp;
+    @tmp.prototype = markdown.@TagState;
+    @tmp.__construct__ = function(startPos,endPos,syntax) {
+        this.startPos = startPos;
+        this.endPos = endPos;
+        this.syntax = syntax;
+        this.children = Array.new1($array(),0);
+        return null;
+    }
+    @tmp.new = function(startPos,endPos,syntax) {
+        var @o = $new(null);
+        $objsetproto(@o,markdown.@TagState);
+        $call(this.__construct__,@o,$array(startPos,endPos,syntax));
+        return @o;
+    }
+    markdown.@TagState.__class__ = markdown.TagState;
+}
+{
+    var @tmp = $new(null);
+    neko.@NativeArray = @tmp;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    neko.NativeArray = @tmp;
+    @tmp.prototype = neko.@NativeArray;
+    neko.@NativeArray.__class__ = neko.NativeArray;
+}
+{
+    var @tmp = $new(null);
+    neko.@NativeString = @tmp;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    neko.NativeString = @tmp;
+    @tmp.prototype = neko.@NativeString;
+    neko.@NativeString.__class__ = neko.NativeString;
+}
+{
+    @G1 = $new(null);
+    sys.io.FileHandle = @G1;
+    @G1.prototype = {
+        __enum__ => @G1, 
+        __serialize => @serialize, 
+        __string => @enum_to_string
+
+    };
+}
+{
+    var @tmp = $new(null);
+    sys.io.@File = @tmp;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    sys.io.File = @tmp;
+    @tmp.prototype = sys.io.@File;
+    @tmp.write = function(path,binary) {
+        if ( binary == null )
+            binary = true;
+        {
+            return sys.io.FileOutput.new(sys.io.File.file_open(path.__s,( if ( binary )
+                String.new("wb")
+            else
+                String.new("w")
+             ).__s));
+        }
+    }
+    @tmp.saveContent = function(path,content) {
+        var f = sys.io.File.write(path,null);
+        f.writeString(content);
+        f.close();
+        return null;
+    }
+    @tmp.getContent = function(path) {
+        return String.new(sys.io.File.file_contents(path.__s));
+    }
+    @tmp.file_open = $loader.loadprim(("std" + "@") + "file_open",2);
+    @tmp.file_contents = $loader.loadprim(("std" + "@") + "file_contents",1);
+    sys.io.@File.__class__ = sys.io.File;
+}
+{
+    var @tmp = $new(null);
+    sys.io.@FileOutput = @tmp;
+    @tmp.writeBytes = function(s,p,l) {
+        try {
+            return sys.io.FileOutput.file_write(this.__f,s.b,p,l);
+        }
+        catch @tmp {
+            if $typeof(@tmp) == $tstring
+                @tmp = String.new(@tmp);
+            if true {
+                var e = @tmp;
+                {
+                    $throw(haxe.io.Error.Custom(e));
+                }
+            }
+            else
+                $rethrow(@tmp)
+        }
+        return null;
+    }
+    @tmp.writeByte = function(c) {
+        try {
+            sys.io.FileOutput.file_write_char(this.__f,c);
+        }
+        catch @tmp {
+            if $typeof(@tmp) == $tstring
+                @tmp = String.new(@tmp);
+            if true {
+                var e = @tmp;
+                {
+                    $throw(haxe.io.Error.Custom(e));
+                }
+            }
+            else
+                $rethrow(@tmp)
+        }
+        return null;
+    }
+    @tmp.close = function() {
+        $call(haxe.io.@Output.close,this,$array());
+        sys.io.FileOutput.file_close(this.__f);
+        return null;
+    }
+    @tmp.__f = null;
+    @tmp.__serialize = @serialize;
+    var @tmp = $new(null);
+    sys.io.FileOutput = @tmp;
+    @tmp.prototype = sys.io.@FileOutput;
+    @tmp.file_write_char = $loader.loadprim(("std" + "@") + "file_write_char",2);
+    @tmp.file_write = $loader.loadprim(("std" + "@") + "file_write",4);
+    @tmp.file_close = $loader.loadprim(("std" + "@") + "file_close",1);
+    @tmp.__construct__ = function(f) {
+        this.__f = f;
+        return null;
+    }
+    @tmp.new = function(f) {
+        var @o = $new(null);
+        $objsetproto(@o,sys.io.@FileOutput);
+        $call(this.__construct__,@o,$array(f));
+        return @o;
+    }
+    @tmp.__super__ = haxe.io.Output;
+    $objsetproto(sys.io.@FileOutput,haxe.io.@Output);
+    sys.io.@FileOutput.__class__ = sys.io.FileOutput;
+}
+{
+    neko.Boot.__classes = @classes;
+    neko.Boot.__init();
+}
+sys.io.FileOutput.__name__ = Array.new1($array(String.new("sys"),String.new("io"),String.new("FileOutput")),3);
+sys.io.File.__name__ = Array.new1($array(String.new("sys"),String.new("io"),String.new("File")),3);
+sys.io.FileHandle.__ename__ = Array.new1($array(String.new("sys"),String.new("io"),String.new("FileHandle")),3);
+sys.io.FileHandle.__constructs__ = Array.new1($array(),0);
+neko.NativeString.__name__ = Array.new1($array(String.new("neko"),String.new("NativeString")),2);
+neko.NativeArray.__name__ = Array.new1($array(String.new("neko"),String.new("NativeArray")),2);
+markdown.TagState.__name__ = Array.new1($array(String.new("markdown"),String.new("TagState")),2);
+markdown.InlineParser.__name__ = Array.new1($array(String.new("markdown"),String.new("InlineParser")),2);
+markdown.CodeSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("CodeSyntax")),2);
+markdown.LinkSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("LinkSyntax")),2);
+markdown.TagSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("TagSyntax")),2);
+markdown.AutolinkSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("AutolinkSyntax")),2);
+markdown.TextSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("TextSyntax")),2);
+markdown.InlineSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("InlineSyntax")),2);
+markdown.HtmlRenderer.__name__ = Array.new1($array(String.new("markdown"),String.new("HtmlRenderer")),2);
+markdown.HtmlRenderer.__interfaces__ = Array.new1(markdown.HtmlRenderer.__interfaces__,1);
+markdown.OrderedListSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("OrderedListSyntax")),2);
+markdown.UnorderedListSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("UnorderedListSyntax")),2);
+markdown.ListSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("ListSyntax")),2);
+markdown.ParagraphSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("ParagraphSyntax")),2);
+markdown.ListItem.__name__ = Array.new1($array(String.new("markdown"),String.new("ListItem")),2);
+markdown.BlockHtmlSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("BlockHtmlSyntax")),2);
+markdown.HorizontalRuleSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("HorizontalRuleSyntax")),2);
+markdown.GitHubCodeBlockSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("GitHubCodeBlockSyntax")),2);
+markdown.CodeBlockSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("CodeBlockSyntax")),2);
+markdown.BlockquoteSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("BlockquoteSyntax")),2);
+markdown.HeaderSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("HeaderSyntax")),2);
+markdown.SetextHeaderSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("SetextHeaderSyntax")),2);
+markdown.EmptyBlockSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("EmptyBlockSyntax")),2);
+markdown.BlockSyntax.__name__ = Array.new1($array(String.new("markdown"),String.new("BlockSyntax")),2);
+markdown.BlockParser.__name__ = Array.new1($array(String.new("markdown"),String.new("BlockParser")),2);
+markdown.TextNode.__name__ = Array.new1($array(String.new("markdown"),String.new("TextNode")),2);
+markdown.TextNode.__interfaces__ = Array.new1(markdown.TextNode.__interfaces__,1);
+markdown.ElementNode.__name__ = Array.new1($array(String.new("markdown"),String.new("ElementNode")),2);
+markdown.ElementNode.__interfaces__ = Array.new1(markdown.ElementNode.__interfaces__,1);
+markdown.NodeVisitor.__name__ = Array.new1($array(String.new("markdown"),String.new("NodeVisitor")),2);
+markdown.Node.__name__ = Array.new1($array(String.new("markdown"),String.new("Node")),2);
+haxe.io.Output.__name__ = Array.new1($array(String.new("haxe"),String.new("io"),String.new("Output")),3);
+haxe.io.Error.__ename__ = Array.new1($array(String.new("haxe"),String.new("io"),String.new("Error")),3);
+haxe.io.Error.__constructs__ = Array.new1($array(String.new("Blocked"),String.new("Overflow"),String.new("OutsideBounds"),String.new("Custom")),4);
+haxe.io.Eof.__name__ = Array.new1($array(String.new("haxe"),String.new("io"),String.new("Eof")),3);
+haxe.io.Bytes.__name__ = Array.new1($array(String.new("haxe"),String.new("io"),String.new("Bytes")),3);
+haxe.ds.StringMap.__name__ = Array.new1($array(String.new("haxe"),String.new("ds"),String.new("StringMap")),3);
+haxe.ds.StringMap.__interfaces__ = Array.new1(haxe.ds.StringMap.__interfaces__,1);
+haxe.Utf8.__name__ = Array.new1($array(String.new("haxe"),String.new("Utf8")),2);
+Xml.__name__ = Array.new1($array(String.new("Xml")),1);
+XmlType.__ename__ = Array.new1($array(String.new("XmlType")),1);
+XmlType.__constructs__ = Array.new1($array(),0);
+StringTools.__name__ = Array.new1($array(String.new("StringTools")),1);
+StringBuf.__name__ = Array.new1($array(String.new("StringBuf")),1);
+String.__name__ = Array.new1($array(String.new("String")),1);
+Std.__name__ = Array.new1($array(String.new("Std")),1);
+neko.Boot.__name__ = Array.new1($array(String.new("neko"),String.new("Boot")),2);
+Reflect.__name__ = Array.new1($array(String.new("Reflect")),1);
+Parser.__name__ = Array.new1($array(String.new("Parser")),1);
+Math.__name__ = Array.new1($array(String.new("Math")),1);
+Link.__name__ = Array.new1($array(String.new("Link")),1);
+Document.__name__ = Array.new1($array(String.new("Document")),1);
+Markdown.__name__ = Array.new1($array(String.new("Markdown")),1);
+IMap.__name__ = Array.new1($array(String.new("IMap")),1);
+List.__name__ = Array.new1($array(String.new("List")),1);
+Lambda.__name__ = Array.new1($array(String.new("Lambda")),1);
+EReg.__name__ = Array.new1($array(String.new("EReg")),1);
+Array.__name__ = Array.new1($array(String.new("Array")),1);
+neko.Lib.__name__ = Array.new1($array(String.new("neko"),String.new("Lib")),2);
+try {
+    var msort = $array(neko.Lib.load(String.new("std"),String.new("merge_sort"),3));
+    Array.prototype.sort = function(cmp) {
+        msort[0](this.__a,this.length,cmp);
+        return null;
+    }
+}
+catch @tmp {
+    if $typeof(@tmp) == $tstring
+        @tmp = String.new(@tmp);
+    if true {
+        var e = @tmp;
+        {
+        }
+    }
+    else
+        $rethrow(@tmp)
+}
+{
+    Math.__rnd = neko.Lib.load(String.new("std"),String.new("random_new"),0)();
+    Math.PI = neko.Lib.load(String.new("std"),String.new("math_pi"),0)();
+    Math.NaN = (0.0 / 0.0);
+    Math.POSITIVE_INFINITY = (1.0 / 0.0);
+    Math.NEGATIVE_INFINITY = (0 - Math.POSITIVE_INFINITY);
+    var M = Math;
+    M.abs = neko.Lib.load(String.new("std"),String.new("math_abs"),1);
+    M.sin = neko.Lib.load(String.new("std"),String.new("math_sin"),1);
+    M.cos = neko.Lib.load(String.new("std"),String.new("math_cos"),1);
+    M.atan2 = neko.Lib.load(String.new("std"),String.new("math_atan2"),2);
+    M.tan = neko.Lib.load(String.new("std"),String.new("math_tan"),1);
+    M.exp = neko.Lib.load(String.new("std"),String.new("math_exp"),1);
+    M.log = neko.Lib.load(String.new("std"),String.new("math_log"),1);
+    M.sqrt = neko.Lib.load(String.new("std"),String.new("math_sqrt"),1);
+    M.round = neko.Lib.load(String.new("std"),String.new("math_round"),1);
+    M.floor = neko.Lib.load(String.new("std"),String.new("math_floor"),1);
+    M.ceil = neko.Lib.load(String.new("std"),String.new("math_ceil"),1);
+    M.atan = neko.Lib.load(String.new("std"),String.new("math_atan"),1);
+    M.asin = neko.Lib.load(String.new("std"),String.new("math_asin"),1);
+    M.acos = neko.Lib.load(String.new("std"),String.new("math_acos"),1);
+    M.pow = neko.Lib.load(String.new("std"),String.new("math_pow"),2);
+    try {
+        M.fceil = neko.Lib.load(String.new("std"),String.new("math_fceil"),1);
+    }
+    catch @tmp {
+        if $typeof(@tmp) == $tstring
+            @tmp = String.new(@tmp);
+        if true {
+            var e = @tmp;
+            {
+                M.fceil = M.ceil;
+            }
+        }
+        else
+            $rethrow(@tmp)
+    }
+    try {
+        M.ffloor = neko.Lib.load(String.new("std"),String.new("math_ffloor"),1);
+    }
+    catch @tmp {
+        if $typeof(@tmp) == $tstring
+            @tmp = String.new(@tmp);
+        if true {
+            var e = @tmp;
+            {
+                M.ffloor = M.floor;
+            }
+        }
+        else
+            $rethrow(@tmp)
+    }
+    try {
+        M.fround = neko.Lib.load(String.new("std"),String.new("math_fround"),1);
+    }
+    catch @tmp {
+        if $typeof(@tmp) == $tstring
+            @tmp = String.new(@tmp);
+        if true {
+            var e = @tmp;
+            {
+                M.fround = M.round;
+            }
+        }
+        else
+            $rethrow(@tmp)
+    }
+}
+{
+    Int = {
+        __name__ => Array.new1($array(String.new("Int")),1)
+
+    };
+    Float = {
+        __name__ => Array.new1($array(String.new("Float")),1)
+
+    };
+    Bool = {
+        __ename__ => Array.new1($array(String.new("Bool")),1)
+
+    };
+    Dynamic = {
+        __name__ => Array.new1($array(String.new("Dynamic")),1)
+
+    };
+    Class = {
+        __name__ => Array.new1($array(String.new("Class")),1)
+
+    };
+    Enum = $new(null);
+    var cl = neko.Boot.__classes;
+    cl.Int = Int;
+    cl.Float = Float;
+    cl.Bool = Bool;
+    cl.Dynamic = Dynamic;
+    cl.Class = Class;
+    cl.Enum = Enum;
+}
+String.__is_String = true;
+{
+    Xml.Element = String.new("element");
+    Xml.PCData = String.new("pcdata");
+    Xml.CData = String.new("cdata");
+    Xml.Comment = String.new("comment");
+    Xml.DocType = String.new("doctype");
+    Xml.ProcessingInstruction = String.new("processingInstruction");
+    Xml.Document = String.new("document");
+}
+haxe.io.Output.prototype.bigEndian = false;
+EReg.regexp_new_options = neko.Lib.load(String.new("regexp"),String.new("regexp_new_options"),2);
+EReg.regexp_match = neko.Lib.load(String.new("regexp"),String.new("regexp_match"),4);
+EReg.regexp_matched = neko.Lib.load(String.new("regexp"),String.new("regexp_matched"),2);
+EReg.regexp_matched_pos = neko.Lib.load(String.new("regexp"),String.new("regexp_matched_pos"),2);
+Parser.MARKDOWN_FILTER = EReg.new(String.new("\n\\*?[\t ]+"),String.new(""));
+String.__split = neko.Lib.load(String.new("std"),String.new("string_split"),2);
+StringBuf.__make = neko.Lib.load(String.new("std"),String.new("buffer_new"),0);
+StringBuf.__add = neko.Lib.load(String.new("std"),String.new("buffer_add"),2);
+StringBuf.__add_char = neko.Lib.load(String.new("std"),String.new("buffer_add_char"),2);
+StringBuf.__add_sub = neko.Lib.load(String.new("std"),String.new("buffer_add_sub"),4);
+StringBuf.__to_string = neko.Lib.load(String.new("std"),String.new("buffer_string"),1);
+Xml._parse = neko.Lib.load(String.new("std"),String.new("parse_xml"),2);
+haxe.Utf8.utf8_buf_alloc = neko.Lib.load(String.new("std"),String.new("utf8_buf_alloc"),1);
+haxe.Utf8.utf8_buf_add = neko.Lib.load(String.new("std"),String.new("utf8_buf_add"),2);
+haxe.Utf8.utf8_buf_content = neko.Lib.load(String.new("std"),String.new("utf8_buf_content"),1);
+markdown.BlockSyntax.RE_EMPTY = EReg.new(String.new("^([ \\t]*)$"),String.new(""));
+markdown.BlockSyntax.RE_SETEXT = EReg.new(String.new("^((=+)|(-+))$"),String.new(""));
+markdown.BlockSyntax.RE_HEADER = EReg.new(String.new("^(#{1,6})(.*?)#*$"),String.new(""));
+markdown.BlockSyntax.RE_BLOCKQUOTE = EReg.new(String.new("^[ ]{0,3}>[ ]?(.*)$"),String.new(""));
+markdown.BlockSyntax.RE_INDENT = EReg.new(String.new("^(?:\t\t|\\t)(.*)$"),String.new(""));
+markdown.BlockSyntax.RE_CODE = EReg.new(String.new("^```(\\w*)$"),String.new(""));
+markdown.BlockSyntax.RE_HR = EReg.new(String.new("^[ ]{0,3}((-+[ ]{0,2}){3,}|(_+[ ]{0,2}){3,}|(\\*+[ ]{0,2}){3,})$"),String.new(""));
+markdown.BlockSyntax.RE_HTML = EReg.new(String.new("^<[ ]*\\w+[ >]"),String.new(""));
+markdown.BlockSyntax.RE_UL = EReg.new(String.new("^[ ]{0,3}[*+-][ \\t]+(.*)$"),String.new(""));
+markdown.BlockSyntax.RE_OL = EReg.new(String.new("^[ ]{0,3}\\d+\\.[ \\t]+(.*)$"),String.new(""));
+markdown.HtmlRenderer.BLOCK_TAGS = EReg.new(String.new("blockquote|h1|h2|h3|h4|h5|h6|hr|p|pre"),String.new(""));
+markdown.LinkSyntax.linkPattern = ((((String.new("\\](?:(") + String.new("\\s?\\[([^\\]]*)\\]")) + String.new("|")) + String.new("\\s?\\(([^ )]+)(?:[ ]*\"([^\"]+)\"|)\\)")) + String.new(")|)"));
+markdown.InlineParser.defaultSyntaxes = Array.new1($array(markdown.TextSyntax.new(String.new("\\s*[A-Za-z0-9]+"),null),markdown.AutolinkSyntax.new(),markdown.LinkSyntax.new(null),markdown.TextSyntax.new(String.new(" \\* "),null),markdown.TextSyntax.new(String.new(" _ "),null),markdown.TextSyntax.new(String.new("&[#a-zA-Z0-9]*;"),null),markdown.TextSyntax.new(String.new("&"),String.new("&amp;")),markdown.TextSyntax.new(String.new("</?\\w+.*?>"),null),markdown.TextSyntax.new(String.new("<"),String.new("&lt;")),markdown.TagSyntax.new(String.new("\\*\\*"),String.new("strong"),null),markdown.TagSyntax.new(String.new("__"),String.new("strong"),null),markdown.TagSyntax.new(String.new("\\*"),String.new("em"),null),markdown.TagSyntax.new(String.new("_"),String.new("em"),null),markdown.CodeSyntax.new(String.new("``\\s?((?:.|\\n)*?)\\s?``")),markdown.CodeSyntax.new(String.new("`([^`]*)`"))),15);
+sys.io.File.file_contents = neko.Lib.load(String.new("std"),String.new("file_contents"),1);
+sys.io.File.file_open = neko.Lib.load(String.new("std"),String.new("file_open"),2);
+sys.io.FileOutput.file_close = neko.Lib.load(String.new("std"),String.new("file_close"),1);
+sys.io.FileOutput.file_write = neko.Lib.load(String.new("std"),String.new("file_write"),4);
+sys.io.FileOutput.file_write_char = neko.Lib.load(String.new("std"),String.new("file_write_char"),2);
+Parser.main();
