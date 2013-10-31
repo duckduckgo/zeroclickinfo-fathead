@@ -1,4 +1,4 @@
-# Contributing to **Fathead>**
+# Contributing to **Fathead**
 
 At DuckDuckGo, we truly appreciate our community members taking the time to contribute to our open-source repositories. In an effort to ensure contributions are easy for you to make and for us to manage, we have written some guidelines that we ask our contributors to follow so that we can handle pull requests in a timely manner with as little friction as possible.
 
@@ -8,15 +8,15 @@ Before you can do anything, you first need a [GitHub account](https://github.com
 
 ## Submitting a **Bug** or **Suggestion**
 
-- Firstly, please make sure the bug is related to the **Fathead>** repository. If this bug is about the DuckDuckGo API, or the relevancy of our search results, please visit our feedback page at <https://duckduckgo.com/feedback>. If you're unsure, its best to use the feedback page (your message will be passed along to the correct people).
+- Firstly, please make sure the bug is related to the **Fathead** repository. If this bug is about the DuckDuckGo API, or the relevancy of our search results, please visit our feedback page at <https://duckduckgo.com/feedback>. If you're unsure, its best to use the feedback page (your message will be passed along to the correct people).
 
-- Check the **Fathead>** [issues](https://github.com/duckduckgo/zeroclickinfo-fathead/issues) to see if an issue already exists for the given bug or suggestion
-  - If one doesn't exist, create a GitHub issue in the **Fathead>** repository
+- Check the **Fathead** [issues](https://github.com/duckduckgo/zeroclickinfo-fathead/issues) to see if an issue already exists for the given bug or suggestion
+  - If one doesn't exist, create a GitHub issue in the **Fathead** repository
     - Clearly describe the bug/improvemnt, including steps to reproduce when it is a bug
   - If one already exists, please add any additional comments you have regarding the matter
 
 If you're submitting a **pull request** (bugfix/addition):
-- Fork the **Fathead>** repository on GitHub
+- Fork the **Fathead** repository on GitHub
 
 ## Making Changes
 
@@ -67,4 +67,4 @@ If you're submitting a **pull request** (bugfix/addition):
 4. Add your info to the instant answer so we can give you credit for it on the [Goodies page](https://duckduckgo.com/goodies). You'll see your name or handle on the live site!
 Check out the [Metadata README](metadata.md) for detailed instructions on how to include your name and links.
 
-5. Go into GitHub and submit a [pull request!](http://help.github.com/send-pull-requests/) to the **Fathead>** repository, **making sure to use the **Fathead>** repository's [Pull Request template](https://github.com/duckduckgo/zeroclickinfo-fathead/blob/master/fathead_pr_template.md)**. This will let us know about your changes and start the conversation about integrating it into the live code.
+5. Go into GitHub and submit a [pull request!](http://help.github.com/send-pull-requests/) to the **Fathead** repository, **making sure to use the **Fathead** repository's [Pull Request template](https://github.com/duckduckgo/zeroclickinfo-fathead/blob/master/fathead_pr_template.md)**. This will let us know about your changes and start the conversation about integrating it into the live code.
