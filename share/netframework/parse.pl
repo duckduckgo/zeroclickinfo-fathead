@@ -1,4 +1,6 @@
 #!/usr/bin/env perl
+  use strict;
+  use warnings;
   use URI;
   use Web::Scraper;
   binmode STDOUT, ':encoding(UTF-8)';
@@ -11,11 +13,11 @@
 
   for my $namespace (@{$namespaces->{namespaceScraper}}) {
 	my $codeRes = scrapeClasses($namespace->{link});
-	if(@{$codeRes->{classScraper}} == 0){
+	if(!defined $codeRes->{classScraper}){
 		goDeeper($namespace->{link});
 	}else{
 		for my $code (@{$codeRes->{classScraper}}) {
-	  		print "$code->{className}\t\t$code->{classDescription}\n"
+	  		print "$code->{className}\t\t$code->{classDescription}\n";
 		}
 	}
 	print "\n\n\n\-------------------\n\n\n"
