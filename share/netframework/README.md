@@ -1,1 +1,5 @@
-Blablabla got your lovey dovey sing a long...
+Parser for the MSDN .NET Framework classes
+
+#Dependencies
+- URI;
+- Web::Scraper;
