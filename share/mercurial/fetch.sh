@@ -1,0 +1,1 @@
+wget http://www.selenic.com/mercurial/hg.1.html

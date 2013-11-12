@@ -1,0 +1,5 @@
+Name: Mercurial
+Domain: mercurial.selenic.com
+Type: Python
+MediaWiki: 0
+Keywords: Mercurial, hg
