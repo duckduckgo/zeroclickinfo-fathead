@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"net/http"
+	"strings"
+	"container/list"
 	"code.google.com/p/go.net/html"
 )
 
@@ -11,40 +12,36 @@ type Data struct {
 	Title, Type, Categories, See, Link, Images, Abstract, Source string
 }
 
-type Node struct {
-	Name string
-	Attr []string
-}
-
-var find map[string]Node = Node{} 
-
-// Let's create a function that will go through all the tags.
-func CheckNode(n *html.Node) {
-	if n.Type == html.ElementNode && format[n.Data] == nil {
-		for _, f := range format[n.Data] {
-			
-		}
+// Helps us find an element that we're looking for.
+func FindElements(el string, n *html.Node, l *list.List) {
+	if n.Type == html.ElementNode && n.Data == el {
+		l.PushBack(n)
 	}
 
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		CheckNode(c, format)
+		FindElements(el, c, l)
+	}
+}
+
+func PrintElements(l *list.List) {
+	for e := l.Front(); e != nil; e = e.Next() {
+		node := e.Value.(*html.Node)
+		fmt.Println(node)
+		// fmt.Println(node.FirstChild.Data)
 	}
 }
 
 func main() {
-	// Read the URL that we want.
-	resp, err := http.Get("http://golang.org/pkg/")
+	// Read the file that we want.
+	file, err := ioutil.ReadFile("packages.html")
 
 	if err != nil {
 		fmt.Printf("There was an error with reading. %v\n", err)
 		return
 	}
 
-	// Make sure we close the response body.
-	defer resp.Body.Close()
-
 	// Parse the HTML that we got.
-	p, err := html.Parse(resp.Body)
+	p, err := html.Parse(strings.NewReader(string(file)))
 
 	if err != nil {
 		fmt.Printf("There was an error with parsing: %v\n", err)
@@ -52,5 +49,17 @@ func main() {
 	}
 
 	// Choose the nodes that we want.
-	CheckNode(p)
+	// Find the <tr> tags first.
+	tr := list.New()
+	FindElements("tr", p, tr)
+
+	for e := tr.Front(); e != nil; e = e.Next() {
+		node := e.Value.(*html.Node)
+
+		// Now let's look for the <a> tags inside.
+		a := list.New()
+		FindElements("a", node, a)
+
+		PrintElements(a)
+	}
 }
