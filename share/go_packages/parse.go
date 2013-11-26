@@ -23,10 +23,20 @@ func FindElements(el string, n *html.Node, l *list.List) {
 	}
 }
 
+func GetAttr(attr string, n *html.Node) string {
+	for _, a := range n.Attr {
+		if a.Key == attr {
+			return a.Val, nil
+		} 
+	}
+	return ""
+}
+
 func PrintElements(l *list.List) {
 	for e := l.Front(); e != nil; e = e.Next() {
 		node := e.Value.(*html.Node)
-		fmt.Println(node)
+
+		fmt.Println(GetAttr("href", node))
 		// fmt.Println(node.FirstChild.Data)
 	}
 }
