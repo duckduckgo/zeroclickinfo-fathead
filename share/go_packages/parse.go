@@ -4,18 +4,24 @@ import (
 	"fmt"
 	"io/ioutil"
 	"strings"
-	"container/list"
+	"regexp"
 	"code.google.com/p/go.net/html"
 )
 
-type Data struct {
-	Title, Type, Categories, See, Link, Images, Abstract, Source string
+type Package struct {
+	Name, Link, Abstract, Category string
 }
 
 type Attr struct {
 	Key, Val string
 }
 
+const (
+	HTML = "packages.html"
+	Link = "http://golang.org/pkg/"
+)
+
+// Make sure that the attributes that we want match with the attributes found in the element.
 func MatchAttr(n *html.Node, attr []Attr) bool {
 	matches := 0
 	for _, pair := range attr {
@@ -29,24 +35,28 @@ func MatchAttr(n *html.Node, attr []Attr) bool {
 	return matches == len(attr)
 }
 
-// Helps us find an element that we're looking for.
-func FindAll(el string, n *html.Node, l *list.List, attr []Attr) {
+// This function finds all the instances of a given element.
+// It can also take get elements that have specific attributes.
+func FindAll(el string, n *html.Node, nodes []*html.Node, attr []Attr) []*html.Node {
 	if n.Type == html.ElementNode && n.Data == el {
-		// Means we also take the attributes into consideration.
+		// Check if we have to check the attributes, too.
 		if len(attr) > 0 {
 			if MatchAttr(n, attr) {
-				l.PushBack(n)
+				nodes = append(nodes, n)
 			}
 		} else {
-			l.PushBack(n)
+			nodes = append(nodes, n)
 		}
 	}
 
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		FindAll(el, c, l, attr)
+		nodes = FindAll(el, c, nodes, attr)
 	}
+
+	return nodes
 }
 
+// This function returns the attribute that was given.
 func GetAttr(attr string, n *html.Node) string {
 	for _, a := range n.Attr {
 		if a.Key == attr {
@@ -56,16 +66,52 @@ func GetAttr(attr string, n *html.Node) string {
 	return ""
 }
 
-func GetText(n *html.Node) string {
-	if n != nil && n.FirstChild.Type == html.TextNode {
-		return n.FirstChild.Data
+// Get the things that we want from a given node.
+// It's currently locked to find stuff from the "td" tag.
+func PackageDetails(n *html.Node, attr Attr, fn func(*html.Node) Package) []Package {
+	result := []Package{}
+
+	nodes := FindAll("td", n, []*html.Node{}, []Attr{attr})
+	for _, node := range nodes {
+		result = append(result, fn(node))
 	}
-	return ""
+
+	return result
+}
+
+func DetermineCategories(pkgs []Package) {
+	// Use the categories attribute as a temporary variable.
+	for i, pkg := range pkgs {
+		is_subdir := regexp.MustCompile(fmt.Sprintf("^%v/.+", pkg.Name))
+
+		// If the abstract is blank, it is a directory.
+		if pkg.Abstract == "" {
+			disambig := [][]string{}
+			for _, candidate := range pkgs {
+				if is_subdir.MatchString(candidate.Link) {
+					disambig = append(disambig, []string{candidate.Link, candidate.Abstract})
+				}
+			}
+			// Format the disambiguation result.
+			pkgs[i].Abstract = MakeDisambig(disambig)
+			pkgs[i].Category = "D"
+		} else {
+			pkgs[i].Category = "A"
+		}
+	}
+}
+
+func MakeDisambig(disambig [][]string) string {
+	result := ""
+	for _, d := range disambig {
+		result += fmt.Sprintf("*[[%v]] %v\\n", d[0], d[1])
+	}
+	return result
 }
 
 func main() {
-	// Read the file that we want.
-	file, err := ioutil.ReadFile("packages.html")
+	// Read the HTML file that we downloaded.
+	file, err := ioutil.ReadFile(HTML)
 
 	if err != nil {
 		fmt.Printf("There was an error with reading. %v\n", err)
@@ -80,27 +126,32 @@ func main() {
 		return
 	}
 
-	// Choose the nodes that we want.
-	// Find the <tr> tags first.
-	packages := list.New()
-	FindAll("td", parsed, packages, []Attr{
-		Attr{"class", "name"},
+	// Get the package name and the link from the table.
+	pkgs := PackageDetails(parsed, Attr{"class", "name"}, func(n *html.Node) Package {
+		return Package{n.LastChild.FirstChild.Data, GetAttr("href", n.LastChild), "", ""}
 	})
 
-	for e := packages.Front(); e != nil; e = e.Next() {
-		node := e.Value.(*html.Node)
+	// Get the abstract from the table.
+	abstracts := PackageDetails(parsed, Attr{"style", "width: auto"}, func(n *html.Node) Package {
+		if(n.FirstChild != nil) {
+			return Package{"", "", n.FirstChild.Data, ""}
+		}
+		return Package{"", "", "", ""}
+	})
 
-		fmt.Println(node)
+	// Let's copy over the abstracts to the pkgs slice.
+	for i, pkg := range pkgs {
+		pkgs[i].Abstract = abstracts[i].Abstract
+		pkgs[i].Link = pkg.Link[:len(pkg.Link)-1]
 	}
 
-	abstracts = list.New()
-	FindAll("td", parsed, abstracts, []Attr{
-		Attr{"style", "width: auto"},
-	})
+	// Set the categories of each entry.
+	DetermineCategories(pkgs)
 
-	for e := abstracts.Front(); e != nil; e = e.Next() {
-		node := e.Value.(*html.Node)
-		
-		fmt.Println(node)
+	// Add redirects.
+	AddRedirects(pkgs)
+
+	for _, pkg := range pkgs {
+		fmt.Printf("%v\t%v\t%v\t%v\t%v\n", pkg.Link, Link + pkg.Link, pkg.Abstract, pkg.Category, pkg.Name)
 	}
 }
