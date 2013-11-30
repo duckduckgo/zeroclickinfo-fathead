@@ -1,0 +1,239 @@
+archive	D		*[[archive/tar]] Package tar implements access to tar archives.\n*[[archive/zip]] Package zip provides support for reading and writing ZIP archives.\n	
+archive/tar	A		Package tar implements access to tar archives.	http://golang.org/pkg/archive/tar/
+archive/zip	A		Package zip provides support for reading and writing ZIP archives.	http://golang.org/pkg/archive/zip/
+bufio	A		Package bufio implements buffered I/O. It wraps an io.Reader or io.Writer object, creating another object (Reader or Writer) that also implements the interface but provides buffering and some help for textual I/O.	http://golang.org/pkg/bufio/
+builtin	A		Package builtin provides documentation for Go's predeclared identifiers.	http://golang.org/pkg/builtin/
+bytes	A		Package bytes implements functions for the manipulation of byte slices.	http://golang.org/pkg/bytes/
+compress	D		*[[compress/bzip2]] Package bzip2 implements bzip2 decompression.\n*[[compress/flate]] Package flate implements the DEFLATE compressed data format, described in RFC 1951.\n*[[compress/gzip]] Package gzip implements reading and writing of gzip format compressed files, as specified in RFC 1952.\n*[[compress/lzw]] Package lzw implements the Lempel-Ziv-Welch compressed data format, described in T. A. Welch, ``A Technique for High-Performance Data Compression'', Computer, 17(6) (June 1984), pp 8-19.\n*[[compress/zlib]] Package zlib implements reading and writing of zlib format compressed data, as specified in RFC 1950.\n	
+compress/bzip2	A		Package bzip2 implements bzip2 decompression.	http://golang.org/pkg/compress/bzip2/
+compress/flate	A		Package flate implements the DEFLATE compressed data format, described in RFC 1951.	http://golang.org/pkg/compress/flate/
+compress/gzip	A		Package gzip implements reading and writing of gzip format compressed files, as specified in RFC 1952.	http://golang.org/pkg/compress/gzip/
+compress/lzw	A		Package lzw implements the Lempel-Ziv-Welch compressed data format, described in T. A. Welch, ``A Technique for High-Performance Data Compression'', Computer, 17(6) (June 1984), pp 8-19.	http://golang.org/pkg/compress/lzw/
+compress/zlib	A		Package zlib implements reading and writing of zlib format compressed data, as specified in RFC 1950.	http://golang.org/pkg/compress/zlib/
+container	D		*[[container/heap]] Package heap provides heap operations for any type that implements heap.Interface.\n*[[container/list]] Package list implements a doubly linked list.\n*[[container/ring]] Package ring implements operations on circular lists.\n	
+container/heap	A		Package heap provides heap operations for any type that implements heap.Interface.	http://golang.org/pkg/container/heap/
+container/list	A		Package list implements a doubly linked list.	http://golang.org/pkg/container/list/
+container/ring	A		Package ring implements operations on circular lists.	http://golang.org/pkg/container/ring/
+crypto	A		Package crypto collects common cryptographic constants.	http://golang.org/pkg/crypto/
+crypto/aes	A		Package aes implements AES encryption (formerly Rijndael), as defined in U.S. Federal Information Processing Standards Publication 197.	http://golang.org/pkg/crypto/aes/
+crypto/cipher	A		Package cipher implements standard block cipher modes that can be wrapped around low-level block cipher implementations.	http://golang.org/pkg/crypto/cipher/
+crypto/des	A		Package des implements the Data Encryption Standard (DES) and the Triple Data Encryption Algorithm (TDEA) as defined in U.S. Federal Information Processing Standards Publication 46-3.	http://golang.org/pkg/crypto/des/
+crypto/dsa	A		Package dsa implements the Digital Signature Algorithm, as defined in FIPS 186-3.	http://golang.org/pkg/crypto/dsa/
+crypto/ecdsa	A		Package ecdsa implements the Elliptic Curve Digital Signature Algorithm, as defined in FIPS 186-3.	http://golang.org/pkg/crypto/ecdsa/
+crypto/elliptic	A		Package elliptic implements several standard elliptic curves over prime fields.	http://golang.org/pkg/crypto/elliptic/
+crypto/hmac	A		Package hmac implements the Keyed-Hash Message Authentication Code (HMAC) as defined in U.S. Federal Information Processing Standards Publication 198.	http://golang.org/pkg/crypto/hmac/
+crypto/md5	A		Package md5 implements the MD5 hash algorithm as defined in RFC 1321.	http://golang.org/pkg/crypto/md5/
+crypto/rand	A		Package rand implements a cryptographically secure pseudorandom number generator.	http://golang.org/pkg/crypto/rand/
+crypto/rc4	A		Package rc4 implements RC4 encryption, as defined in Bruce Schneier's Applied Cryptography.	http://golang.org/pkg/crypto/rc4/
+crypto/rsa	A		Package rsa implements RSA encryption as specified in PKCS#1.	http://golang.org/pkg/crypto/rsa/
+crypto/sha1	A		Package sha1 implements the SHA1 hash algorithm as defined in RFC 3174.	http://golang.org/pkg/crypto/sha1/
+crypto/sha256	A		Package sha256 implements the SHA224 and SHA256 hash algorithms as defined in FIPS 180-2.	http://golang.org/pkg/crypto/sha256/
+crypto/sha512	A		Package sha512 implements the SHA384 and SHA512 hash algorithms as defined in FIPS 180-2.	http://golang.org/pkg/crypto/sha512/
+crypto/subtle	A		Package subtle implements functions that are often useful in cryptographic code but require careful thought to use correctly.	http://golang.org/pkg/crypto/subtle/
+crypto/tls	A		Package tls partially implements TLS 1.0, as specified in RFC 2246.	http://golang.org/pkg/crypto/tls/
+crypto/x509	A		Package x509 parses X.509-encoded keys and certificates.	http://golang.org/pkg/crypto/x509/
+crypto/x509/pkix	A		Package pkix contains shared, low level structures used for ASN.1 parsing and serialization of X.509 certificates, CRL and OCSP.	http://golang.org/pkg/crypto/x509/pkix/
+database	D		*[[database/sql]] Package sql provides a generic interface around SQL (or SQL-like) databases.\n*[[database/sql/driver]] Package driver defines interfaces to be implemented by database drivers as used by package sql.\n	
+database/sql	A		Package sql provides a generic interface around SQL (or SQL-like) databases.	http://golang.org/pkg/database/sql/
+database/sql/driver	A		Package driver defines interfaces to be implemented by database drivers as used by package sql.	http://golang.org/pkg/database/sql/driver/
+debug	D		*[[debug/dwarf]] Package dwarf provides access to DWARF debugging information loaded from executable files, as defined in the DWARF 2.0 Standard at http://dwarfstd.org/doc/dwarf-2.0.0.pdf\n*[[debug/elf]] Package elf implements access to ELF object files.\n*[[debug/gosym]] Package gosym implements access to the Go symbol and line number tables embedded in Go binaries generated by the gc compilers.\n*[[debug/macho]] Package macho implements access to Mach-O object files.\n*[[debug/pe]] Package pe implements access to PE (Microsoft Windows Portable Executable) files.\n	
+debug/dwarf	A		Package dwarf provides access to DWARF debugging information loaded from executable files, as defined in the DWARF 2.0 Standard at http://dwarfstd.org/doc/dwarf-2.0.0.pdf	http://golang.org/pkg/debug/dwarf/
+debug/elf	A		Package elf implements access to ELF object files.	http://golang.org/pkg/debug/elf/
+debug/gosym	A		Package gosym implements access to the Go symbol and line number tables embedded in Go binaries generated by the gc compilers.	http://golang.org/pkg/debug/gosym/
+debug/macho	A		Package macho implements access to Mach-O object files.	http://golang.org/pkg/debug/macho/
+debug/pe	A		Package pe implements access to PE (Microsoft Windows Portable Executable) files.	http://golang.org/pkg/debug/pe/
+encoding	D		*[[encoding/ascii85]] Package ascii85 implements the ascii85 data encoding as used in the btoa tool and Adobe's PostScript and PDF document formats.\n*[[encoding/asn1]] Package asn1 implements parsing of DER-encoded ASN.1 data structures, as defined in ITU-T Rec X.690.\n*[[encoding/base32]] Package base32 implements base32 encoding as specified by RFC 4648.\n*[[encoding/base64]] Package base64 implements base64 encoding as specified by RFC 4648.\n*[[encoding/binary]] Package binary implements translation between numbers and byte sequences and encoding and decoding of varints.\n*[[encoding/csv]] Package csv reads and writes comma-separated values (CSV) files.\n*[[encoding/gob]] Package gob manages streams of gobs - binary values exchanged between an Encoder (transmitter) and a Decoder (receiver).\n*[[encoding/hex]] Package hex implements hexadecimal encoding and decoding.\n*[[encoding/json]] Package json implements encoding and decoding of JSON objects as defined in RFC 4627.\n*[[encoding/pem]] Package pem implements the PEM data encoding, which originated in Privacy Enhanced Mail.\n*[[encoding/xml]] Package xml implements a simple XML 1.0 parser that understands XML name spaces.\n	
+encoding/ascii85	A		Package ascii85 implements the ascii85 data encoding as used in the btoa tool and Adobe's PostScript and PDF document formats.	http://golang.org/pkg/encoding/ascii85/
+encoding/asn1	A		Package asn1 implements parsing of DER-encoded ASN.1 data structures, as defined in ITU-T Rec X.690.	http://golang.org/pkg/encoding/asn1/
+encoding/base32	A		Package base32 implements base32 encoding as specified by RFC 4648.	http://golang.org/pkg/encoding/base32/
+encoding/base64	A		Package base64 implements base64 encoding as specified by RFC 4648.	http://golang.org/pkg/encoding/base64/
+encoding/binary	A		Package binary implements translation between numbers and byte sequences and encoding and decoding of varints.	http://golang.org/pkg/encoding/binary/
+encoding/csv	A		Package csv reads and writes comma-separated values (CSV) files.	http://golang.org/pkg/encoding/csv/
+encoding/gob	A		Package gob manages streams of gobs - binary values exchanged between an Encoder (transmitter) and a Decoder (receiver).	http://golang.org/pkg/encoding/gob/
+encoding/hex	A		Package hex implements hexadecimal encoding and decoding.	http://golang.org/pkg/encoding/hex/
+encoding/json	A		Package json implements encoding and decoding of JSON objects as defined in RFC 4627.	http://golang.org/pkg/encoding/json/
+encoding/pem	A		Package pem implements the PEM data encoding, which originated in Privacy Enhanced Mail.	http://golang.org/pkg/encoding/pem/
+encoding/xml	A		Package xml implements a simple XML 1.0 parser that understands XML name spaces.	http://golang.org/pkg/encoding/xml/
+errors	A		Package errors implements functions to manipulate errors.	http://golang.org/pkg/errors/
+expvar	A		Package expvar provides a standardized interface to public variables, such as operation counters in servers.	http://golang.org/pkg/expvar/
+flag	A		Package flag implements command-line flag parsing.	http://golang.org/pkg/flag/
+fmt	A		Package fmt implements formatted I/O with functions analogous to C's printf and scanf.	http://golang.org/pkg/fmt/
+go	D		*[[go/ast]] Package ast declares the types used to represent syntax trees for Go packages.\n*[[go/build]] Package build gathers information about Go packages.\n*[[go/doc]] Package doc extracts source code documentation from a Go AST.\n*[[go/format]] Package format implements standard formatting of Go source.\n*[[go/parser]] Package parser implements a parser for Go source files.\n*[[go/printer]] Package printer implements printing of AST nodes.\n*[[go/scanner]] Package scanner implements a scanner for Go source text.\n*[[go/token]] Package token defines constants representing the lexical tokens of the Go programming language and basic operations on tokens (printing, predicates).\n	
+go/ast	A		Package ast declares the types used to represent syntax trees for Go packages.	http://golang.org/pkg/go/ast/
+go/build	A		Package build gathers information about Go packages.	http://golang.org/pkg/go/build/
+go/doc	A		Package doc extracts source code documentation from a Go AST.	http://golang.org/pkg/go/doc/
+go/format	A		Package format implements standard formatting of Go source.	http://golang.org/pkg/go/format/
+go/parser	A		Package parser implements a parser for Go source files.	http://golang.org/pkg/go/parser/
+go/printer	A		Package printer implements printing of AST nodes.	http://golang.org/pkg/go/printer/
+go/scanner	A		Package scanner implements a scanner for Go source text.	http://golang.org/pkg/go/scanner/
+go/token	A		Package token defines constants representing the lexical tokens of the Go programming language and basic operations on tokens (printing, predicates).	http://golang.org/pkg/go/token/
+hash	A		Package hash provides interfaces for hash functions.	http://golang.org/pkg/hash/
+hash/adler32	A		Package adler32 implements the Adler-32 checksum.	http://golang.org/pkg/hash/adler32/
+hash/crc32	A		Package crc32 implements the 32-bit cyclic redundancy check, or CRC-32, checksum.	http://golang.org/pkg/hash/crc32/
+hash/crc64	A		Package crc64 implements the 64-bit cyclic redundancy check, or CRC-64, checksum.	http://golang.org/pkg/hash/crc64/
+hash/fnv	A		Package fnv implements FNV-1 and FNV-1a, non-cryptographic hash functions created by Glenn Fowler, Landon Curt Noll, and Phong Vo.	http://golang.org/pkg/hash/fnv/
+html	A		Package html provides functions for escaping and unescaping HTML text.	http://golang.org/pkg/html/
+html/template	A		Package template (html/template) implements data-driven templates for generating HTML output safe against code injection.	http://golang.org/pkg/html/template/
+image	A		Package image implements a basic 2-D image library.	http://golang.org/pkg/image/
+image/color	A		Package color implements a basic color library.	http://golang.org/pkg/image/color/
+image/draw	A		Package draw provides image composition functions.	http://golang.org/pkg/image/draw/
+image/gif	A		Package gif implements a GIF image decoder.	http://golang.org/pkg/image/gif/
+image/jpeg	A		Package jpeg implements a JPEG image decoder and encoder.	http://golang.org/pkg/image/jpeg/
+image/png	A		Package png implements a PNG image decoder and encoder.	http://golang.org/pkg/image/png/
+index	D		*[[index/suffixarray]] Package suffixarray implements substring search in logarithmic time using an in-memory suffix array.\n	
+index/suffixarray	A		Package suffixarray implements substring search in logarithmic time using an in-memory suffix array.	http://golang.org/pkg/index/suffixarray/
+io	A		Package io provides basic interfaces to I/O primitives.	http://golang.org/pkg/io/
+io/ioutil	A		Package ioutil implements some I/O utility functions.	http://golang.org/pkg/io/ioutil/
+log	A		Package log implements a simple logging package.	http://golang.org/pkg/log/
+log/syslog	A		Package syslog provides a simple interface to the system log service.	http://golang.org/pkg/log/syslog/
+math	A		Package math provides basic constants and mathematical functions.	http://golang.org/pkg/math/
+math/big	A		Package big implements multi-precision arithmetic (big numbers).	http://golang.org/pkg/math/big/
+math/cmplx	A		Package cmplx provides basic constants and mathematical functions for complex numbers.	http://golang.org/pkg/math/cmplx/
+math/rand	A		Package rand implements pseudo-random number generators.	http://golang.org/pkg/math/rand/
+mime	A		Package mime implements parts of the MIME spec.	http://golang.org/pkg/mime/
+mime/multipart	A		Package multipart implements MIME multipart parsing, as defined in RFC 2046.	http://golang.org/pkg/mime/multipart/
+net	A		Package net provides a portable interface for network I/O, including TCP/IP, UDP, domain name resolution, and Unix domain sockets.	http://golang.org/pkg/net/
+net/http	A		Package http provides HTTP client and server implementations.	http://golang.org/pkg/net/http/
+net/http/cgi	A		Package cgi implements CGI (Common Gateway Interface) as specified in RFC 3875.	http://golang.org/pkg/net/http/cgi/
+net/http/cookiejar	A		Package cookiejar implements an in-memory RFC 6265-compliant http.CookieJar.	http://golang.org/pkg/net/http/cookiejar/
+net/http/fcgi	A		Package fcgi implements the FastCGI protocol.	http://golang.org/pkg/net/http/fcgi/
+net/http/httptest	A		Package httptest provides utilities for HTTP testing.	http://golang.org/pkg/net/http/httptest/
+net/http/httputil	A		Package httputil provides HTTP utility functions, complementing the more common ones in the net/http package.	http://golang.org/pkg/net/http/httputil/
+net/http/pprof	A		Package pprof serves via its HTTP server runtime profiling data in the format expected by the pprof visualization tool.	http://golang.org/pkg/net/http/pprof/
+net/mail	A		Package mail implements parsing of mail messages.	http://golang.org/pkg/net/mail/
+net/rpc	A		Package rpc provides access to the exported methods of an object across a network or other I/O connection.	http://golang.org/pkg/net/rpc/
+net/rpc/jsonrpc	A		Package jsonrpc implements a JSON-RPC ClientCodec and ServerCodec for the rpc package.	http://golang.org/pkg/net/rpc/jsonrpc/
+net/smtp	A		Package smtp implements the Simple Mail Transfer Protocol as defined in RFC 5321.	http://golang.org/pkg/net/smtp/
+net/textproto	A		Package textproto implements generic support for text-based request/response protocols in the style of HTTP, NNTP, and SMTP.	http://golang.org/pkg/net/textproto/
+net/url	A		Package url parses URLs and implements query escaping.	http://golang.org/pkg/net/url/
+os	A		Package os provides a platform-independent interface to operating system functionality.	http://golang.org/pkg/os/
+os/exec	A		Package exec runs external commands.	http://golang.org/pkg/os/exec/
+os/signal	A		Package signal implements access to incoming signals.	http://golang.org/pkg/os/signal/
+os/user	A		Package user allows user account lookups by name or id.	http://golang.org/pkg/os/user/
+path	A		Package path implements utility routines for manipulating slash-separated paths.	http://golang.org/pkg/path/
+path/filepath	A		Package filepath implements utility routines for manipulating filename paths in a way compatible with the target operating system-defined file paths.	http://golang.org/pkg/path/filepath/
+reflect	A		Package reflect implements run-time reflection, allowing a program to manipulate objects with arbitrary types.	http://golang.org/pkg/reflect/
+regexp	A		Package regexp implements regular expression search.	http://golang.org/pkg/regexp/
+regexp/syntax	A		Package syntax parses regular expressions into parse trees and compiles parse trees into programs.	http://golang.org/pkg/regexp/syntax/
+runtime	A		Package runtime contains operations that interact with Go's runtime system, such as functions to control goroutines.	http://golang.org/pkg/runtime/
+runtime/cgo	A		Package cgo contains runtime support for code generated by the cgo tool.	http://golang.org/pkg/runtime/cgo/
+runtime/debug	A		Package debug contains facilities for programs to debug themselves while they are running.	http://golang.org/pkg/runtime/debug/
+runtime/pprof	A		Package pprof writes runtime profiling data in the format expected by the pprof visualization tool.	http://golang.org/pkg/runtime/pprof/
+runtime/race	A		Package race implements data race detection logic.	http://golang.org/pkg/runtime/race/
+sort	A		Package sort provides primitives for sorting slices and user-defined collections.	http://golang.org/pkg/sort/
+strconv	A		Package strconv implements conversions to and from string representations of basic data types.	http://golang.org/pkg/strconv/
+strings	A		Package strings implements simple functions to manipulate strings.	http://golang.org/pkg/strings/
+sync	A		Package sync provides basic synchronization primitives such as mutual exclusion locks.	http://golang.org/pkg/sync/
+sync/atomic	A		Package atomic provides low-level atomic memory primitives useful for implementing synchronization algorithms.	http://golang.org/pkg/sync/atomic/
+syscall	A		Package syscall contains an interface to the low-level operating system primitives.	http://golang.org/pkg/syscall/
+testing	A		Package testing provides support for automated testing of Go packages.	http://golang.org/pkg/testing/
+testing/iotest	A		Package iotest implements Readers and Writers useful mainly for testing.	http://golang.org/pkg/testing/iotest/
+testing/quick	A		Package quick implements utility functions to help with black box testing.	http://golang.org/pkg/testing/quick/
+text	D		*[[text/scanner]] Package scanner provides a scanner and tokenizer for UTF-8-encoded text.\n*[[text/tabwriter]] Package tabwriter implements a write filter (tabwriter.Writer) that translates tabbed columns in input into properly aligned text.\n*[[text/template]] Package template implements data-driven templates for generating textual output.\n*[[text/template/parse]] Package parse builds parse trees for templates as defined by text/template and html/template.\n	
+text/scanner	A		Package scanner provides a scanner and tokenizer for UTF-8-encoded text.	http://golang.org/pkg/text/scanner/
+text/tabwriter	A		Package tabwriter implements a write filter (tabwriter.Writer) that translates tabbed columns in input into properly aligned text.	http://golang.org/pkg/text/tabwriter/
+text/template	A		Package template implements data-driven templates for generating textual output.	http://golang.org/pkg/text/template/
+text/template/parse	A		Package parse builds parse trees for templates as defined by text/template and html/template.	http://golang.org/pkg/text/template/parse/
+time	A		Package time provides functionality for measuring and displaying time.	http://golang.org/pkg/time/
+unicode	A		Package unicode provides data and functions to test some properties of Unicode code points.	http://golang.org/pkg/unicode/
+unicode/utf16	A		Package utf16 implements encoding and decoding of UTF-16 sequences.	http://golang.org/pkg/unicode/utf16/
+unicode/utf8	A		Package utf8 implements functions and constants to support text encoded in UTF-8.	http://golang.org/pkg/unicode/utf8/
+unsafe	A		Package unsafe contains operations that step around the type safety of Go programs.	http://golang.org/pkg/unsafe/
+aes	R	crypto/aes		http://golang.org/pkg/crypto/aes/
+rc4	R	crypto/rc4		http://golang.org/pkg/crypto/rc4/
+sql	R	database/sql		http://golang.org/pkg/database/sql/
+gob	R	encoding/gob		http://golang.org/pkg/encoding/gob/
+textproto	R	net/textproto		http://golang.org/pkg/net/textproto/
+filepath	R	path/filepath		http://golang.org/pkg/path/filepath/
+syntax	R	regexp/syntax		http://golang.org/pkg/regexp/syntax/
+tar	R	archive/tar		http://golang.org/pkg/archive/tar/
+gzip	R	compress/gzip		http://golang.org/pkg/compress/gzip/
+des	R	crypto/des		http://golang.org/pkg/crypto/des/
+sha1	R	crypto/sha1		http://golang.org/pkg/crypto/sha1/
+tls	R	crypto/tls		http://golang.org/pkg/crypto/tls/
+asn1	R	encoding/asn1		http://golang.org/pkg/encoding/asn1/
+cgi	R	net/http/cgi		http://golang.org/pkg/net/http/cgi/
+url	R	net/url		http://golang.org/pkg/net/url/
+race	R	runtime/race		http://golang.org/pkg/runtime/race/
+iotest	R	testing/iotest		http://golang.org/pkg/testing/iotest/
+zip	R	archive/zip		http://golang.org/pkg/archive/zip/
+flate	R	compress/flate		http://golang.org/pkg/compress/flate/
+ecdsa	R	crypto/ecdsa		http://golang.org/pkg/crypto/ecdsa/
+elliptic	R	crypto/elliptic		http://golang.org/pkg/crypto/elliptic/
+pkix	R	crypto/x509/pkix		http://golang.org/pkg/crypto/x509/pkix/
+cookiejar	R	net/http/cookiejar		http://golang.org/pkg/net/http/cookiejar/
+ast	R	go/ast		http://golang.org/pkg/go/ast/
+scanner	D		*[[go/scanner]] Package scanner implements a scanner for Go source text.\n*[[text/scanner]] Package scanner provides a scanner and tokenizer for UTF-8-encoded text.\n	
+jpeg	R	image/jpeg		http://golang.org/pkg/image/jpeg/
+debug	R	runtime/debug		http://golang.org/pkg/runtime/debug/
+rand	D		*[[crypto/rand]] Package rand implements a cryptographically secure pseudorandom number generator.\n*[[math/rand]] Package rand implements pseudo-random number generators.\n	
+x509	R	crypto/x509		http://golang.org/pkg/crypto/x509/
+dwarf	R	debug/dwarf		http://golang.org/pkg/debug/dwarf/
+parser	R	go/parser		http://golang.org/pkg/go/parser/
+big	R	math/big		http://golang.org/pkg/math/big/
+multipart	R	mime/multipart		http://golang.org/pkg/mime/multipart/
+atomic	R	sync/atomic		http://golang.org/pkg/sync/atomic/
+list	R	container/list		http://golang.org/pkg/container/list/
+adler32	R	hash/adler32		http://golang.org/pkg/hash/adler32/
+mail	R	net/mail		http://golang.org/pkg/net/mail/
+bzip2	R	compress/bzip2		http://golang.org/pkg/compress/bzip2/
+elf	R	debug/elf		http://golang.org/pkg/debug/elf/
+crc32	R	hash/crc32		http://golang.org/pkg/hash/crc32/
+smtp	R	net/smtp		http://golang.org/pkg/net/smtp/
+json	R	encoding/json		http://golang.org/pkg/encoding/json/
+token	R	go/token		http://golang.org/pkg/go/token/
+cmplx	R	math/cmplx		http://golang.org/pkg/math/cmplx/
+httptest	R	net/http/httptest		http://golang.org/pkg/net/http/httptest/
+rpc	R	net/rpc		http://golang.org/pkg/net/rpc/
+quick	R	testing/quick		http://golang.org/pkg/testing/quick/
+rsa	R	crypto/rsa		http://golang.org/pkg/crypto/rsa/
+sha256	R	crypto/sha256		http://golang.org/pkg/crypto/sha256/
+subtle	R	crypto/subtle		http://golang.org/pkg/crypto/subtle/
+gif	R	image/gif		http://golang.org/pkg/image/gif/
+ioutil	R	io/ioutil		http://golang.org/pkg/io/ioutil/
+http	R	net/http		http://golang.org/pkg/net/http/
+sha512	R	crypto/sha512		http://golang.org/pkg/crypto/sha512/
+gosym	R	debug/gosym		http://golang.org/pkg/debug/gosym/
+ascii85	R	encoding/ascii85		http://golang.org/pkg/encoding/ascii85/
+csv	R	encoding/csv		http://golang.org/pkg/encoding/csv/
+doc	R	go/doc		http://golang.org/pkg/go/doc/
+utf8	R	unicode/utf8		http://golang.org/pkg/unicode/utf8/
+md5	R	crypto/md5		http://golang.org/pkg/crypto/md5/
+xml	R	encoding/xml		http://golang.org/pkg/encoding/xml/
+png	R	image/png		http://golang.org/pkg/image/png/
+syslog	R	log/syslog		http://golang.org/pkg/log/syslog/
+lzw	R	compress/lzw		http://golang.org/pkg/compress/lzw/
+cipher	R	crypto/cipher		http://golang.org/pkg/crypto/cipher/
+pe	R	debug/pe		http://golang.org/pkg/debug/pe/
+base32	R	encoding/base32		http://golang.org/pkg/encoding/base32/
+binary	R	encoding/binary		http://golang.org/pkg/encoding/binary/
+printer	R	go/printer		http://golang.org/pkg/go/printer/
+crc64	R	hash/crc64		http://golang.org/pkg/hash/crc64/
+template	D		*[[html/template]] Package template (html/template) implements data-driven templates for generating HTML output safe against code injection.\n*[[text/template]] Package template implements data-driven templates for generating textual output.\n	
+zlib	R	compress/zlib		http://golang.org/pkg/compress/zlib/
+dsa	R	crypto/dsa		http://golang.org/pkg/crypto/dsa/
+driver	R	database/sql/driver		http://golang.org/pkg/database/sql/driver/
+macho	R	debug/macho		http://golang.org/pkg/debug/macho/
+base64	R	encoding/base64		http://golang.org/pkg/encoding/base64/
+hex	R	encoding/hex		http://golang.org/pkg/encoding/hex/
+color	R	image/color		http://golang.org/pkg/image/color/
+draw	R	image/draw		http://golang.org/pkg/image/draw/
+fcgi	R	net/http/fcgi		http://golang.org/pkg/net/http/fcgi/
+httputil	R	net/http/httputil		http://golang.org/pkg/net/http/httputil/
+exec	R	os/exec		http://golang.org/pkg/os/exec/
+heap	R	container/heap		http://golang.org/pkg/container/heap/
+suffixarray	R	index/suffixarray		http://golang.org/pkg/index/suffixarray/
+jsonrpc	R	net/rpc/jsonrpc		http://golang.org/pkg/net/rpc/jsonrpc/
+user	R	os/user		http://golang.org/pkg/os/user/
+hmac	R	crypto/hmac		http://golang.org/pkg/crypto/hmac/
+pem	R	encoding/pem		http://golang.org/pkg/encoding/pem/
+format	R	go/format		http://golang.org/pkg/go/format/
+pprof	D		*[[net/http/pprof]] Package pprof serves via its HTTP server runtime profiling data in the format expected by the pprof visualization tool.\n*[[runtime/pprof]] Package pprof writes runtime profiling data in the format expected by the pprof visualization tool.\n	
+parse	R	text/template/parse		http://golang.org/pkg/text/template/parse/
+utf16	R	unicode/utf16		http://golang.org/pkg/unicode/utf16/
+ring	R	container/ring		http://golang.org/pkg/container/ring/
+build	R	go/build		http://golang.org/pkg/go/build/
+fnv	R	hash/fnv		http://golang.org/pkg/hash/fnv/
+signal	R	os/signal		http://golang.org/pkg/os/signal/
+cgo	R	runtime/cgo		http://golang.org/pkg/runtime/cgo/
+tabwriter	R	text/tabwriter		http://golang.org/pkg/text/tabwriter/

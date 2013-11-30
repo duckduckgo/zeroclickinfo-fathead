@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"io/ioutil"
 	"strings"
+	"os"
 	"regexp"
 	"code.google.com/p/go.net/html"
 )
 
 type Package struct {
-	Name, Link, Abstract, Category string
+	Title, Type, Redirect, Other, Categories, References, See, Further, External, Disambig, Images, Abstract, Source, Alt string
 }
 
 type Attr struct {
@@ -19,6 +20,7 @@ type Attr struct {
 const (
 	HTML = "packages.html"
 	Link = "http://golang.org/pkg/"
+	Output = "output.txt"
 )
 
 // Make sure that the attributes that we want match with the attributes found in the element.
@@ -79,34 +81,81 @@ func PackageDetails(n *html.Node, attr Attr, fn func(*html.Node) Package) []Pack
 	return result
 }
 
-func DetermineCategories(pkgs []Package) {
-	// Use the categories attribute as a temporary variable.
+// Check whether a package should be of type "D" (for disambiguation) or type "A" (for article).
+func DetermineType(pkgs []Package) {
 	for i, pkg := range pkgs {
-		is_subdir := regexp.MustCompile(fmt.Sprintf("^%v/.+", pkg.Name))
+		is_subdir := regexp.MustCompile(fmt.Sprintf("^%v/.+", pkg.Title))
 
 		// If the abstract is blank, it is a directory.
 		if pkg.Abstract == "" {
 			disambig := [][]string{}
 			for _, candidate := range pkgs {
-				if is_subdir.MatchString(candidate.Link) {
-					disambig = append(disambig, []string{candidate.Link, candidate.Abstract})
+				if is_subdir.MatchString(candidate.Title) {
+					disambig = append(disambig, []string{candidate.Title, candidate.Abstract})
 				}
 			}
 			// Format the disambiguation result.
 			pkgs[i].Abstract = MakeDisambig(disambig)
-			pkgs[i].Category = "D"
+			pkgs[i].Type = "D"
+			pkgs[i].Source = ""
 		} else {
-			pkgs[i].Category = "A"
+			pkgs[i].Type = "A"
 		}
 	}
 }
 
+// Format the array of disambiguations that DuckDuckGo can read.
 func MakeDisambig(disambig [][]string) string {
 	result := ""
 	for _, d := range disambig {
 		result += fmt.Sprintf("*[[%v]] %v\\n", d[0], d[1])
 	}
 	return result
+}
+
+// Add some common package queries, too.
+// Ex. "cookiejar" should redirect to "net/http/cookiejar"
+func AddRedirects(pkgs []Package) []Package {
+	// We put everything in a map first because it's possible to have disambiguations in here.
+	result := map[string][]Package{}
+
+	for _, pkg := range pkgs {
+		if pkg.Title != pkg.Alt {
+			// Check if it already exists in our map.
+			_, ok := result[pkg.Alt]
+			pkg.Type = "R"
+			if ok {
+				result[pkg.Alt] = append(result[pkg.Alt], pkg)
+			} else {
+				result[pkg.Alt] = []Package{pkg}
+			}
+		}
+	}
+	
+	// Now go through each key-value pair to check if there are any disambiguations.
+	for _, v := range result {
+		// Using the first package would do.
+		first := v[0]
+		if len(v) > 1 {
+			// If there are multiple packages, pass it to the MakeDisambig function.
+			disambig := [][]string{}
+			for _, pkg := range v {
+				disambig = append(disambig, []string{pkg.Title, pkg.Abstract})
+			}
+			first.Abstract = MakeDisambig(disambig)
+			first.Type = "D"
+			// It shouldn't have a source if it's a disambig.
+			first.Source = ""
+		} else {
+			// If there is only one, just remove the abstract and add the redirect.
+			first.Redirect = first.Title
+			first.Abstract = ""
+		}
+		first.Title = first.Alt
+
+		pkgs = append(pkgs, first)
+	}
+	return pkgs
 }
 
 func main() {
@@ -126,32 +175,45 @@ func main() {
 		return
 	}
 
-	// Get the package name and the link from the table.
+	// Get the package names.
 	pkgs := PackageDetails(parsed, Attr{"class", "name"}, func(n *html.Node) Package {
-		return Package{n.LastChild.FirstChild.Data, GetAttr("href", n.LastChild), "", ""}
+		pkg := new(Package)
+		pkg.Title = GetAttr("href", n.LastChild)
+		pkg.Source = Link + GetAttr("href", n.LastChild)
+		pkg.Alt = n.LastChild.FirstChild.Data
+		return *pkg
 	})
 
-	// Get the abstract from the table.
+	// Get the abstracts.
 	abstracts := PackageDetails(parsed, Attr{"style", "width: auto"}, func(n *html.Node) Package {
+		pkg := new(Package)
 		if(n.FirstChild != nil) {
-			return Package{"", "", n.FirstChild.Data, ""}
+			pkg.Abstract = n.FirstChild.Data
 		}
-		return Package{"", "", "", ""}
+		return *pkg
 	})
 
 	// Let's copy over the abstracts to the pkgs slice.
 	for i, pkg := range pkgs {
 		pkgs[i].Abstract = abstracts[i].Abstract
-		pkgs[i].Link = pkg.Link[:len(pkg.Link)-1]
+		// Let's remove the trailing slash in our title, too.
+		// Ex. "unicode/utf8/" turns into "unicode/utf8"
+		pkgs[i].Title = pkg.Title[:len(pkg.Title)-1]
 	}
 
 	// Set the categories of each entry.
-	DetermineCategories(pkgs)
+	// Determine which ones are articles and which ones are disambiguations.
+	DetermineType(pkgs)
 
 	// Add redirects.
-	AddRedirects(pkgs)
+	// Some packages might be searched in a different way.
+	pkgs = AddRedirects(pkgs)
+
+	// Print it to a file.
+	out, err := os.Create(Output)
+	defer out.Close()
 
 	for _, pkg := range pkgs {
-		fmt.Printf("%v\t%v\t%v\t%v\t%v\n", pkg.Link, Link + pkg.Link, pkg.Abstract, pkg.Category, pkg.Name)
+		out.WriteString(fmt.Sprintf("%v\t%v\t%v\t%v\t%v\n", pkg.Title, pkg.Type, pkg.Redirect, pkg.Abstract, pkg.Source))
 	}
 }
