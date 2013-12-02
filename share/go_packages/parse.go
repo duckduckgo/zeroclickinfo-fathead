@@ -2,26 +2,50 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"strings"
 	"os"
 	"regexp"
+	"log"
+	"strings"
+	"net/http"
 	"code.google.com/p/go.net/html"
 )
 
 type Package struct {
-	Title, Type, Redirect, Other, Categories, References, See, Further, External, Disambig, Images, Abstract, Source, Alt string
+	Title string
+	Type string
+	Redirect string
+	Abstract string
+	Source string
+	Alt string
 }
 
 type Attr struct {
-	Key, Val string
+	Key string
+	Val string
 }
 
 const (
-	HTML = "packages.html"
 	Link = "http://golang.org/pkg/"
 	Output = "output.txt"
 )
+
+func (pkg *Package) ToArray() []string {
+	return []string{
+		pkg.Title, 
+		pkg.Type, 
+		pkg.Redirect,
+		"", 
+		"", 
+		"", 
+		"", 
+		"", 
+		"",
+		"", 
+		"", 
+		pkg.Abstract, 
+		pkg.Source,
+	}
+}
 
 // Make sure that the attributes that we want match with the attributes found in the element.
 func MatchAttr(n *html.Node, attr []Attr) bool {
@@ -82,7 +106,7 @@ func PackageDetails(n *html.Node, attr Attr, fn func(*html.Node) Package) []Pack
 }
 
 // Check whether a package should be of type "D" (for disambiguation) or type "A" (for article).
-func DetermineType(pkgs []Package) {
+func DetermineType(pkgs []Package) []Package {
 	for i, pkg := range pkgs {
 		is_subdir := regexp.MustCompile(fmt.Sprintf("^%v/.+", pkg.Title))
 
@@ -97,11 +121,14 @@ func DetermineType(pkgs []Package) {
 			// Format the disambiguation result.
 			pkgs[i].Abstract = MakeDisambig(disambig)
 			pkgs[i].Type = "D"
+			// Remove the source if it's a disambiguation because it won't matter.
 			pkgs[i].Source = ""
 		} else {
 			pkgs[i].Type = "A"
 		}
 	}
+
+	return pkgs
 }
 
 // Format the array of disambiguations that DuckDuckGo can read.
@@ -149,7 +176,6 @@ func AddRedirects(pkgs []Package) []Package {
 		} else {
 			// If there is only one, just remove the abstract and add the redirect.
 			first.Redirect = first.Title
-			first.Abstract = ""
 		}
 		first.Title = first.Alt
 
@@ -158,20 +184,41 @@ func AddRedirects(pkgs []Package) []Package {
 	return pkgs
 }
 
-func main() {
-	// Read the HTML file that we downloaded.
-	file, err := ioutil.ReadFile(HTML)
-
-	if err != nil {
-		fmt.Printf("There was an error with reading. %v\n", err)
-		return
+// Copy over some missing things from b to a.
+func Update(a []Package, b []Package) []Package {
+	for i, _ := range a {
+		a[i].Abstract = b[i].Abstract
 	}
 
-	// Parse the HTML that we got.
-	parsed, err := html.Parse(strings.NewReader(string(file)))
+	return a
+}
+
+// Format the output as specified.
+func FormatOutput(pkgs []Package) string {
+	result := ""
+
+	for _, pkg := range pkgs {
+		result += fmt.Sprintln(strings.Join(pkg.ToArray(), "\t"))
+	}
+
+	return result
+}
+
+func main() {
+	// Fetch the HTML.
+	resp, err := http.Get(Link)
 
 	if err != nil {
-		fmt.Printf("There was an error with parsing: %v\n", err)
+		log.Fatalf("There was an error with fetching. %v\n", err)
+		return
+	}
+	defer resp.Body.Close()
+
+	// Parse the HTML that we got.
+	parsed, err := html.Parse(resp.Body)
+
+	if err != nil {
+		log.Fatalf("There was an error with parsing: %v\n", err)
 		return
 	}
 
@@ -181,39 +228,44 @@ func main() {
 		pkg.Title = GetAttr("href", n.LastChild)
 		pkg.Source = Link + GetAttr("href", n.LastChild)
 		pkg.Alt = n.LastChild.FirstChild.Data
+
+		// Let's remove the trailing slash in our title, too.
+		// Ex. "unicode/utf8/" turns into "unicode/utf8"
+		pkg.Title = pkg.Title[:len(pkg.Title)-1]
 		return *pkg
 	})
 
 	// Get the abstracts.
 	abstracts := PackageDetails(parsed, Attr{"style", "width: auto"}, func(n *html.Node) Package {
 		pkg := new(Package)
+		// Check if we found a child (the text node).
+		// If we didn't find any, it just returns a Package with empty attributes.
 		if(n.FirstChild != nil) {
 			pkg.Abstract = n.FirstChild.Data
 		}
 		return *pkg
 	})
 
-	// Let's copy over the abstracts to the pkgs slice.
-	for i, pkg := range pkgs {
-		pkgs[i].Abstract = abstracts[i].Abstract
-		// Let's remove the trailing slash in our title, too.
-		// Ex. "unicode/utf8/" turns into "unicode/utf8"
-		pkgs[i].Title = pkg.Title[:len(pkg.Title)-1]
-	}
+	// Copy over the Abstracts from one array to the other.
+	pkgs = Update(pkgs, abstracts)
 
 	// Set the categories of each entry.
 	// Determine which ones are articles and which ones are disambiguations.
-	DetermineType(pkgs)
+	pkgs = DetermineType(pkgs)
 
 	// Add redirects.
 	// Some packages might be searched in a different way.
 	pkgs = AddRedirects(pkgs)
 
 	// Print it to a file.
-	out, err := os.Create(Output)
-	defer out.Close()
+	output, err := os.Create(Output)
 
-	for _, pkg := range pkgs {
-		out.WriteString(fmt.Sprintf("%v\t%v\t%v\t%v\t%v\n", pkg.Title, pkg.Type, pkg.Redirect, pkg.Abstract, pkg.Source))
+	if err != nil {
+		log.Fatalf("There was an error with creating %v. We got %v.\n", Output, err)
+		return
 	}
+	defer output.Close()
+
+	result := FormatOutput(pkgs)
+	output.WriteString(result)
 }
