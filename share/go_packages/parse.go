@@ -14,6 +14,7 @@ type Package struct {
 	Title string
 	Type string
 	Redirect string
+	Disambiguation string
 	Abstract string
 	Source string
 	Alt string
@@ -40,7 +41,7 @@ func (pkg *Package) ToArray() []string {
 		"", 
 		"", 
 		"",
-		"", 
+		pkg.Disambiguation, 
 		"", 
 		pkg.Abstract, 
 		pkg.Source,
@@ -119,7 +120,8 @@ func DetermineType(pkgs []Package) []Package {
 				}
 			}
 			// Format the disambiguation result.
-			pkgs[i].Abstract = MakeDisambig(disambig)
+			pkgs[i].Abstract = ""
+			pkgs[i].Disambiguation = MakeDisambig(disambig)
 			pkgs[i].Type = "D"
 			// Remove the source if it's a disambiguation because it won't matter.
 			pkgs[i].Source = ""
@@ -133,11 +135,11 @@ func DetermineType(pkgs []Package) []Package {
 
 // Format the array of disambiguations that DuckDuckGo can read.
 func MakeDisambig(disambig [][]string) string {
-	result := ""
+	results := []string{}
 	for _, d := range disambig {
-		result += fmt.Sprintf("*[[%v]] %v\\n", d[0], d[1])
+		results = append(results, fmt.Sprintf("*[[%v]] %v", d[0], d[1]))
 	}
-	return result
+	return strings.Join(results, "\\n")
 }
 
 // Add some common package queries, too.
@@ -169,13 +171,16 @@ func AddRedirects(pkgs []Package) []Package {
 			for _, pkg := range v {
 				disambig = append(disambig, []string{pkg.Title, pkg.Abstract})
 			}
-			first.Abstract = MakeDisambig(disambig)
+			first.Abstract = ""
+			first.Disambiguation = MakeDisambig(disambig)
 			first.Type = "D"
 			// It shouldn't have a source if it's a disambig.
 			first.Source = ""
 		} else {
 			// If there is only one, just remove the abstract and add the redirect.
 			first.Redirect = first.Title
+			first.Abstract = ""
+			first.Source = ""
 		}
 		first.Title = first.Alt
 
