@@ -1,14 +1,14 @@
-#### Install [Go](http://golang.org/).
-`sudo apt-get install golang`
+#### Install [Go](http://golang.org/) 1.2
+`sudo apt-get install golang` or follow the instructions on http://golang.org/doc/install
 
-#### Set $GOPATH.
-```
+#### Set $GOPATH
+```shell
 mkdir $HOME/go
 export GOPATH=$HOME/go
 ```
 
-#### Get dependencies.
+#### Get dependencies
 `go get "code.google.com/p/go.net/html"`
 
-#### Run the code.
-`go run parse.go`
+#### Run the code
+`cd` into the `share` directory and run `go run parse.go`
