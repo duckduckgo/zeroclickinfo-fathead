@@ -142,6 +142,19 @@ func MakeDisambig(disambig [][]string) string {
 	return strings.Join(results, "\\n")
 }
 
+func AddSnippet(pkgs []Package) []Package {
+	result := []Package{}
+
+	for _, pkg := range pkgs {
+		if pkg.Type == "A" {
+			pkg.Abstract = "<pre><code>import \"" + pkg.Title + "\"</code></pre>" + pkg.Abstract; 
+		}
+		result = append(result, pkg)
+	}
+
+	return result
+}
+
 // Add some common package queries, too.
 // Ex. "cookiejar" should redirect to "net/http/cookiejar"
 func AddRedirects(pkgs []Package) []Package {
@@ -246,7 +259,7 @@ func main() {
 		// Check if we found a child (the text node).
 		// If we didn't find any, it just returns a Package with empty attributes.
 		if(n.FirstChild != nil) {
-			pkg.Abstract = n.FirstChild.Data
+			pkg.Abstract = "Package description: " + n.FirstChild.Data
 		}
 		return *pkg
 	})
@@ -261,6 +274,9 @@ func main() {
 	// Add redirects.
 	// Some packages might be searched in a different way.
 	pkgs = AddRedirects(pkgs)
+
+	// Add code snippets.
+	pkgs = AddSnippet(pkgs)
 
 	// Print it to a file.
 	output, err := os.Create(Output)
