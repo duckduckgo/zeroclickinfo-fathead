@@ -2,11 +2,9 @@ package DDG::Fathead::Investopedia;
 
 use DDG::Fathead;
 
-primary_example_queries "financial accounting term";
-
-secondary_example_queries
-	"term finacial accounting",
-    "financial accounting definition";
+primary_example_queries "financial accounting meaning";
+    "financial accounting definition",
+    "term finacial accounting";
 
 name "Investopedia Terms";
 

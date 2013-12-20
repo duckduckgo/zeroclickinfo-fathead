@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import json
+import re
 
 jsonFile = "./download/terms.json"
 outputFile = "./output.txt"
@@ -9,14 +10,16 @@ outputStr = ""
 
 
 def formatLine (term):
-    descr = "{0}<br>{1}".format(term["definition"], term["investopediaSays"])
-    descr = descr.replace('\\n', '~~~n')
-    descr = descr.replace('\n', '\\n')
-    descr = descr.replace('~~~n', '\\\\n')
-    descr = descr.replace('\t', '\\t')
+    #descr = "{0}<br>{1}".format(term["definition"], term["investopediaSays"])
+    descr = term["investopediaSays"]
+    descr = descr.replace('\n', '')
+    descr = descr.replace('<p>', '')
+    descr = descr.replace('</p>', '')
+    descr = descr.strip(' \t\n\r\\n')
+    descr = re.sub('(\s*(&nbsp;)*\s*<br\s*\/?>)+', '<br />', descr)
     tmp = [
         "%s" % term["title"],   #title
-        "D",                    #type
+        "A",                    #type
         "",                     #redirects
         "",                     #otheruses
         "financy_terms",        #categories
