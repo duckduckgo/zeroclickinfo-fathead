@@ -5,6 +5,8 @@
   use Web::Scraper;
   binmode STDOUT, ':encoding(UTF-8)';
 
+  my %namespacesPerName;
+
   my $namespaceScraper = scraper {
       process ".members td > a", "namespaceScraper[]" => { body => 'TEXT', link => '@href' };
   };
@@ -14,12 +16,15 @@
   for my $namespace (@{$namespaces->{namespaceScraper}}) {
   	my $classes = scrapeClasses($namespace->{link});
   	if(!defined $classes->{classScraper}){
-  		goDeeper($namespace->{link});
+  		# goDeeper($namespace->{link});
   	}else{
   		for my $class (@{$classes->{classScraper}}) {
-          printLine($class->{name}, $class->{description}, $class->{link});
+          addLine($class->{name}, $class->{description}, $class->{link});
   		}
   	}
+    for my $groupedClassName ( keys %namespacesPerName ) {
+      printGroupedClassName($groupedClassName);
+    }
   }
 
   sub scrapeClasses{
@@ -43,9 +48,43 @@
 		for my $namespace (@{$namespaces->{namespaceScraper}}) {
 			my $classes = scrapeClasses($namespace->{link});
 			for my $class (@{$classes->{classScraper}}) {
-        printLine($class->{name}, $class->{description}, $class->{link});
+        addLine($class->{name}, $class->{description}, $class->{link});
       }
 		}
+  }
+
+  sub addLine{
+    my($className, $classDescription, $url) = @_;
+    if($className =~ /(\w+)(<(.*)>)*/){
+      # if($2){
+      #   print "\n stripped: $className to $1";    
+      # }else{
+      #   print "\n found simple: $1";    
+      # }
+      my $strippedClassName = $1;
+      if(!exists $namespacesPerName{$strippedClassName}){
+        print "\ncreating new array for $strippedClassName";
+        $namespacesPerName{$strippedClassName} = [];
+      }
+      print "\npushing element in $strippedClassName: $className";
+      # need to change this to a hash with an array of arrays instead of a hash with an array
+      # or, alternatively: to a hash with an array of objects instead of the seperate properties.
+      push @{$namespacesPerName{$strippedClassName}}, $className, $classDescription, $url;
+    }else{
+      # print "\n no dice: " . $className;
+    }
+    
+  }
+
+  sub printGroupedClassName{
+    my(@groupedClassName) = @_;
+    my $arrSize = @groupedClassName;
+    if($arrSize > 1){
+      print "\nfound more than one for : $groupedClassName[0]";
+    }
+    else{
+      print "\nfound only one for: $groupedClassName[0]"
+    }
   }
 
   sub printLine{
