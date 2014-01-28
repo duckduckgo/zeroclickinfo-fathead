@@ -19,7 +19,8 @@
   		# goDeeper($namespace->{link});
   	}else{
   		for my $class (@{$classes->{classScraper}}) {
-          addLine($class->{name}, $class->{description}, $class->{link});
+          # addLine($class->{name}, $class->{description}, $class->{link});
+          addLine($class);
   		}
   	}
     for my $groupedClassName ( keys %namespacesPerName ) {
@@ -54,7 +55,8 @@
   }
 
   sub addLine{
-    my($className, $classDescription, $url) = @_;
+    my($class) = @_;
+    my $className = $class->{name}
     if($className =~ /(\w+)(<(.*)>)*/){
       # if($2){
       #   print "\n stripped: $className to $1";    
@@ -67,9 +69,7 @@
         $namespacesPerName{$strippedClassName} = [];
       }
       print "\npushing element in $strippedClassName: $className";
-      # need to change this to a hash with an array of arrays instead of a hash with an array
-      # or, alternatively: to a hash with an array of objects instead of the seperate properties.
-      push @{$namespacesPerName{$strippedClassName}}, $className, $classDescription, $url;
+      push @{$namespacesPerName{$strippedClassName}}, $class;
     }else{
       # print "\n no dice: " . $className;
     }
