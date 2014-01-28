@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+  #!/usr/bin/env perl
   use strict;
   use warnings;
   use URI;
@@ -16,17 +16,22 @@
   for my $namespace (@{$namespaces->{namespaceScraper}}) {
   	my $classes = scrapeClasses($namespace->{link});
   	if(!defined $classes->{classScraper}){
-  		# goDeeper($namespace->{link});
+  		goDeeper($namespace->{link});
   	}else{
   		for my $class (@{$classes->{classScraper}}) {
-          # addLine($class->{name}, $class->{description}, $class->{link});
           addLine($class);
   		}
   	}
-    for my $groupedClassName ( keys %namespacesPerName ) {
-      printGroupedClassName($groupedClassName);
-    }
   }
+
+  for my $groupedClassName ( keys %namespacesPerName ) {
+    printGroupedClassName($groupedClassName, @{$namespacesPerName{$groupedClassName}});
+  }
+
+  
+
+  
+
 
   sub scrapeClasses{
   	my($url) = @_;
@@ -49,42 +54,86 @@
 		for my $namespace (@{$namespaces->{namespaceScraper}}) {
 			my $classes = scrapeClasses($namespace->{link});
 			for my $class (@{$classes->{classScraper}}) {
-        addLine($class->{name}, $class->{description}, $class->{link});
+        addLine($class);
       }
 		}
   }
 
   sub addLine{
     my($class) = @_;
-    my $className = $class->{name}
+    my $className = $class->{name};
     if($className =~ /(\w+)(<(.*)>)*/){
-      # if($2){
-      #   print "\n stripped: $className to $1";    
-      # }else{
-      #   print "\n found simple: $1";    
-      # }
       my $strippedClassName = $1;
       if(!exists $namespacesPerName{$strippedClassName}){
-        print "\ncreating new array for $strippedClassName";
         $namespacesPerName{$strippedClassName} = [];
       }
-      print "\npushing element in $strippedClassName: $className";
       push @{$namespacesPerName{$strippedClassName}}, $class;
-    }else{
-      # print "\n no dice: " . $className;
     }
-    
   }
 
   sub printGroupedClassName{
-    my(@groupedClassName) = @_;
-    my $arrSize = @groupedClassName;
+    my($groupedClassName, @groupedClasses) = @_;
+    my $arrSize = @groupedClasses;
+    
     if($arrSize > 1){
-      print "\nfound more than one for : $groupedClassName[0]";
+      printDisambiguation($groupedClassName, @groupedClasses);
     }
     else{
-      print "\nfound only one for: $groupedClassName[0]"
+      my $class = $groupedClasses[0];
+      printLine($class->{name}, $class->{description}, $class->{link});
     }
+  }
+
+  sub printDisambiguation{
+    my($name, @disambiguations) = @_;
+    printDisambiguationLine($name, @disambiguations);
+    for my $class (@disambiguations){
+      printDisambiguationSubLine($name, $class->{name}, $class->{description}, $class->{link});
+    }
+  }
+
+  sub printDisambiguationLine{
+    my($name, @disambiguations) = @_;
+    my $disambiguationString;
+    for my $disambiguation (@disambiguations){
+      $disambiguationString = $disambiguationString . "*[[$disambiguation->{name}]] $disambiguation->{description}" . '\n';
+    }
+    print join "\t", (
+            $name, # title
+            "D", # type
+            "", # redirect
+            "", # otheruses
+            "", # categories
+            "", # references
+            "", # see_also
+            "", # further_reading
+            "", # external_links
+            $disambiguationString, # disambiguation
+            "", # images
+            "", # abstract
+            "", # source_url
+            "\n"
+    );
+  }
+
+  sub printDisambiguationSubLine{
+    my($disambiguationName, $className, $classDescription, $url) = @_;
+    print join "\t", (
+            $className, # title
+            "A", # type
+            "", # redirect
+            "", # otheruses
+            "", # categories
+            "", # references
+            "", # see_also
+            "", # further_reading
+            "", # external_links
+            "", # disambiguation
+            "", # images
+            $classDescription, # abstract
+            $url, # source_url
+            "\n"
+    );
   }
 
   sub printLine{
