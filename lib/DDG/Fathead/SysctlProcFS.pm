@@ -1,4 +1,4 @@
-package DDG::Fathead::SysctlProcSysKernel;
+package DDG::Fathead::SysctlProcFS;
 
 use DDG::Fathead;
 
@@ -10,10 +10,10 @@ secondary_example_queries
     '/proc/sys/kernel/shmmax',
     'proc sys kernel unknown_nmi_panic',
     'linux panic_on_stackoverflow';
-description 'documentation for the sysctl files in /proc/sys/kernel/';
+description 'documentation for the sysctl files mounted on /proc/sys/';
 name 'SysctlProcSysKernel';
-source 'https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/sysctl/kernel.txt';
-code_url 'https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/SysctlProcSysKernel';
+source 'https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/sysctl';
+code_url 'https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/SysctlProcFS';
 category 'computing_tools';
 topics 'computing', 'sysadmin', 'special_interest';
 attribution github => ['http://github.com/nospampleasemam', 'nospampleasemam'],
