@@ -24,13 +24,14 @@
   	}
   }
 
+  printAndClearNamespaces();
+
+  sub printAndClearNamespaces{
   for my $groupedClassName ( keys %namespacesPerName ) {
-    printGroupedClassName($groupedClassName, @{$namespacesPerName{$groupedClassName}});
+      printGroupedClassName($groupedClassName, @{$namespacesPerName{$groupedClassName}});
+    }
+    %namespacesPerName=();
   }
-
-  
-
-  
 
 
   sub scrapeClasses{
@@ -94,7 +95,7 @@
 
   sub printDisambiguationLine{
     my($name, @disambiguations) = @_;
-    my $disambiguationString;
+    my $disambiguationString = "";
     for my $disambiguation (@disambiguations){
       $disambiguationString = $disambiguationString . "*[[$disambiguation->{name}]] $disambiguation->{description}" . '\n';
     }
