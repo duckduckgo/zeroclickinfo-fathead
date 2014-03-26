@@ -41,4 +41,4 @@ print $output join "\n", map {
         '',           # Images
         $answers{$_}, # Abstract
         $source       # Source URL
-} keys %answers;
+} sort keys %answers;
