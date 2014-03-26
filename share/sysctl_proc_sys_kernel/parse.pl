@@ -20,9 +20,12 @@ for my $section (@sections) {
     my $details = $section =~ s/\n\n$file:\n\n|\n*$//gr;
     $details =~ s/\n/ /g;
     $answers{$file} = $details;
-    map { $answers{$_} = $details } split / & /, $file if $file =~ /&/;
-    map { s/\)$//; $answers{$_} = $details } split / \(/, $file if $file =~ /\(/;
-    map { s/_/ /; $answers{$_} = $details } sort keys %answers;
+    map { $answers{$_} = $details } split / +& +/, $file if $file =~ /&/;
+    map { s/\)$//g; $answers{$_} = $details } split / +\(/, $file if $file =~ /\(/;
+    map { s/and +//; $answers{$_} = $details } split /, +/, $file if $file =~ /, +/;
+    map { s/_/ /g; $answers{$_} = $details } sort keys %answers;
+    map { s/-/ /g; $answers{$_} = $details } sort keys %answers;
+    map { s/-//g; $answers{$_} = $details } sort keys %answers;
 }
 
 %answers = map { lc, $answers{$_} } keys %answers;
