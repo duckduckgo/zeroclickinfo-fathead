@@ -22,6 +22,7 @@ for my $section (@sections) {
     $answers{$file} = $details;
     map { $answers{$_} = $details } split / & /, $file if $file =~ /&/;
     map { s/\)$//; $answers{$_} = $details } split / \(/, $file if $file =~ /\(/;
+    map { s/_/ /; $answers{$_} = $details } sort keys %answers;
 }
 
 %answers = map { lc, $answers{$_} } keys %answers;
