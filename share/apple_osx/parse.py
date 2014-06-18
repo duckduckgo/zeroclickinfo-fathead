@@ -10,16 +10,6 @@ spaces = re.compile('''\s+''', re.DOTALL)
 
 files = []
 
-# ouput should be in format
-# name
-# namespace
-# url
-# description
-# synopsis (code)
-# details
-# type
-# lang
-
 for root, dirs, filelist in os.walk('./developer.apple.com/'):
     for file in filelist:
         if '.html' in file and 'Reference' in file:
