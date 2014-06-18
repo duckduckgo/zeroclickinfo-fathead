@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from bs4.dammit import UnicodeDammit
 import re
 import os
 import sys
@@ -8,9 +9,6 @@ openclosetags = re.compile('''<.*?>|</.*?>''', re.DOTALL)
 spaces = re.compile('''\s+''', re.DOTALL)
 
 files = []
-
-#files.append('./developer.apple.com.library/mac/documentation/Cocoa/Reference/
-# NSCondition_class/Reference-Reference.html')
 
 # ouput should be in format
 # name
@@ -22,11 +20,10 @@ files = []
 # type
 # lang
 
-for root, dirs, filelist in os.walk('./developer.apple.com.library/'):
+for root, dirs, filelist in os.walk('./developer.apple.com/'):
     for file in filelist:
-        if '.html' in file:
+        if '.html' in file and 'Reference' in file:
             files.append("%s/%s" % (root, file))
-
 
 for file in files:
     filecontents = ''
@@ -46,7 +43,7 @@ for file in files:
         desc = openclosetags.sub('', temp)
 
     name = name.split(' ')[0]
-    url = "http://%s" % (file.replace('./docs/apple/osx/', '').replace('\\', '/').replace('developer.apple.com.', 'developer.apple.com/').replace('-', '/'))
+    url = "https://%s" % (file.replace('\\', '/').replace('./developer.apple.com/', 'developer.apple.com/').replace('-', '/'))
     synopsis = ''
     namespace = name
 
@@ -66,7 +63,9 @@ for file in files:
         if len(i.findAll(attrs={'class': 'api availability'})) != 0:
             desc = '%s %s' % (desc, openclosetags.sub('', str(i.findAll(attrs={'class': 'api availability'})[0].findAll('li')[0])))
         synopsis = openclosetags.sub('', str(i.findAll(attrs={'class': 'declaration'})[0]))[2:]
-        print
+
+        desc = UnicodeDammit(desc).unicode_markup
+
         print "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (name, namespace, url2, desc, synopsis, '', 'osx', 'en')
 
     for i in soup.findAll(attrs={"class": "api classMethod"}):
@@ -82,5 +81,8 @@ for file in files:
         if len(i.findAll(attrs={'class': 'api availability'})) != 0:
             desc = '%s %s' % (desc, openclosetags.sub('', str(i.findAll(attrs={'class': 'api availability'})[0].findAll('li')[0])))
         synopsis = openclosetags.sub('', str(i.findAll(attrs={'class': 'declaration'})[0]))[2:]
-        print
+
+        desc = UnicodeDammit(desc).unicode_markup
+
         print "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (name, namespace, url2, desc, synopsis, '', 'osx', 'en')
+
