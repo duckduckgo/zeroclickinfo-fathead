@@ -66,19 +66,26 @@ for p in unstable:
 
 for (p, q) in pkgs.items():
 	desc = None
+	ver = None
 	abstract = []
 	if q["stable"] != None:		#11
 		abstract.append("stable (%s) %s https://packages.debian.org/%s/%s" % (stable_name, q["stable"]["ver"], stable_name, p))
 		if not desc:
 			desc = q["stable"]["desc"]
+		if not ver:
+			ver = q["stable"]["ver"]
 	if q["testing"] != None:
 		abstract.append("testing (%s) %s https://packages.debian.org/%s/%s" % (testing_name, q["testing"]["ver"], testing_name, p))
 		if not desc:
 			desc = q["testing"]["desc"]
+		if not ver:
+			ver = q["testing"]["ver"]
 	if q["unstable"] != None:
 		abstract.append("unstable (%s) %s https://packages.debian.org/%s/%s" % (unstable_name, q["unstable"]["ver"], unstable_name, p))
 		if not desc:
 			desc = q["unstable"]["desc"]
+		if not ver:
+			ver = q["unstable"]["ver"]
 
 	out = p + "\t"		#0
 	out += "A\t"		#1
@@ -90,7 +97,7 @@ for (p, q) in pkgs.items():
 	out += "\t"			#7
 	out += "\t"			#8
 	out += "\t"			#9
-	out += "\t"			#10
+	out += "[[Image:https://screenshots.debian.net/thumbnail-with-version/%s/%s]]\t" % (p, ver)		#10
 	out += desc + "<br>" + "<br>".join(abstract)	#11
 	out += "\t"			#12
 	print(out)
