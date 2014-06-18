@@ -11,8 +11,8 @@ def find_parents(n, parents):
 	else:
 		return find_parents(n.parent, parents)
 
-for title in os.listdir("download/"):
-	soup = BeautifulSoup(open("download/%s" % title))
+for title in os.listdir("download/xml/"):
+	soup = BeautifulSoup(open("download/xml/%s" % title))
 	if soup.appendix:
 		continue
 
@@ -25,6 +25,21 @@ for title in os.listdir("download/"):
 		num_title = chain[0][1].get("value")
 		num_sec = chain[-1][1].get("value")
 
-		out = "\t".join([x[1].get_text() + " " + x[2].get_text() for x in chain])
+		context = " ".join([x[1].get_text() + " " + x[2].get_text() for x in chain])
 		url = "http://www.law.cornell.edu/uscode/text/%s/%s" % (num_title, num_sec)
-		print("%s\t%s\t%s\t%s" % (num_title, num_sec, out, url))
+
+		out = "%s USC %s\t" % (num_title, num_sec)		#0
+		out += "A\t"		#1
+		out += "\t"		#2
+		out += "\t"		#3
+		out += "\t"		#4
+		out += "\t"		#5
+		out += "\t"		#6
+		out += "\t"		#7
+		out += "\t"		#8
+		out += "\t"		#9
+		out += "\t"		#10
+		out += context + "\t"		#11
+		out += url		#12
+
+		print(out)
