@@ -9,7 +9,7 @@ secondary_example_queries
 
 description "OSX documentation";
 
-name "AppleOSX";
+name "Apple OSX";
 
 icon_url "";
 

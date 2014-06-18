@@ -2,4 +2,4 @@
 
 cd $(dirname -- "$0")
 
-python parse.py
+python parse.py > output.txt

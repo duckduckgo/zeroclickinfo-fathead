@@ -12,7 +12,7 @@ files = []
 
 for root, dirs, filelist in os.walk('./developer.apple.com/'):
     for file in filelist:
-        if '.html' in file and 'Reference' in file:
+        if '.html' in file and 'Reference' in file and '?' not in file:
             files.append("%s/%s" % (root, file))
 
 for file in files:
@@ -37,7 +37,9 @@ for file in files:
     synopsis = ''
     namespace = name
 
-    print "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (name, namespace, url, desc, synopsis, '', 'osx', 'en')
+    # https://stackoverflow.com/questions/19145183/redirecting-pythons-stdout-to-the-file-fails-with-unicodeencodeerror
+    encoding = sys.stdout.encoding or 'utf-8'
+    print ("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (name, namespace, url, desc, synopsis, '', 'osx', 'en')).encode(encoding)
 
     space = name
     for i in soup.findAll(attrs={"class": "api instanceMethod"}):
@@ -56,7 +58,8 @@ for file in files:
 
         desc = UnicodeDammit(desc).unicode_markup
 
-        print "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (name, namespace, url2, desc, synopsis, '', 'osx', 'en')
+        encoding = sys.stdout.encoding or 'utf-8'
+        print ("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (name, namespace, url2, desc, synopsis, '', 'osx', 'en')).encode(encoding)
 
     for i in soup.findAll(attrs={"class": "api classMethod"}):
         name = i.findAll('h3')[0].string
@@ -74,5 +77,6 @@ for file in files:
 
         desc = UnicodeDammit(desc).unicode_markup
 
-        print "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (name, namespace, url2, desc, synopsis, '', 'osx', 'en')
+        encoding = sys.stdout.encoding or 'utf-8'
+        print ("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (name, namespace, url2, desc, synopsis, '', 'osx', 'en')).encode(encoding)
 
