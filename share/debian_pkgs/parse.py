@@ -65,9 +65,32 @@ for p in unstable:
 		}
 
 for (p, q) in pkgs.items():
-	if q["stable"] != None:
-		print("stable\t%s\t%s\t%s\t%s\thttps://packages.debian.org/%s/%s" % (stable_name, p, q["stable"]["ver"], q["stable"]["desc"], stable_name, p))
+	desc = None
+	abstract = []
+	if q["stable"] != None:		#11
+		abstract.append("stable (%s) %s https://packages.debian.org/%s/%s" % (stable_name, q["stable"]["ver"], stable_name, p))
+		if not desc:
+			desc = q["stable"]["desc"]
 	if q["testing"] != None:
-		print("testing\t%s\t%s\t%s\t%s\thttps://packages.debian.org/%s/%s" % (testing_name, p, q["testing"]["ver"], q["testing"]["desc"], testing_name, p))
+		abstract.append("testing (%s) %s https://packages.debian.org/%s/%s" % (testing_name, q["testing"]["ver"], testing_name, p))
+		if not desc:
+			desc = q["testing"]["desc"]
 	if q["unstable"] != None:
-		print("unstable\t%s\t%s\t%s\t%s\thttps://packages.debian.org/%s/%s" % (unstable_name, p, q["unstable"]["ver"], q["unstable"]["desc"], unstable_name, p))
+		abstract.append("unstable (%s) %s https://packages.debian.org/%s/%s" % (unstable_name, q["unstable"]["ver"], unstable_name, p))
+		if not desc:
+			desc = q["unstable"]["desc"]
+
+	out = p + "\t"		#0
+	out += "A\t"		#1
+	out += "\t"			#2
+	out += "\t"			#3
+	out += "\t"			#4
+	out += "\t"			#5
+	out += "\t"			#6
+	out += "\t"			#7
+	out += "\t"			#8
+	out += "\t"			#9
+	out += "\t"			#10
+	out += desc + "<br>" + "<br>".join(abstract)	#11
+	out += "\t"			#12
+	print(out)
