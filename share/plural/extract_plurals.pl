@@ -2,8 +2,6 @@
 
 use Modern::Perl 2014;
 use autodie;
-use JSON::XS qw(encode_json);
-use File::Slurp qw(write_file read_file);
 use URI::Escape qw(uri_escape_utf8);
 use Lingua::EN::Inflect qw(WORDLIST);
 use utf8;
@@ -128,12 +126,6 @@ while (<DICT>) {
 say "\r$. lines processed";
 close DICT;
 
-#Write as JSON
-say "Writing plurals.json...";
-my $json = encode_json \%plurals;
-write_file('plurals.json', { binmode => ':raw' }, $json);
-say "Done";
-
 #Write as output.txt
 say "Writing output.txt...";
 open OUTPUT, '>:utf8', 'output.txt';
@@ -151,7 +143,7 @@ foreach my $term (sort keys %plurals) {
     '', #External link
     '', #Disambiguation
     '', #Images
-    wrap_html($term, %{$plurals{$term}}), #Abstract
+    wrap_answer($term, %{$plurals{$term}}), #Abstract
     wiktionary_URL($term) #Source URL
   ));
 
@@ -161,37 +153,25 @@ foreach my $term (sort keys %plurals) {
 close OUTPUT;
 exit;
     
-sub wrap_html {
+sub wrap_answer {
 
   (my $lc, my %pluralForms) = @_;
-
-  #Inject CSS and open div
-  state $css = read_file('style_flat.css');
-  chomp $css;
-  my $html = "<style type='text/css'>$css</style>";
-  $html .= "<div class='zci--plural'>";
 
   #For each matching caseform, construct a natural-language
   # statment of the plural forms with links to Wiktionary
   my @statements;
   foreach my $caseForm (sort keys %pluralForms) {
-    my @pluralForms = map { "<span class='plural'><a href='" . wiktionary_URL($_) . "'>" . $_ . "</a></span>" } keys %{$pluralForms{$caseForm}};
     my $article = @statements == 0 ? 'The' : 'the';
-    my $statement = "<span class='label'>$article plural of $caseForm is</span> " . natural_list(@pluralForms);
+    my $statement = "$article plural of $caseForm is " . natural_list(keys %{$pluralForms{$caseForm}});
     push(@statements, $statement);
   }
 
-  #Join the statements together and capitalise
-  # the first word
-  my $statement = join("<span class='label'>; </span>", @statements);
+  #Join the statements together into a readable sentence
+  my $statement = join("; ", @statements);
   $statement = ucfirst($statement);
-  $html .= $statement;
-  
-  #Link back to Wiktionary and close off
-  $html .= "<div class='source'><a href='" . wiktionary_URL($lc) ."'>More at Wiktionary</a></div>";
-  $html .= "</div>";
+  $statement .= '.';
 
-  return $html;
+  return $statement;
 
 }
 
@@ -206,7 +186,7 @@ sub wiktionary_URL {
 sub natural_list {
 
   my @items = @_;
-  return WORDLIST(sort @items, {conj => "<span class='label'>or</span>"});
+  return WORDLIST(sort @items, {conj => "or"});
 
 }
 
@@ -220,4 +200,3 @@ sub nested_forms {
   return sort @forms;
 
 }
-
