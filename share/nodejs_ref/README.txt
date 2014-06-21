@@ -1,3 +1,3 @@
 Dependencies
 
-cd /usr/ports/www/node && make && make install
+Node >= v0.8
