@@ -1,123 +1,114 @@
-var fs    = require('fs');
-var jsdom = require('jsdom');
+var fs = require('fs')
+    json = require('./download/all.json'),
 
-var FILE_NAME = './download/all.html';
-var URL_BASE  = 'http://nodejs.org/api/all.html';
-var JQUERY_URL = './jquery-1.5.min.js'; // 'http://code.jquery.com/jquery-1.5.min.js'; 
+    URL_BASE = 'http://nodejs.org/api/all.html#all_',
 
-function fetch_html(local, cb) {
-    var html = fs.readFileSync(FILE_NAME).toString();
-    // console.error("html:", html);
-    cb(html);
+    items = [];
+
+function createItem(ops) {
+    items.push([
+        ops.name,
+        'A',
+        '','','','','','','','','',
+        ops.abstract,
+        URL_BASE + ops.URL
+    ].join('\t'));
 }
 
-// create table docs(page text not null, namespace text not null, url text not null, description text not null, synopsis text not null, details text not null, type text not null, lang text not null);
+function getAbstract(obj) {
+    var a = obj.desc || '',
+        code = '',
+        stability = '';
 
-function parse_out_docs(html, cb) {
-    jsdom.env(html, [ JQUERY_URL ], function(errors, window) {
-	if (!window) {
-	    throw new Error("Arghh!!");
-	}
+    if (obj.type && obj.type === 'method') {
+        code = '<pre><code>' + obj.textRaw + '</code></pre>';
+    }
 
-	console.error("Start parsing");
+    if (obj.stability) {
+        stability = '<p>Stability: ' + obj.stability + ' - ' + obj.stabilityText + '</p>';
+    }
 
-	var $ = window.$;
-	var docs = [ ];
-        function prettify_id(id) {
-            return id.replace(/^all_/, '').replace(/\./g, ' ');
+    a = code + a + stability;
+
+    // there's some non-utf8 stuff that postgres doesn't like:
+    a = a.replace(/0x00|\\0|\\u0000/g,' ');
+
+    // would be nice to be able to link these, but the links seem to get stripped out:
+    a = a.replace(/\[(.*)\]\[\]/g,'$1');
+
+    // there's line breaks and tabs in the code blocks that we want to preserve, but
+    // will mess up the process script if you don't escape them:
+    a = a.replace(/\n/g,'\\n');
+    a = a.replace(/\t/g,'  ');
+
+    return a;
+}
+
+
+function getURLId(arr, sigs) {
+    var str = arr.map(function(i) { return i.toLowerCase(); }).join('_'),
+        params = sigs && sigs[0] && sigs[0].params;
+
+    params && params.forEach(function(p) {
+        if (p.name && p.name !== '...') {
+            str += '_' + p.name.toLowerCase();
         }
+    });
 
-	function process_element(i, elem) {
-	    elem = $(elem);
-	    var next = elem.next();
-	    var description = '';
-            var inner_span_a = elem.find("span:first-child a");
-	    var id = inner_span_a.length == 1 ? inner_span_a.attr('id') : '';
-	    var url = URL_BASE + '#' + id;
-	    var namespace = '';
-	    var page = prettify_id(id);
-            var signature = elem.text().replace(/\s*#$/, '');
-            var signature_text = signature.replace(/\([^\)]*\)/, '');
-	    var synopsis = signature;
-	    var is_event = false;
+    return str;
+}
 
-	    var m1 = signature_text.match(/^([^\.]+)\.(.+)$/); // member function
-            var m2 = signature_text.match(/^Event:\ \'([^\']+)\'/); // event
-            var m3 = signature_text.match(/^([^\.]+)$/); // global free-standing function
+// Parsing the JSON:
 
-	    if (m1 && m1.length === 3) {
-		namespace = m1[1];
-		page = m1[2];
-            } else if (m2 && m2.length == 2) {
-		is_event = true;
-		page = m2[1];
-		var _p = elem.prevAll('h2').first();
-		if (elem.is('h3') && _p) {
-                    var nsm = _p.text().match(/Class:\ ([^#]+)/);
-                    if (nsm && nsm.length == 2) {
-			namespace = nsm[1].split('.').reverse()[0];
-		    }
-		}
-	    } else if (m3 && m3.length == 2) {
-                page = m3[1];
-	    }
+// top level:
+//   globals
+//   vars
+//   methods
+//   modules
 
-	    if (next.is('p')) {
-		description = next.text();
-	    } else if (next.next().is('p')) {
-                description = next.next().text();
-            }
+var sectionKeys = ['globals','vars','methods','modules'],
+    childKeys = ['methods','properties','classes','events','classMethods'];
 
-	    var ret = {
-		page: page, 
-		description: description, 
-		url: url, 
-		synopsis: synopsis, 
-		namespace: namespace
-	    };
+function processNode(node, nodes) {
 
-	    console.error("ret:", ret);
-	    // return ret;
-	    docs.push(ret);
+    // there's some nodes we want to skip because they're just not helpeful and better
+    // defined elsewhere:
+    if (node.name == 'console' || node.name === 'process' || node.name === 'buffer') {
+        if (!node.methods && !node.events && !node.properties) {
+            return;
+        }
+    }
 
-	    if (namespace) {
-		var ret2 = {
-		    page: namespace + '.' + page, 
-		    description: description, 
-		    url: url, 
-		    synopsis: synopsis, 
-		    namespace: ''
-		};
+    // if it's a class, start over as the root node:
+    if (node && node.type === 'class') {
+        nodes = [node];
+    } else {
+        nodes.push(node);
+    }
 
-		if (is_event) {
-		    ret2.page = namespace + ' ' + page + ' event';
-		}
+    var names = nodes.map(function(n){ return n.name }),
+        abstract = getAbstract(node);
 
-		docs.push(ret2);
-	    }
-	}
+    createItem({
+        name: names.join('.'),
+        abstract: abstract,
+        URL: getURLId(names, node.signatures)
+    });
 
-	$('h3').each(process_element);
-	$('h2').each(process_element);
-
-	cb(docs);
+    childKeys.forEach(function(childKey) {
+        if (node[childKey]) {
+            node[childKey].forEach(function(child) {
+                processNode(child, [].concat(nodes));
+            });
+        }
     });
 }
 
-function dump_to_file(docs) {
-    var _d = docs.map(function(d) {
-	return [ d.page, d.namespace, d.url, d.description, 
-		 d.synopsis, '', '', 'en' ].join('\t').replace(/\n/g, ' ');
+sectionKeys.forEach(function(sectionKey) {
+    json[sectionKey].forEach(function(node) {
+        processNode(node, []);
     });
-    fs.writeFileSync('output.txt', _d.join('\n') + "\n");
-}
+});
 
-function main() {
-    fetch_html(true, function(html) {
-	parse_out_docs(html, /*dump_to_db*/ dump_to_file);
-    });
-}
-
-main();
-
-
+// save to file:
+fs.writeFileSync('output.txt', items.join('\n') + '\n');
