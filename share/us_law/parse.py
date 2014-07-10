@@ -6,6 +6,7 @@ import os
 def find_parents(n, parents):
     parents.insert(0, (n.parent.name, n.parent.num, n.parent.heading))
 
+    #if n.parent.name in ["title", "appendix"]:    #top level
     if n.parent.name == "title":    #top level
         return parents
     else:
@@ -13,8 +14,17 @@ def find_parents(n, parents):
 
 for title in os.listdir("download/xml/"):
     soup = BeautifulSoup(open("download/xml/%s" % title))
-    if soup.appendix:   #Appendices don't conform to the pattern
+
+    if soup.appendix:   #Appendices aren't part of the code
         continue
+
+
+    """
+    if soup.appendix and soup.appendix.num.value in ["11a", "28a"]:
+        leaf_element = "courtRule"  #Appendices don't conform to the pattern
+    else:
+        leaf_element = "section"
+    """
 
     for section in soup.find_all("section"):
         if section.get("id") == None:
