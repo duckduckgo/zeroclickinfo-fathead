@@ -13,19 +13,20 @@ def find_parents(n, parents):
 
 for title in os.listdir("download/xml/"):
     soup = BeautifulSoup(open("download/xml/%s" % title))
-    if soup.appendix:
+    if soup.appendix:   #Appendices don't conform to the pattern
         continue
 
     for section in soup.find_all("section"):
         if section.get("id") == None:
             continue    #not a leaf node
 
+        #build a chain from the section to the top level. We don't know how many intermediate links there will be.
         chain = find_parents(section, []) + [(section.name, section.num, section.heading)]
 
-        num_title = chain[0][1].get("value")
-        num_sec = chain[-1][1].get("value")
+        num_title = chain[0][1].get("value")    #One end of the chain is the title...
+        num_sec = chain[-1][1].get("value")     #...and the other end is the section
 
-        context = " ".join([x[1].get_text() + " " + x[2].get_text() for x in chain])
+        context = " ".join([x[1].get_text() + " " + x[2].get_text() for x in chain])    #Combine the headings of every level of the chain
         url = "http://www.law.cornell.edu/uscode/text/%s/%s" % (num_title, num_sec)
 
         out = "%s USC %s\t" % (num_title, num_sec)        #0
