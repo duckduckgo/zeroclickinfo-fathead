@@ -1,91 +1,42 @@
 #!/usr/bin/python3
 
-with open("download/stable.txt") as f:
-    stable = f.readlines()
+repos = ["stable", "testing", "unstable"]
 
-with open("download/testing.txt") as f:
-    testing = f.readlines()
-
-with open("download/unstable.txt") as f:
-    unstable = f.readlines()
-
-stable_name = stable[0].rsplit(" ", 1)[1].strip("\"\n")
-testing_name = testing[0].rsplit(" ", 1)[1].strip("\"\n")
-unstable_name = unstable[0].rsplit(" ", 1)[1].strip("\"\n")
-
-stable = stable[6:]    #omit the 6 lines of header
-testing = testing[6:]
-unstable = unstable[6:]
-
+lines = {}
+names = {}
 pkgs = {}
 
-for p in stable:
-    q = p.split(" ", 2)
-    pkgs[q[0]] = {
-        "stable": {
-            "ver": q[1].strip("()"),
-            "desc": q[2].strip()
-        },
-        "testing": None,
-        "unstable": None
-    }
+for repo in repos:
+    with open("download/%s.txt" % repo) as f:
+        lines[repo] = f.readlines()
 
-for p in testing:
-    q = p.split(" ", 2)
-    try:
-        pkgs[q[0]]["testing"] = {
-            "ver": q[1].strip("()"),
-            "desc": q[2].strip()
-        }
-    except KeyError:
-        pkgs[q[0]] = {
-            "stable": None,
-            "testing": {
-                "ver": q[1].strip("()"),
-                "desc": q[2].strip()
-            },
-            "unstable": None
-        }
+    names[repo] = lines[repo][0].rsplit(" ", 1)[1].strip("\"\n")
 
-for p in unstable:
-    q = p.split(" ", 2)
-    try:
-        pkgs[q[0]]["unstable"] = {
-            "ver": q[1].strip("()"),
-            "desc": q[2].strip()
-        }
-    except KeyError:
-        pkgs[q[0]] = {
-            "stable": None,
-            "testing": None,
-            "unstable": {
-                "ver": q[1].strip("()"),
-                "desc": q[2].strip()
-            }
-        }
+    lines[repo] = lines[repo][6:]   #omit the 6 lines of header
+
+    for p in lines[repo]:
+        (name, ver, desc) = p.split(" ", 2)
+
+        if name not in pkgs.keys():
+            pkgs[name] = {} #this dict will hold the (ver, desc) from each of the three repos
+
+        if repo not in pkgs[name].keys():
+            pkgs[name][repo] = {}
+
+        pkgs[name][repo]["ver"] = ver.strip("()")
+        pkgs[name][repo]["desc"] = desc.strip()
 
 for (p, q) in pkgs.items():
     desc = None
     ver = None
     abstract = []
-    if q["stable"] != None:        #11
-        abstract.append("stable (%s) %s https://packages.debian.org/%s/%s" % (stable_name, q["stable"]["ver"], stable_name, p))
-        if not desc:
-            desc = q["stable"]["desc"]
-        if not ver:
-            ver = q["stable"]["ver"]
-    if q["testing"] != None:
-        abstract.append("testing (%s) %s https://packages.debian.org/%s/%s" % (testing_name, q["testing"]["ver"], testing_name, p))
-        if not desc:
-            desc = q["testing"]["desc"]
-        if not ver:
-            ver = q["testing"]["ver"]
-    if q["unstable"] != None:
-        abstract.append("unstable (%s) %s https://packages.debian.org/%s/%s" % (unstable_name, q["unstable"]["ver"], unstable_name, p))
-        if not desc:
-            desc = q["unstable"]["desc"]
-        if not ver:
-            ver = q["unstable"]["ver"]
+    for repo in repos:
+        if repo in q.keys():        #11
+            abstract.append("%s (%s) %s https://packages.debian.org/%s/%s" % (repo, names[repo], q[repo]["ver"], names[repo], p))
+            if not desc:
+                desc = q[repo]["desc"]
+            if not ver:
+                ver = q[repo]["ver"]
 
     out = p + "\t"        #0
     out += "A\t"        #1
