@@ -10,7 +10,7 @@ for repo in repos:
     with open("download/%s.txt" % repo) as f:
         lines[repo] = f.readlines()
 
-    names[repo] = lines[repo][0].rsplit(" ", 1)[1].strip("\"\n")
+    names[repo] = lines[repo][0].rsplit(" ", 1)[1].strip("\"\n")    #the codename of each repo is in the first line
 
     lines[repo] = lines[repo][6:]   #omit the 6 lines of header
 
@@ -18,7 +18,7 @@ for repo in repos:
         (name, ver, desc) = p.split(" ", 2)
 
         if name not in pkgs.keys():
-            pkgs[name] = {} #this dict will hold the (ver, desc) from each of the three repos
+            pkgs[name] = {} #this dict will hold the package's (ver, desc) from each of the three repos. Some may not exist.
 
         if repo not in pkgs[name].keys():
             pkgs[name][repo] = {}
@@ -33,9 +33,9 @@ for (p, q) in pkgs.items():
     for repo in repos:
         if repo in q.keys():        #11
             abstract.append("%s (%s) %s https://packages.debian.org/%s/%s" % (repo, names[repo], q[repo]["ver"], names[repo], p))
-            if not desc:
+            if not desc:    #we only need to show one of the descriptions, since they're all very similar. We'll prefer them in the order listen in the repos array
                 desc = q[repo]["desc"]
-            if not ver:
+            if not ver:     #same for the screenshot
                 ver = q[repo]["ver"]
 
     out = p + "\t"        #0
