@@ -2,201 +2,172 @@
 
 use Modern::Perl 2014;
 use autodie;
+use XML::Twig;
 use URI::Escape qw(uri_escape_utf8);
 use Lingua::EN::Inflect qw(WORDLIST);
 use utf8;
 $|++;
 
+#Regex to catch weirdness (malformed tags etc.)
+# we don't want leaking into the results
 my $unsanitary = qr/[^\p{L}\s\-']/;
 
-my $dictionaryFile = 'download/wiktionary.xml';
-open DICT, "<:utf8", $dictionaryFile;
+#Define triggers
+my @triggersStart = ("plural of", "pluralise", "pluralize", "what is the plural of");
+my @triggersEnd = ("plural");
 
+my $wiktionary = 'download/wiktionary.xml';
+
+#Get plural forms from wiktionary
+my $processed;
 my %plurals;
-my $term;
-my $ns;
-my $is_English;
-my $is_noun;
-
 say "Processing wiktionary...";
+my $wiktionaryTwig = XML::Twig->new( twig_handlers => { page => \&page } );
+$wiktionaryTwig->parsefile($wiktionary);
+say "\r$processed terms processed";
 
-#It's not worth parsing the XML 'properly' as the actual page
-# contents are just flat text (with wiki markup)
-while (<DICT>) {
-
-  print "\r$. lines processed" unless $. % 10000;
-
-  #A new term begins
-  if (/<title>(?<term>.+)<\/title>/) {
-
-    $term = $+{term};
-
-    #Suppress storing anything until we know it's
-    # a dictionary entry and an English noun
-    $ns = 1;
-    $is_English = 0;
-    $is_noun = 0;
-
-  }
-
-  #Non-entry pages e.g. Help pages have non-zero ns
-  if (/<ns>(?<ns>\d+)<\/ns>/) {
-    $ns = $+{ns};
-  }
-  next if $ns;
-
-  #Ensure the term is English
-  $is_English++ if /=English=/;
-  next unless $is_English;
-  
-  #Ensure the term is a noun
-  $is_noun++ if /=Noun=/;
-  next unless $is_noun;
-
-  #Don't want weirdness
-  next if $term =~ /$unsanitary/;
-
-  #Skip acronyms and intialisms
-  next if $term =~ /^[^a-z]{2,}$/;
-
-  #All terms are stored in lower case, and 
-  # matched case-insensitively. This is a tradeoff
-  # between allowing for users' idiosyncracies in 
-  # capitalisation (e.g. 'What Is The Plural Of Starfish')
-  # and the edge case where two different case-forms
-  # of the same word (e.g. 'Zulu' and 'zulu') have 
-  # different correct plural forms (this is extremely
-  # unlikely, I couldn't actually find any real examples).
-  # However, even in this edge case it will still return
-  # all the possible correct pluralisations.
-  my $termKey = lc($term);
-
-  #Parse the Template:en-noun to grab the plural
-  # Reference: https://en.wiktionary.org/wiki/Template:en-noun
-  if (/{{en-noun(\|(?<plurals>[^\}]+))?}}/) {
-
-    #If no plural form information is given,
-    # the plural form is '-s'
-    if (! $+{plurals}) {
-      $plurals{$termKey}{$term}{$term . 's'} = undef;;
-      next; 
-    }
-
-    my @forms = split(/\|/, $+{plurals});
-
-    foreach my $form (@forms) {
-
-      #Hyphen indicates uncountable or usually uncountable,
-      # meaningless for our purposes
-      if ($form eq '-') {
-        next; 
-
-      #Tilde indicates countable and uncountable, with -s
-      # pluralisation unless an alternative is specified
-      } elsif ($form eq '~') {
-        $plurals{$termKey}{$term}{$term . 's'} = undef if @forms == 1;
-
-      #Exclamation point indicates an unattested plural,
-      # question mark indicates uncertain or unknown;
-      # ignore these for now
-      } elsif ($form eq '!' || $form eq '?') {
-        next;
-
-      #'s' and 'es' indicate standard -s or -es forms
-      } elsif ($form eq 's' || $form eq 'es') {
-        warn('Form ' . $form . ' looks unsanitary') if $form =~ /$unsanitary/;
-        next if $form =~ /$unsanitary/;
-        $plurals{$termKey}{$term}{$term . $form} = undef;
-
-      #Markup in square brackets is used for multi-word
-      # terms, with -s pluralisation unless an alternative
-      # is specified
-      } elsif ($form =~ /\[|\]/) {
-        $plurals{$termKey}{$term}{$term . 's'} = undef if @forms == 1;
-      
-      #Anything else is an explicit specification of a
-      # plural form, usually irregular
-      } else {
-        next if $form =~ /$unsanitary/;
-        $plurals{$termKey}{$term}{$form} = undef;
-      }
-    }
-  }
+#Write output file
+say 'Writing output...';
+open my $outputFH, '>:utf8', 'output.txt';
+foreach my $key (keys %plurals) {
+    print_output($key, $_ . ' ' . $key) for @triggersStart;
+    print_output($key, $key . ' ' . $_) for @triggersEnd;
 }
-say "\r$. lines processed";
-close DICT;
+close $outputFH;
 
-#Write as output.txt
-say "Writing output.txt...";
-open OUTPUT, '>:utf8', 'output.txt';
-foreach my $term (sort keys %plurals) {
-
-  my $output = join("\t",(
-    $term, #Title
-    'A', #Type
-    '', #Only for redirects
-    '', #Other uses
-    '', #Categories
-    '', #References
-    '', #See also
-    '', #Further reading
-    '', #External link
-    '', #Disambiguation
-    '', #Images
-    wrap_answer($term, %{$plurals{$term}}), #Abstract
-    wiktionary_URL($term) #Source URL
-  ));
-
-  say OUTPUT $output;
-
-}
-close OUTPUT;
 exit;
-    
+
+#Article parser
+sub page {
+
+    (my $twig, my $page) = @_;
+
+    ++$processed;
+    print "\r$processed terms processed" unless $processed % 1000;
+
+    #Get the title of the page
+    my $term = $page->first_child_text('title');
+
+    #Skip Wiktionary internal pages
+    return if $term =~ /^Wiktionary:|
+                        ^Template:|
+                        ^Index: 
+    /x;
+
+    #Don't want weirdness
+    return if $term =~ /$unsanitary/;
+
+    #Skip acronyms and intialisms
+    return if $term =~ /^[^a-z]{2,}$/;
+
+    #Get the wikitext of the page
+    my $wikitext = $page->first_child('revision')->first_child_text('text');
+
+    #Find and parse Template:en-noun templates
+    # Reference: https://en.wiktionary.org/wiki/Template:en-noun
+    while ($wikitext =~ /{{en-noun(\|(?<plurals>[^\}]+))?}}/g) {
+
+        #If no plural form information is given,
+        # the plural form is '-s'
+        if (! $+{plurals}) {
+            $plurals{lc($term)}{$term}{$term .'s'}++;
+            return; 
+        }
+
+        my @forms = split(/\|/, $+{plurals});
+
+        foreach my $form (@forms) {
+
+            #Hyphen indicates uncountable or usually uncountable,
+            # meaningless for our purposes
+            if ($form eq '-') {
+                return; 
+
+            #Tilde indicates countable and uncountable, with -s
+            # pluralisation unless an alternative is specified
+            } elsif ($form eq '~') {
+                $plurals{lc($term)}{$term}{$term .'s'}++;
+
+            #Exclamation point indicates an unattested plural,
+            # question mark indicates uncertain or unknown;
+            # ignore these for now
+            } elsif ($form eq '!' || $form eq '?') {
+                return;
+
+            #'s' and 'es' indicate standard -s or -es forms
+            } elsif ($form eq 's' || $form eq 'es') {
+                $plurals{lc($term)}{$term}{$term . $form}++;
+
+            #Markup in square brackets is used for multi-word
+            # terms, with -s pluralisation unless an alternative
+            # is specified
+            } elsif ($form =~ /\[|\]/) {
+                $plurals{lc($term)}{$term}{$term .'s'}++;
+
+            #Anything else is an explicit specification of a
+            # plural form, usually irregular
+            } else {
+                $plurals{lc($term)}{$term}{$form}++;
+            }
+        }
+    }
+
+    #Free up memory
+    $page->purge;
+    $twig->purge;
+}
+
+sub print_output {
+
+    (my $key, my $trigger) = @_;
+
+    my $output = join("\t",(
+            $trigger, #Title
+            'A', #Type
+            '', #Only for redirects
+            '', #Other uses
+            '', #Categories
+            '', #References
+            '', #See also
+            '', #Further reading
+            '', #External link
+            '', #Disambiguation
+            '', #Images
+            wrap_answer($key), #Abstract
+            wiktionary_URL($key) #Source URL
+            ));
+    say $outputFH $output;
+}
+
+#Wrap an answer up into an English statement
 sub wrap_answer {
 
-  (my $lc, my %pluralForms) = @_;
+    (my $key) = shift;
 
-  #For each matching caseform, construct a natural-language
-  # statment of the plural forms with links to Wiktionary
-  my @statements;
-  foreach my $caseForm (sort keys %pluralForms) {
-    my $article = @statements == 0 ? 'The' : 'the';
-    my $statement = "$article plural of $caseForm is " . natural_list(keys %{$pluralForms{$caseForm}});
-    push(@statements, $statement);
-  }
+    #For each matching caseform, construct a natural-language
+    # statment of the plural forms with links to Wiktionary
+    my @statements;
+    foreach my $caseForm (sort keys %{$plurals{$key}}) {
+        my $article = @statements == 0 ? 'The' : 'the';
+        my $statement = "$article plural of $caseForm is " . natural_list(keys %{$plurals{$key}{$caseForm}});
+        push(@statements, $statement);
+    }
 
-  #Join the statements together into a readable sentence
-  my $statement = join("; ", @statements);
-  $statement = ucfirst($statement);
-  $statement .= '.';
+    #Join the statements together into a readable sentence
+    my $statement = join("; ", @statements);
+    $statement = ucfirst($statement);
+    $statement .= '.';
 
-  return $statement;
+    return $statement;
 
 }
 
 sub wiktionary_URL {
-
-  my $term = shift;
-  $term = uri_escape_utf8($term);
-  return 'https://en.wiktionary.org/wiki/' . $term;
-
+    my $term = shift;
+    $term = uri_escape_utf8($term);
+    return 'https://en.wiktionary.org/wiki/' . $term;
 }
 
 sub natural_list {
-
-  my @items = @_;
-  return WORDLIST(sort @items, {conj => "or"});
-
-}
-
-sub nested_forms {
-
-  my %hash = @_;
-  my @forms;
-  foreach my $key (keys %hash) {
-    push(@forms, $_) for keys %{$hash{$key}};
-  }
-  return sort @forms;
-
+    return WORDLIST(sort @_, {conj => "or"});
 }
