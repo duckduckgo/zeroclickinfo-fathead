@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 
 cd $(dirname -- "$0")
 
-./parse.py
+./parse.py > output.txt
