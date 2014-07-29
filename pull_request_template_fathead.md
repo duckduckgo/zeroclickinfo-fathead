@@ -39,9 +39,9 @@ Please place an 'X' where appropriate.
 ```
 [] Added metadata and attribution information
 [] Wrote test file and added to t/ directory
-[] Verified that instant answer adheres to design guidelines(https://github.com/duckduckgo/duckduckgo-documentation/blob/master/duckduckhack/styleguides/design_styleguide.md)
+[] Verified that instant answer adheres to design guidelines (https://duck.co/duckduckhack/design_styleguide)
+[] Verified that instant answer adheres to code styleguide (https://duck.co/duckduckhack/code_styleguide)
 [] Tested cross-browser compatibility
-
     Please let us know which browsers/devices you've tested on:
     - Windows 8
         [] Google Chrome   
