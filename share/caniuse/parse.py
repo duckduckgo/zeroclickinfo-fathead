@@ -47,7 +47,7 @@ def generate_answers(data):
             abstract += '<br>' + out
         print '------------------------------------------'
 
-        source_url = 'http://caniuse.com/#feat=' + feature
+        source_url = 'http://caniuse.com/' + feature
         for title in titles:
             answers.append([
                 title,      # Title
