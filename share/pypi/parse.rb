@@ -48,6 +48,8 @@ apps.each do |l|
       end
       
       abstract = "Package description: #{abstract}" unless a[1].nil? 
+      # remove any special chars
+      abstract = abstract.gsub(/[^0-9A-Za-z\s\:\=\-\_]/,'')
 
       # Get the License and Home Page of the project from the detail page if available
       # 06.07.2012 - Was having problems opening the URL so I've commented this out for now
