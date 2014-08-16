@@ -3,12 +3,12 @@ PyPI package name and description fetcher and parser.
 # Dependencies
 
 * Python2.7
-* wget
+* Python packages (install by calling `pip install gevent==1.0.1 requests==2.3.0`):
+  * gevent 1.0.1
+  * requests 2.3.0
 
 # Notes
 
-* Getting all the package JSONs takes a while. It may be possible to speed the process up by using something more
-  intelligent than parallel wget processes.
 * Despite PyPI having a JSON API, this is not a spice due to PyPI's case sensitivity. For example,
   https://pypi.python.org/pypi/Django/json works while https://pypi.python.org/pypi/django/json doesn't, even though
   https://pypi.python.org/pypi/django (without '/json') correctly redirects to https://pypi.python.org/pypi/Django.
