@@ -36,7 +36,7 @@ with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
         abstract_lines.append('Downloads in the last month: %s' % package_info['downloads']['last_month'])
         latest_release_info = package_dict['releases'][package_info['version']]
         if latest_release_info:
-            abstract_lines.append('Last release date: %s' % latest_release_info[0]['upload_time'].split('T')[0])
+            abstract_lines.append('Latest release date: %s' % latest_release_info[0]['upload_time'].split('T')[0])
         for classifier in package_info['classifiers']:
             if classifier.startswith('Development Status'):
                 abstract_lines.append('Development status: %s' % classifier.split(' - ')[-1])
