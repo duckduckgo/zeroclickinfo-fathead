@@ -3,6 +3,7 @@ PyPI package name and description fetcher and parser.
 # Dependencies
 
 * Python2.7
+* Python development package (install by calling `sudo apt-get install python-dev`)
 * Python packages (install by calling `pip install gevent==1.0.1 requests==2.3.0`):
   * gevent 1.0.1
   * requests 2.3.0
