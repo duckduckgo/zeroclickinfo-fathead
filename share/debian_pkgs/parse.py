@@ -33,7 +33,7 @@ for (p, q) in pkgs.items():
     for repo in repos:
         if repo in q.keys():        #11
             abstract.append("%s (%s) %s https://packages.debian.org/%s/%s" % (repo, names[repo], q[repo]["ver"], names[repo], p))
-            if not desc:    #we only need to show one of the descriptions, since they're all very similar. We'll prefer them in the order listen in the repos array
+            if not desc:    #we only need to show one of the descriptions, since they're all very similar. We'll prefer them in the order listed in the repos array
                 desc = q[repo]["desc"]
             if not ver:     #same for the screenshot
                 ver = q[repo]["ver"]
