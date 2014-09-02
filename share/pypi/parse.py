@@ -7,10 +7,6 @@ import re
 import urllib
 
 
-def quote_url(url):
-    return urllib.quote(url, safe='/:')
-
-
 with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
         codecs.open('output.txt', mode='wb', encoding='utf-8') as out_file:
     for package_json in in_file:
@@ -34,13 +30,6 @@ with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
                 abstract_lines.append('Development status: %s' % classifier.split(' - ')[-1])
                 break
 
-        home_page = package_info.get('home_page', None)
-        if home_page and home_page.startswith('http'):
-            try:
-                abstract_lines.append('<a href="%s">Official site</a>' % quote_url(home_page))
-            except KeyError:  # Can happen for Chinese URLs -- we can live without them (only one found)
-                pass
-
         out_file.write('\t'.join([
             package_info['name'],  # Title
             'A',  # Article type
@@ -50,10 +39,10 @@ with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
             '',  # References (ignored)
             '',  # No related topics
             '',  # Further reading (ignored)
-            '',  # External links (ignored -- included in abstract instead)
+            '',  # External links (ignored)
             '',  # Disambiguation (ignored)
             '',  # No images
             '<br>'.join(abstract_lines),
-            quote_url(package_info['release_url']),  # Source url
+            urllib.quote(package_info['release_url'], safe='/:'),  # Source url
         ]))
         out_file.write('\n')
