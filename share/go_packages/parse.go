@@ -2,22 +2,23 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/http"
 	"os"
 	"regexp"
-	"log"
 	"strings"
-	"net/http"
+
 	"code.google.com/p/go.net/html"
 )
 
 type Package struct {
-	Title string
-	Type string
-	Redirect string
+	Title          string
+	Type           string
+	Redirect       string
 	Disambiguation string
-	Abstract string
-	Source string
-	Alt string
+	Abstract       string
+	Source         string
+	Alt            string
 }
 
 type Attr struct {
@@ -26,24 +27,24 @@ type Attr struct {
 }
 
 const (
-	Link = "http://golang.org/pkg/"
+	Link   = "http://golang.org/pkg/"
 	Output = "output.txt"
 )
 
 func (pkg *Package) ToArray() []string {
 	return []string{
-		pkg.Title, 
-		pkg.Type, 
+		pkg.Title,
+		pkg.Type,
 		pkg.Redirect,
-		"", 
-		"", 
-		"", 
-		"", 
-		"", 
 		"",
-		pkg.Disambiguation, 
-		"", 
-		pkg.Abstract, 
+		"",
+		"",
+		"",
+		"",
+		"",
+		pkg.Disambiguation,
+		"",
+		pkg.Abstract,
 		pkg.Source,
 	}
 }
@@ -58,7 +59,7 @@ func MatchAttr(n *html.Node, attr []Attr) bool {
 			}
 		}
 	}
-	
+
 	return matches == len(attr)
 }
 
@@ -147,7 +148,7 @@ func AddSnippet(pkgs []Package) []Package {
 
 	for _, pkg := range pkgs {
 		if pkg.Type == "A" {
-			pkg.Abstract = "<pre><code>import \"" + pkg.Title + "\"</code></pre>" + pkg.Abstract; 
+			pkg.Abstract = "<pre><code>import \"" + pkg.Title + "\"</code></pre>" + pkg.Abstract
 		}
 		result = append(result, pkg)
 	}
@@ -173,7 +174,7 @@ func AddRedirects(pkgs []Package) []Package {
 			}
 		}
 	}
-	
+
 	// Now go through each key-value pair to check if there are any disambiguations.
 	for _, v := range result {
 		// Using the first package would do.
@@ -258,7 +259,7 @@ func main() {
 		pkg := new(Package)
 		// Check if we found a child (the text node).
 		// If we didn't find any, it just returns a Package with empty attributes.
-		if(n.FirstChild != nil) {
+		if n.FirstChild != nil {
 			pkg.Abstract = "Package description: " + n.FirstChild.Data
 		}
 		return *pkg
