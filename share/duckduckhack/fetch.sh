@@ -23,9 +23,6 @@ cat $DIR/download/links.txt | while read LINE; do
 	wget --quiet --output-document=$LINE.'html' http://duck.co/duckduckhack/$LINE
 done
 
-# some duplicates
-rm $DIR/download/faq#*
-
 # page needs some work
 rm $DIR/download/fathead_basic_tutorial*
 
