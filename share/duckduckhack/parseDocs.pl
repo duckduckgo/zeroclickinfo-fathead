@@ -24,7 +24,8 @@ my $html = do { local $/; <> };
 #
 sub writeFathead{
     my ($title,$abstract,$source_url, $image) = @_;
-    "$title\tA\t\t\t\t\t\t\t\t\t$image\t$abstract.\t$source_url\n" >> io("output.txt");
+    #"$title\tA\t\t\t\t\t\t\t\t\t$image\t$abstract.\t$source_url\n" >> io("output.txt");
+    "$title\tA\t\t\t\t\t\t\t\t\t\t$abstract\t$source_url\n" >> io("output.txt");
 }
 
 # remove comments, Mojo won't parse inside a comment
@@ -118,15 +119,13 @@ for(my $i = 0; $i < scalar(@title); $i++){
 	# remove all links for the fathead
     $text[$i] =~ s/\<a(.*?)\>(.*?)\<\/a\>/$2/g;
 
-    my $image = '';
-    if($text[$i] =~ s/\<img alt="(.*)" src="(.*)"\>//gi){
-        $image = qq({{Image=[[File:$2|300px]]}});
+    if($text[$i] =~ s/<img alt="(.*)" src="(.*)"\>//gi){
+        $text[$i] .= qq(<img alt="$1" src="https://duckduckgo.com/iu/?u=$2">);
     }
 
-    #$text[$i] = '<div class="ddh-fathead">'.$text[$i].'</div>';
     $text[$i] =~ s/<!--//g;
 
-	writeFathead( $title[$i], $text[$i], "http://duck.co/duckduckhack/". lc $moreAt, $image);
+	writeFathead( $title[$i], $text[$i], "http://duck.co/duckduckhack/". lc $moreAt);
 
 	if($i % 10){
 		print ".";
