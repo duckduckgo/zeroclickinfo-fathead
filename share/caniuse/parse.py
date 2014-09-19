@@ -1,7 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import codecs
-import csv
 import json
 import os
 import re
@@ -15,11 +13,10 @@ def main():
         data = json.loads(f.read())
 
     answers = generate_answers(data)
+    csv = '\n'.join('\t'.join(a) for a in answers)
+    csv = csv.encode('utf-8') + '\n'
     with open(output_path, 'w') as f:
-        f.write(codecs.BOM_UTF8)
-        writer = csv.writer(f, delimiter='\t', quotechar='\\', quoting=csv.QUOTE_MINIMAL)
-        for answer in answers:
-            writer.writerow([col.encode('utf-8') for col in answer])
+        f.write(csv)
 
 
 def generate_answers(data):
@@ -51,7 +48,7 @@ def generate_answers(data):
         for title in titles:
             answers.append([
                 title,      # Title
-                'a',        # Type
+                'A',        # Type
                 '',         # Redirect
                 '',         # Other uses
                 '',         # Categories
