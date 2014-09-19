@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-abbrs = {"genesis": "Gen", "exodus": "Exd", "leviticus": "Lev", "numbers": "Num", "deuteronomy": "Deu", "joshua": "Jos", "judges": "Jdg", "ruth": "Rth", "1 samuel": "1Sa", "2 samuel": "2Sa", "1 kings": "1Ki", "2 kings": "2Ki", "1 chronicles": "1Ch", "2 chronicles": "2Ch", "ezra": "Ezr", "nehemiah": "Neh", "esther": "Est", "psalms": "Psa", "proverbs": "Pro", "ecclesiastes": "Ecc", "song of solomon": "Sgs", "isaiah": "Isa", "jeremiah": "Jer", "lamentations": "Lam", "ezekiel": "Eze", "daniel": "Dan", "hosea": "Hsa", "joel": "Joe", "amos": "Amo", "obadiah": "Oba", "jonah": "Jon", "micah": "Mic", "nahum": "Nah", "habakkuk": "Hab", "zephaniah": "Zep", "haggai": "Hag", "zechariah": "Zec", "malachi": "Mal", "matthew": "Mat", "mark": "Mar", "luke": "Luk", "john": "Jhn", "acts": "Act", "romans": "Rom", "1 corinthians": "1Cr", "2 corinthians": "2Cr", "galatians": "Gal", "ephesians": "Eph", "philippians": "Phl", "colossians": "Col", "1 thessalonians": "1Th", "2 thessalonians": "2Th", "1 timothy": "1Ti", "2 timothy": "2Ti", "titus": "Tts", "philemon": "Phm", "hebrews": "Hbr", "james": "Jam", "1 peter": "1Pe", "2 peter": "2Pe", "1 john": "1Jo", "2 john": "2Jo", "3 john": "3Jo", "jude": "Jud", "revelation": "Rev"}
+abbrs = {"genesis": ["Gen"], "exodus": ["Exd"], "leviticus": ["Lev"], "numbers": ["Num"], "deuteronomy": ["Deu", "Deut"], "joshua": ["Jos", "Josh"], "judges": ["Jdg", "Judg"], "ruth": ["Rth", "Ruth"], "1 samuel": ["1Sa", "1Sam", "1 Sam"], "2 samuel": ["2Sa", "2Sam", "2 Sam"], "1 kings": ["1Ki", "1Kings", "1 Kings"], "2 kings": ["2Ki", "2Kings", "2 Kings"], "1 chronicles": ["1Ch", "1Chr", "1 Chr"], "2 chronicles": ["2Ch", "2Chr", "2 Chr"], "ezra": ["Ezr", "Ezra"], "nehemiah": ["Neh"], "esther": ["Est", "Esth"], "psalms": ["Psa", "Ps"], "proverbs": ["Pro", "Prov"], "ecclesiastes": ["Ecc", "Eccl"], "song of solomon": ["Sgs", "Song"], "sirach": ["Sir"], "isaiah": ["Isa"], "jeremiah": ["Jer"], "lamentations": ["Lam"], "baruch": ["Bar"], "ezekiel": ["Eze", "Ezek"], "daniel": ["Dan"], "hosea": ["Hsa", "Hos"], "joel": ["Joe"], "amos": ["Amo"], "obadiah": ["Oba"], "jonah": ["Jon"], "micah": ["Mic"], "nahum": ["Nah"], "habakkuk": ["Hab"], "zephaniah": ["Zep", "Zeph"], "haggai": ["Hag"], "zechariah": ["Zec", "Zech"], "malachi": ["Mal"], "matthew": ["Mat", "Mt"], "mark": ["Mar", "Mk"], "luke": ["Luk", "Lk"], "john": ["Jhn", "Jn"], "acts": ["Act"], "romans": ["Rom"], "1 corinthians": ["1Cr", "1Cor", "1 Cor"], "2 corinthians": ["2Cr", "2Cor", "2 Cor"], "galatians": ["Gal"], "ephesians": ["Eph"], "philippians": ["Phl", "Phil"], "colossians": ["Col"], "1 thessalonians": ["1Th", "1Thess", "1 Thess"], "2 thessalonians": ["2Th", "2Thess", "2 Thess"], "1 timothy": ["1Ti", "1Tim", "1 Tim"], "2 timothy": ["2Ti", "2Tim", "2 Tim"], "titus": ["Tts"], "philemon": ["Phm"], "hebrews": ["Hbr", "Heb"], "james": ["Jam", "Jas"], "1 peter": ["1Pe", "1Pt", "1 Pt"], "2 peter": ["2Pe", "2Pt", "2 Pt"], "1 john": ["1Jo", "1Jn", "1 Jn"], "2 john": ["2Jo", "2Jn", "2 Jn"], "3 john": ["3Jo", "3Jn", "3 Jn"], "jude": ["Jud", "Jude"], "revelation": ["Rev"]}
 
 def print_line(key, text, url):
     print("\t".join([
@@ -56,11 +56,12 @@ for line in lines:
     print_redir("%s %s %s" % (book_name, chap_num, verse_num), key)    #with space instead of colon
 
     try:    #if there is an abbreviated form of the book name
-        short = abbrs[book_name.lower()]
-        print_redir("%s %s:%s" % (short, chap_num, verse_num), key)
-        print_redir("%s %s %s" % (short, chap_num, verse_num), key)
+        shortnames = abbrs[book_name.lower()]
+        for ab in shortnames:
+            print_redir("%s %s:%s" % (ab, chap_num, verse_num), key)
+            print_redir("%s %s %s" % (ab, chap_num, verse_num), key)
     except KeyError:
-        short = None
+        shortnames = None
 
     #we also want entries for entire chapters, but the input file only contains verses
     #so every time we get to a new chapter, insert a record for the chapter
@@ -69,8 +70,9 @@ for line in lines:
         url = "http://blb.org/search/preSearch.cfm?Criteria=%s+%s" % (book_name, chap_num)
         text += "..." #text already contains the text of the first verse of the chapter, which is probably good enough
         print_line(key, text, url)
-        if short:
-            print_redir("%s %s" % (short, chap_num), key)
+        if shortnames:
+            for ab in shortnames:
+                print_redir("%s %s" % (ab, chap_num), key)
 
     prev_chap = chap_num
     prev_book = book_name
