@@ -8,7 +8,7 @@ def print_line(key, text, url):
         "A",   #2
         "",    #3
         "",    #4
-        "Bible Verses\\n",  #5
+        "",    #5
         "",    #6
         "",    #7
         "",    #8
