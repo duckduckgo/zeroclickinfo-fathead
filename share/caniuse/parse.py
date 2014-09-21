@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 import json
 import os
 import re
@@ -13,7 +12,7 @@ def main():
         data = json.loads(f.read())
 
     answers = generate_answers(data)
-    csv = '\n'.join('\t'.join(a) for a in answers)
+    csv = '\n'.join('\t'.join(line) for line in answers)
     csv = csv.encode('utf-8') + '\n'
     with open(output_path, 'w') as f:
         f.write(csv)
@@ -40,8 +39,9 @@ def generate_answers(data):
                 browser=agent['browser'], 
                 prefix=agent['prefix'], 
                 stats=feature_data['stats'][browser])
-            print out
             abstract += '<br>' + out
+        abstract = abstract.replace('\n', '').replace('\r', '')
+        print abstract
         print '------------------------------------------'
 
         source_url = 'http://caniuse.com/' + feature
@@ -68,7 +68,7 @@ def browser_support(browser, prefix, stats):
     """
     Returns a string describing browser support for a feature.
 
-    E.g. "Firefox 16+ ✓"
+    E.g. "Firefox 22+ x"
 
     Stats:
     y - (Y)es, supported by default
@@ -97,11 +97,13 @@ def browser_support(browser, prefix, stats):
     v, stats = current
     out = browser + ' ' + v
     if 'y' in stats:
-        out += u'+ ✓'
+        # html entity, unicode checkmark
+        out += '+ &#10003;'
     elif 'a' in stats:
         out += '+ partial'
     elif 'n' in stats:
-        out += u' ✗'
+        # html entity, unicode x
+        out += ' &#10007;'
     if 'x' in stats:
         out += ' (-' + prefix + ')'
     if 'p' in stats:
