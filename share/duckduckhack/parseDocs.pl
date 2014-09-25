@@ -119,10 +119,6 @@ for(my $i = 0; $i < scalar(@title); $i++){
 	# remove all links for the fathead
     $text[$i] =~ s/\<a(.*?)\>(.*?)\<\/a\>/$2/g;
 
-    if($text[$i] =~ s/<img alt="(.*)" src="(.*)"\>//gi){
-        $text[$i] .= qq(<img alt="$1" src="https://duckduckgo.com/iu/?u=$2">);
-    }
-
     $text[$i] =~ s/<!--//g;
 
 	writeFathead( $title[$i], $text[$i], "http://duck.co/duckduckhack/". lc $moreAt);
