@@ -30,17 +30,19 @@ for (p, q) in pkgs.items():
     desc = None
     ver = None
     abstract = []
+    firstrepo = None  #the first repo that contains the package, for generating a link
     for repo in repos:
         if repo in q.keys():        #11
-            abstract.append("%s (%s) %s https://packages.debian.org/%s/%s" % (repo, names[repo], q[repo]["ver"], names[repo], p))
+            abstract.append("%s (%s) %s" % (repo, names[repo], q[repo]["ver"]))
             if not desc:    #we only need to show one of the descriptions, since they're all very similar. We'll prefer them in the order listed in the repos array
                 desc = q[repo]["desc"]
             if not ver:     #same for the screenshot
                 ver = q[repo]["ver"]
+            if not firstrepo:
+                firstrepo = names[repo]
 
-    out = p + "\t"        #0
-    out += "A\t"        #1
-    out += "\t"            #2
+    out = p + "\t"         #1
+    out += "A\t"           #2
     out += "\t"            #3
     out += "\t"            #4
     out += "\t"            #5
@@ -48,7 +50,9 @@ for (p, q) in pkgs.items():
     out += "\t"            #7
     out += "\t"            #8
     out += "\t"            #9
-    out += "[[Image:https://screenshots.debian.net/thumbnail-with-version/%s/%s]]\t" % (p, ver)        #10
-    out += desc + "<br>" + "<br>".join(abstract)    #11
-    out += "\t"            #12
+    out += "\t"            #10
+    out += "[[Image:https://screenshots.debian.net/thumbnail-with-version/%s/%s]]\t" % (p, ver)        #11
+    out += desc + "<br><br>" + "<br>".join(abstract)    #12
+    out += "\thttps://packages.debian.org/%s/%s" % (firstrepo, p)            #13
+
     print(out)
