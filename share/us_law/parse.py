@@ -36,7 +36,7 @@ for title in os.listdir("download/xml/"):
         num_title = chain[0][1].get("value")    #One end of the chain is the title...
         num_sec = chain[-1][1].get("value")     #...and the other end is the section
 
-        context = " ".join([x[1].get_text() + " " + x[2].get_text() for x in chain])    #Combine the headings of every level of the chain
+        context = "<br>".join([x[1].get_text() + " " + x[2].get_text() for x in chain])    #Combine the headings of every level of the chain
         url = "http://www.law.cornell.edu/uscode/text/%s/%s" % (num_title, num_sec)
 
         out = "%s USC %s\t" % (num_title, num_sec)        #0
