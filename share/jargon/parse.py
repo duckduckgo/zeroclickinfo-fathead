@@ -21,13 +21,7 @@ soup = bs4.BeautifulSoup(open("download/jargon.xml"))
 for entry in soup.glossary.find_all("glossentry"):
     term = entry.glossterm.get_text()
     if entry.abbrev:
-        pronounce = entry.abbrev.find("emphasis", role="pronunciation")
         grammar = entry.abbrev.find("emphasis", role="grammar")
-
-        if pronounce:
-            pronounce = pronounce.get_text()
-        if pronounce == "//" or pronounce == None:
-            pronounce = ""
 
         if grammar:
             grammar = grammar.get_text()
@@ -39,8 +33,6 @@ for entry in soup.glossary.find_all("glossentry"):
     text = see_also_re.sub("", text)                                    #remove "see also", since we're including that in a separate field
     if grammar:
         text = "%s %s" % (grammar, text)                                #prepend grammar
-    if pronounce:
-        text = "%s %s" % (pronounce, text)                              #prepend part of speech
     text = trunc(text)                                                  #truncate
 
     see_also = "\\\\n".join(["[[%s]]" % x.get_text().replace("\n", "").replace("   ", " ") for x in entry.find_all("glossterm")][1:])    #the first one is the current term, so we skip that
