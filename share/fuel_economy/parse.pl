@@ -141,11 +141,11 @@ for my $v (keys %arts){
                 }    
                 if( (keys %feature) > 1){ #feature is different for *some* configurations
                     for(my $s = 0;$s < @$specs;++$s){
-                        if($i == 2){
-                            push @display_configs, $config . ', ' . $specs->[$s][$i];
+                        if(defined $display_configs[$s]){
+                            $display_configs[$s] .= ', ' . $specs->[$s][$i];
                         }
                         else{
-                            $display_configs[$s] .= ', ' . $specs->[$s][$i];
+                            push @display_configs, $config . ', ' . $specs->[$s][$i];
                         }
                     }    
                 }
