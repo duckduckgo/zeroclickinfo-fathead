@@ -30,6 +30,7 @@ while(my $r = $csv->getline($dfh)){
             s/\s*\/\s*/\//g; # remove irregular spaces around alternate models with "/"
         }
         my $vkey = join(' ', @vals[2..4]);
+		$vkey =~ s/[)(]/"/og;
 
         if(exists $rdrs{$vkey}){ # e.g. "1991 BMW 325i" and "1991 BMW 325i/325is"
             warn "DUPE: vkey $vkey exists as a redirect. Removing!\n" if $verbose;
@@ -127,7 +128,7 @@ for my $v (keys %arts){
         }
     }
     else{ $summary = $city->[0] . ' city, ' . $hwy->[0] . ' hwy.' }
-    my $rec = "$v MPG: $summary<br />";
+    my $rec = "MPG: $summary<br />";
 
     # add details for configurations
     for my $config (sort keys %$configs){
