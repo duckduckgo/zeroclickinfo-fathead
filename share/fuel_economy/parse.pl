@@ -56,8 +56,6 @@ while(my $r = $csv->getline($dfh)){
         push @{$arts{$vkey}{configs}{$vconfig}}, [@vals[0,1,10..12]]; 
 
         # validate potential redirects
-        # year/model
-        my @redirects = (join(' ', @vals[2,4]));
 
 		my @variations;
         # alternate names for models, trims, or completely different models contain a "/"
@@ -66,23 +64,23 @@ while(my $r = $csv->getline($dfh)){
         if($vals[4] =~ m{/}o){
             my $altmods = generate_altmods($vals[4]);
 			@variations = @$altmods;
-            for my $a (@$altmods){
-                push @redirects, join(' ', @vals[2,3], $a), join(' ', $vals[2], $a);
-            }
         }
 		else{
 			@variations = ($vals[4]);
 		}
+
+        my @redirects;
 		for my $v (@variations){
-			if( (my @p = split ' ', $v) > 1){
-				for(my $k = 2;$k < @p;++$k){
-					my $iter = variations(\@p, $k);
-					while(my $c = $iter->next){
-						push @redirects, join(' ', @vals[2,3], @$c), join(' ', $vals[2], @$c);
-					}
+			my @p = split ' ', $v;
+			for(my $k = 1;$k <= @p;++$k){
+				my $iter = variations(\@p, $k);
+				while(my $c = $iter->next){
+					# add with and without maker versions; we will get dupes of the full vkey that are later kicked out
+					push @redirects, join(' ', @vals[2,3], @$c), join(' ', $vals[2], @$c);
 				}
 			}
 		}
+
         # check for same model with different maker
         for my $r (@redirects){
             if(exists $dsmb{$r}){
