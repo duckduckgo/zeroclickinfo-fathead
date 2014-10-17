@@ -1,7 +1,8 @@
-#!/usr/local/bin/perl
+#!/usr/bin/env perl
 
 use Text::CSV_XS;
 use URI::Escape;
+use Algorithm::Combinatorics 'variations';
 #use Data::Dumper;
 
 use strict;
@@ -58,15 +59,30 @@ while(my $r = $csv->getline($dfh)){
         # year/model
         my @redirects = (join(' ', @vals[2,4]));
 
+		my @variations;
         # alternate names for models, trims, or completely different models contain a "/"
         # There are several ways this is used.  Since these are just redirects, we can cover
         # all permutations without displaying erroneous models
         if($vals[4] =~ m{/}o){
             my $altmods = generate_altmods($vals[4]);
+			@variations = @$altmods;
             for my $a (@$altmods){
                 push @redirects, join(' ', @vals[2,3], $a), join(' ', $vals[2], $a);
             }
         }
+		else{
+			@variations = ($vals[4]);
+		}
+		for my $v (@variations){
+			if( (my @p = split ' ', $v) > 1){
+				for(my $k = 2;$k < @p;++$k){
+					my $iter = variations(\@p, $k);
+					while(my $c = $iter->next){
+						push @redirects, join(' ', @vals[2,3], @$c), join(' ', $vals[2], @$c);
+					}
+				}
+			}
+		}
         # check for same model with different maker
         for my $r (@redirects){
             if(exists $dsmb{$r}){
@@ -169,7 +185,8 @@ for my $r (keys %rdrs){
 }
 
 # Output disambiguations (TODO?)
-# print Dumper(\%dsmb);
+
+#warn scalar(keys %dsmb), " ambigous redirects\n", Dumper(\%dsmb);
 
 # Generate the sub/alternate models usually indicated by "/" in the model name.
 # May produce a few false positives (probably harmless?)
@@ -186,7 +203,7 @@ sub generate_altmods{
         if( (my @v = split "/", $p) > 1){
             if($pre && ($parts[0] =~ /^$v[1]/)){ # e.g. GS 300/GS 400 above 
                 warn "Skipping $m\n" if $verbose;
-                return;
+				last;
             }
             if( (my ($l) = $v[0] =~ /^([a-z])+\d+$/oi) && ($v[1] =~ /^\d+/o)){ # e.g. G15/25 Rally 2WD
                 @vars = (shift @v);
