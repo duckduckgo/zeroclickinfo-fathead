@@ -25,12 +25,12 @@ my @wanted_cols = qw'city08 highway08 year make model displ cylinders trany tCha
 my (%arts, %rdrs, %dsmb, %hdrs);
 while(my $r = $csv->getline($dfh)){
     if(%hdrs){
-        my @vals = @$r[@hdrs{@wanted_cols}];
-        for (@vals[3,4]){
-            tr/ //s; #remove duplicate spacing
+		my ($city, $hwy, $yr, $make, $model, @specs) = @$r[@hdrs{@wanted_cols}];
+        for ($make, $model){
             s/\s*\/\s*/\//g; # remove irregular spaces around alternate models with "/"
+            tr/ //s; #remove duplicate spacing
         }
-        my $vkey = join(' ', @vals[2..4]);
+        my $vkey = join(' ', $yr, $make, $model);
 		$vkey =~ s/[)(]/"/og;
 
         if(exists $rdrs{$vkey}){ # e.g. "1991 BMW 325i" and "1991 BMW 325i/325is"
@@ -38,45 +38,51 @@ while(my $r = $csv->getline($dfh)){
             delete $rdrs{$vkey};
         }
         unless(exists $arts{$vkey}{src}){ # the search for the model
-            $arts{$vkey}{src} = "http://www.fueleconomy.gov/feg/PowerSearch.do?action=noform&path=1&year1=$vals[2]&year2=$vals[2]&make="
-                . uri_escape($vals[3]) . '&model=' . uri_escape($vals[4]) . '&srchtyp=ymm';
+            $arts{$vkey}{src} = "http://www.fueleconomy.gov/feg/PowerSearch.do?action=noform&path=1&year1=$yr&year2=$yr&make="
+                . uri_escape($make) . '&model=' . uri_escape($model) . '&srchtyp=ymm';
         }
-        push @{$arts{$vkey}{city}}, $vals[0];
-        push @{$arts{$vkey}{hwy}}, $vals[1];
+        push @{$arts{$vkey}{city}}, $city;
+        push @{$arts{$vkey}{hwy}}, $hwy;
 
         # basic model configuration info...unique *most* of the time
-        my $vconfig = "$vals[5] L, $vals[6] cyl, $vals[7]";
-        if($vals[8] eq 'T'){ $vconfig .= ', Turbo'; }
-        elsif($vals[9] eq 'S'){ $vconfig .= ', Supercharger'; }
+        my $vconfig = "$specs[0] L, $specs[1] cyl, $specs[2]";
+        if($specs[3] eq 'T'){ $vconfig .= ', Turbo'; }
+        elsif($specs[4] eq 'S'){ $vconfig .= ', Supercharger'; }
 
         # The site itself has duplicate descriptions, e.g. see the 1993 Chevy C1500.  Only drilling down
         # into the data further will you find that there is some distinguishing feature; for example,
         # the drive or transmission type.  The latter is probably unintelligible for the average 
         # consumer.  Anyhow, we'll carry these values forward for disambiguation if necessary.
-        push @{$arts{$vkey}{configs}{$vconfig}}, [@vals[0,1,10..12]]; 
+        push @{$arts{$vkey}{configs}{$vconfig}}, [$city, $hwy, @specs[5..7]]; 
 
         # validate potential redirects
+		my $tmpm = $model;
+		$tmpm =~ s/[)(]/ /og; # Can't just remove, e.g. 993 Rolls-Royce Turbo R/Turbo R"lwb"
+		$tmpm =~ tr/ //s; #remove duplicate spacing we might have created
 
-		my @variations;
         # alternate names for models, trims, or completely different models contain a "/"
         # There are several ways this is used.  Since these are just redirects, we can cover
         # all permutations without displaying erroneous models
-        if($vals[4] =~ m{/}o){
-            my $altmods = generate_altmods($vals[4]);
+
+		my @variations;
+        if($model =~ m{/}o){
+            my $altmods = generate_altmods($tmpm);
 			@variations = @$altmods;
         }
 		else{
-			@variations = ($vals[4]);
+			@variations = ($tmpm);
 		}
 
         my @redirects;
 		for my $v (@variations){
-			my @p = split ' ', $v;
-			for(my $k = 1;$k <= @p;++$k){
+			my @p = (split(/\s+/, $v), $yr, $make);
+			my $min_terms = 2; # minimum number of vehicle terms in a search
+			for(my $k = $min_terms;$k <= @p;++$k){
 				my $iter = variations(\@p, $k);
 				while(my $c = $iter->next){
-					# add with and without maker versions; we will get dupes of the full vkey that are later kicked out
-					push @redirects, join(' ', @vals[2,3], @$c), join(' ', $vals[2], @$c);
+					my $r = join(' ', @$c);
+					next unless $r =~ /\b$yr\b/; # force inclusion of year
+					push @redirects, $r;
 				}
 			}
 		}
@@ -126,8 +132,8 @@ while(my $r = $csv->getline($dfh)){
 open my $output, ">$output_file" or die "Failed to open $output_file: $!";
 
 # Output the articles
-for my $v (keys %arts){
-    my ($city, $hwy, $configs, $src) = @{$arts{$v}}{qw(city hwy configs src)};
+while(my ($v, $data) = each %arts){
+    my ($city, $hwy, $configs, $src) = @$data{qw(city hwy configs src)};
     my $summary;
     # Give city/hwy ranges for multiple configurations
     if((keys %$configs) > 1){ 
@@ -178,8 +184,8 @@ for my $v (keys %arts){
 }
 
 # Output redirects
-for my $r (keys %rdrs){
-    print $output "$r\tR\t$rdrs{$r}\t\t\t\t\t\t\t\t\t\t\n";
+while(my ($r, $a) = each %rdrs){
+    print $output "$r\tR\t$a\t\t\t\t\t\t\t\t\t\t\n";
 }
 
 # Output disambiguations (TODO?)
@@ -190,7 +196,7 @@ for my $r (keys %rdrs){
 # May produce a few false positives (probably harmless?)
 sub generate_altmods{
     my $m = shift;
-
+	
     my (@altmods, @vars, $pre, $post);
     if( (my @alts = split m{\s*/\s*}, $m) > 1){ # e.g. GS 300/GS 400
         push @altmods, @alts;
@@ -198,7 +204,7 @@ sub generate_altmods{
 
     my @parts = split /\s+/o, $m;
     for my $p (@parts){
-        if( (my @v = split "/", $p) > 1){
+        if( (my @v = split '/', $p) > 1){
             if($pre && ($parts[0] =~ /^$v[1]/)){ # e.g. GS 300/GS 400 above 
                 warn "Skipping $m\n" if $verbose;
 				last;
