@@ -73,7 +73,6 @@ while(my $r = $csv->getline($dfh)){
 			@variations = ($tmpm);
 		}
 
-        my @redirects;
 		for my $v (@variations){
 			my @p = (split(/\s+/, $v), $yr, $make);
 			my $min_terms = 2; # minimum number of vehicle terms in a search
@@ -82,32 +81,27 @@ while(my $r = $csv->getline($dfh)){
 				while(my $c = $iter->next){
 					my $r = join(' ', @$c);
 					next unless $r =~ /\b$yr\b/; # force inclusion of year
-					push @redirects, $r;
+		            if(exists $dsmb{$r}){
+		                ++$dsmb{$r}{$vkey};
+		            }
+		            elsif(exists $rdrs{$r}){
+		                if($rdrs{$r} ne $vkey){
+		                    warn "Ambiguous redirect $r points to multiple vehicles: $rdrs{$r} and $vkey\n" if $verbose;
+		                    warn "DUPE: $r and $vkey are both searchable\n" if $verbose && ($r eq $vkey);
+		                    my $prev = delete $rdrs{$r};
+		                    ++$dsmb{$r}{$_} for $prev, $vkey;
+		                }
+		            }
+		            else{ 
+		                if(exists $arts{$r}){
+		                    warn "DUPE: redirect $r exists for searchable vehicle $vkey\n" if $verbose;
+		                    next;
+		                }
+		                $rdrs{$r} = $vkey 
+		            }
 				}
 			}
 		}
-
-        # check for same model with different maker
-        for my $r (@redirects){
-            if(exists $dsmb{$r}){
-                ++$dsmb{$r}{$vkey};
-            }
-            elsif(exists $rdrs{$r}){
-                if($rdrs{$r} ne $vkey){
-                    warn "Ambiguous redirect $r points to multiple vehicles: $rdrs{$r} and $vkey\n" if $verbose;
-                    warn "DUPE: $r and $vkey are both searchable\n" if $verbose && ($r eq $vkey);
-                    my $prev = delete $rdrs{$r};
-                    ++$dsmb{$r}{$_} for $prev, $vkey;
-                }
-            }
-            else{ 
-                if(exists $arts{$r}){
-                    warn "DUPE: redirect $r exists for searchable vehicle $vkey\n" if $verbose;
-                    next;
-                }
-                $rdrs{$r} = $vkey 
-            }
-         }
     }
     elsif($. == 1){
         for(my $i = 0;$i< @$r;++$i){
@@ -197,9 +191,9 @@ while(my ($r, $a) = each %rdrs){
 sub generate_altmods{
     my $m = shift;
 	
-    my (@altmods, @vars, $pre, $post);
+    my (%altmods, @vars, $pre, $post);
     if( (my @alts = split m{\s*/\s*}, $m) > 1){ # e.g. GS 300/GS 400
-        push @altmods, @alts;
+		++$altmods{$_} for @alts;
     }
 
     my @parts = split /\s+/o, $m;
@@ -232,9 +226,9 @@ sub generate_altmods{
         }
     }
     for my $v (@vars){
-        push @altmods, "$pre$v$post";
+        ++$altmods{"$pre$v$post"};
     }
-    return \@altmods;
+    return [keys %altmods];
 }
 
 # command-line options
