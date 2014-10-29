@@ -73,32 +73,43 @@ while(my $r = $csv->getline($dfh)){
 			@variations = ($tmpm);
 		}
 
+		my $min_terms = 2; # minimum number of vehicle terms in a search
 		for my $v (@variations){
-			my @p = (split(/\s+/, $v), $yr, $make);
-			my $min_terms = 2; # minimum number of vehicle terms in a search
-			for(my $k = $min_terms;$k <= @p;++$k){
-				my $iter = variations(\@p, $k);
+			my @p = split /\s+/, $v;
+
+			# model variations, allow a single term
+			for(my $x = 1;$x <= @p;++$x){ 
+				my $iter = variations(\@p, $x);
 				while(my $c = $iter->next){
-					my $r = join(' ', @$c);
-					next unless $r =~ /\b$yr\b/; # force inclusion of year
-		            if(exists $dsmb{$r}){
-		                ++$dsmb{$r}{$vkey};
-		            }
-		            elsif(exists $rdrs{$r}){
-		                if($rdrs{$r} ne $vkey){
-		                    warn "Ambiguous redirect $r points to multiple vehicles: $rdrs{$r} and $vkey\n" if $verbose;
-		                    warn "DUPE: $r and $vkey are both searchable\n" if $verbose && ($r eq $vkey);
-		                    my $prev = delete $rdrs{$r};
-		                    ++$dsmb{$r}{$_} for $prev, $vkey;
-		                }
-		            }
-		            else{ 
-		                if(exists $arts{$r}){
-		                    warn "DUPE: redirect $r exists for searchable vehicle $vkey\n" if $verbose;
-		                    next;
-		                }
-		                $rdrs{$r} = $vkey 
-		            }
+					my $mdl = join(' ', @$c);
+					my @p2 = ($mdl, $yr, $make);
+
+					# yr/make/model variations, require two terms
+					for(my $y = $min_terms;$y <= @p2;++$y){ 
+						my $iter2 = variations(\@p2, $y);
+						while(my $c2 = $iter2->next){
+							my $r = join(' ', @$c2);
+							next unless $r =~ /\b$yr\b/; # force inclusion of year
+							if(exists $dsmb{$r}){
+								++$dsmb{$r}{$vkey};
+							}
+							elsif(exists $rdrs{$r}){
+								if($rdrs{$r} ne $vkey){
+									warn "Ambiguous redirect $r points to multiple vehicles: $rdrs{$r} and $vkey\n" if $verbose;
+									warn "DUPE: $r and $vkey are both searchable\n" if $verbose && ($r eq $vkey);
+									my $prev = delete $rdrs{$r};
+									++$dsmb{$r}{$_} for $prev, $vkey;
+								}
+							}
+							else{ 
+								if(exists $arts{$r}){
+									warn "DUPE: redirect $r exists for searchable vehicle $vkey\n" if $verbose;
+									next;
+								}
+								$rdrs{$r} = $vkey 
+							}
+						}
+					}
 				}
 			}
 		}
