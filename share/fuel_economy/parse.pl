@@ -19,19 +19,34 @@ my $csv = Text::CSV_XS->new() or
 open my $dfh, "unzip -cq $data |" or die "Failed to open $data: $?";
 
 # wanted columns
-my @wanted_cols = qw'city08 highway08 year make model displ cylinders trany tCharger sCharger fuelType1 drive trans_dscr';
+my @wanted_cols = (qw'city08 highway08 cityA08 highwayA08 fuelType1 fuelType2', # fuel economy
+	qw'year make model', # model
+	qw'displ cylinders trany tCharger sCharger'); # configuration
+my @spec_cols =	qw'fuelType drive trans_dscr eng_dscr VClass pv4 pv2 hpv lv4 lv2 hlv'; # specs
 
 # Parse the source file and group all of the configurations for each year/make/model
 my (%arts, %rdrs, %dsmb, %hdrs);
 while(my $r = $csv->getline($dfh)){
     if(%hdrs){
-		my ($city, $hwy, $yr, $make, $model, @specs) = @$r[@hdrs{@wanted_cols}];
+		my ($city, $hwy, $city2, $hwy2, $ftype1, $ftype2, $yr, $make, $model,
+			$displ, $cyl, $trany, $tc, $sc, @specs) = @$r[@hdrs{@wanted_cols, @spec_cols}]; 
+
         for ($make, $model){
             s/\s*\/\s*/\//g; # remove irregular spaces around alternate models with "/"
             tr/ //s; #remove duplicate spacing
         }
         my $vkey = join(' ', $yr, $make, $model);
 		$vkey =~ s/[)(]/"/og;
+
+		my $chksum = "$yr$make$model$displ$cyl$trany$tc$sc@specs";
+
+		if(exists $arts{$vkey}{chksums}{$chksum}){
+			warn "Duplicate line in CSV:\n\t@$r\n" if $verbose;
+			next;
+		}
+		else{
+			++$arts{$vkey}{chksums}{$chksum};
+		}
 
         if(exists $rdrs{$vkey}){ # e.g. "1991 BMW 325i" and "1991 BMW 325i/325is"
             warn "DUPE: vkey $vkey exists as a redirect. Removing!\n" if $verbose;
@@ -41,19 +56,28 @@ while(my $r = $csv->getline($dfh)){
             $arts{$vkey}{src} = "http://www.fueleconomy.gov/feg/PowerSearch.do?action=noform&path=1&year1=$yr&year2=$yr&make="
                 . uri_escape($make) . '&model=' . uri_escape($model) . '&srchtyp=ymm';
         }
-        push @{$arts{$vkey}{city}}, $city;
-        push @{$arts{$vkey}{hwy}}, $hwy;
 
         # basic model configuration info...unique *most* of the time
-        my $vconfig = "$specs[0] L, $specs[1] cyl, $specs[2]";
-        if($specs[3] eq 'T'){ $vconfig .= ', Turbo'; }
-        elsif($specs[4] eq 'S'){ $vconfig .= ', Supercharger'; }
+        my $vconfig = "$displ L, $cyl cyl, $trany";
+        if($tc eq 'T'){ $vconfig .= ', Turbo'; }
+        elsif($sc eq 'S'){ $vconfig .= ', Supercharger'; }
 
         # The site itself has duplicate descriptions, e.g. see the 1993 Chevy C1500.  Only drilling down
         # into the data further will you find that there is some distinguishing feature; for example,
         # the drive or transmission type.  The latter is probably unintelligible for the average 
         # consumer.  Anyhow, we'll carry these values forward for disambiguation if necessary.
-        push @{$arts{$vkey}{configs}{$vconfig}}, [$city, $hwy, @specs[5..7]]; 
+		my $fe;
+		if($ftype2){
+			push @{$arts{$vkey}{city}}, $city2;
+			push @{$arts{$vkey}{hwy}}, $hwy2;
+			$fe = "$city city / $hwy hwy ($ftype1), $city2 city / $hwy2 hwy ($ftype2)";
+		}
+		else{
+			$fe = "$city city / $hwy hwy";
+		}
+		push @{$arts{$vkey}{city}}, $city;
+		push @{$arts{$vkey}{hwy}}, $hwy;
+        push @{$arts{$vkey}{configs}{$vconfig}}, [$fe, @specs]; 
 
         # validate potential redirects
 		my $tmpm = $model;
@@ -121,12 +145,12 @@ while(my $r = $csv->getline($dfh)){
 
         my $verified_cols = 1;
         # verify the columns are there
-        for my $h (@wanted_cols){
-            unless(exists $hdrs{$h}){
-                warn "Column $h not found";
-                $verified_cols = 0;
-            }
-        }
+		for my $h (@wanted_cols){
+			unless(exists $hdrs{$h}){
+				warn "Column $h not found";
+				$verified_cols = 0;
+			}
+		}
         die 'Column headers seem to have changed. Verify manually' unless $verified_cols;
     }
     else{
@@ -160,29 +184,37 @@ while(my ($v, $data) = each %arts){
         my $specs = $configs->{$config};
         my @display_configs;
         if(@$specs > 1){
-            for(my $i = 2;$i < @{$specs->[0]};++$i){
+            for(my $i = 1;$i < @{$specs->[0]};++$i){ # start at 1 to skip fuel economy value
                 my %feature;
                 for my $s (@$specs){
                     ++$feature{$s->[$i]};
                 }    
                 if( (keys %feature) > 1){ #feature is different for *some* configurations
                     for(my $s = 0;$s < @$specs;++$s){
+						my $spec  = $specs->[$s][$i];
+						if(my ($pl) = $spec_cols[$i-1] =~ /^h?([pl])v[24]?$/o){
+							next if $spec == 0;	# e.g. Porsche 968
+							$spec .= ' ft<sup>3</sup> ' . ($pl eq 'p' ? 'Passenger' : 'Luggage') . ' Volume';
+						}
                         if(defined $display_configs[$s]){
-                            $display_configs[$s] .= ', ' . $specs->[$s][$i];
+                            $display_configs[$s] .= ', ' . $spec;
                         }
                         else{
-                            push @display_configs, $config . ', ' . $specs->[$s][$i];
+                            push @display_configs, $config . ', ' . $spec;
                         }
                     }    
                 }
             }    
+			unless(@display_configs){
+				warn qq{Vehicle "$v" has multiple configurations for "$config" with no distinguishing feature\n};
+			}
             @display_configs = sort @display_configs;
         }
         else{
             @display_configs = ($config);
         }
         for(my $x = 0;$x < @display_configs;++$x){
-            $rec .= '<br />' . $display_configs[$x] . ': ' . $specs->[$x][0] . ' city / ' . $specs->[$x][1] . ' hwy';
+            $rec .= "<br />$display_configs[$x]: " . $specs->[$x][0];
         }
     }
     print $output "$v\tA\t\t\t\t\t\t\thttp://www.fueleconomy.gov/ FuelEconomy.gov\\n\t\t\t$rec\t$arts{$v}{src}\n";
