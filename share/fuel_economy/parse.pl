@@ -180,43 +180,60 @@ while(my ($v, $data) = each %arts){
     my $rec = "MPG: $summary<br />";
 
     # add details for configurations
+	my $add_vol_note;
     for my $config (sort keys %$configs){
         my $specs = $configs->{$config};
         my @display_configs;
         if(@$specs > 1){
-            for(my $i = 1;$i < @{$specs->[0]};++$i){ # start at 1 to skip fuel economy value
+			my $add_asterisk;
+            SPEC: for(my $i = 1;$i < @{$specs->[0]};++$i){ # start at 1 to skip fuel economy value
                 my %feature;
                 for my $s (@$specs){
                     ++$feature{$s->[$i]};
                 }    
                 if( (keys %feature) > 1){ #feature is different for *some* configurations
+					my $spec_col = $spec_cols[$i-1];
+					if($spec_col =~ /^h?[pl]v[24]?$/o){
+						++$add_asterisk;
+						++$add_vol_note;
+						unless(@display_configs){
+							@display_configs = ($config) x scalar(@$specs);
+						}
+						next SPEC;
+					}
                     for(my $s = 0;$s < @$specs;++$s){
 						my $spec  = $specs->[$s][$i];
-						if(my ($pl) = $spec_cols[$i-1] =~ /^h?([pl])v[24]?$/o){
-							next if $spec == 0;	# e.g. Porsche 968
-							$spec .= ' ft<sup>3</sup> ' . ($pl eq 'p' ? 'Passenger' : 'Luggage') . ' Volume';
-						}
                         if(defined $display_configs[$s]){
-                            $display_configs[$s] .= ', ' . $spec;
+                            $display_configs[$s] .= ", $spec";
                         }
                         else{
-                            push @display_configs, $config . ', ' . $spec;
+                            push @display_configs, "$config, $spec";
                         }
                     }    
                 }
             }    
 			unless(@display_configs){
-				warn qq{Vehicle "$v" has multiple configurations for "$config" with no distinguishing feature\n};
+				die qq{Vehicle "$v" has multiple configurations for "$config" with no distinguishing feature\n};
 			}
+			for(my $x = 0;$x < @display_configs;++$x){
+				if($add_asterisk){
+					$display_configs[$x] .= '*';
+				}
+				$display_configs[$x] .= ': ' . $specs->[$x][0];
+			}
+			# make sure this sort comes after config and fuel economy have been linked
             @display_configs = sort @display_configs;
         }
         else{
-            @display_configs = ($config);
+            @display_configs = ("$config: " . $specs->[0][0]);
         }
-        for(my $x = 0;$x < @display_configs;++$x){
-            $rec .= "<br />$display_configs[$x]: " . $specs->[$x][0];
+        for (@display_configs){
+            $rec .= "<br />$_";
         }
     }
+	if($add_vol_note){
+		$rec .= '<br /><br />* Different passenger and/or luggage volumes';
+	}
     print $output "$v\tA\t\t\t\t\t\t\thttp://www.fueleconomy.gov/ FuelEconomy.gov\\n\t\t\t$rec\t$arts{$v}{src}\n";
 }
 
