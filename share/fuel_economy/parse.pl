@@ -21,7 +21,7 @@ open my $dfh, "unzip -cq $data |" or die "Failed to open $data: $?";
 # wanted columns
 my @wanted_cols = (qw'city08 highway08 cityA08 highwayA08 fuelType1 fuelType2', # fuel economy
 	qw'year make model', # model
-	qw'displ cylinders trany tCharger sCharger'); # configuration
+	qw'displ cylinders trany tCharger sCharger evMotor'); # configuration
 my @spec_cols =	qw'fuelType drive trans_dscr eng_dscr VClass pv4 pv2 hpv lv4 lv2 hlv'; # specs
 
 # Parse the source file and group all of the configurations for each year/make/model
@@ -29,12 +29,13 @@ my (%arts, %rdrs, %dsmb, %hdrs);
 while(my $r = $csv->getline($dfh)){
     if(%hdrs){
 		my ($city, $hwy, $city2, $hwy2, $ftype1, $ftype2, $yr, $make, $model,
-			$displ, $cyl, $trany, $tc, $sc, @specs) = @$r[@hdrs{@wanted_cols, @spec_cols}]; 
+			$displ, $cyl, $trany, $tc, $sc, $evm, @specs) = @$r[@hdrs{@wanted_cols, @spec_cols}]; 
 
-        for ($make, $model){
+        for ($make, $model, $evm, $trany){
             s/\s*\/\s*/\//g; # remove irregular spaces around alternate models with "/"
             tr/ //s; #remove duplicate spacing
         }
+
         my $vkey = join(' ', $yr, $make, $model);
 		$vkey =~ s/[)(]/"/og;
 
@@ -58,7 +59,8 @@ while(my $r = $csv->getline($dfh)){
         }
 
         # basic model configuration info...unique *most* of the time
-        my $vconfig = "$displ L, $cyl cyl, $trany";
+		my $vconfig = $ftype1 eq 'Electricity' ? $evm : "$displ L, $cyl cyl";
+		if($trany){ $vconfig .= ", $trany"; } # some don't have transmissions listed, e.g. 2001 Hyper-Mini
         if($tc eq 'T'){ $vconfig .= ', Turbo'; }
         elsif($sc eq 'S'){ $vconfig .= ', Supercharger'; }
 
