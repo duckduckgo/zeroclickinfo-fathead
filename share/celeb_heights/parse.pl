@@ -31,7 +31,7 @@ foreach my $letter ('A'..'Z') {
         (my $fmt_name = $name) =~ s/^\s+//g;
         $fmt_name =~ s/\s+$//g;
 
-        my $title = "$fmt_name height";
+        my $title = "$fmt_name";
         my $type = 'A';
         my $abstract = "$fmt_name is $fmt_height.";
         my $source_url = 'http://www.celebheights.com';
