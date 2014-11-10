@@ -8,6 +8,7 @@ my $heights = scraper {
     # an array 'authors'.  We embed other scrapers for each TD.
     process 'div[class="starazCol v11"]', "people[]" => scraper {
         process 'div[class="starazCol v11"]', info => 'TEXT';
+        process "a", page => '@href';
     };
 };
 
@@ -15,7 +16,7 @@ open (OUT, ">output.txt");
 
 foreach my $letter ('A'..'Z') {
     my $file_contents = read_file( "download/$letter.html" ) ;
-    my $res = $heights->scrape($file_contents);
+    my $res = $heights->scrape($file_contents, "http://www.celebheights.com/s/");
 
     foreach my $person (@{$res->{'people'}}) {
         my ($name, $height) = $person->{'info'} =~ /([^\(]+)\s*\((.*)\)/;
@@ -34,9 +35,10 @@ foreach my $letter ('A'..'Z') {
         my $title = "$fmt_name";
         my $type = 'A';
         my $abstract = "$fmt_name is $fmt_height.";
-        my $source_url = 'http://www.celebheights.com';
+        my $source_url = $person->{'page'};
+        next unless $source_url;
 
-        print OUT "$title\t\t\t\t\t\t\t\t\t\t\t$abstract\t$source_url\n";
+        print OUT "$title\t$type\t\t\t\t\t\t\t\t\t\t$abstract\t$source_url\n";
     }
 
 }
