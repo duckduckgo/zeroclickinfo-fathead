@@ -41,26 +41,24 @@ findmethoddetail = re.compile(r'<A NAME.*?<HR>', re.DOTALL)
 finda = re.compile(r'<A NAME.*?>', re.DOTALL)
 findb = re.compile(r'<B>.*?</B>', re.DOTALL)
 findddtop = re.compile(r'<DD.*?<P>', re.DOTALL)
-findinherit = re.compile(r'<B>Methods inherited from.*?</TABLE>',
-                         re.DOTALL)
+findinherit = re.compile(r'<B>Methods inherited from.*?</TABLE>', re.DOTALL)
 findopenclosetags = re.compile(r'<.*?>|</.*?>', re.DOTALL)
 spaces = re.compile(r'\s+', re.DOTALL)
 
 # java javax and org
 
-
 #get all the files here
 dirList = []
 
 
-dir = "./docs/java/en/api/java/"
+dir = "./docs/api/java/"
 
 for (path, dirs, files) in os.walk(dir):
   if 'class-use' not in path:
     for f in files:
       dirList.append("%s/%s" % (path, f))
 
-dir = "./docs/java/en/api/javax/"
+dir = "./docs/api/javax/"
 
 for (path, dirs, files) in os.walk(dir):
   if 'class-use' not in path:
@@ -105,7 +103,7 @@ for fname in dirList:
     # print the object
 
     name = fname.split('/')[-1].replace('.html', '')
-    url = "http://download.oracle.com/javase/6/docs/%s" \
+    url = "http://download.oracle.com/javase/8/docs/%s" \
         % (fname.replace('./docs/java/en/', ''))
     description = spaces.sub(' ', findopenclosetags.sub('', desc).strip())
 
@@ -125,7 +123,7 @@ for fname in dirList:
         #synopsis = j.strip().replace('</A','</A>').replace('>>','>')
         synopsis = ''
         methodname =  r1.sub('', j).replace('</A', '').strip()
-        url = 'http://download.oracle.com/javase/6/docs/%s#%s' % ( fname.replace('./docs/java/en/',''), methodname)
+        url = 'http://download.oracle.com/javase/8/docs/%s#%s' % ( fname.replace('./docs/java/en/',''), methodname)
         namespaceinherited = "%s.%s" % (namespace, name)
 
         print "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (methodname,
@@ -140,7 +138,7 @@ for fname in dirList:
         methodname = r1.sub('', findh3.findall(meth)[0]).strip()
         methodurl = finda.findall(meth)[0]
         methodurl = methodurl.replace('<A NAME="', '').replace('">', '')
-        url = 'http://download.oracle.com/javase/6/docs/%s#%s'%(fname.replace('./docs/java/en/', ''),methodurl)
+        url = 'http://download.oracle.com/javase/8/docs/%s#%s'%(fname.replace('./docs/java/en/', ''),methodurl)
         synopsis = findopenclosetags.sub('',findpre.findall(meth)[0].replace('<PRE>', '').replace('</PRE>', '').replace("\r\n", '').strip())
         description = spaces.sub(' ',findopenclosetags.sub('', findddtop.findall(meth)[0].replace('<DD>', '').replace('<P>', '')))
         namespaceinherited = "%s.%s" % (namespace, name)

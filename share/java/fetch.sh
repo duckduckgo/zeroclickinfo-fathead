@@ -1,3 +1,3 @@
-# Probably best to go to the below and accept otherwise this probably will not work
-# http://www.oracle.com/technetwork/java/javase/downloads/jdk-6u25-doc-download-355137.html
-wget http://download.oracle.com/otn-pub/java/jdk/6u30-b12/jdk-6u30-apidocs.zip
+# see http://stackoverflow.com/a/10959815/834
+wget --quiet --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-docs-all.zip
+unzip -q jdk-8u25-docs-all.zip
