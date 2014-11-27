@@ -69,7 +69,7 @@ def concat(clazz, description, url):
 
 def output(filename, data_list):
   line = concat_list(data_list)
-  if not line.startswith("No class found") and line != "":
+  if not line.startswith("No class found") and line != "" and not ("No abstract found" in line):
     f = open(filename, 'a')
     f.write(line.encode('utf'))
     f.close()
