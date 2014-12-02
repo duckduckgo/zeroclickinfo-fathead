@@ -1,3 +1,3 @@
 #!/bin/sh
 
-python parse.py>output.txt
+python2.7 parse.py>output.txt

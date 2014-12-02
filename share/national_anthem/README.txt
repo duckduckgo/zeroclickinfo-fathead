@@ -5,5 +5,5 @@ Beautiful Soup 4
 
 To install in Ubuntu:
 
-sudo apt-get install python3
-sudo apt-get install python3-bs4
+sudo apt-get install python2.7
+sudo apt-get install python2.7-bs4
