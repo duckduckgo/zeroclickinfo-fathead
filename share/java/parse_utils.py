@@ -37,7 +37,10 @@ def cutlength(description):
   return description.replace("\n", "")
 
 def remove_keywords(line):
-  return line.replace('Class ', '').replace('Enum ', '').replace('Interface ', '').replace('Annotation Type ', '')
+  if isinstance(line, basestring):
+    return line.replace('Class ', '').replace('Enum ', '').replace('Interface ', '').replace('Annotation Type ', '')
+  else:
+    return ''
 
 def getcontent(filename):
   f = open(filename, 'r')
@@ -52,7 +55,7 @@ def concat_list(data_list = ['', '', '']):
     return ""
 
 def concat(clazz, description, url):
-  title = clazz or 'No class found'
+  title = remove_keywords(clazz) or 'No class found'
   typez = 'A'
   redirect = ''
   four = ''

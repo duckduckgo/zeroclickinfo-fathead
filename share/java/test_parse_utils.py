@@ -13,6 +13,8 @@ class TestParse(unittest.TestCase):
     self.assertEqual("DriverAction", parse_utils.remove_keywords("Interface DriverAction"))
     self.assertEqual("Native", parse_utils.remove_keywords("Annotation Type Native"))
 
+    self.assertEqual('', parse_utils.remove_keywords([]))
+
   def test_read_files_with_documentation(self):
     # test number of directories
     self.assertEqual(2272, len(parse_utils.collectDocFilesFrom("./docs/api/java")))
