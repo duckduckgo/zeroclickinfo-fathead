@@ -36,6 +36,9 @@ def cutlength(description):
   description = description[0:description.rfind('.', 0, 100) + 1]
   return description.replace("\n", "")
 
+def remove_keywords(line):
+  return line.replace('Class ', '').replace('Enum ', '').replace('Interface ', '').replace('Annotation Type ', '')
+
 def getcontent(filename):
   f = open(filename, 'r')
   lines = f.read()

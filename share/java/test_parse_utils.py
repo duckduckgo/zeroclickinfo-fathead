@@ -7,6 +7,12 @@ class TestParse(unittest.TestCase):
   def setUp(self):
     pass
 
+  def test_remove_keywords(self):
+    self.assertEqual("SQLWarning", parse_utils.remove_keywords("Class SQLWarning"))
+    self.assertEqual("StandardCopyOption", parse_utils.remove_keywords("Enum StandardCopyOption"))
+    self.assertEqual("DriverAction", parse_utils.remove_keywords("Interface DriverAction"))
+    self.assertEqual("Native", parse_utils.remove_keywords("Annotation Type Native"))
+
   def test_read_files_with_documentation(self):
     # test number of directories
     self.assertEqual(2272, len(parse_utils.collectDocFilesFrom("./docs/api/java")))
