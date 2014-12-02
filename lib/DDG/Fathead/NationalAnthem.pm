@@ -9,7 +9,7 @@ name "NationalAnthem";
 
 source "GitHub";
 
-code_url "https://github.com/jee1mr/zeroclickinfo-fathead/tree/master/share/hello_world";
+code_url "https://github.com/jee1mr/zeroclickinfo-fathead/tree/master/share/national_anthem";
 
 topics "special_interest", "trivia";
 
