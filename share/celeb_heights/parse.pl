@@ -34,7 +34,7 @@ foreach my $letter ('A'..'Z') {
 
         my $title = "$fmt_name";
         my $type = 'A';
-        my $abstract = "$fmt_name is $fmt_height.";
+        my $abstract = $fmt_height;
         my $source_url = $person->{'page'};
         next unless $source_url;
 
