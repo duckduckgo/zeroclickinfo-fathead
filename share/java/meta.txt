@@ -1,4 +1,4 @@
-Name: JDK 1.6
+Name: JDK 8
 Domain: docs.oracle.com
 Type: Java
 MediaWiki: 0
