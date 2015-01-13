@@ -86,15 +86,10 @@ class FatWriter(object):
     row = []
     for field in FatWriter.FIELDS:
       col = outdict.get(field, '')
-      if col:
-        col = col.replace('\t', '    ')
-        col = col.replace('\n', '\\n')
-        row.append(col)
-    if len(row) > 3:
-      row[1] = row[1]+'\t\t\t\t\t\t\t\t\t'
-      self.outfile.write('\t'.join(row) + '\n')
-    elif row[1] == "R":
-      self.outfile.write('\t'.join(row) + '\n')
+      col = col.replace('\t', '    ')
+      col = col.replace('\n', '\\n')
+      row.append(col)
+    self.outfile.write('\t'.join(row) + '\n')
 
 class MDNWriter(FatWriter):
   """ An implementation of FatWriter that knows how to convert between MDN objects
@@ -173,7 +168,7 @@ class MDNParser(object):
     soup = BeautifulSoup(htmlfile)
     if self._is_obsolete(soup):
       return None
-    title_el = soup.find('h1', class_='page-title')
+    title_el = soup.find('h1')
     article = soup.find(id='wikiArticle')
     if article:
       summary_el = article.find(
