@@ -86,10 +86,12 @@ class FatWriter(object):
     row = []
     for field in FatWriter.FIELDS:
       col = outdict.get(field, '')
-      col = col.replace('\t', '    ')
-      col = col.replace('\n', '\\n')
-      row.append(col)
-    self.outfile.write('\t'.join(row) + '\n')
+      if col:
+        col = col.replace('\t', '    ')
+        col = col.replace('\n', '\\n')
+        row.append(col)
+    if len(row) > 3 or row[1] == "R":
+      self.outfile.write('\t'.join(row) + '\n')
 
 class MDNWriter(FatWriter):
   """ An implementation of FatWriter that knows how to convert between MDN objects

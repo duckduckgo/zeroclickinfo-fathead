@@ -1,5 +1,5 @@
 import codecs
-from httplib2 import urllib
+import urllib2
 import os
 import time
 
@@ -21,7 +21,7 @@ class CacheFetcher(object):
     fname = os.path.join(self._cachedir, self._formatter(url))
     if not os.path.exists(fname):
       time.sleep(self._sleep)
-      html = urllib.urlopen(url).read()
+      html = urllib2.urlopen(url).read()
       with codecs.open(fname, 'w', 'utf-8') as f:
         soup = BeautifulSoup(html)
         f.write(unicode(soup))
@@ -52,7 +52,7 @@ def run(sitemapurl, patt, cachedir, cachejournal, sleep=5):
     sleep: Integer amount of time to sleep between HTTP requests, in seconds.
   """
   fetcher = CacheFetcher(cachedir, filename_formatter, sleep)
-  sitemap = urllib.urlopen(sitemapurl)
+  sitemap = urllib2.urlopen(sitemapurl)
   with open(cachejournal, 'w') as journal:
     for url in extract_sitemap(sitemap, patt):
       fname = fetcher.fetch(url)
