@@ -90,7 +90,10 @@ class FatWriter(object):
         col = col.replace('\t', '    ')
         col = col.replace('\n', '\\n')
         row.append(col)
-    if len(row) > 3 or row[1] == "R":
+    if len(row) > 3:
+      row[1] = row[1]+'\t\t\t\t\t\t\t\t\t'
+      self.outfile.write('\t'.join(row) + '\n')
+    elif row[1] == "R":
       self.outfile.write('\t'.join(row) + '\n')
 
 class MDNWriter(FatWriter):
