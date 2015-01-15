@@ -44,9 +44,6 @@ class Standardizer(object):
         self.objects.add(obj)
 
   def standardize(self, mdn):
-
-    # for Web/API/ 
-    # remove these words to create redirects
     """ Standardize and clean the fields within an MDN object. """
     if 'Global' in mdn.obj: 
       mdn.obj = 'Global'
