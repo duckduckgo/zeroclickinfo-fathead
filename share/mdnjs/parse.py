@@ -52,8 +52,8 @@ class Standardizer(object):
     if 'Global' in mdn.obj: 
       mdn.obj = 'Global'
     # commented out for Web/API parsing
-#    if mdn.obj not in self.objects:
-#      return None
+    if mdn.obj not in self.objects and 'Global' in mdn.url:
+      return None
     if any( word in mdn.title for word in CLASS_WORDS ) and len(mdn.title.split('.')) > 1:
       mdn.title = mdn.title.split('(')[0].strip().split('.')[1].strip()
       print mdn.title

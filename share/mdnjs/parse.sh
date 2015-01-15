@@ -1,5 +1,15 @@
 #!/bin/bash
-python parse.py --out output.txt \
+rm out.txt
+
+python parse.py --out output.api.txt \
                 --langdefs ecma.csv \
                 --cachedir downloads \
                 --cachejournal ".cachejournal"
+
+python parse.py --out output.js.txt \
+                --langdefs ecma.csv \
+                --cachedir downloads_js \
+                --cachejournal ".cachejournal"
+
+cat output.api.txt >> output.txt
+cat output.js.txt >> output.txt
