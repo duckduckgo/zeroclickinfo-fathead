@@ -1,6 +1,6 @@
 import codecs
 from collections import Counter
-
+import re
 from bs4 import BeautifulSoup
 
 class Standardizer(object):
@@ -47,16 +47,11 @@ class Standardizer(object):
 
     # for Web/API/ 
     # remove these words to create redirects
-    CLASS_WORDS = ['Window', 'Navigator', 'MouseEvent', 'KeyboardEvent', 'GlobalEventHandlers', 'HTML', 'Element', 'Console', 'Node', 'Event', 'Selection']
     """ Standardize and clean the fields within an MDN object. """
     if 'Global' in mdn.obj: 
       mdn.obj = 'Global'
-    # commented out for Web/API parsing
     if mdn.obj not in self.objects and 'Global' in mdn.url:
       return None
-    if any( word in mdn.title for word in CLASS_WORDS ) and len(mdn.title.split('.')) > 1:
-      mdn.title = mdn.title.split('(')[0].strip().split('.')[1].strip()
-      print mdn.title
     if mdn.prop.lower() not in self.inverted_index:
       return mdn
     for signature in self.inverted_index[mdn.prop.lower()]:
@@ -197,7 +192,9 @@ class MDNIndexer(object):
     self._writer = writer
     self.counter = Counter()
     self.inverted_index = {}
-
+    # for Web/Api pages
+    self.CLASS_WORDS = ['Window', 'Navigator', 'MouseEvent', 'KeyboardEvent', 'GlobalEventHandlers', 'Element', 'Node', 'Event', 'Selection']
+  
   def add(self, mdn): 
     keyword = mdn.prop.lower()
     self.counter[keyword] += 1
@@ -224,6 +221,20 @@ class MDNIndexer(object):
           'disambiguation': disambig
         })
       for mdn in self.inverted_index[keyword]:
+        # add redirect for Web/Api pages
+        if any( word in mdn.title for word in self.CLASS_WORDS ) and len(mdn.title.split('.')) > 1:
+          # original title: Window.getAnimationFrame()
+          match = re.search( '(.*)\.(.*)(?:\(\))?', mdn.title )
+          # remove class_word: getAnimationFrame()
+          strip_title = match.group(2)
+          # remove (): getAnimationFraome
+          strip_title = strip_title.split('(')[0].strip()
+
+          self._writer.writerow({
+            'title': strip_title,
+            'type': 'R',
+            'redirect': mdn.title
+          })
         # For all entries in the inverted index, write a redirect of 
         # of the form <object><space><property>
         self._writer.writerow({
