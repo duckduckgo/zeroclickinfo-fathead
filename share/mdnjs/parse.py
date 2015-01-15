@@ -18,6 +18,8 @@ class Standardizer(object):
     'instance_method': '%s.prototype.%s',
     'instance_property': '%s.prototype.%s',
   }
+
+
   def __init__(self, specfile):
     """
     Args:
@@ -42,11 +44,19 @@ class Standardizer(object):
         self.objects.add(obj)
 
   def standardize(self, mdn):
+
+    # for Web/API/ 
+    # remove these words to create redirects
+    CLASS_WORDS = ['Window', 'Navigator', 'MouseEvent', 'KeyboardEvent', 'GlobalEventHandlers', 'HTML', 'Element', 'Console', 'Node', 'Event', 'Selection']
     """ Standardize and clean the fields within an MDN object. """
     if 'Global' in mdn.obj: 
       mdn.obj = 'Global'
-    if mdn.obj not in self.objects:
-      return None
+    # commented out for Web/API parsing
+#    if mdn.obj not in self.objects:
+#      return None
+    if any( word in mdn.title for word in CLASS_WORDS ) and len(mdn.title.split('.')) > 1:
+      mdn.title = mdn.title.split('(')[0].strip().split('.')[1].strip()
+      print mdn.title
     if mdn.prop.lower() not in self.inverted_index:
       return mdn
     for signature in self.inverted_index[mdn.prop.lower()]:

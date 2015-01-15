@@ -4,8 +4,8 @@ use DDG::Fathead;
 
 primary_example_queries "javascript array sort";
 secondary_example_queries
-    "js array sort",
-    "mdn array sort";
+    "js requestanimationframe",
+    "mdn localstorage";
 description "Method signatures for core JavaScript 1.5.";
 name "MDN JavaScript Reference";
 source "Mozilla Developer Network";
