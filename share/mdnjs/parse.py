@@ -219,12 +219,10 @@ class MDNIndexer(object):
         # add redirect for Web/Api pages
         if any( word in mdn.title for word in self.CLASS_WORDS ) and len(mdn.title.split('.')) > 1:
           # original title: Window.getAnimationFrame()
-          match = re.search( '(.*)\.(.*)(?:\(\))?', mdn.title )
+          match = re.search( '(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
           # remove class_word: getAnimationFrame()
-          strip_title = match.group(2)
-          # remove (): getAnimationFraome
-          strip_title = strip_title.split('(')[0].strip()
-
+          strip_title = match.group(1)
+          
           self._writer.writerow({
             'title': strip_title,
             'type': 'R',
