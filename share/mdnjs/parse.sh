@@ -1,5 +1,5 @@
 #!/bin/bash
-rm out.txt
+rm output.txt
 
 python parse.py --out output.api.txt \
                 --langdefs ecma.csv \
