@@ -18,8 +18,6 @@ class Standardizer(object):
     'instance_method': '%s.prototype.%s',
     'instance_property': '%s.prototype.%s',
   }
-
-
   def __init__(self, specfile):
     """
     Args:
