@@ -220,7 +220,7 @@ class MDNIndexer(object):
         if any( word in mdn.title for word in self.CLASS_WORDS ) and len(mdn.title.split('.')) > 1:
           # original title: Window.getAnimationFrame()
           match = re.search( '(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
-          # remove class_word: getAnimationFrame()
+          # remove class_word: getAnimationFrame
           strip_title = match.group(1)
           
           self._writer.writerow({
