@@ -217,7 +217,7 @@ class MDNIndexer(object):
         })
       for mdn in self.inverted_index[keyword]:
         # add redirect for Web/Api pages
-        if any( word in mdn.title for word in self.CLASS_WORDS ) and len(mdn.title.split('.')) > 1:
+        if any( word in mdn.title for word in self.CLASS_WORDS ) and '.' in mdn.title:
           # original title: Window.getAnimationFrame()
           match = re.search( '(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
           # remove class_word: getAnimationFrame
