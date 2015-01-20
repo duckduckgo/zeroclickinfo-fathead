@@ -5,7 +5,7 @@ use DDG::Fathead;
 primary_example_queries "javascript array sort";
 secondary_example_queries
     "js requestanimationframe",
-    "mdn localstorage";
+    "mdn clipboardevent";
 description "Method signatures for core JavaScript 1.5.";
 name "MDN JavaScript Reference";
 source "Mozilla Developer Network";
