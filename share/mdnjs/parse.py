@@ -1,6 +1,6 @@
 import codecs
 from collections import Counter
-
+import re
 from bs4 import BeautifulSoup
 
 class Standardizer(object):
@@ -45,7 +45,7 @@ class Standardizer(object):
     """ Standardize and clean the fields within an MDN object. """
     if 'Global' in mdn.obj: 
       mdn.obj = 'Global'
-    if mdn.obj not in self.objects:
+    if mdn.obj not in self.objects and 'Global' in mdn.url:
       return None
     if mdn.prop.lower() not in self.inverted_index:
       return mdn
@@ -168,7 +168,7 @@ class MDNParser(object):
     soup = BeautifulSoup(htmlfile)
     if self._is_obsolete(soup):
       return None
-    title_el = soup.find('h1', class_='page-title')
+    title_el = soup.find('h1')
     article = soup.find(id='wikiArticle')
     if article:
       summary_el = article.find(
@@ -187,7 +187,9 @@ class MDNIndexer(object):
     self._writer = writer
     self.counter = Counter()
     self.inverted_index = {}
-
+    # for Web/Api pages
+    self.CLASS_WORDS = ['Window', 'Navigator', 'MouseEvent', 'KeyboardEvent', 'GlobalEventHandlers', 'Element', 'Node', 'Event', 'Selection']
+  
   def add(self, mdn): 
     keyword = mdn.prop.lower()
     self.counter[keyword] += 1
@@ -214,6 +216,18 @@ class MDNIndexer(object):
           'disambiguation': disambig
         })
       for mdn in self.inverted_index[keyword]:
+        # add redirect for Web/Api pages
+        if any( word in mdn.title for word in self.CLASS_WORDS ) and '.' in mdn.title:
+          # original title: Window.getAnimationFrame()
+          match = re.search( '(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
+          # remove class_word: getAnimationFrame
+          strip_title = match.group(1)
+          
+          self._writer.writerow({
+            'title': strip_title,
+            'type': 'R',
+            'redirect': mdn.title
+          })
         # For all entries in the inverted index, write a redirect of 
         # of the form <object><space><property>
         self._writer.writerow({
