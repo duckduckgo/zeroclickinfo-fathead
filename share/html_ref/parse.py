@@ -80,8 +80,16 @@ class Parser(object):
                 reference = a_tags[0]['href']  # url for W3C
 
             reference = 'http://html5doctor.com/element-index/#' + name
-            new_tag = Tag(name, info, reference, example)
-            self.tags.append(new_tag)
+
+            # special case for h1-h6
+            if name == 'h1-h6':
+                for n in range(1, 7):
+                    new_tag = Tag('h' + str(n), info, reference, example)
+                    self.tags.append(new_tag)
+            else:
+                new_tag = Tag(name, info, reference, example)
+                self.tags.append(new_tag)
+
             logger.info('Tag parsed: %s' % new_tag.name)
 
 
