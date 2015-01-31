@@ -1,0 +1,195 @@
+#!/usr/bin/env perl
+use warnings;
+use strict;
+use utf8;
+use Encode;
+use JSON;
+use Web::Query;
+
+main();
+
+sub main {
+    my %sections = (
+        split_sections(
+                load_contents('download/request.json')
+              . load_contents('download/response.json')
+        ),
+    );
+
+    write_output('output.txt', %sections);
+}
+
+sub write_output {
+    my ($filename, %sections) = @_;
+
+    open my $fh, '>', $filename or die $!;
+
+    for my $k (keys %sections) {
+        for my $header (keys %{ $sections{$k} }) {
+            print $fh format_output($header => $sections{$k}{$header});
+        }
+    }
+
+    close $fh or die $!;
+}
+
+sub format_output {
+    my ($name, $value) = @_;
+
+    my @fields = (
+        $name,                  # title
+        'A',                    # type
+        '',                     # redirect
+        '',                     # ignore
+        '',                     # categories
+        '',                     # ignore
+        '',                     # related topics
+        '',                     # ignore
+        '',                     # external links
+        '',                     # ignore
+        '',                     # image
+        format_abstract($value->{description}, $value->{example}),  # abstract
+        'https://en.wikipedia.org/wiki/List_of_HTTP_header_fields', # source_url
+    );
+
+    return join("\t", @fields) . "\n";
+}
+
+sub format_abstract {
+    my ($description, $example) = @_;
+
+    if (substr($description, -1) ne '.') {
+        $description .= '.';
+    }
+
+    # Remove "See HTTP Compression", or "see below", or just "(below)"
+    $description =~ s/[,\.]\s+see\s+[a-zA-Z ]+\././ig;
+    $description =~ s/\s\(below\)//g;
+
+    # Capitalize the first word
+    $description = ucfirst($description);
+
+    my $str_example = join "\\n\\n", @$example;
+
+    return "$description<br><pre><code>$str_example</code></pre>";
+}
+
+sub split_sections {
+    my ($content) = @_;
+    my %sections;
+    my $current;
+
+    wq("<body>$content</body>")->contents->each(sub {
+        my ($i, $el) = @_;
+
+        if ($el->tagname =~ m/^h\d$/) {
+            $current = $el->find('.mw-headline')->text;
+        }
+        elsif ($el->tagname eq 'table') {
+            $sections{$current} = html_table2hash($el);
+        }
+        else {
+            # skip any other elements
+        }
+    });
+
+    return %sections;
+}
+
+sub html_table2hash {
+    my ($table) = @_;
+
+    my %result;
+    my @headers;
+
+    $table->find('th')->each(sub {
+        my ($i, $el) = @_;
+        push @headers, lc trim($el->text);
+    });
+
+    $table->find('tr')->each(sub {
+        my ($i, $row) = @_;
+        my %current;
+
+        $row->find('td')->each(sub {
+            my ($j, $cell) = @_;
+            $cell->find('.reference-text,.reference')->remove();
+
+            if ($headers[$j] eq 'example') {
+                $current{$headers[$j]} = parse_example($cell);
+            }
+            else {
+                $current{$headers[$j]} = trim(join '', $cell->text);
+            }
+        });
+
+        if (my $name = fix_name(\%current)) {
+            $result{$name} = \%current;
+        }
+    });
+
+    return \%result;
+}
+
+sub parse_example {
+    my ($example) = @_;
+
+    my @result;
+
+    $example->find('p')->each(sub {
+        my ($i, $p) = @_;
+
+        push @result, trim($p->text);
+        $p->remove;
+    });
+
+    $example->find('li')->each(sub {
+        my ($i, $li) = @_;
+        my $t = $li->text;
+        $t =~ s/Example \d://g;
+
+        push @result, trim($t);
+        $li->remove;
+    });
+
+    $example->find('ul,ol')->remove();
+
+    my $text = trim($example->text || '');
+
+    if ($text) {
+        unshift @result, $text;
+    }
+
+    return \@result;
+}
+
+sub load_contents {
+    my ($filename) = @_;
+
+    local $/;
+    open my $fh, '<', $filename or die $!;
+    my $contents = <$fh>;
+    close $fh or die $!;
+
+    my $json = decode_json($contents);
+
+    my ($page) = keys %{ $json->{query}{pages} };
+
+    return encode_utf8($json->{query}{pages}{$page}{revisions}[0]{'*'});
+}
+
+sub fix_name {
+    my ($ref) = @_;
+    my ($name) = grep { m/\bname$/ } keys %$ref;
+
+    return wq('<div>' . delete($ref->{$name}) . '</div>')->text if $name;
+}
+
+sub trim {
+    my ($text) = @_;
+
+    $text =~ s/^\s+//;
+    $text =~ s/\s+$//;
+
+    return $text;
+}
