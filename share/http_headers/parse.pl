@@ -26,14 +26,44 @@ sub write_output {
 
     for my $k (sort keys %sections) {
         for my $header (sort keys %{ $sections{$k} }) {
-            print $fh format_output($header => $sections{$k}{$header});
+            print $fh format_article($header => $sections{$k}{$header});
+            print $fh format_redirects($header);
         }
     }
 
     close $fh or die $!;
 }
 
-sub format_output {
+sub format_redirects {
+    my ($name) = @_;
+
+    my $with_dashes = $name;
+
+    my $with_spaces = $name;
+    $with_spaces =~ s/-/ /g;
+
+    return if $with_spaces eq $with_dashes;
+
+    my @fields = (
+        $with_spaces,           # title
+        'R',                    # type
+        $with_dashes,           # redirect
+        '',                     # ignore
+        '',                     # categories
+        '',                     # ignore
+        '',                     # related topics
+        '',                     # ignore
+        '',                     # external links
+        '',                     # ignore
+        '',                     # image
+        '',                     # abstract
+        '',                     # source_url
+    );
+
+    return join("\t", @fields) . "\n";
+}
+
+sub format_article {
     my ($name, $value) = @_;
 
     my @fields = (
