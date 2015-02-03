@@ -24,8 +24,8 @@ sub write_output {
 
     open my $fh, '>', $filename or die $!;
 
-    for my $k (keys %sections) {
-        for my $header (keys %{ $sections{$k} }) {
+    for my $k (sort keys %sections) {
+        for my $header (sort keys %{ $sections{$k} }) {
             print $fh format_output($header => $sections{$k}{$header});
         }
     }
