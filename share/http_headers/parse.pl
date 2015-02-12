@@ -38,7 +38,13 @@ sub format_output {
     for my $title (sort keys %headers) {
         my %header_types = %{ $headers{$title} };
 
-        push @lines, format_article($title, values %header_types);
+        if (keys %header_types == 1) {
+            push @lines, format_article($title, values %header_types);
+        }
+        else {
+            push @lines, format_disambiguation($title, %header_types);
+        }
+
         push @lines, format_redirects($title);
     }
 
@@ -94,6 +100,55 @@ sub format_article {
     );
 
     return join("\t", @fields);
+}
+
+sub format_disambiguation {
+    my ($name, %types) = @_;
+
+    my @fields = (
+        $name,                  # title
+        'D',                    # type
+        '',                     # redirect
+        '',                     # ignore
+        '',                     # categories
+        '',                     # ignore
+        '',                     # related topics
+        '',                     # ignore
+        '',                     # external links
+        format_each_disambiguation(%types),  # disambig
+        '',                     # image
+        '',                     # abstract
+        'https://en.wikipedia.org/wiki/List_of_HTTP_header_fields', # source_url
+    );
+
+    return join("\t", @fields);
+}
+
+sub format_each_disambiguation {
+    my (%types) = @_;
+    my @disamb;
+
+    for my $t (keys %types) {
+        my $description = $types{$t}{description};
+        my $example     = $types{$t}{example};
+
+        if (substr($description, -1) ne '.') {
+            $description .= '.';
+        }
+
+        # Remove "See HTTP Compression", or "see below", or just "(below)"
+        $description =~ s/[,\.]\s+see\s+[a-zA-Z ]+\././ig;
+        $description =~ s/\s\(below\)//g;
+
+        # Capitalize the first word
+        $description = ucfirst($description);
+
+        my $str_example = join "\\n\\n", @$example;
+
+        push @disamb, "*[[$t]],$description<br><pre><code>$str_example</code></pre>\\n";
+    }
+
+    return join '', @disamb;
 }
 
 sub format_abstract {
