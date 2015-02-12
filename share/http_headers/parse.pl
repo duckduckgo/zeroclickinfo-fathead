@@ -9,29 +9,40 @@ use Web::Query;
 main();
 
 sub main {
-    my %sections = (
-        split_sections(
-                load_contents('download/request.json')
-              . load_contents('download/response.json')
-        ),
+    my %headers = (
+        index_hash_by_header(
+            split_sections(
+                    load_contents('download/request.json')
+                  . load_contents('download/response.json')
+            )
+        )
     );
 
-    write_output('output.txt', %sections);
+    write_output('output.txt', %headers);
 }
 
 sub write_output {
-    my ($filename, %sections) = @_;
+    my ($filename, %headers) = @_;
 
     open my $fh, '>', $filename or die $!;
 
-    for my $k (sort keys %sections) {
-        for my $header (sort keys %{ $sections{$k} }) {
-            print $fh format_article($header => $sections{$k}{$header});
-            print $fh format_redirects($header);
-        }
-    }
+    print $fh join "\n", format_output(%headers);
 
     close $fh or die $!;
+}
+
+sub format_output {
+    my (%headers) = @_;
+    my @lines;
+
+    for my $title (sort keys %headers) {
+        my %header_types = %{ $headers{$title} };
+
+        push @lines, format_article($title, values %header_types);
+        push @lines, format_redirects($title);
+    }
+
+    return @lines;
 }
 
 sub format_redirects {
@@ -60,7 +71,7 @@ sub format_redirects {
         '',                     # source_url
     );
 
-    return join("\t", @fields) . "\n";
+    return join("\t", @fields);
 }
 
 sub format_article {
@@ -82,7 +93,7 @@ sub format_article {
         'https://en.wikipedia.org/wiki/List_of_HTTP_header_fields', # source_url
     );
 
-    return join("\t", @fields) . "\n";
+    return join("\t", @fields);
 }
 
 sub format_abstract {
@@ -124,6 +135,23 @@ sub split_sections {
     });
 
     return %sections;
+}
+
+sub index_hash_by_header {
+    my (%sections) = @_;
+    my %result;
+
+    for my $section (keys %sections) {
+        my $new_name = $section;
+        $new_name =~ s/field(s)?//;
+        $new_name = trim($new_name);
+        for my $header (keys %{ $sections{$section} }) {
+            $result{$header} //= {};
+            $result{$header}{$new_name} = $sections{$section}{$header};
+        }
+    }
+
+    return %result;
 }
 
 sub html_table2hash {
