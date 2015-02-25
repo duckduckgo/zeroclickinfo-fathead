@@ -1,129 +1,287 @@
 Accept	A										Content-Types that are acceptable for the response.<br><pre><code>Accept: text/plain</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Accept header	R	Accept										
+Accept headers	R	Accept										
 Accept-Charset	A										Character sets that are acceptable.<br><pre><code>Accept-Charset: utf-8</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Accept Charset	R	Accept-Charset										
+Accept-Charset header	R	Accept-Charset										
+Accept-Charset headers	R	Accept-Charset										
 Accept-Datetime	A										Acceptable version in time.<br><pre><code>Accept-Datetime: Thu, 31 May 2007 20:35:00 GMT</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Accept Datetime	R	Accept-Datetime										
+Accept-Datetime header	R	Accept-Datetime										
+Accept-Datetime headers	R	Accept-Datetime										
 Accept-Encoding	A										List of acceptable encodings.<br><pre><code>Accept-Encoding: gzip, deflate</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Accept Encoding	R	Accept-Encoding										
+Accept-Encoding header	R	Accept-Encoding										
+Accept-Encoding headers	R	Accept-Encoding										
 Accept-Language	A										List of acceptable human languages for response.<br><pre><code>Accept-Language: en-US</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Accept Language	R	Accept-Language										
+Accept-Language header	R	Accept-Language										
+Accept-Language headers	R	Accept-Language										
 Accept-Patch	A										Specifies which patch document formats this server supports.<br><pre><code>Accept-Patch: text/example;charset=utf-8</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Accept Patch	R	Accept-Patch										
+Accept-Patch header	R	Accept-Patch										
+Accept-Patch headers	R	Accept-Patch										
 Accept-Ranges	A										What partial content range types this server supports.<br><pre><code>Accept-Ranges: bytes</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Accept Ranges	R	Accept-Ranges										
+Accept-Ranges header	R	Accept-Ranges										
+Accept-Ranges headers	R	Accept-Ranges										
 Access-Control-Allow-Origin	A										Specifying which web sites can participate in cross-origin resource sharing.<br><pre><code>Access-Control-Allow-Origin: *</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Access Control Allow Origin	R	Access-Control-Allow-Origin										
+Access-Control-Allow-Origin header	R	Access-Control-Allow-Origin										
+Access-Control-Allow-Origin headers	R	Access-Control-Allow-Origin										
 Age	A										The age the object has been in a proxy cache in seconds.<br><pre><code>Age: 12</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Age header	R	Age										
+Age headers	R	Age										
 Allow	A										Valid actions for a specified resource. To be used for a 405 Method not allowed.<br><pre><code>Allow: GET, HEAD</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Allow header	R	Allow										
+Allow headers	R	Allow										
 Authorization	A										Authentication credentials for HTTP authentication.<br><pre><code>Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Authorization header	R	Authorization										
+Authorization headers	R	Authorization										
 Cache-Control	D								*[[Response]],Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds.<br><pre><code>Cache-Control: max-age=3600</code></pre>\n*[[Request]],Used to specify directives that must be obeyed by all caching mechanisms along the request-response chain.<br><pre><code>Cache-Control: no-cache</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Cache Control	R	Cache-Control										
+Cache-Control header	R	Cache-Control										
+Cache-Control headers	R	Cache-Control										
 Connection	D								*[[Response]],Control options for the current connection and list of hop-by-hop response fields.<br><pre><code>Connection: close</code></pre>\n*[[Request]],Control options for the current connection and list of hop-by-hop request fields.<br><pre><code>Connection: keep-alive\n\nConnection: Upgrade</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Connection header	R	Connection										
+Connection headers	R	Connection										
 Content-Disposition	A										An opportunity to raise a "File Download" dialogue box for a known MIME type with binary format or suggest a filename for dynamic content. Quotes are necessary with special characters.<br><pre><code>Content-Disposition: attachment; filename="fname.ext"</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Content Disposition	R	Content-Disposition										
+Content-Disposition header	R	Content-Disposition										
+Content-Disposition headers	R	Content-Disposition										
 Content-Encoding	A										The type of encoding used on the data.<br><pre><code>Content-Encoding: gzip</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Content Encoding	R	Content-Encoding										
+Content-Encoding header	R	Content-Encoding										
+Content-Encoding headers	R	Content-Encoding										
 Content-Language	A										The language the content is in.<br><pre><code>Content-Language: da</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Content Language	R	Content-Language										
-Content-Length	D								*[[Response]],The length of the response body in octets (8-bit bytes).<br><pre><code>Content-Length: 348</code></pre>\n*[[Request]],The length of the request body in octets (8-bit bytes).<br><pre><code>Content-Length: 348</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Content-Language header	R	Content-Language										
+Content-Language headers	R	Content-Language										
+Content-Length	D								*[[Request]],The length of the request body in octets (8-bit bytes).<br><pre><code>Content-Length: 348</code></pre>\n*[[Response]],The length of the response body in octets (8-bit bytes).<br><pre><code>Content-Length: 348</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Content Length	R	Content-Length										
+Content-Length header	R	Content-Length										
+Content-Length headers	R	Content-Length										
 Content-Location	A										An alternate location for the returned data.<br><pre><code>Content-Location: /index.htm</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Content Location	R	Content-Location										
-Content-MD5	D								*[[Request]],A Base64-encoded binary MD5 sum of the content of the request body.<br><pre><code>Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ==</code></pre>\n*[[Response]],A Base64-encoded binary MD5 sum of the content of the response.<br><pre><code>Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ==</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Content-Location header	R	Content-Location										
+Content-Location headers	R	Content-Location										
+Content-MD5	D								*[[Response]],A Base64-encoded binary MD5 sum of the content of the response.<br><pre><code>Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ==</code></pre>\n*[[Request]],A Base64-encoded binary MD5 sum of the content of the request body.<br><pre><code>Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ==</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Content MD5	R	Content-MD5										
+Content-MD5 header	R	Content-MD5										
+Content-MD5 headers	R	Content-MD5										
 Content-Range	A										Where in a full body message this partial message belongs.<br><pre><code>Content-Range: bytes 21010-47021/47022</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Content Range	R	Content-Range										
+Content-Range header	R	Content-Range										
+Content-Range headers	R	Content-Range										
 Content-Security-Policy, X-Content-Security-Policy, X-WebKit-CSP	A										Content Security Policy definition.<br><pre><code>X-WebKit-CSP: default-src 'self'</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Content Security Policy, X Content Security Policy, X WebKit CSP	R	Content-Security-Policy, X-Content-Security-Policy, X-WebKit-CSP										
+Content-Security-Policy, X-Content-Security-Policy, X-WebKit-CSP header	R	Content-Security-Policy, X-Content-Security-Policy, X-WebKit-CSP										
+Content-Security-Policy, X-Content-Security-Policy, X-WebKit-CSP headers	R	Content-Security-Policy, X-Content-Security-Policy, X-WebKit-CSP										
 Content-Type	D								*[[Request]],The MIME type of the body of the request (used with POST and PUT requests).<br><pre><code>Content-Type: application/x-www-form-urlencoded</code></pre>\n*[[Response]],The MIME type of this content.<br><pre><code>Content-Type: text/html; charset=utf-8</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Content Type	R	Content-Type										
+Content-Type header	R	Content-Type										
+Content-Type headers	R	Content-Type										
 Cookie	A										An HTTP cookie previously sent by the server with Set-Cookie.<br><pre><code>Cookie: $Version=1; Skin=new;</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Cookie header	R	Cookie										
+Cookie headers	R	Cookie										
 DNT	A										Requests a web application to disable their tracking of a user. This is Mozilla's version of the X-Do-Not-Track header field (since Firefox 4.0 Beta 11). Safari and IE9 also have support for this field. On March 7, 2011, a draft proposal was submitted to IETF. The W3C Tracking Protection Working Group is producing a specification.<br><pre><code>DNT: 1 (Do Not Track Enabled)\n\nDNT: 0 (Do Not Track Disabled)</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
-Date	D								*[[Response]],The date and time that the message was sent (in "HTTP-date" format as defined by RFC 7231).<br><pre><code>Date: Tue, 15 Nov 1994 08:12:31 GMT</code></pre>\n*[[Request]],The date and time that the message was sent (in "HTTP-date" format as defined by RFC 7231).<br><pre><code>Date: Tue, 15 Nov 1994 08:12:31 GMT</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+DNT header	R	DNT										
+DNT headers	R	DNT										
+Date	D								*[[Request]],The date and time that the message was sent (in "HTTP-date" format as defined by RFC 7231 Date/Time Formats).<br><pre><code>Date: Tue, 15 Nov 1994 08:12:31 GMT</code></pre>\n*[[Response]],The date and time that the message was sent (in "HTTP-date" format as defined by RFC 7231).<br><pre><code>Date: Tue, 15 Nov 1994 08:12:31 GMT</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Date header	R	Date										
+Date headers	R	Date										
 ETag	A										An identifier for a specific version of a resource, often a message digest.<br><pre><code>ETag: "737060cd8c284d8af7ad3082f209582d"</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+ETag header	R	ETag										
+ETag headers	R	ETag										
 Expect	A										Indicates that particular server behaviors are required by the client.<br><pre><code>Expect: 100-continue</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Expect header	R	Expect										
+Expect headers	R	Expect										
 Expires	A										Gives the date/time after which the response is considered stale (in "HTTP-date" format as defined by RFC 7231).<br><pre><code>Expires: Thu, 01 Dec 1994 16:00:00 GMT</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Expires header	R	Expires										
+Expires headers	R	Expires										
 From	A										The email address of the user making the request.<br><pre><code>From: user@example.com</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+From header	R	From										
+From headers	R	From										
 Front-End-Https	A										Non-standard header field used by Microsoft applications and load-balancers.<br><pre><code>Front-End-Https: on</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Front End Https	R	Front-End-Https										
+Front-End-Https header	R	Front-End-Https										
+Front-End-Https headers	R	Front-End-Https										
 Host	A										The domain name of the server (for virtual hosting), and the TCP port number on which the server is listening. The port number may be omitted if the port is the standard port for the service requested.  Mandatory since HTTP/1.1.<br><pre><code>Host: en.wikipedia.org:80\n\nHost: en.wikipedia.org</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Host header	R	Host										
+Host headers	R	Host										
 If-Match	A										Only perform the action if the client supplied entity matches the same entity on the server. This is mainly for methods like PUT to only update a resource if it has not been modified since the user last updated it.<br><pre><code>If-Match: "737060cd8c284d8af7ad3082f209582d"</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 If Match	R	If-Match										
+If-Match header	R	If-Match										
+If-Match headers	R	If-Match										
 If-Modified-Since	A										Allows a 304 Not Modified to be returned if content is unchanged.<br><pre><code>If-Modified-Since: Sat, 29 Oct 1994 19:43:31 GMT</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 If Modified Since	R	If-Modified-Since										
+If-Modified-Since header	R	If-Modified-Since										
+If-Modified-Since headers	R	If-Modified-Since										
 If-None-Match	A										Allows a 304 Not Modified to be returned if content is unchanged.<br><pre><code>If-None-Match: "737060cd8c284d8af7ad3082f209582d"</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 If None Match	R	If-None-Match										
+If-None-Match header	R	If-None-Match										
+If-None-Match headers	R	If-None-Match										
 If-Range	A										If the entity is unchanged, send me the part(s) that I am missing; otherwise, send me the entire new entity.<br><pre><code>If-Range: "737060cd8c284d8af7ad3082f209582d"</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 If Range	R	If-Range										
+If-Range header	R	If-Range										
+If-Range headers	R	If-Range										
 If-Unmodified-Since	A										Only send the response if the entity has not been modified since a specific time.<br><pre><code>If-Unmodified-Since: Sat, 29 Oct 1994 19:43:31 GMT</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 If Unmodified Since	R	If-Unmodified-Since										
+If-Unmodified-Since header	R	If-Unmodified-Since										
+If-Unmodified-Since headers	R	If-Unmodified-Since										
 Last-Modified	A										The last modified date for the requested object (in "HTTP-date" format as defined by RFC 7231).<br><pre><code>Last-Modified: Tue, 15 Nov 1994 12:45:26 GMT</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Last Modified	R	Last-Modified										
+Last-Modified header	R	Last-Modified										
+Last-Modified headers	R	Last-Modified										
 Link	A										Used to express a typed relationship with another resource, where the relation type is defined by RFC 5988.<br><pre><code>Link: </feed>; rel="alternate"</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Link header	R	Link										
+Link headers	R	Link										
 Location	A										Used in redirection, or when a new resource has been created.<br><pre><code>Location: http://www.w3.org/pub/WWW/People.html</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Location header	R	Location										
+Location headers	R	Location										
 Max-Forwards	A										Limit the number of times the message can be forwarded through proxies or gateways.<br><pre><code>Max-Forwards: 10</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Max Forwards	R	Max-Forwards										
+Max-Forwards header	R	Max-Forwards										
+Max-Forwards headers	R	Max-Forwards										
 Origin	A										Initiates a request for cross-origin resource sharing (asks server for an 'Access-Control-Allow-Origin' response field) .<br><pre><code>Origin: http://www.example-social-network.com</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Origin header	R	Origin										
+Origin headers	R	Origin										
 P3P	A										This field is supposed to set P3P policy, in the form of P3P:CP="your_compact_policy". However, P3P did not take off, most browsers have never fully implemented it, a lot of websites set this field with fake policy text, that was enough to fool browsers the existence of P3P policy and grant permissions for third party cookies.<br><pre><code>P3P: CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657 for more info."</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
-Pragma	D								*[[Response]],Implementation-specific fields that may have various effects anywhere along the request-response chain.<br><pre><code>Pragma: no-cache</code></pre>\n*[[Request]],Implementation-specific fields that may have various effects anywhere along the request-response chain.<br><pre><code>Pragma: no-cache</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+P3P header	R	P3P										
+P3P headers	R	P3P										
+Pragma	D								*[[Request]],Implementation-specific fields that may have various effects anywhere along the request-response chain.<br><pre><code>Pragma: no-cache</code></pre>\n*[[Response]],Implementation-specific fields that may have various effects anywhere along the request-response chain.<br><pre><code>Pragma: no-cache</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Pragma header	R	Pragma										
+Pragma headers	R	Pragma										
 Proxy-Authenticate	A										Request authentication to access the proxy.<br><pre><code>Proxy-Authenticate: Basic</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Proxy Authenticate	R	Proxy-Authenticate										
+Proxy-Authenticate header	R	Proxy-Authenticate										
+Proxy-Authenticate headers	R	Proxy-Authenticate										
 Proxy-Authorization	A										Authorization credentials for connecting to a proxy.<br><pre><code>Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Proxy Authorization	R	Proxy-Authorization										
+Proxy-Authorization header	R	Proxy-Authorization										
+Proxy-Authorization headers	R	Proxy-Authorization										
 Proxy-Connection	A										Implemented as a misunderstanding of the HTTP specifications. Common because of mistakes in implementations of early HTTP versions. Has exactly the same functionality as standard Connection field.<br><pre><code>Proxy-Connection: keep-alive</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Proxy Connection	R	Proxy-Connection										
+Proxy-Connection header	R	Proxy-Connection										
+Proxy-Connection headers	R	Proxy-Connection										
 Public-Key-Pins	A										Man-in-the-middle attack mitigation, announces hash of website's authentic TLS certificate.<br><pre><code>Public-Key-Pins: max-age=2592000; pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=";</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Public Key Pins	R	Public-Key-Pins										
+Public-Key-Pins header	R	Public-Key-Pins										
+Public-Key-Pins headers	R	Public-Key-Pins										
 Range	A										Request only part of an entity. Bytes are numbered from 0.<br><pre><code>Range: bytes=500-999</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Range header	R	Range										
+Range headers	R	Range										
 Referer [sic]	A										This is the address of the previous web page from which a link to the currently requested page was followed. (The word “referrer” has been misspelled in the RFC as well as in most implementations to the point that it has become standard usage and is considered correct terminology).<br><pre><code>Referer: http://en.wikipedia.org/wiki/Main_Page</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Referer [sic] header	R	Referer [sic]										
+Referer [sic] headers	R	Referer [sic]										
 Refresh	A										Used in redirection, or when a new resource has been created. This refresh redirects after 5 seconds.<br><pre><code>Refresh: 5; url=http://www.w3.org/pub/WWW/People.html</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Refresh header	R	Refresh										
+Refresh headers	R	Refresh										
 Retry-After	A										If an entity is temporarily unavailable, this instructs the client to try again later. Value could be a specified period of time (in seconds) or a HTTP-date.<br><pre><code>Retry-After: 120</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Retry After	R	Retry-After										
+Retry-After header	R	Retry-After										
+Retry-After headers	R	Retry-After										
 Server	A										A name for the server.<br><pre><code>Server: Apache/2.4.1 (Unix)</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Server header	R	Server										
+Server headers	R	Server										
 Set-Cookie	A										An HTTP cookie.<br><pre><code>Set-Cookie: UserID=JohnDoe; Max-Age=3600; Version=1</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Set Cookie	R	Set-Cookie										
+Set-Cookie header	R	Set-Cookie										
+Set-Cookie headers	R	Set-Cookie										
 Status	A										CGI header field specifying the status of the HTTP response. Normal HTTP responses use a separate "Status-Line" instead, defined by RFC 7230.<br><pre><code>Status: 200 OK</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Status header	R	Status										
+Status headers	R	Status										
 Strict-Transport-Security	A										A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains.<br><pre><code>Strict-Transport-Security: max-age=16070400; includeSubDomains</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Strict Transport Security	R	Strict-Transport-Security										
+Strict-Transport-Security header	R	Strict-Transport-Security										
+Strict-Transport-Security headers	R	Strict-Transport-Security										
 TE	A										The transfer encodings the user agent is willing to accept: the same values as for the response header field Transfer-Encoding can be used, plus the "trailers" value (related to the "chunked" transfer method) to notify the server it expects to receive additional fields in the trailer after the last, zero-sized, chunk.<br><pre><code>TE: trailers, deflate</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+TE header	R	TE										
+TE headers	R	TE										
 Trailer	A										The Trailer general field value indicates that the given set of header fields is present in the trailer of a message encoded with chunked transfer coding.<br><pre><code>Trailer: Max-Forwards</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Trailer header	R	Trailer										
+Trailer headers	R	Trailer										
 Transfer-Encoding	A										The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity.<br><pre><code>Transfer-Encoding: chunked</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 Transfer Encoding	R	Transfer-Encoding										
+Transfer-Encoding header	R	Transfer-Encoding										
+Transfer-Encoding headers	R	Transfer-Encoding										
 Upgrade	D								*[[Response]],Ask the client to upgrade to another protocol.<br><pre><code>Upgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11</code></pre>\n*[[Request]],Ask the server to upgrade to another protocol.<br><pre><code>Upgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Upgrade header	R	Upgrade										
+Upgrade headers	R	Upgrade										
 User-Agent	A										The user agent string of the user agent.<br><pre><code>User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/21.0</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 User Agent	R	User-Agent										
+User-Agent header	R	User-Agent										
+User-Agent headers	R	User-Agent										
 Vary	A										Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server.<br><pre><code>Vary: *</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Vary header	R	Vary										
+Vary headers	R	Vary										
 Via	D								*[[Response]],Informs the client of proxies through which the response was sent.<br><pre><code>Via: 1.0 fred, 1.1 example.com (Apache/1.1)</code></pre>\n*[[Request]],Informs the server of proxies through which the request was sent.<br><pre><code>Via: 1.0 fred, 1.1 example.com (Apache/1.1)</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Via header	R	Via										
+Via headers	R	Via										
 WWW-Authenticate	A										Indicates the authentication scheme that should be used to access the requested entity.<br><pre><code>WWW-Authenticate: Basic</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 WWW Authenticate	R	WWW-Authenticate										
-Warning	D								*[[Response]],A general warning about possible problems with the entity body.<br><pre><code>Warning: 199 Miscellaneous warning</code></pre>\n*[[Request]],A general warning about possible problems with the entity body.<br><pre><code>Warning: 199 Miscellaneous warning</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+WWW-Authenticate header	R	WWW-Authenticate										
+WWW-Authenticate headers	R	WWW-Authenticate										
+Warning	D								*[[Request]],A general warning about possible problems with the entity body.<br><pre><code>Warning: 199 Miscellaneous warning</code></pre>\n*[[Response]],A general warning about possible problems with the entity body.<br><pre><code>Warning: 199 Miscellaneous warning</code></pre>\n			https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+Warning header	R	Warning										
+Warning headers	R	Warning										
 X-ATT-DeviceId	A										Allows easier parsing of the MakeModel/Firmware that is usually found in the User-Agent String of AT&T Devices.<br><pre><code>X-Att-Deviceid: GT-P7320/P7320XXLPG</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X ATT DeviceId	R	X-ATT-DeviceId										
+X-ATT-DeviceId header	R	X-ATT-DeviceId										
+X-ATT-DeviceId headers	R	X-ATT-DeviceId										
 X-Content-Duration	A										Provide the duration of the audio or video in seconds; only supported by Gecko browsers.<br><pre><code>X-Content-Duration: 42.666</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X Content Duration	R	X-Content-Duration										
+X-Content-Duration header	R	X-Content-Duration										
+X-Content-Duration headers	R	X-Content-Duration										
 X-Content-Type-Options	A										The only defined value, "nosniff", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type. This also applies to Google Chrome, when downloading extensions.<br><pre><code>X-Content-Type-Options: nosniff</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X Content Type Options	R	X-Content-Type-Options										
+X-Content-Type-Options header	R	X-Content-Type-Options										
+X-Content-Type-Options headers	R	X-Content-Type-Options										
 X-Csrf-Token	A										Used to prevent cross-site request forgery. Alternative header names are: X-CSRFToken and X-XSRF-TOKEN.<br><pre><code>X-Csrf-Token: i8XNjC4b8KVok4uw5RftR38Wgp2BFwql</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X Csrf Token	R	X-Csrf-Token										
+X-Csrf-Token header	R	X-Csrf-Token										
+X-Csrf-Token headers	R	X-Csrf-Token										
 X-Forwarded-For	A										A de facto standard for identifying the originating IP address of a client connecting to a web server through an HTTP proxy or load balancer.<br><pre><code>X-Forwarded-For: client1, proxy1, proxy2\n\nX-Forwarded-For: 129.78.138.66, 129.78.64.103</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X Forwarded For	R	X-Forwarded-For										
+X-Forwarded-For header	R	X-Forwarded-For										
+X-Forwarded-For headers	R	X-Forwarded-For										
 X-Forwarded-Host	A										A de facto standard for identifying the original host requested by the client in the Host HTTP request header, since the host name and/or port of the reverse proxy (load balancer) may differ from the origin server handling the request.<br><pre><code>X-Forwarded-Host: en.wikipedia.org:80\n\nX-Forwarded-Host: en.wikipedia.org</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X Forwarded Host	R	X-Forwarded-Host										
+X-Forwarded-Host header	R	X-Forwarded-Host										
+X-Forwarded-Host headers	R	X-Forwarded-Host										
 X-Forwarded-Proto	A										A de facto standard for identifying the originating protocol of an HTTP request, since a reverse proxy (load balancer) may communicate with a web server using HTTP even if the request to the reverse proxy is HTTPS. An alternative form of the header (X-ProxyUser-Ip) is used by Google clients talking to Google servers.<br><pre><code>X-Forwarded-Proto: https</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X Forwarded Proto	R	X-Forwarded-Proto										
+X-Forwarded-Proto header	R	X-Forwarded-Proto										
+X-Forwarded-Proto headers	R	X-Forwarded-Proto										
 X-Frame-Options	A										Clickjacking protection: deny - no rendering within a frame, sameorigin - no rendering if origin mismatch, allow-from - allow from specified location, allowall - non-standard, allow from any location.<br><pre><code>X-Frame-Options: deny</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X Frame Options	R	X-Frame-Options										
+X-Frame-Options header	R	X-Frame-Options										
+X-Frame-Options headers	R	X-Frame-Options										
 X-Http-Method-Override	A										Requests a web application override the method specified in the request (typically POST) with the method given in the header field (typically PUT or DELETE). Can be used when a user agent or firewall prevents PUT or DELETE methods from being sent directly (note that this either a bug in the software component, which ought to be fixed, or an intentional configuration, in which case bypassing it may be the wrong thing to do).<br><pre><code>X-HTTP-Method-Override: DELETE</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X Http Method Override	R	X-Http-Method-Override										
+X-Http-Method-Override header	R	X-Http-Method-Override										
+X-Http-Method-Override headers	R	X-Http-Method-Override										
 X-Powered-By	A										Specifies the technology (e.g. ASP.NET, PHP, JBoss) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version).<br><pre><code>X-Powered-By: PHP/5.4.0</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X Powered By	R	X-Powered-By										
+X-Powered-By header	R	X-Powered-By										
+X-Powered-By headers	R	X-Powered-By										
 X-Requested-With	A										Mainly used to identify Ajax requests. Most JavaScript frameworks send this field with value of XMLHttpRequest.<br><pre><code>X-Requested-With: XMLHttpRequest</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X Requested With	R	X-Requested-With										
+X-Requested-With header	R	X-Requested-With										
+X-Requested-With headers	R	X-Requested-With										
 X-UA-Compatible	A										Recommends the preferred rendering engine (often a backward-compatibility mode) to use to display the content. Also used to activate Chrome Frame in Internet Explorer.<br><pre><code>X-UA-Compatible: IE=EmulateIE7X-UA-Compatible: IE=edgeX-UA-Compatible: Chrome=1</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X UA Compatible	R	X-UA-Compatible										
+X-UA-Compatible header	R	X-UA-Compatible										
+X-UA-Compatible headers	R	X-UA-Compatible										
 X-UIDH	A										Server-side deep packet insertion of an unique ID identifying customers of Verizon Wireless; also known as "perma-cookie" or "supercookie".<br><pre><code>X-UIDH: ...</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X UIDH	R	X-UIDH										
+X-UIDH header	R	X-UIDH										
+X-UIDH headers	R	X-UIDH										
 X-Wap-Profile	A										Links to an XML file on the Internet with a full description and details about the device currently connecting. In the example to the right is an XML file for an AT&T Samsung Galaxy S2.<br><pre><code>x-wap-profile: http://wap.samsungmobile.com/uaprof/SGH-I777.xml</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X Wap Profile	R	X-Wap-Profile										
+X-Wap-Profile header	R	X-Wap-Profile										
+X-Wap-Profile headers	R	X-Wap-Profile										
 X-XSS-Protection	A										Cross-site scripting (XSS) filter.<br><pre><code>X-XSS-Protection: 1; mode=block</code></pre>	https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 X XSS Protection	R	X-XSS-Protection										
+X-XSS-Protection header	R	X-XSS-Protection										
+X-XSS-Protection headers	R	X-XSS-Protection										

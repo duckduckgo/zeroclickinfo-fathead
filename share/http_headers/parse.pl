@@ -52,6 +52,50 @@ sub format_output {
 }
 
 sub format_redirects {
+    return redirect_space2dash(@_),
+           redirect_headers_suffix(@_);
+}
+
+sub redirect_headers_suffix {
+    my ($name) = @_;
+
+    my @header_suffix = (
+        "$name header",         # title
+        'R',                    # type
+        $name,                  # redirect
+        '',                     # ignore
+        '',                     # categories
+        '',                     # ignore
+        '',                     # related topics
+        '',                     # ignore
+        '',                     # external links
+        '',                     # ignore
+        '',                     # image
+        '',                     # abstract
+        '',                     # source_url
+    );
+
+    my @headers_suffix = (
+        "$name headers",        # title
+        'R',                    # type
+        $name,                  # redirect
+        '',                     # ignore
+        '',                     # categories
+        '',                     # ignore
+        '',                     # related topics
+        '',                     # ignore
+        '',                     # external links
+        '',                     # ignore
+        '',                     # image
+        '',                     # abstract
+        '',                     # source_url
+    );
+
+    return join("\t", @header_suffix),
+           join("\t", @headers_suffix);
+}
+
+sub redirect_space2dash {
     my ($name) = @_;
 
     my $with_dashes = $name;
