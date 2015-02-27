@@ -3,8 +3,7 @@ package DDG::Fathead::Jargon;
 use DDG::Fathead;
 
 primary_example_queries "creeping elegance";
-secondary_example_queries
-    "one-line fix", "dinosaur";
+secondary_example_queries "one-line fix", "dinosaur";
 description "Jargon File glossary lookup";
 name "Jargon";
 source "The Jargon File (http://catb.org/~esr/jargon/html/index.html)";
