@@ -16,7 +16,7 @@ icon_url "/i/pypi.python.org.ico";
 
 source "Python Package Index";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/pypi";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/pypi";
 
 topics "geek", "sysadmin", "programming";
 

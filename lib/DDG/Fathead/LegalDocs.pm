@@ -16,7 +16,7 @@ icon_url "/i/www.docracy.com.ico";
 
 source "Docracy";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/legal_docs";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/legal_docs";
 
 topics "economy_and_finance", "special_interest";
 

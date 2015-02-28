@@ -15,7 +15,7 @@ icon_url "/i/www.iso.org.ico";
 
 source "ISO";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/iso_3166_codes";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/iso_3166_codes";
 
 topics "geography", "travel", "special_interest";
 

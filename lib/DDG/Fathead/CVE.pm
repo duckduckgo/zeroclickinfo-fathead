@@ -7,7 +7,7 @@ secondary_example_queries 'cve 2009-1234';
 description 'Common Vulnerabilities and Exposures (CVE) reference';
 name 'CVE';
 source 'CVE Details';
-code_url 'https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/cve';
+code_url 'https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/cve';
 topics 'computing', 'programming', 'special_interest';
 category 'reference';
 attribution

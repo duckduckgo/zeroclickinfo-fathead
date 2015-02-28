@@ -16,7 +16,7 @@ icon_url "http://www.ldraw.org/favicon.ico";
 
 source "LDraw Parts Tracker";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/ldraw_org";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/ldraw_org";
 
 topics "special_interest";
 

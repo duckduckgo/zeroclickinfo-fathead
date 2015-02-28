@@ -16,7 +16,7 @@ icon_url "/i/caniuse.com.ico";
 
 source "GitHub";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/caniuse";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/caniuse";
 
 topics "geek", "web_design";
 
