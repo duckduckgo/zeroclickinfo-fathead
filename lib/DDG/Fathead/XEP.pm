@@ -16,7 +16,7 @@ icon_url "/i/xmpp.org.ico";
 
 source "XMPP Standards Foundation";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/xep";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/xep";
 
 topics "geek", "sysadmin", "special_interest";
 

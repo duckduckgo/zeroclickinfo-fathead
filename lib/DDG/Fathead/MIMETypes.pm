@@ -16,7 +16,7 @@ icon_url "/assets/icon_wikipedia.v101.png";
 
 source "Wikipedia";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/mime_types";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/mime_types";
 
 topics "geek", "web_design", "special_interest";
 

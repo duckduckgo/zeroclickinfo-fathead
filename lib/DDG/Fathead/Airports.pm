@@ -9,7 +9,7 @@ secondary_example_queries
 description "Airport IATA/ICAO codes";
 name "Airports";
 source "Wikipedia";
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/airports";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/airports";
 topics "special_interest";
 category "reference";
 attribution

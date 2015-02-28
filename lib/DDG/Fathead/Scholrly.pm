@@ -7,7 +7,7 @@ secondary_example_queries "charles isbell", "sch greg abowd";
 description "Scholrly researcher profiles";
 name "Scholrly";
 source "Scholrly";
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/scholrly";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/scholrly";
 topics "computing", "math", "science", "programming";
 category "reference";
 attribution github => ['https://github.com/scholrly', 'scholrly'],

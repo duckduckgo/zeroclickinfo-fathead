@@ -18,7 +18,7 @@ icon_url "/i/www.wikipedia.com.ico";
 
 source "Wikipedia";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/http_headers";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/http_headers";
 
 topics "geek", "programming";
 

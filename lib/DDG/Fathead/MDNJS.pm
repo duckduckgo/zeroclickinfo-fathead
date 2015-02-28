@@ -9,7 +9,7 @@ secondary_example_queries
 description "Method signatures for core JavaScript 1.5.";
 name "MDN JavaScript Reference";
 source "Mozilla Developer Network";
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/mdnjs";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/mdnjs";
 topics "programming";
 category "programming";
 attribution github => ['https://github.com/ericedens', 'ericedens'];
