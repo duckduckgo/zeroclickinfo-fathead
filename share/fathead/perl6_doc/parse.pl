@@ -14,7 +14,7 @@ sub duck_escape(_) {
 
     # &#10; is valid HTML and it works in <pre> blocks
     $string = encode_entities( $string, "<>&\t\\" );
-    $string =~ s/ \n /<br>/gmsx;
+    $string =~ s/ \n /\\n/gmsx;
     $string;
 }
 
