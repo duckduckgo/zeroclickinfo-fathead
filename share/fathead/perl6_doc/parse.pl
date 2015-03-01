@@ -105,6 +105,11 @@ for my $file (@files) {
                 if ( $ended_tag eq 'p' && $p ) {
                     $p = 0;
 
+                    # Trim description to a single sentence. That is: Find the
+                    # first period that is followed by a blank, or the end of
+                    # line, but avoid matching “i.e.”, “e.g.”, “..”.
+                    $current_field->{description} =~ s/^(.*?(?<!(i\.e|e\.g|..\.))\.)( .*|$)/$1/ms;
+
                     # Since <pre>s after the first <p> are not prototypes, but
                     # code examples, we force-stop to looking for a prototype
                     # after the first <p>. That way, we avoid picking up an code
