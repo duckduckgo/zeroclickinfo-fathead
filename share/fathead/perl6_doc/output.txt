@@ -33,7 +33,7 @@ Any.none	A			Perl 6 Any							Interprets the invocant as a list and creates an n
 none	R	Any.none										
 Any.list	A			Perl 6 Any							Interprets the invocant as a list, and returns that list.	http://doc.perl6.org/type/Any#list
 list	D								*[[Any.list]], interprets the invocant as a list, and returns that list.\n*[[Capture.list]], returns the positional part of the Capture.\n*[[Channel.list]], returns a list of all remaining items in the queue, and removes them from the channel. \n*[[Match.list]], returns a list of positional submatches.\n*[[Range.list]], generates the list of elements that the range represents.\n*[[Supply.list]], waits until the supply is done, and returns a list of all items emitted since the list call.			
-Any.flat	A			Perl 6 Any							<pre><code>say ((1, 2), (3)).elems;        # 2<br>say ((1, 2), (3)).flat.elems;   # 3</code></pre>Interprets the invocant as a list, flattens it, and returns that list.	http://doc.perl6.org/type/Any#flat
+Any.flat	A			Perl 6 Any							Interprets the invocant as a list, flattens it, and returns that list.	http://doc.perl6.org/type/Any#flat
 flat	D								*[[Any.flat]], interprets the invocant as a list, flattens it, and returns that list.\n*[[Range.flat]], generates the list of elements that the range represents.			
 Any.eager	A			Perl 6 Any							Interprets the invocant as a list, evaluates it eagerly, and returns that list.	http://doc.perl6.org/type/Any#eager
 eager	D								*[[Any.eager]], interprets the invocant as a list, evaluates it eagerly, and returns that list.\n*[[List.eager]], evaluates all elements in the list eagerly, and returns them as a list. 			
@@ -539,7 +539,7 @@ Code.WHICH	R	Mu.WHICH
 Code.WHERE	R	Mu.WHERE										
 Code.WHY	R	Mu.WHY										
 Complex	A			Perl 6 Complex							<pre><code>class Complex is Cool does Numeric { ... }</code></pre>Represents a number in the complex plane.	http://doc.perl6.org/type/Complex
-Complex.i	A			Perl 6 Complex							<pre><code>2i;     # same as Complex.new(0, 2);<br>1-2e3i; # same as Complex.new(1, -2e3);</code></pre>Adding a trailing i to a number literal makes it a Complex, for example:	http://doc.perl6.org/type/Complex#i
+Complex.i	A			Perl 6 Complex							Adding a trailing i to a number literal makes it a Complex, for example:	http://doc.perl6.org/type/Complex#i
 i	R	Complex.i										
 Complex.new	A			Perl 6 Complex							<pre><code>proto method new(*@, *%) {*} returns Complex:D<br>multi method new(Real $re, Real $im) returns Complex:D</code></pre>Creates a new Complex object from real and imaginary parts.	http://doc.perl6.org/type/Complex#new
 Complex.re	A			Perl 6 Complex							<pre><code>method re(Complex:D:) returns Real:D</code></pre>Returns the real part of the complex number.	http://doc.perl6.org/type/Complex#re
@@ -1381,22 +1381,22 @@ Hash.WHICH	R	Mu.WHICH
 Hash.WHERE	R	Mu.WHERE										
 Hash.WHY	R	Mu.WHY										
 IO	A			Perl 6 IO							<pre><code>role IO { }</code></pre>The IO role provides no functionality itself, and moreso just marks if a particular object relates to input/output.	http://doc.perl6.org/type/IO
-IO.print	A			Perl 6 IO							<pre><code>print "Hi there!&#92;n";   # Hi there!</code></pre>Print the given text on $*OUT (standard output), e.g.:	http://doc.perl6.org/type/IO#print
+IO.print	A			Perl 6 IO							Print the given text on $*OUT (standard output), e.g.:	http://doc.perl6.org/type/IO#print
 print	D								*[[IO.print]], print the given text on $*OUT (standard output), e.g.:\n*[[IO::Handle.print]], text writing; writes the given @text to the filehandle.\n*[[Mu.print]], prints value to $*OUT after stringification using .Str method without newline at end.\n*[[Proc::Async.print]], write the text data in $str to the standard input stream of the external program, encoding it as UTF-8.			
-IO.say	A			Perl 6 IO							<pre><code>say "Hi there!";<br>say "How are you?";</code></pre>Print the given text, followed by a newline "&#92;n" on $*OUT (standard output).	http://doc.perl6.org/type/IO#say
+IO.say	A			Perl 6 IO							Print the given text, followed by a newline "&#92;n" on $*OUT (standard output).	http://doc.perl6.org/type/IO#say
 say	D								*[[IO.say]], print the given text, followed by a newline "&#92;n" on $*OUT (standard output).\n*[[Mu.say]], prints value to $*OUT after stringification using .gist method with newline at end.\n*[[Proc::Async.say]], calls method gist on the $output, adds a newline, encodes it as UTF-8, and sends it to the standard input stream of the external program, encoding it as UTF-8.			
-IO.note	A			Perl 6 IO							<pre><code>    if ("path/to/pirate/treasure".IO.e) {<br>&#9;say "Found pirate treasure!";<br>    }<br>    else {<br>&#9;note "Could not find pirate treasure.  Are you sure it exists?";<br>    }</code></pre>Print the given text, followed by a newline "&#92;n" on $*ERR (standard error). Before printing, call the .gist method on any non-Str objects.	http://doc.perl6.org/type/IO#note
+IO.note	A			Perl 6 IO							Print the given text, followed by a newline "&#92;n" on $*ERR (standard error). Before printing, call the .gist method on any non-Str objects.	http://doc.perl6.org/type/IO#note
 note	R	IO.note										
-IO.dd	A			Perl 6 IO							<pre><code>my $a = 42;<br>my %hash = "a" =&gt; 1, "b" =&gt; 2, "c" =&gt; 3;<br>dd %hash, $a;</code></pre>The Tiny Data Dumper. This function takes the input list of variables and notes them (on $*ERR) in an easy to read format, along with the name of the variable. Thus,	http://doc.perl6.org/type/IO#dd
+IO.dd	A			Perl 6 IO							The Tiny Data Dumper. This function takes the input list of variables and notes them (on $*ERR) in an easy to read format, along with the name of the variable. Thus,	http://doc.perl6.org/type/IO#dd
 dd	R	IO.dd										
 IO.prompt	A			Perl 6 IO							<pre><code>sub prompt($msg)</code></pre>Prints $msg to the standard output and waits for the user to type in something and finish with an ENTER. Returns the string typed in without the trailing newline.	http://doc.perl6.org/type/IO#prompt
 prompt	R	IO.prompt										
 IO.open	A			Perl 6 IO							<pre><code>my $fh = open(IO::Path() $path, :$r, :$w, :$a, :$rw,<br>              :$bin, :$enc, :$nl, :$chomp)</code></pre>Opens the $path (by default in text mode) with the given options, returning an IO::Handle object.	http://doc.perl6.org/type/IO#open
 open	D								*[[IO.open]], opens the $path (by default in text mode) with the given options, returning an IO::Handle object.\n*[[IO::Path.open]], opens the path as a file; the named options control the mode, and are the same as the open function accepts.			
-IO.close	A			Perl 6 IO							<pre><code>my $fh = open("path/to/file");<br># ... do stuff with the file<br>$fh.close;</code></pre>To close an open file handle, simply call its close method:	http://doc.perl6.org/type/IO#close
+IO.close	A			Perl 6 IO							To close an open file handle, simply call its close method:	http://doc.perl6.org/type/IO#close
 IO.dir	A			Perl 6 IO							<pre><code>sub dir(Cool $path = '.', Mu :$test = none('.', '..'))</code></pre>Returns a list of IO::File and IO::Path objects for the files and directories found in the $path. If $path is not given assumes the current directory.	http://doc.perl6.org/type/IO#dir
 dir	D								*[[IO.dir]], returns a list of IO::File and IO::Path objects for the files and directories found in the $path. \n*[[IO::Path.dir]], tries to interpret the path as a directory, and returns a lazy list of IO::Path objects that match the $test smart-matcher.			
-IO.slurp	A			Perl 6 IO							<pre><code># read entire file as (Unicode) Str<br>my $text_contents   = slurp "path/to/file";<br># read entire file as Latin1 Str<br>my $text_contents   = slurp "path/to/file", enc =&gt; "latin1";<br><br># read entire file as Buf<br>my $binary_contents = slurp "path/to/file", :bin;<br></code></pre>Slurps the contents of the entire file into a Str (or Buf if :bin). Accepts :bin and :enc optional named parameters, with the same meaning as /open(). The routine will fail if the file does not exist, or is a directory.	http://doc.perl6.org/type/IO#slurp
+IO.slurp	A			Perl 6 IO							Slurps the contents of the entire file into a Str (or Buf if :bin). Accepts :bin and :enc optional named parameters, with the same meaning as /open(). The routine will fail if the file does not exist, or is a directory.	http://doc.perl6.org/type/IO#slurp
 slurp	D								*[[IO.slurp]], slurps the contents of the entire file into a Str (or Buf if :bin). \n*[[IO::Handle.slurp]], 			
 IO.spurt	A			Perl 6 IO							<pre><code>sub spurt ($where, $what,<br>    Str  :$enc        = $*ENC,<br>    Bool :append      = False,<br>    Bool :$createonly = False,<br>    --&gt; Bool ) is export</code></pre>Writes the indicated contents (2nd positional parameter, $what) to the location indicated by the first positional parameter, $where (which can either be a string or an IO::Path object). To write to an IO::Handle, use the print method.	http://doc.perl6.org/type/IO#spurt
 spurt	D								*[[IO.spurt]], writes the indicated contents (2nd positional parameter, $what) to the location indicated by the first positional parameter, $where (which can either be a string or an IO::Path object). \n*[[IO::Handle.spurt]], 			
@@ -1406,18 +1406,18 @@ IO.run	A			Perl 6 IO							<pre><code>sub run(*@args ($, *@)) returns Proc::Stat
 run	D								*[[IO.run]], runs an external command without involving a shell (if possible). \n*[[Thread.run]], runs the thread, and returns the invocant. 			
 IO.shell	A			Perl 6 IO							<pre><code>sub shell($cmd) returns Proc::Status:D</code></pre>Runs a command through the system shell. All shell meta characters are interpreted by the shell, inluding pipes, redirects, environment variable substitutions and so on. See run if you don't want that.	http://doc.perl6.org/type/IO#shell
 shell	R	IO.shell										
-IO::FileTestable.operators	A			Perl 6 IO::FileTestable							<pre><code>:e Exists<br>:d Directory<br>:f File<br>:l Symbolic link<br>:r Readable<br>:w Writable<br>:x Executable<br>:s Size<br>:z Zero size</code></pre>-e -f	http://doc.perl6.org/type/IO%3A%3AFileTestable#operators
+IO::FileTestable.operators	A			Perl 6 IO::FileTestable							-e -f	http://doc.perl6.org/type/IO%3A%3AFileTestable#operators
 operators	R	IO::FileTestable.operators										
 IO::FileTestable.retrieval	A			Perl 6 IO::FileTestable							There are also 3 methods for fetching the 3 timestamps of a file (inode), on Operating Systems where these are available:	http://doc.perl6.org/type/IO%3A%3AFileTestable#retrieval
 retrieval	R	IO::FileTestable.retrieval										
-IO::FileTestable.modified	A			Perl 6 IO::FileTestable							<pre><code>say "path/to/file".IO.modified;   #  e.g. Instant:1424089165</code></pre>Return an Instant object representing the timestamp when the file was last modified.	http://doc.perl6.org/type/IO%3A%3AFileTestable#modified
+IO::FileTestable.modified	A			Perl 6 IO::FileTestable							Return an Instant object representing the timestamp when the file was last modified.	http://doc.perl6.org/type/IO%3A%3AFileTestable#modified
 modified	R	IO::FileTestable.modified										
-IO::FileTestable.accessed	A			Perl 6 IO::FileTestable							<pre><code>say "path/to/file".IO.accessed;   #  e.g. Instant:1424353577</code></pre>Return an Instant object representing the timestamp when the file was last accessed.	http://doc.perl6.org/type/IO%3A%3AFileTestable#accessed
+IO::FileTestable.accessed	A			Perl 6 IO::FileTestable							Return an Instant object representing the timestamp when the file was last accessed.	http://doc.perl6.org/type/IO%3A%3AFileTestable#accessed
 accessed	R	IO::FileTestable.accessed										
-IO::FileTestable.changed	A			Perl 6 IO::FileTestable							<pre><code>"path/to/file".IO.changed;        #  e.g. Instant:1424089165</code></pre>Return an Instant object representing the timestamp when the inode was last changed.	http://doc.perl6.org/type/IO%3A%3AFileTestable#changed
+IO::FileTestable.changed	A			Perl 6 IO::FileTestable							Return an Instant object representing the timestamp when the inode was last changed.	http://doc.perl6.org/type/IO%3A%3AFileTestable#changed
 changed	R	IO::FileTestable.changed										
 IO::FileTestable.close	R	IO.close										
-IO::Handle.get	A			Perl 6 IO::Handle							<pre><code>$*IN.get;</code></pre>Reads a single line from the input stream (usually the Standard Input or a file).	http://doc.perl6.org/type/IO%3A%3AHandle#get
+IO::Handle.get	A			Perl 6 IO::Handle							Reads a single line from the input stream (usually the Standard Input or a file).	http://doc.perl6.org/type/IO%3A%3AHandle#get
 get	D								*[[IO::Handle.get]], reads a single line from the input stream (usually the Standard Input or a file).\n*[[IO::Socket::INET.get]], reads a line from the socket and returns it. 			
 IO::Handle.getc	A			Perl 6 IO::Handle							Read a single character from the input stream.	http://doc.perl6.org/type/IO%3A%3AHandle#getc
 getc	R	IO::Handle.getc										
@@ -1430,7 +1430,7 @@ IO::Handle.read	A			Perl 6 IO::Handle							<pre><code>method read(IO::Handle:D:
 read	D								*[[IO::Handle.read]], binary reading; reads and returns $bytes bytes from the handle\n*[[IO::Socket.read]], reads $bytes bytes from the socket and returns them in a Blob.			
 IO::Handle.write	A			Perl 6 IO::Handle							<pre><code>method write(IO::Handle:D: Blob:D $buf)</code></pre>Binary writing; writes $buf to the filehandle.	http://doc.perl6.org/type/IO%3A%3AHandle#write
 write	D								*[[IO::Handle.write]], binary writing; writes $buf to the filehandle.\n*[[IO::Socket.write]], writes the supplied buffer to the socket, thus sending it to other end of the connection. \n*[[Proc::Async.write]], write the binary data in $b to the standard input stream of the external program.			
-IO::Handle.close	A			Perl 6 IO::Handle							<pre><code>$fh.close;</code></pre>Will close a previously opened filehandle.	http://doc.perl6.org/type/IO%3A%3AHandle#close
+IO::Handle.close	A			Perl 6 IO::Handle							Will close a previously opened filehandle.	http://doc.perl6.org/type/IO%3A%3AHandle#close
 IO::Handle.close	R	IO.close										
 IO::Handle.ACCEPTS	R	Any.ACCEPTS										
 IO::Handle.any	R	Any.any										
@@ -2650,9 +2650,9 @@ Parameter.slurpy	A			Perl 6 Parameter							Returns True for slurpy parameters.	
 slurpy	R	Parameter.slurpy										
 Parameter.optional	A			Perl 6 Parameter							Returns True for optional parameters.	http://doc.perl6.org/type/Parameter#optional
 optional	R	Parameter.optional										
-Parameter.parcel	A			Perl 6 Parameter							<pre><code>sub f(&#92;$parcel) {<br>    $parcel = 5;<br>}<br>f(my $x);   # works<br>f(42);      # dies in the assignment</code></pre>Returns True for parcel parameters.	http://doc.perl6.org/type/Parameter#parcel
+Parameter.parcel	A			Perl 6 Parameter							Returns True for parcel parameters.	http://doc.perl6.org/type/Parameter#parcel
 parcel	R	Parameter.parcel										
-Parameter.capture	A			Perl 6 Parameter							<pre><code>sub f(|capture) { }<br>say &amp;f.signature.params[0].capture;     # True</code></pre>Returns True for parameters that capture the rest of the argument list into a single object of type Capture.	http://doc.perl6.org/type/Parameter#capture
+Parameter.capture	A			Perl 6 Parameter							Returns True for parameters that capture the rest of the argument list into a single object of type Capture.	http://doc.perl6.org/type/Parameter#capture
 capture	R	Parameter.capture										
 Parameter.rw	A			Perl 6 Parameter							Returns True for is rw parameters.	http://doc.perl6.org/type/Parameter#rw
 Parameter.copy	A			Perl 6 Parameter							Returns True for is copy parameters.	http://doc.perl6.org/type/Parameter#copy
@@ -2662,7 +2662,7 @@ Parameter.invocant	A			Perl 6 Parameter							Returns True if the parameter is t
 invocant	D								*[[Parameter.invocant]], returns True if the parameter is the invocant parameter.\n*[[X::Method::InvalidQualifier.invocant]], returns the invocant of the failed, qualified method call\n*[[X::Temporal::Truncation.invocant]], returns the object on which the failed truncated-to method was called.			
 Parameter.default	A			Perl 6 Parameter							Returns a closure that upon invocation returns the default value for this parameter, or Any if no default was provided.	http://doc.perl6.org/type/Parameter#default
 default	D								*[[Parameter.default]], returns a closure that upon invocation returns the default value for this parameter, or Any if no default was provided.\n*[[Variable.default]], sets the default value with which a variable is initialized, and to which it is reset when Nil is assigned to it.			
-Parameter.type_captures	A			Perl 6 Parameter							<pre><code>sub a(::T ::U $x) { }<br>say &amp;a.signature.params[0].type_captures;   # T U</code></pre>Returns a list of variable names of type captures associated with this parameter.	http://doc.perl6.org/type/Parameter#type_captures
+Parameter.type_captures	A			Perl 6 Parameter							Returns a list of variable names of type captures associated with this parameter.	http://doc.perl6.org/type/Parameter#type_captures
 type_captures	R	Parameter.type_captures										
 Parameter.ACCEPTS	R	Any.ACCEPTS										
 Parameter.any	R	Any.any										
@@ -3389,27 +3389,27 @@ Setty.elems	A			Perl 6 Setty							<pre><code>method elems(--&gt; Int)</code></p
 Setty.total	A			Perl 6 Setty							<pre><code>method total(--&gt; Int)</code></pre>The total of all the values of the QuantHash object. For a Setty object, this is just the number of elements.	http://doc.perl6.org/type/Setty#total
 Setty.ACCEPTS	A			Perl 6 Setty							<pre><code>method ACCEPTS($other)</code></pre>Returns True if $other and self contain all the same elements, and no others.	http://doc.perl6.org/type/Setty#ACCEPTS
 Signature	A			Perl 6 Signature							<pre><code>class Signature { ... }</code></pre>A signature is a static description of the parameter list of a code object. That is, it describes what and how many arguments you need to pass to the code or function in order to call it.	http://doc.perl6.org/type/Signature
-Signature.Separators	A			Perl 6 Signature							<pre><code>:($a, @b, %c)<br>sub add ($a, $b) { $a + $b }</code></pre>A signature consists of zero or more parameters, separated by comma.	http://doc.perl6.org/type/Signature#Separators
+Signature.Separators	A			Perl 6 Signature							A signature consists of zero or more parameters, separated by comma.	http://doc.perl6.org/type/Signature#Separators
 Separators	R	Signature.Separators										
-Signature.Constraints	A			Perl 6 Signature							<pre><code>:(Int $a, Str $b)<br>sub divisors (Int $n) { $_ if $n %% $_ for 1..$n }<br>divisors 2.5; # !!! Calling 'divisors' will never work with argument types (Rat)<br></code></pre>Parameters can optionally have a type constraint (the default is Any). These can be used to restrict the allowed input to a function.	http://doc.perl6.org/type/Signature#Constraints
+Signature.Constraints	A			Perl 6 Signature							Parameters can optionally have a type constraint (the default is Any). These can be used to restrict the allowed input to a function.	http://doc.perl6.org/type/Signature#Constraints
 Constraints	R	Signature.Constraints										
-Signature.Parameters	A			Perl 6 Signature							<pre><code>:($a, @b)           # exactly two arguments, where the second one must be Positional<br>:($a, *@b)          # at least one argument, where @b is slurpy<br>:(*%h)              # no positional arguments, but any number of named arguments</code></pre>An array or hash parameter can be marked as slurpy by a leading asterisk, which means it can bind to an arbitrary amount of arguments (zero or more).	http://doc.perl6.org/type/Signature#Parameters
+Signature.Parameters	A			Perl 6 Signature							An array or hash parameter can be marked as slurpy by a leading asterisk, which means it can bind to an arbitrary amount of arguments (zero or more).	http://doc.perl6.org/type/Signature#Parameters
 Parameters	R	Signature.Parameters										
-Signature.Named	A			Perl 6 Signature							<pre><code>:($a)               # a positional parameter<br>:(:$a)              # a named parameter of name 'a'<br>:(*@a)              # a slurpy positional parameter<br>:(*%h)              # a slurpy named parameter</code></pre>A parameter can be positional or named. All parameters are positional, except slurpy hash parameters and parameters marked with a leading colon :.	http://doc.perl6.org/type/Signature#Named
+Signature.Named	A			Perl 6 Signature							A parameter can be positional or named. All parameters are positional, except slurpy hash parameters and parameters marked with a leading colon :.	http://doc.perl6.org/type/Signature#Named
 Named	R	Signature.Named										
-Signature.Parameters	A			Perl 6 Signature							<pre><code>:(Str $id)          # required parameter<br>:($base = 10)       # optional parameter, default value 10<br>:(Int $x?)          # optional parameter, default is the Int type object</code></pre>Positional parameters are mandatory by default, and can be made optional with a default value or a trailing question mark:	http://doc.perl6.org/type/Signature#Parameters
+Signature.Parameters	A			Perl 6 Signature							Positional parameters are mandatory by default, and can be made optional with a default value or a trailing question mark:	http://doc.perl6.org/type/Signature#Parameters
 Parameters	R	Signature.Parameters										
-Signature.Parameters	A			Perl 6 Signature							<pre><code>    sub first (@array ($first, *@rest)) { $first }</code></pre>Parameters can be followed by a sub-signature in brackets, which will destructure the argument given. The destructuring of a list is just its elements:	http://doc.perl6.org/type/Signature#Parameters
+Signature.Parameters	A			Perl 6 Signature							Parameters can be followed by a sub-signature in brackets, which will destructure the argument given. The destructuring of a list is just its elements:	http://doc.perl6.org/type/Signature#Parameters
 Parameters	R	Signature.Parameters										
 Signature.Parameters	A			Perl 6 Signature							Prefixing a parameter with a vertical bar | makes the parameter a Capture, using up all the remaining positional and named arguments.	http://doc.perl6.org/type/Signature#Parameters
 Parameters	R	Signature.Parameters										
-Signature.Modifiers	A			Perl 6 Signature							<pre><code>sub count-up ($x is copy) {<br>    $x = Inf if $x ~~ Whatever;<br>    .say for 1..$x;<br>}</code></pre>By default, parameters are bound to their argument and marked as read-only. One can change that with traits on the parameter.	http://doc.perl6.org/type/Signature#Modifiers
+Signature.Modifiers	A			Perl 6 Signature							By default, parameters are bound to their argument and marked as read-only. One can change that with traits on the parameter.	http://doc.perl6.org/type/Signature#Modifiers
 Modifiers	R	Signature.Modifiers										
 Signature.params	A			Perl 6 Signature							<pre><code>method params(Signature:D:) returns Positional</code></pre>Returns the list of Parameter objects that make up the signature.	http://doc.perl6.org/type/Signature#params
 params	R	Signature.params										
 Signature.arity	A			Perl 6 Signature							<pre><code>method arity(Signature:D:) returns Int:D</code></pre>Returns the minimal number of positional arguments required to satisfy the signature.	http://doc.perl6.org/type/Signature#arity
 Signature.count	A			Perl 6 Signature							<pre><code>method count(Signature:D:) returns Real:D</code></pre>Returns the maximal number of positional arguments which can be bound to the signature. Returns Inf if there is a slurpy positional parameter.	http://doc.perl6.org/type/Signature#count
-Signature.returns	A			Perl 6 Signature							<pre><code>:($a, $b --&gt; Int).returns # Int</code></pre>Whatever the Signature's return constraint is:	http://doc.perl6.org/type/Signature#returns
+Signature.returns	A			Perl 6 Signature							Whatever the Signature's return constraint is:	http://doc.perl6.org/type/Signature#returns
 returns	R	Signature.returns										
 Signature.ACCEPTS	A			Perl 6 Signature							<pre><code>multi method ACCEPTS(Signature:D: Capture $topic)<br>multi method ACCEPTS(Signature:D: @topic)<br>multi method ACCEPTS(Signature:D: %topic)<br>multi method ACCEPTS(Signature:D: Signature $topic)</code></pre>The first three see if the argument could be bound to the capture, i.e., if a function with that Signature would be able to be called with the $topic:	http://doc.perl6.org/type/Signature#ACCEPTS
 Signature.ACCEPTS	R	Any.ACCEPTS										
@@ -6830,7 +6830,7 @@ X::TypeCheck::Splice.WHERE	R	Mu.WHERE
 X::TypeCheck::Splice.WHY	R	Mu.WHY										
 X::Undeclared	A			Perl 6 X::Undeclared							<pre><code>class X::Undeclared does X::Comp</code></pre>Thrown when the compiler encounters a symbol that has not been declared, but needs to be.	http://doc.perl6.org/type/X%3A%3AUndeclared
 X::Undeclared.symbol	A			Perl 6 X::Undeclared							Returns the name of the undeclared symbol	http://doc.perl6.org/type/X%3A%3AUndeclared#symbol
-X::Undeclared.what	A			Perl 6 X::Undeclared							<pre><code>say a</code></pre>Returns the kind of symbol that was not declared (for example variable, type, routine).	http://doc.perl6.org/type/X%3A%3AUndeclared#what
+X::Undeclared.what	A			Perl 6 X::Undeclared							Returns the kind of symbol that was not declared (for example variable, type, routine).	http://doc.perl6.org/type/X%3A%3AUndeclared#what
 X::Undeclared.filename	R	X::Comp.filename										
 X::Undeclared.line	R	X::Comp.line										
 X::Undeclared.column	R	X::Comp.column										

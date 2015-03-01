@@ -104,6 +104,13 @@ for my $file (@files) {
                 my $ended_tag = pop @tags;
                 if ( $ended_tag eq 'p' && $p ) {
                     $p = 0;
+
+                    # Since <pre>s after the first <p> are not prototypes, but
+                    # code examples, we force-stop to looking for a prototype
+                    # after the first <p>. That way, we avoid picking up an code
+                    # example snippets as prototype for prototype-less methods
+                    # (like IO's dd).
+                    $need_prototype = 0;
                 } elsif ( $ended_tag eq 'pre' && $pre_level > 0 ) {
                     if ( $need_prototype && $pre_level == 1 ) {
                         $current_field->{prototype} =~ s/ \n $//msx;
