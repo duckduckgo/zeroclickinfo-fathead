@@ -172,7 +172,32 @@ class Parser(object):
         table = self.soup.find_all('table')[0]
         line_number = 0
 
-        for row in table.find_all('tr')[1::]:
+        rows = table.find_all('tr')
+        if len(rows) < 1:
+            raise Exception('Table for index_letter %s is too small'
+                            % (self.index_letter))
+
+        # Guard against format/column changes in the table
+        header_row = rows[0].find_all('th')
+        if len(rows) < 4:
+            raise Exception('Table for index_letter %s is too few columns'
+                            % (self.index_letter))
+        if 'IATA' not in header_row[0].getText().strip():
+            raise Exception('Could not find IATA column in table for '
+                            'index_letter %s' % (self.index_letter))
+        if 'ICAO' not in header_row[1].getText().strip():
+            raise Exception('Could not find ICAO column in table for '
+                            'index_letter %s' % (self.index_letter))
+        if 'Airport' not in header_row[2].getText().strip():
+            raise Exception('Could not find "Airport" column in table '
+                            'for index_letter %s' % (self.index_letter))
+        if 'Location' not in header_row[3].getText().strip():
+            raise Exception('Could not find "Location" column in table '
+                            'for index_letter %s' % (self.index_letter))
+
+        # The table format matches the expected format
+
+        for row in rows[1::]:
             line_number += 1
             data = row.find_all('td')
             if len(data) < 4:  # partial table heading
