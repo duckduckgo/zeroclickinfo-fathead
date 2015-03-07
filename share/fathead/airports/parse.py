@@ -159,6 +159,16 @@ class Airport(object):
             ';' + self.location + ';' + self._index_letter
 
 
+def html_element_to_text(html_element):
+    # Grabbing text of element
+    text = html_element.getText()
+
+    # Stripping out line breaks (e.g.: Cloudbreak / Western Australia Airport)
+    text = re.sub('\s*[\n\r]+\s*', ' ', text)
+
+    return text.strip()
+
+
 class Parser(object):
     """ Parses a HTML file to get all the airports codes """
     def __init__(self, index_letter):
@@ -208,17 +218,17 @@ class Parser(object):
             if airport_link is None:
                 airport_link = data[3].find('a')
             if airport_link is not None:
-                airport_name = airport_link.getText()
+                airport_element = airport_link
             else:
-                airport_name = data[2].getText()
+                airport_element = data[2]
 
             # logger.debug(data)
             self.airports.append(
                 Airport(
-                    airport_name.strip(),
-                    data[0].getText().strip(),    # IATA
-                    data[1].getText().strip(),    # ICAO
-                    data[3].getText().strip(),
+                    html_element_to_text(airport_element),
+                    html_element_to_text(data[0]),    # IATA
+                    html_element_to_text(data[1]),    # ICAO
+                    html_element_to_text(data[3]),
                     self.index_letter))  # Name
 
 
