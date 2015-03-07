@@ -209,6 +209,8 @@ class Parser(object):
                 airport_link = data[3].find('a')
             if airport_link is not None:
                 airport_name = airport_link.getText()
+            else:
+                airport_name = data[2].getText()
 
             # logger.debug(data)
             self.airports.append(
