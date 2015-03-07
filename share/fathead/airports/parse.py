@@ -214,19 +214,24 @@ class Parser(object):
             if len(data) < 4:  # partial table heading
                 continue
 
-            # check if data[3] has no link look in
             airport_link = data[2].find('a')
-            if airport_link is None:
-                airport_link = data[3].find('a')
             if airport_link is not None:
                 airport_element = airport_link
             else:
                 airport_element = data[2]
 
+            airport_name = html_element_to_text(airport_element)
+
+            if not airport_name:
+                airport_element = data[3].find('a')
+                if airport_element is None:
+                        airport_element = data[3]
+                airport_name = html_element_to_text(airport_element)
+
             # logger.debug(data)
             self.airports.append(
                 Airport(
-                    html_element_to_text(airport_element),
+                    airport_name,
                     html_element_to_text(data[0]),    # IATA
                     html_element_to_text(data[1]),    # ICAO
                     html_element_to_text(data[3]),
