@@ -35,8 +35,17 @@ Dir.entries("download").each do |file|
   File.open("download/#{file}", 'r') do |f|
     item = nil
     f.each_line do |line|
-      if item && (m = line.match(/<p>(.+?\.).+<\/p>/))
-        item.desc = m[1]
+      if item && (line =~ /<p>.+<\/p>/)
+        # Use at most 3 sentences.
+        contents = line.match(/<p>(.+)<\/p>/)[1]
+        md = contents.scan(/(.+?\.)(\s|$)/)
+
+        sentences = []
+        md.each do |m|
+          sentences << m[0]
+        end
+
+        item.desc = sentences[0..2].join(" ")
         items << item
         item = nil
         next
