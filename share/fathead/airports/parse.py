@@ -92,7 +92,7 @@ class Airport(object):
             location_names = self.location.split(',')
             if len(location_names) > 0:
                 self.airport_location_name = location_names[0]+' Airport'
-                if self.airport_location_name == self.name:
+                if self.airport_location_name == self.name_with_airport:
                     self.airport_location_name = None
 
         # remove redundancy in airports/location names
