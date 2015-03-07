@@ -137,11 +137,12 @@ class Airport(object):
     def add_redirects(self, output, withRedirect):
         if self.international_airport_name is None:
             return
-        fields = self._getFields(
-            self.international_airport_name[0:-len("Airport")-1], 'R')
-        fields[2] = self.international_airport_name
-        fields[12] = ''
-        output.append('%s' % ('\t'.join(fields)))
+        name_split = self.international_airport_name.split('Airport', 2)
+        if len(name_split) > 1:
+            fields = self._getFields(name_split[0].strip(), 'R')
+            fields[2] = self.international_airport_name
+            fields[12] = ''
+            output.append('%s' % ('\t'.join(fields)))
 
         if withRedirect:
             fields = self._getFields(self.name_with_airport, 'R')
