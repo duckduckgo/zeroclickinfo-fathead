@@ -168,13 +168,14 @@ class Parser(object):
 
     def get_airports(self):
         self.airports = []
-        table = self.soup.find_all('table')[1]
+        # First table in the page holds the main airport information
+        table = self.soup.find_all('table')[0]
         line_number = 0
 
         for row in table.find_all('tr')[1::]:
             line_number += 1
             data = row.find_all('td')
-            if len(data) != 4:  # partial table heading
+            if len(data) < 4:  # partial table heading
                 continue
 
             # check if data[3] has no link look in
