@@ -26,9 +26,8 @@ logger = logging.getLogger()
 
 OUTPUT_FILE = 'output.txt'
 INDEXES = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-WIKIPEDIA_URL = 'https://wikipedia.org'
-WIKIPEDIA_LIST_URL = 'https://en.wikipedia.org/wiki/' \
-    'List_of_airports_by_IATA_code:_'
+WIKIPEDIA_URL = 'https://en.wikipedia.org'
+WIKIPEDIA_LIST_URL = WIKIPEDIA_URL + '/wiki/List_of_airports_by_IATA_code:_'
 
 
 def append_period(text):
@@ -64,12 +63,12 @@ class Airport(object):
     abstract_icao_format = ' and the ICAO code is "{1}"'
 
     """ Contains informations about an Airport"""
-    def __init__(self, name, iata, icao, location, index_letter):
+    def __init__(self, name, iata, icao, location, url):
         self.name = name
         self.iata = iata
         self.icao = icao
         self.location = location
-        self._index_letter = index_letter
+        self._url = url
         self.international_airport_name = None
         self.name_with_airport = None
 
@@ -152,12 +151,12 @@ class Airport(object):
 
     def _getFields(self, name, linetype, abstract=''):
         fields = getFields(name, linetype, abstract)
-        fields[12] = WIKIPEDIA_LIST_URL+self._index_letter
+        fields[12] = self._url
         return fields
 
     def __str__(self):
         return self.name_with_airport + ';' + self.iata + ';' + self.icao + \
-            ';' + self.location + ';' + self._index_letter
+            ';' + self.location + ';' + self._url
 
 
 def html_element_to_text(html_element):
@@ -228,6 +227,20 @@ class Parser(object):
                         airport_element = data[3]
                 airport_name = html_element_to_text(airport_element)
 
+            url = None
+            # Try to extract the airport's url from the link in the table. But
+            # only if it's not a redlink (i.e.: The wiki page exists)
+            if airport_link is not None:
+                href = airport_link['href']
+                if href and "redlink=1" not in href:
+                    url = href
+                    if url.startswith("/"):
+                        url = WIKIPEDIA_URL + url
+
+            # No existing Wikipage found. Hence linking to the table
+            if not url:
+                url = WIKIPEDIA_LIST_URL + self.index_letter
+
             # logger.debug(data)
             self.airports.append(
                 Airport(
@@ -235,7 +248,7 @@ class Parser(object):
                     html_element_to_text(data[0]),    # IATA
                     html_element_to_text(data[1]),    # ICAO
                     html_element_to_text(data[3]),
-                    self.index_letter))  # Name
+                    url))
 
 
 def addDisambituation(value, airport, disambiguations):
