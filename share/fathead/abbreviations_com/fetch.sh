@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd $(dirname -- "$0")
+[ ! -e download ] && mkdir download
 
-wget -P download -N 'http://www.abbreviations.com/root/admin/dumpduckexport.php'
+wget -P download -O download/abbr.txt -N 'http://www.abbreviations.com/root/admin/dumpduckexport.php'
