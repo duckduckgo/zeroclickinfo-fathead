@@ -14,7 +14,7 @@ sub duck_escape(_) {
 
     # &#10; is valid HTML and it works in <pre> blocks
     $string = encode_entities( $string, "<>&\t\\" );
-    $string =~ s/ \n /<br>/gmsx;
+    $string =~ s/ \n /\\n/gmsx;
     $string;
 }
 
@@ -29,6 +29,8 @@ for my $file (@files) {
     my @tags;
     my $current_field;
     my $p;
+    my $pre_level = 0; # >0 if we're within a <pre>, == 0 otherwise
+    my $need_prototype;
     my $class;
     my $parser = HTML::Parser->new(
         api_version => 3,
@@ -40,6 +42,9 @@ for my $file (@files) {
             sub {
                 my ($tagname) = @_;
                 push @tags, $tagname;
+                if ( $tagname eq 'pre' ) {
+                    $pre_level++;
+                }
             },
             'tagname'
         ],
@@ -52,7 +57,8 @@ for my $file (@files) {
                     # <h1> stores name of class.
                     if (   $tags[-2] eq 'h1'
                         || $tags[-2] eq 'h2'
-                        || ( $tags[-1] eq 'pre' && !$class ) )
+                        || $tags[-3] eq 'h2'
+                        || ( $tags[-2] eq 'pre' && !$class ) )
                     {
                         $dtext =~ m{
                             \A
@@ -65,17 +71,19 @@ for my $file (@files) {
                         if ( $tags[-2] ne 'h1' || $1 ) {
                             $current_field = { class => $class };
                             push @{ $types{$file} }, $current_field;
+                            $need_prototype = 1;
                             $p = 1;
                         }
                     }
 
                     # <pre> stores method prototype.
-                    if ( $tags[-1] eq 'pre' ) {
-                        $current_field->{prototype} //= $dtext;
+                    if ($need_prototype && $pre_level) {
+                        $current_field->{prototype} .= $dtext;
                     }
 
                     # First paragraph after <h2> is method name.
-                    elsif ( $tags[-2] eq 'h2' ) {
+                    elsif ( $tags[-2] eq 'h2' || $tags[-3] eq 'h2' ) {
+                        $dtext =~ s/^.* \s+ ( \S+ ) \z/$1/msx;
                         $current_field->{method} = $dtext;
                         $methods{$class}{$dtext} = $current_field;
                     }
@@ -93,8 +101,27 @@ for my $file (@files) {
         end_h => [
             sub {
                 # If current tag is <p> then turn off <p> mode.
-                if ( pop @tags eq 'p' && $p ) {
+                my $ended_tag = pop @tags;
+                if ( $ended_tag eq 'p' && $p ) {
                     $p = 0;
+
+                    # Trim description to a single sentence. That is: Find the
+                    # first period that is followed by a blank, or the end of
+                    # line, but avoid matching “i.e.”, “e.g.”, “..”.
+                    $current_field->{description} =~ s/^(.*?(?<!(i\.e|e\.g|..\.))\.)( .*|$)/$1/ms;
+
+                    # Since <pre>s after the first <p> are not prototypes, but
+                    # code examples, we force-stop to looking for a prototype
+                    # after the first <p>. That way, we avoid picking up an code
+                    # example snippets as prototype for prototype-less methods
+                    # (like IO's dd).
+                    $need_prototype = 0;
+                } elsif ( $ended_tag eq 'pre' && $pre_level > 0 ) {
+                    if ( $need_prototype && $pre_level == 1 ) {
+                        $current_field->{prototype} =~ s/ \n $//msx;
+                        $need_prototype = 0;
+                    }
+                    $pre_level--;
                 }
             },
         ],
