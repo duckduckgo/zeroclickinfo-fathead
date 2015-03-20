@@ -25,7 +25,7 @@ def fetch_category(category):
     res = json.loads(res)
     for member in res['query']['categorymembers']:
         with open("downloads/"+category+"/"+str(member['pageid']), "wt") as member_file:
-            member_file.write(request("action=query&prop=revisions&rvprop=content&format=json&pageids=" + str(member['pageid'])))
+            member_file.write(request("action=parse&format=json&pageid=" + str(member['pageid'])))
 
 if __name__ == "__main__":
     makepath("downloads")
