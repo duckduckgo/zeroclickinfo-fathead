@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use Modern::Perl 2014;
+use Modern::Perl 2013;
 use autodie;
 use XML::Twig;
 use URI::Escape qw(uri_escape_utf8);
