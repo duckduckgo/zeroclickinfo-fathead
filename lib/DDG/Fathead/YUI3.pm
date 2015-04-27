@@ -15,7 +15,7 @@ icon_url "/i/yuilibrary.com.ico";
 
 source "YUI Library";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/yui3";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/yui3";
 
 topics "geek", "programming", "web_design";
 

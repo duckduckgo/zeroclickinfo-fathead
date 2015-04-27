@@ -18,7 +18,7 @@ icon_url "/i/www.archlinux.org.ico";
 
 source "Arch Linux";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/arch_pkgs";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/arch_pkgs";
 
 topics "geek", "sysadmin", "special_interest";
 

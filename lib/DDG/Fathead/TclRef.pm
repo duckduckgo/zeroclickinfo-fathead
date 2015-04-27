@@ -16,7 +16,7 @@ icon_url "/i/www.tcl.tk.ico";
 
 source "Tcl Developer Xchange";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/tcl_ref";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/tcl_ref";
 
 topics "geek", "programming";
 

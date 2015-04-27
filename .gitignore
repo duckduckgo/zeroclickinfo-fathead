@@ -1,2 +1,11 @@
+DDG-*
+.build
+*.sw*
+*~
+*.bak
+*#
+.jshintrc
+.DS_Store
+share/fathead/meta/metadata.json
 # Ignore plugin-generated files and directories.
 download

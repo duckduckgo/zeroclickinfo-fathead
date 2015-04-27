@@ -16,7 +16,7 @@ icon_url "/i/www.github.com.ico";
 
 source "GitHub";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/hello_world";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/hello_world";
 
 topics "geek", "programming";
 

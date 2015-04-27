@@ -12,7 +12,7 @@ secondary_example_queries
 description "C++ reference";
 name "CppreferenceDoc";
 source "Cppreference";
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/cppreference_doc";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/cppreference_doc";
 topics "geek", "programming";
 category "reference";
 attribution web => ['http://en.cppreference.com/w/', 'Cppreference contributors'];

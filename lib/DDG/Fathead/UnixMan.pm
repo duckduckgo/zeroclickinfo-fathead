@@ -15,7 +15,7 @@ icon_url "/i/www.linuxcommand.org.ico";
 
 source "LinuxCommand.org";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/unix_man";
+code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/unix_man";
 
 topics "geek", "sysadmin";
 

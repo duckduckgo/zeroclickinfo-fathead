@@ -1,5 +1,0 @@
-Name: JDK 1.6
-Domain: docs.oracle.com
-Type: Java
-MediaWiki: 0
-Keywords: Java
