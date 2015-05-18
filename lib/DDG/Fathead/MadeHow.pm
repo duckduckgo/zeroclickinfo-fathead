@@ -3,7 +3,7 @@ package DDG::Fathead::MadeHow;
 
 use DDG::Fathead;
 
-primary_example_queries "solar cell";
+primary_example_queries "make bulletproof vest";
 
 secondary_example_queries
     "fire extinguisher",

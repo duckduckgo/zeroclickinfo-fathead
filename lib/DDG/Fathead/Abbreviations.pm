@@ -2,7 +2,7 @@ package DDG::Fathead::Abbreviations;
 
 use DDG::Fathead;
 
-primary_example_queries "what does ASAP mean";
+primary_example_queries "what is amspar";
 
 secondary_example_queries
     "What does ASAP stand for",
