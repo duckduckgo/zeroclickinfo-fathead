@@ -12,14 +12,9 @@ $|++;
 # we don't want leaking into the results
 my $unsanitary = qr/[^\p{L}\s\-']/;
 
-#Define triggers
-my @triggersStart = ("plural of", "pluralise", "pluralize", "what is the plural of");
-my @triggersEnd = ("plural");
-
-my $wiktionary = 'download/wiktionary.xml';
-
 #Get plural forms from wiktionary
 my $processed;
+my $wiktionary = 'download/wiktionary.xml';
 my %plurals;
 say "Processing wiktionary...";
 my $wiktionaryTwig = XML::Twig->new( twig_handlers => { page => \&page } );
@@ -29,10 +24,7 @@ say "\r$processed terms processed";
 #Write output file
 say 'Writing output...';
 open my $outputFH, '>:utf8', 'output.txt';
-foreach my $key (keys %plurals) {
-    print_output($key, $_ . ' ' . $key) for @triggersStart;
-    print_output($key, $key . ' ' . $_) for @triggersEnd;
-}
+print_output($_) for keys %plurals;
 close $outputFH;
 
 exit;
@@ -119,10 +111,10 @@ sub page {
 
 sub print_output {
 
-    (my $key, my $trigger) = @_;
+    (my $key) = @_;
 
     my $output = join("\t",(
-            $trigger, #Title
+            $key, #Title
             'A', #Type
             '', #Only for redirects
             '', #Other uses
