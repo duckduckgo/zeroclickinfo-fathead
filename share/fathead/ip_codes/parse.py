@@ -41,8 +41,5 @@ if __name__ == "__main__":
         output.append(article(name, desc))
         output.append(redirect('IP {}{}'.format(part_num, water_num), name))
 
-    with open('output.txt', 'wb') as f:
-        writer = csv.writer(f, delimiter='\t')
-        for row in output:
-            writer.writerow(row)
-
+    for row in output:
+        print '\t'.join(row)
