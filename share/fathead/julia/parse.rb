@@ -39,6 +39,18 @@ class JuliaPackage
       @href
     ].join("\t")
   end
+
+  def redirect?
+   split_camel_case.size > 1
+  end
+
+  def split_camel_case
+    @name.split(/(?=[A-Z])/).map {|w| w.downcase}
+  end
+
+  def redirect_to_s
+    [split_camel_case.join(" "),"R","","","","","","","","","","",""].join("\t")
+  end
 end
 
 output = File.open("output.txt", "w")
@@ -46,4 +58,5 @@ output = File.open("output.txt", "w")
 packages.each do |p|
   package = JuliaPackage.new(p)
   output.puts package
+  output.puts(package.redirect_to_s) if package.redirect?
 end
