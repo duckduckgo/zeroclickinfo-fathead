@@ -43,6 +43,6 @@ with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
             '',  # Disambiguation (ignored)
             '',  # No images
             '<br>'.join(abstract_lines),
-            urllib.quote(package_info['release_url'], safe='/:'),  # Source url
+            urllib.quote(package_info['package_url'], safe='/:'),  # Source url
         ]))
         out_file.write('\n')
