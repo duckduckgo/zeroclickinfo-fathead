@@ -1,4 +1,5 @@
-Depends on ruby > 1.9.2
+Fetches julia lang packages from http://pkg.julialang.org/
+Dependencies:
 
-Ruby gems:
-* nokogiri - ```gem install nokogiri```
+- python 2.7.2
+- BeautifulSoup4 - pip install beautifulsoup4

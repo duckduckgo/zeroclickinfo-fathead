@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ruby parse.rb
+python27 parse.py
