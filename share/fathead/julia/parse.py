@@ -7,7 +7,6 @@ class JuliaPackage:
         self.name = package.find_all("a")[0].text
         self.href = package.find_all("a")[0].get("href")
         self.description = package.find("h4").text
-        self.version = package.select("p a")[0].text
         self.licence = package.select("p a")[1].text
         self.author = package.select("p a")[2].text
         self.stars = package.find("span",attrs={"title":"GitHub stars"}).text.strip()
@@ -27,7 +26,6 @@ class JuliaPackage:
             "",
             '<br>'.join([
                 u"Description: {}".format(self.description),
-                u"Version: {}".format(self.version),
                 u"Author: {}".format(self.author),
                 u"Licence: {}".format(self.licence),
                 u"GitHub stars: {}".format(self.stars)]
@@ -40,9 +38,9 @@ class JuliaPackage:
         return len(self.split_camel_case(self.name)) > 1
 
     def redirect_str(self):
-        return ' '.join(
+        return '\t'.join(
             [' '.join(self.split_camel_case(self.name)),
-             "R","","","","","","","","","","",""]
+             "R",self.name,"","","","","","","","","",""]
         )
 
     def split_camel_case(self, name):

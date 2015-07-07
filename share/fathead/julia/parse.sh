@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python27 parse.py
+python2.7 parse.py
