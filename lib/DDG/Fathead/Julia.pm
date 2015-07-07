@@ -6,7 +6,8 @@ use DDG::Fathead;
 primary_example_queries "julia json";
 
 secondary_example_queries
-    "json julia";
+    "julialang aws",
+    "json julia lang";
 
 description "Collection of julia-lang package";
 
