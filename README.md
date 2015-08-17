@@ -1,6 +1,6 @@
 # DuckDuckHack Fathead Instant Answers
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/duckduckgo/zeroclickinfo-fathead?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Join us on Slack! [Request invite](mailto:QuackSlack@duckduckgo.com?subject=AddMe)
 
 This repository contains all the Fathead instant answers. If you are developing a Fathead instant answer you will need to fork this repository.
 
