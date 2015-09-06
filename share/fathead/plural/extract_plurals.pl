@@ -12,7 +12,7 @@ $|++;
 # we don't want leaking into the results
 my $unsanitary = qr/[^\p{L}\s\-']/;
 
-#Get plural forms from wiktionary
+#Get plural forms from Wiktionary
 my $processed;
 my $wiktionary = 'download/wiktionary.xml';
 my %plurals;
@@ -57,16 +57,41 @@ sub page {
 
     #Find and parse Template:en-noun templates
     # Reference: https://en.wiktionary.org/wiki/Template:en-noun
-    while ($wikitext =~ /{{en-noun(\|(?<plurals>[^\}]+))?}}/g) {
+    while ($wikitext =~ /{{en-noun\|?(?<plurals>[^\}]+)}}/g) {
+
+        #Note it's possible for @forms to be length 0
+        my @forms = split(/\|/, $+{plurals});
+
+        #Forms that look like "head=[[hot]] [[dog]]" are functionally
+        #equivalent to that token just not existing, since if no other form is
+        #given the plural '-s' is assumed while if other forms are given '-s'
+        #is not assumed. So we'll splice the head= forms out.
+        while (my ($index, $form) = each @forms) {
+            if ($form =~ /^head=.+$/) {
+                splice(@forms, $index, 1);
+            }
+        }
 
         #If no plural form information is given,
-        # the plural form is '-s'
-        if (! $+{plurals}) {
+        # the plural form '-s' is assumed
+        if (scalar @forms == 0) {
             $plurals{lc($term)}{$term}{$term .'s'}++;
             return; 
         }
 
-        my @forms = split(/\|/, $+{plurals});
+        # Sometimes a "qualifier" form is included the list, which is actually
+        # a qualifier for a form earlier in the list (for example, "moose" has
+        # the inflection given as
+        # "en-noun|moose|mooses|meese|pl3qual=uncommon, humorous". So we have
+        # to detect these, and back-apply the qualification to the relevant
+        # form
+        while (my ($index, $form) = each @forms) {
+            if ($form =~ /^pl(?<number>\d+)qual=(?<qualifier>.+)$/) {
+              my $targetIndex = $+{number} - 1;
+              $forms[$targetIndex] = $forms[$targetIndex] . " (" . $+{qualifier} . ")";
+              splice(@forms, $index, 1);
+            }
+        }
 
         foreach my $form (@forms) {
 
@@ -95,6 +120,12 @@ sub page {
             # is specified
             } elsif ($form =~ /\[|\]/) {
                 $plurals{lc($term)}{$term}{$term .'s'}++;
+
+            #Sometimes there are undocumented tokens in the forms list. With
+            # the exception of the "qual" tokens handled above, most of these
+            # are more or less useless so they will be ignored 
+            } elsif ($form =~ /=/) {
+              return;
 
             #Anything else is an explicit specification of a
             # plural form, usually irregular
@@ -137,7 +168,7 @@ sub wrap_answer {
     (my $key) = shift;
 
     #For each matching caseform, construct a natural-language
-    # statment of the plural forms with links to Wiktionary
+    # statement of the plural forms with links to Wiktionary
     my @statements;
     foreach my $caseForm (sort keys %{$plurals{$key}}) {
         my $article = @statements == 0 ? 'The' : 'the';
