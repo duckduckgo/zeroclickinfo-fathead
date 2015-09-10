@@ -57,7 +57,14 @@ sub page {
 
     # Find and parse Template:en-noun templates
     # Reference: https://en.wiktionary.org/wiki/Template:en-noun
-    while ($wikitext =~ /{{en-noun\|?(?<plurals>[^\}]+)}}/g) {
+    while ($wikitext =~ /{{en-noun\|?(?<plurals>[^\}]+)?}}/g) {
+
+        # If no plural form information is given, the plural form '-s' is
+        # assumed
+        if (! $+{plurals}) {
+            $plurals{lc($term)}{$term}{$term .'s'}++;
+            return; 
+        }
 
         # Note it's possible for @forms to be length 0
         my @forms = split(/\|/, $+{plurals});
