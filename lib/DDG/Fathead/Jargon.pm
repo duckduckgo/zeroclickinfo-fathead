@@ -8,7 +8,7 @@ description "Jargon File glossary lookup";
 name "Jargon";
 source "The Jargon File (http://catb.org/~esr/jargon/html/index.html)";
 code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/jargon";
-topics "geek", "unix";
+topics "geek";
 category "reference";
 
 attribution github  => ["elebow", "Eddie Lebow"];
