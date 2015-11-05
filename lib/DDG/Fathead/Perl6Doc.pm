@@ -23,7 +23,6 @@ topics "geek", "programming", "sysadmin";
 category "reference";
 
 attribution
-    github => ['https://github.com/GlitchMr', 'GlitchMr'],
-    web => ['http://glitchmr.github.com', 'Konrad Borowski'];
+    github => ['https://github.com/xfix', 'xfix'];
 
 1;
