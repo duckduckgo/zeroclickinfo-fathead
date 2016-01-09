@@ -3,7 +3,6 @@ import glob
 def parse_article(a, fn):
 	l = [x for x in a.split('\n') if x]
 	title = l[0].lstrip('# ')
-	title += ' (' + l[1].lstrip('> ') + ')'
 	desc = ''
 	for i in l[2:]:
 		if i.startswith('`'):
