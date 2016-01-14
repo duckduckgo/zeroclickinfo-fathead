@@ -9,7 +9,8 @@ Data source
 
 fetch.sh downloads and untars a snapshot of the website, which is available at
 http://en.cppreference.com/w/Cppreference:Archives. A new snapshot is released
-periodically. The script needs to be for the new location of the snapshot.
+periodically. The location of the newest archive that is tested for DuckDuckGo
+is upload.cppreference.com/w/Cppreference:DDG-link?action=raw.
 
 Dependencies
 ------------

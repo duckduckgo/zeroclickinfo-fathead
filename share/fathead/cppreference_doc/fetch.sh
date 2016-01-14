@@ -3,6 +3,8 @@ rm -rf download
 mkdir -p download
 
 pushd download > /dev/null
-wget http://upload.cppreference.com/mwiki/images/e/e7/cppreference-doc-20130729-ddg.tar.gz
-tar -xzf cppreference-doc-20130729-ddg.tar.gz
+wget upload.cppreference.com/w/Cppreference:DDG-link?action=raw -O cppreference-link
+
+wget -i cppreference-link -O cppreference-doc-ddg.tar.gz
+tar -xzf cppreference-doc-ddg.tar.gz
 popd > /dev/null
