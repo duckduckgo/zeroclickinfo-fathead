@@ -66,7 +66,7 @@ for line in pcs_input_file.readlines():
 
     icd_pcs_code = unicode(icd_pcs_code)
 
-    abstract = "ICD-10 Description: " + icd_pcs_desc
+    abstract = "ICD-10 PCS Description: " + icd_pcs_desc
 
     output_file.write("\t".join([
         icd_pcs_code,  # Title
