@@ -6,7 +6,7 @@ primary_example_queries "ICD 0WP13JZ";
 
 secondary_example_queries "ICD10 0YJF3ZZ";
 
-description "International Protection Marking Codes";
+description "International Classification of Diseases";
 
 name "InternationalClassificationOfDiseases";
 
