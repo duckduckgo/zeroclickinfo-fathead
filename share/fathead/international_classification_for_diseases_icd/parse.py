@@ -52,6 +52,24 @@ for line in cm_input_file.readlines():
 
     output_file.write("\n");
 
+    output_file.write("\t".join([
+        icd_cm_alt_code,  # Title
+        article_type,  # Type
+        '',  # Redirect
+        '',  # Other uses
+        '',  # Categories
+        '',  # References
+        '',  # See also
+        '',  # Further reading
+        '',  # External links
+        '',  # Disambiguation
+        '',  # Images
+        abstract,  # Abstract
+        url,  # Source URL
+    ]))
+
+    output_file.write("\n");
+
     # Read and throw out first line
 pcs_input_file.readline()
 
