@@ -23,20 +23,20 @@ def gather_git_command_html_files():
     # Find all links
     links = soup.find_all('a')
 
-    # Go through each link -- some are git ocmmand links, some are not
+    # Go through each link -- some are git command links, some are not
     commands = []
-    for link in links[:20]:
+    for link in links:
         href = link.get('href')
 
         # This is how we know it's a git command page URL
         if '/docs/git-' in href:
             href = href.replace('/docs', '') 
-            with open('{}.html'.format(link.text), 'wb') as outfile:
+            with open('download/{}.html'.format(link.text), 'wb') as outfile:
                 outfile.write(bytes(session.get('{}{}'.format(git_docs_base_url, href)).text, 'UTF-8'))
-                
+
 if __name__ == '__main__':
     # Base URL for git documentation -- list of commands are defined in this base
     # URL and the individual command pages use this base URL + /git-<command_name>
     git_docs_base_url = open('data.url').read().strip()
 
-    gather_git_command_html_files() 
+    gather_git_command_html_files()   

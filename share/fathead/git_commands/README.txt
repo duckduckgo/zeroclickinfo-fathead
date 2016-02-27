@@ -1,8 +1,8 @@
-Git command name and description fetcher and parser
+Git commands fetcher and parser for DuckDuckGo
 
-# Dependencies
+# Dependencies:
 
-* Python 3.4
+* Python 3.4 
 * Python Packages
-    * BeautifulSoup4 (pip install beautifulsoup4==4.4.1)
-    * requests (pip install requests==2.9.1)
+    * BeautifulSoup 4 (pip install beautifulsoup4==4.4.1)
+    * Requests (pip install requests==2.9.1) 
