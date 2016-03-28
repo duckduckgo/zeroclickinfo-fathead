@@ -29,7 +29,7 @@ class Command(object):
         # Make the abstract have the description as well as a code block
         # for the usage of the command
         abstract = '{}\n<pre><code>{}</pre></code>'.format(self.description,
-                                                           self.usage)
+                                                           self.usage.replace('\n', '\\n'))
         return '\t'.join([
             self.name, # Full article title
             'A', # Type of article
