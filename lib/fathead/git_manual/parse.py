@@ -26,10 +26,14 @@ class Command(object):
         DuckDuckGo Fatheads
         '''
 
+        # Clean up the usage statement which can have newline characters and
+        # tab characters, which mess up how it renders
+        usage_cleaned = self.usage.replace('\n', '\\n').replace('\t', '    ')
+
         # Make the abstract have the description as well as a code block
         # for the usage of the command
         abstract = '{}\n<pre><code>{}</pre></code>'.format(self.description,
-                                                           self.usage.replace('\n', '\\n'))
+                                                           usage_cleaned)
         return '\t'.join([
             self.name, # Full article title
             'A', # Type of article
