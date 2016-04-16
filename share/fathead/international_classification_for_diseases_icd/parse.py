@@ -25,32 +25,14 @@ for line in cm_input_file.readlines():
     if len(icd_cm_code.strip()) > 3:
             icd_cm_alt_code = icd_cm_code[0:3]+"."+icd_cm_code[3:7]
     icd_cm_desc = line[8:200]
-    print icd_cm_code
-    print icd_cm_alt_code
-    print icd_cm_desc
-
+    # print icd_cm_code
+    # print icd_cm_alt_code
+    # print icd_cm_desc
+    #
 
     icd_cm_code = unicode(icd_cm_code)
 
     abstract = "ICD-10 CM Description: " + icd_cm_desc
-
-    output_file.write("\t".join([
-        icd_cm_code,  # Title
-        article_type,  # Type
-        'R',  # Redirect
-        icd_cm_alt_code,  # Other uses
-        '',  # Categories
-        '',  # References
-        '',  # See also
-        '',  # Further reading
-        '',  # External links
-        '',  # Disambiguation
-        '',  # Images
-        abstract,  # Abstract
-        url,  # Source URL
-    ]))
-
-    output_file.write("\n");
 
     output_file.write("\t".join([
         icd_cm_alt_code,  # Title
@@ -70,6 +52,24 @@ for line in cm_input_file.readlines():
 
     output_file.write("\n");
 
+    output_file.write("\t".join([
+        icd_cm_code,  # Title
+        'R',  # Type
+        icd_cm_alt_code,  # Redirect
+        '',  # Other uses
+        '',  # Categories
+        '',  # References
+        '',  # See also
+        '',  # Further reading
+        '',  # External links
+        '',  # Disambiguation
+        '',  # Images
+        '',  # Abstract
+        '',  # Source URL
+    ]))
+
+    output_file.write("\n");
+
     # Read and throw out first line
 pcs_input_file.readline()
 
@@ -79,8 +79,6 @@ for line in pcs_input_file.readlines():
     line = line.strip();
     icd_pcs_code = line[0:7]
     icd_pcs_desc = line[8:200]
-    print line[0:7]
-    print line[8:200]
 
     icd_pcs_code = unicode(icd_pcs_code)
 
