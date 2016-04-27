@@ -16,7 +16,7 @@ source 'https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Do
 code_url 'https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/SysctlProcSysKernel';
 category 'computing_tools';
 topics 'computing', 'sysadmin', 'special_interest';
-attribution github => ['http://github.com/nospampleasemam', 'nospampleasemam'],
-               web => ['http://dylansserver.com/', 'Dylan Lloyd'];
+attribution github => ['https://github.com/majuscule', 'majuscule'],
+               web => ['https://disinclined.org', 'Dylan Lloyd'];
 
 1;
