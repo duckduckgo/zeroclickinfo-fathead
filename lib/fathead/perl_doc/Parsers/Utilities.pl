@@ -18,7 +18,6 @@ foreach my $page (@pages){
 
     my $title = $dom->at('title')->text;
     $title =~ s/\s-\s.*//;
-    warn Dumper $title;
 
     # iterate through page
     my $nodes = $dom->find('p, h1')->map('text');
@@ -45,6 +44,12 @@ foreach my $page (@pages){
 
     $page =~ s/^.*utilities\///;
     $page =~ s/\.html$//;
+
+    if($title =~ /^perl/){
+        my $redirect = $title;
+        $redirect =~ s/^perl//;
+        printf("%s\n", get_row($title, undef, undef, 'R', $redirect));
+    }
 
     printf("%s\n", get_row($title, $description, "http://perldoc.perl.org/$page", 'A'));
 }

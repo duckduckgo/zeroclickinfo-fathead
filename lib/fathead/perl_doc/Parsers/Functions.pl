@@ -14,8 +14,8 @@ my $skip = qr/To get the best experience. |Please note: Many features/;
 
 foreach my $page (@pages){
     my $html < io($page);
-    $html =~ s/\Q<a.+?href=".+?>(.+)<\/a>\E/$1/g;
-    $html =~ s/\Q<code.+?><a.+?href=".+?>(.+)<\/a><\/code>\E/<code>$1<\/code>/g;
+    $html =~ s/<a.+?href=".+?>(.+)<\/a>/$1/g;
+    $html =~ s/<code.+?><a.+?href=".+?>(.+)<\/a><\/code>/<code>$1<\/code>/g;
     $html =~ s/<strong>//g;
     $html =~ s/<\/strong>//g;
 
@@ -34,10 +34,13 @@ foreach my $page (@pages){
         next if $n->content =~ /$skip/;
         $description .= $n->content;
     }
+    next unless $description;
     $description = trim_abstract($description, 100);
 
     $page =~ s/^.*download\///;
     $page =~ s/\.html$//;
+
+    $description = "<code>$hint</code><br>". $description;
 
     printf("%s\n", get_row($title, $description, "http://perldoc.perl.org/$page", 'A'));
 }
