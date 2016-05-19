@@ -7,7 +7,7 @@ use Mojo::DOM;
 use Data::Dumper;
 use Term::ProgressBar;
 use Cwd qw( getcwd );
-#use Utils qw( write_row );
+use Util qw( get_row );
 
 my @pages = glob(getcwd(). "/../download/language/*.html");
 
@@ -60,6 +60,8 @@ foreach my $page (@pages){
     }
 
     my $abs = join ' ', @final_desc;
+    $page =~ s/^.*language\///;
+    $page =~ s/\.html$//;
 
-    warn $abs;
+    printf("%s\n", get_row($title, $abs, "http://perldoc.perl.org/$page", 'A'));
 }
