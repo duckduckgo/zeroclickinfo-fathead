@@ -7,7 +7,7 @@ use Mojo::DOM;
 use Data::Dumper;
 use Term::ProgressBar;
 use Cwd qw( getcwd );
-use Util qw( get_row );
+use Util qw( get_row trim_abstract);
 
 my @pages = glob(getcwd(). "/../download/language/*.html");
 
@@ -39,29 +39,12 @@ foreach my $page (@pages){
 
     }
 
-    # trim description
-    my @desc = split /\s/, $description;
+    next unless $description;
 
-    my @final_desc;
-    if(scalar @desc >= 250){
-        @final_desc = splice(@desc, 0, 249);
+    $description = trim_abstract($description, 100);
 
-        foreach my $word (@final_desc){
-            my $last;
-            if($word =~ /\.$|\?$|\!$/){
-                $last = 1;
-            }
-            push @final_desc, $word;
-            last if $last;
-        }
-    }
-    else{
-        @final_desc = @desc;
-    }
-
-    my $abs = join ' ', @final_desc;
     $page =~ s/^.*language\///;
     $page =~ s/\.html$//;
 
-    printf("%s\n", get_row($title, $abs, "http://perldoc.perl.org/$page", 'A'));
+    printf("%s\n", get_row($title, $description, "http://perldoc.perl.org/$page", 'A'));
 }

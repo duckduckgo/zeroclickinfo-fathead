@@ -9,7 +9,7 @@ use Term::ProgressBar;
 use Cwd qw( getcwd );
 use Util qw( get_row trim_abstract);
 
-my @pages = glob(getcwd(). "/../download/pragmas/*.html");
+my @pages = glob(getcwd(). "/../download/internals/*.html");
 
 foreach my $page (@pages){
     my $html < io($page);
@@ -43,7 +43,7 @@ foreach my $page (@pages){
 
     $description = trim_abstract($description, 100);
 
-    $page =~ s/^.*pragmas\///;
+    $page =~ s/^.*internals\///;
     $page =~ s/\.html$//;
 
     printf("%s\n", get_row($title, $description, "http://perldoc.perl.org/$page", 'A'));
