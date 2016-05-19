@@ -18,7 +18,6 @@ foreach my $page (@pages){
 
     my $title = $dom->at('title')->text;
     $title =~ s/\s-\s.*//;
-    warn Dumper $title;
 
     # iterate through page
     my $nodes = $dom->find('p, h1')->map('text');

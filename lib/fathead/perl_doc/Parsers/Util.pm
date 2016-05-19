@@ -8,9 +8,14 @@ our @EXPORT_OK = qw/get_row trim_abstract/;
 
 # return tab formatted row for fathead output.txt file
 sub get_row {
-    my ($title, $abs, $url, $type) = @_;
+    my ($title, $abs, $url, $type, $redirect) = @_;
     $type = 'A' unless $type;
-    return "$title\t$type\t\t\t\t\t\t\t\t\t\t$abs\t$url";
+    if($type eq 'A'){
+        return "$title\t$type\t\t\t\t\t\t\t\t\t\t$abs\t$url";
+    }
+    elsif($type eq 'R'){
+        return "$redirect\t$type\t$title\t\t\t\t\t\t\t\t\t\t";
+    }
 }
 
 sub trim_abstract {
@@ -18,8 +23,8 @@ sub trim_abstract {
     
     my @split_abs = split /\s/, $full_abs;
     my @final_abs;
-    if(scalar @split_abs >= 249){
-        @final_abs = splice(@split_abs, 0, 249);
+    if(scalar @split_abs >= ($len-1)){
+        @final_abs = splice(@split_abs, 0, ($len-1));
         
         foreach my $word (@split_abs){
             my $last;
