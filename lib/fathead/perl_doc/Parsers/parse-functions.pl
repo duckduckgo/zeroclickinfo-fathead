@@ -40,7 +40,7 @@ foreach my $page (@pages){
     $page =~ s/^.*download\///;
     $page =~ s/\.html$//;
 
-    $description = "<code>$hint</code><br>". $description;
+    $description = "<code><br>$hint<br></code><br>". $description;
 
     printf("%s\n", get_row($title, $description, "http://perldoc.perl.org/$page", 'A'));
 }

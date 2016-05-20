@@ -9,10 +9,17 @@ use Term::ProgressBar;
 use Cwd qw( getcwd );
 use Util qw( get_row trim_abstract);
 
-my @pages = glob(getcwd(). "/../download/utilities/*.html");
+my @pages = glob(getcwd(). "/../download/internals/*.html");
+@pages = (@pages, 
+    glob(getcwd(). "/../download/language/*.html"),
+    glob(getcwd(). "/../download/pragmas/*.html"),
+    glob(getcwd(). "/../download/utilities/*.html"),
+);
 
 foreach my $page (@pages){
     my $html < io($page);
+
+    warn $page;
 
     my $dom = Mojo::DOM->new($html);
 
@@ -20,19 +27,20 @@ foreach my $page (@pages){
     $title =~ s/\s-\s.*//;
 
     # iterate through page
-    my $nodes = $dom->find('p, h1')->map('text');
     my $headings = $dom->find('a[name]')->map(attr => 'name');
     $_ =~ s/-/ /g for @$headings;
 
     my $capture = 0;
     my $description;
-    foreach my $n (@{$nodes}){
-        if($n eq "DESCRIPTION"){
+    foreach my $n ($dom->find('*')->each){
+        next unless $n->text;
+
+        if($n->tag eq 'h1' && $n->text eq "DESCRIPTION"){
             $capture = 1;
             next;
         }
 
-        last if ($capture && grep $_ eq $n, @$headings);
+        last if ($capture && grep $_ eq $n->text, @$headings);
 
         $description .= $n if $capture;
 
@@ -42,7 +50,7 @@ foreach my $page (@pages){
 
     $description = trim_abstract($description, 100);
 
-    $page =~ s/^.*utilities\///;
+    $page =~ s/^.*(utilities|language|pragmas)\///;
     $page =~ s/\.html$//;
 
     if($title =~ /^perl/){
@@ -51,5 +59,5 @@ foreach my $page (@pages){
         printf("%s\n", get_row($title, undef, undef, 'R', $redirect));
     }
 
-    printf("%s\n", get_row($title, $description, "http://perldoc.perl.org/$page", 'A'));
+       printf("%s\n", get_row($title, $description, "http://perldoc.perl.org/$page", 'A'));
 }

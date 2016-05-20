@@ -1,7 +1,7 @@
+# cleanup download dir first
+find download/functions/ -type f -not -name "*functions*.html" -exec rm {} \;
 cd Parsers
 rm output.txt
-perl Functions.pl >> output.txt 
-perl Language.pl >> output.txt 
-perl Internals.pl >> output.txt 
-perl Utilities.pl >> output.txt 
-perl Pragmas.pl >> output.txt
+perl parse.pl >> output.txt 
+perl parse-functions.pl >> output.txt
+mv output.txt ../
