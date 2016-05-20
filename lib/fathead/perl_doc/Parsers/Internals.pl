@@ -20,23 +20,29 @@ foreach my $page (@pages){
     $title =~ s/\s-\s.*//;
 
     # iterate through page
-    my $nodes = $dom->find('p, h1')->map('text');
     my $headings = $dom->find('a[name]')->map(attr => 'name');
     $_ =~ s/-/ /g for @$headings;
 
     my $capture = 0;
     my $description;
-    foreach my $n (@{$nodes}){
-        if($n eq "DESCRIPTION"){
+    foreach my $n ($dom->find('*')->each){
+        next unless $n->text;
+        warn $n->tag if $capture;
+
+        if($n->tag eq 'h1' && $n->text eq "DESCRIPTION"){
+            warn $n->tag;
+            warn $n->text;
             $capture = 1;
             next;
         }
 
-        last if ($capture && grep $_ eq $n, @$headings);
+        last if ($capture && grep $_ eq $n->text, @$headings);
 
         $description .= $n if $capture;
 
     }
+
+    warn $description;
 
     next unless $description;
 
@@ -51,5 +57,5 @@ foreach my $page (@pages){
         printf("%s\n", get_row($title, undef, undef, 'R', $redirect));
     }
 
-    printf("%s\n", get_row($title, $description, "http://perldoc.perl.org/$page", 'A'));
+       printf("%s\n", get_row($title, $description, "http://perldoc.perl.org/$page", 'A'));
 }
