@@ -19,8 +19,6 @@ my @pages = glob(getcwd(). "/../download/internals/*.html");
 foreach my $page (@pages){
     my $html < io($page);
 
-    warn $page;
-
     my $dom = Mojo::DOM->new($html);
 
     my $title = $dom->at('title')->text;
@@ -43,15 +41,17 @@ foreach my $page (@pages){
         my $strip_heading = $n->text =~ s/-/ /gr;
         last if ($capture && grep $_  eq $strip_heading, @$headings);
 
-        $description .= $n if $capture;
+        # fix span tags inside code tags
+        next if ($n->tag eq 'span' && $n->parent->tag eq 'code');
 
+        $description .= $n if $capture;
     }
 
     next unless $description;
 
     $description = trim_abstract($description, 100);
 
-    $page =~ s/^.*(utilities|language|pragmas)\///;
+    $page =~ s/^.*(utilities|language|pragmas|internals)\///;
     $page =~ s/\.html$//;
 
     if($title =~ /^perl/){
