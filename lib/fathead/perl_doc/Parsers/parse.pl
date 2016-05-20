@@ -40,7 +40,8 @@ foreach my $page (@pages){
             next;
         }
 
-        last if ($capture && grep $_ eq $n->text, @$headings);
+        my $strip_heading = $n->text =~ s/-/ /gr;
+        last if ($capture && grep $_  eq $strip_heading, @$headings);
 
         $description .= $n if $capture;
 
