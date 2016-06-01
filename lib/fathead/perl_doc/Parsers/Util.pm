@@ -14,7 +14,7 @@ sub get_row {
         return "$title\t$type\t\t\t\t\t\t\t\t\t\t$abs\t$url";
     }
     elsif($type eq 'R'){
-        return "$redirect\t$type\t$title\t\t\t\t\t\t\t\t\t\t";
+        return "$redirect\t$type\t$title" . "\t" x (10);
     }
 }
 
@@ -23,13 +23,13 @@ sub trim_abstract {
     
     my @split_abs = split /\s/, $full_abs;
     my @final_abs;
-    if(scalar @split_abs >= ($len-1)){
+    if(@split_abs >= ($len-1)){
         @final_abs = splice(@split_abs, 0, ($len-1));
         
         foreach my $word (@split_abs){
             my $last;
             
-            if($word =~ /\.$|\?$|\!$/){
+            if($word =~ /[.?!]$/){
                 $last = 1;
             }
             push(@final_abs, $word);
