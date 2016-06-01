@@ -19,6 +19,8 @@ my @pages = glob(getcwd(). "/../download/internals/*.html");
 foreach my $page (@pages){
     my $html < io($page);
 
+    $html =~ s/<a.+?href=".+?>(.+)<\/a>/$1/g;
+
     my $dom = Mojo::DOM->new($html);
 
     my $title = $dom->at('title')->text;
