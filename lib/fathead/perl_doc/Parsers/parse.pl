@@ -53,7 +53,7 @@ foreach my $page (@pages){
 
     $description = trim_abstract($description, 100);
 
-    $page =~ s/^.*(utilities|language|pragmas|internals)\///;
+    $page =~ s/^.*(utilities|language|pragmas|internals|functions)\///;
     $page =~ s/\.html$//;
 
     if($title =~ /^perl/){

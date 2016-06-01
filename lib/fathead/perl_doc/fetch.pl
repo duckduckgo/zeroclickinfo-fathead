@@ -56,3 +56,6 @@ foreach my $page (@pages){
         sleep(3);
     }
 }
+
+# get perlvar page
+getstore("http://perldoc.perl.org/perlvar.html", "$download_dir/perlvar/perlvar.html");
