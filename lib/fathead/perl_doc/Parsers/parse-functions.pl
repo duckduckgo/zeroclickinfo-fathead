@@ -29,7 +29,7 @@ foreach my $page (@pages){
     $dom = $dom->at('div[id="content_body"]');
 
     my $description;
-    foreach my $n ($dom->find('p')->each){
+    foreach my $n ($dom->find('p, code')->each){
         next unless $n->content;
         next if $n->content =~ /$skip/;
         $description .= $n->content;
@@ -39,6 +39,7 @@ foreach my $page (@pages){
 
     $page =~ s/^.*download\///;
     $page =~ s/\.html$//;
+    $page =~ s/functions_//;
 
     $description = "<code><br>$hint<br></code><br>". $description;
 
