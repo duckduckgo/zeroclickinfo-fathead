@@ -1,4 +1,4 @@
-Requeires: Mojo::DOM
+Requires: Mojo::DOM
 Installed using ./fetch automatically when you update the docs or: cpanm install Mojo
 To update: 
 ./fetch
