@@ -1,4 +1,3 @@
-
 ~~~ @name OPAM
 ~~~ @author http://github.com/pjhampton
 ~~~ @repo http://github.com/duckduckgo/zeroclickinfo-fathead
@@ -10,4 +9,3 @@ BeautifulSoup version 4.3.2
 $ bash fetch.sh
 $ bash parse.sh
 $ open output.txt
-
