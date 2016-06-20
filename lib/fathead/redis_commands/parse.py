@@ -10,30 +10,43 @@ output = "output.txt"
 f = open(output, "w");
 
 tree = lxml.html.parse("download/raw.dat").getroot()
-commands = tree.find_class("command")
+
+"""
+Extract all <li> elements
+First 8 elements are website's meta links, so ignore them
+"""
+elements = tree.findall(".//li")[8:]
 
 data = {}
 
-for command in commands:
+# Iterate over all desired <li> elements
+for element in elements:
 
-    for row in command.findall('a'):
-        command_url = "%s%s" % (url, row.get('href'))
-        
-        for sibling in command.itersiblings():
-            usage = ""
-            
-            for command_args in command.findall('span'):
-                usage = "%s %s" % (row.text, command_args.text.replace(' ', '').replace('\n', ' ').strip())
+    # Find <a> tag within this <li> element
+    for link in element.findall('a'):
+        command_url = "%s%s" % (url, link.get('href'))  # Save `href` attribute for this <a> tag
 
-            summary = "%s." % (re.sub('\.$', '', sibling.text))
+        # Find an element with class='command'
+        for command in link.find_class('command'):
+            command_text = command.text.strip()  # Save command name
 
-            data[command_url] = (row.text, summary, usage)
+            # Find an element with class='args'
+            for span in command.find_class('args'):
+                span_text = span.text.replace(' ', '').replace('\t', '').replace('\n', ' ').strip()
+                if len(span_text) > 0:
+                    command_usage = "%s %s" % (command_text, span_text)  # Save command usage
 
-for command_url in data.keys():
+        # Find an element with class='summary'
+        for summary in link.find_class('summary'):
+            command_summary = "%s." % summary.text.strip()  # Save command summary (description)
+
+        data[command_url] = (command_text, command_summary, command_usage)
+
+for command_url in sorted(data.keys()):
     command, summary, usage = data[command_url]
     summary = unicode(summary).encode("utf-8")
     usage = unicode(usage).encode("utf-8")
-    
+
     f.write("\t".join([str(command),      # title
                     "",                # namespace
                     command_url,               # url
