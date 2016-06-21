@@ -1,5 +1,5 @@
 ~~~ @name OPAM
-~~~ @author http://github.com/pjhampton
+~~~ @type FatHead IA
 ~~~ @repo http://github.com/duckduckgo/zeroclickinfo-fathead
 
 This library is going to need BeautifulSoup4. 
