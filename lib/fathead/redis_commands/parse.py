@@ -23,24 +23,24 @@ data = {}
 for element in elements:
 
     # Find <a> tag within this <li> element
-    for link in element.findall('a'):
-        command_url = "%s%s" % (url, link.get('href'))  # Save `href` attribute for this <a> tag
+    link = element.find('a')
+    command_url = "%s%s" % (url, link.get('href'))  # Save `href` attribute for this <a> tag
 
-        # Find an element with class='command'
-        for command in link.find_class('command'):
-            command_text = command.text.strip()  # Save command name
+    # Find an element with class='command'
+    for command in link.find_class('command'):
+        command_text = command.text.strip()  # Save command name
 
-            # Find an element with class='args'
-            for span in command.find_class('args'):
-                span_text = span.text.replace(' ', '').replace('\t', '').replace('\n', ' ').strip()
-                if len(span_text) > 0:
-                    command_usage = "%s %s" % (command_text, span_text)  # Save command usage
+        # Find an element with class='args'
+        for span in command.find_class('args'):
+            span_text = span.text.replace(' ', '').replace('\t', '').replace('\n', ' ').strip()
+            if len(span_text) > 0:
+                command_usage = "%s %s" % (command_text, span_text)  # Save command usage
 
-        # Find an element with class='summary'
-        for summary in link.find_class('summary'):
-            command_summary = "%s." % summary.text.strip()  # Save command summary (description)
+    # Find an element with class='summary'
+    for summary in link.find_class('summary'):
+        command_summary = "%s." % summary.text.strip()  # Save command summary (description)
 
-        data[command_url] = (command_text, command_summary, command_usage)
+    data[command_url] = (command_text, command_summary, command_usage)
 
 for command_url in sorted(data.keys()):
     command, summary, usage = data[command_url]
