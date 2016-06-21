@@ -11,11 +11,11 @@ __module__ = "OPAM"
 class Environment(object):
   """
   The Environment class is responsible for setting up the directory
-  and retriving the appropriate files from the web. It is made up of
+  and retrieving the appropriate files from the web. It is made up of
   a constructor and a 'setup/0' and 'get_contents/0' member functions.
   """
   def __init__(self):
-    print("Environment instanciated")
+    print("Environment instantiated")
     self.setup()
 
   def setup(self):
@@ -32,8 +32,9 @@ class Environment(object):
     """
     The 'get_contents/0' member function loads the file into memory and
     reads the contents. The file buffer is then closed and then a
-    BeautifulSoup object is instanciated, with the contents. More on
-    this can be read at the BeautifulSoup documentation website.
+    BeautifulSoup object is instantiated, with the contents. More on
+    this can be read at the BeautifulSoup documentation website
+    (https://www.crummy.com/software/BeautifulSoup/bs4/doc/).
     """
     with open('download/packages.html') as f:
       contents = f.read()
@@ -49,7 +50,7 @@ class Document(object):
   constructor.
   """
   def __init__(self):
-    print("Document object instanciated")
+    print("Document object instantiated")
 
   def parse_contents(self, soup):
     """
@@ -62,12 +63,12 @@ class Document(object):
     rows = table_body.find_all('tr')
 
     """
-    This section aims to extract the idividual data points from the
-    table and turn them into a list. For each of the cols found in
+    This section aims to extract the individual data points from the
+    table and turn them into a list. For each of the columns found in
     <td> tags, we return them in a list, while finding one link.
     We then preprocess the contents by stripping whitespace and
     stripping the front of the relative link. Once this preprocessing
-    has been done, we connect the url, and append it to the list.
+    has been done, we connect the URL, and append it to the list.
     """
     for row in rows:
       cols = row.find_all('td')
@@ -87,8 +88,8 @@ class Document(object):
 
   def concat(self, name, description, url):
     """
-    The concat (concatanation) member function is responsible for
-    for preparing the data to be written to the file. The file is
+    The concat (concatenation) member function is responsible for
+    preparing the data to be written to the file. The file is
     layed outlike this as requested in the DuckDuckHack docs found
     here: http://docs.duckduckhack.com/resources/fathead-overview.html#data-file-format
     """
