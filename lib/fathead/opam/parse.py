@@ -12,7 +12,7 @@ class Environment(object):
   """
   The Environment class is responsible for setting up the directory
   and retrieving the appropriate files from the web. It is made up of
-  a constructor and a 'setup/0' and 'get_contents/0' member functions.
+  a constructor and a setup() and get_contents() member functions.
   """
   def __init__(self):
     print("Environment instantiated")
@@ -30,7 +30,7 @@ class Environment(object):
 
   def get_contents(self):
     """
-    The 'get_contents/0' member function loads the file into memory and
+    The get_contents() member function loads the file into memory and
     reads the contents. The file buffer is then closed and then a
     BeautifulSoup object is instantiated, with the contents. More on
     this can be read at the BeautifulSoup documentation website
@@ -129,7 +129,7 @@ class Document(object):
 
   def output(self, data_list):
     """
-    The 'output/1' member function outputs the rows of data at a
+    The output() member function outputs the rows of data at a
     time to the output.txt file which is used as the k/v store
     for the FatHead IA.
     """
