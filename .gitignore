@@ -6,6 +6,7 @@ DDG-*
 *#
 .jshintrc
 .DS_Store
+.idea
 share/fathead/meta/metadata.json
 # Ignore plugin-generated files and directories.
 download
