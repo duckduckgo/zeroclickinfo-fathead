@@ -1,4 +1,3 @@
-
 autoescape	A							https://www.djangoproject.com/			<pre><code>{% autoescape on %}
     {{ body }}
 {% endautoescape %}

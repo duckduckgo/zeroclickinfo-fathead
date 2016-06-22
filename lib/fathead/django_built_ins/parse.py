@@ -1,7 +1,12 @@
+import argparse
+
 from bs4 import BeautifulSoup
 
+ARGUMENT_PARSER = argparse.ArgumentParser()
+ARGUMENT_PARSER.add_argument('--django-version')
+
 DJANGO_HOME = 'https://www.djangoproject.com/'
-DJANGO_DOC_URL = 'https://docs.djangoproject.com/en/1.9/ref/templates/builtins/'
+DJANGO_DOC_URL = 'https://docs.djangoproject.com/en/{}/ref/templates/builtins/'
 
 
 class DjangoData(object):
@@ -167,10 +172,16 @@ class DjangoDataOutput(object):
                         abstract,   # abstract
                         url         # url to templatetag/filter doc
                     ]
-                    output_file.write('\n{}'.format('\t'.join(list_of_data)))
+                    output_file.write('{}\n'.format('\t'.join(list_of_data)))
 
 
 if __name__ == "__main__":
+    args = ARGUMENT_PARSER.parse_args()
+    if args.django_version:
+        DJANGO_DOC_URL = DJANGO_DOC_URL.format(args.django_version)
+    else:
+        DJANGO_DOC_URL = DJANGO_DOC_URL.format('1.9')
+
     data = DjangoData()
     parser = DjangoDataParser(data.get_raw_data())
     parser.parse_for_data()

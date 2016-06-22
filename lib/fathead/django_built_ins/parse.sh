@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python parse.py
+python parse.py --django-version 1.9
