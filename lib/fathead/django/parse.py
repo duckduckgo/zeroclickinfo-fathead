@@ -110,10 +110,17 @@ class DjangoDataParser(object):
         data = []
 
         for section in (self.tag_sections + self.filter_sections):
-            data_elements = dict(name='', first_paragraph='', code='')
-            data_elements['name'], data_elements['anchor'] = self.parse_name_and_anchor_from_data(section)
-            data_elements['first_paragraph'] = self.parse_first_paragraph_from_data(section)
-            data_elements['code'] = self.parse_code_from_data(section)
+            name, anchor = self.parse_name_and_anchor_from_data(section)
+            first_paragraph = self.parse_first_paragraph_from_data(section)
+            code = self.parse_code_from_data(section)
+
+            data_elements = {
+                'name': name,
+                'anchor': anchor,
+                'first_paragraph': first_paragraph,
+                'code': code
+            }
+
             data.append(data_elements)
 
         self.parsed_data = data
