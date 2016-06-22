@@ -100,7 +100,7 @@ class DjangoDataParser(object):
         """
         code = section.find('div', {'class': 'highlight'})
         if code:
-            return '{}{}{}'.format('<pre><code>', code.text, '</code></pre>')
+            return '<pre><code>{}</code></pre>'.format(code.text)
         return ''
 
     def parse_for_data(self):
@@ -170,8 +170,9 @@ class DjangoDataOutput(object):
                     output_file.write('\n{}'.format('\t'.join(list_of_data)))
 
 
-data = DjangoData()
-parser = DjangoDataParser(data.get_raw_data())
-parser.parse_for_data()
-output = DjangoDataOutput(parser.get_data())
-output.create_file()
+if __name__ == "__main__":
+    data = DjangoData()
+    parser = DjangoDataParser(data.get_raw_data())
+    parser.parse_for_data()
+    output = DjangoDataOutput(parser.get_data())
+    output.create_file()
