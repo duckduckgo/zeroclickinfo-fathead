@@ -167,7 +167,7 @@ class DjangoDataOutput(object):
                         abstract,   # abstract
                         url         # url to templatetag/filter doc
                     ]
-                    output_file.write('{}{}'.format('\n', '\t'.join(list_of_data)))
+                    output_file.write('\n{}'.format('\t'.join(list_of_data)))
 
 
 data = DjangoData()
