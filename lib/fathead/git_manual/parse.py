@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-                                                                                                                    
+# -*- coding: utf-8 -*-
 
 from bs4 import BeautifulSoup
 
@@ -8,7 +8,7 @@ git_docs_base_url = open('data.url').read().strip()
 
 
 class Command(object):
-    ''' 
+    '''
     Class for storing all necessary information about the git command. This
     information is then used to create the output.txt file using the
     __str__() method on this class
@@ -21,7 +21,7 @@ class Command(object):
         self.usage = ''
 
     def __str__(self):
-        ''' 
+        '''
         Output the git command information in the proper format required for
         DuckDuckGo Fatheads
         '''
@@ -35,21 +35,22 @@ class Command(object):
         abstract = '{}\n<pre><code>{}</pre></code>'.format(self.description,
                                                            usage_cleaned)
         return '\t'.join([
-            self.name, # Full article title
-            'A', # Type of article
-            '', # For redirects only
-            '', # Ignore
-            '', # Categories
-            '', # Ignore
-            '', # Related Topis
-            '', # Ignore
-            '', # External links
-            '', # For disambiguation pages only
-            '', # Image
-            abstract, # Abstract
+            self.name,  # Full article title
+            'A',  # Type of article
+            '',  # For redirects only
+            '',  # Ignore
+            '',  # Categories
+            '',  # Ignore
+            '',  # Related Topis
+            '',  # Ignore
+            '',  # External links
+            '',  # For disambiguation pages only
+            '',  # Image
+            abstract,  # Abstract
             '{}/{}'.format(git_docs_base_url,
-                           self.filename), # URL
+                           self.filename),  # URL
         ])
+
 
 class Parser(object):
     def __init__(self):
@@ -78,11 +79,12 @@ class Parser(object):
 
             description = description_p.getText()
 
-            # Split out the command name and short description of the command                                                              
+            # Split out the command name and short description of the command
             (command_name, description) = description.split(" - ")
-            
+
             # Create the Command object
-            command = Command(command_name, description, file.replace('download/', ''))
+            command = Command(command_name, description,
+                              file.replace('download/', ''))
 
             # Now find the '_synopsis' H2 element which will give us the usage
             synopsis_h2 = soup.find('h2', {'id': '_synopsis'})
