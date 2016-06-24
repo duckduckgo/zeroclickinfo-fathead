@@ -92,7 +92,7 @@ class DjangoDataParser(object):
             First paragraph in the HTML
 
         """
-        return section.find('p').text
+        return section.find('p').text.replace('\n', ' ')
 
     def parse_code_from_data(self, section):
         """
