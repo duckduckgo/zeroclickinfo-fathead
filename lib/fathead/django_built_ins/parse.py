@@ -105,7 +105,7 @@ class DjangoDataParser(object):
         """
         code = section.find('div', {'class': 'highlight'})
         if code:
-            return '<pre><code>{}</code></pre>'.format(code.text)
+            return '<pre><code>{}</code></pre>'.format(code.text.replace('\n', '\\n'))
         return ''
 
     def parse_for_data(self):
