@@ -155,7 +155,9 @@ class DjangoDataOutput(object):
             for data_element in self.data:
                 if data_element.get('name'):
                     name = data_element.get('name')
-                    abstract = '{}<br>{}'.format(data_element.get('code'), data_element.get('first_paragraph'))
+                    code = data_element.get('code')
+                    first_paragraph = data_element.get('first_paragraph')
+                    abstract = '{}{}{}'.format(code, '<br>' if code else '', first_paragraph)
                     url = '{}{}'.format(DJANGO_DOC_URL, data_element.get('anchor'))
                     list_of_data = [
                         name,       # unique name will be the name of the templatetag/filter
