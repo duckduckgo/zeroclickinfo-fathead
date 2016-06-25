@@ -15,4 +15,5 @@ Dependencies
 The following Perl Modules are needed and can be installed easily using
 the cpan client
   - Mojo::UserAgent
+  - Mojo::URL
   - Mojo::DOM
