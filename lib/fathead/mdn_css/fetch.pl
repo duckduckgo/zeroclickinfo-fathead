@@ -41,10 +41,15 @@ if ( $tx->success ) {
     my $divs = $tx->res->dom->find('div.index, div.column-half');
     for my $div ( $divs->each ) {
         for my $ul ( $div->find('ul')->each ) {
-            my $relative_link = $ul->at('a')->attr('href');
-            my $absolute_link = $reference_url->path($relative_link);
-            say "--> $absolute_link";
-            push @keyword_urls, $absolute_link;
+            $ul->find('li')->map(
+                sub {
+                    my $li            = shift;
+                    my $relative_link = $li->at('a')->attr('href');
+                    my $absolute_link = $reference_url->path($relative_link);
+                    say "--> $absolute_link";
+                    push @keyword_urls, $absolute_link;
+                }
+            );
         }
     }
 }
