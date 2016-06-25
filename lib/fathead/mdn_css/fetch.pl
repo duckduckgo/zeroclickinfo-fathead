@@ -19,6 +19,9 @@ my $ua = Mojo::UserAgent->new()->max_redirects(4);
 my $reference_url =
   Mojo::URL->new('https://developer.mozilla.org/en-US/docs/Web/CSS/Reference');
 my $tx = $ua->get($reference_url);
+
+my @keyword_urls;
+
 if ( $tx->success ) {
 
 =begin
@@ -39,7 +42,8 @@ if ( $tx->success ) {
     for my $ul ( $collection->each ) {
 
         #make url absolute
-        say $reference_url->path( $ul->at('a')->attr('href') );
+        my $absolute_url = $reference_url->path( $ul->at('a')->attr('href') );
+        push @keyword_urls, $absolute_url;
     }
 }
 elsif ( my $error = $tx->error ) {
