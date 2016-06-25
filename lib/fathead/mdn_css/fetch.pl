@@ -38,12 +38,14 @@ if ( $tx->success ) {
   </div>
 =cut
 
-    my $collection = $tx->res->dom->at('div.index')->find('ul');
-    for my $ul ( $collection->each ) {
-
-        #make url absolute
-        my $absolute_url = $reference_url->path( $ul->at('a')->attr('href') );
-        push @keyword_urls, $absolute_url;
+    my $divs = $tx->res->dom->find('div.index, div.column-half');
+    for my $div ( $divs->each ) {
+        for my $ul ( $div->find('ul')->each ) {
+            my $relative_link = $ul->at('a')->attr('href');
+            my $absolute_link = $reference_url->path($relative_link);
+            say "--> $absolute_link";
+            push @keyword_urls, $absolute_link;
+        }
     }
 }
 elsif ( my $error = $tx->error ) {
