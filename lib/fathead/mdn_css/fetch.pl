@@ -44,10 +44,10 @@ if ( $tx->success ) {
             $ul->find('li')->map(
                 sub {
                     my $li            = shift;
-                    my $relative_link = $li->at('a')->attr('href');
-                    my $absolute_link = $reference_url->path($relative_link);
-                    say "--> $absolute_link";
-                    push @keyword_urls, $absolute_link;
+                    my $relative_url = $li->at('a')->attr('href');
+                    my $absolute_url = $reference_url->path($relative_url);
+                    say "--> $absolute_url";
+                    push @keyword_urls, $absolute_url;
                 }
             );
         }
