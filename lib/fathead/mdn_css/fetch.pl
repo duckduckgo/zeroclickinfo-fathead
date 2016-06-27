@@ -22,7 +22,7 @@ my $reference_url =
   Mojo::URL->new('https://developer.mozilla.org/en-US/docs/Web/CSS/Reference');
 my $tx = $ua->get($reference_url);
 
-my @keyword_urls;
+my %urls;    #hash used to remove duplicate urls
 
 if ( $tx->success ) {
 
@@ -49,8 +49,7 @@ if ( $tx->success ) {
                     my $relative_url =
                       Mojo::URL->new( $li->at('a')->attr('href') );
                     my $absolute_url = $relative_url->to_abs( $tx->req->url );
-                    say "--> $absolute_url";
-                    push @keyword_urls, $absolute_url;
+                    $urls{$absolute_url} = 1;
                 }
             );
         }
@@ -67,6 +66,8 @@ my $file_number = 1;
 
 my $current_active_connections = 0;
 my $maximum_active_connections = 4;
+
+my @keyword_urls = keys %urls;
 
 #see http://mojolicious.org/perldoc/Mojo/IOLoop#recurring
 Mojo::IOLoop->recurring(
