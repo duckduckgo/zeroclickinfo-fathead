@@ -39,7 +39,7 @@ class Environment(object):
         """
         with open('download/packages.html') as f:
             contents = f.read()
-        contents = BeautifulSoup(contents, 'html.parser')
+        contents = BeautifulSoup(contents, 'html.parser', from_encoding="utf-8")
 
         return contents
 
@@ -87,7 +87,7 @@ class Document(object):
 
         return data
 
-    def concat(self, name, description, url):
+    def concat(self, name, description, url, version):
         """
         The concat (concatenation) member function is responsible for
         preparing the data to be written to the file. The file is
@@ -105,7 +105,10 @@ class Document(object):
         external_links = ''
         ten = ''  # IGNORE
         image = ''
-        abstract = description or "No description found"
+        abstract = u"""
+          Description: {0},
+          Version: {1}
+        """.format(description, version)
         url = url or "No URL found"
 
         data = [
@@ -136,7 +139,7 @@ class Document(object):
         """
         with open('output.txt', 'a') as f:
             for data in data_list:
-                line = self.concat(data[0], data[2], data[3])
+                line = self.concat(data[0], data[2], data[3], data[1])
                 f.write(line.encode('utf'))
 
 if __name__ == "__main__":
