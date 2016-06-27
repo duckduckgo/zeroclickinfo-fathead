@@ -1,4 +1,4 @@
 #!/bin/bash
 
 mkdir -p download
-wget -O ./download/all.json http://nodejs.org/api/all.json
+wget -O ./download/all.json https://nodejs.org/api/all.json
