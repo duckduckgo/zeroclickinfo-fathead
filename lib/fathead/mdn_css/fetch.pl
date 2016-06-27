@@ -43,9 +43,10 @@ if ( $tx->success ) {
         for my $ul ( $div->find('ul')->each ) {
             $ul->find('li')->map(
                 sub {
-                    my $li            = shift;
-                    my $relative_url = $li->at('a')->attr('href');
-                    my $absolute_url = $reference_url->path($relative_url);
+                    my $li = shift;
+                    my $relative_url =
+                      Mojo::URL->new( $li->at('a')->attr('href') );
+                    my $absolute_url = $relative_url->to_abs( $tx->req->url );
                     say "--> $absolute_url";
                     push @keyword_urls, $absolute_url;
                 }
