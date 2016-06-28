@@ -4,6 +4,7 @@ use v5.10.0;
 use strict;
 use warnings;
 
+use Carp 'croak';
 use Mojo::DOM;
 use Mojo::Util 'slurp';
 
@@ -12,6 +13,7 @@ This script extracts data from html files under the
 dowloads folder
 =cut
 
+open( OUT, ">", 'output.txt' ) or croak $!;
 for my $html_file (<download/*.html>) {
     say "Processing $html_file";
     my $dom = Mojo::DOM->new( slurp $html_file);
@@ -55,8 +57,14 @@ for my $html_file (<download/*.html>) {
         #no need to keep looping if we have both of these
         last if $title and $description;
     }
-    say $title if $title;
-    say $link if $link;
-    say $description if $description;
-    say '';
+    if ( $title and $link and $description ) {
+        say $title       if $title;
+        say $link        if $link;
+        say $description if $description;
+        say '';
+
+        my @data =
+          ( $title, 'A', '', '', '', '', '', '', '', '', '', $description );
+          say OUT join "\t", @data;
+    }
 }
