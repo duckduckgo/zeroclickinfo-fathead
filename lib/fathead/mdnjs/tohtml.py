@@ -41,17 +41,18 @@ ROW = """
 </div>
 """
 
+
 def run(infname, outfname):
-  infile = open(infname)
-  reader = csv.DictReader(infile, FatWriter.FIELDS, dialect='excel-tab')
-  with open(outfname, 'w') as outfile:
-    rows = []
-    for line in reader:
-      rows.append(ROW.format(**line))
-    body = '\n'.join(rows)
-    outfile.write(HTML.format(body=body).replace('\\n', '\n'))
+    infile = open(infname)
+    reader = csv.DictReader(infile, FatWriter.FIELDS, dialect='excel-tab')
+    with open(outfname, 'w') as outfile:
+        rows = []
+        for line in reader:
+            rows.append(ROW.format(**line))
+        body = '\n'.join(rows)
+        outfile.write(HTML.format(body=body).replace('\\n', '\n'))
 
 if __name__ == '__main__':
-  infname = 'output.txt'
-  outfname = 'output.html'
-  run(infname, outfname)
+    infname = 'output.txt'
+    outfname = 'output.html'
+    run(infname, outfname)
