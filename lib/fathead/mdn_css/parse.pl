@@ -63,8 +63,9 @@ for my $html_file (<download/*.html>) {
         say $description if $description;
         say '';
 
-        my @data =
-          ( $title, 'A', '', '', '', '', '', '', '', '', '', $description );
-          say OUT join "\t", @data;
+        my @data = (
+            $title, 'A', '', '', '', '', '', '', '', '', '', $description, $link
+        );
+        say OUT join "\t", @data;
     }
 }
