@@ -13,6 +13,7 @@ This script extracts data from html files under the
 dowloads folder
 =cut
 
+my %titles_dedup;    #keys will be used to remove duplicates in titles
 open( OUT, ">", 'output.txt' ) or croak $!;
 for my $html_file (<download/*.html>) {
     say "Processing $html_file";
@@ -63,9 +64,13 @@ for my $html_file (<download/*.html>) {
         say $description if $description;
         say '';
 
-        my @data = (
-            $title, 'A', '', '', '', '', '', '', '', '', '', $description, $link
-        );
-        say OUT join "\t", @data;
+        unless ( exists $titles_dedup{$title} ) {
+            $titles_dedup{$title} = 1;
+            my @data = (
+                $title, 'A', '', '', '', '', '', '', '', '', '', $description,
+                $link
+            );
+            say OUT join "\t", @data;
+        }
     }
 }
