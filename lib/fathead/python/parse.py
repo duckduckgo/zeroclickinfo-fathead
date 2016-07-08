@@ -198,7 +198,7 @@ class PythonDataOutput(object):
     def __init__(self, data):
         self.data = data
 
-    def create_name_from_data(self, data_element):
+    def create_names_from_data(self, data_element):
         """
         Figure out the name of the function. Will contain the module name if one exists.
         Args:
@@ -208,8 +208,13 @@ class PythonDataOutput(object):
             Name, with whitespace stripped out
 
         """
-        name = '{} {}'.format(data_element.get('module'), data_element.get('function'))
-        return name.strip()
+        module = data_element.get('module')
+        function = data_element.get('function')
+
+        dotted_name = '{}{}{}'.format(module, '.' if module and function  else '', function)
+        spaced_name = '{} {}'.format(module, function)
+
+        return dotted_name.strip(), spaced_name.strip()
 
     def create_file(self):
         """
@@ -221,13 +226,19 @@ class PythonDataOutput(object):
                 if data_element.get('module') or data_element.get('function'):
                     method_signature = data_element.get('method_signature')
                     first_paragraph = data_element.get('first_paragraph')
-                    name = self.create_name_from_data(data_element)
+                    name, redirect = self.create_names_from_data(data_element)
+
+                    # Don't set redirect if name/redirect are the same. Happens when we are only getting a function name
+                    # with no module.
+                    if redirect == name:
+                        redirect = ''
+
                     abstract = '{}{}{}'.format(method_signature, '<br>' if method_signature and first_paragraph else '', first_paragraph)
                     url = data_element.get('url')
                     list_of_data = [
                         name,                       # unique name
                         'A',                        # type is article
-                        '',                         # no redirect data
+                        redirect,                   # no redirect data
                         '',                         # ignore
                         '',                         # no categories
                         '',                         # ignore
