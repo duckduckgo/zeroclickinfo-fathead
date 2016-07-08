@@ -222,7 +222,7 @@ class PythonDataOutput(object):
                     method_signature = data_element.get('method_signature')
                     first_paragraph = data_element.get('first_paragraph')
                     name = self.create_name_from_data(data_element)
-                    abstract = '{}{}{}'.format(method_signature, '<br>' if method_signature else '', first_paragraph)
+                    abstract = '{}{}{}'.format(method_signature, '<br>' if method_signature and first_paragraph else '', first_paragraph)
                     url = data_element.get('url')
                     list_of_data = [
                         name,                       # unique name

@@ -1,7 +1,7 @@
 _PyObject_New	A							https://docs.python.org			<pre><code>
-PyObject* _PyObject_New(PyTypeObject *type)</code></pre><br>	https://docs.python.org/3.4/c-api/allocation.html#c._PyObject_New
+PyObject* _PyObject_New(PyTypeObject *type)</code></pre>	https://docs.python.org/3.4/c-api/allocation.html#c._PyObject_New
 _PyObject_NewVar	A							https://docs.python.org			<pre><code>
-PyVarObject* _PyObject_NewVar(PyTypeObject *type, Py_ssize_t size)</code></pre><br>	https://docs.python.org/3.4/c-api/allocation.html#c._PyObject_NewVar
+PyVarObject* _PyObject_NewVar(PyTypeObject *type, Py_ssize_t size)</code></pre>	https://docs.python.org/3.4/c-api/allocation.html#c._PyObject_NewVar
 PyObject_Init	A							https://docs.python.org			<pre><code>
 PyObject* PyObject_Init(PyObject *op, PyTypeObject *type)</code></pre><br>Initialize a newly-allocated object op with its type and initial reference. Returns the initialized object. If type indicates that the object participates in the cyclic garbage detector, it is added to the detector’s set of observed objects. Other fields of the object are not affected.	https://docs.python.org/3.4/c-api/allocation.html#c.PyObject_Init
 PyObject_InitVar	A							https://docs.python.org			<pre><code>
@@ -393,19 +393,19 @@ PyObject* PyDateTime_FromTimestamp(PyObject *args)</code></pre><br>Create and r
 PyDate_FromTimestamp	A							https://docs.python.org			<pre><code>
 PyObject* PyDate_FromTimestamp(PyObject *args)</code></pre><br>Create and return a new datetime.date object given an argument tuple suitable for passing to datetime.date.fromtimestamp().	https://docs.python.org/3.4/c-api/datetime.html#c.PyDate_FromTimestamp
 PyDescr_NewGetSet	A							https://docs.python.org			<pre><code>
-PyObject* PyDescr_NewGetSet(PyTypeObject *type, struct PyGetSetDef *getset)</code></pre><br>	https://docs.python.org/3.4/c-api/descriptor.html#c.PyDescr_NewGetSet
+PyObject* PyDescr_NewGetSet(PyTypeObject *type, struct PyGetSetDef *getset)</code></pre>	https://docs.python.org/3.4/c-api/descriptor.html#c.PyDescr_NewGetSet
 PyDescr_NewMember	A							https://docs.python.org			<pre><code>
-PyObject* PyDescr_NewMember(PyTypeObject *type, struct PyMemberDef *meth)</code></pre><br>	https://docs.python.org/3.4/c-api/descriptor.html#c.PyDescr_NewMember
+PyObject* PyDescr_NewMember(PyTypeObject *type, struct PyMemberDef *meth)</code></pre>	https://docs.python.org/3.4/c-api/descriptor.html#c.PyDescr_NewMember
 PyDescr_NewMethod	A							https://docs.python.org			<pre><code>
-PyObject* PyDescr_NewMethod(PyTypeObject *type, struct PyMethodDef *meth)</code></pre><br>	https://docs.python.org/3.4/c-api/descriptor.html#c.PyDescr_NewMethod
+PyObject* PyDescr_NewMethod(PyTypeObject *type, struct PyMethodDef *meth)</code></pre>	https://docs.python.org/3.4/c-api/descriptor.html#c.PyDescr_NewMethod
 PyDescr_NewWrapper	A							https://docs.python.org			<pre><code>
-PyObject* PyDescr_NewWrapper(PyTypeObject *type, struct wrapperbase *wrapper, void *wrapped)</code></pre><br>	https://docs.python.org/3.4/c-api/descriptor.html#c.PyDescr_NewWrapper
+PyObject* PyDescr_NewWrapper(PyTypeObject *type, struct wrapperbase *wrapper, void *wrapped)</code></pre>	https://docs.python.org/3.4/c-api/descriptor.html#c.PyDescr_NewWrapper
 PyDescr_NewClassMethod	A							https://docs.python.org			<pre><code>
-PyObject* PyDescr_NewClassMethod(PyTypeObject *type, PyMethodDef *method)</code></pre><br>	https://docs.python.org/3.4/c-api/descriptor.html#c.PyDescr_NewClassMethod
+PyObject* PyDescr_NewClassMethod(PyTypeObject *type, PyMethodDef *method)</code></pre>	https://docs.python.org/3.4/c-api/descriptor.html#c.PyDescr_NewClassMethod
 PyDescr_IsData	A							https://docs.python.org			<pre><code>
 int PyDescr_IsData(PyObject *descr)</code></pre><br>Return true if the descriptor objects descr describes a data attribute, or false if it describes a method. descr must be a descriptor object; there is no error checking.	https://docs.python.org/3.4/c-api/descriptor.html#c.PyDescr_IsData
 PyWrapper_New	A							https://docs.python.org			<pre><code>
-PyObject* PyWrapper_New(PyObject *, PyObject *)</code></pre><br>	https://docs.python.org/3.4/c-api/descriptor.html#c.PyWrapper_New
+PyObject* PyWrapper_New(PyObject *, PyObject *)</code></pre>	https://docs.python.org/3.4/c-api/descriptor.html#c.PyWrapper_New
 PyDict_Check	A							https://docs.python.org			<pre><code>
 int PyDict_Check(PyObject *p)</code></pre><br>Return true if p is a dict object or an instance of a subtype of the dict type.	https://docs.python.org/3.4/c-api/dict.html#c.PyDict_Check
 PyDict_CheckExact	A							https://docs.python.org			<pre><code>
@@ -4057,11 +4057,11 @@ ensurepip.bootstrap(root=None, upgrade=False, user=False, altinstall=False, defa
 enum unique	A							https://docs.python.org			<pre><code>
 enum.unique()</code></pre><br>Enum class decorator that ensures only one name is bound to any one value.	https://docs.python.org/3.4/library/enum.html#enum.unique
 @ unique	A							https://docs.python.org			<pre><code>
-@enum.unique</code></pre><br>	https://docs.python.org/3.4/library/enum.html
+@enum.unique</code></pre>	https://docs.python.org/3.4/library/enum.html
 enum unique	A							https://docs.python.org			<pre><code>
 enum.unique()</code></pre><br>Enum class decorator that ensures only one name is bound to any one value.	https://docs.python.org/3.4/library/enum.html#enum.unique
 @ unique	A							https://docs.python.org			<pre><code>
-@enum.unique</code></pre><br>	https://docs.python.org/3.4/library/enum.html
+@enum.unique</code></pre>	https://docs.python.org/3.4/library/enum.html
 faulthandler dump_traceback	A							https://docs.python.org			<pre><code>
 faulthandler.dump_traceback(file=sys.stderr, all_threads=True)</code></pre><br>Dump the tracebacks of all threads into file. If all_threads is False, dump only the current thread.	https://docs.python.org/3.4/library/faulthandler.html#faulthandler.dump_traceback
 faulthandler enable	A							https://docs.python.org			<pre><code>
