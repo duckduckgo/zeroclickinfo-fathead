@@ -108,7 +108,7 @@ class PythonDataParser(object):
         paragraphs = section.find_all('p')
         for paragraph in paragraphs:
             if paragraph.text:
-                return paragraph.text.replace('  ', ' ').replace('\n', ' ')
+                return paragraph.text.replace('  ', ' ').replace('\n', ' ').replace('\\n', r'\\n')
         return ''
 
     def parse_for_anchor(self, section):
@@ -138,7 +138,7 @@ class PythonDataParser(object):
         """
         dt = section.find('dt')
         if dt:
-            return '<pre><code>{}</code></pre>'.format(dt.text.replace('¶', '').replace('\n', ' '))
+            return '<pre><code>{}</code></pre>'.format(dt.text.replace('¶', '').replace('\n', '').replace('\\n', r'\\n'))
         return ''
 
     def create_url(self, anchor):
