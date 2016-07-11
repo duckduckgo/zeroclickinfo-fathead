@@ -228,17 +228,12 @@ class PythonDataOutput(object):
                     first_paragraph = data_element.get('first_paragraph')
                     name, redirect = self.create_names_from_data(data_element)
 
-                    # Don't set redirect if name/redirect are the same. Happens when we are only getting a function name
-                    # with no module.
-                    if redirect == name:
-                        redirect = ''
-
                     abstract = '{}{}{}'.format(method_signature, '<br>' if method_signature and first_paragraph else '', first_paragraph)
                     url = data_element.get('url')
                     list_of_data = [
                         name,                       # unique name
                         'A',                        # type is article
-                        redirect,                   # no redirect data
+                        '',                         # no redirect data
                         '',                         # ignore
                         '',                         # no categories
                         '',                         # ignore
@@ -251,6 +246,25 @@ class PythonDataOutput(object):
                         url                         # url to doc
                     ]
                     output_file.write('{}\n'.format('\t'.join(list_of_data)))
+
+                    # Add redirect if we got a redirect name that is different from the original name
+                    if redirect != name:
+                        list_of_data = [
+                            name,                       # unique name
+                            'R',                        # type is redirect
+                            redirect,                   # redirect alias
+                            '',                         # ignore
+                            '',                         # no categories
+                            '',                         # ignore
+                            '',                         # no related topics
+                            '',                         # ignore
+                            '',                         # no external link
+                            '',                         # no disambiguation
+                            '',                         # images
+                            '',                         # no abstract
+                            ''                          # no url
+                        ]
+                        output_file.write('{}\n'.format('\t'.join(list_of_data)))
 
 
 if __name__ == "__main__":
