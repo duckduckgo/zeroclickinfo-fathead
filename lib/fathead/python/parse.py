@@ -138,7 +138,7 @@ class PythonDataParser(object):
         """
         dt = section.find('dt')
         if dt:
-            return '<pre><code>{}</code></pre>'.format(dt.text.replace('¶', ''))
+            return '<pre><code>{}</code></pre>'.format(dt.text.replace('¶', '').replace('\n', ' '))
         return ''
 
     def create_url(self, anchor):
