@@ -250,9 +250,9 @@ class PythonDataOutput(object):
                     # Add redirect if we got a redirect name that is different from the original name
                     if redirect != name:
                         list_of_data = [
-                            name,                       # unique name
+                            redirect,                   # unique name
                             'R',                        # type is redirect
-                            redirect,                   # redirect alias
+                            name,                       # redirect alias, to the original data
                             '',                         # ignore
                             '',                         # no categories
                             '',                         # ignore
