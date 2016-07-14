@@ -5,7 +5,6 @@ import codecs
 import json
 import re
 import urllib
-import sys
 
 with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
         codecs.open('output.txt', mode='wb', encoding='utf-8') as out_file:
@@ -19,7 +18,7 @@ with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
         if not summary or summary == 'UNKNOWN':
             continue
         abstract_lines.append(re.sub(r'\s', ' ', summary, flags=re.MULTILINE | re.UNICODE))
-#        abstract_lines.append('Downloads in the last month: %s' % package_info['downloads']['last_month'])
+        #abstract_lines.append('Downloads in the last month: %s' % package_info['downloads']['last_month'])
 
         for classifier in package_info['classifiers']:
             if classifier.startswith('Development Status'):
