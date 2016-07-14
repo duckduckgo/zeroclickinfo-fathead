@@ -172,13 +172,21 @@ foreach my $page (@pages){
         printf("%s\n", get_row($title, undef, undef, 'R', $redirect));
     }
 
-       printf("%s\n", get_row($title, $description, "http://perldoc.perl.org/$page", 'A'));
+sub parse_page {
+    my ( $self, $page ) = @_;
+    my $fullpath = $self->doc_fullpath( $page->{basename} );
+    my $parser = $page->{parser};
+    my $parsed = $self->$parser( dom_for_file( $fullpath ) );
 }
 
-sub test_csv {
+sub parse {
     my ( $self ) = @_;
-    $self->insert({ title => 'asd', sourceurl => 'bsd' });
+    for my $index ( keys $self->indices ) {
+        for my $page ( keys $self->indices->{ $index } ) {
+            $self->parse_page( $self->indices->{ $index }->{ $page } );
+        }
+    }
 }
 
-main->new->test_csv;
+main->new->parse;
 
