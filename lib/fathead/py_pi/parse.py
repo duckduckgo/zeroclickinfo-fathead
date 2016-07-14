@@ -27,6 +27,11 @@ with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
 
         abstract_lines.append("<pre><code>pip install " + package_info['name'] + "</code></pre>")
 
+        official_site = ''
+        # check for real links. We can get stuff like 'unknown', '404' in here
+        if package_info['home_page'] and re.search(r'www.', package_info['home_page']):
+            official_site = '[' + package_info['home_page'] + ' Official site]\\\\n'
+
         out_file.write('\t'.join([
             package_info['name'],  # Title
             'A',  # Article type
@@ -36,7 +41,7 @@ with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
             '',  # References (ignored)
             '',  # No related topics
             '',  # Further reading (ignored)
-            '',  # External links (ignored)
+            official_site,  # External links (ignored)
             '',  # Disambiguation (ignored)
             '',  # No images
             '<br>'.join(abstract_lines),
