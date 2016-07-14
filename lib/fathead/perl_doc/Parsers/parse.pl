@@ -86,6 +86,9 @@ sub links_from_index {
     my $path = $self->doc_fullpath( $index );
     return unless ( -f $path );
     my $links;
+    my $parser = ( $index =~ /module/i )
+        ? 'get_synopsis'
+        : 'get_anchors';
 
     my $dom = dom_for_file( $path );
 
@@ -98,6 +101,7 @@ sub links_from_index {
 
         $links->{ $name }->{ basename } = $basename;
         $links->{ $name }->{ filename } = $filename;
+        $links->{ $name }->{ parser } = $parser;
     }
 
     return $links;
