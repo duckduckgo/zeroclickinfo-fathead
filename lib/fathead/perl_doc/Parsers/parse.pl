@@ -56,6 +56,15 @@ sub insert {
     $self->tsv->do( $sql, undef, @{ $data }{ @keys } );
 }
 
+sub alias {
+    my ( $self, $new, $orig ) = @_;
+    $self->insert({
+        title => $new,
+        type  => 'R',
+        alias => $orig,
+    });
+}
+
 foreach my $page (@pages){
     my $html < io($page);
 
