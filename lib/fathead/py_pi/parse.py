@@ -19,13 +19,14 @@ with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
         if not summary or summary == 'UNKNOWN':
             continue
         abstract_lines.append(re.sub(r'\s', ' ', summary, flags=re.MULTILINE | re.UNICODE))
-        abstract_lines.append('Downloads in the last month: %s' % package_info['downloads']['last_month'])
-        abstract_lines.append("<pre><code>pip install " + package_info['name'] + "</code></pre>")
+#        abstract_lines.append('Downloads in the last month: %s' % package_info['downloads']['last_month'])
 
         for classifier in package_info['classifiers']:
             if classifier.startswith('Development Status'):
                 abstract_lines.append('Development status: %s' % classifier.split(' - ')[-1])
                 break
+
+        abstract_lines.append("<pre><code>pip install " + package_info['name'] + "</code></pre>")
 
         out_file.write('\t'.join([
             package_info['name'],  # Title
