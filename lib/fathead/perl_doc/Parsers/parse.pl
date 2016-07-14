@@ -14,6 +14,11 @@ use File::Spec;
 use DBI;
 use Text::CSV_XS;
 
+has perldoc_url => ( is => 'lazy' );
+sub _build_perldoc_url {
+    'http://perldoc.perl.org/';
+}
+
 has working_dir => ( is => 'lazy' );
 sub _build_working_dir {
     getcwd;
@@ -80,7 +85,6 @@ sub links_from_index {
     my $content = $dom->find('ul')->[4];
 
     for my $link ( @{ $content->find('a')->to_array } ) {
-        use DDP; p $link;
         my $name     = $link->content;
         my $filename = $link->attr('href');
         my $basename = $filename =~ s/\.html$//r;
