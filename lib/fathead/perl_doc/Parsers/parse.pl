@@ -126,51 +126,25 @@ sub alias {
     });
 }
 
-foreach my $page (@pages){
-    my $html < io($page);
+sub entry {
+    my ( $self, $title, $text, $url ) = @_;
+    $self->insert({
+        title => $title,
+        type  => 'A',
+        abstract => $text,
+        sourceurl => $url,
+    });
+}
 
-    $html =~ s/<a.+?href=".+?>(.+)<\/a>/$1/g;
+sub get_synopsis {
+    my ( $self, $dom ) = @_;
+    my $articles;
+}
 
-    my $dom = Mojo::DOM->new($html);
-
-    my $title = $dom->at('title')->text;
-    $title =~ s/\s-\s.*//;
-
-    # iterate through page
-    my $headings = $dom->find('a[name]')->map(attr => 'name');
-    $_ =~ s/-/ /g for @$headings;
-
-    my $capture = 0;
-    my $description;
-    foreach my $n ($dom->find('*')->each){
-        next unless $n->text;
-
-        if($n->tag eq 'h1' && $n->text eq "DESCRIPTION"){
-            $capture = 1;
-            next;
-        }
-
-        my $strip_heading = $n->text =~ s/-/ /gr;
-        last if ($capture && grep $_  eq $strip_heading, @$headings);
-
-        # fix span tags inside code tags
-        next if ($n->tag eq 'span' && $n->parent->tag eq 'code');
-
-        $description .= $n if $capture;
-    }
-
-    next unless $description;
-
-    $description = trim_abstract($description, 100);
-
-    $page =~ s/^.*(utilities|language|pragmas|internals|functions)\///;
-    $page =~ s/\.html$//;
-
-    if($title =~ /^perl/){
-        my $redirect = $title;
-        $redirect =~ s/^perl//;
-        printf("%s\n", get_row($title, undef, undef, 'R', $redirect));
-    }
+sub get_anchors {
+    my ( $self, $dom ) = @_;
+    my $articles;
+}
 
 sub parse_page {
     my ( $self, $page ) = @_;
