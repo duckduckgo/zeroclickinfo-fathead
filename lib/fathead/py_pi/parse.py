@@ -5,7 +5,7 @@ import codecs
 import json
 import re
 import urllib
-
+import sys
 
 with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
         codecs.open('output.txt', mode='wb', encoding='utf-8') as out_file:
@@ -20,10 +20,7 @@ with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
             continue
         abstract_lines.append(re.sub(r'\s', ' ', summary, flags=re.MULTILINE | re.UNICODE))
         abstract_lines.append('Downloads in the last month: %s' % package_info['downloads']['last_month'])
-
-        latest_release_info = package_dict['releases'][package_info['version']]
-        if latest_release_info:
-            abstract_lines.append('Latest release date: %s' % latest_release_info[0]['upload_time'].split('T')[0])
+        abstract_lines.append("<pre><code>pip install " + package_info['name'] + "</code></pre>")
 
         for classifier in package_info['classifiers']:
             if classifier.startswith('Development Status'):
