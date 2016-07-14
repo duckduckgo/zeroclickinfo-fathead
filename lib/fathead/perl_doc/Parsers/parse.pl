@@ -26,7 +26,29 @@ sub _build_docs_dir {
 
 has indices => ( is => 'lazy' );
 sub _build_indices {
-    
+    my ( $self ) = @_;
+    my $indices;
+    my @index_pages = ( qw/
+       index-tutorials
+       index-faq
+       index-language
+       index-functions
+       index-pragmas
+       index-utilities
+       index-internals
+       index-platforms
+    / );
+    push @index_pages, map { "index-modules-$_" } 'A'..'Z';
+
+    for ( @index_pages ) {
+        $indices->{$_} = $self->links_from_index( $_ );
+    }
+    return $indices;
+}
+
+has other_pages => ( is => 'lazy' );
+sub _build_other_pages {
+    my ( $self ) = @_;
 }
 
 has tsv => ( is => 'lazy' );
@@ -44,6 +66,30 @@ sub _build_tsv {
     ) );
 
     return $dbh;
+}
+
+sub links_from_index {
+    my ( $self, $index ) = @_;
+    my $path = $self->doc_fullpath( $index );
+    return unless ( -f $path );
+    my $links;
+
+    my $html < io( $path );
+    my $dom = Mojo::DOM->new( $html );
+
+    my $content = $dom->find('ul')->[4];
+
+    for my $link ( @{ $content->find('a')->to_array } ) {
+        use DDP; p $link;
+        my $name     = $link->content;
+        my $filename = $link->attr('href');
+        my $basename = $filename =~ s/\.html$//r;
+
+        $links->{ $name }->{ basename } = $basename;
+        $links->{ $name }->{ filename } = $filename;
+    }
+
+    return $links;
 }
 
 sub insert {
