@@ -73,14 +73,21 @@ sub _build_tsv {
     return $dbh;
 }
 
+sub dom_for_file { Mojo::DOM->new( io($_[0])->all ); }
+
+sub doc_fullpath {
+    my ( $self, @parts ) = @_;
+    $parts[-1] = $parts[-1] . '.html';
+    File::Spec->catfile( $self->docs_dir, @parts );
+}
+
 sub links_from_index {
     my ( $self, $index ) = @_;
     my $path = $self->doc_fullpath( $index );
     return unless ( -f $path );
     my $links;
 
-    my $html < io( $path );
-    my $dom = Mojo::DOM->new( $html );
+    my $dom = dom_for_file( $path );
 
     my $content = $dom->find('ul')->[4];
 
