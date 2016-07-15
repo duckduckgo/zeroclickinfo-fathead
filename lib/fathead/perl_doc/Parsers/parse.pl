@@ -51,11 +51,6 @@ sub _build_indices {
     return $indices;
 }
 
-has other_pages => ( is => 'lazy' );
-sub _build_other_pages {
-    my ( $self ) = @_;
-}
-
 has tsv => ( is => 'lazy' );
 sub _build_tsv {
     my $dbh = DBI->connect ("dbi:CSV:", undef, undef, {
