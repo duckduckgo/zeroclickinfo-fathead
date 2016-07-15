@@ -13,6 +13,8 @@ use Moo;
 use File::Spec;
 use DBI;
 use Text::CSV_XS;
+use URI;
+use Carp;
 
 has perldoc_url => ( is => 'lazy' );
 sub _build_perldoc_url {
@@ -74,6 +76,13 @@ sub doc_fullpath {
     my ( $self, @parts ) = @_;
     $parts[-1] = $parts[-1] . '.html';
     File::Spec->catfile( $self->docs_dir, @parts );
+}
+
+sub doc_fullurl {
+    my ( $self, $part ) = @_;
+    URI->new(
+        sprintf( '%s/%s', $self->perldoc_url, $part )
+    )->canonical
 }
 
 sub links_from_index {
@@ -144,8 +153,20 @@ sub get_anchors {
 sub parse_page {
     my ( $self, $page ) = @_;
     my $fullpath = $self->doc_fullpath( $page->{basename} );
+    my $url = $self->doc_fullurl( $page->{filename} );
     my $parser = $page->{parser};
     my $parsed = $self->$parser( dom_for_file( $fullpath ) );
+
+    for my $article ( @{ $parsed->{articles} } ) {
+        my $anchored_url = $url;
+        $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
+
+        $self->entry( $article->{title}, $article->{text}, $anchored_url );
+    }
+
+    for my $alias ( @{ $parsed->{aliases} } ) {
+        $self->alias( $alias->{new}, $alias->{orig} );
+    }
 }
 
 sub parse {
