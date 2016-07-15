@@ -143,6 +143,26 @@ sub entry {
 sub get_synopsis {
     my ( $self, $dom ) = @_;
     my $articles;
+    my $title = $dom->at('title')->text;
+    my $module = $title =~ s/\s.*//r;
+    my $first_code_block = $dom->find('pre')->[0];
+
+    if ( !$first_code_block ) {
+        carp "No code block for $module";
+        return {};
+    }
+
+    push @{ $articles->{articles} }, {
+        title => $title,
+        text  => $first_code_block->to_string
+    };
+
+    push @{ $articles->{aliases} }, {
+        new  => $module,
+        orig => $title,
+    };
+
+    return $articles;
 }
 
 sub get_anchors {
