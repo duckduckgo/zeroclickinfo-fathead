@@ -73,7 +73,7 @@ class PythonDataParser(object):
 
         for header in self.soup.find_all('h3'):
             section = self.parse_section(header)
-            section['example'] = self.get_example(header)
+            section['example'] = self.clean_unicode_numerals(self.get_example(header))
             section['abstract'] = '{}<br><pre><code>{}</code></pre>'.format(section['paragraph'], section['example'])
             self.sub_sections.append(section)
 
@@ -95,7 +95,8 @@ class PythonDataParser(object):
         Returns:
             Text inside <pre> tag
         """
-        return soup.findNext('pre').get_text().replace('\n', '\\n')
+        text = soup.findNext('pre').get_text()
+        return text.replace('\n', '\\n')
 
     def get_url(self, soup):
         """
@@ -146,7 +147,24 @@ class PythonDataParser(object):
             Given text without double spacing and new lines.
         """
         text = text.replace('  ', ' ').replace('\n', ' ').replace('\\n', r'\\n')
-        return text.strip()
+        return self.clean_unicode_numerals(text.strip())
+
+    def clean_unicode_numerals(self, text):
+        """
+        Fixes circled unicode numbers used in text.
+        Args:
+            text: Text to be fixed.
+
+        Returns:
+            Text without ① .. ⑲ characters.
+        """
+        start = 2460  # 0x2460 = ①
+        end = 2473  # 0x2473 = ⑲
+        for hexchar in range(start, end):
+            # Convert integer into unicode character
+            character = chr(int(str(hexchar), 16))
+            text = text.replace(character, '')
+        return text
 
 
 class PythonDataOutput(object):
