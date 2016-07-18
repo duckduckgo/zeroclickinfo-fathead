@@ -125,12 +125,15 @@ class PythonDataParser(object):
             Section data, containing title, first paragraph and url to content.
         """
         first_paragraph = self.clean_formatting(soup.findNext('p').get_text())
+        title = self.clean_formatting(soup.get_text())
+        anchor = self.get_url(soup)
+        url = os.path.join(URL_ROOT, self.file_name)
 
         return {
-            'title': self.clean_formatting(soup.get_text()),
+            'title': title,
             'paragraph': first_paragraph,
-            'anchor': self.get_url(soup),
-            'url': os.path.join(URL_ROOT, self.file_name)
+            'anchor': anchor,
+            'url': url
         }
 
     def clean_formatting(self, text):
@@ -163,9 +166,7 @@ class PythonDataOutput(object):
                 title = data_element.get('title')
                 abstract = data_element.get('abstract')
                 first_paragraph = data_element.get('first_paragraph')
-
-                if abstract is None:
-                    abstract = first_paragraph
+                abstract = data_element.get('abstract') or first_paragraph
 
                 if abstract is None:
                     continue
