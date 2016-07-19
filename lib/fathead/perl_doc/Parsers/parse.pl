@@ -27,7 +27,7 @@ sub _build_working_dir {
 
 has docs_dir => ( is => 'lazy' );
 sub _build_docs_dir {
-    File::Spec->catdir( $_[0]->working_dir, qw/ .. download perldoc-html / );
+    File::Spec->catdir( $_[0]->working_dir, qw/ .. download / );
 }
 
 has indices => ( is => 'lazy' );

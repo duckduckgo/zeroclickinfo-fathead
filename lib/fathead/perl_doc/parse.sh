@@ -1,3 +1,2 @@
-cd Parsers && perl parse.pl > output.txt \
-  && perl parse-functions.pl >> output.txt \
+cd Parsers && perl parse.pl \
   && mv output.txt ..
