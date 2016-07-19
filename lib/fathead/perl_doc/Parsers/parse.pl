@@ -191,8 +191,8 @@ sub parse_page {
 
 sub parse {
     my ( $self ) = @_;
-    for my $index ( keys $self->indices ) {
-        for my $page ( keys $self->indices->{ $index } ) {
+    foreach my $index ( sort keys %{$self->indices} ) {
+        foreach my $page ( sort keys %{$self->indices->{ $index }} ) {
             $self->parse_page( $self->indices->{ $index }->{ $page } );
         }
     }
