@@ -96,6 +96,7 @@ class PythonDataParser(object):
             Text inside <pre> tag
         """
         text = soup.findNext('pre').get_text()
+        text = text.strip('\n')
         return text.replace('\n', '\\n')
 
     def get_url(self, soup):
@@ -147,6 +148,7 @@ class PythonDataParser(object):
             Given text without double spacing and new lines.
         """
         text = text.replace('  ', ' ').replace('\n', ' ').replace('\\n', r'\\n')
+        text = text.replace('Continuing from the previous example:', '')
         return self.clean_unicode_numerals(text.strip())
 
     def clean_unicode_numerals(self, text):
@@ -182,7 +184,6 @@ class PythonDataOutput(object):
         with open('output.txt', 'w') as output_file:
             for data_element in self.data:
                 title = data_element.get('title')
-                abstract = data_element.get('abstract')
                 first_paragraph = data_element.get('first_paragraph')
                 abstract = data_element.get('abstract') or first_paragraph
 
@@ -208,11 +209,7 @@ class PythonDataOutput(object):
                     anchor      # anchor to specific section
                 ]
 
-                try:
-                    output_file.write('{}\n'.format('\t'.join(list_of_data)))
-                except Exception as e:
-                    import pdb; pdb.set_trace()
-
+                output_file.write('{}\n'.format('\t'.join(list_of_data)))
 
 
 if __name__ == "__main__":
