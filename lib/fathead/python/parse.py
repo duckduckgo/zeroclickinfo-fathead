@@ -54,15 +54,28 @@ class PythonDataParser(object):
         """
         self.parsed_data = None
         self.function_sections = []
+        self.method_sections = []
+        self.intro_text = ''
+
         self.file_being_used = data_object.get_file()
 
         soup_data = BeautifulSoup(data_object.get_raw_data(), 'html.parser')
         sections = soup_data.find_all('div', {'class': 'section'})
-        
+
         for section in sections:
             functions = section.find_all('dl', {'class': 'function'})
             if functions:
                 self.function_sections.extend(functions)
+
+            methods = section.find_all('dl', {'class': 'method'})
+            if methods:
+                self.method_sections.extend(methods)
+
+        intro = soup_data.find_all('p', limit=5)
+        for p in intro:
+            self.intro_text += p.text.replace('  ', ' ').replace('\n', ' ').replace('\\n', r'\\n')
+
+        self.title = soup_data.find('a', {'class': 'reference internal'}).text
 
     def parse_for_module_name(self, section):
         """
@@ -78,7 +91,8 @@ class PythonDataParser(object):
         if module_name:
             return module_name.text.rstrip('.')
         return ''
-                                          
+
+
     def parse_for_function_name(self, section):
         """
         Returns the function name
@@ -159,7 +173,17 @@ class PythonDataParser(object):
         Main gateway into parsing the data. Will retrieve all necessary data elements.
         """
         data = []
-        
+
+        if self.intro_text:
+            data_elements = {
+                'module': self.title,
+                'function': '',
+                'method_signature': '',
+                'first_paragraph': self.intro_text,
+                'url': self.title
+                }
+            data.append(data_elements)
+
         for function_section in self.function_sections:
             module = self.parse_for_module_name(function_section)
             function = self.parse_for_function_name(function_section)
@@ -175,7 +199,7 @@ class PythonDataParser(object):
                     'function': function,
                     'method_signature': method_signature,
                     'first_paragraph': first_paragraph,
-                    'url': url
+                    'url': url,
                 }
 
                 data.append(data_elements)
@@ -197,6 +221,10 @@ class PythonDataOutput(object):
     """
     def __init__(self, data):
         self.data = data
+        self.wrote_intro = 0
+
+    def set_intro(self):
+        self.wrote_intro = 1
 
     def create_names_from_data(self, data_element):
         """
@@ -265,7 +293,6 @@ class PythonDataOutput(object):
                             ''                          # no url
                         ]
                         output_file.write('{}\n'.format('\t'.join(list_of_data)))
-
 
 if __name__ == "__main__":
     for dir_path, dir_name, file_names in os.walk(DOWNLOADED_HTML_PATH):
