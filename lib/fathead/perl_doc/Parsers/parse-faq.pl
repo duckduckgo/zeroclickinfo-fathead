@@ -22,6 +22,16 @@ sub get_link {
     return "http://perldoc.perl.org/perlfaq$n.html#$a";
 }
 
+sub build_description {
+    my $question = shift;
+    my $description;
+    foreach my $para ($question->following('p')->each) {
+        $description .= $para;
+    }
+    $description =~ s/\n/ /g;
+    return $description;
+}
+
 foreach my $page (@pages){
     my $html < io($page);
     my ($faq_n) = $page =~ /perlfaq(\d+)\.html/ or next;
@@ -33,13 +43,9 @@ foreach my $page (@pages){
     my $dom = Mojo::DOM->new($html);
 
     foreach my $faq_title ($dom->find('h2')->each) {
-        my $description;
-        foreach my $para ($faq_title->following('p')->each) {
-            $description .= $para;
-        }
-        $description =~ s/\n/ /g;
-        my $title = $faq_title->text;
         my $link = get_link($faq_n, $faq_title);
+        my $title = $faq_title->text;
+        my $description = build_description($faq_title);
         next unless $link;
         printf("%s\n", get_row($title, $description, $link, 'A'));
     }
