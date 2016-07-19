@@ -5,16 +5,16 @@ use warnings;
 
 binmode STDOUT, ":utf8";
 
+use Carp;
+use Cwd qw( getcwd );
+use DBI;
+use File::Spec;
 use IO::All;
 use Mojo::DOM;
-use Cwd qw( getcwd );
-use Util qw( get_row trim_abstract);
 use Moo;
-use File::Spec;
-use DBI;
 use Text::CSV_XS;
 use URI;
-use Carp;
+use Util qw( get_row trim_abstract);
 
 has perldoc_url => ( is => 'lazy' );
 sub _build_perldoc_url {
