@@ -176,6 +176,23 @@ class PythonDataOutput(object):
     def __init__(self, data):
         self.data = data
 
+    def get_data(self, title, url, abstract, anchor):
+        return [
+            title,  # title
+            'A',        # type is article
+            '',         # no redirect data
+            '',         # ignore
+            '',         # no categories
+            '',         # ignore
+            '',         # no related topics
+            '',         # ignore
+            url,        # add an external link back to Django home
+            '',         # no disambiguation
+            '',         # images
+            abstract,   # abstract
+            anchor      # anchor to specific section
+        ]
+
     def create_file(self):
         """
         Iterate through the data and create the needed output.txt file,
@@ -193,23 +210,42 @@ class PythonDataOutput(object):
                 anchor = data_element.get('anchor')
                 url = data_element.get('url')
 
-                list_of_data = [
-                    title,      # title
-                    'A',        # type is article
-                    '',         # no redirect data
-                    '',         # ignore
-                    '',         # no categories
-                    '',         # ignore
-                    '',         # no related topics
-                    '',         # ignore
-                    url,        # add an external link back to Django home
-                    '',         # no disambiguation
-                    '',         # images
-                    abstract,   # abstract
-                    anchor      # anchor to specific section
-                ]
+                list_of_data = []
 
-                output_file.write('{}\n'.format('\t'.join(list_of_data)))
+                # Full entry
+                list_of_data.append(self.get_data(title, url, abstract, anchor))
+
+                # Additional redirects with word basic forms
+                replace_dict = {
+                    'Coercing': 'Coerce',
+                    'Creating': 'Create',
+                    'Slicing': 'Slice',
+                    'Searching': 'Search',
+                    'Removing': 'Remove',
+                    'Assigning': 'Assign',
+                    'Creating': 'Create',
+                    'Modifying': 'Modify'
+                }
+
+                for key, value in replace_dict.items():
+                    if key in title:
+                        title = title.replace(key, value)
+                        list_of_data.append(self.get_data(title, url, abstract, anchor))
+
+                # Create additional entries without "A"
+                for data in list_of_data:
+                    if ' A ' in data[0]:
+                        new_data = data.copy()
+                        new_data[0] = data[0].replace(' A ', ' ')
+                        list_of_data.append(new_data)
+
+                # Populate data-file
+                for data in list_of_data:
+                    tsv = '{}\n'.format('\t'.join(data))
+                    output_file.write(tsv)
+
+
+
 
 
 if __name__ == "__main__":
