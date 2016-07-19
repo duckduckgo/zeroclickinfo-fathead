@@ -5,7 +5,6 @@ use warnings;
 
 binmode STDOUT, ":utf8";
 
-use Carp;
 use Cwd qw( getcwd );
 use DBI;
 use File::Spec;
@@ -148,7 +147,7 @@ sub get_synopsis {
     my $first_code_block = $dom->find('pre')->[0];
 
     if ( !$first_code_block ) {
-        carp "No code block for $module";
+        warn "No code block for $module";
         return {};
     }
 
