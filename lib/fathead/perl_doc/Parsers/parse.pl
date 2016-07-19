@@ -14,6 +14,7 @@ use Moo;
 use Text::CSV_XS;
 use URI;
 use Util qw( get_row trim_abstract);
+use List::Util qw(first);
 
 has perldoc_url => ( is => 'lazy' );
 sub _build_perldoc_url {
@@ -84,14 +85,26 @@ sub doc_fullurl {
     )->canonical
 }
 
+my %parser_map = (
+    faq     => 'parse_faq',
+    module  => 'get_synopsis',
+    default => 'get_anchors',
+);
+
+my @parsers = sort keys %parser_map;
+
+sub get_parser {
+    my $index = shift;
+    my $parser = (first { $index =~ /$_/i } @parsers) // 'default';
+    return $parser_map{$parser};
+}
+
 sub links_from_index {
     my ( $self, $index ) = @_;
     my $path = $self->doc_fullpath( $index );
     return unless ( -f $path );
     my $links;
-    my $parser = ( $index =~ /module/i )
-        ? 'get_synopsis'
-        : 'get_anchors';
+    my $parser = get_parser($index);
 
     my $dom = dom_for_file( $path );
 
@@ -112,12 +125,14 @@ sub links_from_index {
 
 sub insert {
     my ( $self, $data ) = @_;
-    my @keys = keys $data;
+    my %data = %$data;
+    my @keys = keys %data;
     my $sql = sprintf( "INSERT INTO output.txt (%s) VALUES (%s)",
         join( ", ", @keys ),
         join( ", ", map { '?' } @keys ),
     );
-    $self->tsv->do( $sql, undef, @{ $data }{ @keys } );
+    my @values = map { $data{$_} } @keys;
+    $self->tsv->do( $sql, undef, @values );
 }
 
 sub alias {
@@ -151,15 +166,19 @@ sub get_synopsis {
         return {};
     }
 
-    push @{ $articles->{articles} }, {
+    my @articles = @{$articles->{articles} || []};
+    push @articles, {
         title => $title,
         text  => $first_code_block->to_string
     };
+    $articles->{articles} = \@articles;
 
-    push @{ $articles->{aliases} }, {
+    my @aliases = @{$articles->{aliases} || []};
+    push @aliases, {
         new  => $module,
         orig => $title,
     };
+    $articles->{aliases} = \@aliases;
 
     return $articles;
 }
@@ -167,6 +186,46 @@ sub get_synopsis {
 sub get_anchors {
     my ( $self, $dom ) = @_;
     my $articles;
+}
+
+#######################################################################
+#                                FAQs                                 #
+#######################################################################
+
+sub get_faq_link {
+    my ($title) = @_;
+    my $a = $title->previous('a');
+    return unless $a;
+    return $a->attr('name');
+}
+
+sub build_description {
+    my $question = shift;
+    my $description;
+    foreach my $para ($question->following('p')->each) {
+        $description .= $para;
+    }
+    $description =~ s/\n/ /g;
+    return $description;
+}
+
+sub parse_faq {
+    my ($self, $dom) = @_;
+    my %parsed;
+    my @articles;
+    foreach my $faq_title ($dom->find('h2')->each) {
+        my $link = get_faq_link($faq_title);
+        my $title = $faq_title->text;
+        my $description = build_description($faq_title);
+        next unless $link;
+        push @articles, {
+            anchor => $link,
+            title  => $title,
+            text => $description,
+        };
+    }
+    $parsed{articles} = \@articles;
+    return \%parsed;
 }
 
 sub parse_page {
@@ -198,4 +257,3 @@ sub parse {
 }
 
 main->new->parse;
-
