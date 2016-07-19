@@ -86,9 +86,10 @@ sub doc_fullurl {
 }
 
 my %parser_map = (
-    faq     => 'parse_faq',
-    module  => 'get_synopsis',
-    default => 'get_anchors',
+    faq       => 'parse_faq',
+    functions => 'parse_functions',
+    module    => 'get_synopsis',
+    default   => 'get_anchors',
 );
 
 my @parsers = sort keys %parser_map;
@@ -99,6 +100,23 @@ sub get_parser {
     return $parser_map{$parser};
 }
 
+my %link_parser_for_index = (
+    'functions' => 'parse_index_functions_links',
+    'default'   => 'parse_index_links',
+);
+
+sub link_parser_for_index {
+    my $index = shift;
+    $index =~ s/index-//;
+    return $link_parser_for_index{$index} // $link_parser_for_index{default};
+}
+
+sub parse_index_links {
+    my ($self, $dom) = @_;
+    my $content = $dom->find('ul')->[4];
+    return @{$content->find('a')->to_array};
+}
+
 sub links_from_index {
     my ( $self, $index ) = @_;
     my $path = $self->doc_fullpath( $index );
@@ -106,11 +124,15 @@ sub links_from_index {
     my $links;
     my $parser = get_parser($index);
 
+    my $index_link_parser = link_parser_for_index($index);
+
     my $dom = dom_for_file( $path );
 
     my $content = $dom->find('ul')->[4];
 
-    for my $link ( @{ $content->find('a')->to_array } ) {
+    my @links = $self->$index_link_parser($dom);
+
+    foreach my $link (@links) {
         my $name     = $link->content;
         my $filename = $link->attr('href');
         my $basename = $filename =~ s/\.html$//r;
@@ -226,6 +248,44 @@ sub parse_faq {
     }
     $parsed{articles} = \@articles;
     return \%parsed;
+}
+
+#######################################################################
+#                              Functions                              #
+#######################################################################
+
+# TODO: Some functions (e.g., 'xor') are documented in 'perlop' so do not
+# receive a good description from this parser.
+my $skip = qr/To get the best experience. |Please note: Many features/;
+sub parse_functions {
+    my ($self, $dom) = @_;
+
+    my $title = $dom->at('title')->text;
+    $title =~ s/\s-\s.*//;
+
+    my $hint = $dom->at('b')->text;
+
+    $dom = $dom->at('div[id="content_body"]');
+
+    my $description;
+    foreach my $n ($dom->find('p, code')->each){
+        next unless $n->content;
+        next if $n->content =~ /$skip/;
+        $description .= $n->content;
+    }
+    return unless $description;
+    $description = trim_abstract($description, 100);
+    $description = "<code><br>$hint<br></code><br>". $description;
+    return {
+        articles => [
+            { title => $title, text => $description }
+        ],
+    };
+}
+
+sub parse_index_functions_links {
+    my ($self, $dom) = @_;
+    return @{$dom->find('a[href^="functions"]')->to_array};
 }
 
 sub parse_page {
