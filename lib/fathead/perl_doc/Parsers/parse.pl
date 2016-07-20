@@ -81,7 +81,7 @@ sub doc_fullpath {
 sub doc_fullurl {
     my ( $self, $part ) = @_;
     URI->new(
-        sprintf( '%s/%s', $self->perldoc_url, $part )
+        sprintf( '%s%s', $self->perldoc_url, $part )
     )->canonical
 }
 
