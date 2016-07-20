@@ -213,7 +213,14 @@ class PythonDataOutput(object):
                 list_of_data = []
 
                 # Full entry
-                list_of_data.append(self.get_data('A', title=title, url=url, abstract=abstract, anchor=anchor))
+                entry = self.get_data(
+                    'A',
+                    title=title,
+                    url=url,
+                    abstract=abstract,
+                    anchor=anchor
+                )
+                list_of_data.append(entry)
 
                 # Additional redirects with word basic forms
                 replace_dict = {
@@ -230,17 +237,32 @@ class PythonDataOutput(object):
                 for key, value in replace_dict.items():
                     if key in title:
                         alternate_title = title.replace(key, value)
-                        list_of_data.append(self.get_data('R', alternate_title, redirect_data=title))
+                        entry = self.get_data(
+                            'R',
+                            alternate_title,
+                            redirect_data=title
+                        )
+                        list_of_data.append(entry)
 
                 # Create additional entries without "A"
                 entries = []
                 for data in list_of_data:
                     if ' A ' in data[0] and data[1] == 'A':
                         alternate_title = data[0].replace(' A ', ' ')
-                        entries.append(self.get_data('R', alternate_title, redirect_data=data[0]))
+                        entry = self.get_data(
+                            'R',
+                            alternate_title,
+                            redirect_data=data[0]
+                        )
+                        entries.append(entry)
                     elif ' A ' in data[2] and data[1] == 'R':
                         alternate_title = data[0].replace(' A ', ' ')
-                        entries.append(self.get_data('R', alternate_title, redirect_data=data[2]))
+                        entry = self.get_data(
+                            'R',
+                            alternate_title,
+                            redirect_data=data[2]
+                        )
+                        entries.append(entry)
 
                 list_of_data += entries
 
@@ -248,9 +270,6 @@ class PythonDataOutput(object):
                 for data in list_of_data:
                     tsv = '{}\n'.format('\t'.join(data))
                     output_file.write(tsv)
-
-
-
 
 
 if __name__ == "__main__":
