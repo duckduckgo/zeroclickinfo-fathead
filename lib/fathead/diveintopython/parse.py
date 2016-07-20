@@ -176,21 +176,21 @@ class PythonDataOutput(object):
     def __init__(self, data):
         self.data = data
 
-    def get_data(self, title, url, abstract, anchor):
+    def get_data(self, entry_type, title, redirect_data='', url='', abstract='', anchor=''):
         return [
-            title,  # title
-            'A',        # type is article
-            '',         # no redirect data
-            '',         # ignore
-            '',         # no categories
-            '',         # ignore
-            '',         # no related topics
-            '',         # ignore
-            url,        # add an external link back to Django home
-            '',         # no disambiguation
-            '',         # images
-            abstract,   # abstract
-            anchor      # anchor to specific section
+            title,           # title
+            entry_type,      # type is article
+            redirect_data,   # no redirect data
+            '',              # ignore
+            '',              # no categories
+            '',              # ignore
+            '',              # no related topics
+            '',              # ignore
+            url,             # add an external link back to Dive Into Python
+            '',              # no disambiguation
+            '',              # images
+            abstract,        # abstract
+            anchor           # anchor to specific section
         ]
 
     def create_file(self):
@@ -213,7 +213,7 @@ class PythonDataOutput(object):
                 list_of_data = []
 
                 # Full entry
-                list_of_data.append(self.get_data(title, url, abstract, anchor))
+                list_of_data.append(self.get_data('A', title=title, url=url, abstract=abstract, anchor=anchor))
 
                 # Additional redirects with word basic forms
                 replace_dict = {
@@ -229,15 +229,20 @@ class PythonDataOutput(object):
 
                 for key, value in replace_dict.items():
                     if key in title:
-                        title = title.replace(key, value)
-                        list_of_data.append(self.get_data(title, url, abstract, anchor))
+                        alternate_title = title.replace(key, value)
+                        list_of_data.append(self.get_data('R', alternate_title, redirect_data=title))
 
                 # Create additional entries without "A"
+                entries = []
                 for data in list_of_data:
-                    if ' A ' in data[0]:
-                        new_data = data.copy()
-                        new_data[0] = data[0].replace(' A ', ' ')
-                        list_of_data.append(new_data)
+                    if ' A ' in data[0] and data[1] == 'A':
+                        alternate_title = data[0].replace(' A ', ' ')
+                        entries.append(self.get_data('R', alternate_title, redirect_data=data[0]))
+                    elif ' A ' in data[2] and data[1] == 'R':
+                        alternate_title = data[0].replace(' A ', ' ')
+                        entries.append(self.get_data('R', alternate_title, redirect_data=data[2]))
+
+                list_of_data += entries
 
                 # Populate data-file
                 for data in list_of_data:
