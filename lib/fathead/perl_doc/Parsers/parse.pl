@@ -87,19 +87,26 @@ sub doc_fullurl {
     )->canonical
 }
 
+# Parsers for the 'index-*' keys will run on *all* files produced from parsing
+# links in the index files.
+# Parsers for other keys (basenames) will only run on the matching file.
 my %parser_map = (
-    faq       => 'parse_faq',
-    functions => 'parse_functions',
-    module    => 'get_synopsis',
-    default   => 'get_anchors',
+    'index-faq'       => ['parse_faq'],
+    'index-functions' => ['parse_functions'],
+    'index-module'    => ['get_synopsis'],
+    'index-default'   => ['get_anchors'],
+    'perlre'          => [
+        'parse_regex_modifiers',
+    ],
 );
 
 my @parsers = sort keys %parser_map;
 
-sub get_parser {
-    my $index = shift;
-    my $parser = (first { $index =~ /$_/i } @parsers) // 'default';
-    return $parser_map{$parser};
+sub get_parsers {
+    my ($index, $basename) = @_;
+    my $index_parsers = $parser_map{$index};
+    my $basename_parsers = $parser_map{$basename};
+    return (@{$index_parsers || []}, @{$basename_parsers || []});
 }
 
 my %link_parser_for_index = (
@@ -124,7 +131,6 @@ sub links_from_index {
     my $path = $self->doc_fullpath( $index );
     return unless ( -f $path );
     my $links;
-    my $parser = get_parser($index);
 
     my $index_link_parser = link_parser_for_index($index);
 
@@ -138,10 +144,11 @@ sub links_from_index {
         my $name     = $link->content;
         my $filename = $link->attr('href');
         my $basename = $filename =~ s/\.html$//r;
+        my @parsers = get_parsers($index, $basename);
 
         $links->{ $name }->{ basename } = $basename;
         $links->{ $name }->{ filename } = $filename;
-        $links->{ $name }->{ parser } = $parser;
+        $links->{ $name }->{ parsers } = \@parsers;
     }
 
     return $links;
@@ -295,17 +302,21 @@ sub parse_page {
     my $fullpath = $self->doc_fullpath( $page->{basename} );
     my $url = $self->doc_fullurl( $page->{filename} );
     my $parser = $page->{parser};
-    my $parsed = $self->$parser( dom_for_file( $fullpath ) );
-
-    for my $article ( @{ $parsed->{articles} } ) {
-        my $anchored_url = $url;
-        $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
-
-        $self->entry( $article->{title}, $article->{text}, $anchored_url );
+    my @parsed;
+    foreach my $parser (@{$page->{parsers}}) {
+        push @parsed, $self->$parser(dom_for_file($fullpath));
     }
+    foreach my $parsed (@parsed) {
+        for my $article ( @{ $parsed->{articles} } ) {
+            my $anchored_url = $url;
+            $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
 
-    for my $alias ( @{ $parsed->{aliases} } ) {
-        $self->alias( $alias->{new}, $alias->{orig} );
+            $self->entry( $article->{title}, $article->{text}, $anchored_url );
+        }
+
+        for my $alias ( @{ $parsed->{aliases} } ) {
+            $self->alias( $alias->{new}, $alias->{orig} );
+        }
     }
 }
 
