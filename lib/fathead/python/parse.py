@@ -72,7 +72,7 @@ class PythonDataParser(object):
             if methods:
                 self.method_sections.extend(methods)
 
-        intro = soup_data.find_all('p', limit=3)
+        intro = soup_data.find_all('p', limit=2)
         for p in intro:
             self.intro_text += p.text.replace('  ', ' ').replace('\n', ' ').replace('\\n', r'\\n')
 
@@ -172,14 +172,14 @@ class PythonDataParser(object):
         if id_tag:
             tag_parts = id_tag.split('.')
 
-            # if it doesnt fit the patter
+            # if it doesnt fit the pattern
             #  module.class.method
             # then concat the remaining parts into the method name
             # ex: email.message.EmailMessage.is_attachment
             if len(tag_parts) == 3:
                 return tag_parts
             elif len(tag_parts) > 3:
-                return tag_parts[0], tag_parts[1], '.'.join(tag_parts[3:])
+                return tag_parts[0], tag_parts[1], '.'.join(tag_parts[2:])
         return ['','','']
 
     def create_url(self, anchor):
@@ -208,7 +208,7 @@ class PythonDataParser(object):
                 'method_signature': '',
                 'first_paragraph': self.intro_text,
                 'url': self.create_url('')
-                }
+            }
             data.append(data_elements)
 
         for function_section in self.function_sections:
