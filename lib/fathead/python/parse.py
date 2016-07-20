@@ -54,15 +54,31 @@ class PythonDataParser(object):
         """
         self.parsed_data = None
         self.function_sections = []
+        self.method_sections = []
+        self.intro_text = ''
+        self.title = ''
+
         self.file_being_used = data_object.get_file()
 
         soup_data = BeautifulSoup(data_object.get_raw_data(), 'html.parser')
         sections = soup_data.find_all('div', {'class': 'section'})
-        
+
         for section in sections:
             functions = section.find_all('dl', {'class': 'function'})
             if functions:
                 self.function_sections.extend(functions)
+
+            methods = section.find_all('dl', {'class': 'method'})
+            if methods:
+                self.method_sections.extend(methods)
+
+        intro = soup_data.find_all('p', limit=2)
+        for p in intro:
+            self.intro_text += p.text.replace('  ', ' ').replace('\n', ' ').replace('\\n', r'\\n')
+
+        title = soup_data.find('a', {'class': 'reference internal'})
+        if title:
+            self.title = title.text
 
     def parse_for_module_name(self, section):
         """
@@ -78,7 +94,8 @@ class PythonDataParser(object):
         if module_name:
             return module_name.text.rstrip('.')
         return ''
-                                          
+
+
     def parse_for_function_name(self, section):
         """
         Returns the function name
@@ -141,6 +158,30 @@ class PythonDataParser(object):
             return '<pre><code>{}</code></pre>'.format(dt.text.replace('¶', '').replace('\n', '').replace('\\n', r'\\n'))
         return ''
 
+    def parse_for_class_method(self, section):
+        """
+        Returns the class.module.method signature
+        Args:
+            section: A section of parsed HTML that represents a method definition
+
+        Returns:
+            The method signature
+
+        """
+        id_tag = section.find('dt').get('id')
+        if id_tag:
+            tag_parts = id_tag.split('.')
+
+            # if it doesnt fit the pattern
+            #  module.class.method
+            # then concat the remaining parts into the method name
+            # ex: email.message.EmailMessage.is_attachment
+            if len(tag_parts) == 3:
+                return tag_parts
+            elif len(tag_parts) > 3:
+                return tag_parts[0], tag_parts[1], '.'.join(tag_parts[2:])
+        return ['','','']
+
     def create_url(self, anchor):
         """
         Helper method to create URL back to document
@@ -159,7 +200,17 @@ class PythonDataParser(object):
         Main gateway into parsing the data. Will retrieve all necessary data elements.
         """
         data = []
-        
+
+        if self.intro_text and self.title:
+            data_elements = {
+                'module': self.title,
+                'function': '',
+                'method_signature': '',
+                'first_paragraph': self.intro_text,
+                'url': self.create_url('')
+            }
+            data.append(data_elements)
+
         for function_section in self.function_sections:
             module = self.parse_for_module_name(function_section)
             function = self.parse_for_function_name(function_section)
@@ -167,7 +218,6 @@ class PythonDataParser(object):
                 method_signature = self.parse_for_method_signature(function_section)
                 first_paragraph = self.parse_for_first_paragraph(function_section)
                 anchor = self.parse_for_anchor(function_section)
-
                 url = self.create_url(anchor)
 
                 data_elements = {
@@ -175,7 +225,24 @@ class PythonDataParser(object):
                     'function': function,
                     'method_signature': method_signature,
                     'first_paragraph': first_paragraph,
-                    'url': url
+                    'url': url,
+                }
+
+                data.append(data_elements)
+        
+        for method_section in self.method_sections:
+            module, class_name, method = self.parse_for_class_method(method_section)
+            if method:
+                method_signature = self.parse_for_method_signature(method_section)
+                first_paragraph = self.parse_for_first_paragraph(method_section)
+                url = self.create_url("#" + '.'.join([module,class_name,method]))
+
+                data_elements = {
+                    'module': module,
+                    'function':  class_name + "." + method,
+                    'method_signature': method_signature,
+                    'first_paragraph': first_paragraph,
+                    'url': url,
                 }
 
                 data.append(data_elements)
@@ -265,7 +332,6 @@ class PythonDataOutput(object):
                             ''                          # no url
                         ]
                         output_file.write('{}\n'.format('\t'.join(list_of_data)))
-
 
 if __name__ == "__main__":
     for dir_path, dir_name, file_names in os.walk(DOWNLOADED_HTML_PATH):
