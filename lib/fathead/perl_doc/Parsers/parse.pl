@@ -297,6 +297,32 @@ sub parse_index_functions_links {
     return @{$dom->find('a[href^="functions"]')->to_array};
 }
 
+#######################################################################
+#                         Regular Expressions                         #
+#######################################################################
+
+sub parse_regex_modifiers {
+    my ($self, $dom) = @_;
+    my $mod_section = $dom->at('a[name="Modifiers"]')->following('ul')->first;
+    my @articles;
+    foreach my $mod ($mod_section->find('li')->each) {
+        next unless $mod->find('a[name]')->first;
+        my $link = $mod->find('a')->[0];
+        my $anchor = "*$link->{name}*";
+        my $title = $link->following('b')->first->text;
+        my $text = $mod->find('p')->join();
+        $text =~ s/\n/ /g;
+        push @articles, {
+            title  => $title,
+            text   => $text,
+            anchor => $anchor,
+        };
+    }
+    return {
+        articles => \@articles,
+    }
+}
+
 sub parse_page {
     my ( $self, $page ) = @_;
     my $fullpath = $self->doc_fullpath( $page->{basename} );
