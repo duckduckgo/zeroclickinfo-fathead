@@ -58,6 +58,8 @@ sub _build_tsv {
     my $dbh = DBI->connect ("dbi:CSV:", undef, undef, {
         csv_sep_char     => "\t",
         csv_class        => "Text::CSV_XS",
+        csv_quote_char   => '',
+        csv_escape_char  => '',
     });
 
     $dbh->do ( sprintf ( "CREATE TABLE output.txt (%s)",
