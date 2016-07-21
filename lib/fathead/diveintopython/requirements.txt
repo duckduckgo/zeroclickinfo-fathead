@@ -1,0 +1,2 @@
+beautifulsoup4==4.4.1
+pytidylib==0.2.4
