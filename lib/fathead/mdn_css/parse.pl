@@ -8,6 +8,8 @@ use Carp 'croak';
 use Mojo::DOM;
 use Mojo::Util 'slurp';
 use Text::Trim;
+use HTML::Strip;
+use HTML::Entities; # Used by HTML::Strip
 use Data::Printer return_value => 'dump';
 
 =begin
@@ -67,10 +69,13 @@ foreach my $html_file ( glob 'download/*.html' ) {
     }
 
     # Clean title and check if article already processed
-    # TODO
-    #     Some links point to page anchors!
-    #     Need to account this
-    #     e.g. <px>
+    # # TODO
+    #   Some links point to page anchors!
+    #   Need to account this and find correct page content
+    #   E.g. units of <length>: px, em, cm,
+    #   https://developer.mozilla.org/en-US/docs/Web/CSS/length#px
+    #
+    #   Need to grab <dt id=$title>
     my $title_clean = clean_string($title);
     if (exists $seen{$title_clean}){
         say "SKIPPING: $title_clean!";
@@ -81,19 +86,37 @@ foreach my $html_file ( glob 'download/*.html' ) {
 
     # Get syntax code snippet
     my $code;
-    if (my $syntax = $dom->at('#Syntax')) {
-        if ($syntax->next->matches('pre')){
-            $code = $syntax->next->matches('code')
-                    ? $syntax->next->next->text
-                    : $syntax->next->text;
 
-            $code =~ s/\r?\n/\\n/g;
-            $description = code_block($code, $description);
+    # TODO
+    # Preserve HTML and use the same lib as Mozilla
+    # (http://prismjs.com/) to render code?
+
+    my $hs = HTML::Strip->new(emit_spaces => 0);
+    if (my $pre = $dom->at('#Syntax ~ pre')) {
+        say "\nWE HAVE A <PRE>!\n";
+
+        if ($pre->child_nodes->first->matches('code')) {
+            say "\nAND WE HAVE A <CODE>!\n";
+            $code = $pre->child_nodes->first->text;
         }
+        else {
+            say $pre->to_string;
+            $code = $hs->parse( $pre->to_string );
+			$code =~ tr/ / /s;
+            say '';
+            say $code;
+        }
+
+        $code = trim($code);
+        say $code;
+        $code =~ s/\r?\n/\\n/g;
     }
+	$hs->eof;
+    $description = build_abstract($description, $code);
 
     next unless $title && $link && $description;
 
+    say "";
     say "TITLE: $title";
     say "LINK: $link";
     say "DESCRIPTION: $description";
@@ -102,8 +125,8 @@ foreach my $html_file ( glob 'download/*.html' ) {
 
     # Check for CSS Functions
     # e.g. "not()"
-    # Rename replace "()" with "function" in title
-    # e.g. "not function"
+    # Replace "()" with "function" in title
+    # e.g. "not()" - > "not function"
     if ($title_clean =~ m/\(\)$/){
         say "Found Function: $title_clean";
         my $temp = $title_clean;
@@ -155,9 +178,11 @@ sub clean_string {
 }
 
 
-sub code_block {
-    my ($code, $description) = @_;
-    return "<p>$description</p><br><pre><code>$code</code></pre>";
+sub build_abstract {
+    my ($description, $code) = @_;
+    my $out = "<p>$description</p>";
+    $out .= "<br><pre><code>$code</code></pre>" if $code;
+    return $out;
 }
 
 
