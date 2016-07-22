@@ -2,11 +2,11 @@ import os
 
 from bs4 import BeautifulSoup
 
-PYTHON_DOC_BASE_URL = 'http://sass-lang.com/documentation/Sass/Script/Functions.html'
-DOWNLOADED_HTML_PATH = 'download/Functions.html'
+SASS_DOC_BASE_URL = 'http://sass-lang.com/documentation/file.SASS_REFERENCE.html'
+DOWNLOADED_HTML_PATH = 'download/file.SASS_REFERENCE.html'
 
 
-class PythonData(object):
+class Data(object):
     """
     Object responsible for loading raw HTML data from Python docs:
     """
@@ -42,7 +42,7 @@ class PythonData(object):
         return self.FILE
 
 
-class PythonDataParser(object):
+class DataParser(object):
     """
     Object responsible for parsing the raw HTML that contains Python data
     """
@@ -56,29 +56,39 @@ class PythonDataParser(object):
         self.function_sections = []
         self.file_being_used = data_object.get_file()
 
-        soup_data = BeautifulSoup(data_object.get_raw_data(), 'html.parser')
-        sections = soup_data.find_all('dl', {'class': None})
+        self.soup_data = BeautifulSoup(data_object.get_raw_data(), 'html.parser')
+        table_of_contents = self.soup_data.find(class_="maruku_toc")
+        sections = table_of_contents.find_all('li')
         for section in sections:
-            function_names = section.find_all('dt')
-            function_descriptions = section.find_all('dd')
-            for i in range(len(function_names)):
-                self.function_sections.append([function_names[i], function_descriptions[i]])
-                             
-    def parse_for_function_name(self, section):
+                section_id = section.find('a')
+                section_id = section_id['href']
+                heading = self.soup_data.find(id=section_id[1:])
+                self.function_sections.append(heading)
+
+                                          
+    def parse_for_name(self, section):
         """
-        Returns the function name
+        Returns the section name
         Args:
             section: A section of parsed HTML that represents a function definition
 
         Returns:
-            Name of function
+            Name of section
 
         """
-        function_name = section.find('a')
-        if function_name:
-            #return the module name without paramaters
-            return function_name.text.split('(')[0]
-        return ''
+        return section.text
+    
+    def parse_for_id(self, section):
+        """
+        Returns the section id
+        Args:
+            section: A section of parsed HTML that represents a function definition
+
+        Returns:
+            id of section
+
+        """
+        return '#'+ section.get('id')
 
     def parse_for_description(self, section):
         """
@@ -91,41 +101,10 @@ class PythonDataParser(object):
             Function description
 
         """
-        
-        return section.text.replace('  ', ' ').replace('\n', ' ').replace('\\n', r'\\n')
+        next_tag = section.find_next('p')
+        return next_tag.text
 
-    def parse_for_anchor(self, section):
-        """
-        Returns the anchor link to specific function doc
-        Args:
-            section: A section of parsed HTML that represents a function definition
-
-        Returns:
-            The href value of the link to doc
-
-        """
-        a_tag = section.find('a')
-        if a_tag:
-            return a_tag['href']
-        return ''
-
-    def parse_for_method_signature(self, section):
-        """
-        Returns the method signature
-        Args:
-            section: A section of parsed HTML that represents a function definition
-
-        Returns:
-            The method signature
-
-        """
-        method_sig = section.find('a')
-        if method_sig:
-            #return the function name with paramaters
-            return '<pre><code>'+method_sig.text+'</code></pre>'
-        return ''
-
-    def create_url(self, anchor):
+    def create_url(self, id):
         """
         Helper method to create URL back to document
         Args:
@@ -135,7 +114,7 @@ class PythonDataParser(object):
             Full URL to function on the python doc
 
         """
-        return PYTHON_DOC_BASE_URL + anchor
+        return SASS_DOC_BASE_URL + id
 
     def parse_for_data(self):
         """
@@ -144,21 +123,18 @@ class PythonDataParser(object):
         data = []
         
         for function_section in self.function_sections:
-            function = self.parse_for_function_name(function_section[0])
-            if function:
-                method_signature = self.parse_for_method_signature(function_section[0])
-                description = self.parse_for_description(function_section[1])
-                anchor = self.parse_for_anchor(function_section[0])
+            name = self.parse_for_name(function_section)
+            if name:
+                description = self.parse_for_description(function_section)
+                id = self.parse_for_id(function_section)
 
-                url = self.create_url(anchor)
+                url = self.create_url(id)
 
                 data_elements = {
-                    'function': function,
-                    'method_signature': method_signature,
+                    'name': name,
                     'description': description,
                     'url': url
                 }
-
                 data.append(data_elements)
 
         self.parsed_data = data
@@ -172,27 +148,41 @@ class PythonDataParser(object):
         return self.parsed_data
 
 
-class PythonDataOutput(object):
+class DataOutput(object):
     """
     Object responsible for outputting data into the output.txt file
     """
     def __init__(self, data):
         self.data = data
 
+    def create_names_from_data(self, data_element):
+        """
+        Figure out the name of the function. Will contain the module name if one exists.
+        Args:
+            data_element: Incoming data dict
+
+        Returns:
+            Name, with whitespace stripped out
+
+        """
+        function = data_element.get('function')
+
+        dotted_name = '{}{}{}'.format(function, '.' if function  else '', function)
+        spaced_name = '{} {}'.format(function, function)
+
+        return dotted_name.strip(), spaced_name.strip()
+
     def create_file(self):
         """
         Iterate through the data and create the needed output.txt file, appending to file as necessary.
 
         """
-        with open('output.txt', 'w') as output_file:
+        with open('output.txt', 'a') as output_file:
             for data_element in self.data:
-                if data_element.get('function'):
-                    method_signature = data_element.get('method_signature').encode('utf-8')
+                if data_element.get('name'):
                     description = data_element.get('description').encode('utf-8')
-                    name = data_element.get('function').encode('utf-8')
-
-                    abstract = method_signature + '<br>' +description
                     url = data_element.get('url').encode('utf-8')
+                    name = data_element.get('name').encode('utf-8')
                     list_of_data = [
                         name,                       # unique name
                         'A',                        # type is article
@@ -202,20 +192,23 @@ class PythonDataOutput(object):
                         '',                         # ignore
                         '',                         # no related topics
                         '',                         # ignore
-                        'http://sass-lang.com/',    # add an external link back to SASS home
+                        '',                         # external link 
                         '',                         # no disambiguation
                         '',                         # images
-                        abstract,                   # abstract
+                        description,                   # abstract
                         url                         # url to doc
                     ]
-                    print list_of_data
                     line = '\t'.join(list_of_data)
                     output_file.write(line+'\n')
 
+    
+
+
+
 if __name__ == "__main__":
-    file_path = 'download/Functions.html'
-    data = PythonData(file_path)
-    parser = PythonDataParser(data)
+    file_path = 'download/file.SASS_REFERENCE.html'
+    data = Data(file_path)
+    parser = DataParser(data)
     parser.parse_for_data()
-    output = PythonDataOutput(parser.get_data())
+    output = DataOutput(parser.get_data())
     output.create_file()

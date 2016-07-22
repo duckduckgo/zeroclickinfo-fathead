@@ -1,3 +1,4 @@
 #!/bin/bash
 
-python parse.py
+python parse_functions.py
+python parse_reference.py
