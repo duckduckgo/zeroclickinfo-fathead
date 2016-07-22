@@ -93,30 +93,26 @@ foreach my $html_file ( glob 'download/*.html' ) {
 
     my $hs = HTML::Strip->new(emit_spaces => 0);
     if (my $pre = $dom->at('#Syntax ~ pre')) {
-        say "\nWE HAVE A <PRE>!\n";
 
         if ($pre->child_nodes->first->matches('code')) {
-            say "\nAND WE HAVE A <CODE>!\n";
             $code = $pre->child_nodes->first->text;
         }
         else {
-            say $pre->to_string;
             $code = $hs->parse( $pre->to_string );
-			$code =~ tr/ / /s;
-            say '';
-            say $code;
+            $code =~ tr/ / /s;
         }
 
         $code = trim($code);
+        say '';
         say $code;
         $code =~ s/\r?\n/\\n/g;
     }
-	$hs->eof;
+    $hs->eof;
     $description = build_abstract($description, $code);
 
     next unless $title && $link && $description;
 
-    say "";
+    say '';
     say "TITLE: $title";
     say "LINK: $link";
     say "DESCRIPTION: $description";
@@ -180,7 +176,9 @@ sub clean_string {
 
 sub build_abstract {
     my ($description, $code) = @_;
-    my $out = "<p>$description</p>";
+    say "NO DESCRIPTION!" if $description eq "";
+    my $out;
+    $out .= "<p>$description</p>" if $description;
     $out .= "<br><pre><code>$code</code></pre>" if $code;
     return $out;
 }
