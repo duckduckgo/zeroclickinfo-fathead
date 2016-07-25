@@ -210,7 +210,7 @@ class PythonDataOutput(object):
                 '',                         # ignore
                 URL_ROOT,                   # add an external link back to Scikit home
                 '',                         # no disambiguation
-                image,                         # images
+                image,                      # images
                 abstract,                   # abstract
                 anchor                      # url to doc
             ]
