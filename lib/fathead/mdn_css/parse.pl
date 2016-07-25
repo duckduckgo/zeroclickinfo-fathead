@@ -9,7 +9,7 @@ use Mojo::DOM;
 use Mojo::Util 'slurp';
 use Text::Trim;
 use HTML::Strip;
-use HTML::Entities; # Used by HTML::Strip
+use HTML::Entities;    # Used by HTML::Strip
 use Data::Printer return_value => 'dump';
 
 =begin
@@ -43,7 +43,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
   ref="https://developer.mozilla.org/en-US/docs/Web/CSS/:right" >
 =cut
 
-    my ($title, $link, $description, @entries);
+    my ( $title, $link, $description, @entries );
 
     # Get canonical link to article
     $link = $dom->find('link')->first(
@@ -77,7 +77,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
     #
     #   Need to grab <dt id=$title>
     my $title_clean = clean_string($title);
-    if (exists $seen{$title_clean}){
+    if ( exists $seen{$title_clean} ) {
         say "SKIPPING: $title_clean!";
         next;
     }
@@ -91,10 +91,10 @@ foreach my $html_file ( glob 'download/*.html' ) {
     # Preserve HTML and use the same lib as Mozilla
     # (http://prismjs.com/) to render code?
 
-    my $hs = HTML::Strip->new(emit_spaces => 0);
-    if (my $pre = $dom->at('#Syntax ~ pre')) {
+    my $hs = HTML::Strip->new( emit_spaces => 0 );
+    if ( my $pre = $dom->at('#Syntax ~ pre') ) {
 
-        if ($pre->child_nodes->first->matches('code')) {
+        if ( $pre->child_nodes->first->matches('code') ) {
             $code = $pre->child_nodes->first->text;
         }
         else {
@@ -108,7 +108,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
         $code =~ s/\r?\n/\\n/g;
     }
     $hs->eof;
-    $description = build_abstract($description, $code);
+    $description = build_abstract( $description, $code );
 
     next unless $title && $link && $description;
 
@@ -117,20 +117,20 @@ foreach my $html_file ( glob 'download/*.html' ) {
     say "LINK: $link";
     say "DESCRIPTION: $description";
 
-    push @entries, make_article($title_clean, $description, $link);
+    push @entries, make_article( $title_clean, $description, $link );
 
     # Check for CSS Functions
     # e.g. "not()"
     # Replace "()" with "function" in title
     # e.g. "not()" - > "not function"
-    if ($title_clean =~ m/\(\)$/){
+    if ( $title_clean =~ m/\(\)$/ ) {
         say "Found Function: $title_clean";
         my $temp = $title_clean;
         $temp =~ s/\(\)$/ function/;
-        push @entries, make_redirect($temp, $title);
+        push @entries, make_redirect( $temp, $title );
         $temp = $title_clean;
         $temp =~ s/\(\)$//;
-        push @entries, make_redirect($temp, $title);
+        push @entries, make_redirect( $temp, $title );
     }
 
     foreach my $entry (@entries) {
@@ -139,7 +139,6 @@ foreach my $html_file ( glob 'download/*.html' ) {
 }
 
 # PRIVATE FUNCTIONS
-
 
 sub clean_string {
     my $input = shift;
@@ -152,30 +151,29 @@ sub clean_string {
 
     $clean =~ s/[:<>@]//g;
 
-    if ($clean ne $input) {
+    if ( $clean ne $input ) {
         say "Input: $input";
         say "Cleaned: $clean";
     }
 
-    if ($clean =~ m/$paren_re/){
+    if ( $clean =~ m/$paren_re/ ) {
         say "Has parens!";
         my $paren_text = trim($1);
         say "Paren Text: $paren_text";
         $clean =~ s/$paren_re//;
         trim($clean);
         say "Clean Now: $clean";
-        unless ($clean eq $paren_text){
+        unless ( $clean eq $paren_text ) {
             say "Paren Text is Different!";
             $clean = "$clean $paren_text";
         }
         say "Clean Final: $clean";
     }
-    return $clean
+    return $clean;
 }
 
-
 sub build_abstract {
-    my ($description, $code) = @_;
+    my ( $description, $code ) = @_;
     say "NO DESCRIPTION!" if $description eq "";
     my $out;
     $out .= "<p>$description</p>" if $description;
@@ -183,16 +181,16 @@ sub build_abstract {
     return $out;
 }
 
-
 sub make_article {
-    my ($title, $description, $link) = @_;
-    my @data = ($title, 'A', '', '', '', '', '', '', '', '', '', $description, $link);
+    my ( $title, $description, $link ) = @_;
+    my @data =
+      ( $title, 'A', '', '', '', '', '', '', '', '', '', $description, $link );
     return join "\t", @data;
 }
 
-
 sub make_redirect {
-    my ($title, $redirect) = @_;
-    my @data = ($title, 'R', $redirect, '', '', '', '', '', '', '', '', '', '');
+    my ( $title, $redirect ) = @_;
+    my @data =
+      ( $title, 'R', $redirect, '', '', '', '', '', '', '', '', '', '' );
     return join "\t", @data;
 }
