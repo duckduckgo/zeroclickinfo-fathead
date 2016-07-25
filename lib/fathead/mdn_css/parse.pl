@@ -199,7 +199,7 @@ sub build_abstract {
 sub make_article {
     my ( $title, $description, $link, $external_links ) = @_;
     my @data = (
-        $title, 'A', '', '', '', '', '', '', '', $external_links, '',
+        $title, 'A', '', '', '', '', '', '', $external_links, '', '',
         $description, $link
     );
     return join "\t", @data;
