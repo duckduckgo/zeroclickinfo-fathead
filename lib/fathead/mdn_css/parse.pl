@@ -6,6 +6,7 @@ use warnings;
 
 use Carp 'croak';
 use Mojo::DOM;
+use Mojo::URL;
 use Mojo::Util 'slurp';
 use Text::Trim;
 use HTML::Strip;
@@ -112,12 +113,26 @@ foreach my $html_file ( glob 'download/*.html' ) {
 
     next unless $title && $link && $description;
 
+    #get external links
+    my $external_links;
+    my $div_external = $dom->at('div#toc');
+    if ($div_external) {
+        my $external_lis_collection = $div_external->find('li');
+
+        #link is used to make link absolute
+        $external_links =
+          make_external_links( $link, $external_lis_collection );
+    }
+    $external_links ||= '';
+
     say '';
     say "TITLE: $title";
     say "LINK: $link";
     say "DESCRIPTION: $description";
+    say "EXTERNAL LINKS $external_links ";
 
-    push @entries, make_article( $title_clean, $description, $link );
+    push @entries,
+      make_article( $title_clean, $description, $link, $external_links );
 
     # Check for CSS Functions
     # e.g. "not()"
@@ -182,10 +197,29 @@ sub build_abstract {
 }
 
 sub make_article {
-    my ( $title, $description, $link ) = @_;
-    my @data =
-      ( $title, 'A', '', '', '', '', '', '', '', '', '', $description, $link );
+    my ( $title, $description, $link, $external_links ) = @_;
+    my @data = (
+        $title, 'A', '', '', '', '', '', '', '', $external_links, '',
+        $description, $link
+    );
     return join "\t", @data;
+}
+
+sub make_external_links {
+    my ( $link, $lis_collection ) = @_;
+    my $external_links;
+    my $base = Mojo::URL->new($link);
+    for my $li ( $lis_collection->each ) {
+        my $a = $li->at('a');
+        my $href = $a->attr('href') if $a;
+        if ($href) {
+            my $absolute_link = Mojo::URL->new($href)->to_abs($base);
+            my $link_text     = $a->text;
+            $external_links .= sprintf '[%s %s]\\\n', $link_text,
+              $absolute_link;
+        }
+    }
+    return $external_links;
 }
 
 sub make_redirect {
