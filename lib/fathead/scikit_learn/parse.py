@@ -5,7 +5,6 @@ import os
 from bs4 import BeautifulSoup
 
 URL_ROOT = 'http://scikit-learn.org/stable/auto_examples/index.html'
-IMAGE_ROOT = 'http://scikit-learn.org/stable/'
 DOWNLOADED_HTML_PATH = 'download/'
 
 class PythonData(object):
@@ -78,36 +77,14 @@ class PythonDataParser(object):
         # Get canonical link
         href = self.soup.find('link', {'rel': 'canonical'}).get('href')
 
-        # Image
-        image = self.parse_image(body_section)
-
         section = {
             'title': title,
             'content': content,
             'first_paragraph': first_paragraph,
             'example': '<br><pre><code>{}</code></pre>'.format(example),
-            'image': image,
             'anchor': href
         }
         self.parsed_data.append(section)
-
-    def parse_image(self, body_soup):
-        """
-        Returns image used in examples
-
-        Args:
-            body_soup: BeautifulSoup object containing section body
-        Returns:
-            Image formatted for tsv
-        """
-        image_element = body_soup.find('img', {'class': 'align-center'})
-        image_data = ''
-        if image_element:
-            src = image_element.get('src')
-            src = src.replace('../../', IMAGE_ROOT)
-            src = src.replace('../', IMAGE_ROOT)
-            image_data = '[[Image:{}]]'.format(src)
-        return image_data
 
     def parse_example(self, body_soup):
         """
@@ -188,16 +165,23 @@ class PythonDataOutput(object):
         self.data = data
         self.output_file = output_file
 
+    def truncate(self, text, length):
+        if len(text) <= length:
+            return text
+        return "{}...".format(text[:length].rsplit(' ', 1)[0])
+
     def create_file(self):
         """
         Iterate through the data and create the needed output.txt file, appending to file as necessary.
         """
         for data_element in self.data:
             title = data_element.get('title')
-            abstract = data_element.get('example') or data_element.get('content') or data_element.get('first_paragraph')
+            abstract = self.truncate(data_element.get('first_paragraph'), 400)
+            example = data_element.get('example')
+            if example:
+                abstract = "{}<br>{}".format(abstract, example)
             abstract = abstract.replace('\n', '\\n')
             anchor = data_element.get('anchor')
-            image = data_element.get('image')
 
             list_of_data = [
                 title,                      # unique name
@@ -210,7 +194,7 @@ class PythonDataOutput(object):
                 '',                         # ignore
                 URL_ROOT,                   # add an external link back to Scikit home
                 '',                         # no disambiguation
-                image,                      # images
+                '',                         # images
                 abstract,                   # abstract
                 anchor                      # url to doc
             ]
