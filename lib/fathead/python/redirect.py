@@ -36,7 +36,7 @@ class Entry(object):
             Throws BadEntryException if data is invalid.
         """
         if isinstance(input_obj, str):
-            processed = input_obj.split('\t', 13)
+            processed = input_obj.split('\t')
             self.data = processed
         elif isinstance(input_obj, list):
             self.data = input_obj
