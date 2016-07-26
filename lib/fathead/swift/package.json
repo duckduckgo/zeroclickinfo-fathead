@@ -1,0 +1,11 @@
+{
+  "name": "swift-docs",
+  "version": "1.0.0",
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "cheerio": "^0.20.0",
+    "es6-module-loader": "^0.17.11",
+    "request": "^2.74.0"
+  }
+}
