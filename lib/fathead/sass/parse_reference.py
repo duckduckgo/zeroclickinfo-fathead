@@ -76,7 +76,10 @@ class DataParser(object):
             Name of section
 
         """
-        return section.text
+        if section.text[0]==':':
+            return str(section.text.encode('utf-8'))
+        else:
+            return str(section.text.encode('utf-8')).split(':')[0]
     
     def parse_for_id(self, section):
         """
@@ -101,8 +104,14 @@ class DataParser(object):
             Function description
 
         """
-        next_tag = section.find_next('p')
-        return next_tag.text
+        next_para = section.find_next('p')
+        description = str(next_para.text.encode('utf-8'))
+        next_tag  = next_para.find_next_sibling()
+        if next_tag.name=="pre" or next_tag.name=="code":
+            text = str(next_tag.encode('utf-8'))
+            text = '\\n'.join(text.split('\n'))
+            description = description + text
+        return description
 
     def create_url(self, id):
         """
@@ -180,7 +189,7 @@ class DataOutput(object):
         with open('output.txt', 'a') as output_file:
             for data_element in self.data:
                 if data_element.get('name'):
-                    description = data_element.get('description').encode('utf-8')
+                    description = data_element.get('description')
                     url = data_element.get('url').encode('utf-8')
                     name = data_element.get('name').encode('utf-8')
                     list_of_data = [
