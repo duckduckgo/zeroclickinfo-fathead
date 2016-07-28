@@ -25,8 +25,8 @@ class OutputRow
     redirect: 'R'
   }.freeze
 
-  attr_reader(*HEADERS.compact)
-  attr_writer(*HEADERS.compact - [:type, :abstract])
+  attr_reader(*HEADERS.compact - [:abstract])
+  attr_writer(*HEADERS.compact - [:type])
 
   def initialize
     yield self
@@ -37,8 +37,8 @@ class OutputRow
     @type = ARTICLE_TYPES.fetch(value)
   end
 
-  def abstract=(value)
-    @abstract = value.to_s.gsub(/\s+/, ' ')
+  def abstract
+    @abstract.to_s.gsub("\n", '\n')
   end
 
   def to_s
@@ -48,7 +48,7 @@ end
 
 # Abstract description of documentation.
 class Docs
-  attr_accessor :name, :url, :paragraphs
+  attr_accessor :name, :url, :description
 
   def initialize
     yield self
@@ -56,7 +56,13 @@ class Docs
   end
 
   def abstract
-    paragraphs.first
+    description.css('p,pre.ruby').chunk(&:name).map do |name, elements|
+      if name == 'pre'
+        elements.map { |e| "<pre><code>#{e.text}</code></pre>" }.join
+      else
+        elements.map { |e| e.text.gsub(/\s+/, ' ') }.join('<br>')
+      end
+    end.join
   end
 
   def to_row
@@ -74,33 +80,25 @@ class Docs
     attr_accessor :type
 
     def categories
-      module? ? 'modules' : 'classes'
-    end
-
-    private
-
-    def module?
-      type.to_s == 'module'
+      type.to_s == 'module' ? 'modules' : 'classes'
     end
   end
 
   # Class method or instance method documentation.
   class Method < Docs
-    attr_accessor :examples
-
     def categories
-      "#{instance? ? 'instance' : 'class'} methods"
+      "#{name.to_s.include?('#') ? 'instance' : 'class'} methods"
     end
 
     def abstract
-      [("<pre><code>#{examples * '\n'}</code></pre>" if examples.any?), super]
-        .join
+      usage + super
     end
 
     private
 
-    def instance?
-      name.to_s.include?('#')
+    def usage
+      text = description.css('.method-callseq').map(&:text).join("\n")
+      text.nil? || text.empty? ? '' : "<pre><code>#{text}</code></pre>"
     end
   end
 end
@@ -126,9 +124,8 @@ if $PROGRAM_NAME == __FILE__
     class_docs = Docs::Class.new do |docs|
       docs.name = page.at('h1').text
       docs.url = base_url + rel_path
-
       docs.type = entry['class']
-      docs.paragraphs = page.css('#description p').map(&:text)
+      docs.description = page.at('#description')
 
       docs.to_row.display
     end
@@ -137,11 +134,7 @@ if $PROGRAM_NAME == __FILE__
       Docs::Method.new do |docs|
         docs.name = class_docs.name + link.text
         docs.url = class_docs.url + link['href']
-
-        detail = page.at(":has([name=#{docs.url.fragment}])")
-
-        docs.examples = detail.css('.method-callseq').map(&:text)
-        docs.paragraphs = detail.css('p').map(&:text)
+        docs.description = page.at(":has([name=#{docs.url.fragment}])")
 
         docs.to_row.display
       end
