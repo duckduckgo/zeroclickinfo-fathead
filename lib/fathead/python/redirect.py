@@ -15,10 +15,15 @@ class Entry(object):
     """
     def __init__(self, obj):
         # Type of entry. R = Redirect, A = Article.
-        self.type = None
+        self.entry_type = ''
 
         # Unique key
-        self.key = None
+        self.key = ''
+
+        # Referenced entry key (only for redirects)
+        self.reference = ''
+        self.abstract = ''
+        self.anchor = ''
 
         # Alternative keys used for redirects
         self.alternative_keys = []
@@ -41,13 +46,20 @@ class Entry(object):
         elif isinstance(input_obj, list):
             self.data = input_obj
 
-        # Entry must contain 13 elements.
-        if len(self.data) != 13:
-            raise BadEntryException('Bad entry format')
+        try:
+            self.key = self.data[0].strip()
+            self.entry_type = self.data[1].strip()
+            self.reference = self.data[2].strip()
+            if len(self.data) > 3:
+                self.abstract = self.data[11].strip()
+                self.anchor = self.data[12].strip()
+            elif self.entry_type == 13 and len(self.data) != 13:
+                raise BadEntryException
+        except Exception as e:
+            raise BadEntryException('Article had invalid number of elements.')
 
-        self.key = self.data[0]
-        self.type = self.data[1]
-        self.parse_alternative_keys()
+        if self.entry_type == 'A':
+            self.parse_alternative_keys()
 
         return self.data
 
@@ -60,7 +72,7 @@ class Entry(object):
         """
         self.alternative_keys = set()
 
-        if self.key.count('.') > 0:
+        if '.' in self.key and self.entry_type == 'A':
             key_arr = self.key.split('.')
             method_name = key_arr[-1]
             package_name = key_arr[0]
@@ -76,28 +88,81 @@ class Entry(object):
         return self.key
 
     def get_type(self):
-        return self.type
+        return self.entry_type
 
     def get_redirects(self):
-        # @TODO: Generate R entries
-        return []
+        redirs = []
+
+        for alt_key in list(self.alternative_keys):
+            entry = Entry([
+                alt_key,
+                'R',
+                self.key
+            ])
+            redirs.append(entry)
+
+        return redirs
 
     def get_alternatives(self):
         return self.alternative_keys
 
+    def get_entry(self):
+        return '\t'.join([
+            self.key,             # title / key
+            self.entry_type,      # entry type
+            self.reference,       # no redirect data
+            '',                   # ignore
+            '',                   # no categories
+            '',                   # ignore
+            '',                   # no related topics
+            '',                   # ignore
+            '',                   # add an external link back to page
+            '',                   # no disambiguation
+            '',                   # images
+            self.abstract,        # abstract
+            self.anchor           # anchor to specific section
+        ])
+
+    def __str__(self):
+        return self.get_entry()
 
 def generate_redirects(f):
-    # @TODO: work in progress
-    possible_redirects = set()
+    # @TODO: Cleanup
+    # @TODO: Figure out why the duplicate count is ~20k
+    output = dict()
+
+    # For debugging purposes
+    duplicate_count = 0
+
     for line in f.readlines():
         try:
             # Parse entry
             entry = Entry(line)
+            key = entry.get_key()
+
+            # Do we have the entry yet?
+            if key not in output:
+                output[key] = str(entry)
+            else:
+                duplicate_count += 1
+
             # Get all possible redirect entries
-            possible_redirects = possible_redirects | entry.get_alternatives()
+            redirects = entry.get_redirects()
+            for redirect in redirects:
+                key = redirect.get_key()
+                if key not in output:
+                    output[key] = str(entry)
+                else:
+                    duplicate_count += 1
         except BadEntryException as e:
             pass  # Continue execution entry data is invalid.
 
+    print(duplicate_count)
+
+    with open('output2.txt', 'w') as output_file:
+        for key, line in output.items():
+            tsv = '{}\n'.format(line)
+            output_file.write(tsv)
 
 if __name__ == "__main__":
     # Open output file for reading and writing.
