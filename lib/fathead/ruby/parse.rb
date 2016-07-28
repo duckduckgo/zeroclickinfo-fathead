@@ -74,7 +74,7 @@ class Docs
     attr_accessor :type
 
     def categories
-      "Ruby #{module? ? 'modules' : 'classes'}"
+      module? ? 'modules' : 'classes'
     end
 
     private
@@ -89,7 +89,7 @@ class Docs
     attr_accessor :examples
 
     def categories
-      "Ruby #{instance? ? 'instance' : 'class'} methods"
+      "#{instance? ? 'instance' : 'class'} methods"
     end
 
     def abstract
