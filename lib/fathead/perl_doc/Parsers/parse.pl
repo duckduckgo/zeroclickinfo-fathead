@@ -248,8 +248,9 @@ sub get_faq_link {
 sub build_description {
     my $question = shift;
     my $description;
-    foreach my $para ($question->following('p')->each) {
-        $description .= $para;
+    foreach my $para ($question->following->each) {
+        $description .= $para if ( $para->tag eq 'p' );
+        last if ( $para->tag eq 'a' && $para->attr->{name} );
     }
     $description =~ s/\n/ /g;
     return $description;
