@@ -1,5 +1,31 @@
+# Introduction:
+# -------------
+# This is used to open an SQLite database that's installed on your computer to create a Fathead output
+# that's specified in http://docs.duckduckhack.com/resources/fathead-overview.html
+#
+# Page Structure:
+# ---------------
+# There is no page structure here because we're essentially scraping a database. The only requirement is that you have XCode.
+#
+# Pipeline:
+# ---------
+# Read DB -> Scrape / Process -> Output
+#
+# How do I test this?
+# ------------------
+# You'll need to have XCode installed on your computer. It comes bundled with the documentation that we need.
+#
+# TODO:
+# - Get disambiguations working
+# - Get redirects working
+# - Methods / properties should be matched with the class, i.e., "NSString length"
+
 import sqlite3
 import re
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 # These contains all of the API documentation for iOS 7.1. It was installed by Xcode.
 # It only has classes and methods--it doesn't have actual tutorials.
@@ -12,46 +38,14 @@ urls = {
     'Mac': "https://developer.apple.com/library/mac/",
 }
 
-# The first capture group is the class, and the second one is the method.
-def separate(anchor):
-    if(anchor):
-        p = re.compile(r"//apple_ref/[a-z]+/[a-z]+/(.+?)/?([a-z0-9\:]*)", re.IGNORECASE);
-        return p.findall(anchor)[0]
-
-# This formats our disambig list to match the one that is required by a Fathead.
-def get_disambig(m, disambig, metadata):
-    el = []
-    for d in disambig:
-        el.append("*[[{}]] {}".format(d, metadata[d + "/" + m]['original']))
-
-    return "\\n".join(el)
-
 # Format the output as specified in https://duck.co/duckduckhack/fathead_overview
-def generate_output(result, metadata, inverted, printed):
+def generate_output(result):
     abstract_format = "{name}\tA\t\t\t\t\t\t\t\t\t\t{abstract}\t{path}\n"
-    disambig_format = "{name}\tD\t\t\t\t\t\t\t\t{disambig}\t\t\t\n"
 
     f = open('output.txt', 'a')
 
     for r in result:
-        # All classes are unique.
-        # They all get the 'A' type.
-        if r in metadata:
-            f.write(abstract_format.format(**metadata[r]))
-
-        # Let's go through each module in the class.
-        for module in result[r]:
-            if module not in printed:
-                # If we encounter the same module again, don't print it.
-                # Why? Since we printed it already before. Printing it again would make a duplicate.
-                printed[module] = True
-
-                # Disambiguate if the module appears in different classes.
-                if len(inverted[module]) > 1:
-                    f.write(disambig_format.format(name=metadata[r + "/" + module]['name'], disambig=get_disambig(module, inverted[module], metadata)))
-                # Otherwise, just print it as an abstract since it doesn't appear anywhere else.
-                else:
-                    f.write(abstract_format.format(name=module, abstract=metadata[r + "/" + module]['abstract'], path=metadata[r + "/" + module]['path']))
+        f.write(abstract_format.format(**r))
 
     f.close()
 
@@ -61,7 +55,7 @@ def create_fathead(database, platform):
     c = conn.cursor()
 
     # Variables that we need for later.
-    result, metadata, inverted, printed = {}, {}, {}, {}
+    result = []
 
     # This long SQL query just gets the details about each class and method.
     for row in c.execute('''select ZTOKENNAME,ZABSTRACT,ZPATH,ZDECLARATION,ZTOKENMETAINFORMATION.ZANCHOR
@@ -72,6 +66,14 @@ def create_fathead(database, platform):
         # Skip items that are missing some data.
         if not name or not anchor:
             continue
+
+        p = re.compile(r"^[a-z]+$", re.IGNORECASE);
+        if len(p.findall(name)) == 0:
+            continue
+
+        if snippet:
+            snippet = re.sub(r'<[^>]*>', '', snippet.encode('utf-8', 'ignore'))
+            snippet = "<pre>" + snippet + "</pre>"
 
         # This is the meta data that we're going to attach later.
         pack = {
@@ -94,35 +96,10 @@ def create_fathead(database, platform):
 
         # This variable gets an array.
         # First element is the class, and the second one is the method.
-        class_method = separate(anchor)
-        c, method = class_method
-
-        # Key: Class, Value: Methods
-        # Create a dictionary of classes whose value is a list of modules.
-        if c not in result:
-            if method:
-                result[c] = [method]
-                metadata[c + "/" + method] = pack
-            else:
-                result[c] = []
-                metadata[c] = pack
-        elif method:
-            if method not in result[c]:
-                result[c].append(method)
-                metadata[c + "/" + method] = pack
-        else:
-            metadata[c] = pack
-
-        # Key: method, Value: Classes
-        # Create a dictionary of methods whose value is a list of classes.
-        if method:
-            if method not in inverted:
-                inverted[method] = [c]
-            elif c not in inverted[method]:
-                inverted[method].append(c)
+        result.append(pack)
 
     conn.close()
-    generate_output(result, metadata, inverted, printed)
+    generate_output(result)
 
 create_fathead(ios, 'iOS')
 create_fathead(osx, 'Mac')
