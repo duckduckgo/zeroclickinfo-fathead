@@ -126,6 +126,19 @@ sub parse_index_links {
     return @{$content->find('a')->to_array};
 }
 
+sub delinkify {
+    my ( $text ) = @_;
+    $text =~ s/<a.+?href=".+?>(.+)<\/a>/$1/gm;
+    $text =~ s/<code.+?><a.+?href=".+?>(.+)<\/a><\/code>/<code>$1<\/code>/gm;
+    return $text;
+}
+
+sub filter {
+    my ( $text ) = @_;
+    $text = delinkify( $text );
+    return $text;
+}
+
 sub links_from_index {
     my ( $self, $index ) = @_;
     my $path = $self->doc_fullpath( $index );
@@ -177,10 +190,11 @@ sub alias {
 
 sub entry {
     my ( $self, $title, $text, $url ) = @_;
+    return warn "No text for $title" unless $text;
     $self->insert({
         title => $title,
         type  => 'A',
-        abstract => $text,
+        abstract => filter( $text ),
         sourceurl => $url,
     });
 }
