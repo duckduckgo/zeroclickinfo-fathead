@@ -98,6 +98,7 @@ my %parser_map = (
     'perlre'          => [
         'parse_regex_modifiers',
     ],
+    'perlvar'         => ['parse_multiheaders'],
 );
 
 my @parsers = sort keys %parser_map;
@@ -335,6 +336,51 @@ sub parse_regex_modifiers {
     return {
         articles => \@articles,
     }
+}
+
+# For docs like perlfunc, perlvar with multiple headers per entry.
+sub parse_multiheaders {
+    my ( $self, $dom, $section ) = @_;
+    my @mod_sections = $dom->at( sprintf 'a[name="%s"]', $section || "General-Variables" )->following('ul')->each;
+    my ( @articles, @aliases, @titles );
+
+    for my $mod_section ( @mod_sections ) {
+        for my $li ( $mod_section->child_nodes->each ) {
+            next unless $li->find('a[name]')->first;
+
+            my $link = $li->find('a')->[0];
+            my $anchor = "*$link->{name}*";
+
+
+            my $title = $link->following('b')->first->text;
+            my $text = $li->find('p')->join->to_string;
+
+            push @titles, $title;
+
+            if ( $text ) {
+                $text =~ s/\n/ /g;
+                push @articles, {
+                    title  => $title,
+                    text   => $text,
+                    anchor => $anchor,
+                };
+
+                my $alias_target = pop @titles;
+                for ( @titles ) {
+                    push @aliases, {
+                        new => $_,
+                        orig => $alias_target
+                    }
+                }
+
+                @titles=();
+            }
+        }
+    }
+    return {
+        articles => \@articles,
+        aliases  => \@aliases
+    };
 }
 
 sub parse_page {
