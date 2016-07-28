@@ -1,3 +1,4 @@
 #!/bin/bash
 
-./node_modules/.bin/babel src --out-dir . && rm output.txt && node parse.js
+rm output.txt
+./node_modules/.bin/babel src --out-dir . && node parse.js
