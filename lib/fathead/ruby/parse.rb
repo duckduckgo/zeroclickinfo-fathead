@@ -56,7 +56,8 @@ class Docs
   end
 
   def abstract
-    description.css('p,pre.ruby').chunk(&:name).map do |name, elements|
+    intro = description.css('p,pre.ruby,h2').take_while { |e| e.name != 'h2' }
+    intro.chunk(&:name).map do |name, elements|
       if name == 'pre'
         elements.map { |e| "<pre><code>#{e.text}</code></pre>" }.join
       else
