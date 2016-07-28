@@ -90,7 +90,7 @@ def create_fathead(database, platform):
             pack[k] = v.encode('utf-8')
 
         if snippet:
-            pack['abstract'] = pack['snippet'] + " " + pack['abstract']
+            pack['abstract'] = pack['abstract'] + " " + pack['snippet']
 
         pack['abstract'] = pack['abstract'].replace("\n", "\\n")
 
