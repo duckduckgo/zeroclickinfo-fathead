@@ -3,8 +3,8 @@ import re
 
 # These contains all of the API documentation for iOS 7.1. It was installed by Xcode.
 # It only has classes and methods--it doesn't have actual tutorials.
-ios = "/Applications/Xcode.app/Contents/Developer/Documentation/DocSets/com.apple.adc.documentation.OSX.docset/Contents/Resources/docSet.dsidx"
-osx = "/Applications/Xcode.app/Contents/Developer/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/docSet.dsidx"
+ios = "/Applications/Xcode.app/Contents/Developer/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/docSet.dsidx"
+osx = "/Applications/Xcode.app/Contents/Developer/Documentation/DocSets/com.apple.adc.documentation.OSX.docset/Contents/Resources/docSet.dsidx"
 
 # This is the link to the docs.
 urls = {
@@ -16,7 +16,6 @@ urls = {
 def separate(anchor):
     if(anchor):
         p = re.compile(r"//apple_ref/[a-z]+/[a-z]+/(.+?)/?([a-z0-9\:]*)", re.IGNORECASE);
-        print anchor
         return p.findall(anchor)[0]
 
 # This formats our disambig list to match the one that is required by a Fathead.
@@ -32,7 +31,7 @@ def generate_output(result, metadata, inverted, printed):
     abstract_format = "{name}\tA\t\t\t\t\t\t\t\t\t\t{abstract}\t{path}\n"
     disambig_format = "{name}\tD\t\t\t\t\t\t\t\t{disambig}\t\t\t\n"
 
-    f = open('output.txt', 'w')
+    f = open('output.txt', 'a')
 
     for r in result:
         # All classes are unique.
@@ -91,6 +90,8 @@ def create_fathead(database, platform):
         if snippet:
             pack['abstract'] = pack['snippet'] + " " + pack['abstract']
 
+        pack['abstract'] = pack['abstract'].replace("\n", "\\n")
+
         # This variable gets an array.
         # First element is the class, and the second one is the method.
         class_method = separate(anchor)
@@ -123,5 +124,5 @@ def create_fathead(database, platform):
     conn.close()
     generate_output(result, metadata, inverted, printed)
 
-#create_fathead(ios, 'iOS')
+create_fathead(ios, 'iOS')
 create_fathead(osx, 'Mac')
