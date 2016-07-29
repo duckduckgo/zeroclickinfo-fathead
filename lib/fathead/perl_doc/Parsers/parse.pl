@@ -479,11 +479,14 @@ sub parse_pod_commands {
 sub aliases_cli_switches {
     my ($switch) = @_;
     $switch =~ s/\s.+$//;
-    return (
-        "$switch option",
-        "$switch flag",
-        "$switch switch",
-    );
+    my @switches = $switch =~ /^-\[(\w+)\]$/
+        ? (map { "-$_" } split '', $1)
+        : ($switch);
+    return map { (
+        "$_ option",
+        "$_ flag",
+        "$_ switch",
+    ) } @switches;
 }
 
 sub parse_cli_switches {
