@@ -40,6 +40,7 @@ sub _build_indices {
        index-tutorials
        index-faq
        index-language
+       index-overview
        index-functions
        index-pragmas
        index-utilities
@@ -102,6 +103,7 @@ my %parser_map = (
     'perlre'          => [
         'parse_regex_modifiers',
     ],
+    'perlrun'         => ['parse_cli_switches'],
     'perlvar'         => ['parse_multiheaders'],
 );
 
@@ -467,6 +469,28 @@ sub parse_pod_commands {
     return {
         articles => \@articles,
         aliases  => \@aliases,
+    };
+}
+
+#######################################################################
+#                            Command-Line                             #
+#######################################################################
+
+sub parse_cli_switches {
+    my ($self, $dom) = @_;
+    my @articles;
+    foreach my $switch (each_sub_li($dom, 'a[name="Command-Switches"]')) {
+        my $link = $switch->find('a')->first->{name};
+        my $title = $switch->find('b')->first->all_text;
+        my $text = text_from_selector($switch);
+        push @articles, {
+            title  => $title,
+            anchor => $link,
+            text   => $text,
+        };
+    }
+    return {
+        articles => \@articles,
     };
 }
 
