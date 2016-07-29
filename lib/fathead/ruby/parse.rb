@@ -38,8 +38,8 @@ class OutputRow
 end
 
 # Abstract description of documentation.
-class Docs
-  attr_accessor :title, :url, :description
+class Documentation
+  attr_accessor :title, :url, :description, :categories
 
   def initialize
     yield self
@@ -53,14 +53,14 @@ class Docs
       else
         elements.map { |e| body_text e.text }.join('<br>')
       end
-    end.join
+    end.unshift(usage).join
   end
 
   def to_row
     OutputRow.new do |row|
       row.title = title
       row.type = 'A' # article
-      row.categories = categories
+      row.categories = categories.join("\n")
       row.abstract = abstract
       row.url = url
     end
@@ -73,7 +73,7 @@ class Docs
   end
 
   def code_block(string)
-    string.empty? ? '' : "<pre><code>#{escape string}</code></pre>"
+    "<pre><code>#{escape string}</code></pre>" unless string.empty?
   end
 
   def body_text(string)
@@ -84,30 +84,8 @@ class Docs
     string.gsub(/[&<]/, '&' => '&amp;', '<' => '&lt;')
   end
 
-  # Class or module documentation.
-  class Class < self
-    attr_accessor :type
-
-    def categories
-      String(type) == 'module' ? 'modules' : 'classes'
-    end
-  end
-
-  # Class method or instance method documentation.
-  class Method < Docs
-    def categories
-      "#{String(title).include?('#') ? 'instance' : 'class'} methods"
-    end
-
-    def abstract
-      usage + super
-    end
-
-    private
-
-    def usage
-      code_block description.css('.method-callseq').map(&:text).join("\n")
-    end
+  def usage
+    code_block description.css('.method-callseq').map(&:text).join("\n")
   end
 end
 
@@ -131,20 +109,25 @@ if $PROGRAM_NAME == __FILE__
     path = base_dir + rel_path
     page = Nokogiri(path.read)
 
-    class_docs = Docs::Class.new do |docs|
+    class_docs = Documentation.new do |docs|
       docs.title = page.at('h1').text
       docs.url = base_url + rel_path
-      docs.type = entry['class']
       docs.description = page.at('#description')
+      docs.categories = [
+        entry['class'] == 'module' ? 'modules' : 'classes'
+      ]
 
       docs.to_row.display
     end
 
     page.css('#method-list-section .link-list a').each do |link|
-      Docs::Method.new do |docs|
+      Documentation.new do |docs|
         docs.title = class_docs.title + link.text
         docs.url = class_docs.url + link['href']
         docs.description = page.at(":has([name=#{docs.url.fragment}])")
+        docs.categories = [
+          "#{link.text.start_with?('#') ? 'instance' : 'class'} methods"
+        ]
 
         docs.to_row.display
       end
