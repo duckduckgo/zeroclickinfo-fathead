@@ -97,6 +97,7 @@ my %parser_map = (
     'index-functions' => ['parse_functions'],
     'index-module'    => ['get_synopsis'],
     'index-default'   => ['get_anchors'],
+    'perlpod'         => ['parse_pod_formatting_codes'],
     'perlre'          => [
         'parse_regex_modifiers',
     ],
@@ -369,6 +370,30 @@ sub parse_regex_modifiers {
         articles => \@articles,
         aliases  => \@aliases,
     }
+}
+
+#######################################################################
+#                                 POD                                 #
+#######################################################################
+
+sub parse_pod_formatting_codes {
+    my ($self, $dom) = @_;
+    my @format_codes = $dom->at('a[name="Formatting-Codes"]')
+        ->following('ul')->first->find('li')->each;
+    my @articles;
+    foreach my $fc (@format_codes) {
+        my $link = $fc->find('a')->[0];
+        my $title = $fc->at('code')->all_text;
+        my $text = $fc->find('p')->join();
+        push @articles, {
+            title  => $title,
+            text   => $text,
+            anchor => $link->{name},
+        };
+    }
+    return {
+        articles => \@articles,
+    };
 }
 
 # For docs like perlfunc, perlvar with multiple headers per entry.
