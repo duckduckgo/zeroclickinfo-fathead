@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 binmode STDOUT, ":utf8";
+binmode STDERR, ":utf8";
 
 use Cwd qw( getcwd );
 use DBI;
@@ -55,6 +56,7 @@ sub _build_indices {
 has tsv => ( is => 'lazy' );
 sub _build_tsv {
     my $dbh = DBI->connect ("dbi:CSV:", undef, undef, {
+        f_encoding       => "UTF-8",
         csv_sep_char     => "\t",
         csv_class        => "Text::CSV_XS",
         csv_quote_char   => '',
