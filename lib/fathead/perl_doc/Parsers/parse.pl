@@ -355,7 +355,6 @@ sub parse_regex_modifiers {
         my $anchor = "*$link->{name}*";
         my $title = $link->following('b')->first->text;
         my $text = $mod->find('p')->join();
-        $text =~ s/\n/ /g;
         my $modifier = $title;
         $title = "/$modifier regular expression modifier";
         push @aliases, map { { new => $_, orig => $title } }
@@ -392,7 +391,6 @@ sub parse_multiheaders {
             push @titles, $title;
 
             if ( $text ) {
-                $text =~ s/\n/ /g;
                 push @articles, {
                     title  => $title,
                     text   => $text,
@@ -417,6 +415,28 @@ sub parse_multiheaders {
     };
 }
 
+#######################################################################
+#                       Normalize Parse Results                       #
+#######################################################################
+
+sub normalize_article {
+    my ($article) = @_;
+    my $text = $article->{text};
+    $text =~ s/\n/ /g;
+    return {
+        %$article,
+        text => $text,
+    };
+}
+
+sub normalize_parse_result {
+    my ($parsed) = @_;
+    $parsed->{articles} = [
+        map { normalize_article($_) } (@{$parsed->{articles}})
+    ];
+    return $parsed;
+}
+
 sub dom_for_parsing {
     my ($url, $page) = @_;
     my $dom = dom_for_file($page);
@@ -434,6 +454,7 @@ sub parse_page {
         push @parsed, $self->$parser(dom_for_parsing($url, $fullpath));
     }
     foreach my $parsed (@parsed) {
+        $parsed = normalize_parse_result($parsed);
         for my $article ( @{ $parsed->{articles} } ) {
             my $anchored_url = $url;
             $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
