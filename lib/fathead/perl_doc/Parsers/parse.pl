@@ -98,6 +98,7 @@ my %parser_map = (
     'index-module'    => ['get_synopsis'],
     'index-default'   => ['get_anchors'],
     'perlpod'         => ['parse_pod_formatting_codes'],
+    'perlpodspec'     => ['parse_pod_commands'],
     'perlre'          => [
         'parse_regex_modifiers',
     ],
@@ -413,6 +414,27 @@ sub parse_pod_formatting_codes {
     return {
         articles => \@articles,
         aliases  => \@aliases,
+    };
+}
+
+sub parse_pod_commands {
+    my ($self, $dom) = @_;
+    my @format_codes = $dom->at('a[name="Pod-Commands"]')
+        ->following('ul')->first->children('li')->each;
+    my @articles;
+    foreach my $fc (@format_codes) {
+        my $link = $fc->find('a')->[0];
+        my $title = $fc->at('b')->text;
+        $title =~ s/^"(.*)"$/$1/g;
+        my $text = $fc->find('p')->join();
+        push @articles, {
+            title  => $title,
+            text   => $text,
+            anchor => $link->{name},
+        };
+    }
+    return {
+        articles => \@articles,
     };
 }
 
