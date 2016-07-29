@@ -476,13 +476,26 @@ sub parse_pod_commands {
 #                            Command-Line                             #
 #######################################################################
 
+sub aliases_cli_switches {
+    my ($switch) = @_;
+    $switch =~ s/\s.+$//;
+    return (
+        "$switch option",
+        "$switch flag",
+        "$switch switch",
+    );
+}
+
 sub parse_cli_switches {
     my ($self, $dom) = @_;
     my @articles;
+    my @aliases;
     foreach my $switch (each_sub_li($dom, 'a[name="Command-Switches"]')) {
         my $link = $switch->find('a')->first->{name};
         my $title = $switch->find('b')->first->all_text;
         my $text = text_from_selector($switch);
+        push @aliases, map { { new => $_, orig => $title } }
+            aliases_cli_switches($title);
         push @articles, {
             title  => $title,
             anchor => $link,
@@ -491,6 +504,7 @@ sub parse_cli_switches {
     }
     return {
         articles => \@articles,
+        aliases  => \@aliases,
     };
 }
 
