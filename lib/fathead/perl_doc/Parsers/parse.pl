@@ -91,6 +91,7 @@ sub doc_fullurl {
 # Parsers for other keys (basenames) will only run on the matching file.
 my %parser_map = (
     'index-faq'       => ['parse_faq'],
+    'index-language'  => ['parse_faq'],
     'index-functions' => ['parse_functions'],
     'index-module'    => ['get_synopsis'],
     'index-default'   => ['get_anchors'],
@@ -248,7 +249,7 @@ sub build_description {
     my $question = shift;
     my $description;
     foreach my $para ($question->following->each) {
-        $description .= $para if ( $para->tag eq 'p' );
+        $description .= $para if ( $para->tag eq 'p' || $para->tag eq 'pre' );
         last if ( $para->tag eq 'a' && $para->attr->{name} );
     }
     $description =~ s/\n/ /g;
