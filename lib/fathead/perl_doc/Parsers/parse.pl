@@ -98,6 +98,7 @@ my %parser_map = (
     'index-functions' => ['parse_functions'],
     'index-module'    => ['get_synopsis'],
     'index-default'   => ['get_anchors'],
+    'perldiag'        => ['parse_diag_messages'],
     'perlpod'         => ['parse_pod_formatting_codes'],
     'perlpodspec'     => ['parse_pod_commands'],
     'perlre'          => [
@@ -482,6 +483,17 @@ sub parse_cli_switches {
         selector_main => 'a[name="Command-Switches"]',
         title => sub { $_[0]->find('b')->first->all_text },
         aliases => sub { aliases_cli_switches($_[1]) },
+    )->(@_);
+}
+
+#######################################################################
+#                             Diagnostics                             #
+#######################################################################
+
+sub parse_diag_messages {
+    ul_list_parser(
+        selector_main => 'a[name="DESCRIPTION"]',
+        title => sub { Mojo::Util::xml_escape($_[0]->find('b')->first->text) },
     )->(@_);
 }
 
