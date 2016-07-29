@@ -352,6 +352,7 @@ def unify():
     table2 = (petl
                  .fromtsv('output_py2.txt')
                  .setheader(header)
+                 .selectnotnone('abstract')
                  .sort(key='name')
                  .unique(key='name')
                  .lookup('name')
@@ -360,6 +361,7 @@ def unify():
     table3 = (petl
                  .fromtsv('output.txt')
                  .setheader(header)
+                 .selectnotnone('abstract')
                  .sort(key='name')
                  .unique(key='name')
                  .lookup('name')
