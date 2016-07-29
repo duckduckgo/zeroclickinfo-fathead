@@ -45,7 +45,6 @@ sub _build_indices {
        index-internals
        index-platforms
     / );
-    push @index_pages, map { "index-modules-$_" } grep { $_ !~ /[JKQRVWYZ]/ } 'A'..'Z';
 
     for ( @index_pages ) {
         $indices->{$_} = $self->links_from_index( $_ );
