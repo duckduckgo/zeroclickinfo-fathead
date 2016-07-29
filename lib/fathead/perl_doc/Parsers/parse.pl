@@ -129,9 +129,16 @@ sub parse_index_links {
     return @{$content->find('a')->to_array};
 }
 
+sub normalize_dom_links {
+    my ($url, $dom)  = @_;
+    $dom->find('a')->map(sub {
+        my $link = $_[0]->attr('href') or return;
+        $_[0]->attr(href => "$url$link");
+    });
+}
+
 sub delinkify {
     my ( $text ) = @_;
-    $text =~ s/<a.+?href=".+?>(.+)<\/a>/$1/gm;
     $text =~ s/<code.+?><a.+?href=".+?>(.+)<\/a><\/code>/<code>$1<\/code>/gm;
     return $text;
 }
@@ -393,6 +400,13 @@ sub parse_multiheaders {
     };
 }
 
+sub dom_for_parsing {
+    my ($url, $page) = @_;
+    my $dom = dom_for_file($page);
+    normalize_dom_links($url, $dom);
+    return $dom;
+}
+
 sub parse_page {
     my ( $self, $page ) = @_;
     my $fullpath = $self->doc_fullpath( $page->{basename} );
@@ -400,7 +414,7 @@ sub parse_page {
     my $parser = $page->{parser};
     my @parsed;
     foreach my $parser (@{$page->{parsers}}) {
-        push @parsed, $self->$parser(dom_for_file($fullpath));
+        push @parsed, $self->$parser(dom_for_parsing($url, $fullpath));
     }
     foreach my $parsed (@parsed) {
         for my $article ( @{ $parsed->{articles} } ) {
