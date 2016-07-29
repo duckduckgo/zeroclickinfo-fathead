@@ -126,7 +126,8 @@ if $PROGRAM_NAME == __FILE__
         docs.url = class_docs.url + link['href']
         docs.description = page.at(":has([name=#{docs.url.fragment}])")
         docs.categories = [
-          "#{link.text.start_with?('#') ? 'instance' : 'class'} methods"
+          "#{link.text.start_with?('#') ? 'instance' : 'class'} methods",
+          "#{class_docs.title} methods"
         ]
 
         docs.to_row.display
