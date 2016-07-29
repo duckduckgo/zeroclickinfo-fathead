@@ -133,7 +133,7 @@ sub normalize_dom_links {
     my ($url, $dom)  = @_;
     $dom->find('a')->map(sub {
         my $link = $_[0]->attr('href') or return;
-        $_[0]->attr(href => "$url$link");
+        $_[0]->attr(href => URI->new_abs($link, $url)->as_string);
     });
 }
 
