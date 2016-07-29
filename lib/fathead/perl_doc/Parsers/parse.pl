@@ -254,6 +254,11 @@ sub text_from_selector {
     return $dom->children($spec)->join();
 }
 
+sub each_sub_li {
+    my ($dom, $selector) = @_;
+    return $dom->at($selector)->following('ul')->first->children('li')->each;
+}
+
 #######################################################################
 #                                FAQs                                 #
 #######################################################################
@@ -405,11 +410,9 @@ sub aliases_pod_formatting_codes {
 # of `pod a hyperlink`.
 sub parse_pod_formatting_codes {
     my ($self, $dom) = @_;
-    my @format_codes = $dom->at('a[name="Formatting-Codes"]')
-        ->following('ul')->first->children('li')->each;
     my @articles;
     my @aliases;
-    foreach my $fc (@format_codes) {
+    foreach my $fc (each_sub_li($dom, 'a[name="Formatting-Codes"]')) {
         my $link = $fc->find('a')->[0];
         my $title = Mojo::Util::xml_escape($fc->at('code')->all_text);
         my ($code, $spec) = $title =~ /^(\w+)\s*(.+)$/;
@@ -446,11 +449,9 @@ sub aliases_pod_commands {
 
 sub parse_pod_commands {
     my ($self, $dom) = @_;
-    my @format_codes = $dom->at('a[name="Pod-Commands"]')
-        ->following('ul')->first->children('li')->each;
     my @articles;
     my @aliases;
-    foreach my $fc (@format_codes) {
+    foreach my $fc (each_sub_li($dom, 'a[name="Pod-Commands"]')) {
         my $link = $fc->find('a')->[0];
         my $title = $fc->at('b')->text;
         $title =~ s/"//g;
