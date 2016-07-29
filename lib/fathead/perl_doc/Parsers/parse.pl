@@ -379,11 +379,13 @@ sub parse_regex_modifiers {
 sub parse_pod_formatting_codes {
     my ($self, $dom) = @_;
     my @format_codes = $dom->at('a[name="Formatting-Codes"]')
-        ->following('ul')->first->find('li')->each;
+        ->following('ul')->first->children('li')->each;
     my @articles;
     foreach my $fc (@format_codes) {
         my $link = $fc->find('a')->[0];
-        my $title = $fc->at('code')->all_text;
+        my $title = Mojo::Util::xml_escape($fc->at('code')->all_text);
+        my ($code, $spec) = $title =~ /^(\w+)\s*(.+)$/;
+        $title = "$code$spec";
         my $text = $fc->find('p')->join();
         push @articles, {
             title  => $title,
