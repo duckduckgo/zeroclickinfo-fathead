@@ -377,11 +377,13 @@ sub parse_regex_modifiers {
 #######################################################################
 
 sub aliases_pod_formatting_codes {
-    my ($code) = @_;
+    my ($code, $descr) = @_;
     return (
         "$code formatting code",
         "$code pod code",
         "pod $code",
+        "pod $descr",
+        "$descr pod",
     );
 }
 
@@ -395,9 +397,10 @@ sub parse_pod_formatting_codes {
         my $link = $fc->find('a')->[0];
         my $title = Mojo::Util::xml_escape($fc->at('code')->all_text);
         my ($code, $spec) = $title =~ /^(\w+)\s*(.+)$/;
+        my $descr = $fc->find('b')->first->text =~ s/-- //r;
         $title = "$code$spec";
         push @aliases, map { { new => $_, orig => $title } }
-            aliases_pod_formatting_codes($code);
+            aliases_pod_formatting_codes($code, $descr);
         my $text = $fc->find('p')->join();
         push @articles, {
             title  => $title,
