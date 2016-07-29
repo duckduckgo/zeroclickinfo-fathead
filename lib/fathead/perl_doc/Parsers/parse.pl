@@ -136,11 +136,7 @@ sub delinkify {
     return $text;
 }
 
-sub filter {
-    my ( $text ) = @_;
-    $text = delinkify( $text );
-    return $text;
-}
+sub filter { delinkify @_ }
 
 sub links_from_index {
     my ( $self, $index ) = @_;
