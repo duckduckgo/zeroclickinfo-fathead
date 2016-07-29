@@ -443,7 +443,7 @@ sub parse_pod_commands {
         $title =~ s/"//g;
         push @aliases, map { { new => $_, orig => $title } }
             aliases_pod_commands($title);
-        my $text = $fc->find('p')->join();
+        my $text = $fc->find('p, pre')->join();
         push @articles, {
             title  => $title,
             text   => $text,
