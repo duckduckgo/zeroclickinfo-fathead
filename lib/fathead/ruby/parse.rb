@@ -39,7 +39,7 @@ end
 
 # Abstract description of documentation.
 class Documentation
-  attr_accessor :title, :url, :description, :categories
+  attr_accessor :title, :url, :description, :categories, :alt_titles
 
   def initialize
     yield self
@@ -56,6 +56,12 @@ class Documentation
     end.unshift(usage).join
   end
 
+  def to_s
+    [to_row, to_redirect_rows].join
+  end
+
+  private
+
   def to_row
     OutputRow.new do |row|
       row.title = title
@@ -66,7 +72,15 @@ class Documentation
     end
   end
 
-  private
+  def to_redirect_rows
+    (alt_titles - [title]).map do |alt_title|
+      OutputRow.new do |row|
+        row.title = alt_title
+        row.type = 'R' # redirect
+        row.redirect_title = title
+      end
+    end
+  end
 
   def intro
     description.css('p,pre.ruby,h2').take_while { |e| e.name != 'h2' }.first(3)
@@ -116,8 +130,11 @@ if $PROGRAM_NAME == __FILE__
       docs.categories = [
         entry['class'] == 'module' ? 'modules' : 'classes'
       ]
+      docs.alt_titles = [
+        docs.title.gsub('::', ' ')
+      ]
 
-      docs.to_row.display
+      docs.display
     end
 
     page.css('#method-list-section .link-list a').each do |link|
@@ -129,8 +146,12 @@ if $PROGRAM_NAME == __FILE__
           "#{link.text.start_with?('#') ? 'instance' : 'class'} methods",
           "#{class_docs.title} methods"
         ]
+        docs.alt_titles = [
+          class_docs.title + link.text.sub(/\A(?:::|#)/, '.'),
+          docs.title.gsub(/(?:::|#)/, ' ')
+        ]
 
-        docs.to_row.display
+        docs.display
       end
     end
   end
