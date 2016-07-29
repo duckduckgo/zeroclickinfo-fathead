@@ -33,7 +33,7 @@ class OutputRow
   private
 
   def escape(text)
-    String(text).gsub("\n", '\n').gsub("\t", '\t')
+    String(text).gsub(/[\n\t]/, "\n" => '\n', "\t" => '\t')
   end
 end
 
@@ -51,7 +51,7 @@ class Docs
       if name == 'pre'
         elements.map { |e| code_block e.text }.join
       else
-        elements.map { |e| squish e.text }.join('<br>')
+        elements.map { |e| body_text e.text }.join('<br>')
       end
     end.join
   end
@@ -72,13 +72,16 @@ class Docs
     description.css('p,pre.ruby,h2').take_while { |e| e.name != 'h2' }
   end
 
-  def code_block(text_or_lines)
-    code = Array(text_or_lines).join("\n")
-    code.empty? ? '' : "<pre><code>#{code}</code></pre>"
+  def code_block(string)
+    string.empty? ? '' : "<pre><code>#{escape string}</code></pre>"
   end
 
-  def squish(text)
-    String(text).gsub(/[[:space:]]+/, ' ').strip
+  def body_text(string)
+    escape string.gsub(/[[:space:]]+/, ' ').strip
+  end
+
+  def escape(string)
+    string.gsub(/[&<]/, '&' => '&amp;', '<' => '&lt;')
   end
 
   # Class or module documentation.
@@ -103,7 +106,7 @@ class Docs
     private
 
     def usage
-      code_block description.css('.method-callseq').map(&:text)
+      code_block description.css('.method-callseq').map(&:text).join("\n")
     end
   end
 end
