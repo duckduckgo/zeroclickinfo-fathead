@@ -141,14 +141,6 @@ sub normalize_dom_links {
     });
 }
 
-sub delinkify {
-    my ( $text ) = @_;
-    $text =~ s/<code.+?><a.+?href=".+?>(.+)<\/a><\/code>/<code>$1<\/code>/gm;
-    return $text;
-}
-
-sub filter { delinkify @_ }
-
 sub links_from_index {
     my ( $self, $index ) = @_;
     my $path = $self->doc_fullpath( $index );
@@ -204,7 +196,7 @@ sub entry {
     $self->insert({
         title => $title,
         type  => 'A',
-        abstract => filter( $text ),
+        abstract => $text,
         sourceurl => $url,
     });
 }
