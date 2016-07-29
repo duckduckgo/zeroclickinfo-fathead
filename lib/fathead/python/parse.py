@@ -1,9 +1,12 @@
 import os
+import json
 
 from bs4 import BeautifulSoup
+import petl
 
 PYTHON_DOC_BASE_URL = 'https://docs.python.org/3.5{}'
-DOWNLOADED_HTML_PATH = 'download/python-3.5.2-docs-html'
+DOWNLOADED_HTML_PATHS = {'python3': 'download/python-3.5.2-docs-html',
+                         'python2': 'download/python-2.7.12-docs-html'}
 
 
 class PythonData(object):
@@ -46,17 +49,19 @@ class PythonDataParser(object):
     """
     Object responsible for parsing the raw HTML that contains Python data
     """
-    def __init__(self, data_object):
+    def __init__(self, data_object, download_path):
         """
         Given raw data, get the relevant sections
         Args:
             raw_data: HTML data
+            path: path of downloaded HTML data
         """
         self.parsed_data = None
         self.function_sections = []
         self.method_sections = []
         self.intro_text = ''
         self.title = ''
+        self.download_path = download_path
 
         self.file_being_used = data_object.get_file()
 
@@ -192,7 +197,7 @@ class PythonDataParser(object):
             Full URL to function on the python doc
 
         """
-        file_path = self.file_being_used.replace(DOWNLOADED_HTML_PATH, '')
+        file_path = self.file_being_used.replace(self.download_path, '')
         return PYTHON_DOC_BASE_URL.format('{}{}'.format(file_path, anchor))
 
     def parse_for_data(self):
@@ -262,8 +267,12 @@ class PythonDataOutput(object):
     """
     Object responsible for outputting data into the output.txt file
     """
-    def __init__(self, data):
+    def __init__(self, data, version):
         self.data = data
+        if version == 'python2':
+            self.output = 'output_py2.txt'
+        else:
+            self.output = 'output.txt'
 
     def create_names_from_data(self, data_element):
         """
@@ -288,7 +297,7 @@ class PythonDataOutput(object):
         Iterate through the data and create the needed output.txt file, appending to file as necessary.
 
         """
-        with open('output.txt', 'a') as output_file:
+        with open(self.output, 'a') as output_file:
             for data_element in self.data:
                 if data_element.get('module') or data_element.get('function'):
                     method_signature = data_element.get('method_signature')
@@ -333,13 +342,64 @@ class PythonDataOutput(object):
                         ]
                         output_file.write('{}\n'.format('\t'.join(list_of_data)))
 
+
+def unify():
+    """
+    Compare python3 and python2 abstracts by key keeping python2 entry only if the abstracts differ.
+
+    """
+    header = ['name', 'article_type', 'redirects', 'ignore', 'categories', 'ignore2', 'related', 'ignore3', 'external_links', 'disambiguation', 'images', 'abstract', 'url']
+    table2 = (petl
+                 .fromtsv('output_py2.txt')
+                 .setheader(header)
+                 .sort(key='name')
+                 .unique(key='name')
+                 .lookup('name')
+             )
+
+    table3 = (petl
+                 .fromtsv('output.txt')
+                 .setheader(header)
+                 .sort(key='name')
+                 .unique(key='name')
+                 .lookup('name')
+             )
+
+    new_table2 = []
+    differ = 0
+    nf = 0
+    for k, v in table3.items():
+        if k in table2 and v[0][11] != table2[k][0][11]:
+            differ += 1
+            new_table2.append(v[0])
+        else:
+            nf += 1
+    print('differ: %i\nnf:%i' % (differ, nf))
+    with open('output_py2.txt', 'w') as out_file:
+        for item in new_table2:
+            out_file.write('{}\n'.format('\t'.join(i for i in item)))
+
+
+def pre_parse():
+    """
+    Cleanup output.txt's files.  Mostly for use during local dev/testing.
+    """
+    if os.path.isfile('output.txt'):
+        os.remove('output.txt')
+    if os.path.isfile('output_py2.txt'):
+        os.remove('output_py2.txt')
+
 if __name__ == "__main__":
-    for dir_path, dir_name, file_names in os.walk(DOWNLOADED_HTML_PATH):
-        for file_name in file_names:
-            if '.html' in file_name:
-                file_path = '/'.join((dir_path, file_name))
-                data = PythonData(file_path)
-                parser = PythonDataParser(data)
-                parser.parse_for_data()
-                output = PythonDataOutput(parser.get_data())
-                output.create_file()
+    pre_parse()
+    for version, download_path in DOWNLOADED_HTML_PATHS.items():
+        print('starting download_path: %s' % download_path)
+        for dir_path, dir_name, file_names in os.walk(download_path):
+            for file_name in file_names:
+                if '.html' in file_name:
+                    file_path = '/'.join((dir_path, file_name))
+                    data = PythonData(file_path)
+                    parser = PythonDataParser(data, download_path)
+                    parser.parse_for_data()
+                    output = PythonDataOutput(parser.get_data(), version)
+                    output.create_file()
+    unify()
