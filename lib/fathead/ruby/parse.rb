@@ -69,7 +69,7 @@ class Documentation
   private
 
   def intro
-    description.css('p,pre.ruby,h2').take_while { |e| e.name != 'h2' }
+    description.css('p,pre.ruby,h2').take_while { |e| e.name != 'h2' }.first(3)
   end
 
   def code_block(string)
