@@ -2,8 +2,8 @@ import os
 
 from bs4 import BeautifulSoup
 
-PYTHON_DOC_BASE_URL = 'https://docs.python.org/3.4{}'
-DOWNLOADED_HTML_PATH = 'download/python-3.4.5-docs-html'
+PYTHON_DOC_BASE_URL = 'https://docs.python.org/3.5{}'
+DOWNLOADED_HTML_PATH = 'download/python-3.5.2-docs-html'
 
 
 class PythonData(object):
