@@ -1,8 +1,10 @@
 import codecs
 import re
+import sys
 from collections import Counter
-from bs4 import BeautifulSoup
-
+from xml.dom.minidom import parse
+from lxml import html
+from lxml import etree
 
 class Standardizer(object):
     """ Standardize the titles of each entry.
@@ -162,9 +164,9 @@ class MDNParser(object):
             if txt:
                 return txt.strip()
 
-    def _is_obsolete(self, soup):
-        obsolete = soup.find(_class='obsoleteHeader')
-        return obsolete is not None
+    def _is_obsolete(self, tree):
+        obsolete = tree.xpath("//meta[@class='obsoleteHeader']")
+        return obsolete
 
     def parse(self, htmlfile):
         """ Parse an html file and return an mdn object.
@@ -174,24 +176,38 @@ class MDNParser(object):
                     html parser.
         """
         title_el, summary_el, codesnippet_el = None, None, None
-        soup = BeautifulSoup(htmlfile)
-        if self._is_obsolete(soup):
-            return None
-        title_el = soup.find('h1')
-        article = soup.find(id='wikiArticle')
+
+        page = htmlfile.read()
+        tree = html.fromstring(page)
+
+        if self._is_obsolete(tree):
+          print "obsolete"
+          return None
+
+        title_el = tree.xpath("//meta[@property='og:title']/@content")
+        article = tree.xpath("//meta[@id='wikiArticle']/@content")
+        summary_el = tree.xpath("//meta[@property='og:description']/@content")
         if article:
             summary_el = article.find(
               lambda e: e.name == 'p' and e.text.strip() != '',
               recursive=False)
-        syntax_header = soup.find(id='Syntax')
+        syntax_header = tree.xpath("//h2[contains(@id,'Syntax')]")
+        codesnippet = ""
         if syntax_header:
-            codesnippet_el = syntax_header.find_next(['pre', 'code'])
-        mdn = MDN()
-        mdn.title = self._extract_node(title_el)
-        mdn.summary = self._extract_node(summary_el)
-        mdn.codesnippet = self._extract_node(codesnippet_el)
-        return mdn
+             elements = tree.xpath("//h2[contains(@id,'Syntax')]/following-sibling::pre[1]")
+             for element in elements:
+              for tag in element.xpath('//*[@class]'):
+                  tag.attrib.pop('class')
+              codesnippet += etree.tostring(element, pretty_print=True)
 
+        sys.stdout.write("Parsing %s  " % (title_el[0]) + " " * 30 + "\r")
+        sys.stdout.flush()
+
+        mdn = MDN()
+        mdn.title = title_el[0]
+        if summary_el: mdn.summary = summary_el[0]
+        if codesnippet: mdn.codesnippet = codesnippet
+        return mdn
 
 class MDNIndexer(object):
     def __init__(self, writer):
@@ -230,8 +246,7 @@ class MDNIndexer(object):
                 })
             for mdn in self.inverted_index[keyword]:
                 # add redirect for Web/Api pages
-                if any(word in mdn.title for word in self.CLASS_WORDS) and
-                '.' in mdn.title:
+                if any(word in mdn.title for word in self.CLASS_WORDS) and '.' in mdn.title:
                     # original title: Window.getAnimationFrame()
                     match = re.search('(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
                     # remove class_word: getAnimationFrame
