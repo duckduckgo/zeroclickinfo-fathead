@@ -483,6 +483,7 @@ sub aliases_cli_switches {
         ? (map { "-$_" } split '', $1)
         : ($switch);
     return map { (
+        "$_",
         "$_ option",
         "$_ flag",
         "$_ switch",
