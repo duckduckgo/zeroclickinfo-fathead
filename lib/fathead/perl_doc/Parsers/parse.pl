@@ -333,10 +333,22 @@ sub parse_index_functions_links {
 #                         Regular Expressions                         #
 #######################################################################
 
+sub aliases_regex_modifiers {
+    my ($modifier) = @_;
+    $modifier =~ s./..;
+    my @aliases = (
+        "$modifier modifier",
+        "/$modifier modifier",
+        "/$modifier",
+    );
+    return @aliases;
+}
+
 sub parse_regex_modifiers {
     my ($self, $dom) = @_;
     my $mod_section = $dom->at('a[name="Modifiers"]')->following('ul')->first;
     my @articles;
+    my @aliases;
     foreach my $mod ($mod_section->find('li')->each) {
         next unless $mod->find('a[name]')->first;
         my $link = $mod->find('a')->[0];
@@ -344,6 +356,10 @@ sub parse_regex_modifiers {
         my $title = $link->following('b')->first->text;
         my $text = $mod->find('p')->join();
         $text =~ s/\n/ /g;
+        my $modifier = $title;
+        $title = "/$modifier regular expression modifier";
+        push @aliases, map { { new => $_, orig => $title } }
+            aliases_regex_modifiers($modifier);
         push @articles, {
             title  => $title,
             text   => $text,
@@ -352,6 +368,7 @@ sub parse_regex_modifiers {
     }
     return {
         articles => \@articles,
+        aliases  => \@aliases,
     }
 }
 
