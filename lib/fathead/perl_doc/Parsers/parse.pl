@@ -253,6 +253,36 @@ sub each_sub_li {
     return $dom->at($selector)->following('ul')->first->children('li')->each;
 }
 
+sub ul_list_parser {
+    my %options = (
+        link => sub { $_[0]->find('a')->first->{name} },
+        text => sub { text_from_selector($_[0]) },
+        aliases => sub { () },
+        @_,
+    );
+    return sub {
+        my ($self, $dom) = @_;
+        my @articles;
+        my @aliases;
+        foreach my $item (each_sub_li($dom, $options{selector_main})) {
+            my $link = $options{link}->($item);
+            my $title = $options{title}->($item);
+            my $text = $options{text}->($item);
+            push @aliases, map { { new => $_, orig => $title } }
+                $options{aliases}->($item, $title);
+            push @articles, {
+                title  => $title,
+                anchor => $link,
+                text   => $text,
+            };
+        }
+        return {
+            articles => \@articles,
+            aliases  => \@aliases,
+        };
+    }
+}
+
 #######################################################################
 #                                FAQs                                 #
 #######################################################################
@@ -359,30 +389,21 @@ sub aliases_regex_modifiers {
 }
 
 sub parse_regex_modifiers {
-    my ($self, $dom) = @_;
-    my $mod_section = $dom->at('a[name="Modifiers"]')->following('ul')->first;
-    my @articles;
-    my @aliases;
-    foreach my $mod ($mod_section->find('li')->each) {
-        next unless $mod->find('a[name]')->first;
-        my $link = $mod->find('a')->[0];
-        my $anchor = "*$link->{name}*";
-        my $title = $link->following('b')->first->text;
-        my $text = text_from_selector($mod);
-        my $modifier = $title;
-        $title = "/$modifier regular expression modifier";
-        push @aliases, map { { new => $_, orig => $title } }
-            aliases_regex_modifiers($modifier);
-        push @articles, {
-            title  => $title,
-            text   => $text,
-            anchor => $anchor,
-        };
-    }
-    return {
-        articles => \@articles,
-        aliases  => \@aliases,
-    }
+    ul_list_parser(
+        selector_main => 'a[name="Modifiers"]',
+        link => sub {
+            my $name = $_[0]->find('a')->first->{name};
+            return "*$name*";
+        },
+        title => sub {
+            my $start = $_[0]->at('b')->text;
+            return "/$start regular expression modifier";
+        },
+        aliases => sub {
+            my ($modifier) = $_[1] =~ /^\/(.+) regular expression modifier$/;
+            return aliases_regex_modifiers($modifier);
+        },
+    )->(@_);
 }
 
 #######################################################################
@@ -403,28 +424,17 @@ sub aliases_pod_formatting_codes {
 # TODO: Support ignoring certain 'fluff' words, eg., `pod hyperlink` instead
 # of `pod a hyperlink`.
 sub parse_pod_formatting_codes {
-    my ($self, $dom) = @_;
-    my @articles;
-    my @aliases;
-    foreach my $fc (each_sub_li($dom, 'a[name="Formatting-Codes"]')) {
-        my $link = $fc->find('a')->[0];
-        my $title = Mojo::Util::xml_escape($fc->at('code')->all_text);
-        my ($code, $spec) = $title =~ /^(\w+)\s*(.+)$/;
-        my $descr = $fc->find('b')->first->text =~ s/-- //r;
-        $title = "$code$spec";
-        push @aliases, map { { new => $_, orig => $title } }
-            aliases_pod_formatting_codes($code, $descr);
-        my $text = text_from_selector($fc);
-        push @articles, {
-            title  => $title,
-            text   => $text,
-            anchor => $link->{name},
-        };
-    }
-    return {
-        articles => \@articles,
-        aliases  => \@aliases,
-    };
+    ul_list_parser(
+        selector_main => 'a[name="Formatting-Codes"]',
+        title => sub {
+            Mojo::Util::xml_escape($_[0]->at('code')->all_text =~ s/\s</</r)
+        },
+        aliases => sub {
+            my ($code) = $_[1] =~ /^(\w+)/;
+            my $descr = $_[0]->find('b')->first->text =~ s/-- //r;
+            return aliases_pod_formatting_codes($code, $descr);
+        },
+    )->(@_);
 }
 
 sub aliases_pod_commands {
@@ -442,26 +452,11 @@ sub aliases_pod_commands {
 }
 
 sub parse_pod_commands {
-    my ($self, $dom) = @_;
-    my @articles;
-    my @aliases;
-    foreach my $fc (each_sub_li($dom, 'a[name="Pod-Commands"]')) {
-        my $link = $fc->find('a')->[0];
-        my $title = $fc->at('b')->text;
-        $title =~ s/"//g;
-        push @aliases, map { { new => $_, orig => $title } }
-            aliases_pod_commands($title);
-        my $text = text_from_selector($fc);
-        push @articles, {
-            title  => $title,
-            text   => $text,
-            anchor => $link->{name},
-        };
-    }
-    return {
-        articles => \@articles,
-        aliases  => \@aliases,
-    };
+    ul_list_parser(
+        selector_main => 'a[name="Pod-Commands"]',
+        title => sub { $_[0]->at('b')->text =~ s/"//gr },
+        aliases => sub { aliases_pod_commands($_[1]) },
+    )->(@_);
 }
 
 #######################################################################
@@ -483,25 +478,11 @@ sub aliases_cli_switches {
 }
 
 sub parse_cli_switches {
-    my ($self, $dom) = @_;
-    my @articles;
-    my @aliases;
-    foreach my $switch (each_sub_li($dom, 'a[name="Command-Switches"]')) {
-        my $link = $switch->find('a')->first->{name};
-        my $title = $switch->find('b')->first->all_text;
-        my $text = text_from_selector($switch);
-        push @aliases, map { { new => $_, orig => $title } }
-            aliases_cli_switches($title);
-        push @articles, {
-            title  => $title,
-            anchor => $link,
-            text   => $text,
-        };
-    }
-    return {
-        articles => \@articles,
-        aliases  => \@aliases,
-    };
+    ul_list_parser(
+        selector_main => 'a[name="Command-Switches"]',
+        title => sub { $_[0]->find('b')->first->all_text },
+        aliases => sub { aliases_cli_switches($_[1]) },
+    )->(@_);
 }
 
 # For docs like perlfunc, perlvar with multiple headers per entry.
