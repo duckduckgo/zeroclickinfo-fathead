@@ -490,10 +490,17 @@ sub parse_cli_switches {
 #                             Diagnostics                             #
 #######################################################################
 
+sub aliasas_diag_messages {
+    my ($message) = @_;
+    $message =~ s/%\w+//g;
+    return ($message);
+}
+
 sub parse_diag_messages {
     ul_list_parser(
         selector_main => 'a[name="DESCRIPTION"]',
         title => sub { Mojo::Util::xml_escape($_[0]->find('b')->first->text) },
+        aliases => sub { aliasas_diag_messages($_[1]) },
     )->(@_);
 }
 
