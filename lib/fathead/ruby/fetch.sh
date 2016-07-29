@@ -1,8 +1,10 @@
 #!/bin/bash -eu
 
-url=$(<data.url)
+dir=$(dirname $0)
+
+url=$(<"${dir}/data.url")
+download_dir=${dir}/download
 archive=$(mktemp)
-download_dir=download
 
 curl \
   --silent \

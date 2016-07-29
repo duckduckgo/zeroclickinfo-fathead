@@ -1,9 +1,13 @@
 #!/bin/bash -eu
 
-url=$(<data.url)
-archive_name=${url##*/}
-download_dir=download
+dir=$(dirname $0)
 
+url=$(<"${dir}/data.url")
+download_dir=${dir}/download
+script=${dir}/parse.rb
+output=${dir}/output.txt
+
+archive_name=${url##*/}
 index=${download_dir}/${archive_name%_rdocs.tgz}/index.html
 
-ruby -w parse.rb "${index}" > output.txt
+ruby -w "${script}" "${index}" > "${output}"
