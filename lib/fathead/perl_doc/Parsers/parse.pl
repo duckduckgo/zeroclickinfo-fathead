@@ -193,7 +193,7 @@ sub alias {
 
 sub entry {
     my ( $self, $title, $text, $url ) = @_;
-    return warn "No text for $title" unless $text;
+    return warn "No text for '$title'" unless $text;
     $self->insert({
         title => $title,
         type  => 'A',
