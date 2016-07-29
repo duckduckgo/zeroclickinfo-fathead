@@ -387,6 +387,8 @@ sub aliases_pod_formatting_codes {
     );
 }
 
+# TODO: Support ignoring certain 'fluff' words, eg., `pod hyperlink` instead
+# of `pod a hyperlink`.
 sub parse_pod_formatting_codes {
     my ($self, $dom) = @_;
     my @format_codes = $dom->at('a[name="Formatting-Codes"]')
