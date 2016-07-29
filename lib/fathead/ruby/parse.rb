@@ -33,7 +33,7 @@ class OutputRow
   private
 
   def escape(text)
-    String(text).gsub(/[\n\t]/, "\n" => '\n', "\t" => '\t')
+    String(text).gsub(/[\\\n\t]/, '\\' => '\\\\', "\n" => '\n', "\t" => '\t')
   end
 end
 
