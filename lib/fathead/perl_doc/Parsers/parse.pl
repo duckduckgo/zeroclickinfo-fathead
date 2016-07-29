@@ -242,6 +242,19 @@ sub get_anchors {
 }
 
 #######################################################################
+#                               Helpers                               #
+#######################################################################
+
+my $default_text_selector = 'p, pre';
+
+# Produce the 'abstract' text content from the given Mojo::DOM spec.
+sub text_from_selector {
+    my ($dom, $spec) = @_;
+    $spec //= $default_text_selector;
+    return $dom->children($spec)->join();
+}
+
+#######################################################################
 #                                FAQs                                 #
 #######################################################################
 
@@ -356,7 +369,7 @@ sub parse_regex_modifiers {
         my $link = $mod->find('a')->[0];
         my $anchor = "*$link->{name}*";
         my $title = $link->following('b')->first->text;
-        my $text = $mod->find('p')->join();
+        my $text = text_from_selector($mod);
         my $modifier = $title;
         $title = "/$modifier regular expression modifier";
         push @aliases, map { { new => $_, orig => $title } }
@@ -404,7 +417,7 @@ sub parse_pod_formatting_codes {
         $title = "$code$spec";
         push @aliases, map { { new => $_, orig => $title } }
             aliases_pod_formatting_codes($code, $descr);
-        my $text = $fc->find('p')->join();
+        my $text = text_from_selector($fc);
         push @articles, {
             title  => $title,
             text   => $text,
@@ -443,7 +456,7 @@ sub parse_pod_commands {
         $title =~ s/"//g;
         push @aliases, map { { new => $_, orig => $title } }
             aliases_pod_commands($title);
-        my $text = $fc->find('p, pre')->join();
+        my $text = text_from_selector($fc);
         push @articles, {
             title  => $title,
             text   => $text,
@@ -471,7 +484,7 @@ sub parse_multiheaders {
 
 
             my $title = $link->following('b')->first->text;
-            my $text = $li->find('p')->join->to_string;
+            my $text = text_from_selector($li);
 
             push @titles, $title;
 
