@@ -258,9 +258,18 @@ sub parse_faq {
     my ($self, $dom) = @_;
     my %parsed;
     my @articles;
+    my @aliases;
+
     foreach my $faq_title ($dom->find('h2')->each) {
         my $link = get_faq_link($faq_title);
         my $title = $faq_title->text;
+        my $title_without_index = $title =~ s/.*[0-9]\s*:\s*//r;
+        if ( $title_without_index ne $title ) {
+            push @aliases, {
+                new  => $title_without_index,
+                orig => $title
+            };
+        }
         my $description = build_description($faq_title);
         next unless $link;
         push @articles, {
@@ -269,8 +278,10 @@ sub parse_faq {
             text => $description,
         };
     }
-    $parsed{articles} = \@articles;
-    return \%parsed;
+    return {
+        articles => \@articles,
+        aliases  => \@aliases
+    };
 }
 
 #######################################################################
