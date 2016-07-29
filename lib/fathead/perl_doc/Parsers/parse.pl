@@ -417,15 +417,32 @@ sub parse_pod_formatting_codes {
     };
 }
 
+sub aliases_pod_commands {
+    my ($title) = @_;
+    my @aliases;
+    foreach my $command (split /\s*,\s*/, $title) {
+        push @aliases, (
+            "$command pod",
+            "pod $command",
+            "$command pod command",
+            "pod $command command",
+        );
+    }
+    return @aliases;
+}
+
 sub parse_pod_commands {
     my ($self, $dom) = @_;
     my @format_codes = $dom->at('a[name="Pod-Commands"]')
         ->following('ul')->first->children('li')->each;
     my @articles;
+    my @aliases;
     foreach my $fc (@format_codes) {
         my $link = $fc->find('a')->[0];
         my $title = $fc->at('b')->text;
-        $title =~ s/^"(.*)"$/$1/g;
+        $title =~ s/"//g;
+        push @aliases, map { { new => $_, orig => $title } }
+            aliases_pod_commands($title);
         my $text = $fc->find('p')->join();
         push @articles, {
             title  => $title,
@@ -435,6 +452,7 @@ sub parse_pod_commands {
     }
     return {
         articles => \@articles,
+        aliases  => \@aliases,
     };
 }
 
