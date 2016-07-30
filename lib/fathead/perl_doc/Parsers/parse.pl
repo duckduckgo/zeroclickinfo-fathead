@@ -378,6 +378,7 @@ sub build_description {
         $description .= $para if ( $para->tag eq 'p' || $para->tag eq 'pre' );
         last if ( $para->tag eq 'a' && $para->attr->{name} );
     }
+    return unless $description;
     $description =~ s/\n/ /g;
     return $description;
 }
@@ -398,7 +399,7 @@ sub parse_faq {
                 orig => $title
             };
         }
-        my $description = build_description($faq_title);
+        my $description = build_description($faq_title) or next;
         next unless $link;
         push @articles, {
             anchor => $link,
