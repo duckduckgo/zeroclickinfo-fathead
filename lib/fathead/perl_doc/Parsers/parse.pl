@@ -285,6 +285,27 @@ sub ul_list_parser {
     }
 }
 
+# If you have:
+# - a
+# - b
+# - c
+#   description for all
+# Then use this to produce a list [a, b, c]
+# (From a list of @li, this will produce a list of the above form for
+# each group).
+sub collate_li {
+    my ($is_empty, @lis) = @_;
+    my @res;
+    my @r;
+    foreach my $li (@lis) {
+        push @r, $li;
+        next if $is_empty->($li);
+        push @res, [@r];
+        @r = ();
+    }
+    return @res;
+}
+
 #######################################################################
 #                                FAQs                                 #
 #######################################################################
@@ -552,38 +573,32 @@ sub parse_operators {
 sub parse_multiheaders {
     my ( $self, $dom, $section ) = @_;
     my @mod_sections = $dom->at( sprintf 'a[name="%s"]', $section || "General-Variables" )->following('ul')->each;
-    my ( @articles, @aliases, @titles );
+    my ( @articles, @aliases );
 
     for my $mod_section ( @mod_sections ) {
-        for my $li ( $mod_section->child_nodes->each ) {
+        my @lis = $mod_section->children('li')->each;
+        my @col = collate_li(sub { !($_[0]->find('p')->each) }, @lis);
+        foreach my $lit (@col) {
+            my @names = @$lit;
+            my $li = $names[$#names];
             next unless $li->find('a[name]')->first;
 
             my $link = $li->find('a')->[0];
             my $anchor = "*$link->{name}*";
 
-
             my $title = $link->following('b')->first->text;
+
+            foreach my $li2nd (@names[0..$#names-1]) {
+                my $title2ndary = $li2nd->find('b')->first->text;
+                push @aliases, { new => $title2ndary, orig => $title };
+            }
             my $text = text_from_selector($li);
 
-            push @titles, $title;
-
-            if ( $text ) {
-                push @articles, {
-                    title  => $title,
-                    text   => $text,
-                    anchor => $anchor,
-                };
-
-                my $alias_target = pop @titles;
-                for ( @titles ) {
-                    push @aliases, {
-                        new => $_,
-                        orig => $alias_target
-                    }
-                }
-
-                @titles=();
-            }
+            push @articles, {
+                title  => $title,
+                text   => $text,
+                anchor => $anchor,
+            };
         }
     }
     return {
