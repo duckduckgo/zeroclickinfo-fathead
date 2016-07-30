@@ -99,6 +99,7 @@ my %parser_map = (
     'index-module'    => ['get_synopsis'],
     'index-default'   => ['get_anchors'],
     'perldiag'        => ['parse_diag_messages'],
+    'perlglossary'    => ['parse_glossary_definitions'],
     'perlop'          => ['parse_operators'],
     'perlpod'         => ['parse_pod_formatting_codes'],
     'perlpodspec'     => ['parse_pod_commands'],
@@ -270,6 +271,8 @@ sub ul_list_parser {
         my (@articles, @aliases, @uls);
         if (my $s = $options{selector_main}) {
             @uls = ($dom->at($s)->following('ul')->first);
+        } elsif (ref $options{uls} eq 'CODE') {
+            @uls = $options{uls}->($dom);
         } else {
             @uls = @{$options{uls}};
         }
@@ -420,6 +423,17 @@ sub parse_functions {
 sub parse_index_functions_links {
     my ($self, $dom) = @_;
     return @{$dom->find('a[href^="functions"]')->to_array};
+}
+
+#######################################################################
+#                              Glossary                               #
+#######################################################################
+
+sub parse_glossary_definitions {
+    ul_list_parser(
+        title => sub { $_[0]->find('b')->first->text },
+        uls   => sub { $_[0]->find('h2 ~ ul')->each },
+    )->(@_);
 }
 
 #######################################################################
