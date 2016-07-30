@@ -241,6 +241,12 @@ sub get_anchors {
 #                               Helpers                               #
 #######################################################################
 
+sub make_aliases {
+    my ($title, @aliases) = @_;
+    my @valid_aliases = grep { $_ ne $title } @aliases;
+    map { { new => $_, orig => $title } } @valid_aliases;
+}
+
 my $default_text_selector = 'p, pre';
 
 # Produce the 'abstract' text content from the given Mojo::DOM spec.
@@ -280,11 +286,16 @@ sub ul_list_parser {
                 my @secondary_titles = map { $options{title}->($_) }
                     @items[0..$#items-1];
                 my @titles = ($title, @secondary_titles);
-                map { push @aliases, { new => $_, orig => $title } }
-                    @secondary_titles;
+                @aliases = (@aliases,
+                    make_aliases($title, @secondary_titles),
+                );
                 foreach my $subt (@titles) {
-                    push @aliases, map { { new => $_, orig => $title } }
-                        ($options{aliases}->($item, $subt));
+                    @aliases = (@aliases,
+                        make_aliases(
+                            $title,
+                            $options{aliases}->($item, $subt)
+                        ),
+                    );
                 }
                 push @articles, {
                     title  => $title,
