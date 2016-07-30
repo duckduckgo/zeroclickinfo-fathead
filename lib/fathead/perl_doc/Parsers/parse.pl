@@ -440,7 +440,7 @@ sub parse_glossary_definitions {
         title => sub { $_[0]->find('b')->first->text },
         uls   => sub { $_[0]->find('h2 ~ ul')->each },
         redirect => sub {
-            return undef unless $_[1]->{text} =~ qr{^<p>See <b>(.+)</b>\.</p>$};
+            return undef unless $_[1]->{text} =~ qr{^<p>See <b>([^<]+)</b>\.</p>$};
             return $1;
         },
     )->(@_);
