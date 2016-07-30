@@ -278,6 +278,7 @@ sub ul_list_parser {
         uls => [],
         is_empty => sub { !($_[0]->find('p')->each) },
         redirect => sub { undef },
+        disambiguation => sub { undef },
         @_,
     );
     return sub {
