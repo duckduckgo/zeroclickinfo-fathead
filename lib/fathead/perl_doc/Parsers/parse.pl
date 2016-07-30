@@ -193,6 +193,19 @@ sub alias {
     });
 }
 
+sub disambiguation {
+    my ($self, $disambiguation) = @_;
+    my @disambiguations = map {
+        "*[[$_->{link}]], $_->{description}.";
+    } @{ $disambiguation->{disambiguations} };
+    my $dtext = join '\n', @disambiguations;
+    $self->insert({
+        type => 'D',
+        title => $disambiguation->{title},
+        disambiguation => $dtext,
+    });
+}
+
 sub entry {
     my ( $self, $title, $text, $url ) = @_;
     return warn "No text for '$title'" unless $text;
@@ -269,7 +282,7 @@ sub ul_list_parser {
     );
     return sub {
         my ($self, $dom) = @_;
-        my (@articles, @aliases, @uls);
+        my (@articles, @aliases, @uls, @disambiguations);
         if (my $s = $options{selector_main}) {
             @uls = ($dom->at($s)->following('ul')->first);
         } elsif (ref $options{uls} eq 'CODE') {
@@ -306,6 +319,10 @@ sub ul_list_parser {
                     anchor => $link,
                     text   => $text,
                 };
+                if (my $disambiguation = $options{disambiguation}->($item, $article)) {
+                    push @disambiguations, $disambiguation;
+                    next;
+                }
                 if (my $redir = $options{redirect}->($item, $article)) {
                     @aliases = (@aliases, make_aliases($redir, $title));
                     next;
@@ -316,6 +333,7 @@ sub ul_list_parser {
         return {
             articles => \@articles,
             aliases  => \@aliases,
+            disambiguations => \@disambiguations,
         };
     }
 }
@@ -442,6 +460,22 @@ sub parse_glossary_definitions {
         redirect => sub {
             return undef unless $_[1]->{text} =~ qr{^<p>See <b>([^<]+)</b>\.</p>$};
             return $1;
+        },
+        disambiguation => sub {
+            return undef unless $_[1]->{text} =~ qr{^<p>See <b>.*<b>};
+            my @disambiguations;
+            while ($_[1]->{text} =~ /<b>([^<]+)<\/b>/g) {
+                my $see = $1;
+                push @disambiguations, {
+                    link => $see,
+                    description => $_[0]->root->find('li > b')
+                        ->grep(sub { $_->text =~ qr/$see/ })->first->parent->find('p')->first->text,
+                };
+            }
+            return {
+                title => $_[1]->{title},
+                disambiguations => \@disambiguations,
+            };
         },
     )->(@_);
 }
@@ -678,6 +712,9 @@ sub parse_page {
 
         for my $alias ( @{ $parsed->{aliases} } ) {
             $self->alias( $alias->{new}, $alias->{orig} );
+        }
+        for my $disambiguation ( @{ $parsed->{disambiguations} } ) {
+            $self->disambiguation( $disambiguation );
         }
     }
 }
