@@ -39,7 +39,7 @@ end
 
 # Abstract description of documentation.
 class Documentation
-  attr_accessor :title, :url, :description, :categories, :alt_titles
+  attr_accessor :title, :url, :description, :categories, :related, :alt_titles
 
   def initialize
     yield self
@@ -67,6 +67,7 @@ class Documentation
       row.title = title
       row.type = 'A' # article
       row.categories = categories.join("\n")
+      row.related = related.join("\n")
       row.abstract = abstract
       row.url = url
     end
@@ -130,6 +131,9 @@ if $PROGRAM_NAME == __FILE__
       docs.categories = [
         entry['class'] == 'module' ? 'modules' : 'classes'
       ]
+      docs.related = [
+        "[[#{docs.title} methods]]"
+      ]
       docs.alt_titles = [
         docs.title.gsub('::', ' ')
       ]
@@ -145,6 +149,9 @@ if $PROGRAM_NAME == __FILE__
         docs.categories = [
           "#{link.text.start_with?('#') ? 'instance' : 'class'} methods",
           "#{class_docs.title} methods"
+        ]
+        docs.related = [
+          "[[#{class_docs.title}]]"
         ]
         docs.alt_titles = [
           class_docs.title + link.text.sub(/\A(?:::|#)/, '.'),
