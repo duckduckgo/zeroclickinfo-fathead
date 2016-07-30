@@ -423,8 +423,8 @@ my $skip = qr/To get the best experience. |Please note: Many features/;
 sub parse_functions {
     my ($self, $dom) = @_;
 
-    my $title = $dom->at('title')->text;
-    $title =~ s/\s-\s.*//;
+    my $fname = $dom->at('title')->text;
+    $fname =~ s/\s-\s.*//;
 
     my $hint = $dom->at('b')->text;
 
@@ -439,9 +439,13 @@ sub parse_functions {
     return unless $description;
     $description = trim_abstract($description, 100);
     $description = "<code><br>$hint<br></code><br>". $description;
+    my $title = "$fname function";
     return {
         articles => [
             { title => $title, text => $description }
+        ],
+        aliases => [
+            make_aliases($title, $fname, "$fname func"),
         ],
     };
 }
