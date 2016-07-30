@@ -264,6 +264,7 @@ sub ul_list_parser {
         aliases => sub { () },
         uls => [],
         is_empty => sub { !($_[0]->find('p')->each) },
+        redirect => sub { undef },
         @_,
     );
     return sub {
@@ -300,11 +301,16 @@ sub ul_list_parser {
                         ),
                     );
                 }
-                push @articles, {
+                my $article = {
                     title  => $title,
                     anchor => $link,
                     text   => $text,
                 };
+                if (my $redir = $options{redirect}->($item, $article)) {
+                    @aliases = (@aliases, make_aliases($redir, $title));
+                    next;
+                }
+                push @articles, $article;
             }
         }
         return {
@@ -433,6 +439,10 @@ sub parse_glossary_definitions {
     ul_list_parser(
         title => sub { $_[0]->find('b')->first->text },
         uls   => sub { $_[0]->find('h2 ~ ul')->each },
+        redirect => sub {
+            return undef unless $_[1]->{text} =~ qr{^<p>See <b>(.+)</b>\.</p>$};
+            return $1;
+        },
     )->(@_);
 }
 
