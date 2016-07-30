@@ -563,7 +563,7 @@ sub aliases_pod_commands {
 sub parse_pod_commands {
     ul_list_parser(
         selector_main => 'a[name="Pod-Commands"]',
-        title => sub { $_[0]->at('b')->text =~ s/"//gr },
+        title => sub { $_[0]->at('b')->text =~ s/"//gr =~ s/\s.+$//r },
         aliases => sub { aliases_pod_commands($_[1]) },
     )->(@_);
 }
