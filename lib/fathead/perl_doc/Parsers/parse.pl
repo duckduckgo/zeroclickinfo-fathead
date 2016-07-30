@@ -250,33 +250,48 @@ sub text_from_selector {
     return $dom->children($spec)->join();
 }
 
-sub each_sub_li {
-    my ($dom, $selector) = @_;
-    return $dom->at($selector)->following('ul')->first->children('li')->each;
-}
-
 sub ul_list_parser {
     my %options = (
         link => sub { $_[0]->find('a')->first->{name} },
         text => sub { text_from_selector($_[0]) },
         aliases => sub { () },
+        uls => [],
+        is_empty => sub { !($_[0]->find('p')->each) },
         @_,
     );
     return sub {
         my ($self, $dom) = @_;
-        my @articles;
-        my @aliases;
-        foreach my $item (each_sub_li($dom, $options{selector_main})) {
-            my $link = $options{link}->($item);
-            my $title = $options{title}->($item);
-            my $text = $options{text}->($item);
-            push @aliases, map { { new => $_, orig => $title } }
-                $options{aliases}->($item, $title);
-            push @articles, {
-                title  => $title,
-                anchor => $link,
-                text   => $text,
-            };
+        my (@articles, @aliases, @uls);
+        if (my $s = $options{selector_main}) {
+            @uls = ($dom->at($s)->following('ul')->first);
+        } else {
+            @uls = @{$options{uls}};
+        }
+        foreach my $ul (@uls) {
+            my @lis = $ul->children('li')->each;
+            my @col = collate_li($options{is_empty}, @lis);
+            foreach my $lit (@col) {
+                my @items = @$lit;
+                my $item = $items[$#items];
+
+                my $link = $options{link}->($item);
+                my $title = $options{title}->($item);
+                my $text = $options{text}->($item);
+                my @secondary_titles = map { $options{title}->($_) }
+                    @items[0..$#items-1];
+                my @titles = ($title, @secondary_titles);
+                map { push @aliases, { new => $_, orig => $title } }
+                    @secondary_titles;
+                foreach my $subt (@titles) {
+                    push @aliases, map { { new => $_, orig => $title } }
+                        ($options{aliases}->($item, $subt));
+                }
+                push @articles, {
+                    title  => $title,
+                    anchor => $link,
+                    text   => $text,
+                };
+            }
         }
         return {
             articles => \@articles,
@@ -571,40 +586,12 @@ sub parse_operators {
 
 # For docs like perlfunc, perlvar with multiple headers per entry.
 sub parse_multiheaders {
-    my ( $self, $dom, $section ) = @_;
+    my ($self, $dom, $section) = @_;
     my @mod_sections = $dom->at( sprintf 'a[name="%s"]', $section || "General-Variables" )->following('ul')->each;
-    my ( @articles, @aliases );
-
-    for my $mod_section ( @mod_sections ) {
-        my @lis = $mod_section->children('li')->each;
-        my @col = collate_li(sub { !($_[0]->find('p')->each) }, @lis);
-        foreach my $lit (@col) {
-            my @names = @$lit;
-            my $li = $names[$#names];
-            next unless $li->find('a[name]')->first;
-
-            my $link = $li->find('a')->[0];
-            my $anchor = "*$link->{name}*";
-
-            my $title = $link->following('b')->first->text;
-
-            foreach my $li2nd (@names[0..$#names-1]) {
-                my $title2ndary = $li2nd->find('b')->first->text;
-                push @aliases, { new => $title2ndary, orig => $title };
-            }
-            my $text = text_from_selector($li);
-
-            push @articles, {
-                title  => $title,
-                text   => $text,
-                anchor => $anchor,
-            };
-        }
-    }
-    return {
-        articles => \@articles,
-        aliases  => \@aliases
-    };
+    ul_list_parser(
+        uls => \@mod_sections,
+        title => sub { $_[0]->find('b')->first->text },
+    )->($self, $dom);
 }
 
 #######################################################################
