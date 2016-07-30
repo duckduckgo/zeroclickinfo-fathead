@@ -509,18 +509,31 @@ sub parse_diag_messages {
 #                              Operators                              #
 #######################################################################
 
+my @op_types = ("Binary", "Ternary", "Unary");
+my $op_re = join '|', @op_types;
+
+sub aliases_operators {
+    my ($operator) = @_;
+    my ($op_type, $op_name) = $operator =~ /^($op_re) "([^"]+)"/;
+    return (
+        "$op_name", "$op_name operator",
+        "$op_type $op_name", "$op_type $op_name operator",
+    );
+}
+
 sub parse_operators {
     my ($self, $dom) = @_;
-    my @op_types = ("Binary", "Ternary", "Unary");
-    my $op_re = join '|', @op_types;
     my @operators = $dom->find('p')->grep(
         sub { $_->text =~ /^($op_re)/ }
     )->each;
     my @articles;
+    my @aliases;
     foreach my $op (@operators) {
         my $text = $op->all_text;
         my ($op_type, $op_name) = $text =~ /^($op_re) ([^\s]+)/;
         my $title = "$op_type $op_name operator";
+        map { push @aliases, { new => $_, orig => $title } }
+            (aliases_operators($title));
         push @articles, {
             title => $title,
             text  => $text,
@@ -528,6 +541,7 @@ sub parse_operators {
     }
     return {
         articles => \@articles,
+        aliases  => \@aliases,
     };
 }
 
