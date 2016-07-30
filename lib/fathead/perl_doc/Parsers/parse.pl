@@ -99,6 +99,7 @@ my %parser_map = (
     'index-module'    => ['get_synopsis'],
     'index-default'   => ['get_anchors'],
     'perldiag'        => ['parse_diag_messages'],
+    'perlop'          => ['parse_operators'],
     'perlpod'         => ['parse_pod_formatting_codes'],
     'perlpodspec'     => ['parse_pod_commands'],
     'perlre'          => [
@@ -502,6 +503,32 @@ sub parse_diag_messages {
         title => sub { Mojo::Util::xml_escape($_[0]->find('b')->first->text) },
         aliases => sub { aliasas_diag_messages($_[1]) },
     )->(@_);
+}
+
+#######################################################################
+#                              Operators                              #
+#######################################################################
+
+sub parse_operators {
+    my ($self, $dom) = @_;
+    my @op_types = ("Binary", "Ternary", "Unary");
+    my $op_re = join '|', @op_types;
+    my @operators = $dom->find('p')->grep(
+        sub { $_->text =~ /^($op_re)/ }
+    )->each;
+    my @articles;
+    foreach my $op (@operators) {
+        my $text = $op->all_text;
+        my ($op_type, $op_name) = $text =~ /^($op_re) ([^\s]+)/;
+        my $title = "$op_type $op_name operator";
+        push @articles, {
+            title => $title,
+            text  => $text,
+        };
+    }
+    return {
+        articles => \@articles,
+    };
 }
 
 # For docs like perlfunc, perlvar with multiple headers per entry.
