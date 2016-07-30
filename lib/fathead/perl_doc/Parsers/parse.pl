@@ -532,11 +532,14 @@ sub parse_operators {
         my $text = $op->all_text;
         my ($op_type, $op_name) = $text =~ /^($op_re) ([^\s]+)/;
         my $title = "$op_type $op_name operator";
+        my $link = $op->preceding('a[name] ~ h2')
+            ->last->preceding('a[name]')->last->{name};
         map { push @aliases, { new => $_, orig => $title } }
             (aliases_operators($title));
         push @articles, {
-            title => $title,
-            text  => $text,
+            anchor => $link,
+            text   => $text,
+            title  => $title,
         };
     }
     return {
