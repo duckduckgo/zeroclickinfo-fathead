@@ -1,3 +1,3 @@
 Dependencies:
 - Python 3.5.2
-- pip install -r requirements.txt
+- pip3 install -r requirements.txt
