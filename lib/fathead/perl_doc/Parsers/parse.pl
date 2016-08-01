@@ -199,7 +199,7 @@ sub insert {
 
 sub select {
     my ($self, $what, $matching) = @_;
-    my $sql = "SELECT $what FROM output.txt WHERE $what = ?";
+    my $sql = "SELECT * FROM output.txt WHERE $what = ?";
     return $self->tsv->selectrow_hashref($sql, undef, $matching);
 }
 
