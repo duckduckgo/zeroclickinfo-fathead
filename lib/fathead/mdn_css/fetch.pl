@@ -67,7 +67,18 @@ my $file_number = 1;
 my $current_active_connections = 0;
 my $maximum_active_connections = 4;
 
-my @keyword_urls = keys %urls;
+#save the urls with fragments to a text file called
+#fragments.txt so that parse.pl can use this information
+#to extract extra information about the fragments
+my @keyword_urls        = map  { Mojo::URL->new($_) } keys %urls;
+my @urls_with_fragments = grep { $_->fragment } @keyword_urls;
+if (@urls_with_fragments) {
+    open( my $fh, '>:encoding(UTF-8)', catfile 'download', 'fragments.txt' )
+      or die $!;
+    for my $urls_with_fragment (@urls_with_fragments) {
+        say $fh $urls_with_fragment;
+    }
+}
 
 #see http://mojolicious.org/perldoc/Mojo/IOLoop#recurring
 Mojo::IOLoop->recurring(
