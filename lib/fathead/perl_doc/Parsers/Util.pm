@@ -6,18 +6,6 @@ use Data::Dumper;
 use Exporter qw/import/;
 our @EXPORT_OK = qw/get_row trim_abstract/;
 
-# return tab formatted row for fathead output.txt file
-sub get_row {
-    my ($title, $abs, $url, $type, $redirect) = @_;
-    $type = 'A' unless $type;
-    if($type eq 'A'){
-        return "$title\t$type\t\t\t\t\t\t\t\t\t\t$abs\t$url";
-    }
-    elsif($type eq 'R'){
-        return "$redirect\t$type\t$title" . "\t" x (10);
-    }
-}
-
 sub trim_abstract {
     my($full_abs, $len) = @_;
     

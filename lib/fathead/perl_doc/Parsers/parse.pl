@@ -14,7 +14,7 @@ use Mojo::DOM;
 use Moo;
 use Text::CSV_XS;
 use URI;
-use Util qw( get_row trim_abstract);
+use Util qw(trim_abstract);
 use List::Util qw(first);
 
 has perldoc_url => ( is => 'lazy' );
