@@ -806,7 +806,7 @@ sub resolve_aliases {
         $self->disambiguation({
             title => $alias,
             disambiguations => [map {
-                { link => $_->{title}, description => $_->{categories}->[0] },
+                { link => $_->{title}, description => $_->{abstract} },
             } @articles],
         });
     }
