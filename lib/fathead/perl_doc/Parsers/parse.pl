@@ -54,6 +54,18 @@ sub _build_indices {
     return $indices;
 }
 
+has aliases => ( is => 'lazy' );
+sub _build_aliases {
+    # TODO: Should consider an external source for this, like another CSV / TSV
+    # Inline hash is fine for now.
+    +{
+        for     => 'For Loops',
+        foreach => 'Foreach Loops',
+        oo      => 'Where can I learn about object-oriented Perl programming?',
+        oop     => 'Where can I learn about object-oriented Perl programming?',
+    };
+}
+
 has tsv => ( is => 'lazy' );
 sub _build_tsv {
     my $dbh = DBI->connect ("dbi:CSV:", undef, undef, {
@@ -731,6 +743,10 @@ sub parse {
         foreach my $page ( sort keys %{$self->indices->{ $index }} ) {
             $self->parse_page( $self->indices->{ $index }->{ $page } );
         }
+    }
+
+    foreach my $alias ( sort keys %{ $self->aliases } ) {
+        $self->alias( $alias, $self->aliases->{ $alias } );
     }
 }
 
