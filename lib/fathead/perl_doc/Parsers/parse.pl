@@ -66,6 +66,14 @@ sub _build_aliases {
     };
 }
 
+has related => ( is => 'lazy' );
+sub _build_related {
+    # As with the ad-hoc aliases, this should be moved to an external source.
+    [
+        [ 'For Loops', 'Foreach Loops', 'Loop Control', 'Compound Statements', 'Statement Modifiers' ],
+    ]
+}
+
 has tsv => ( is => 'lazy' );
 sub _build_tsv {
     my $dbh = DBI->connect ("dbi:CSV:", undef, undef, {
@@ -739,6 +747,13 @@ sub parse_page {
     }
 }
 
+sub add_related {
+    my ( $self, $article, @related ) = @_;
+    my $sql = 'UPDATE output.txt SET related = ? WHERE title = ?';
+    my $related = join ",", map { "[[$_]]" } @related;
+    $self->tsv->do( $sql, undef, ( $related, $article ) );
+}
+
 sub parse {
     my ( $self ) = @_;
     foreach my $index ( sort keys %{$self->indices} ) {
@@ -749,6 +764,12 @@ sub parse {
 
     foreach my $alias ( sort keys %{ $self->aliases } ) {
         $self->alias( $alias, $self->aliases->{ $alias } );
+    }
+
+    foreach my $related ( @{ $self->related } ) {
+        foreach my $article ( @{ $related } ) {
+            $self->add_related( $article, grep { $_ ne $article } @{ $related } );
+        }
     }
 }
 
