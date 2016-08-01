@@ -64,11 +64,11 @@ class Documentation
 
   def to_row
     OutputRow.new do |row|
-      row.title = title
+      row.title = escape_brackets title
       row.type = 'A' # article
       row.categories = categories.join("\n")
       row.related = related.join("\n")
-      row.abstract = abstract
+      row.abstract = escape_brackets abstract
       row.url = url
     end
   end
@@ -76,9 +76,9 @@ class Documentation
   def to_redirect_rows
     (alt_titles - [title]).map do |alt_title|
       OutputRow.new do |row|
-        row.title = alt_title
+        row.title = escape_brackets alt_title
         row.type = 'R' # redirect
-        row.redirect_title = title
+        row.redirect_title = escape_brackets title
       end
     end
   end
@@ -97,6 +97,10 @@ class Documentation
 
   def escape(string)
     string.gsub(/[&<]/, '&' => '&amp;', '<' => '&lt;')
+  end
+
+  def escape_brackets(string)
+    string.gsub(/([\[\]])/, '\\\\\1')
   end
 
   def usage
