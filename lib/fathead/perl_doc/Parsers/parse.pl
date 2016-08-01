@@ -227,12 +227,19 @@ sub disambiguation {
 }
 
 sub entry {
-    my ( $self, $title, $text, $url ) = @_;
+    my ( $self, %fields ) = @_;
+    my ($title, $text, $url, $related) = @fields{qw(title text url related)};
+    my $related_text = '';
+    # TODO: Find out how the related links should *actually* be formatted
+    if (defined $related && @$related) {
+        $related_text = join '', map { "[[$_]]" } @$related;
+    }
     return warn "No text for '$title'" unless $text;
     $self->insert({
         title => $title,
         type  => 'A',
         abstract => $text,
+        related  => $related_text,
         sourceurl => $url,
     });
 }
@@ -299,6 +306,7 @@ sub ul_list_parser {
         is_empty => sub { !($_[0]->find('p')->each) },
         redirect => sub { undef },
         disambiguation => sub { undef },
+        related => sub { [] },
         @_,
     );
     return sub {
@@ -340,6 +348,8 @@ sub ul_list_parser {
                     anchor => $link,
                     text   => $text,
                 };
+                my $related = $options{related}->($item, $article);
+                $article->{related} = $related;
                 if (my $disambiguation = $options{disambiguation}->($item, $article)) {
                     push @disambiguations, $disambiguation;
                     next;
@@ -735,7 +745,12 @@ sub parse_page {
             my $anchored_url = $url;
             $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
 
-            $self->entry( $article->{title}, $article->{text}, $anchored_url );
+            $self->entry(
+                title => $article->{title},
+                text  => $article->{text},
+                url   => $anchored_url,
+                related => $article->{related},
+            );
         }
 
         for my $alias ( @{ $parsed->{aliases} } ) {
@@ -747,12 +762,6 @@ sub parse_page {
     }
 }
 
-sub add_related {
-    my ( $self, $article, @related ) = @_;
-    my $sql = 'UPDATE output.txt SET related = ? WHERE title = ?';
-    my $related = join ",", map { "[[$_]]" } @related;
-    $self->tsv->do( $sql, undef, ( $related, $article ) );
-}
 
 sub parse {
     my ( $self ) = @_;
@@ -764,12 +773,6 @@ sub parse {
 
     foreach my $alias ( sort keys %{ $self->aliases } ) {
         $self->alias( $alias, $self->aliases->{ $alias } );
-    }
-
-    foreach my $related ( @{ $self->related } ) {
-        foreach my $article ( @{ $related } ) {
-            $self->add_related( $article, grep { $_ ne $article } @{ $related } );
-        }
     }
 }
 
