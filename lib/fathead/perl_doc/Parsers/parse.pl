@@ -204,6 +204,12 @@ sub insert {
     $self->tsv->do( $sql, undef, @values );
 }
 
+sub select {
+    my ($self, $what, $matching) = @_;
+    my $sql = "SELECT $what FROM output.txt WHERE $what = ?";
+    return $self->tsv->selectrow_hashref($sql, undef, $matching);
+}
+
 sub alias {
     my ( $self, $new, $orig ) = @_;
     $self->insert({
