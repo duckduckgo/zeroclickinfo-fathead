@@ -513,6 +513,20 @@ sub parse_glossary_definitions {
                 disambiguations => \@disambiguations,
             };
         },
+        related => sub {
+            return undef unless $_[1]->{text} =~ /See also[^.]*<b>/;
+            my $res_text = $_[1]->{text};
+            my @related;
+            while ($_[1]->{text} =~ /(\(?See also[^.]*<\/b>\.\)?)/g) {
+                my $see = $1;
+                $res_text =~ s/\Q$see\E//;
+                while ($see =~ /<b>([^<]*)<\/b>/g) {
+                    push @related, $1;
+                }
+            }
+            $_[1]->{text} = $res_text;
+            return \@related;
+        },
     )->(@_);
 }
 
