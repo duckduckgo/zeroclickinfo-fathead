@@ -689,6 +689,8 @@ sub normalize_article {
     my ($article) = @_;
     my $text = $article->{text};
     $text =~ s/\n/ /g;
+    $text =~ s/<strong>//g;
+    $text =~ s{</strong>}{}g;
     return {
         %$article,
         text => $text,
