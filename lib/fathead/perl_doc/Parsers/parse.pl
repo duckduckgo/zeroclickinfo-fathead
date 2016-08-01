@@ -227,18 +227,20 @@ sub disambiguation {
 }
 
 sub entry {
-    my ( $self, %fields ) = @_;
-    my ($title, $text, $url, $related) = @fields{qw(title text url related)};
+    my ( $self, %article ) = @_;
+    my ($title, $text, $url, $related) = @article{qw(title text url related)};
     my $related_text = '';
     # TODO: Find out how the related links should *actually* be formatted
     if (defined $related && @$related) {
         $related_text = join '', map { "[[$_]]" } @$related;
     }
+    my $category_text = join '\n', @{$article{categories} || []};
     return warn "No text for '$title'" unless $text;
     $self->insert({
+        abstract => $text,
+        categories => $category_text,
         title => $title,
         type  => 'A',
-        abstract => $text,
         related  => $related_text,
         sourceurl => $url,
     });
@@ -307,6 +309,7 @@ sub ul_list_parser {
         redirect => sub { undef },
         disambiguation => sub { undef },
         related => sub { [] },
+        categories => sub { [] },
         @_,
     );
     return sub {
@@ -348,6 +351,8 @@ sub ul_list_parser {
                     anchor => $link,
                     text   => $text,
                 };
+                my $categories = $options{categories}->($item, $article);
+                $article->{categories} = $categories;
                 my $related = $options{related}->($item, $article);
                 $article->{related} = $related;
                 if (my $disambiguation = $options{disambiguation}->($item, $article)) {
@@ -760,10 +765,8 @@ sub parse_page {
             $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
 
             $self->entry(
-                title => $article->{title},
-                text  => $article->{text},
-                url   => $anchored_url,
-                related => $article->{related},
+                url => $anchored_url,
+                %$article,
             );
         }
 
