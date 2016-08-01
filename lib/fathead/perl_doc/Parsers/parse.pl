@@ -479,13 +479,16 @@ sub parse_functions {
     return unless $description;
     $description = trim_abstract($description, 100);
     $description = "<code><br>$hint<br></code><br>". $description;
-    my $title = "$fname function";
+    my $title = "$fname (function)";
     return {
         articles => [
             { title => $title, text => $description }
         ],
         aliases => [
-            make_aliases($title, $fname, "$fname func"),
+            make_aliases($title,
+                $fname, "$fname function", "$fname func", "$fname sub",
+                "$fname routine", "$fname subroutine", "$fname method",
+            ),
         ],
     };
 }
