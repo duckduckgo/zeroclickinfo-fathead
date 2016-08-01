@@ -120,7 +120,7 @@ my %parser_map = (
         'parse_regex_modifiers',
     ],
     'perlrun'         => ['parse_cli_switches'],
-    'perlvar'         => ['parse_multiheaders'],
+    'perlvar'         => ['parse_variables'],
 );
 
 my @parsers = sort keys %parser_map;
@@ -722,13 +722,17 @@ sub parse_operators {
 }
 
 # For docs like perlfunc, perlvar with multiple headers per entry.
-sub parse_multiheaders {
-    my ($self, $dom, $section) = @_;
-    my @mod_sections = $dom->at( sprintf 'a[name="%s"]', $section || "General-Variables" )->following('ul')->each;
+
+sub parse_variables {
+    my ($self, $dom) = @_;
+    my @mod_sections = $dom->at('a[name="General-Variables"]')
+        ->following('ul')->each;
     ul_list_parser(
         uls => \@mod_sections,
-        title => sub { $_[0]->find('b')->first->text },
-    )->($self, $dom);
+        title => sub { $_[0]->find('b')->first->text . ' (variable)' },
+        aliases => sub { $_[1] =~ s/ \(variable\)//r },
+        categories => sub { ['Variables'] },
+    )->(@_);
 }
 
 #######################################################################
