@@ -27,13 +27,23 @@ class OutputRow
   end
 
   def to_s
-    HEADERS.map { |header| escape public_send header if header } * "\t" << "\n"
+    HEADERS.map do |header|
+      case header
+      when nil then ''
+      when :links, :related then escape public_send header
+      else escape_brackets public_send header
+      end
+    end.join("\t") << "\n"
   end
 
   private
 
   def escape(text)
     String(text).gsub(/[\\\n\t]/, '\\' => '\\\\', "\n" => '\n', "\t" => '\t')
+  end
+
+  def escape_brackets(text)
+    escape(text).gsub(/[\[\]]/, '[' => '\\[', ']' => '\\]')
   end
 end
 
@@ -64,11 +74,11 @@ class Documentation
 
   def to_row
     OutputRow.new do |row|
-      row.title = escape_brackets title
+      row.title = title
       row.type = 'A' # article
       row.categories = categories.join("\n")
       row.related = related.join("\n")
-      row.abstract = escape_brackets abstract
+      row.abstract = abstract
       row.url = url
     end
   end
@@ -76,9 +86,9 @@ class Documentation
   def to_redirect_rows
     (alt_titles - [title]).map do |alt_title|
       OutputRow.new do |row|
-        row.title = escape_brackets alt_title
+        row.title = alt_title
         row.type = 'R' # redirect
-        row.redirect_title = escape_brackets title
+        row.redirect_title = title
       end
     end
   end
@@ -97,10 +107,6 @@ class Documentation
 
   def escape(string)
     string.gsub(/[&<]/, '&' => '&amp;', '<' => '&lt;')
-  end
-
-  def escape_brackets(string)
-    string.gsub(/([\[\]])/, '\\\\\1')
   end
 
   def usage
