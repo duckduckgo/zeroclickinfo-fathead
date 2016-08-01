@@ -496,7 +496,15 @@ sub parse_index_functions_links {
 
 sub parse_glossary_definitions {
     ul_list_parser(
-        title => sub { $_[0]->find('b')->first->text },
+        title => sub { $_[0]->find('b')->first->text . ' (definition)' },
+        aliases => sub {
+            my $term = $_[1] =~ s/ \(definition\)//r;
+            return (
+                "$term definition",
+                "define $term",
+                "$term",
+            );
+        },
         uls   => sub { $_[0]->find('h2 ~ ul')->each },
         redirect => sub {
             return undef unless $_[1]->{text} =~ qr{^<p>See <b>([^<]+)</b>\.</p>$};
