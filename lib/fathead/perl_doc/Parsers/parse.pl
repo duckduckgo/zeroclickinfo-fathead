@@ -54,17 +54,10 @@ sub _build_indices {
     return $indices;
 }
 
-has aliases => ( is => 'lazy' );
-sub _build_aliases {
-    # TODO: Should consider an external source for this, like another CSV / TSV
-    # Inline hash is fine for now.
-    +{
-        for     => 'For Loops',
-        foreach => 'Foreach Loops',
-        oo      => 'Where can I learn about object-oriented Perl programming?',
-        oop     => 'Where can I learn about object-oriented Perl programming?',
-    };
-}
+has aliases => (
+    is => 'ro',
+    default => sub { {} },
+);
 
 has related => ( is => 'lazy' );
 sub _build_related {
@@ -212,6 +205,12 @@ sub select {
 
 sub alias {
     my ( $self, $new, $orig ) = @_;
+    my @existing = @{ $self->aliases->{$new} // [] };
+    $self->aliases->{$new} = [@existing, $orig];
+}
+
+sub insert_alias {
+    my ($self, $new, $orig) = @_;
     $self->insert({
         title => $new,
         type  => 'R',
@@ -793,6 +792,21 @@ sub parse_page {
     }
 }
 
+sub resolve_aliases {
+    my ($self) = @_;
+    my %aliases = %{$self->aliases};
+    while (my ($alias, $to) = each %aliases) {
+        my @to = @$to;
+        @to == 1 and $self->insert_alias($alias, $to[0]) and next;
+        my @articles = map { $self->select(title => $_) } @to;
+        $self->disambiguation({
+            title => $alias,
+            disambiguations => [map {
+                { link => $_->{title}, description => $_->{categories}->[0] },
+            } @articles],
+        });
+    }
+}
 
 sub parse {
     my ( $self ) = @_;
@@ -802,9 +816,7 @@ sub parse {
         }
     }
 
-    foreach my $alias ( sort keys %{ $self->aliases } ) {
-        $self->alias( $alias, $self->aliases->{ $alias } );
-    }
+    $self->resolve_aliases;
 }
 
 main->new->parse;
