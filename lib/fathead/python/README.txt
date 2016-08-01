@@ -1,3 +1,3 @@
 Dependencies:
-- Python 3.4.3
-- pip install beautifulsoup4==4.4.1
+- Python 3.5.2
+- pip install -r requirements.txt

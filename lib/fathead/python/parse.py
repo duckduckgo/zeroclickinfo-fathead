@@ -1,12 +1,14 @@
 import os
-import json
 
 from bs4 import BeautifulSoup
 import petl
 
-PYTHON_DOC_BASE_URL = 'https://docs.python.org/3.5{}'
-DOWNLOADED_HTML_PATHS = {'python3': 'download/python-3.5.2-docs-html',
-                         'python2': 'download/python-2.7.12-docs-html'}
+PYTHON_VERSIONS = {
+    'python3': {'download_path': 'download/python-3.5.2-docs-html', 'doc_base_url': 'https://docs.python.org/3.5{}',
+                'out_file': 'output.txt'},
+    'python2': {'download_path': 'download/python-2.7.12-docs-html', 'doc_base_url': 'https://docs.python.org/2.7{}',
+                'out_file': 'output_py2.txt'},
+}
 
 
 class PythonData(object):
@@ -49,7 +51,7 @@ class PythonDataParser(object):
     """
     Object responsible for parsing the raw HTML that contains Python data
     """
-    def __init__(self, data_object, download_path):
+    def __init__(self, data_object, info):
         """
         Given raw data, get the relevant sections
         Args:
@@ -61,7 +63,7 @@ class PythonDataParser(object):
         self.method_sections = []
         self.intro_text = ''
         self.title = ''
-        self.download_path = download_path
+        self.info = info
 
         self.file_being_used = data_object.get_file()
 
@@ -197,8 +199,8 @@ class PythonDataParser(object):
             Full URL to function on the python doc
 
         """
-        file_path = self.file_being_used.replace(self.download_path, '')
-        return PYTHON_DOC_BASE_URL.format('{}{}'.format(file_path, anchor))
+        file_path = self.file_being_used.replace(self.info['download_path'], '')
+        return self.info['doc_base_url'].format('{}{}'.format(file_path, anchor))
 
     def parse_for_data(self):
         """
@@ -349,8 +351,8 @@ def unify():
 
     """
     header = ['name', 'article_type', 'redirects', 'ignore', 'categories', 'ignore2', 'related', 'ignore3', 'external_links', 'disambiguation', 'images', 'abstract', 'url']
-    table2 = (petl
-                 .fromtsv('output_py2.txt')
+    py2 = (petl
+                 .fromtsv(PYTHON_VERSIONS['python2']['out_file'])
                  .setheader(header)
                  .selectnotnone('abstract')
                  .sort(key='name')
@@ -358,8 +360,8 @@ def unify():
                  .lookup('name')
              )
 
-    table3 = (petl
-                 .fromtsv('output.txt')
+    py3 = (petl
+                 .fromtsv(PYTHON_VERSIONS['python3']['out_file'])
                  .setheader(header)
                  .selectnotnone('abstract')
                  .sort(key='name')
@@ -367,40 +369,39 @@ def unify():
                  .lookup('name')
              )
 
-    new_table2 = []
+    new_py2 = []
     differ = 0
     nf = 0
-    for k, v in table3.items():
-        if k in table2 and v[0][11] != table2[k][0][11]:
+    for k, v in py3.items():
+        if k in py2 and v[0][11] != py2[k][0][11]:
             differ += 1
-            new_table2.append(v[0])
+            new_py2.append(py2[k][0])
         else:
             nf += 1
     print('differ: %i\nnf:%i' % (differ, nf))
-    with open('output_py2.txt', 'w') as out_file:
-        for item in new_table2:
+    with open(PYTHON_VERSIONS['python2']['out_file'], 'w') as out_file:
+        for item in new_py2:
             out_file.write('{}\n'.format('\t'.join(i for i in item)))
 
 
-def pre_parse():
+def cleanup(out_file):
     """
     Cleanup output.txt's files.  Mostly for use during local dev/testing.
     """
-    if os.path.isfile('output.txt'):
-        os.remove('output.txt')
-    if os.path.isfile('output_py2.txt'):
-        os.remove('output_py2.txt')
+    if os.path.isfile(out_file):
+        os.remove(out_file)
+
 
 if __name__ == "__main__":
-    pre_parse()
-    for version, download_path in DOWNLOADED_HTML_PATHS.items():
-        print('starting download_path: %s' % download_path)
-        for dir_path, dir_name, file_names in os.walk(download_path):
+    for version, info in PYTHON_VERSIONS.items():
+        print('starting version: %s' % version)
+        cleanup(info['out_file'])
+        for dir_path, dir_name, file_names in os.walk(info['download_path']):
             for file_name in file_names:
                 if '.html' in file_name:
                     file_path = '/'.join((dir_path, file_name))
                     data = PythonData(file_path)
-                    parser = PythonDataParser(data, download_path)
+                    parser = PythonDataParser(data, info)
                     parser.parse_for_data()
                     output = PythonDataOutput(parser.get_data(), version)
                     output.create_file()
