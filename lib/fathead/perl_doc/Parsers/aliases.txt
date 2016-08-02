@@ -1,4 +1,2 @@
-for,     For Loops
-foreach, Foreach Loops
-oo,      Where can I learn about object-oriented Perl programming?
-oop,     Where can I learn about object-oriented Perl programming?
+oo,  Where can I learn about object-oriented Perl programming?
+oop, Where can I learn about object-oriented Perl programming?
