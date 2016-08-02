@@ -479,7 +479,7 @@ sub build_description {
     return $description;
 }
 
-my $faq_start = qr/^how ((can|do)( i)?|to) /i;
+my $faq_start = qr/^(how ((can|do)( i)?|to)|what( is|'s)( (the|a))?) /i;
 
 sub aliases_faq {
     my ($title) = @_;
