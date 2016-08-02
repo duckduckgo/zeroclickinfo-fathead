@@ -56,8 +56,21 @@ sub _build_indices {
 
 has aliases => (
     is => 'ro',
-    default => sub { {} },
+    builder => 1,
 );
+
+sub _build_aliases {
+    my $csv = Text::CSV_XS->new( { binary => 1, allow_whitespace => 1 });
+    open my $fh, "<", "aliases.txt"
+        or (warn "No external aliases file detected" and return {});
+    my %aliases;
+    while (my $row = $csv->getline($fh)) {
+        my ($alias, @orig) = @$row;
+        $aliases{$alias} = [@orig];
+    }
+    close $fh;
+    return \%aliases;
+}
 
 has related => ( is => 'lazy' );
 sub _build_related {
