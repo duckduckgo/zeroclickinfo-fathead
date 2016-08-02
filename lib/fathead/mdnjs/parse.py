@@ -198,7 +198,7 @@ class MDNParser(object):
              for element in elements:
               for tag in element.xpath('//*[@class]'):
                   tag.attrib.pop('class')
-              codesnippet += etree.tostring(element, pretty_print=True)
+              codesnippet += re.sub('<[^<]+?>', '', etree.tostring(element, pretty_print=True))
 
         sys.stdout.write("Parsing %s  " % (title_el[0]) + " " * 30 + "\r")
         sys.stdout.flush()
