@@ -74,6 +74,28 @@ sub _build_aliases {
     return \%aliases;
 }
 
+has redirect => (
+    is => 'ro',
+    builder => 1,
+);
+
+sub _build_redirect {
+    my $csv = Text::CSV_XS->new({
+            binary => 1,
+            sep => '>',
+            allow_whitespace => 1
+    });
+    open my $fh, "<", "redirect.txt"
+        or (warn "No external redirect file detected" and return {});
+    my %redirects;
+    while (my $row = $csv->getline($fh)) {
+        my ($from, $to, undef) = @$row;
+        $redirects{$from} = $to;
+    }
+    close $fh;
+    return \%redirects;
+}
+
 has related => ( is => 'lazy' );
 sub _build_related {
     # As with the ad-hoc aliases, this should be moved to an external source.
@@ -869,6 +891,10 @@ sub resolve_articles {
     my ($self) = @_;
     my %articles = %{$self->articles};
     foreach my $article (values %articles) {
+        if (my $redirect = $self->redirect->{$article->{title}}) {
+            $self->alias($article->{title}, $redirect);
+            next;
+        }
         my $dom = Mojo::DOM->new->parse($article->{text});
         $dom->find('a[href]')->map(sub {
             my $link = $_->attr('href');
