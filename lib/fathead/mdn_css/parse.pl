@@ -211,13 +211,11 @@ sub make_external_links {
     my $base = Mojo::URL->new($link);
     for my $li ( $lis_collection->each ) {
         my $a = $li->at('a');
-        my $href = $a->attr('href') if $a;
-        if ($href) {
-            my $absolute_link = Mojo::URL->new($href)->to_abs($base);
-            my $link_text     = $a->text;
-            $external_links .= sprintf '[%s %s]\\\n', $link_text,
-              $absolute_link;
-        }
+        next unless $a;
+        my $href          = $a->attr('href');
+        my $absolute_link = Mojo::URL->new($href)->to_abs($base);
+        my $link_text     = $a->text;
+        $external_links .= sprintf '[%s %s]\\\n', $link_text, $absolute_link;
     }
     return $external_links;
 }
