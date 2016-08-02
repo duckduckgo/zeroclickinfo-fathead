@@ -23,6 +23,3 @@ For implementation details, see parse.Standardizer
 Dependencies:
   Python 2.7
   lxml, https://pypi.python.org/pypi/lxml
-  unidecode, https://pypi.python.org/pypi/Unidecode
-  httplib2, https://pypi.python.org/pypi/httplib2/
-  beautifulsoup4, http://www.crummy.com/software/BeautifulSoup/
