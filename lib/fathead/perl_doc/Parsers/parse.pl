@@ -829,7 +829,6 @@ sub dom_for_parsing {
     my ($url, $page) = @_;
     my $dom = dom_for_file($page);
     normalize_dom_links($url, $dom);
-    $dom->find('code')->map(wrap => '<pre></pre>');
     return $dom;
 }
 
