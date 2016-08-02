@@ -318,6 +318,10 @@ sub get_anchors {
 #                               Helpers                               #
 #######################################################################
 
+sub without_punct {
+    $_[0] =~ s/\p{Punct}//gr;
+}
+
 sub make_aliases {
     my ($title, @aliases) = @_;
     my @valid_aliases = grep { $_ ne $title } @aliases;
@@ -452,6 +456,13 @@ sub build_description {
     return $description;
 }
 
+sub aliases_faq {
+    my ($title) = @_;
+    return (
+        without_punct($title),
+    );
+}
+
 sub parse_faq {
     my ($self, $dom) = @_;
     my %parsed;
@@ -463,11 +474,11 @@ sub parse_faq {
         my $title = $faq_title->text;
         my $title_without_index = $title =~ s/.*[0-9]\s*:\s*//r;
         if ( $title_without_index ne $title ) {
-            push @aliases, {
-                new  => $title_without_index,
-                orig => $title
-            };
+            push @aliases, make_aliases($title, $title_without_index);
         }
+        push @aliases, make_aliases($title,
+            aliases_faq($title),
+        );
         my $description = build_description($faq_title) or next;
         next unless $link;
         push @articles, {
