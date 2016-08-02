@@ -1,11 +1,11 @@
 import os
+import csv
 
 from bs4 import BeautifulSoup
-import petl
 
 PYTHON_VERSIONS = {
     'python3': {'download_path': 'download/python-3.5.2-docs-html', 'doc_base_url': 'https://docs.python.org/3.5{}',
-                'out_file': 'output.txt'},
+                'out_file': 'output_py3.txt'},
     'python2': {'download_path': 'download/python-2.7.12-docs-html', 'doc_base_url': 'https://docs.python.org/2.7{}',
                 'out_file': 'output_py2.txt'},
 }
@@ -271,10 +271,7 @@ class PythonDataOutput(object):
     """
     def __init__(self, data, version):
         self.data = data
-        if version == 'python2':
-            self.output = 'output_py2.txt'
-        else:
-            self.output = 'output.txt'
+        self.output = PYTHON_VERSIONS[version]['out_file']
 
     def create_names_from_data(self, data_element):
         """
@@ -348,40 +345,41 @@ class PythonDataOutput(object):
 def unify():
     """
     Compare python3 and python2 abstracts by key keeping python2 entry only if the abstracts differ.
+    For python2 keys update the key to be prefixes with 'python2 '.  Add category to both python3 and python2 record.
 
     """
     header = ['name', 'article_type', 'redirects', 'ignore', 'categories', 'ignore2', 'related', 'ignore3', 'external_links', 'disambiguation', 'images', 'abstract', 'url']
-    py2 = (petl
-                 .fromtsv(PYTHON_VERSIONS['python2']['out_file'])
-                 .setheader(header)
-                 .selectnotnone('abstract')
-                 .sort(key='name')
-                 .unique(key='name')
-                 .lookup('name')
-             )
 
-    py3 = (petl
-                 .fromtsv(PYTHON_VERSIONS['python3']['out_file'])
-                 .setheader(header)
-                 .selectnotnone('abstract')
-                 .sort(key='name')
-                 .unique(key='name')
-                 .lookup('name')
-             )
+    table2 = csv.DictReader(open(PYTHON_VERSIONS['python2']['out_file'], 'r'), delimiter='\t', fieldnames=header)
+    table3 = csv.DictReader(open(PYTHON_VERSIONS['python3']['out_file'], 'r'), delimiter='\t', fieldnames=header)
+    py3 = {}
+    py2 = {}
+    for item in table2:
+        py2[item['name']] = item
+    for item in table3:
+        py3[item['name']] = item
 
-    new_py2 = []
-    differ = 0
-    nf = 0
+
+    buffer = {}
+    diff = 0
+    not_found = 0
     for k, v in py3.items():
-        if k in py2 and v[0][11] != py2[k][0][11]:
-            differ += 1
-            new_py2.append(py2[k][0])
+        if k in py2 and v['abstract'] != py2[k]['abstract']:
+            diff += 1
+            # update py3 category and add py2 record
+            py3[k]['categories'] = k
+            rec = py2[k]
+            rec['name'] = 'python2 ' + k
+            rec['categories'] = k
+            buffer['python2 ' + k] = rec
         else:
-            nf += 1
-    print('differ: %i\nnf:%i' % (differ, nf))
-    with open(PYTHON_VERSIONS['python2']['out_file'], 'w') as out_file:
-        for item in new_py2:
-            out_file.write('{}\n'.format('\t'.join(i for i in item)))
+            not_found += 1
+    print('differ: %i\nnf:%i' % (diff, not_found))
+    py3.update(buffer)
+    with open('output.txt', 'w') as out_file:
+        for v in py3.values():
+            rec = [v[col] if v[col] is not None else '' for col in header]
+            out_file.write('{}\n'.format('\t'.join(rec)))
 
 
 def cleanup(out_file):
@@ -393,6 +391,7 @@ def cleanup(out_file):
 
 
 if __name__ == "__main__":
+    cleanup('output.txt')
     for version, info in PYTHON_VERSIONS.items():
         print('starting version: %s' % version)
         cleanup(info['out_file'])

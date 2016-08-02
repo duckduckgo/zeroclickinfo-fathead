@@ -1,2 +1,1 @@
 beautifulsoup4==4.4.1
-petl==1.1.0
