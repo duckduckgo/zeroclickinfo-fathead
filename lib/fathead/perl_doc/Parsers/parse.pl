@@ -809,8 +809,6 @@ sub normalize_article {
     my ($article) = @_;
     my $text = $article->{text};
     $text =~ s/\n/ /g;
-    $text =~ s/<strong>//g;
-    $text =~ s{</strong>}{}g;
     return {
         %$article,
         text => $text,
@@ -829,6 +827,7 @@ sub dom_for_parsing {
     my ($url, $page) = @_;
     my $dom = dom_for_file($page);
     normalize_dom_links($url, $dom);
+    $dom->find('strong')->map('strip');
     return $dom;
 }
 
