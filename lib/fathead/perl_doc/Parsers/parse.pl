@@ -16,6 +16,7 @@ use Text::CSV_XS;
 use URI;
 use Util qw(trim_abstract);
 use List::Util qw(first);
+use List::MoreUtils qw(uniq);
 
 my %links;
 
