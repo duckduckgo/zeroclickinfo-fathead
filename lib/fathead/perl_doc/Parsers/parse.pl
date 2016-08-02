@@ -832,6 +832,8 @@ sub dom_for_parsing {
     my $dom = dom_for_file($page);
     normalize_dom_links($url, $dom);
     $dom->find('strong')->map('strip');
+    $dom->find('code > a')->grep(sub { $_->parent->all_text eq $_->text })
+        ->map( sub { $_->parent->strip });
     return $dom;
 }
 
