@@ -1,3 +1,10 @@
 perl
 perl5
+perl 5
 perldoc
+perl doc
+(perl)
+(perl5)
+(perl 5)
+(perldoc)
+(perl doc)
