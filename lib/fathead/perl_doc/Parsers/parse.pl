@@ -17,6 +17,8 @@ use URI;
 use Util qw(trim_abstract);
 use List::Util qw(first);
 
+my %links;
+
 has perldoc_url => ( is => 'lazy' );
 sub _build_perldoc_url {
     'http://perldoc.perl.org/';
@@ -242,6 +244,20 @@ sub disambiguation {
         title => $disambiguation->{title},
         disambiguation => $dtext,
     });
+}
+
+has articles => (
+    is => 'ro',
+    default => sub { {} },
+);
+
+sub article {
+    my ($self, $article) = @_;
+    my $title = $article->{title};
+    warn "Duplicate article with title '$title' detected\n" and return
+        if exists $self->articles->{$title};
+    $links{$article->{url}} = $title;
+    $self->articles->{$title} = $article;
 }
 
 sub entry {
@@ -798,10 +814,8 @@ sub parse_page {
             my $anchored_url = $url;
             $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
 
-            $self->entry(
-                url => $anchored_url,
-                %$article,
-            );
+            $article->{url} = $anchored_url;
+            $self->article($article);
         }
 
         for my $alias ( @{ $parsed->{aliases} } ) {
@@ -829,6 +843,22 @@ sub resolve_aliases {
     }
 }
 
+sub resolve_articles {
+    my ($self) = @_;
+    my %articles = %{$self->articles};
+    foreach my $article (values %articles) {
+        my $dom = Mojo::DOM->new->parse($article->{text});
+        $dom->find('a[href]')->map(sub {
+            my $link = $_->attr('href');
+            if (my $point = $links{$link}) {
+                $_->attr(href => "/?q=$point&ia=about");
+            }
+        });
+        $article->{text} = $dom->to_string;
+        $self->entry(%$article);
+    }
+}
+
 sub parse {
     my ( $self ) = @_;
     foreach my $index ( sort keys %{$self->indices} ) {
@@ -837,6 +867,7 @@ sub parse {
         }
     }
 
+    $self->resolve_articles;
     $self->resolve_aliases;
 }
 
