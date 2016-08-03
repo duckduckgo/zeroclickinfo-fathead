@@ -1,9 +1,14 @@
 import os
+import csv
 
 from bs4 import BeautifulSoup
 
-PYTHON_DOC_BASE_URL = 'https://docs.python.org/3.4{}'
-DOWNLOADED_HTML_PATH = 'download/python-3.4.5-docs-html'
+PYTHON_VERSIONS = {
+    'python3': {'download_path': 'download/python-3.5.2-docs-html', 'doc_base_url': 'https://docs.python.org/3.5{}',
+                'out_file': 'output_py3.txt'},
+    'python2': {'download_path': 'download/python-2.7.12-docs-html', 'doc_base_url': 'https://docs.python.org/2.7{}',
+                'out_file': 'output_py2.txt'},
+}
 
 
 class PythonData(object):
@@ -46,17 +51,19 @@ class PythonDataParser(object):
     """
     Object responsible for parsing the raw HTML that contains Python data
     """
-    def __init__(self, data_object):
+    def __init__(self, data_object, info):
         """
         Given raw data, get the relevant sections
         Args:
             raw_data: HTML data
+            path: path of downloaded HTML data
         """
         self.parsed_data = None
         self.function_sections = []
         self.method_sections = []
         self.intro_text = ''
         self.title = ''
+        self.info = info
 
         self.file_being_used = data_object.get_file()
 
@@ -192,8 +199,8 @@ class PythonDataParser(object):
             Full URL to function on the python doc
 
         """
-        file_path = self.file_being_used.replace(DOWNLOADED_HTML_PATH, '')
-        return PYTHON_DOC_BASE_URL.format('{}{}'.format(file_path, anchor))
+        file_path = self.file_being_used.replace(self.info['download_path'], '')
+        return self.info['doc_base_url'].format('{}{}'.format(file_path, anchor))
 
     def parse_for_data(self):
         """
@@ -262,8 +269,9 @@ class PythonDataOutput(object):
     """
     Object responsible for outputting data into the output.txt file
     """
-    def __init__(self, data):
+    def __init__(self, data, version):
         self.data = data
+        self.output = PYTHON_VERSIONS[version]['out_file']
 
     def create_names_from_data(self, data_element):
         """
@@ -288,7 +296,7 @@ class PythonDataOutput(object):
         Iterate through the data and create the needed output.txt file, appending to file as necessary.
 
         """
-        with open('output.txt', 'a') as output_file:
+        with open(self.output, 'a') as output_file:
             for data_element in self.data:
                 if data_element.get('module') or data_element.get('function'):
                     method_signature = data_element.get('method_signature')
@@ -333,13 +341,67 @@ class PythonDataOutput(object):
                         ]
                         output_file.write('{}\n'.format('\t'.join(list_of_data)))
 
+
+def unify():
+    """
+    Compare python3 and python2 abstracts by key keeping python2 entry only if the abstracts differ.
+    For python2 keys update the key to be prefixes with 'python2 '.  Add category to both python3 and python2 record.
+
+    """
+    header = ['name', 'article_type', 'redirects', 'ignore', 'categories', 'ignore2', 'related', 'ignore3', 'external_links', 'disambiguation', 'images', 'abstract', 'url']
+
+    table2 = csv.DictReader(open(PYTHON_VERSIONS['python2']['out_file'], 'r'), delimiter='\t', fieldnames=header)
+    table3 = csv.DictReader(open(PYTHON_VERSIONS['python3']['out_file'], 'r'), delimiter='\t', fieldnames=header)
+    py3 = {}
+    py2 = {}
+    for item in table2:
+        py2[item['name']] = item
+    for item in table3:
+        py3[item['name']] = item
+
+
+    buffer = {}
+    diff = 0
+    not_found = 0
+    for k, v in py3.items():
+        if k in py2 and v['abstract'] != py2[k]['abstract']:
+            diff += 1
+            # update py3 category and add py2 record
+            py3[k]['categories'] = k
+            rec = py2[k]
+            rec['name'] = 'python2 ' + k
+            rec['categories'] = k
+            buffer['python2 ' + k] = rec
+        else:
+            not_found += 1
+    print('differ: %i\nnf:%i' % (diff, not_found))
+    py3.update(buffer)
+    with open('output.txt', 'w') as out_file:
+        for v in py3.values():
+            rec = [v[col] if v[col] is not None else '' for col in header]
+            out_file.write('{}\n'.format('\t'.join(rec)))
+
+
+def cleanup(out_file):
+    """
+    Cleanup output.txt's files.  Mostly for use during local dev/testing.
+    """
+    if os.path.isfile(out_file):
+        os.remove(out_file)
+
+
 if __name__ == "__main__":
-    for dir_path, dir_name, file_names in os.walk(DOWNLOADED_HTML_PATH):
-        for file_name in file_names:
-            if '.html' in file_name:
-                file_path = '/'.join((dir_path, file_name))
-                data = PythonData(file_path)
-                parser = PythonDataParser(data)
-                parser.parse_for_data()
-                output = PythonDataOutput(parser.get_data())
-                output.create_file()
+    cleanup('output.txt')
+    for version, info in PYTHON_VERSIONS.items():
+        print('starting version: %s' % version)
+        cleanup(info['out_file'])
+        for dir_path, dir_name, file_names in os.walk(info['download_path']):
+            for file_name in file_names:
+                if '.html' in file_name:
+                    file_path = '/'.join((dir_path, file_name))
+                    data = PythonData(file_path)
+                    parser = PythonDataParser(data, info)
+                    parser.parse_for_data()
+                    output = PythonDataOutput(parser.get_data(), version)
+                    output.create_file()
+    unify()
