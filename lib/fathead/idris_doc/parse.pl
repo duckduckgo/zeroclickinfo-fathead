@@ -223,24 +223,6 @@ sub build_abstract {
     return "$type$desc";
 }
 
-sub display_datatype {
-    my ($desc) = @_;
-    my $initial = $desc->find('p')->first;
-    $initial = $initial ? $initial->to_string : '';
-    my $c_text = display_constructors($desc);
-    return "${initial}Constructors:\\n$c_text";
-}
-
-sub display_constructors {
-    my ($desc) = @_;
-    my $text = '';
-    foreach my $con ($desc->find('dt > .name.constructor')->map('parent')->each) {
-        $text .= display_constructor($con);
-        $text .= $con->next->all_text;
-    }
-    return $text;
-}
-
 sub display_type {
     my ($type) = @_;
     return $type->to_string;
@@ -249,6 +231,33 @@ sub display_type {
 sub display_constructor {
     my ($cons) = @_;
     return '<pre><code>' . display_type($cons) . '</code></pre>';
+}
+
+sub display_implements {
+    my ($type, $desc) = @_;
+    my $text = '';
+    foreach my $con ($desc->find("dt > .name.$type")->map('parent')->each) {
+        $text .= display_constructor($con);
+        $text .= $con->next->all_text;
+    }
+    return $text;
+}
+
+sub display_mother {
+    my ($ctype, $cname, $desc) = @_;
+    my $initial = $desc->find('p')->first;
+    $initial = $initial ? $initial->to_string : '';
+    my $c_text = display_implements($ctype, $desc);
+    return "${initial}<b>$cname:</b>\\n$c_text";
+}
+
+sub display_interface {
+    display_mother('function', 'Methods', @_);
+}
+
+sub display_datatype {
+    my ($desc) = @_;
+    display_mother('constructor', 'Constructors', @_);
 }
 
 sub parser {
@@ -300,6 +309,15 @@ sub parse_data {
     )->(@_);
 }
 
+sub parse_interfaces {
+    parser(
+        decls => sub { $_[0]->find('.decls > dt[id] > span.word')
+            ->grep(qr/interface/)->map('parent')->each },
+        description => \&display_interface,
+        aliases => sub { ($_[0]->find('.name.type')->first->text) },
+    )->(@_);
+}
+
 sub parse_functions {
     parser(
         decls => sub { $_[0]->find('.decls > dt[id] > span.name.function')
@@ -319,7 +337,7 @@ sub parse_page {
     my ( $self, $page ) = @_;
     my $fullpath = $self->doc_fullpath( $page->{path} );
     my $url = $self->doc_fullurl($page->{sub});
-    my @parsers = qw(parse_functions parse_data);
+    my @parsers = qw(parse_functions parse_data parse_interfaces);
     foreach my $parser (@parsers) {
         my $parsed = $self->$parser(dom_for_parsing($url, $fullpath));
         $parsed = normalize_parse_result($parsed);
