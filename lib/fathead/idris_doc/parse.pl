@@ -300,36 +300,50 @@ sub parser {
     };
 }
 
+sub decls_default {
+    my ($look, $match) = @_;
+    return sub {
+        my ($dom) = @_;
+        my $items = $dom->find(
+            join ', ', map { ".decls > dt[id] > span$_" } @$look
+        );
+        return ($match ? $items->grep(qr/$match/) : $items)
+            ->map('parent')->each;
+    };
+}
+
+sub aliases_default {
+    my ($look) = @_;
+    return sub {
+        my $short = $_[0]->find(join ', ', @$look)->first->text;
+        my @aliases = ($short);
+        if ($short =~ /^\((.+)\)$/) {
+            push @aliases, $1;
+        }
+        return @aliases;
+    };
+}
+
 sub parse_data {
     parser(
-        decls => sub { $_[0]->find('.decls > dt[id] > span.word')
-            ->grep(qr/data/)->map('parent')->each },
+        decls       => decls_default(['.word'], 'data'),
         description => \&display_datatype,
-        aliases => sub { ($_[0]->find('.name.type')->first->text) },
+        aliases     => aliases_default(['.name.type']),
     )->(@_);
 }
 
 sub parse_interfaces {
     parser(
-        decls => sub { $_[0]->find('.decls > dt[id] > span.word')
-            ->grep(qr/interface/)->map('parent')->each },
+        decls       => decls_default(['.word'], 'interface'),
         description => \&display_interface,
-        aliases => sub { ($_[0]->find('.name.type')->first->text) },
+        aliases     => aliases_default(['.name.type']),
     )->(@_);
 }
 
 sub parse_functions {
     parser(
-        decls => sub { $_[0]->find('.decls > dt[id] > span.name.function')
-            ->map('parent')->each },
-        aliases => sub {
-            my $short = $_[0]->find('.name.function')->first->text;
-            my @aliases = ($short);
-            if ($short =~ /^\((.+)\)$/) {
-                push @aliases, $1;
-            }
-            return @aliases;
-        },
+        decls   => decls_default(  ['.name.function', '.name.constructor']),
+        aliases => aliases_default(['.name.function', '.name.constructor']),
     )->(@_);
 }
 
