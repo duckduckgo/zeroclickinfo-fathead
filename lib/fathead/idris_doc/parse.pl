@@ -16,11 +16,12 @@ use Text::CSV_XS;
 use URI;
 use List::Util qw(first);
 use List::MoreUtils qw(uniq);
+use File::Find::Rule;
 
 my %links;
 
 has idris_doc_url => ( is => 'lazy' );
-sub _build_perldoc_url {
+sub _build_idris_doc_url {
     'http://www.idris-lang.org/docs/current/';
 }
 
@@ -31,7 +32,7 @@ sub _build_working_dir {
 
 has docs_dir => ( is => 'lazy' );
 sub _build_docs_dir {
-    File::Spec->catdir( $_[0]->working_dir, qw/ .. download / );
+    return $_[0]->working_dir;
 }
 
 has pages => (
@@ -39,11 +40,12 @@ has pages => (
     builder => 1,
 );
 
-my $base = 'download/docs/current';
+my $base = 'download/docs/current/';
 
 sub _build_pages {
     my ($self) = @_;
-    File::Find::Rule->file->name('*.html')->in($base);
+    my @pages = File::Find::Rule->file->name('*.html')->in($base);
+    return [map { { path => $_, sub => $_ =~ s/\Q$base\E//r } } @pages];
 }
 
 has aliases => (
@@ -75,7 +77,6 @@ sub dom_for_file { Mojo::DOM->new( io($_[0])->all ); }
 
 sub doc_fullpath {
     my ( $self, @parts ) = @_;
-    $parts[-1] = $parts[-1] . '.html';
     File::Spec->catfile( $self->docs_dir, @parts );
 }
 
@@ -325,31 +326,29 @@ sub dom_for_parsing {
     return $dom;
 }
 
+sub parse_dom {
+    my ($self, $dom) = @_;
+}
+
 sub parse_page {
     my ( $self, $page ) = @_;
-    my $fullpath = $self->doc_fullpath( $page->{basename} );
-    my $url = $self->doc_fullurl( $page->{filename} );
-    my $parser = $page->{parser};
-    my @parsed;
-    foreach my $parser (@{$page->{parsers}}) {
-        push @parsed, $self->$parser(dom_for_parsing($url, $fullpath));
+    my $fullpath = $self->doc_fullpath( $page->{path} );
+    my $url = $self->doc_fullurl( $page->{sub} );
+    my $parsed = $self->parse_dom(dom_for_parsing($url, $fullpath));
+    $parsed = normalize_parse_result($parsed);
+    for my $article ( @{ $parsed->{articles} } ) {
+        my $anchored_url = $url;
+        $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
+
+        $article->{url} = $anchored_url;
+        $self->article($article);
     }
-    foreach my $parsed (@parsed) {
-        $parsed = normalize_parse_result($parsed);
-        for my $article ( @{ $parsed->{articles} } ) {
-            my $anchored_url = $url;
-            $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
 
-            $article->{url} = $anchored_url;
-            $self->article($article);
-        }
-
-        for my $alias ( @{ $parsed->{aliases} } ) {
-            $self->alias( $alias->{new}, $alias->{orig} );
-        }
-        for my $disambiguation ( @{ $parsed->{disambiguations} } ) {
-            $self->disambiguation( $disambiguation );
-        }
+    for my $alias ( @{ $parsed->{aliases} } ) {
+        $self->alias( $alias->{new}, $alias->{orig} );
+    }
+    for my $disambiguation ( @{ $parsed->{disambiguations} } ) {
+        $self->disambiguation( $disambiguation );
     }
 }
 
@@ -384,10 +383,6 @@ sub resolve_articles {
     my ($self) = @_;
     my %articles = %{$self->articles};
     foreach my $article (values %articles) {
-        if (my $redirect = $self->redirect->{$article->{title}}) {
-            $self->alias($article->{title}, $redirect);
-            next;
-        }
         my $dom = Mojo::DOM->new->parse($article->{text});
         $dom->find('a[href]')->map(sub {
             my $link = $_->attr('href');
@@ -402,10 +397,8 @@ sub resolve_articles {
 
 sub parse {
     my ( $self ) = @_;
-    foreach my $index ( sort keys %{$self->indices} ) {
-        foreach my $page ( sort keys %{$self->indices->{ $index }} ) {
-            $self->parse_page( $self->indices->{ $index }->{ $page } );
-        }
+    foreach my $page (sort @{$self->pages}) {
+        $self->parse_page($page);
     }
 
     $self->resolve_articles;
