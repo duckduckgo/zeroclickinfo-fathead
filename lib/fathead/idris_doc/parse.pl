@@ -329,7 +329,7 @@ sub dom_for_parsing {
 sub build_abstract {
     my %info = @_;
     my ($type, $desc) = @info{qw(type description)};
-    return "$type\\n$desc";
+    return "$type$desc";
 }
 
 sub display_datatype {
