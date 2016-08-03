@@ -243,7 +243,7 @@ sub display_description {
 
 sub display_type {
     my ($type) = @_;
-    return '' unless $type && ($type->all_text =~ s/\s*//r) ne '';
+    return '' unless $type && $type->children->each;
     return '<pre><code>' . $type->to_string . '</code></pre>';
 }
 
