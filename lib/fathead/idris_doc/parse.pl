@@ -235,6 +235,9 @@ sub display_description {
         $fixy->tag('i');
         $fixy->prepend_content('Fixity: ');
     }
+    if (my $dl = $desc->find('dl')->last) {
+        $dl->remove;
+    }
     $desc->to_string;
 }
 
@@ -250,20 +253,24 @@ sub display_implements {
         $text .= display_type($con);
         $text .= display_description($con->next);
     }
+    if (my $d = $desc->at("dt > .name.$type")) {
+        $d->parent->remove;
+    }
     return $text;
 }
 
 sub display_mother {
-    my ($ctype, $cname, $desc) = @_;
+    my ($ctype, $cname, $decl, $desc) = @_;
     my $c_text = display_implements($ctype, $desc);
-    return "<b>$cname:</b>\\n$c_text";
+    my $text = display_header($decl, $desc);
+    return "$text<b>$cname:</b>\\n$c_text";
 }
 
 sub display_header {
     my ($decl, $desc) = @_;
     my $type = $decl->at('.signature');
     my $tt = display_type($type);
-    my $dt = display_description($desc->at('p'));
+    my $dt = display_description($desc);
     return "$tt$dt";
 }
 
@@ -279,7 +286,7 @@ sub display_datatype {
 sub parser {
     my %options = (
         aliases => sub { () },
-        description => sub { $_[0]->to_string },
+        description => \&display_header,
         @_,
     );
     return sub {
@@ -294,9 +301,7 @@ sub parser {
             @aliases = (@aliases, make_aliases($title,
                 $options{aliases}->($decl, $title),
             ));
-            my $text = display_header($decl, $desc);
-            my $description = $options{description}->($desc);
-            $text .= "\\n$description" if $description;
+            my $text = $options{description}->($decl, $desc);
             my $article = {
                 text => $text,
                 title => $title,
