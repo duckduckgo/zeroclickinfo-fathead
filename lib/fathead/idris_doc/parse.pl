@@ -17,6 +17,7 @@ use URI;
 use List::Util qw(first);
 use List::MoreUtils qw(uniq);
 use File::Find::Rule;
+use Path::Tiny;
 
 my %links;
 
@@ -87,14 +88,6 @@ sub doc_fullurl {
     )->canonical
 }
 
-sub normalize_dom_links {
-    my ($url, $dom)  = @_;
-    $dom->find('a')->map(sub {
-        my $link = $_[0]->attr('href') or return;
-        $_[0]->attr(href => URI->new_abs($link, $url)->as_string);
-    });
-}
-
 sub insert {
     my ( $self, $data ) = @_;
     my %data = %$data;
@@ -151,7 +144,7 @@ sub article {
     my $title = $article->{title};
     warn "Duplicate article with title '$title' detected\n" and return
         if exists $self->articles->{$title};
-    $links{$article->{url}} = $title;
+    $links{path($article->{url})->basename} = $title;
     $self->articles->{$title} = $article;
 }
 
@@ -319,7 +312,6 @@ sub normalize_parse_result {
 sub dom_for_parsing {
     my ($url, $page) = @_;
     my $dom = dom_for_file($page);
-    normalize_dom_links($url, $dom);
     $dom->find('strong')->map('strip');
     $dom->find('code > a')->grep(sub { $_->parent->all_text eq $_->text })
         ->map( sub { $_->parent->strip });
@@ -420,7 +412,7 @@ sub parse_functions {
 sub parse_page {
     my ( $self, $page ) = @_;
     my $fullpath = $self->doc_fullpath( $page->{path} );
-    my $url = $self->doc_fullurl( $page->{sub} );
+    my $url = $self->doc_fullurl($page->{sub});
     my @parsers = qw(parse_functions parse_data);
     foreach my $parser (@parsers) {
         my $parsed = $self->$parser(dom_for_parsing($url, $fullpath));
