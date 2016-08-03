@@ -1,0 +1,3 @@
+idris
+idrisdoc
+idris doc
