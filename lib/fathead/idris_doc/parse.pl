@@ -332,59 +332,107 @@ sub build_abstract {
     return "$type\\n$desc";
 }
 
-sub parse_dom {
-    my ($self, $dom) = @_;
-    my @entities = $dom->find('.decls > dt[id]')->each;
-    my @articles;
-    my @aliases;
-    foreach my $decl (@entities) {
-        next unless $decl->find('.name.function')->first;
-        my $title = $decl->attr('id');
-        my $anchor = $decl->attr('id');
-        my $desc = $decl->next;
-        next unless $desc->tag eq 'dd';
-        my $type = $decl->find('.signature')->first->all_text;
-        $type = "<pre><code>$type</code></pre>";
-        @aliases = (@aliases, make_aliases($title,
-            $decl->find('.name.function')->first->text,
-        ));
-        my $text = build_abstract(
-            name => $title,
-            description => $desc->to_string,
-            type => $type,
-        );
-        my $article = {
-            text => $text,
-            title => $title,
-            anchor => $anchor,
-        };
-        push @articles, $article;
+sub display_datatype {
+    my ($desc) = @_;
+    my $initial = $desc->find('p')->first;
+    $initial = $initial ? $initial->to_string : '';
+    my $c_text = display_constructors($desc);
+    return "${initial}Constructors:\\n$c_text";
+}
+
+sub display_constructors {
+    my ($desc) = @_;
+    my $text = '';
+    foreach my $con ($desc->find('dt')->each) {
+        $text .= display_constructor($con);
+        $text .= $con->next->all_text;
     }
-    return {
-        articles => \@articles,
-        aliases => \@aliases,
+    return $text;
+}
+
+sub display_constructor {
+    my ($cons) = @_;
+    return '<pre><code>' . $cons->all_text . '</code></pre>';
+}
+
+sub parser {
+    my %options = (
+        aliases => sub { () },
+        description => sub { $_[0]->to_string },
+        @_,
+    );
+    return sub {
+        my ($self, $dom) = @_;
+        my @entities = $options{decls}->($dom);
+        my @articles;
+        my @aliases;
+        foreach my $decl (@entities) {
+            my $title = $decl->attr('id');
+            my $anchor = $decl->attr('id');
+            my $desc = $decl->next;
+            next unless $desc->tag eq 'dd';
+            my $type = $decl->find('.signature')->first->all_text;
+            $type = "<pre><code>$type</code></pre>";
+            @aliases = (@aliases, make_aliases($title,
+                $options{aliases}->($decl, $title),
+            ));
+            my $text = build_abstract(
+                name => $title,
+                description => $options{description}->($desc),
+                type => $type,
+            );
+            my $article = {
+                text => $text,
+                title => $title,
+                anchor => $anchor,
+            };
+            push @articles, $article;
+        }
+        return {
+            articles => \@articles,
+            aliases => \@aliases,
+        };
     };
+}
+
+sub parse_data {
+    parser(
+        decls => sub { $_[0]->find('.decls > dt[id] > span.word')
+            ->grep(qr/data/)->map('parent')->each },
+        description => \&display_datatype,
+    )->(@_);
+}
+
+sub parse_functions {
+    parser(
+        decls => sub { $_[0]->find('.decls > dt[id] > span.name.function')
+            ->map('parent')->each },
+        aliases => sub { ($_[0]->find('.name.function')->first->text) },
+    )->(@_);
 }
 
 sub parse_page {
     my ( $self, $page ) = @_;
     my $fullpath = $self->doc_fullpath( $page->{path} );
     my $url = $self->doc_fullurl( $page->{sub} );
-    my $parsed = $self->parse_dom(dom_for_parsing($url, $fullpath));
-    $parsed = normalize_parse_result($parsed);
-    for my $article ( @{ $parsed->{articles} } ) {
-        my $anchored_url = $url;
-        $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
+    my @parsers = qw(parse_functions parse_data);
+    foreach my $parser (@parsers) {
+        my $parsed = $self->$parser(dom_for_parsing($url, $fullpath));
+        $parsed = normalize_parse_result($parsed);
+        for my $article ( @{ $parsed->{articles} } ) {
+            my $anchored_url = $url;
+            $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
 
-        $article->{url} = $anchored_url;
-        $self->article($article);
-    }
+            $article->{url} = $anchored_url;
+            $self->article($article);
+        }
 
-    for my $alias ( @{ $parsed->{aliases} } ) {
-        $self->alias( $alias->{new}, $alias->{orig} );
-    }
-    for my $disambiguation ( @{ $parsed->{disambiguations} } ) {
-        $self->disambiguation( $disambiguation );
+        for my $alias ( @{ $parsed->{aliases} } ) {
+            $self->alias( $alias->{new}, $alias->{orig} );
+        }
+        for my $disambiguation ( @{ $parsed->{disambiguations} } ) {
+            $self->disambiguation( $disambiguation );
+        }
     }
 }
 
