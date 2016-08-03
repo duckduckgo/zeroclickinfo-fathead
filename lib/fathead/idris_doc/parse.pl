@@ -227,6 +227,14 @@ sub display_description {
     my ($desc) = @_;
     return '' unless $desc;
     $desc->find('br')->map('remove');
+    if (my $fix = $desc->find('.fixity')->first) {
+        $fix->parent->strip;
+        $fix->remove;
+    }
+    if (my $fixy = $desc->at('.fixity')) {
+        $fixy->tag('i');
+        $fixy->prepend_content('Fixity: ');
+    }
     $desc->to_string;
 }
 
