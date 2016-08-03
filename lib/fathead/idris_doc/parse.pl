@@ -336,6 +336,7 @@ sub parse_dom {
     my ($self, $dom) = @_;
     my @entities = $dom->find('.decls > dt[id]')->each;
     my @articles;
+    my @aliases;
     foreach my $decl (@entities) {
         next unless $decl->find('.name.function')->first;
         my $title = $decl->attr('id');
@@ -344,6 +345,9 @@ sub parse_dom {
         next unless $desc->tag eq 'dd';
         my $type = $decl->find('.signature')->first->all_text;
         $type = "<pre><code>$type</code></pre>";
+        @aliases = (@aliases, make_aliases($title,
+            $decl->find('.name.function')->first->text,
+        ));
         my $text = build_abstract(
             name => $title,
             description => $desc->to_string,
@@ -358,6 +362,7 @@ sub parse_dom {
     }
     return {
         articles => \@articles,
+        aliases => \@aliases,
     };
 }
 
