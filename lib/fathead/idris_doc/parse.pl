@@ -143,7 +143,7 @@ sub article {
     my $title = $article->{title};
     warn "Duplicate article with title '$title' detected\n" and return
         if exists $self->articles->{$title};
-    $links{path($article->{url})->basename} = $title;
+    $links{$article->{url}} = $title;
     $self->articles->{$title} = $article;
 }
 
@@ -181,6 +181,14 @@ sub make_aliases {
 #                       Normalize Parse Results                       #
 #######################################################################
 
+sub normalize_dom_links {
+    my ($url, $dom) = @_;
+    $dom->find('a')->map(sub {
+        my $link = $_[0]->attr('href') or return;
+        $_[0]->attr(href => URI->new_abs($link, $url)->as_string);
+    });
+}
+
 sub normalize_article {
     my ($article) = @_;
     my $text = $article->{text};
@@ -202,6 +210,7 @@ sub normalize_parse_result {
 sub dom_for_parsing {
     my ($url, $page) = @_;
     my $dom = dom_for_file($page);
+    normalize_dom_links($url, $dom);
     $dom->find('strong')->map('strip');
     $dom->find('code > a')->grep(sub { $_->parent->all_text eq $_->text })
         ->map( sub { $_->parent->strip });
