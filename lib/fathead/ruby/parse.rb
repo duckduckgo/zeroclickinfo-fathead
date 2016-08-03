@@ -60,6 +60,10 @@ class Documentation
     [to_row, to_redirect_rows].join
   end
 
+  def breaks_category_page?
+    title.include?('[') || abstract.include?('[')
+  end
+
   private
 
   def to_row
@@ -138,6 +142,8 @@ if $PROGRAM_NAME == __FILE__
         docs.title.gsub('::', ' ')
       ]
 
+      docs.categories = [] if docs.breaks_category_page?
+
       docs.display
     end
 
@@ -157,6 +163,8 @@ if $PROGRAM_NAME == __FILE__
           class_docs.title + link.text.sub(/\A(?:::|#)/, '.'),
           class_docs.title + link.text
         ]
+
+        docs.categories = [] if docs.breaks_category_page?
 
         docs.display
       end
