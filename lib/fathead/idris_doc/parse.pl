@@ -400,6 +400,7 @@ sub parse_data {
         decls => sub { $_[0]->find('.decls > dt[id] > span.word')
             ->grep(qr/data/)->map('parent')->each },
         description => \&display_datatype,
+        aliases => sub { ($_[0]->find('.name.type')->first->text) },
     )->(@_);
 }
 
