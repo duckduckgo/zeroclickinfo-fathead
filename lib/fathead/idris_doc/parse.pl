@@ -336,7 +336,9 @@ sub resolve_aliases {
         $self->disambiguation({
             title => $alias,
             disambiguations => [map {
-                { link => $_->{title}, description => $_->{text} },
+                { link => $_->{title}, description => Mojo::DOM->new->parse(
+                        $_->{text})->at('code')->all_text,
+                },
             } @articles],
         });
     }
