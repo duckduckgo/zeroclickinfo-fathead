@@ -5,6 +5,7 @@ use strict;
 use warnings;
 
 use Carp 'croak';
+use File::Spec::Functions;
 use Mojo::DOM;
 use Mojo::URL;
 use Mojo::Util 'slurp';
@@ -20,6 +21,33 @@ dowloads folder
 
 # Keep track of unique keys
 my %seen;
+
+=begin
+will process fragment data like matrix3d() in
+https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#matrix3d()
+whenever a url matches one of these regexes
+each fragment shall go to its own line in the output.txt file
+TODO: Confirm this is the correct approach
+=cut
+
+my $fragments_file = catfile 'download', 'fragments.txt';
+
+#keys are urls, values are fragments
+my %url_fragment;
+if ( -e $fragments_file ) {
+    open( my $fh, '<:encoding(UTF-8)', $fragments_file ) or die $!;
+    while ( my $url = <$fh> ) {
+        chomp $url;
+        $url = Mojo::URL->new($url);
+        my $url_clone = $url->clone;
+        my $fragment  = $url->fragment;
+
+        #TODO: Find a better way of removing the fragment from the url
+        $url = Mojo::URL->new( sprintf "%s://%s",
+            $url_clone->protocol, $url_clone->host )->path( $url_clone->path );
+        push @{ $url_fragment{$url} }, $fragment;
+    }
+}
 
 open( my $fh, ">", 'output.txt' ) or croak $!;
 
