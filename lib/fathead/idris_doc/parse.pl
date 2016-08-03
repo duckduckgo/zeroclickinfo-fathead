@@ -350,9 +350,14 @@ sub display_constructors {
     return $text;
 }
 
+sub display_type {
+    my ($type) = @_;
+    return $type->to_string;
+}
+
 sub display_constructor {
     my ($cons) = @_;
-    return '<pre><code>' . $cons->all_text . '</code></pre>';
+    return '<pre><code>' . display_type($cons) . '</code></pre>';
 }
 
 sub parser {
@@ -371,7 +376,7 @@ sub parser {
             my $anchor = $decl->attr('id');
             my $desc = $decl->next;
             next unless $desc->tag eq 'dd';
-            my $type = $decl->find('.signature')->first->all_text;
+            my $type = display_type($decl->at('.signature'));
             $type = "<pre><code>$type</code></pre>";
             @aliases = (@aliases, make_aliases($title,
                 $options{aliases}->($decl, $title),
