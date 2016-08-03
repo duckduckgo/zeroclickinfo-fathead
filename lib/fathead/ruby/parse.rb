@@ -143,7 +143,7 @@ if $PROGRAM_NAME == __FILE__
 
     page.css('#method-list-section .link-list a').each do |link|
       Documentation.new do |docs|
-        docs.title = class_docs.title + link.text
+        docs.title = (class_docs.title + link.text).gsub(/(?:::|#)/, ' ')
         docs.url = class_docs.url + link['href']
         docs.description = page.at(":has([name=#{docs.url.fragment}])")
         docs.categories = [
@@ -155,7 +155,7 @@ if $PROGRAM_NAME == __FILE__
         ]
         docs.alt_titles = [
           class_docs.title + link.text.sub(/\A(?:::|#)/, '.'),
-          docs.title.gsub(/(?:::|#)/, ' ')
+          class_docs.title + link.text
         ]
 
         docs.display
