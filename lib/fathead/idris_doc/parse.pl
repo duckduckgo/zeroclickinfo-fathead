@@ -243,6 +243,7 @@ sub display_description {
 
 sub display_type {
     my ($type) = @_;
+    return '' unless $type && ($type->all_text =~ s/\s*//r) ne '';
     return '<pre><code>' . $type->to_string . '</code></pre>';
 }
 
@@ -261,9 +262,14 @@ sub display_implements {
 
 sub display_mother {
     my ($ctype, $cname, $decl, $desc) = @_;
+    my $ma = display_ma(@_);
+    display_header($decl, $desc) . $ma;
+}
+
+sub display_ma {
+    my ($ctype, $cname, $decl, $desc) = @_;
     my $c_text = display_implements($ctype, $desc);
-    my $text = display_header($decl, $desc);
-    return "$text<b>$cname:</b>\\n$c_text";
+    return "<b>$cname:</b>\\n$c_text";
 }
 
 sub display_header {
@@ -281,6 +287,12 @@ sub display_interface {
 sub display_datatype {
     my ($desc) = @_;
     display_mother('constructor', 'Constructors', @_);
+}
+
+sub display_record {
+    my ($desc) = @_;
+    my $text = display_ma('function', 'Fields', @_);
+    display_mother('constructor', 'Constructor', @_) . $text;
 }
 
 sub parser {
@@ -363,11 +375,19 @@ sub parse_functions {
     )->(@_);
 }
 
+sub parse_records {
+    parser(
+        decls => decls_default(['.word'], 'record'),
+        description => \&display_record,
+        aliases => aliases_default(['.name.type']),
+    )->(@_);
+}
+
 sub parse_page {
     my ( $self, $page ) = @_;
     my $fullpath = $self->doc_fullpath( $page->{path} );
     my $url = $self->doc_fullurl($page->{sub});
-    my @parsers = qw(parse_functions parse_data parse_interfaces);
+    my @parsers = qw(parse_functions parse_data parse_interfaces parse_records);
     foreach my $parser (@parsers) {
         my $parsed = $self->$parser(dom_for_parsing($url, $fullpath));
         $parsed = normalize_parse_result($parsed);
