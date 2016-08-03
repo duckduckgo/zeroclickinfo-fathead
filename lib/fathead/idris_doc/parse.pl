@@ -326,16 +326,29 @@ sub dom_for_parsing {
     return $dom;
 }
 
+sub build_abstract {
+    my %info = @_;
+    my ($type, $desc) = @info{qw(type description)};
+    return "$type\\n$desc";
+}
+
 sub parse_dom {
     my ($self, $dom) = @_;
-    my @entities = $dom->find('.name.function')->each;
+    my @entities = $dom->find('.decls > dt[id]')->each;
     my @articles;
-    foreach my $fn (@entities) {
-        my $title = $fn->attr('title');
-        my $anchor = $fn->parent->attr('id');
-        my $desc = $fn->parent->next;
+    foreach my $decl (@entities) {
+        next unless $decl->find('.name.function')->first;
+        my $title = $decl->attr('id');
+        my $anchor = $decl->attr('id');
+        my $desc = $decl->next;
         next unless $desc->tag eq 'dd';
-        my $text = $desc->all_text;
+        my $type = $decl->find('.signature')->first->all_text;
+        $type = "<pre><code>$type</code></pre>";
+        my $text = build_abstract(
+            name => $title,
+            description => $desc->to_string,
+            type => $type,
+        );
         my $article = {
             text => $text,
             title => $title,
