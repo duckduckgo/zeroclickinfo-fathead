@@ -304,7 +304,14 @@ sub parse_functions {
     parser(
         decls => sub { $_[0]->find('.decls > dt[id] > span.name.function')
             ->map('parent')->each },
-        aliases => sub { ($_[0]->find('.name.function')->first->text) },
+        aliases => sub {
+            my $short = $_[0]->find('.name.function')->first->text;
+            my @aliases = ($short);
+            if ($short =~ /^\((.+)\)$/) {
+                push @aliases, $1;
+            }
+            return @aliases;
+        },
     )->(@_);
 }
 
