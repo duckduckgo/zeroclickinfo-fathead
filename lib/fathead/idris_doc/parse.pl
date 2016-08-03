@@ -343,7 +343,7 @@ sub display_datatype {
 sub display_constructors {
     my ($desc) = @_;
     my $text = '';
-    foreach my $con ($desc->find('dt')->each) {
+    foreach my $con ($desc->find('dt > .name.constructor')->map('parent')->each) {
         $text .= display_constructor($con);
         $text .= $con->next->all_text;
     }
