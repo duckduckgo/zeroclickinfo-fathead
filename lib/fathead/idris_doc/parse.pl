@@ -388,28 +388,19 @@ sub parse_page {
     }
 }
 
-sub resolve_alias {
-    my ($self, $title) = @_;
-    my $to = $self->select(title => $title);
-    while ($to->{type} eq 'R') {
-        $to = $self->select(title => $to->{alias});
-    }
-    return $to;
-}
-
 sub resolve_aliases {
     my ($self) = @_;
     my %aliases = %{$self->aliases};
     while (my ($alias, $to) = each %aliases) {
         my @to = @$to;
         @to == 1 and $self->insert_alias($alias, $to[0]) and next;
-        my @articles = map { $self->resolve_alias($_) } @to;
+        my @articles = map { $self->articles->{$_} } @to;
         scalar (uniq map { $_->{title} } @articles ) == 1
             and $self->insert_alias($alias, $to[0]) and next;
         $self->disambiguation({
             title => $alias,
             disambiguations => [map {
-                { link => $_->{title}, description => $_->{abstract} },
+                { link => $_->{title}, description => $_->{text} },
             } @articles],
         });
     }
