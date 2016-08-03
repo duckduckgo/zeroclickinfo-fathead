@@ -1,10 +1,7 @@
 import codecs
 import re
-import sys
 from collections import Counter
-from xml.dom.minidom import parse
-from lxml import html
-from lxml import etree
+from lxml import html, etree
 
 class Standardizer(object):
     """ Standardize the titles of each entry.
@@ -158,12 +155,6 @@ class MDNParser(object):
     """ A parser that takes an MDN wiki page and returns an MDN object. If
     pages change causing this Fathead to break, then the queries in this class
     should be checked. """
-    def _extract_node(self, node):
-        if node is not None:
-            txt = node.text
-            if txt:
-                return txt.strip()
-
     def _is_obsolete(self, tree):
         obsolete = tree.xpath("//meta[@class='obsoleteHeader']")
         return obsolete
@@ -172,11 +163,8 @@ class MDNParser(object):
         """ Parse an html file and return an mdn object.
 
         Args:
-          htmlfile: A file-like object that should parse with beautiful soup's
-                    html parser.
+          htmlfile: A file-like object that should parse with lxml html parser.
         """
-        title_el, summary_el, codesnippet_el = None, None, None
-
         page = htmlfile.read()
         tree = html.fromstring(page)
 
@@ -184,29 +172,36 @@ class MDNParser(object):
           print "obsolete"
           return None
 
-        title_el = tree.xpath("//meta[@property='og:title']/@content")
-        article = tree.xpath("//meta[@id='wikiArticle']/@content")
-        summary_el = tree.xpath("//meta[@property='og:description']/@content")
+        title = tree.xpath("//meta[@property='og:title']/@content")[0]
+        article = tree.xpath("//article[contains(@id,'wikiArticle')]")
+        summary = ""
         if article:
-            summary_el = article.find(
-              lambda e: e.name == 'p' and e.text.strip() != '',
-              recursive=False)
-        syntax_header = tree.xpath("//h2[contains(@id,'Syntax')]")
-        codesnippet = ""
-        if syntax_header:
-             elements = tree.xpath("//h2[contains(@id,'Syntax')]/following-sibling::pre[1]")
-             for element in elements:
-              for tag in element.xpath('//*[@class]'):
+            summary_nodes = tree.xpath("//h2[contains(@id,'Summary')]/following-sibling::p[1]")
+            for summary_el in summary_nodes :
+              for tag in summary_el.xpath('//*[@class]'):
                   tag.attrib.pop('class')
-              codesnippet += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+              summary += re.sub('<[^<]+?>', '', etree.tostring(summary_el).strip())
 
-        sys.stdout.write("Parsing %s  " % (title_el[0]) + " " * 30 + "\r")
-        sys.stdout.flush()
+        if not summary:
+            summary_el = tree.xpath("//meta[@property='og:description']/@content")
+            if summary_el:
+              summary = summary_el[0]
+
+        codesnippet = ""
+        syntax_header = tree.xpath("//h2[contains(@id,'Syntax')]")
+        if syntax_header:
+            elements = tree.xpath("//h2[contains(@id,'Syntax')]/following-sibling::pre[1]")
+            for element in elements:
+                for tag in element.xpath('//*[@class]'):
+                    tag.attrib.pop('class')
+                codesnippet += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+
+        print title + (' ' * 30) + '\r',
 
         mdn = MDN()
-        mdn.title = title_el[0]
-        if summary_el: mdn.summary = summary_el[0]
-        if codesnippet: mdn.codesnippet = codesnippet
+        mdn.title = title
+        mdn.summary = summary
+        mdn.codesnippet = codesnippet
         return mdn
 
 class MDNIndexer(object):
