@@ -223,32 +223,40 @@ sub build_abstract {
     return "$type$desc";
 }
 
-sub display_type {
-    my ($type) = @_;
-    return $type->to_string;
+sub display_description {
+    my ($desc) = @_;
+    return '' unless $desc;
+    $desc->find('br')->map('remove');
+    $desc->to_string;
 }
 
-sub display_constructor {
-    my ($cons) = @_;
-    return '<pre><code>' . display_type($cons) . '</code></pre>';
+sub display_type {
+    my ($type) = @_;
+    return '<pre><code>' . $type->to_string . '</code></pre>';
 }
 
 sub display_implements {
     my ($type, $desc) = @_;
     my $text = '';
     foreach my $con ($desc->find("dt > .name.$type")->map('parent')->each) {
-        $text .= display_constructor($con);
-        $text .= $con->next->all_text;
+        $text .= display_type($con);
+        $text .= display_description($con->next);
     }
     return $text;
 }
 
 sub display_mother {
     my ($ctype, $cname, $desc) = @_;
-    my $initial = $desc->find('p')->first;
-    $initial = $initial ? $initial->to_string : '';
     my $c_text = display_implements($ctype, $desc);
-    return "${initial}<b>$cname:</b>\\n$c_text";
+    return "<b>$cname:</b>\\n$c_text";
+}
+
+sub display_header {
+    my ($decl, $desc) = @_;
+    my $type = $decl->at('.signature');
+    my $tt = display_type($type);
+    my $dt = display_description($desc->at('p'));
+    return "$tt$dt";
 }
 
 sub display_interface {
@@ -275,17 +283,12 @@ sub parser {
             my $title = $decl->attr('id');
             my $anchor = $decl->attr('id');
             my $desc = $decl->next;
-            next unless $desc->tag eq 'dd';
-            my $type = display_type($decl->at('.signature'));
-            $type = "<pre><code>$type</code></pre>";
             @aliases = (@aliases, make_aliases($title,
                 $options{aliases}->($decl, $title),
             ));
-            my $text = build_abstract(
-                name => $title,
-                description => $options{description}->($desc),
-                type => $type,
-            );
+            my $text = display_header($decl, $desc);
+            my $description = $options{description}->($desc);
+            $text .= "\\n$description" if $description;
             my $article = {
                 text => $text,
                 title => $title,
