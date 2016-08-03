@@ -328,6 +328,24 @@ sub dom_for_parsing {
 
 sub parse_dom {
     my ($self, $dom) = @_;
+    my @entities = $dom->find('.name.function')->each;
+    my @articles;
+    foreach my $fn (@entities) {
+        my $title = $fn->attr('title');
+        my $anchor = $fn->parent->attr('id');
+        my $desc = $fn->parent->next;
+        next unless $desc->tag eq 'dd';
+        my $text = $desc->all_text;
+        my $article = {
+            text => $text,
+            title => $title,
+            anchor => $anchor,
+        };
+        push @articles, $article;
+    }
+    return {
+        articles => \@articles,
+    };
 }
 
 sub parse_page {
