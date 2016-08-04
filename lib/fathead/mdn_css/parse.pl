@@ -292,7 +292,24 @@ sub parse_fragment_data {
         say "time $link";
     }
     elsif ( $link =~ qr/transform-function/ ) {
-        say "transform-function $link";
+
+        #data is found at <dl>
+        my $dl = $dom->at('dl');
+        say "Parsing the following fragments";
+        say @{ $url_fragment{$link} };
+        if ($dl) {
+            for my $dt ( $dl->find('dt')->each ) {
+                say "DT $dt";
+                my $dd = $dt->next;
+                do {
+                    #there might not be
+                    #dd when we begin
+                    next unless $dd;
+                    say $dd->all_text;
+                    $dd = $dd->next;
+                } while ( $dd && $dd->tag eq 'dd' );
+            }
+        }
     }
     elsif ( $link =~ qr/url/ ) {
         say "url $link";
