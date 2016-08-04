@@ -331,6 +331,8 @@ sub inject_package {
         : "$title ($package)";
 }
 
+my @parsers;
+
 sub parser {
     my %options = (
         aliases => sub { () },
@@ -338,7 +340,7 @@ sub parser {
         name_type => '',
         @_,
     );
-    return sub {
+    push @parsers, sub {
         my ($self, $dom, $meta) = @_;
         my @entities = $options{decls}->($dom);
         my @articles;
@@ -393,45 +395,47 @@ sub aliases_default {
     };
 }
 
-sub parse_data {
-    parser(
-        decls       => decls_default(['.word'], 'data'),
-        description => \&display_datatype,
-        name_type   => 'Data Type',
-        aliases     => aliases_default(['.name.type']),
-    )->(@_);
-}
+parser(
+    name        => 'Data Types',
+    decls       => decls_default(['.word'], 'data'),
+    description => \&display_datatype,
+    name_type   => 'Data Type',
+    aliases     => aliases_default(['.name.type']),
+);
 
-sub parse_interfaces {
-    parser(
-        decls       => decls_default(['.word'], 'interface'),
-        description => \&display_interface,
-        name_type   => 'Interface',
-        aliases     => aliases_default(['.name.type']),
-    )->(@_);
-}
+parser(
+    name        => 'Interfaces',
+    decls       => decls_default(['.word'], 'interface'),
+    description => \&display_interface,
+    name_type   => 'Interface',
+    aliases     => aliases_default(['.name.type']),
+);
 
-sub parse_functions {
-    parser(
-        decls   => decls_default(  ['.name.function', '.name.constructor']),
-        aliases => aliases_default(['.name.function', '.name.constructor']),
-    )->(@_);
-}
+parser(
+    name    => 'Functions',
+    decls   => decls_default(['.name.function']),
+    aliases => aliases_default(['.name.function']),
+);
 
-sub parse_records {
-    parser(
-        decls => decls_default(['.word'], 'record'),
-        description => \&display_record,
-        name_type => 'Record',
-        aliases => aliases_default(['.name.type']),
-    )->(@_);
-}
+parser(
+    name      => 'Constructors',
+    decls     => decls_default(  ['.name.constructor']),
+    name_type => 'Constructor',
+    aliases   => aliases_default(['.name.constructor']),
+);
+
+parser(
+    name        => 'Records',
+    decls       => decls_default(['.word'], 'record'),
+    description => \&display_record,
+    name_type   => 'Record',
+    aliases     => aliases_default(['.name.type']),
+);
 
 sub parse_page {
     my ( $self, $page ) = @_;
     my $fullpath = $self->doc_fullpath( $page->{path} );
     my $url = $self->doc_fullurl($page->{sub});
-    my @parsers = qw(parse_functions parse_data parse_interfaces parse_records);
     my @articles;
     my $meta = {
         module => path($fullpath)->basename =~ s/\.html$//r,
@@ -439,7 +443,7 @@ sub parse_page {
             =~ s/_doc$//r,
     };
     foreach my $parser (@parsers) {
-        my $parsed = $self->$parser(dom_for_parsing($url, $fullpath), $meta);
+        my $parsed = $parser->($self, dom_for_parsing($url, $fullpath), $meta);
         $parsed = normalize_parse_result($parsed);
         for my $article ( @{ $parsed->{articles} } ) {
             push @articles, $article;
