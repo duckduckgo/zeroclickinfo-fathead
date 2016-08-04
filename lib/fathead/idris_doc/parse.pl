@@ -273,7 +273,7 @@ sub display_description {
 sub display_type {
     my ($type) = @_;
     return '' unless $type && $type->children->each;
-    return '<pre><code>' . $type->to_string . '</code></pre>';
+    return '<pre>' . $type->to_string . '</pre>';
 }
 
 sub display_implements {
