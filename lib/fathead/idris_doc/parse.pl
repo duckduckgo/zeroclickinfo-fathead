@@ -420,7 +420,11 @@ sub parse_page {
 
 sub text_for_disambiguation {
     my ($abstract) = @_;
-    Mojo::DOM->new->parse($abstract)->at('code,p')->all_text;
+    if (my $short = Mojo::DOM->new->parse($abstract)->at('code,p')) {
+        $short->all_text;
+    } else {
+        '';
+    }
 }
 
 sub resolve_aliases {
