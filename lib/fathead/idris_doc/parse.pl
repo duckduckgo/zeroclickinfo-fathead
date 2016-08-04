@@ -389,10 +389,12 @@ sub parse_page {
     my $fullpath = $self->doc_fullpath( $page->{path} );
     my $url = $self->doc_fullurl($page->{sub});
     my @parsers = qw(parse_functions parse_data parse_interfaces parse_records);
+    my @articles;
     foreach my $parser (@parsers) {
         my $parsed = $self->$parser(dom_for_parsing($url, $fullpath));
         $parsed = normalize_parse_result($parsed);
         for my $article ( @{ $parsed->{articles} } ) {
+            push @articles, $article;
             my $anchored_url = $url;
             $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
 
@@ -407,6 +409,20 @@ sub parse_page {
             $self->disambiguation( $disambiguation );
         }
     }
+    $self->disambiguation({
+        title => path($page->{path})->basename =~ s/\.html//r,
+        disambiguations => [
+            map { {
+                link => $_->{title},
+                description => text_for_disambiguation($_->{text}),
+            } } @articles,
+        ],
+    });
+}
+
+sub text_for_disambiguation {
+    my ($abstract) = @_;
+    Mojo::DOM->new->parse($abstract)->at('code,p')->all_text;
 }
 
 sub resolve_aliases {
@@ -420,11 +436,12 @@ sub resolve_aliases {
             and $self->insert_alias($alias, $to[0]) and next;
         $self->disambiguation({
             title => $alias,
-            disambiguations => [map {
-                { link => $_->{title}, description => Mojo::DOM->new->parse(
-                        $_->{text})->at('code')->all_text,
-                },
-            } @articles],
+            disambiguations => [
+                map { {
+                    link => $_->{title},
+                    description => text_for_disambiguation($_->{text}),
+                } } @articles
+            ],
         });
     }
 }
