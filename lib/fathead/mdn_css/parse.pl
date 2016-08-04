@@ -6,6 +6,7 @@ use warnings;
 
 use Carp 'croak';
 use File::Spec::Functions;
+use feature 'state';
 use Mojo::DOM;
 use Mojo::URL;
 use Mojo::Util 'slurp';
@@ -82,6 +83,12 @@ foreach my $html_file ( glob 'download/*.html' ) {
         }
     );
     $link = $link->attr('href') if $link;
+    chomp $link;
+
+    if ( exists $url_fragment{$link} ) {
+        say "*** Parsing fragment for $link ***";
+        parse_fragment_data( $link, $dom );
+    }
 
     # Get article title and description
     for my $meta ( $dom->find('meta')->each ) {
@@ -253,4 +260,44 @@ sub make_redirect {
     my @data =
       ( $title, 'R', $redirect, '', '', '', '', '', '', '', '', '', '' );
     return join "\t", @data;
+}
+
+sub parse_fragment_data {
+    my ( $link, $dom ) = @_;
+    state %already_processed;
+    return if exists $already_processed{$link};
+    $already_processed{$link} = 1;
+    if ( $link =~ qr/font-variant/ ) {
+        say "Font Variant $link";
+    }
+    elsif ( $link =~ qr/src/ ) {
+        say "src $link";
+    }
+    elsif ( $link =~ qr/angle/ ) {
+        say "angle $link";
+    }
+    elsif ( $link =~ qr/color_value/ ) {
+        say "color_value $link";
+    }
+    elsif ( $link =~ qr/filter/ ) {
+        say "filter $link";
+    }
+    elsif ( $link =~ qr/frequency/ ) {
+        say "frequency $link";
+    }
+    elsif ( $link =~ qr/length/ ) {
+        say "length $link";
+    }
+    elsif ( $link =~ qr/time/ ) {
+        say "time $link";
+    }
+    elsif ( $link =~ qr/transform-function/ ) {
+        say "transform-function $link";
+    }
+    elsif ( $link =~ qr/url/ ) {
+        say "url $link";
+    }
+    else {
+        warn "Unmatched $link in parse_fragment_data()";
+    }
 }
