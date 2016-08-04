@@ -286,12 +286,10 @@ sub display_interface {
 }
 
 sub display_datatype {
-    my ($desc) = @_;
     display_mother('constructor', 'Constructors', @_);
 }
 
 sub display_record {
-    my ($desc) = @_;
     my $text = display_ma('function', 'Fields', @_);
     display_mother('constructor', 'Constructor', @_) . $text;
 }
