@@ -183,9 +183,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
         push @entries, make_redirect( $temp, $title );
     }
 
-    foreach my $entry (@entries) {
-        say $fh $entry;
-    }
+    write_to_file(@entries);
 }
 
 # PRIVATE FUNCTIONS
@@ -315,9 +313,7 @@ sub parse_fragment_data {
                     $dd = $dd->next;
                 } while ( $dd && $dd->tag eq 'dd' );
                 my @entries = make_article( $title, $description, $url );
-                for my $entry (@entries) {
-                    say $fh $entry;
-                }
+                write_to_file(@entries);
             }
         }
     }
@@ -326,5 +322,12 @@ sub parse_fragment_data {
     }
     else {
         warn "Unmatched $link in parse_fragment_data()";
+    }
+}
+
+sub write_to_file {
+    my @parts = @_;
+    for my $part (@parts) {
+        say $fh $part;
     }
 }
