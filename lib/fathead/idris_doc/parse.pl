@@ -43,6 +43,7 @@ has pages => (
 my $base = 'download/docs/current/';
 
 my %module_packages;
+my %module_clash;
 sub _build_pages {
     my ($self) = @_;
     my @pages = File::Find::Rule->file->name('*.html')->in($base);
@@ -57,6 +58,7 @@ sub _build_pages {
                 $module_packages{$module} = [@existing, $package];
                 next;
             }
+            $module_clash{$module} = 1;
         }
         push @valid_pages, $page;
         $modules{$module} = $page;
@@ -159,7 +161,7 @@ has articles => (
 
 sub make_links {
     my ($self, $article) = @_;
-    my ($module) = path($article->{url})->basename =~ /^(.+)\.html/;
+    my ($module) = $article->{url} =~ /docs\/(.+)\.html/;
     my $old_package = path($article->{url})->parent->parent->basename;
     foreach my $package (@{$module_packages{$module} // []}) {
         my $url = $article->{url} =~ s/$old_package/$package/r;
@@ -322,6 +324,13 @@ sub display_record {
     display_mother('constructor', 'Constructor', @_) . $text;
 }
 
+sub inject_package {
+    my ($title, $package) = @_;
+    $title =~ / \(.+\)$/
+        ? $title =~ s/ \((.+)\)$/ ($1 - $package)/r
+        : "$title ($package)";
+}
+
 sub parser {
     my %options = (
         aliases => sub { () },
@@ -330,7 +339,7 @@ sub parser {
         @_,
     );
     return sub {
-        my ($self, $dom) = @_;
+        my ($self, $dom, $meta) = @_;
         my @entities = $options{decls}->($dom);
         my @articles;
         my @aliases;
@@ -338,6 +347,8 @@ sub parser {
             my $title_no_p = $decl->attr('id');
             my $title = $title_no_p;
             $title .= " ($options{name_type})" if $options{name_type};
+            $title = inject_package($title, $meta->{package})
+                if $module_clash{$meta->{module}};
             my $anchor = $decl->attr('id');
             my $desc = $decl->next;
             @aliases = (@aliases, make_aliases($title,
@@ -422,8 +433,13 @@ sub parse_page {
     my $url = $self->doc_fullurl($page->{sub});
     my @parsers = qw(parse_functions parse_data parse_interfaces parse_records);
     my @articles;
+    my $meta = {
+        module => path($fullpath)->basename =~ s/\.html$//r,
+        package => path($fullpath)->parent->parent->basename
+            =~ s/_doc$//r,
+    };
     foreach my $parser (@parsers) {
-        my $parsed = $self->$parser(dom_for_parsing($url, $fullpath));
+        my $parsed = $self->$parser(dom_for_parsing($url, $fullpath), $meta);
         $parsed = normalize_parse_result($parsed);
         for my $article ( @{ $parsed->{articles} } ) {
             push @articles, $article;
