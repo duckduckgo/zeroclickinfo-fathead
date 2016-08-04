@@ -326,6 +326,7 @@ sub parser {
     my %options = (
         aliases => sub { () },
         description => \&display_header,
+        name_type => '',
         @_,
     );
     return sub {
@@ -334,11 +335,13 @@ sub parser {
         my @articles;
         my @aliases;
         foreach my $decl (@entities) {
-            my $title = $decl->attr('id');
+            my $title_no_p = $decl->attr('id');
+            my $title = $title_no_p;
+            $title .= " ($options{name_type})" if $options{name_type};
             my $anchor = $decl->attr('id');
             my $desc = $decl->next;
             @aliases = (@aliases, make_aliases($title,
-                $options{aliases}->($decl, $title),
+                $title_no_p, $options{aliases}->($decl, $title_no_p),
             ));
             my $text = $options{description}->($decl, $desc);
             my $article = {
@@ -383,6 +386,7 @@ sub parse_data {
     parser(
         decls       => decls_default(['.word'], 'data'),
         description => \&display_datatype,
+        name_type   => 'Data Type',
         aliases     => aliases_default(['.name.type']),
     )->(@_);
 }
@@ -391,6 +395,7 @@ sub parse_interfaces {
     parser(
         decls       => decls_default(['.word'], 'interface'),
         description => \&display_interface,
+        name_type   => 'Interface',
         aliases     => aliases_default(['.name.type']),
     )->(@_);
 }
@@ -406,6 +411,7 @@ sub parse_records {
     parser(
         decls => decls_default(['.word'], 'record'),
         description => \&display_record,
+        name_type => 'Record',
         aliases => aliases_default(['.name.type']),
     )->(@_);
 }
