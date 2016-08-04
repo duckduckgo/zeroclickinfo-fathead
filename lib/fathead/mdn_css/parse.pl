@@ -314,7 +314,7 @@ sub parse_fragment_data {
                     $description .= $dd->all_text;
                     $dd = $dd->next;
                 } while ( $dd && $dd->tag eq 'dd' );
-                my @entries = make_article( $title, $description, $link );
+                my @entries = make_article( $title, $description, $url );
                 for my $entry (@entries) {
                     say $fh $entry;
                 }
