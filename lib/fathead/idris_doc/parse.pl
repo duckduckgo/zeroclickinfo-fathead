@@ -161,8 +161,8 @@ has articles => (
 
 sub make_links {
     my ($self, $article) = @_;
-    my ($module) = $article->{url} =~ /docs\/(.+)\.html/;
-    my $old_package = path($article->{url})->parent->parent->basename;
+    my ($old_package, $module) = $article->{url} =~ /\/(\w+)\/docs\/(.+)\.html/;
+    $links{$article->{url}} = $article->{title};
     foreach my $package (@{$module_packages{$module} // []}) {
         my $url = $article->{url} =~ s/$old_package/$package/r;
         $links{$url} = $article->{title};
