@@ -303,15 +303,21 @@ sub parse_fragment_data {
         say @{ $url_fragment{$link} };
         if ($dl) {
             for my $dt ( $dl->find('dt')->each ) {
-                say "DT $dt";
+                my ( $title, $description, $url );
+                $title = $dt->all_text;
+                $url = make_url_absolute( $dt->at('a')->attr('href'), $link );
                 my $dd = $dt->next;
                 do {
                     #there might not be
                     #dd when we begin
                     next unless $dd;
-                    say $dd->all_text;
+                    $description .= $dd->all_text;
                     $dd = $dd->next;
                 } while ( $dd && $dd->tag eq 'dd' );
+                my @entries = make_article( $title, $description, $link );
+                for my $entry (@entries) {
+                    say $fh $entry;
+                }
             }
         }
     }
