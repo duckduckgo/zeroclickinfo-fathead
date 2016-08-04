@@ -42,10 +42,28 @@ has pages => (
 
 my $base = 'download/docs/current/';
 
+my %module_packages;
 sub _build_pages {
     my ($self) = @_;
     my @pages = File::Find::Rule->file->name('*.html')->in($base);
-    return [map { { path => $_, sub => $_ =~ s/\Q$base\E//r } } @pages];
+    my %modules;
+    my @valid_pages;
+    foreach my $page (@pages) {
+        my $module = path($page)->basename =~ s/\.html$//r;
+        my $package = path($page)->parent->parent->basename;
+        if (my $existing = $modules{$module}) {
+            if (path($existing)->slurp eq path($page)->slurp) {
+                my @existing = @{$module_packages{$module} // []};
+                $module_packages{$module} = [@existing, $package];
+                next;
+            }
+        }
+        push @valid_pages, $page;
+        $modules{$module} = $page;
+        my @existing = @{$module_packages{$module} // []};
+        $module_packages{$module} = [@existing, $package];
+    }
+    return [map { { path => $_, sub => $_ =~ s/\Q$base\E//r } } @valid_pages];
 }
 
 has aliases => (
@@ -139,12 +157,22 @@ has articles => (
     default => sub { {} },
 );
 
+sub make_links {
+    my ($self, $article) = @_;
+    my ($module) = path($article->{url})->basename =~ /^(.+)\.html/;
+    my $old_package = path($article->{url})->parent->parent->basename;
+    foreach my $package (@{$module_packages{$module} // []}) {
+        my $url = $article->{url} =~ s/$old_package/$package/r;
+        $links{$url} = $article->{title};
+    }
+}
+
 sub article {
     my ($self, $article) = @_;
     my $title = $article->{title};
     warn "Duplicate article with title '$title' detected\n" and return
         if exists $self->articles->{$title};
-    $links{$article->{url}} = $title;
+    $self->make_links($article);
     $self->articles->{$title} = $article;
 }
 
