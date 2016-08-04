@@ -243,16 +243,20 @@ sub make_article {
 sub make_external_links {
     my ( $link, $lis_collection ) = @_;
     my $external_links;
-    my $base = Mojo::URL->new($link);
     for my $li ( $lis_collection->each ) {
         my $a = $li->at('a');
         next unless $a;
         my $href          = $a->attr('href');
-        my $absolute_link = Mojo::URL->new($href)->to_abs($base);
+        my $absolute_link = make_url_absolute( $href, $link );
         my $link_text     = $a->text;
         $external_links .= sprintf '[%s %s]\\\n', $link_text, $absolute_link;
     }
     return $external_links;
+}
+
+sub make_url_absolute {
+    my ( $fragment, $base ) = map { Mojo::URL->new($_) } @_;
+    return $fragment->to_abs($base);
 }
 
 sub make_redirect {
