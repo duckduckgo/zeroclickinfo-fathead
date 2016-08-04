@@ -107,6 +107,7 @@ sub select {
 
 sub alias {
     my ( $self, $new, $orig ) = @_;
+    $new = lc $new;
     my @existing = @{ $self->aliases->{$new} // [] };
     $self->aliases->{$new} = [@existing, $orig];
 }
