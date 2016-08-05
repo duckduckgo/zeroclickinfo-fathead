@@ -1,44 +1,42 @@
 #!/bin/bash
-SECONDS=0
+let SECONDS=COUNT=PAGES=0
 
 downloadSiteMap() {
     wget 'http://developer.mozilla.org/sitemaps/en-US/sitemap.xml' -O sitemap.xml
     # Exit if couldnt download sitemap.xml
-    actualsize=$(wc -c <"sitemap.xml")
-    if [ $actualsize -eq 0 ]; then
+    if [ $? -gt 0 ] || [ $(wc -c <"sitemap.xml") -eq 0 ] ; then
         echo "error downloading sitemap.xml from MDN"
-    exit 1
+        exit 1
     fi
 }
 
 getUrlsFromPattern() {
-    parse_xml () {
-        local IFS=\>
-        read -d \< KEY VALUE
-    }
     # Clear existing files
-    mkdir -p downloads && rm -rfv downloads/*
-    > .cachejournal
+    mkdir -p downloads && rm -rfv downloads/* > /dev/null 2>&1
+    :> .cachejournal
     # Parse xml based on patterns
     patterns=("${!1}")
-    urls=(); count=0; pages=0
-    while parse_xml; do
+    while IFS=\> read -d \< KEY VALUE; do
         if [[ ${KEY} == "loc" ]]; then
-            url=$( (echo $VALUE | grep / | cut -d/ -f4- ) 2>&1 )
+            url=$( (grep / <<< "$VALUE" | cut -d/ -f4- ))
             for patt in "${patterns[@]}"
             do
                 if [[ ${url} =~ ^${patt} ]]; then
-                    # download pages
+                    # download files
                     basename="${url%/*}"; filename="${basename##*/}/${url##*/}"
-                    wget -P 8 -bqc -O downloads/${filename////.} ${VALUE} > /dev/null 2>&1
+                    wget -bc -O downloads/${filename////.} ${VALUE} -nv -o wget.log > /dev/null 2>&1
                     # write filename,url to cachejournal
                     echo "downloads/${filename////.},${VALUE}" >> .cachejournal
-                    pages=$((pages + 1))
+                    PAGES=$((PAGES + 1))
+                    # pause every 75 pages
+                    if [ $(( $PAGES % 75 )) -eq 0 ] ; then
+                        wait; sleep 1
+                    fi
                 fi
             done
-            count=$((count + 1))
+            COUNT=$((COUNT + 1))
         fi
-        echo -ne "Read $count : $pages pages to be downloaded"\\r
+        echo -ne "Read $COUNT : $PAGES pages"\\r
     done < sitemap.xml
     echo
 }
@@ -51,4 +49,10 @@ patterns=(
 downloadSiteMap
 getUrlsFromPattern patterns[@]
 
-echo $SECONDS seconds
+echo " $(ls downloads | wc -l) files downloaded"
+echo "$SECONDS seconds"
+echo -e "Check wget.log for errors, re-run fetch to fix parse incomplete file failures."
+
+# @bfmags AUG 2016
+# Test run : Read 15340 : 4038 pages to download
+#            190 seconds
