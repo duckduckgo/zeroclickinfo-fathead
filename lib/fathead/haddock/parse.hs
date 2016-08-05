@@ -67,3 +67,11 @@ instance ToRecord Entry where
     record [toField title, toField eType, toField alias, emptyField, toField categories
                 , emptyField, emptyField, emptyField, emptyField, toField disambiguation
                 , emptyField, toField abstract, toField url]
+
+
+encodeOptions :: EncodeOptions
+encodeOptions = defaultEncodeOptions { encDelimiter = tab
+                                     , encIncludeHeader = True
+                                     , encUseCrLf = False
+                                     }
+  where tab = fromIntegral . ord $ '\t'
