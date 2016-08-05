@@ -141,7 +141,17 @@ sub insert_alias {
     });
 }
 
+has disambiguations => (
+    is => 'ro',
+    default => sub { {} },
+);
+
 sub disambiguation {
+    my ($self, $disambiguation) = @_;
+    $self->disambiguations->{$disambiguation->{title}} = $disambiguation;
+}
+
+sub insert_disambiguation {
     my ($self, $disambiguation) = @_;
     my @disambiguations = map {
         "*[[$_->{link}]], $_->{description}.";
@@ -196,6 +206,11 @@ sub entry {
         related  => $related_text,
         sourceurl => $url,
     });
+}
+
+sub retrieve_entry {
+    my ($self, $title) = @_;
+    return $self->articles->{$title} // $self->disambiguations->{$title};
 }
 
 #######################################################################
@@ -465,8 +480,12 @@ sub parse_page {
             $self->disambiguation( $disambiguation );
         }
     }
+    my $full = "$meta->{module} (module)";
+    $full = inject_package($full, $meta->{package})
+        if $module_clash{$meta->{module}};
+    $self->alias($meta->{module}, $full);
     $self->disambiguation({
-        title => path($page->{path})->basename =~ s/\.html//r,
+        title => $full,
         disambiguations => [
             map { {
                 link => $_->{title},
@@ -478,6 +497,7 @@ sub parse_page {
 
 sub text_for_disambiguation {
     my ($abstract) = @_;
+    return '' unless defined $abstract;
     if (my $short = Mojo::DOM->new->parse($abstract)->at('code,p')) {
         $short->all_text;
     } else {
@@ -491,7 +511,7 @@ sub resolve_aliases {
     while (my ($alias, $to) = each %aliases) {
         my @to = @$to;
         @to == 1 and $self->insert_alias($alias, $to[0]) and next;
-        my @articles = map { $self->articles->{$_} } @to;
+        my @articles = map { $self->retrieve_entry($_) } @to;
         scalar (uniq map { $_->{title} } @articles ) == 1
             and $self->insert_alias($alias, $to[0]) and next;
         $self->disambiguation({
@@ -522,6 +542,13 @@ sub resolve_articles {
     }
 }
 
+sub resolve_disambiguations {
+    my ($self) = @_;
+    foreach my $d (values %{$self->disambiguations}) {
+        $self->insert_disambiguation($d);
+    }
+}
+
 sub parse {
     my ( $self ) = @_;
     foreach my $page (sort @{$self->pages}) {
@@ -530,6 +557,7 @@ sub parse {
 
     $self->resolve_articles;
     $self->resolve_aliases;
+    $self->resolve_disambiguations;
 }
 
 main->new->parse;
