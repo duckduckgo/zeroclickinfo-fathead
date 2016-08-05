@@ -81,3 +81,11 @@ encodeOptions = defaultEncodeOptions { encDelimiter = tab
                                      , encUseCrLf = False
                                      }
   where tab = fromIntegral . ord $ '\t'
+
+
+outputHeader :: Header
+outputHeader = header [ "title" , "type", "redirect", "null1"
+                      , "categories", "null2", "see_also", "null3"
+                      , "null4", "external_links", "disambiguation"
+                      , "images", "abstract", "source_url"
+                      ]
