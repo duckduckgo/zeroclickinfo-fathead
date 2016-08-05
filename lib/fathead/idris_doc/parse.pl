@@ -529,6 +529,13 @@ sub parse_page {
             $self->disambiguation( $disambiguation );
         }
     }
+    my @module_aliases = make_aliases($full,
+        alias_components($meta->{module}, 'l'),
+        alias_components($meta->{module}, 'r'),
+    );
+    for my $alias (@module_aliases) {
+        $self->alias( $alias->{new}, $alias->{orig} );
+    }
     $self->alias($meta->{module}, $full);
     $self->disambiguation({
         title => $full,
