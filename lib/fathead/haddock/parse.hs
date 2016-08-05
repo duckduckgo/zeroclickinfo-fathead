@@ -55,18 +55,24 @@ emptyField :: Field
 emptyField = toField ("" :: FieldText)
 
 
-instance ToRecord Entry where
-  toRecord (Entry { entryTitle = title
-                  , entryType  = eType
-                  , entryAlias = alias
-                  , entryCategories = categories
-                  , entryDisambiguation = disambiguation
-                  , entryAbstract = abstract
-                  , entryUrl = url
-                  }) =
-    record [toField title, toField eType, toField alias, emptyField, toField categories
-                , emptyField, emptyField, emptyField, emptyField, toField disambiguation
-                , emptyField, toField abstract, toField url]
+instance ToNamedRecord Entry where
+  toNamedRecord (Entry { entryTitle          = title
+                       , entryType           = eType
+                       , entryAlias          = alias
+                       , entryCategories     = categories
+                       , entryDisambiguation = disambiguation
+                       , entryAbstract       = abstract
+                       , entryUrl            = url }) =
+    namedRecord ([ "title"          .= toField title
+                 , "type"           .= toField eType
+                 , "redirect"       .= toField alias
+                 , "categories"     .= toField categories
+                 , "disambiguation" .= toField disambiguation
+                 , "abstract"       .= toField abstract
+                 , "source_url"     .= toField url
+                 ] ++ empties [ "null1", "null2", "null3", "null4"
+                              , "see_also", "external_links", "images" ])
+    where empties = fmap (.= emptyField)
 
 
 encodeOptions :: EncodeOptions
