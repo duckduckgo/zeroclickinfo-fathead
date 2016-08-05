@@ -89,3 +89,13 @@ outputHeader = header [ "title" , "type", "redirect", "null1"
                       , "null4", "external_links", "disambiguation"
                       , "images", "abstract", "source_url"
                       ]
+
+
+-- | Entries to be inserted into output file.
+entries :: [Entry]
+entries = []
+
+
+main :: IO ()
+main = BSZ.writeFile "output.txt" $
+  encodeByNameWith encodeOptions outputHeader entries
