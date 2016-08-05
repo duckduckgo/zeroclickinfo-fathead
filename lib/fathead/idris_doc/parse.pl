@@ -369,6 +369,7 @@ my %type_names = (
     data      => 'Data Type',
     interface => 'Interface',
     record    => 'Record',
+    class     => 'Interface',
 );
 
 sub get_category_rich {
@@ -436,7 +437,7 @@ sub decls_default {
         my $items = $dom->find(
             join ', ', map { ".decls > dt[id] > span$_" } @$look
         );
-        return ($match ? $items->grep(qr/$match/) : $items)
+        return ($match ? $items->grep(sub { $_->text =~ qr/$match/ }) : $items)
             ->map('parent')->each;
     };
 }
@@ -463,9 +464,10 @@ parser(
     aliases     => aliases_default(['.name.type']),
 );
 
+# NOTE: The 'class' keyword is deprecated
 parser(
     name        => 'Interfaces',
-    decls       => decls_default(['.word'], 'interface'),
+    decls       => decls_default(['.word'], 'interface|class'),
     description => display_rich([
         ['Methods', 'function'],
     ]),
