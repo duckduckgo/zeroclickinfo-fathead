@@ -509,7 +509,11 @@ sub parse_page {
         package => path($fullpath)->parent->parent->basename
             =~ s/_doc$//r,
     };
+    my $builtins = $url =~ /\[builtins\]/;
+    $meta->{module} = 'Built-ins' if $builtins;
     my $full = "$meta->{module} (module)";
+    $self->alias('[builtins]', $full) if $builtins;
+    $self->alias('builtins', $full) if $builtins;
     $full = inject_package($full, $meta->{package})
         if $module_clash{$meta->{module}};
     $meta->{full_module} = $full;
