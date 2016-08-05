@@ -254,6 +254,7 @@ sub normalize_dom_links {
     });
     # TODO: When the FatHead parser is fixed, allow links in the types (they
     # are useful!)
+    $dom->find('.signature > a')->map(sub { $_->attr(href => '') });
     $dom->find('.signature > a')->map(tag => 'span');
 }
 
