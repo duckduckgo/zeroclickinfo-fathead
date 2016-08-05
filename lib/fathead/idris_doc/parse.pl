@@ -346,6 +346,18 @@ sub inject_package {
         : "$title ($package)";
 }
 
+my %type_names = (
+    data      => 'Data Type',
+    interface => 'Interface',
+    record    => 'Record',
+);
+
+sub get_category_rich {
+    my ($c) = @_;
+    my ($w) = $c->at('.word')->text =~ /(\w+)/;
+    return "$c->{id} ($type_names{$w})";
+}
+
 my @parsers;
 
 sub parser {
@@ -360,18 +372,27 @@ sub parser {
         my @entities = $options{decls}->($dom);
         my @articles;
         my @aliases;
+        my $should_inject = $module_clash{$meta->{module}};
         foreach my $decl (@entities) {
             my @categories = ($meta->{full_module});
             my $title_no_p = $decl->attr('id');
             my $title = $title_no_p;
             $title .= " ($options{name_type})" if $options{name_type};
             $title = inject_package($title, $meta->{package})
-                if $module_clash{$meta->{module}};
+                if $should_inject;
             my $anchor = $decl->attr('id');
             my $desc = $decl->next;
             @aliases = (@aliases, make_aliases($title,
                 $title_no_p, $options{aliases}->($decl, $title_no_p),
             ));
+            if (my $d = $decl->parent->parent->previous) {
+                if ($d->matches('dt[id]')) {
+                    my $cat = get_category_rich($d);
+                    $cat = inject_package($cat, $meta->{package})
+                        if $should_inject;
+                    push @categories, $cat;
+                }
+            }
             my $text = $options{description}->($decl, $desc);
             my $article = {
                 text => $text,
