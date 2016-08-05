@@ -275,7 +275,11 @@ sub display_description {
 sub display_type {
     my ($type) = @_;
     return '' unless $type && $type->children->each;
-    return '<pre><code>' . $type->to_string . '</code></pre>';
+    $type->find('span > a')->map('parent')->map('strip');
+    # TODO: When the FatHead parser is fixed, allow links in the types (they
+    # are useful!)
+    $type->find('a')->map(tag => 'span');
+    return '<pre>' . $type->to_string . '</pre>';
 }
 
 sub display_implements {
