@@ -500,11 +500,18 @@ sub parse_page {
 sub text_for_disambiguation {
     my ($abstract) = @_;
     return '' unless defined $abstract;
-    if (my $short = Mojo::DOM->new->parse($abstract)->at('code,p')) {
-        $short->all_text;
-    } else {
-        '';
+    my $abs = Mojo::DOM->new->parse($abstract);
+    if (my $p = $abs->at('pre:first-of-type + p:first-of-type')) {
+        return $p->all_text unless $abs->at('.fixity');
     }
+    if (my $t = $abs->at('pre:first-of-type')) {
+        if (my $sig = $t->at('.signature')) {
+            my $sigtext = $sig->all_text;
+            return $sig->all_text if $sig->children->first;
+        }
+        return $t->all_text;
+    }
+    return '';
 }
 
 sub resolve_aliases {
