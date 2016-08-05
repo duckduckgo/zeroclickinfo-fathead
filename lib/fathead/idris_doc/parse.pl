@@ -526,7 +526,7 @@ sub text_for_disambiguation {
     return '' unless defined $abstract;
     my $abs = Mojo::DOM->new->parse($abstract);
     if (my $p = $abs->at('pre:first-of-type + p:first-of-type')) {
-        return $p->all_text unless $abs->at('.fixity');
+        return $p->all_text unless $p->children('i')->first;
     }
     if (my $t = $abs->at('pre:first-of-type')) {
         if (my $sig = $t->at('.signature')) {
