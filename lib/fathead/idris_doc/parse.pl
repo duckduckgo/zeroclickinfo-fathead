@@ -233,6 +233,9 @@ sub normalize_dom_links {
         my $link = $_[0]->attr('href') or return;
         $_[0]->attr(href => URI->new_abs($link, $url)->as_string);
     });
+    # TODO: When the FatHead parser is fixed, allow links in the types (they
+    # are useful!)
+    $dom->find('.signature > a')->map(tag => 'span');
 }
 
 sub normalize_article {
@@ -253,94 +256,87 @@ sub normalize_parse_result {
     return $parsed;
 }
 
+sub normalize_fixities {
+    my ($dom) = @_;
+    $dom->find('dt.fixity')->map('remove');
+    $dom->find('dd.fixity')->map(sub {
+        $_->tag('p');
+        $_->wrap_content('<i></i>');
+    });
+    $dom->find('dd > dl > .fixity')->map(sub {
+        $_->parent->strip;
+    });
+}
+
 sub dom_for_parsing {
     my ($url, $page) = @_;
     my $dom = dom_for_file($page);
     normalize_dom_links($url, $dom);
+    normalize_fixities($dom);
     $dom->find('strong')->map('strip');
-    $dom->find('code > a')->grep(sub { $_->parent->all_text eq $_->text })
-        ->map( sub { $_->parent->strip });
     return $dom;
-}
-
-sub build_abstract {
-    my %info = @_;
-    my ($type, $desc) = @info{qw(type description)};
-    return "$type$desc";
 }
 
 sub display_description {
     my ($desc) = @_;
     return '' unless $desc;
     $desc->find('br')->map('remove');
-    if (my $fix = $desc->find('.fixity')->first) {
-        $fix->parent->strip;
-        $fix->remove;
+    my $text = '';
+    if (my $ps = $desc->children('p')) {
+        $text .= $ps->join;
     }
-    if (my $fixy = $desc->at('.fixity')) {
-        $fixy->tag('i');
-        $fixy->prepend_content('Fixity: ');
-    }
-    if (my $dl = $desc->find('dl')->last) {
-        $dl->remove;
-    }
-    $desc->to_string;
+    return $text;
 }
 
 sub display_type {
     my ($type) = @_;
     return '' unless $type && $type->children->each;
-    $type->find('span > a')->map('parent')->map('strip');
-    # TODO: When the FatHead parser is fixed, allow links in the types (they
-    # are useful!)
-    $type->find('a')->map(tag => 'span');
     return '<pre>' . $type->to_string . '</pre>';
 }
 
-sub display_implements {
-    my ($type, $desc) = @_;
+sub display_decls {
+    my ($decls) = @_;
+    return '' unless $decls;
     my $text = '';
-    foreach my $con ($desc->find("dt > .name.$type")->map('parent')->each) {
-        $text .= display_type($con);
-        $text .= display_description($con->next);
-    }
-    if (my $d = $desc->at("dt > .name.$type")) {
-        $d->parent->remove;
+    foreach my $dt ($decls->children('dt')->each) {
+        $text .= display_function($dt, $dt->next);
     }
     return $text;
 }
 
-sub display_mother {
-    my ($ctype, $cname, $decl, $desc) = @_;
-    my $ma = display_ma(@_);
-    display_header($decl, $desc) . $ma;
+sub display_function {
+    my ($ft, $fd) = @_;
+    my $signature = display_type($ft);
+    my $description = display_description($fd);
+    return "$signature$description";
 }
 
-sub display_ma {
-    my ($ctype, $cname, $decl, $desc) = @_;
-    my $c_text = display_implements($ctype, $desc);
-    return "<b>$cname:</b>\\n$c_text";
+sub display_heading {
+    my ($heading, $text) = @_;
+    return '' unless $text ne '';
+    return "<b>$heading:</b>\\n$text";
 }
 
-sub display_header {
-    my ($decl, $desc) = @_;
-    my $type = $decl->at('.signature');
-    my $tt = display_type($type);
-    my $dt = display_description($desc);
-    return "$tt$dt";
+sub display_decls_type {
+    my ($dd, $t) = @_;
+    return display_decls(
+        $dd->children('dl.decls')->grep(at => ".name.$t")->first
+    );
 }
 
-sub display_interface {
-    display_mother('function', 'Methods', @_);
-}
-
-sub display_datatype {
-    display_mother('constructor', 'Constructors', @_);
-}
-
-sub display_record {
-    my $text = display_ma('function', 'Fields', @_);
-    display_mother('constructor', 'Constructor', @_) . $text;
+# Data Types, Interfaces etc. (sub-functions)
+sub display_rich {
+    my ($headers) = @_;
+    return sub {
+        my ($dt, $dd) = @_;
+        my $text = '';
+        $text .= display_function($dt, $dd);
+        foreach my $header (@$headers) {
+            my ($head, $type) = @$header;
+            $text .= display_heading($head, display_decls_type($dd, $type));
+        }
+        return $text;
+    };
 }
 
 sub inject_package {
@@ -355,7 +351,7 @@ my @parsers;
 sub parser {
     my %options = (
         aliases => sub { () },
-        description => \&display_header,
+        description => \&display_function,
         name_type => '',
         @_,
     );
@@ -417,7 +413,9 @@ sub aliases_default {
 parser(
     name        => 'Data Types',
     decls       => decls_default(['.word'], 'data'),
-    description => \&display_datatype,
+    description => display_rich([
+        ['Constructors', 'constructor'],
+    ]),
     name_type   => 'Data Type',
     aliases     => aliases_default(['.name.type']),
 );
@@ -425,7 +423,9 @@ parser(
 parser(
     name        => 'Interfaces',
     decls       => decls_default(['.word'], 'interface'),
-    description => \&display_interface,
+    description => display_rich([
+        ['Methods', 'function'],
+    ]),
     name_type   => 'Interface',
     aliases     => aliases_default(['.name.type']),
 );
@@ -446,7 +446,9 @@ parser(
 parser(
     name        => 'Records',
     decls       => decls_default(['.word'], 'record'),
-    description => \&display_record,
+    description => display_rich([
+        ['Constructor', 'constructor'], ['Fields', 'function']
+    ]),
     name_type   => 'Record',
     aliases     => aliases_default(['.name.type']),
 );
