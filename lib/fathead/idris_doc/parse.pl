@@ -219,8 +219,27 @@ sub retrieve_entry {
 
 sub make_aliases {
     my ($title, @aliases) = @_;
-    my @valid_aliases = grep { $_ ne $title } @aliases;
+    my @valid_aliases = uniq grep { $_ ne $title } @aliases;
     map { { new => $_, orig => $title } } @valid_aliases;
+}
+
+# r: Data.Vect.Vect, Vect.Vect, Vect
+# l: Data.Vect.Vect, Data.Vect, Data
+sub alias_components {
+    my ($name, $dir) = @_;
+    my @names;
+    if ($dir eq 'r') {
+        my @comps = reverse(split /\./, $name);
+        foreach my $c (0..$#comps) {
+            push @names, (join '.', reverse(@comps[0..$c]));
+        }
+    } elsif ($dir eq 'l') {
+        my @comps = (split /\./, $name);
+        foreach my $c (0..$#comps) {
+            push @names, (join '.', (@comps[0..$c]));
+        }
+    }
+    return @names;
 }
 
 #######################################################################
@@ -384,6 +403,7 @@ sub parser {
             my $desc = $decl->next;
             @aliases = (@aliases, make_aliases($title,
                 $title_no_p, $options{aliases}->($decl, $title_no_p),
+                alias_components($title_no_p, 'r'),
             ));
             if (my $d = $decl->parent->parent->previous) {
                 if ($d->matches('dt[id]')) {
