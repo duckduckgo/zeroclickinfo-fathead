@@ -361,6 +361,7 @@ sub parser {
         my @articles;
         my @aliases;
         foreach my $decl (@entities) {
+            my @categories = ($meta->{full_module});
             my $title_no_p = $decl->attr('id');
             my $title = $title_no_p;
             $title .= " ($options{name_type})" if $options{name_type};
@@ -376,6 +377,7 @@ sub parser {
                 text => $text,
                 title => $title,
                 anchor => $anchor,
+                categories => \@categories,
             };
             push @articles, $article;
         }
@@ -463,6 +465,10 @@ sub parse_page {
         package => path($fullpath)->parent->parent->basename
             =~ s/_doc$//r,
     };
+    my $full = "$meta->{module} (module)";
+    $full = inject_package($full, $meta->{package})
+        if $module_clash{$meta->{module}};
+    $meta->{full_module} = $full;
     foreach my $parser (@parsers) {
         my $parsed = $parser->($self, dom_for_parsing($url, $fullpath), $meta);
         $parsed = normalize_parse_result($parsed);
@@ -482,9 +488,6 @@ sub parse_page {
             $self->disambiguation( $disambiguation );
         }
     }
-    my $full = "$meta->{module} (module)";
-    $full = inject_package($full, $meta->{package})
-        if $module_clash{$meta->{module}};
     $self->alias($meta->{module}, $full);
     $self->disambiguation({
         title => $full,
