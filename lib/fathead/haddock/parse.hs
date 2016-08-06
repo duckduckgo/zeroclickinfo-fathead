@@ -108,6 +108,10 @@ readHaddockDocument = readDocument sysConfig . pagePath
   where sysConfig = [withInputEncoding iso8859_1, withParseHTML yes]
 
 
+hasClass :: ArrowXml a => String -> a XmlTree XmlTree
+hasClass c = hasAttrValue "class" (==c)
+
+
 main :: IO ()
 main = BSZ.writeFile "output.txt" $
   encodeByNameWith encodeOptions outputHeader entries
