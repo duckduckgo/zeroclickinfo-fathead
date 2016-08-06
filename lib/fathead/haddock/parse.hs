@@ -24,15 +24,10 @@ instance ToField EntryType where
   toField EntryRedirect = "R"
 
 
-newtype FieldText = FT { getFieldText :: Text }
-  deriving (Show, Eq, IsString)
-
-
-instance ToField FieldText where
-  toField (FT {getFieldText = t}) = toField t
-
-
+type FieldText = String
+type Title = FieldText
 type Disambugation = Text
+type Abstract = String
 
 
 newtype Categories = Categories { getCategories :: [Text] }
@@ -43,12 +38,12 @@ instance ToField Categories where
 
 
 data Entry = Entry
-  { entryTitle :: !FieldText
+  { entryTitle :: !Title
   , entryType  :: EntryType
   , entryAlias :: Maybe FieldText
   , entryCategories :: Maybe Categories
   , entryDisambiguation :: Maybe Disambugation
-  , entryAbstract :: !FieldText
+  , entryAbstract :: !Abstract
   , entryUrl :: !FieldText
   }
 
