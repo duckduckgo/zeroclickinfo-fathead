@@ -75,8 +75,37 @@ my @urls_with_fragments = grep { $_->fragment } @keyword_urls;
 if (@urls_with_fragments) {
     open( my $fh, '>:encoding(UTF-8)', catfile 'download', 'fragments.txt' )
       or die $!;
-    for my $urls_with_fragment (@urls_with_fragments) {
-        say $fh $urls_with_fragment;
+
+=begin
+    For fragment in urls past this path transform-function we can get
+    the link for the actual fragment in the following way.
+    Take for example this fragment #matrix3d()
+    In order to get the actual link, we take the fragment, matrix3d(), remove
+    the brackets, and append it to the original path so that we get the link
+    https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix
+=cut
+
+    for my $url_with_fragment (@urls_with_fragments) {
+        if ( $url_with_fragment =~ qr/transform-function/ ) {
+            my $clone = Mojo::URL->new(
+                sprintf "%s://%s",
+                $url_with_fragment->protocol,
+                $url_with_fragment->host
+            );
+
+            #trailing / needed at the end so that when we add a
+            #fragment at the end it does not replace the former last
+            #part of path
+            $clone->path( $url_with_fragment->path . '/' );
+            my $fragment = $url_with_fragment->fragment;
+            $fragment =~ s/\(\)//g;
+            $clone->path($fragment);
+            push @keyword_urls, $clone;
+        }
+        else {
+            #we will deal with other types of urls later in parse.pl
+            say $fh $url_with_fragment;
+        }
     }
 }
 
