@@ -79,8 +79,8 @@ if (@urls_with_fragments) {
 =begin
     For fragment in urls past this path transform-function we can get
     the link for the actual fragment in the following way.
-    Take for example this fragment #matrix3d()
-    In order to get the actual link, we take the fragment, matrix3d(), remove
+    Take for example this fragment #matrix()
+    In order to get the actual link, we take the fragment, matrix(), remove
     the brackets, and append it to the original path so that we get the link
     https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix
 =cut
