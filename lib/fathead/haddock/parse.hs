@@ -120,8 +120,9 @@ makeAbstract = unwords . lines
 
 parseMarkup :: IO [Entry]
 parseMarkup = fmap (uncurry article) <$> (fmap . fmap) (mapTuple (normalizeTitle, makeAbstract)) prs
-  where divSections            = hasName "div" `guards` hasClass "section"
-        headerSections         = deep (divSections `guards`
+  where sectionDiv = hasName "div" `guards` hasClass "section"
+        contentDivs = sectionDiv //> sectionDiv
+        headerSections         = deep (contentDivs >>>
                                  ( deep headerText &&&
                                    ( getChildren >>> hasName "p" >>>
                                      writeDocumentToString [withOutputHTML, withRemoveWS yes])))
