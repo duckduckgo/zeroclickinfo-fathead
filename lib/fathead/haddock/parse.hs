@@ -103,14 +103,14 @@ hasClass :: ArrowXml a => String -> a XmlTree XmlTree
 hasClass c = hasAttrValue "class" (==c)
 
 
-article :: Title -> Abstract -> Entry
-article t a = Entry { entryTitle =  t
+article :: Title -> Abstract -> String -> Entry
+article t a u = Entry { entryTitle =  t
                     , entryType  = EntryArticle
                     , entryAlias = Nothing
                     , entryCategories = Nothing
                     , entryDisambiguation = Nothing
                     , entryAbstract = a
-                    , entryUrl = "PLACEHOLDER"
+                    , entryUrl = u
                     }
 
 
@@ -119,14 +119,22 @@ buildAbstract p = (p >>> writeDocumentToString [withOutputHTML]) >. (makeAbstrac
   where makeAbstract = unwords . lines
 
 
+makeSourceLink :: (IsString c, Monoid c, Arrow a) => c -> a c c
+makeSourceLink page = arr (base<>)
+  where base = "http://www.haskell.org/haddock/doc/html/" <> page <> "#"
+
+
 parseMarkup :: IO [Entry]
-parseMarkup = fmap (uncurry article) <$> prs
+parseMarkup = fmap (\(h,(a,u)) -> article h a u) <$> prs
   where sectionDiv = hasName "div" `guards` hasClass "section"
         contentDivs = sectionDiv //> sectionDiv
-        headerSections         = deep (contentDivs >>> deep headerText &&& buildAbstract (deep $ hasName "p"))
+        headerSections         = deep (contentDivs >>> deep headerText
+                                        &&& (buildAbstract (deep $ hasName "p"))
+                                        &&& deep sourceLink)
         headerText             = hasName "h3" /> getText >>> arr normalizeTitle
         prs                    = runX (readHaddockDocument "ch03s08.html" >>> headerSections)
         normalizeTitle         = dropWhile (not . isAlpha)
+        sourceLink = hasName "a" >>> getAttrValue "name" >>> makeSourceLink "ch03s08.html"
 
 
 -- | Entries to be inserted into output file.
