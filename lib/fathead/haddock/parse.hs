@@ -8,6 +8,8 @@ import Data.String (IsString)
 import qualified Data.Text as DT
 import Data.Text (Text)
 import qualified Data.ByteString.Lazy.Char8 as BSZ
+import Text.XML.HXT.Core
+import Data.Monoid ((<>))
 
 
 data EntryType = EntryArticle
@@ -94,6 +96,16 @@ outputHeader = header [ "title" , "type", "redirect", "null1"
 -- | Entries to be inserted into output file.
 entries :: [Entry]
 entries = []
+
+
+pagePath :: String -> FilePath
+pagePath = (basePath<>)
+  where basePath = "download/haddock/doc/html/"
+
+
+readHaddockDocument :: String -> IOStateArrow s b XmlTree
+readHaddockDocument = readDocument sysConfig . pagePath
+  where sysConfig = [withInputEncoding iso8859_1, withParseHTML yes]
 
 
 main :: IO ()
