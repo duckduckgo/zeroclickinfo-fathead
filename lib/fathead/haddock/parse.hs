@@ -2,7 +2,7 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 module Main where
 
-import Data.Char (ord)
+import Data.Char (ord, isAlpha)
 import Data.Csv
 import Data.String (IsString)
 import qualified Data.Text as DT
@@ -88,11 +88,6 @@ outputHeader = header [ "title" , "type", "redirect", "null1"
                       ]
 
 
--- | Entries to be inserted into output file.
-entries :: [Entry]
-entries = []
-
-
 pagePath :: String -> FilePath
 pagePath = (basePath<>)
   where basePath = "download/haddock/doc/html/"
@@ -107,6 +102,10 @@ hasClass :: ArrowXml a => String -> a XmlTree XmlTree
 hasClass c = hasAttrValue "class" (==c)
 
 
+makeAbstract :: XmlTree -> Abstract
+makeAbstract = show
+
+
 article :: Title -> Abstract -> Entry
 article t a = Entry { entryTitle =  t
                     , entryType  = EntryArticle
@@ -118,6 +117,21 @@ article t a = Entry { entryTitle =  t
                     }
 
 
+parseMarkup :: IO [Entry]
+parseMarkup = fmap (uncurry article) <$> (fmap . fmap) (mapTuple (normalizeTitle, makeAbstract)) prs
+  where divSections            = hasName "div" >>> hasClass "section"
+        headerSections         = deep divSections >>> (deep headerText &&& getXmlContents)
+        headerText             = hasName "h3" >>> deep getText
+        prs                    = runX (readHaddockDocument "ch03s08.html" >>> headerSections)
+        mapTuple (f, g) (x, y) = (f x, g y)
+        normalizeTitle         = dropWhile (not . isAlpha)
+
+
+-- | Entries to be inserted into output file.
+makeEntries :: IO [Entry]
+makeEntries = parseMarkup
+
+
 main :: IO ()
-main = BSZ.writeFile "output.txt" $
-  encodeByNameWith encodeOptions outputHeader entries
+main = makeEntries >>= BSZ.writeFile "output.txt"
+       . encodeByNameWith encodeOptions outputHeader
