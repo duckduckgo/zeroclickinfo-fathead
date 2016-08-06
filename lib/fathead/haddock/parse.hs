@@ -102,10 +102,6 @@ hasClass :: ArrowXml a => String -> a XmlTree XmlTree
 hasClass c = hasAttrValue "class" (==c)
 
 
-makeAbstract :: XmlTree -> Abstract
-makeAbstract = show
-
-
 article :: Title -> Abstract -> Entry
 article t a = Entry { entryTitle =  t
                     , entryType  = EntryArticle
@@ -118,10 +114,13 @@ article t a = Entry { entryTitle =  t
 
 
 parseMarkup :: IO [Entry]
-parseMarkup = fmap (uncurry article) <$> (fmap . fmap) (mapTuple (normalizeTitle, makeAbstract)) prs
-  where divSections            = hasName "div" >>> hasClass "section"
-        headerSections         = deep divSections >>> (deep headerText &&& getXmlContents)
-        headerText             = hasName "h3" >>> deep getText
+parseMarkup = fmap (uncurry article) <$> (fmap . fmap) (mapTuple (normalizeTitle, id)) prs
+  where divSections            = hasName "div" `guards` hasClass "section"
+        headerSections         = deep (divSections `guards`
+                                 ( deep headerText &&&
+                                   ( getChildren >>> hasName "p" >>>
+                                     writeDocumentToString [withOutputHTML, withRemoveWS yes])))
+        headerText             = hasName "h3" /> getText
         prs                    = runX (readHaddockDocument "ch03s08.html" >>> headerSections)
         mapTuple (f, g) (x, y) = (f x, g y)
         normalizeTitle         = dropWhile (not . isAlpha)
