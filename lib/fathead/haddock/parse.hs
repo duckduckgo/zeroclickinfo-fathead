@@ -76,6 +76,7 @@ encodeOptions :: EncodeOptions
 encodeOptions = defaultEncodeOptions { encDelimiter = tab
                                      , encIncludeHeader = True
                                      , encUseCrLf = False
+                                     , encQuoting = QuoteNone
                                      }
   where tab = fromIntegral . ord $ '\t'
 
