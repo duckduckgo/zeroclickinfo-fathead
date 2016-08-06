@@ -3,8 +3,8 @@
 # and follow the provided instructions.
 
 # The following dependencies are required:
-# 'tagsoup' and 'cassava'
+# 'hxt' and 'cassava'
 # Run the command below to install:
 ```
-cabal update && cabal install tagsoup cassava
+cabal update && cabal install hxt cassava
 ```
