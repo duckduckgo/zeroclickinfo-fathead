@@ -114,8 +114,12 @@ article t a = Entry { entryTitle =  t
                     }
 
 
+makeAbstract :: String -> Abstract
+makeAbstract = unwords . lines
+
+
 parseMarkup :: IO [Entry]
-parseMarkup = fmap (uncurry article) <$> (fmap . fmap) (mapTuple (normalizeTitle, id)) prs
+parseMarkup = fmap (uncurry article) <$> (fmap . fmap) (mapTuple (normalizeTitle, makeAbstract)) prs
   where divSections            = hasName "div" `guards` hasClass "section"
         headerSections         = deep (divSections `guards`
                                  ( deep headerText &&&
