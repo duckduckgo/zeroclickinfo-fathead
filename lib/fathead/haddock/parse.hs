@@ -115,7 +115,7 @@ article t a = Entry { entryTitle =  t
 
 
 buildAbstract :: ArrowXml a => a b XmlTree -> a b String
-buildAbstract p = (p >>> writeDocumentToString []) >. (makeAbstract . concat)
+buildAbstract p = (p >>> writeDocumentToString [withOutputHTML]) >. (makeAbstract . concat)
   where makeAbstract = unwords . lines
 
 
