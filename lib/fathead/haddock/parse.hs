@@ -67,8 +67,8 @@ instance ToNamedRecord Entry where
                  , "disambiguation" .= toField disambiguation
                  , "abstract"       .= toField abstract
                  , "source_url"     .= toField url
-                 ] ++ empties [ "null1", "null2", "null3", "null4"
-                              , "see_also", "external_links", "images" ])
+                 ] ++ empties [ "null1", "null2", "null3", "external_links"
+                              , "see_also", "images" ])
     where empties = fmap (.= emptyField)
 
 
@@ -84,7 +84,7 @@ encodeOptions = defaultEncodeOptions { encDelimiter = tab
 outputHeader :: Header
 outputHeader = header [ "title" , "type", "redirect", "null1"
                       , "categories", "null2", "see_also", "null3"
-                      , "null4", "external_links", "disambiguation"
+                      , "external_links", "disambiguation"
                       , "images", "abstract", "source_url"
                       ]
 
