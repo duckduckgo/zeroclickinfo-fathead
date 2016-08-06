@@ -107,6 +107,17 @@ hasClass :: ArrowXml a => String -> a XmlTree XmlTree
 hasClass c = hasAttrValue "class" (==c)
 
 
+article :: Title -> Abstract -> Entry
+article t a = Entry { entryTitle =  t
+                    , entryType  = EntryArticle
+                    , entryAlias = Nothing
+                    , entryCategories = Nothing
+                    , entryDisambiguation = Nothing
+                    , entryAbstract = a
+                    , entryUrl = "PLACEHOLDER"
+                    }
+
+
 main :: IO ()
 main = BSZ.writeFile "output.txt" $
   encodeByNameWith encodeOptions outputHeader entries
