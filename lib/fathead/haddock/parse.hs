@@ -115,9 +115,18 @@ article t a u = Entry { entryTitle =  t
 
 
 buildAbstract :: ArrowXml a => a b XmlTree -> a b String
-buildAbstract p = (eelem "span" += p >>> writeDocumentToString [withOutputHTML])
+buildAbstract p = (eelem "span" += p >>> normalizeText >>> writeDocumentToString [withOutputHTML, withRemoveWS yes])
                   >. (makeAbstract . concat)
-  where makeAbstract = unwords . lines
+  where makeAbstract = id
+
+
+normalizeText :: ArrowXml a => a XmlTree XmlTree
+normalizeText = processTopDown $ choiceA [ hasName "p" :-> normalizeP
+                                         , hasName "pre" :-> normalizePre
+                                         , this :-> this]
+  where normalizeP = processChildren (changeText normalizeWhitespace `when` isText)
+        normalizePre = processChildren (changeText escapeNewlines `when` isText)
+        escapeNewlines = concatMap (\x -> if x == '\n' then "\\n" else [x])
 
 
 makeSourceLink :: (IsString c, Monoid c, Arrow a) => c -> a c c
