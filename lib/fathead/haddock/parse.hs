@@ -115,7 +115,8 @@ article t a u = Entry { entryTitle =  t
 
 
 buildAbstract :: ArrowXml a => a b XmlTree -> a b String
-buildAbstract p = (p >>> writeDocumentToString [withOutputHTML]) >. (makeAbstract . concat)
+buildAbstract p = (eelem "span" += p >>> writeDocumentToString [withOutputHTML])
+                  >. (makeAbstract . concat)
   where makeAbstract = unwords . lines
 
 
@@ -129,8 +130,9 @@ parseMarkup = fmap (\(h,(a,u)) -> article h a u) <$> prs
   where sectionDiv = hasName "div" `guards` hasClass "section"
         contentDivs = sectionDiv //> sectionDiv
         headerSections         = deep (contentDivs >>> deep headerText
-                                        &&& (buildAbstract (deep $ hasName "p"))
+                                        &&& (buildAbstract (deep isAbstract))
                                         &&& deep sourceLink)
+        isAbstract             = hasName "p" <+> hasName "pre"
         headerText             = hasName "h3" /> getText >>> arr normalizeTitle
         prs                    = runX (readHaddockDocument "ch03s08.html" >>> headerSections)
         normalizeTitle         = dropWhile (not . isAlpha)
