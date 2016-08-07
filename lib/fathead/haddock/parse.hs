@@ -125,7 +125,7 @@ normalizeText = processTopDown $ choiceA [ hasName "p" :-> normalizeP
                                          , hasName "pre" :-> normalizePre
                                          , this :-> this]
   where normalizeP = processChildren (changeText normalizeWhitespace `when` isText)
-        normalizePre = processChildren (changeText escapeNewlines `when` isText)
+        normalizePre = processChildren (changeText (escapeNewlines . stringTrim) `when` isText)
         escapeNewlines = concatMap (\x -> if x == '\n' then "\\n" else [x])
 
 
