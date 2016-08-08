@@ -10,6 +10,7 @@ import Data.Text (Text)
 import qualified Data.ByteString.Lazy.Char8 as BSZ
 import Text.XML.HXT.Core
 import Data.Monoid ((<>))
+import Data.Tree.NTree.TypeDefs (NTree)
 import Network.URI (URI, parseURI)
 import Data.Maybe (fromJust)
 
