@@ -10,6 +10,8 @@ import Data.Text (Text)
 import qualified Data.ByteString.Lazy.Char8 as BSZ
 import Text.XML.HXT.Core
 import Data.Monoid ((<>))
+import Network.URI (URI, parseURI)
+import Data.Maybe (fromJust)
 
 
 data EntryType = EntryArticle
@@ -37,6 +39,10 @@ instance ToField Categories where
   toField (Categories { getCategories = cs }) = toField (DT.unlines cs)
 
 
+instance ToField URI where
+  toField = toField . show
+
+
 data Entry = Entry
   { entryTitle :: !Title
   , entryType  :: EntryType
@@ -44,7 +50,7 @@ data Entry = Entry
   , entryCategories :: Maybe Categories
   , entryDisambiguation :: Maybe Disambugation
   , entryAbstract :: !Abstract
-  , entryUrl :: !FieldText
+  , entryUrl :: !URI
   }
 
 
@@ -103,7 +109,7 @@ hasClass :: ArrowXml a => String -> a XmlTree XmlTree
 hasClass c = hasAttrValue "class" (==c)
 
 
-article :: Title -> Abstract -> String -> Entry
+article :: Title -> Abstract -> URI -> Entry
 article t a u = Entry { entryTitle =  t
                     , entryType  = EntryArticle
                     , entryAlias = Nothing
@@ -129,9 +135,10 @@ normalizeText = processTopDown $ choiceA [ hasName "p" :-> normalizeP
         escapeNewlines = concatMap (\x -> if x == '\n' then "\\n" else [x])
 
 
-makeSourceLink :: (IsString c, Monoid c, Arrow a) => c -> a c c
-makeSourceLink page = arr (base<>)
+makeSourceLink :: (Arrow a) => String -> a String URI
+makeSourceLink page = arr (base<>) >>> arr parseURIWithBase
   where base = "http://www.haskell.org/haddock/doc/html/" <> page <> "#"
+        parseURIWithBase = maybe (fromJust $ parseURI base) id . parseURI
 
 
 parseMarkup :: IO [Entry]

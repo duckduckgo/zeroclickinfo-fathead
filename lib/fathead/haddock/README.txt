@@ -2,9 +2,8 @@
 # https://www.haskell.org/platform/linux.html
 # and follow the provided instructions.
 
-# The following dependencies are required:
-# 'hxt' and 'cassava'
+# Some dependencies are required.
 # Run the command below to install:
 ```
-cabal update && cabal install hxt cassava
+cabal update && cabal install hxt cassava network-uri
 ```
