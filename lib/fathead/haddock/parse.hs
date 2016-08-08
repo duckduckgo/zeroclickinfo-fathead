@@ -155,9 +155,35 @@ parseMarkup = fmap (\(h,(a,u)) -> article h a u) <$> prs
         sourceLink = hasName "a" >>> getAttrValue "name" >>> makeSourceLink "ch03s08.html"
 
 
+onDl :: (ArrowXml a, ArrowList a) => a XmlTree b -> a XmlTree b' -> a XmlTree [(b, b')]
+onDl f g = definitionList >>> unlistA >>> listA (f *** g)
+
+
+definitionList :: (ArrowXml a, ArrowList a) => a XmlTree [(XmlTree, XmlTree)]
+definitionList = listA (dl >>> (dt <+> dd)) >>> partitionA dt >>> arr pairs
+  where pairs = uncurry zip
+        dt = deep $ hasName "dt"
+        dd = deep $ hasName "dd"
+        dl = deep $ hasName "dl"
+
+
+defaultAbstract :: IOSLA (XIOState ()) (NTree XNode) String
+defaultAbstract = buildAbstract isAbstract
+  where isAbstract = deep (hasName "p") <+> deep (hasName "pre")
+
+
+parseModuleAttributes :: IO [Entry]
+parseModuleAttributes = fmap (\((h,u),a) -> article h a u) <$> prs
+  where headerSections         = onDl (deep headerText &&& deep sourceLink) defaultAbstract >>. concat
+        headerText             = deep (hasClass "literal") /> getText >>> arr normalizeTitle
+        prs                    = runX (readHaddockDocument "module-attributes.html" >>> headerSections)
+        normalizeTitle         = dropWhile (not . isAlpha)
+        sourceLink = hasName "a" >>> getAttrValue "name" >>> makeSourceLink "module-attributes.html"
+
+
 -- | Entries to be inserted into output file.
 makeEntries :: IO [Entry]
-makeEntries = parseMarkup
+makeEntries = (++) <$> parseMarkup <*> parseModuleAttributes
 
 
 main :: IO ()
