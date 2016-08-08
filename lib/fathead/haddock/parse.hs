@@ -141,17 +141,25 @@ makeSourceLink page = arr (base<>) >>> arr parseURIWithBase
         parseURIWithBase = maybe (fromJust $ parseURI base) id . parseURI
 
 
-parseMarkup :: IO [Entry]
-parseMarkup = fmap (\(h,(a,u)) -> article h a u) <$> prs
+parseSections :: String -> IO [Entry]
+parseSections page = fmap (\(h,(a,u)) -> article h a u) <$> prs
   where sectionDiv = hasName "div" `guards` hasClass "section"
         contentDivs = sectionDiv //> sectionDiv
         headerSections         = deep (contentDivs >>> deep headerText
                                         &&& (buildAbstract (deep isAbstract))
-                                        &&& deep (sourceLink "ch03s08.html"))
+                                        &&& deep (sourceLink page))
         isAbstract             = hasName "p" <+> hasName "pre"
         headerText             = hasName "h3" /> getText >>> arr normalizeTitle
-        prs                    = runX (readHaddockDocument "ch03s08.html" >>> headerSections)
+        prs                    = runX (readHaddockDocument page >>> headerSections)
         normalizeTitle         = dropWhile (not . isAlpha)
+
+
+parseMarkup :: IO [Entry]
+parseMarkup = parseSections "ch03s08.html"
+
+
+parseDocumentingDeclaration :: IO [Entry]
+parseDocumentingDeclaration = parseSections "ch03s02.html"
 
 
 onDl :: (ArrowXml a, ArrowList a) => a XmlTree b -> a XmlTree b' -> a XmlTree [(b, b')]
@@ -187,7 +195,8 @@ parseModuleAttributes = fmap (\((h,u),a) -> article h a u) <$> prs
 
 -- | Entries to be inserted into output file.
 makeEntries :: IO [Entry]
-makeEntries = (++) <$> parseMarkup <*> parseModuleAttributes
+makeEntries = fmap concat . sequence $ entries
+  where entries = [parseMarkup, parseModuleAttributes, parseDocumentingDeclaration]
 
 
 main :: IO ()
