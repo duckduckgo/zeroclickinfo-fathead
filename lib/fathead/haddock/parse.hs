@@ -147,12 +147,11 @@ parseMarkup = fmap (\(h,(a,u)) -> article h a u) <$> prs
         contentDivs = sectionDiv //> sectionDiv
         headerSections         = deep (contentDivs >>> deep headerText
                                         &&& (buildAbstract (deep isAbstract))
-                                        &&& deep sourceLink)
+                                        &&& deep (sourceLink "ch03s08.html"))
         isAbstract             = hasName "p" <+> hasName "pre"
         headerText             = hasName "h3" /> getText >>> arr normalizeTitle
         prs                    = runX (readHaddockDocument "ch03s08.html" >>> headerSections)
         normalizeTitle         = dropWhile (not . isAlpha)
-        sourceLink = hasName "a" >>> getAttrValue "name" >>> makeSourceLink "ch03s08.html"
 
 
 onDl :: (ArrowXml a, ArrowList a) => a XmlTree b -> a XmlTree b' -> a XmlTree [(b, b')]
@@ -172,13 +171,18 @@ defaultAbstract = buildAbstract isAbstract
   where isAbstract = deep (hasName "p") <+> deep (hasName "pre")
 
 
+sourceLink :: String -> IOSLA (XIOState ()) XmlTree URI
+sourceLink page = hasName "a"
+                  >>> getAttrValue "name"
+                  >>> makeSourceLink page
+
+
 parseModuleAttributes :: IO [Entry]
 parseModuleAttributes = fmap (\((h,u),a) -> article h a u) <$> prs
-  where headerSections         = onDl (deep headerText &&& deep sourceLink) defaultAbstract >>. concat
+  where headerSections         = onDl (deep headerText &&& deep (sourceLink "module-attributes.html")) defaultAbstract >>. concat
         headerText             = deep (hasClass "literal") /> getText >>> arr normalizeTitle
         prs                    = runX (readHaddockDocument "module-attributes.html" >>> headerSections)
         normalizeTitle         = dropWhile (not . isAlpha)
-        sourceLink = hasName "a" >>> getAttrValue "name" >>> makeSourceLink "module-attributes.html"
 
 
 -- | Entries to be inserted into output file.
