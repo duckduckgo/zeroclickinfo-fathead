@@ -176,7 +176,7 @@ definitionList = listA (dl >>> (dt <+> dd)) >>> partitionA dt >>> arr pairs
 
 defaultAbstract :: IOSLA (XIOState ()) (NTree XNode) String
 defaultAbstract = buildAbstract isAbstract
-  where isAbstract = deep (hasName "p") <+> deep (hasName "pre")
+  where isAbstract = getChildren >>> (hasName "p") <+> (hasName "pre")
 
 
 sourceLink :: String -> IOSLA (XIOState ()) XmlTree URI
