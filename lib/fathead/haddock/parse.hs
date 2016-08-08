@@ -131,7 +131,7 @@ normalizeText :: ArrowXml a => a XmlTree XmlTree
 normalizeText = processTopDown $ choiceA [ hasName "p" :-> normalizeP
                                          , hasName "pre" :-> normalizePre
                                          , this :-> this]
-  where normalizeP = processChildren (changeText normalizeWhitespace `when` isText)
+  where normalizeP = processChildren (changeText (unwords . lines) `when` isText)
         normalizePre = processChildren (changeText (escapeNewlines . stringTrim) `when` isText)
         escapeNewlines = concatMap (\x -> if x == '\n' then "\\n" else [x])
 
