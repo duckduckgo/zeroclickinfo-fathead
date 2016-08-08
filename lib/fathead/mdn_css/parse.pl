@@ -161,12 +161,6 @@ foreach my $html_file ( glob 'download/*.html' ) {
     }
     $external_links ||= '';
 
-    say '';
-    say "TITLE: $title";
-    say "LINK: $link";
-    say "DESCRIPTION: $description";
-    say "EXTERNAL LINKS $external_links ";
-
     push @entries,
       make_article( $title_clean, $description, $link, $external_links );
 
@@ -232,6 +226,11 @@ sub build_abstract {
 
 sub make_article {
     my ( $title, $description, $link, $external_links ) = @_;
+    say '';
+    say "TITLE: $title";
+    say "LINK: $link";
+    say "DESCRIPTION: $description" if $description;
+    say "EXTERNAL LINKS $external_links " if $external_links;
     my @data = (
         $title, 'A', '', '', '', '', '', '', $external_links || '',
         '', '', $description, $link
