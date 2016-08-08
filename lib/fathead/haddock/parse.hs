@@ -142,10 +142,14 @@ makeSourceLink page = arr (base<>) >>> arr parseURIWithBase
         parseURIWithBase = maybe (fromJust $ parseURI base) id . parseURI
 
 
+withClass :: ArrowXml cat => String -> String -> cat XmlTree XmlTree
+withClass n c = hasName n >>> hasClass c
+
+
 parseSections :: Int -> String -> String -> IO [Entry]
 parseSections depth hType page = fmap (\(h,(a,u)) -> article h a u) <$> prs
-  where sectionDiv = hasName "div" `guards` hasClass "section"
-        contentDivs = foldr1 (//>) (replicate depth sectionDiv)
+  where contentDivs = foldr1 (//>) (replicate depth sectionDiv)
+        sectionDiv = withClass "div" "section"
         headerSections         = deep (contentDivs >>> single (deep headerText)
                                         &&& single defaultAbstract
                                         &&& single (deep (sourceLink page)))
@@ -167,11 +171,10 @@ onDl f g = definitionList >>> unlistA >>> listA (f *** g)
 
 
 definitionList :: (ArrowXml a, ArrowList a) => a XmlTree [(XmlTree, XmlTree)]
-definitionList = listA (dl >>> (dt <+> dd)) >>> partitionA dt >>> arr pairs
+definitionList = listA (getChildren >>> (dt <+> dd)) >>> partitionA dt >>> arr pairs
   where pairs = uncurry zip
-        dt = deep $ hasName "dt"
-        dd = deep $ hasName "dd"
-        dl = deep $ hasName "dl"
+        dt = hasName "dt"
+        dd = hasName "dd"
 
 
 defaultAbstract :: IOSLA (XIOState ()) (NTree XNode) String
@@ -187,10 +190,24 @@ sourceLink page = hasName "a"
 
 parseModuleAttributes :: IO [Entry]
 parseModuleAttributes = fmap (\((h,u),a) -> article h a u) <$> prs
-  where headerSections         = onDl (deep headerText &&& deep (sourceLink "module-attributes.html")) defaultAbstract >>. concat
+  where headerSections         = deep sectionDiv //> varList >>> onDl (deep headerText &&& deep (sourceLink "module-attributes.html")) defaultAbstract >>. concat
+        sectionDiv = withClass "div" "section"
+        varList = hasName "dl" >>> hasClass "variablelist"
         headerText             = deep (hasClass "literal") /> getText >>> arr normalizeTitle
         prs                    = runX (readHaddockDocument "module-attributes.html" >>> headerSections)
         normalizeTitle         = Title . dropWhile (not . isAlpha)
+
+
+parseFlags :: IO [Entry]
+parseFlags = fmap (\((h,u),a) -> article h a u) <$> prs
+  where headerSections         = deep chapterDiv //> varList >>> onDl (getChildren >>> parseDt) defaultAbstract >>. concat
+        chapterDiv = withClass "div" "chapter"
+        varList = hasName "dl" >>> hasClass "variablelist"
+        headerText             = hasClass "option" /> (getText >>> arr normalizeTitle)
+        prs                    = runX (readHaddockDocument "invoking.html" >>> headerSections)
+        normalizeTitle         = Title
+        parseDt = single (deep headerText) &&& single (deep (sourceLink "invoking.html"))
+        parseHeader = headerText &&& sourceLink "invoking.html"
 
 
 markupParsers :: [IO [Entry]]
@@ -208,7 +225,7 @@ markupParsers = [ parseDefinitions "ch03s08.html"
 -- | Entries to be inserted into output file.
 makeEntries :: IO [Entry]
 makeEntries = fmap concat . sequence $ entries
-  where entries = [parseModuleAttributes] <> markupParsers
+  where entries = [parseModuleAttributes, parseFlags] <> markupParsers
 
 
 main :: IO ()
