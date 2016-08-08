@@ -199,7 +199,7 @@ class MDNParser(object):
         print title + (' ' * 30) + '\r',
 
         mdn = MDN()
-        mdn.title = title.lower()
+        mdn.title = title
         mdn.summary = summary
         mdn.codesnippet = codesnippet
         return mdn
@@ -239,34 +239,35 @@ class MDNIndexer(object):
                   'type': 'D',
                   'disambiguation': disambig
                 })
-            for mdn in self.inverted_index[keyword]:
-                # add redirect for Web/Api pages
-                if any(word in mdn.title for word in self.CLASS_WORDS) and '.' in mdn.title:
-                    # original title: Window.getAnimationFrame()
-                    match = re.search('(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
-                    # remove class_word: getAnimationFrame
-                    strip_title = match.group(1)
+            else:
+                for mdn in self.inverted_index[keyword]:
+                    # add redirect for Web/Api pages
+                    if any(word in mdn.title for word in self.CLASS_WORDS) and '.' in mdn.title:
+                        # original title: Window.getAnimationFrame()
+                        match = re.search('(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
+                        # remove class_word: getAnimationFrame
+                        strip_title = match.group(1)
 
+                        self._writer.writerow({
+                          'title': strip_title,
+                          'type': 'R',
+                          'redirect': mdn.title
+                        })
+                    # For all entries in the inverted index, write a redirect of
+                    # of the form <object><space><property>
                     self._writer.writerow({
-                      'title': strip_title,
+                      'title': '%s %s' % (mdn.obj.lower(), mdn.prop.lower()),
                       'type': 'R',
                       'redirect': mdn.title
                     })
-                # For all entries in the inverted index, write a redirect of
-                # of the form <object><space><property>
-                self._writer.writerow({
-                  'title': '%s %s' % (mdn.obj.lower(), mdn.prop.lower()),
-                  'type': 'R',
-                  'redirect': mdn.title
-                })
-                # If this is the only item in the inverted index,
-                # write a primary redirect on the keyword.
-                if count == 1:
-                    self._writer.writerow({
-                      'title': keyword,
-                      'type': 'R',
-                      'redirect': mdn.title
-                    })
+                    # If this is the only item in the inverted index,
+                    # write a primary redirect on the keyword.
+                    if count == 1:
+                        self._writer.writerow({
+                          'title': keyword,
+                          'type': 'R',
+                          'redirect': mdn.title
+                        })
 
 
 def run(cachedir, cachejournal, langdefs, outfname):
