@@ -141,25 +141,36 @@ makeSourceLink page = arr (base<>) >>> arr parseURIWithBase
         parseURIWithBase = maybe (fromJust $ parseURI base) id . parseURI
 
 
-parseSections :: String -> IO [Entry]
-parseSections page = fmap (\(h,(a,u)) -> article h a u) <$> prs
+parseSections :: Int -> String -> String -> IO [Entry]
+parseSections depth hType page = fmap (\(h,(a,u)) -> article h a u) <$> prs
   where sectionDiv = hasName "div" `guards` hasClass "section"
-        contentDivs = sectionDiv //> sectionDiv
+        contentDivs = foldr1 (//>) (replicate depth sectionDiv)
         headerSections         = deep (contentDivs >>> deep headerText
-                                        &&& (buildAbstract (deep isAbstract))
+                                        &&& defaultAbstract
                                         &&& deep (sourceLink page))
-        isAbstract             = hasName "p" <+> hasName "pre"
-        headerText             = hasName "h3" /> getText >>> arr normalizeTitle
+        headerText             = hasName hType /> getText >>> arr normalizeTitle
         prs                    = runX (readHaddockDocument page >>> headerSections)
         normalizeTitle         = dropWhile (not . isAlpha)
 
 
+parseDefinitions :: String -> IO [Entry]
+parseDefinitions = parseSections 2 "h3"
+
+
+parseSectionsTop :: String -> IO [Entry]
+parseSectionsTop = parseSections 1 "h2"
+
+
 parseMarkup :: IO [Entry]
-parseMarkup = parseSections "ch03s08.html"
+parseMarkup = parseDefinitions "ch03s08.html"
+
+
+parseTopLevelDecl :: IO [Entry]
+parseTopLevelDecl = parseSectionsTop "markup.html"
 
 
 parseDocumentingDeclaration :: IO [Entry]
-parseDocumentingDeclaration = parseSections "ch03s02.html"
+parseDocumentingDeclaration = parseDefinitions "ch03s02.html"
 
 
 onDl :: (ArrowXml a, ArrowList a) => a XmlTree b -> a XmlTree b' -> a XmlTree [(b, b')]
@@ -196,7 +207,11 @@ parseModuleAttributes = fmap (\((h,u),a) -> article h a u) <$> prs
 -- | Entries to be inserted into output file.
 makeEntries :: IO [Entry]
 makeEntries = fmap concat . sequence $ entries
-  where entries = [parseMarkup, parseModuleAttributes, parseDocumentingDeclaration]
+  where entries = [ parseMarkup
+                  , parseModuleAttributes
+                  , parseDocumentingDeclaration
+                  , parseTopLevelDecl
+                  ]
 
 
 main :: IO ()
