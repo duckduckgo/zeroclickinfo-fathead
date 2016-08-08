@@ -12,8 +12,5 @@ From each article it extracts the following:
 
 Dependencies
 ============
-The following Perl Modules are needed and can be installed easily using
-the cpan client
-  - Mojo::UserAgent
-  - Mojo::URL
-  - Mojo::DOM
+Required modules can be installed easily from the cpanfile in this repository using
+[Carton](https://metacpan.org/pod/Carton)
