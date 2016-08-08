@@ -113,6 +113,14 @@ def browser_support(browser, prefix, stats):
 
 def version_cmp(a, b):
     """Sort versions from newest to oldest"""
+    # "TP" is the Technology Preview version, and this version is by definition
+    # the latest version
+    if a == b == 'TP':
+        return 0
+    if a == 'TP':
+        return -1
+    elif b == 'TP':
+        return 1
     d = version2float(b) - version2float(a)
     return 1 if d > 0 else -1 if d < 0 else 0
 
