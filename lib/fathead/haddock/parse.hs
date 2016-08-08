@@ -162,18 +162,6 @@ parseSectionsTop :: String -> IO [Entry]
 parseSectionsTop = parseSections 1 "h2"
 
 
-parseMarkup :: IO [Entry]
-parseMarkup = parseDefinitions "ch03s08.html"
-
-
-parseTopLevelDecl :: IO [Entry]
-parseTopLevelDecl = parseSectionsTop "markup.html"
-
-
-parseDocumentingDeclaration :: IO [Entry]
-parseDocumentingDeclaration = parseDefinitions "ch03s02.html"
-
-
 onDl :: (ArrowXml a, ArrowList a) => a XmlTree b -> a XmlTree b' -> a XmlTree [(b, b')]
 onDl f g = definitionList >>> unlistA >>> listA (f *** g)
 
@@ -205,14 +193,18 @@ parseModuleAttributes = fmap (\((h,u),a) -> article h a u) <$> prs
         normalizeTitle         = dropWhile (not . isAlpha)
 
 
+markupParsers :: [IO [Entry]]
+markupParsers = [ parseDefinitions "ch03s08.html"
+                , parseSectionsTop "markup.html"
+                , parseDefinitions "ch03s02.html"
+                , parseSectionsTop "ch03s03.html"
+                ]
+
+
 -- | Entries to be inserted into output file.
 makeEntries :: IO [Entry]
 makeEntries = fmap concat . sequence $ entries
-  where entries = [ parseMarkup
-                  , parseModuleAttributes
-                  , parseDocumentingDeclaration
-                  , parseTopLevelDecl
-                  ]
+  where entries = [parseModuleAttributes] <> markupParsers
 
 
 main :: IO ()
