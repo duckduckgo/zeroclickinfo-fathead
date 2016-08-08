@@ -84,6 +84,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
     );
     $link = $link->attr('href') if $link;
     chomp $link;
+    $link = Mojo::URL->new($link);
 
     if ( exists $url_fragment{$link} ) {
         say "*** Parsing fragment for $link ***";
@@ -232,8 +233,8 @@ sub build_abstract {
 sub make_article {
     my ( $title, $description, $link, $external_links ) = @_;
     my @data = (
-        $title, 'A', '', '', '', '', '', '', $external_links || '', '', '',
-        $description, $link
+        $title, 'A', '', '', '', '', '', '', $external_links || '',
+        '', '', $description, $link
     );
     return join "\t", @data;
 }
@@ -288,7 +289,21 @@ sub parse_fragment_data {
         say "frequency $link";
     }
     elsif ( $link =~ qr/length/ ) {
-        say "length $link";
+        my $dl_collection = $dom->find('dl');
+        for my $dl ( $dl_collection->each ) {
+            for my $dt ( $dl->find('dt')->each ) {
+                my $title = $dt->all_text;
+
+                #TODO: Add building of external urls?
+                my $url = $link->clone->fragment( $dt->attr('id') );
+                my $dd  = $dt->next;
+                my $description;
+                if ($dd) {
+                    $description = $dd->all_text;
+                }
+                say "$title\n$url\n$description";
+            }
+        }
     }
     elsif ( $link =~ qr/time/ ) {
         say "time $link";
