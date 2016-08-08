@@ -198,6 +198,10 @@ markupParsers = [ parseDefinitions "ch03s08.html"
                 , parseSectionsTop "markup.html"
                 , parseDefinitions "ch03s02.html"
                 , parseSectionsTop "ch03s03.html"
+                , parseDefinitions "ch03s04.html"
+                , parseSectionsTop "ch03s04.html"
+                , parseSectionsTop "ch03s05.html"
+                , parseSectionsTop "hyperlinking.html"
                 ]
 
 
