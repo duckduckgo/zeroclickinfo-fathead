@@ -199,7 +199,7 @@ class MDNParser(object):
         print title + (' ' * 30) + '\r',
 
         mdn = MDN()
-        mdn.title = title
+        mdn.title = title.lower()
         mdn.summary = summary
         mdn.codesnippet = codesnippet
         return mdn
