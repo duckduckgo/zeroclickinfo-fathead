@@ -299,9 +299,10 @@ sub parse_fragment_data {
                 my $dd  = $dt->next;
                 my $description;
                 if ($dd) {
-                    $description = $dd->all_text;
+                    $description = build_abstract($dd->all_text);
                 }
-                say "$title\n$url\n$description";
+                my @article_data = make_article($title, $description, $url);
+                write_to_file(@article_data);
             }
         }
     }
