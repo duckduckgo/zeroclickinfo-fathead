@@ -28,7 +28,7 @@ instance ToField EntryType where
 
 
 type FieldText = String
-type Title = FieldText
+newtype Title = Title { getTitle :: String } deriving (ToField)
 type Disambugation = Text
 type Abstract = String
 
@@ -151,7 +151,7 @@ parseSections depth hType page = fmap (\(h,(a,u)) -> article h a u) <$> prs
                                         &&& single (deep (sourceLink page)))
         headerText             = hasName hType /> getText >>> arr normalizeTitle
         prs                    = runX (readHaddockDocument page >>> headerSections)
-        normalizeTitle         = dropWhile (not . isAlpha)
+        normalizeTitle         = Title . dropWhile (not . isAlpha)
 
 
 parseDefinitions :: String -> IO [Entry]
@@ -190,7 +190,7 @@ parseModuleAttributes = fmap (\((h,u),a) -> article h a u) <$> prs
   where headerSections         = onDl (deep headerText &&& deep (sourceLink "module-attributes.html")) defaultAbstract >>. concat
         headerText             = deep (hasClass "literal") /> getText >>> arr normalizeTitle
         prs                    = runX (readHaddockDocument "module-attributes.html" >>> headerSections)
-        normalizeTitle         = dropWhile (not . isAlpha)
+        normalizeTitle         = Title . dropWhile (not . isAlpha)
 
 
 markupParsers :: [IO [Entry]]
