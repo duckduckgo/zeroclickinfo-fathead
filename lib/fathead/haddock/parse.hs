@@ -146,9 +146,9 @@ parseSections :: Int -> String -> String -> IO [Entry]
 parseSections depth hType page = fmap (\(h,(a,u)) -> article h a u) <$> prs
   where sectionDiv = hasName "div" `guards` hasClass "section"
         contentDivs = foldr1 (//>) (replicate depth sectionDiv)
-        headerSections         = deep (contentDivs >>> deep headerText
-                                        &&& defaultAbstract
-                                        &&& deep (sourceLink page))
+        headerSections         = deep (contentDivs >>> single (deep headerText)
+                                        &&& single defaultAbstract
+                                        &&& single (deep (sourceLink page)))
         headerText             = hasName hType /> getText >>> arr normalizeTitle
         prs                    = runX (readHaddockDocument page >>> headerSections)
         normalizeTitle         = dropWhile (not . isAlpha)
