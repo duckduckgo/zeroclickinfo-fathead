@@ -352,7 +352,7 @@ sub parse_fragment_data {
                 }
                 $next_element = $next_element->next;
             } while ( $next_element && $next_element->tag ne 'div' );
-            $description = build_abstract($paragraphs, $code_fragment);
+            $description = build_abstract( $paragraphs, $code_fragment );
             my @article_data = make_article( $title, $description, $url );
             write_to_file(@article_data);
         }
@@ -379,7 +379,38 @@ sub parse_fragment_data {
         }
     }
     elsif ( $link =~ qr/time/ ) {
-        say "time $link";
+        my $h2 = $dom->at('h2#Summary');
+        my $ul_containing_fragments =
+          $h2->following->first( sub { $_->tag eq 'ul' } );
+        if ($ul_containing_fragments) {
+
+            for my $li ( $ul_containing_fragments->find('li')->each ) {
+                my $title = $li->at('a')->text;
+                my $url   = $link->clone->fragment($title);
+
+=begin
+              Current description of 's' and 'ms' appears as below:
+              s which represents a time in seconds...
+              ms which represents a time in milliseconds...
+
+              We remove the 'which' so that it appears as:
+              s represents a time in seconds...
+              Which sounds right
+=cut
+
+                my $paragraph = $li->all_text;
+                $paragraph =~ s/\s{1}which//;
+                my $pre = $dom->at('h2#Examples')->following->first(
+                    sub {
+                        $_->tag eq 'pre';
+                    }
+                ) if $dom->at('h2#Examples');
+                my $code = $pre->all_text if $pre;
+                my $description = build_abstract( $paragraph, $code );
+                my @article_data = make_article( $title, $description, $url );
+                write_to_file(@article_data);
+            }
+        }
     }
     elsif ( $link =~ qr/url/ ) {
         say "url $link";
