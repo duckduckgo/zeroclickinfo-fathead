@@ -357,9 +357,6 @@ sub parse_fragment_data {
             write_to_file(@article_data);
         }
     }
-    elsif ( $link =~ qr/frequency/ ) {
-        say "frequency $link";
-    }
     elsif ( $link =~ qr/length/ ) {
         my $dl_collection = $dom->find('dl');
         for my $dl ( $dl_collection->each ) {
@@ -378,7 +375,7 @@ sub parse_fragment_data {
             }
         }
     }
-    elsif ( $link =~ qr/time/ ) {
+    elsif ( $link =~ qr/time|frequency/ ) {
         my $h2 = $dom->at('h2#Summary');
         my $ul_containing_fragments =
           $h2->following->first( sub { $_->tag eq 'ul' } );
@@ -389,7 +386,8 @@ sub parse_fragment_data {
                 my $url   = $link->clone->fragment($title);
 
 =begin
-              Current description of 's' and 'ms' appears as below:
+              Taking 's' and 'ms' fragments for /time/ as examples
+              their current description appears as below:
               s which represents a time in seconds...
               ms which represents a time in milliseconds...
 
