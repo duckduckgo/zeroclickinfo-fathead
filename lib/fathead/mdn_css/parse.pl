@@ -314,7 +314,48 @@ sub parse_fragment_data {
         }
     }
     elsif ( $link =~ qr/filter/ ) {
-        say "filter $link";
+        for my $fragment ( @{ $url_fragment{$link} } ) {
+
+=begin
+        Some h3 elements have a variant form of the fragment
+        as the id like <h3 id="blur()_2"> instead of <h3 id="blur()">
+        so regex will be used to match fragment with its correct h3
+=cut
+
+            my $h3 = $dom->find('h3')->first(
+                sub {
+                    $_->attr('id') =~ qr/$fragment/;
+                }
+            );
+            next unless $h3;
+            my $title = $fragment;
+            my $url   = $link->clone->fragment( $h3->attr('id') );
+            my $description;
+            my $next_element = $h3->next;
+
+=begin
+            Collect all the description and code for the
+            fragment in h3 until we encounter a div which
+            means we have reached the end of all the data for
+            our current h3
+=cut
+
+            my $paragraphs;
+            my $code_fragment;
+            do {
+                next unless $next_element;
+                if ( $next_element->tag eq 'p' ) {
+                    $paragraphs .= $next_element->all_text;
+                }
+                else {
+                    $code_fragment .= $next_element->all_text;
+                }
+                $next_element = $next_element->next;
+            } while ( $next_element && $next_element->tag ne 'div' );
+            $description = build_abstract($paragraphs, $code_fragment);
+            my @article_data = make_article( $title, $description, $url );
+            write_to_file(@article_data);
+        }
     }
     elsif ( $link =~ qr/frequency/ ) {
         say "frequency $link";
