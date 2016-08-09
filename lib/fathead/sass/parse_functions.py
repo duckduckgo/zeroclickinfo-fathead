@@ -56,8 +56,8 @@ class DataParser(object):
         self.function_sections = []
         self.file_being_used = data_object.get_file()
 
-        soup_data = BeautifulSoup(data_object.get_raw_data(), 'html.parser')
-        sections = soup_data.find_all('dl', {'class': None})
+        self.soup_data = BeautifulSoup(data_object.get_raw_data(), 'html.parser')
+        sections = self.soup_data.find_all('dl', {'class': None})
         for section in sections:
             function_names = section.find_all('dt')
             function_descriptions = section.find_all('dd')
@@ -146,7 +146,36 @@ class DataParser(object):
             #return the function name with paramaters
             return '<pre><code>'+method_sig.text+'</code></pre>'
         return ''
+    def parse_for_section_div(self, section):
+        """
+        Return a div containing more information about the section function
+        Args:
+            section: A section of parsed HTML that represents a function definition
+        Returns:
+            A div element
+        """
+        anchor = self.parse_for_anchor(section)
+        heading = self.soup_data.find(id=anchor[1:])
+        print anchor
+        print '-'
+        print heading
+        return heading.parent
 
+    def parse_for_example(self, section):
+        info = self.parse_for_section_div(section)
+        print'-'
+        print info
+        example = info.find('div', {'class': 'examples'})
+        print'-------'
+        print example
+        print
+        print
+        if example:
+            text = str(example)
+            text = '\\n'.join(text.split('\n'))
+            return text
+        return None
+        
     def create_url(self, anchor):
         """
         Helper method to create URL back to document
@@ -171,6 +200,10 @@ class DataParser(object):
                 method_signature = self.parse_for_method_signature(function_section[0])
                 description = self.parse_for_description(function_section[1])
                 anchor = self.parse_for_anchor(function_section[0])
+                example = self.parse_for_example(function_section[0])
+
+                if example:
+                    description = description + '<br>'+ example
 
                 url = self.create_url(anchor)
 
@@ -229,6 +262,7 @@ class DataOutput(object):
                     method_signature = data_element.get('method_signature').encode('utf-8')
                     description = data_element.get('description').encode('utf-8')
                     name = data_element.get('function').encode('utf-8')
+
                     abstract = str(method_signature) + '<br>' + str(description)
                     url = data_element.get('url').encode('utf-8')
                     list_of_data = [
@@ -236,11 +270,11 @@ class DataOutput(object):
                         'A',                        # type is article
                         '',                         # no redirect data
                         '',                         # ignore
-                        '',                         # no categories
+                        'functions',                # no categories
                         '',                         # ignore
                         '',                         # no related topics
                         '',                         # ignore
-                        'http://sass-lang.com/',    # add an external link back to SASS home
+                        '',                         # external link
                         '',                         # no disambiguation
                         '',                         # images
                         abstract,                   # abstract
