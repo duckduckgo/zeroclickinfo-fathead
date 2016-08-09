@@ -133,10 +133,10 @@ if $PROGRAM_NAME == __FILE__
       docs.url = base_url + rel_path
       docs.description = page.at('#description')
       docs.categories = [
-        entry['class'] == 'module' ? 'modules' : 'classes'
+        entry['class'] == 'module' ? 'Ruby modules' : 'Ruby classes'
       ]
       docs.related = [
-        "[[#{docs.title} methods]]"
+        "[[Ruby #{docs.title} methods]]"
       ]
       docs.alt_titles = [
         docs.title.gsub('::', ' ')
@@ -153,11 +153,11 @@ if $PROGRAM_NAME == __FILE__
         docs.url = class_docs.url + link['href']
         docs.description = page.at(":has([name=#{docs.url.fragment}])")
         docs.categories = [
-          "#{link.text.start_with?('#') ? 'instance' : 'class'} methods",
-          "#{class_docs.title} methods"
+          "Ruby #{link.text.start_with?('#') ? 'instance' : 'class'} methods",
+          "Ruby #{class_docs.title} methods"
         ]
         docs.related = [
-          "[[#{class_docs.title}]]"
+          "[[Ruby #{class_docs.title}]]"
         ]
         docs.alt_titles = [
           class_docs.title + link.text.sub(/\A(?:::|#)/, '.'),
