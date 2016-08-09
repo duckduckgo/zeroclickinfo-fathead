@@ -229,7 +229,7 @@ sub make_article {
     say '';
     say "TITLE: $title";
     say "LINK: $link";
-    say "DESCRIPTION: $description" if $description;
+    say "DESCRIPTION: $description"       if $description;
     say "EXTERNAL LINKS $external_links " if $external_links;
     my @data = (
         $title, 'A', '', '', '', '', '', '', $external_links || '',
@@ -279,7 +279,39 @@ sub parse_fragment_data {
         say "angle $link";
     }
     elsif ( $link =~ qr/color_value/ ) {
-        say "color_value $link";
+        for my $fragment ( @{ $url_fragment{$link} } ) {
+            my $h3 = $dom->at("h3#$fragment");
+            next unless $h3;
+            my $title = $fragment;
+            my $url   = $link->clone->fragment($title);
+            my $description;
+            my $next_element = $h3->next;
+
+=begin
+            Collect all the description and code for the
+            fragment in h3 until we encounter another h3 which
+            means we have reached the end of all the data for
+            our current h3
+=cut
+
+            #to be used by build_abstract to make description
+            my $paragraphs;
+            my $code_fragment;
+            do {
+                next unless $next_element;
+                if ( $next_element->tag eq 'p' ) {
+                    $paragraphs .= $next_element->all_text;
+                }
+                else {
+                    $code_fragment .= $next_element->all_text;
+                }
+                $next_element = $next_element->next;
+            } while ( $next_element && $next_element->tag ne 'h3' );
+
+            $description = build_abstract( $paragraphs, $code_fragment );
+            my @article_data = make_article( $title, $description, $url );
+            write_to_file(@article_data);
+        }
     }
     elsif ( $link =~ qr/filter/ ) {
         say "filter $link";
@@ -298,9 +330,9 @@ sub parse_fragment_data {
                 my $dd  = $dt->next;
                 my $description;
                 if ($dd) {
-                    $description = build_abstract($dd->all_text);
+                    $description = build_abstract( $dd->all_text );
                 }
-                my @article_data = make_article($title, $description, $url);
+                my @article_data = make_article( $title, $description, $url );
                 write_to_file(@article_data);
             }
         }
