@@ -1,0 +1,7 @@
+{
+  "name": "zeroclickinfo-fathead-jquery",
+  "private": true,
+  "dependencies": {
+    "cheerio": "^0.20.0"
+  }
+}
