@@ -398,12 +398,25 @@ sub parse_fragment_data {
 
                 my $paragraph = $li->all_text;
                 $paragraph =~ s/\s{1}which//;
-                my $pre = $dom->at('h2#Examples')->following->first(
+
+                #for /frequency/ the example code
+                #is contained in a table
+                #for /time/ it is contained in a <pre>
+                my $node_with_code = $link =~ /time/ ? 'pre': 'table';
+                my $code_dom = $dom->at('h2#Examples')->following->first(
                     sub {
-                        $_->tag eq 'pre';
+                        $_->tag eq $node_with_code;
                     }
                 ) if $dom->at('h2#Examples');
-                my $code = $pre->all_text if $pre;
+                my $code;
+                if ($code_dom){
+                  if($code_dom->tag eq 'pre'){
+                    $code = $code_dom->all_text;
+                  }
+                  else{
+                    $code = $code_dom->at('tbody')->all_text;
+                  }
+                }
                 my $description = build_abstract( $paragraph, $code );
                 my @article_data = make_article( $title, $description, $url );
                 write_to_file(@article_data);
