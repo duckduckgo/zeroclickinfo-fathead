@@ -426,9 +426,6 @@ sub parse_fragment_data {
             }
         }
     }
-    elsif ( $link =~ qr/url/ ) {
-        say "url $link";
-    }
     else {
         warn "Unmatched $link in parse_fragment_data()";
     }
