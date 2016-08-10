@@ -102,6 +102,20 @@ if (@urls_with_fragments) {
             $clone->path($fragment);
             push @keyword_urls, $clone;
         }
+        elsif ( $url_with_fragment->fragment =~ /The_url/ ) {
+
+            #It is this: https://developer.mozilla.org/en-U/docs/Web/CSS/
+            #url#The_url()_functional_notation
+            #We get rid of the fragment part so that it can be downloaded
+            #and parsed by parse.pl because its format is like the others
+            my $clone = Mojo::URL->new(
+                sprintf "%s://%s",
+                $url_with_fragment->protocol,
+                $url_with_fragment->host
+            );
+            $clone->path($url_with_fragment->path);
+            push @keyword_urls, $clone;
+        }
         else {
             #we will deal with other types of urls later in parse.pl
             say $fh $url_with_fragment;
