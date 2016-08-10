@@ -145,6 +145,14 @@ foreach my $html_file ( glob 'download/*.html' ) {
         $code =~ s/\r?\n/\\n/g;
     }
     $hs->eof;
+    my $initial_value;
+
+    #initial value is found in the table properties
+    my $table_properties = $dom->at('table.properties');
+    if ($table_properties) {
+        $initial_value = parse_initial_value($table_properties);
+        $description = "$description $initial_value" if $initial_value;
+    }
     $description = build_abstract( $description, $code );
 
     next unless $title && $link && $description;
@@ -429,6 +437,22 @@ sub parse_fragment_data {
     else {
         warn "Unmatched $link in parse_fragment_data()";
     }
+}
+
+sub parse_initial_value {
+    my ($table_properties) = @_;
+
+    #first <tr> Contains the initial value
+    my $tr = $table_properties->find('tr')->first;
+    my $th = $tr->at('th');
+    my $initial_value;
+    if ($th) {
+        my $a = $th->at('a');
+        if ( $a && $a->text =~ /Initial value/ ) {
+            $initial_value = $tr->all_text;
+        }
+    }
+    return $initial_value;
 }
 
 sub write_to_file {
