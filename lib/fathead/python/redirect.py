@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import itertools
 
 class BadEntryException(Exception):
     """
@@ -25,9 +25,16 @@ class Entry(object):
         self.abstract = ''
         self.anchor = ''
 
+        self.category = ''
+        self.related = ''
+
         # Alternative keys used for redirects
         self.alternative_keys = []
         self.parse(obj)
+
+
+    def __str__(self, obj):
+        return self.alternative_keys
 
     def parse(self, input_obj):
         """
@@ -45,12 +52,13 @@ class Entry(object):
             self.data = processed
         elif isinstance(input_obj, list):
             self.data = input_obj
-
         try:
             self.key = self.data[0].strip()
             self.entry_type = self.data[1].strip()
             self.reference = self.data[2].strip()
             if len(self.data) > 3:
+                self.category = self.data[4].strip()
+                self.related = self.data[6].strip()
                 self.abstract = self.data[11].strip()
                 self.anchor = self.data[12].strip()
             elif self.entry_type == 13 and len(self.data) != 13:
@@ -75,10 +83,25 @@ class Entry(object):
         if '.' in self.key and self.entry_type == 'A':
             key_arr = self.key.split('.')
             method_name = key_arr[-1]
-            package_name = key_arr[0]
-            new_key = "{} {}".format(package_name, method_name)
-            self.alternative_keys.add(new_key)
+            key_arr_len = len(key_arr)
+
+            # always add method name as a key
             self.alternative_keys.add(method_name)
+
+            # add all permutations of package and class
+            if key_arr_len >= 3:
+
+                for l in range(key_arr_len-1):
+                    permutations = itertools.permutations(key_arr[:key_arr_len-1], l+1)
+
+                    for k in permutations:
+                        new_key = "{} {}".format(' '.join(k), method_name)
+                        self.alternative_keys.add(new_key)
+            else:
+                package_name = key_arr[0]
+                new_key = "{} {}".format(package_name, method_name)
+                self.alternative_keys.add(new_key)
+
         return self.alternative_keys
 
     def get_data(self):
@@ -112,9 +135,9 @@ class Entry(object):
             self.entry_type,      # entry type
             self.reference,       # no redirect data
             '',                   # ignore
-            '',                   # no categories
+            self.category,        # categories
             '',                   # ignore
-            '',                   # no related topics
+            self.related,                   # no related topics
             '',                   # ignore
             '',                   # add an external link back to page
             '',                   # no disambiguation
@@ -127,8 +150,6 @@ class Entry(object):
         return self.get_entry()
 
 def generate_redirects(f):
-    # @TODO: Cleanup
-    # @TODO: Figure out why the duplicate count is ~20k
     output = dict()
 
     # For debugging purposes
@@ -138,12 +159,17 @@ def generate_redirects(f):
         try:
             # Parse entry
             entry = Entry(line)
+
+            if entry.get_type() == 'R':
+                continue
+
             key = entry.get_key()
 
             # Do we have the entry yet?
             if key not in output:
                 output[key] = str(entry)
             else:
+                del output[key]
                 duplicate_count += 1
 
             # Get all possible redirect entries
@@ -151,8 +177,9 @@ def generate_redirects(f):
             for redirect in redirects:
                 key = redirect.get_key()
                 if key not in output:
-                    output[key] = str(entry)
+                    output[key] = str(redirect.get_entry())
                 else:
+                    del output[key]
                     duplicate_count += 1
         except BadEntryException as e:
             pass  # Continue execution entry data is invalid.
