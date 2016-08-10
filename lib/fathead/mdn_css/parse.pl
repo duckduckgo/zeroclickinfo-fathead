@@ -275,9 +275,6 @@ sub parse_fragment_data {
     elsif ( $link =~ qr/src/ ) {
         say "src $link";
     }
-    elsif ( $link =~ qr/angle/ ) {
-        say "angle $link";
-    }
     elsif ( $link =~ qr/color_value/ ) {
         for my $fragment ( @{ $url_fragment{$link} } ) {
             my $h3 = $dom->at("h3#$fragment");
@@ -375,7 +372,7 @@ sub parse_fragment_data {
             }
         }
     }
-    elsif ( $link =~ qr/time|frequency/ ) {
+    elsif ( $link =~ qr/time|frequency|angle/ ) {
         my $h2 = $dom->at('h2#Summary');
         my $ul_containing_fragments =
           $h2->following->first( sub { $_->tag eq 'ul' } );
@@ -399,23 +396,23 @@ sub parse_fragment_data {
                 my $paragraph = $li->all_text;
                 $paragraph =~ s/\s{1}which//;
 
-                #for /frequency/ the example code
+                #for /frequency/ and /angle/ the example code
                 #is contained in a table
                 #for /time/ it is contained in a <pre>
-                my $node_with_code = $link =~ /time/ ? 'pre': 'table';
+                my $node_with_code = $link =~ /time/ ? 'pre' : 'table';
                 my $code_dom = $dom->at('h2#Examples')->following->first(
                     sub {
                         $_->tag eq $node_with_code;
                     }
                 ) if $dom->at('h2#Examples');
                 my $code;
-                if ($code_dom){
-                  if($code_dom->tag eq 'pre'){
-                    $code = $code_dom->all_text;
-                  }
-                  else{
-                    $code = $code_dom->at('tbody')->all_text;
-                  }
+                if ($code_dom) {
+                    if ( $code_dom->tag eq 'pre' ) {
+                        $code = $code_dom->all_text;
+                    }
+                    else {
+                        $code = $code_dom->at('tbody')->all_text;
+                    }
                 }
                 my $description = build_abstract( $paragraph, $code );
                 my @article_data = make_article( $title, $description, $url );
