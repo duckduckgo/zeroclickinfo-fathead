@@ -270,9 +270,15 @@ sub parse_fragment_data {
     return if exists $already_processed{$link};
     $already_processed{$link} = 1;
     if ( $link =~ qr/font-variant/ ) {
+
+        #TODO: Implement parsing when the page is available. Currently
+        #it generates 404 not found response
         say "Font Variant $link";
     }
     elsif ( $link =~ qr/src/ ) {
+
+        #TODO: Implement parsing when the page is available. Currently
+        #it generates 404 not found response
         say "src $link";
     }
     elsif ( $link =~ qr/color_value/ ) {
