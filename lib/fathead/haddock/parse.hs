@@ -47,11 +47,11 @@ instance ToField URI where
 data Entry = Entry
   { entryTitle :: !Title
   , entryType  :: EntryType
-  , entryAlias :: Maybe FieldText
+  , entryAlias :: Maybe Title
   , entryCategories :: Maybe Categories
   , entryDisambiguation :: Maybe Disambugation
-  , entryAbstract :: !Abstract
-  , entryUrl :: !URI
+  , entryAbstract :: Maybe Abstract
+  , entryUrl :: Maybe URI
   }
 
 
@@ -116,9 +116,20 @@ article t a u = Entry { entryTitle =  t
                     , entryAlias = Nothing
                     , entryCategories = Nothing
                     , entryDisambiguation = Nothing
-                    , entryAbstract = a
-                    , entryUrl = u
+                    , entryAbstract = Just a
+                    , entryUrl = Just u
                     }
+
+
+alias :: Title -> Title -> Entry
+alias new orig = Entry { entryTitle = new
+                       , entryType  = EntryRedirect
+                       , entryAlias = Just orig
+                       , entryCategories = Nothing
+                       , entryDisambiguation = Nothing
+                       , entryAbstract = Nothing
+                       , entryUrl = Nothing
+                       }
 
 
 buildAbstract :: ArrowXml a => a b XmlTree -> a b String
