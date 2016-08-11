@@ -210,15 +210,19 @@ parseModuleAttributes = fmap (\((h,u),a) -> article h a u) <$> prs
 
 
 parseFlags :: IO [Entry]
-parseFlags = fmap (\((h,u),a) -> article h a u) <$> prs
-  where headerSections         = deep chapterDiv //> varList >>> onDl (getChildren >>> parseDt) defaultAbstract >>. concat
+parseFlags = concat . fmap toEntry <$> prs
+  where headerSections         = deep chapterDiv //> varList >>> onDl (parseDt) defaultAbstract >>. concat
+        toEntry ((es, u), a) = fmap (addEntry u a) es
+          where addEntry _ _ (Right e) = e
+                addEntry u a (Left h)  = article h a u
         chapterDiv = withClass "div" "chapter"
         varList = hasName "dl" >>> hasClass "variablelist"
         headerText             = hasClass "option" /> (getText >>> arr normalizeTitle)
         prs                    = runX (readHaddockDocument "invoking.html" >>> headerSections)
         normalizeTitle         = Title
-        parseDt = single (deep headerText) &&& single (deep (sourceLink "invoking.html"))
-        parseHeader = headerText &&& sourceLink "invoking.html"
+        parseDt = single (deep headerText >. makeTitles) &&& single (deep (sourceLink "invoking.html"))
+        makeTitles [] = []
+        makeTitles (x:xs) = Left x : fmap (Right . (flip alias) x) xs
 
 
 markupParsers :: [IO [Entry]]
