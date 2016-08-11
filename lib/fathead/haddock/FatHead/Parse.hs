@@ -54,6 +54,9 @@ withClass :: ArrowXml cat => String -> String -> cat XmlTree XmlTree
 withClass n c = hasName n >>> hasClass c
 
 
+-- | @onDl dt dd@ parses a definition list @(<dl>)@ using 'dt' to parse
+-- the terms and 'dd' to parse the definitions. Assumes the current node
+-- is a definition list with evenly-paired terms and definitions.
 onDl :: (ArrowXml a, ArrowList a) => a XmlTree b -> a XmlTree b' -> a XmlTree [(b, b')]
 onDl f g = definitionList >>> unlistA >>> listA (f *** g)
 
