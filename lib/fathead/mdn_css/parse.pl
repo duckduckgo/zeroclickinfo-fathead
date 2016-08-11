@@ -17,17 +17,17 @@ use Data::Printer return_value => 'dump';
 
 =begin
 This script extracts data from html files under the
-dowloads folder
+downloads folder
 =cut
 
 # Keep track of unique keys
 my %seen;
 
 =begin
-will process fragment data like matrix3d() in
+Process fragment data like matrix3d() in
 https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#matrix3d()
-whenever a url matches one of these regexes
-each fragment shall go to its own line in the output.txt file
+whenever a url matches one of these regexes.
+Each fragment shall go to its own line in the output.txt file
 TODO: Confirm this is the correct approach
 =cut
 
@@ -42,8 +42,6 @@ if ( -e $fragments_file ) {
         $url = Mojo::URL->new($url);
         my $url_clone = $url->clone;
         my $fragment  = $url->fragment;
-
-        #TODO: Find a better way of removing the fragment from the url
         $url = Mojo::URL->new( sprintf "%s://%s",
             $url_clone->protocol, $url_clone->host )->path( $url_clone->path );
         push @{ $url_fragment{$url} }, $fragment;
@@ -100,19 +98,10 @@ foreach my $html_file ( glob 'download/*.html' ) {
         elsif ( $meta->attr('property') =~ /og\:description/ ) {
             $description = $meta->attr('content');
         }
-
-        #no need to keep looping if we have both of these
         last if $title and $description;
     }
 
     # Clean title and check if article already processed
-    # # TODO
-    #   Some links point to page anchors!
-    #   Need to account this and find correct page content
-    #   E.g. units of <length>: px, em, cm,
-    #   https://developer.mozilla.org/en-US/docs/Web/CSS/length#px
-    #
-    #   Need to grab <dt id=$title>
     my $title_clean = clean_string($title);
     if ( exists $seen{$title_clean} ) {
         say "SKIPPING: $title_clean!";
@@ -300,12 +289,11 @@ sub parse_fragment_data {
 
 =begin
             Collect all the description and code for the
-            fragment in h3 until we encounter another h3 which
-            means we have reached the end of all the data for
-            our current h3
+            fragment in all the nodes following the current h3.
+            When another h3 is encountered, write the previous h3 data
+            and start over again until all h3s are processed
 =cut
 
-            #to be used by build_abstract to make description
             my $paragraphs;
             my $code_fragment;
             do {
@@ -402,9 +390,9 @@ sub parse_fragment_data {
               s which represents a time in seconds...
               ms which represents a time in milliseconds...
 
-              We remove the 'which' so that it appears as:
+              We remove the 'which' so that the description appears as:
               s represents a time in seconds...
-              Which sounds right
+              Which sounds right.
 =cut
 
                 my $paragraph = $li->all_text;
