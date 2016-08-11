@@ -38,7 +38,6 @@ class Standardizer(object):
                 if index not in self.inverted_index:
                     self.inverted_index[index] = []
                 self.inverted_index[index].append(line)
-
                 obj = line.split('.')[0]
                 self.objects.add(obj)
 
@@ -98,6 +97,7 @@ class MDNWriter(FatWriter):
     """ An implementation of FatWriter that knows how to convert between MDN
         objects and the FatWriter spec. """
     def writemdn(self, mdn):
+        self.articles_index = []
         code = ''
         abstract = ''
         if mdn.codesnippet:
@@ -114,6 +114,7 @@ class MDNWriter(FatWriter):
           'abstract': abstract
         }
         self.writerow(d)
+        self.articles_index.append(mdn.title)
 
 
 class MDN(object):
@@ -199,7 +200,7 @@ class MDNParser(object):
         print title + (' ' * 30) + '\r',
 
         mdn = MDN()
-        mdn.title = title
+        mdn.title = title.lower()
         mdn.summary = summary
         mdn.codesnippet = codesnippet
         return mdn
@@ -239,7 +240,7 @@ class MDNIndexer(object):
                   'type': 'D',
                   'disambiguation': disambig
                 })
-            else:
+
                 for mdn in self.inverted_index[keyword]:
                     # add redirect for Web/Api pages
                     if any(word in mdn.title for word in self.CLASS_WORDS) and '.' in mdn.title:
@@ -247,7 +248,9 @@ class MDNIndexer(object):
                         match = re.search('(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
                         # remove class_word: getAnimationFrame
                         strip_title = match.group(1)
-
+                        # check if not an Article
+                        if all(x in [keyword, strip_title] for x in self._writer.articles_index):
+                          return
                         self._writer.writerow({
                           'title': strip_title,
                           'type': 'R',
