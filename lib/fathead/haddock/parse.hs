@@ -122,7 +122,7 @@ article t a u = Entry { entryTitle =  t
 
 
 alias :: Title -> Title -> Entry
-alias new orig = Entry { entryTitle = new
+alias orig new = Entry { entryTitle = new
                        , entryType  = EntryRedirect
                        , entryAlias = Just orig
                        , entryCategories = Nothing
