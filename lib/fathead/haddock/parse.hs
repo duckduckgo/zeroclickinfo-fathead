@@ -15,7 +15,7 @@ parseSections depth hType page = fmap (\(h,(a,u)) -> article h a u) <$> prs
         sectionDiv = withClass "div" "section"
         headerSections         = deep (contentDivs >>> single (deep headerText)
                                         &&& single defaultAbstract
-                                        &&& single (deep (sourceLink page)))
+                                        &&& single (deep (eltUrl page)))
         headerText             = hasName hType /> getText >>> arr normalizeTitle
         prs                    = runX (readHaddockDocument page >>> headerSections)
         normalizeTitle         = Title . dropWhile (not . isAlpha)
@@ -31,7 +31,7 @@ parseSectionsTop = parseSections 1 "h2"
 
 parseModuleAttributes :: IO [Entry]
 parseModuleAttributes = fmap (\((h,u),a) -> article h a u) <$> prs
-  where headerSections         = deep sectionDiv //> varList >>> onDl (deep headerText &&& deep (sourceLink "module-attributes.html")) defaultAbstract >>. concat
+  where headerSections         = deep sectionDiv //> varList >>> onDl (deep headerText &&& deep (eltUrl "module-attributes.html")) defaultAbstract >>. concat
         sectionDiv = withClass "div" "section"
         varList = hasName "dl" >>> hasClass "variablelist"
         headerText             = deep (hasClass "literal") /> getText >>> arr normalizeTitle
@@ -49,7 +49,7 @@ parseFlags = concat . fmap toEntry <$> prs
         headerText             = hasClass "option" /> (getText >>> arr normalizeTitle)
         prs                    = runX (readHaddockDocument "invoking.html" >>> headerSections)
         normalizeTitle         = Title . normalizeWhitespace
-        parseDt = single (listA $ fullTitle <+> deep headerText) &&& single (deep (sourceLink "invoking.html"))
+        parseDt = single (listA $ fullTitle <+> deep headerText) &&& single (deep (eltUrl "invoking.html"))
         fullTitle = deep getText >. arr (normalizeTitle . unwords . lines . concat)
         makeTitles [] = []
         makeTitles (x:xs) = Left x : fmap (Right . (flip alias) x) xs

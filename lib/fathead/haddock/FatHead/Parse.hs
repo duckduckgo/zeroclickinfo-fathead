@@ -3,7 +3,7 @@ module FatHead.Parse
   , hasClass
   , withClass
   , readHaddockDocument
-  , sourceLink
+  , eltUrl
   , defaultAbstract
   ) where
 
@@ -70,7 +70,8 @@ defaultAbstract = buildAbstract isAbstract
   where isAbstract = getChildren >>> (hasName "p") <+> (hasName "pre")
 
 
-sourceLink :: String -> IOSLA (XIOState ()) XmlTree URI
-sourceLink page = hasName "a"
-                  >>> getAttrValue "name"
-                  >>> makeSourceLink page
+-- | Create a source URL appropriate for use in articles from
+-- the current element's name and page.
+eltUrl :: String -> IOSLA (XIOState ()) XmlTree URI
+eltUrl page = anchor >>> makeSourceLink page
+  where anchor = hasAttr "name" >>> getAttrValue "name"
