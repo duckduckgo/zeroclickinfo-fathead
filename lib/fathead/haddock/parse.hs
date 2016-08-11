@@ -218,8 +218,9 @@ parseFlags = concat . fmap toEntry <$> prs
         varList    = withClass "dl" "variablelist"
         headerText             = hasClass "option" /> (getText >>> arr normalizeTitle)
         prs                    = runX (readHaddockDocument "invoking.html" >>> headerSections)
-        normalizeTitle         = Title
-        parseDt = single (listA $ deep headerText) &&& single (deep (sourceLink "invoking.html"))
+        normalizeTitle         = Title . normalizeWhitespace
+        parseDt = single (listA $ fullTitle <+> deep headerText) &&& single (deep (sourceLink "invoking.html"))
+        fullTitle = deep getText >. arr (normalizeTitle . unwords . lines . concat)
         makeTitles [] = []
         makeTitles (x:xs) = Left x : fmap (Right . (flip alias) x) xs
 
