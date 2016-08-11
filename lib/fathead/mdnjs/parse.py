@@ -1,8 +1,7 @@
 import codecs
 import re
 from collections import Counter
-from bs4 import BeautifulSoup
-
+from lxml import html, etree
 
 class Standardizer(object):
     """ Standardize the titles of each entry.
@@ -39,7 +38,6 @@ class Standardizer(object):
                 if index not in self.inverted_index:
                     self.inverted_index[index] = []
                 self.inverted_index[index].append(line)
-
                 obj = line.split('.')[0]
                 self.objects.add(obj)
 
@@ -99,6 +97,7 @@ class MDNWriter(FatWriter):
     """ An implementation of FatWriter that knows how to convert between MDN
         objects and the FatWriter spec. """
     def writemdn(self, mdn):
+        self.articles_index = []
         code = ''
         abstract = ''
         if mdn.codesnippet:
@@ -115,6 +114,7 @@ class MDNWriter(FatWriter):
           'abstract': abstract
         }
         self.writerow(d)
+        self.articles_index.append(mdn.title)
 
 
 class MDN(object):
@@ -156,42 +156,54 @@ class MDNParser(object):
     """ A parser that takes an MDN wiki page and returns an MDN object. If
     pages change causing this Fathead to break, then the queries in this class
     should be checked. """
-    def _extract_node(self, node):
-        if node is not None:
-            txt = node.text
-            if txt:
-                return txt.strip()
-
-    def _is_obsolete(self, soup):
-        obsolete = soup.find(_class='obsoleteHeader')
-        return obsolete is not None
+    def _is_obsolete(self, tree):
+        obsolete = tree.xpath("//meta[@class='obsoleteHeader']")
+        return obsolete
 
     def parse(self, htmlfile):
         """ Parse an html file and return an mdn object.
 
         Args:
-          htmlfile: A file-like object that should parse with beautiful soup's
-                    html parser.
+          htmlfile: A file-like object that should parse with lxml html parser.
         """
-        title_el, summary_el, codesnippet_el = None, None, None
-        soup = BeautifulSoup(htmlfile)
-        if self._is_obsolete(soup):
-            return None
-        title_el = soup.find('h1')
-        article = soup.find(id='wikiArticle')
-        if article:
-            summary_el = article.find(
-              lambda e: e.name == 'p' and e.text.strip() != '',
-              recursive=False)
-        syntax_header = soup.find(id='Syntax')
-        if syntax_header:
-            codesnippet_el = syntax_header.find_next(['pre', 'code'])
-        mdn = MDN()
-        mdn.title = self._extract_node(title_el)
-        mdn.summary = self._extract_node(summary_el)
-        mdn.codesnippet = self._extract_node(codesnippet_el)
-        return mdn
+        page = htmlfile.read()
+        tree = html.fromstring(page)
 
+        if self._is_obsolete(tree):
+          print "obsolete"
+          return None
+
+        title = tree.xpath("//meta[@property='og:title']/@content")[0]
+        article = tree.xpath("//article[contains(@id,'wikiArticle')]")
+        summary = ""
+        if article:
+            summary_nodes = tree.xpath("//h2[contains(@id,'Summary')]/following-sibling::p[1]")
+            for summary_el in summary_nodes :
+              for tag in summary_el.xpath('//*[@class]'):
+                  tag.attrib.pop('class')
+              summary += re.sub('<[^<]+?>', '', etree.tostring(summary_el).strip())
+
+        if not summary:
+            summary_el = tree.xpath("//meta[@property='og:description']/@content")
+            if summary_el:
+              summary = summary_el[0]
+
+        codesnippet = ""
+        syntax_header = tree.xpath("//h2[contains(@id,'Syntax')]")
+        if syntax_header:
+            elements = tree.xpath("//h2[contains(@id,'Syntax')]/following-sibling::pre[1]")
+            for element in elements:
+                for tag in element.xpath('//*[@class]'):
+                    tag.attrib.pop('class')
+                codesnippet += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+
+        print title + (' ' * 30) + '\r',
+
+        mdn = MDN()
+        mdn.title = title.lower()
+        mdn.summary = summary
+        mdn.codesnippet = codesnippet
+        return mdn
 
 class MDNIndexer(object):
     def __init__(self, writer):
@@ -228,35 +240,37 @@ class MDNIndexer(object):
                   'type': 'D',
                   'disambiguation': disambig
                 })
-            for mdn in self.inverted_index[keyword]:
-                # add redirect for Web/Api pages
-                if any(word in mdn.title for word in self.CLASS_WORDS) and
-                '.' in mdn.title:
-                    # original title: Window.getAnimationFrame()
-                    match = re.search('(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
-                    # remove class_word: getAnimationFrame
-                    strip_title = match.group(1)
 
+                for mdn in self.inverted_index[keyword]:
+                    # add redirect for Web/Api pages
+                    if any(word in mdn.title for word in self.CLASS_WORDS) and '.' in mdn.title:
+                        # original title: Window.getAnimationFrame()
+                        match = re.search('(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
+                        # remove class_word: getAnimationFrame
+                        strip_title = match.group(1)
+                        # check if not an Article
+                        if all(x in [keyword, strip_title] for x in self._writer.articles_index):
+                          return
+                        self._writer.writerow({
+                          'title': strip_title,
+                          'type': 'R',
+                          'redirect': mdn.title
+                        })
+                    # For all entries in the inverted index, write a redirect of
+                    # of the form <object><space><property>
                     self._writer.writerow({
-                      'title': strip_title,
+                      'title': '%s %s' % (mdn.obj.lower(), mdn.prop.lower()),
                       'type': 'R',
                       'redirect': mdn.title
                     })
-                # For all entries in the inverted index, write a redirect of
-                # of the form <object><space><property>
-                self._writer.writerow({
-                  'title': '%s %s' % (mdn.obj.lower(), mdn.prop.lower()),
-                  'type': 'R',
-                  'redirect': mdn.title
-                })
-                # If this is the only item in the inverted index,
-                # write a primary redirect on the keyword.
-                if count == 1:
-                    self._writer.writerow({
-                      'title': keyword,
-                      'type': 'R',
-                      'redirect': mdn.title
-                    })
+                    # If this is the only item in the inverted index,
+                    # write a primary redirect on the keyword.
+                    if count == 1:
+                        self._writer.writerow({
+                          'title': keyword,
+                          'type': 'R',
+                          'redirect': mdn.title
+                        })
 
 
 def run(cachedir, cachejournal, langdefs, outfname):
