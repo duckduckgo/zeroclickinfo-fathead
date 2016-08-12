@@ -15,17 +15,21 @@ haskellUrlBase :: String
 haskellUrlBase = "http://hackage.haskell.org"
 
 
+getHackage :: String -> IO String
+getHackage q = simpleHTTP (getRequest reqUrl) >>= getResponseBody
+  where reqUrl = haskellUrlBase </> q
+
+
 -- | Retrieve the list of packages with their documentation status (yes/no)
 -- from packages/docs.json
 hasDocs :: IO (M.Map String Bool)
 hasDocs = do
-  response <- simpleHTTP (getRequest reqUrl) >>= getResponseBody
+  response <- getHackage "packages/docs.json"
   let json     = case runGetJSON readJSArray response of
                 Left err -> error err
                 Right v  -> M.fromList . fromJS $ v
   pure json
-  where reqUrl   = haskellUrlBase </> "packages" </> "docs.json"
-        fromJS (JSArray xs) = fmap (\(JSArray [(JSString s),(JSBool b)]) -> (fromJSString s, b)) xs
+  where fromJS (JSArray xs) = fmap (\(JSArray [(JSString s),(JSBool b)]) -> (fromJSString s, b)) xs
 
 
 onlyDocumented :: M.Map String Bool -> [String]
