@@ -328,12 +328,13 @@ sub parse_fragment_data {
                     $paragraphs .= $next_element->all_text;
                 }
                 else {
-                    $code_fragment .= $next_element->all_text;
+                    $code_fragment .= $next_element->to_string;
                 }
                 $next_element = $next_element->next;
             } while ( $next_element && $next_element->tag ne 'h3' );
-
-            $description = build_abstract( $paragraphs, $code_fragment );
+            $paragraphs    = trim($paragraphs);
+            $code_fragment = clean_code($code_fragment);
+            $description   = build_abstract( $paragraphs, $code_fragment );
             my @article_data = make_article( $title, $description, $url );
             write_to_file(@article_data);
         }
@@ -373,11 +374,13 @@ sub parse_fragment_data {
                     $paragraphs .= $next_element->all_text;
                 }
                 else {
-                    $code_fragment .= $next_element->all_text;
+                    $code_fragment .= $next_element->to_string;
                 }
                 $next_element = $next_element->next;
             } while ( $next_element && $next_element->tag ne 'div' );
-            $description = build_abstract( $paragraphs, $code_fragment );
+            $paragraphs    = trim($paragraphs);
+            $code_fragment = clean_code($code_fragment);
+            $description   = build_abstract( $paragraphs, $code_fragment );
             my @article_data = make_article( $title, $description, $url );
             write_to_file(@article_data);
         }
@@ -439,7 +442,8 @@ sub parse_fragment_data {
                         $code = $code_dom->all_text;
                     }
                     else {
-                        $code = $code_dom->at('tbody')->all_text;
+                        $code = $code_dom->at('tbody')->to_string;
+                        $code = clean_code($code);
                     }
                 }
                 my $description = build_abstract( $paragraph, $code );
