@@ -77,10 +77,10 @@ if (@urls_with_fragments) {
       or die $!;
 
 =begin
-    For fragment in urls past this path transform-function we can get
+    For fragment in urls past this path /transform-function/ we can get
     the link for the actual fragment in the following way.
     Take for example this fragment #matrix()
-    In order to get the actual link, we take the fragment, matrix(), remove
+    In order to get the actual link, take the fragment, matrix(), remove
     the brackets, and append it to the original path so that we get the link
     https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix
 =cut
@@ -105,7 +105,7 @@ if (@urls_with_fragments) {
         elsif ( $url_with_fragment->fragment =~ /The_url/ ) {
 
             #It is this: https://developer.mozilla.org/en-U/docs/Web/CSS/
-            #url#The_url()_functional_notation
+            #/url#The_url()_functional_notation
             #We get rid of the fragment part so that it can be downloaded
             #and parsed by parse.pl because its format is like the others
             my $clone = Mojo::URL->new(
@@ -113,7 +113,7 @@ if (@urls_with_fragments) {
                 $url_with_fragment->protocol,
                 $url_with_fragment->host
             );
-            $clone->path($url_with_fragment->path);
+            $clone->path( $url_with_fragment->path );
             push @keyword_urls, $clone;
         }
         else {
