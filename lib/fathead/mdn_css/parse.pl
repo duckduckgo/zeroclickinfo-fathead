@@ -232,7 +232,6 @@ sub clean_string {
 
 sub build_initial_value {
     my ($content) = @_;
-    $content = clean_code($content);
     my $initial_value = "<p><b>Initial Value: </b><em>$content</em></p>";
     return $initial_value;
 }
@@ -467,7 +466,23 @@ sub parse_initial_value {
     if ($th) {
         my $a = $th->at('a');
         if ( $a && $a->text =~ /Initial value/ ) {
-            $initial_value = $tr->all_text;
+            my $td = $tr->at('td');
+            if ( $td->at('ul') ) {
+                my $ul = $td->at('ul');
+
+                #get text not in ul
+                $initial_value .= $td->at('ul')->remove->all_text;
+
+                #add new line after each li text so that it appears correctly
+                for my $li ( $ul->find('li')->each ) {
+                    $initial_value .= $li->all_text . '\\n ';
+                }
+            }
+            else {
+                $initial_value = trim( $td->all_text );
+            }
+            $initial_value = trim($initial_value);
+            $initial_value = build_initial_value($initial_value);
         }
     }
     return $initial_value;
