@@ -6,7 +6,10 @@ import Text.JSON.String (runGetJSON, readJSArray)
 import Text.JSON.Types (JSValue(JSBool, JSArray, JSString), JSString(fromJSString))
 import qualified Data.Map as M
 import Data.Function (on)
-import Data.List (groupBy)
+import Data.List (groupBy, elemIndices)
+import Data.Monoid ((<>))
+import qualified Codec.Archive.Tar as Tar
+import Data.List (isPrefixOf)
 import System.Process (runCommand)
 import System.Directory (listDirectory, createDirectoryIfMissing)
 
@@ -48,3 +51,25 @@ downloadPackages ps = createDirectoryIfMissing True "download" >> (sequence_ $ f
   where fetchPackage p = runCommand $ "wget " <> tarUrl <> " -P download -O " <> outputPath
           where tarUrl = haskellUrlBase <> "/package/" <> p <> "/docs.tar"
                 outputPath = "download" </> p <> ".tar"
+
+
+extractPackages :: [String] -> IO ()
+extractPackages = sequence_ . fmap (Tar.extract "download" . ("download"</>))
+
+
+fetchPackages :: [String] -> IO ()
+fetchPackages ps = downloadPackages ps >> extractPackages ps
+
+
+latestPackages :: IO [String]
+latestPackages = (onlyLatest . onlyDocumented) <$> hasDocs
+
+
+fetchBase :: IO ()
+fetchBase = basePackages >>= fetchPackages
+  where basePackages = filter isBasePackage <$> latestPackages
+        isBasePackage p = isPrefixOf "base" p && length (elemIndices '-' p) == 1
+
+
+main :: IO ()
+main = fetchBase
