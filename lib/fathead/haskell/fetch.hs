@@ -7,6 +7,8 @@ import Text.JSON.Types (JSValue(JSBool, JSArray, JSString), JSString(fromJSStrin
 import qualified Data.Map as M
 import Data.Function (on)
 import Data.List (groupBy)
+import System.Process (runCommand)
+import System.Directory (listDirectory, createDirectoryIfMissing)
 
 
 haskellUrlBase :: String
@@ -35,3 +37,10 @@ onlyLatest = fmap last . byName
   where byName = groupBy haveSamePackageName
         haveSamePackageName = ((==) `on` packageName)
         packageName = reverse . tail . snd . break (=='-') . reverse
+
+
+downloadPackages :: [String] -> IO ()
+downloadPackages ps = createDirectoryIfMissing True "download" >> (sequence_ $ fmap (fetchPackage) ps)
+  where fetchPackage p = runCommand $ "wget " <> tarUrl <> " -P download -O " <> outputPath
+          where tarUrl = haskellUrlBase <> "/package/" <> p <> "/docs.tar"
+                outputPath = "download" </> p <> ".tar"
