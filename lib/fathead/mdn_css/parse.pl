@@ -128,15 +128,13 @@ foreach my $html_file ( glob 'download/*.html' ) {
     # Preserve HTML and use the same lib as Mozilla
     # (http://prismjs.com/) to render code?
 
-    my $hs = HTML::Strip->new( emit_spaces => 0 );
     if ( my $pre = $dom->at('#Syntax ~ pre') ) {
 
         if ( $pre->child_nodes->first->matches('code') ) {
             $code = $pre->child_nodes->first->text;
         }
         else {
-            $code = $hs->parse( $pre->to_string );
-            $code =~ tr/ / /s;
+            $code = clean_code( $pre->to_string );
         }
 
         $code = trim($code);
@@ -144,7 +142,6 @@ foreach my $html_file ( glob 'download/*.html' ) {
         say $code;
         $code =~ s/\r?\n/\\n/g;
     }
-    $hs->eof;
     my $initial_value;
 
     #initial value is found in the table properties
@@ -190,6 +187,16 @@ foreach my $html_file ( glob 'download/*.html' ) {
 }
 
 # PRIVATE FUNCTIONS
+
+sub clean_code {
+    my ($code) = @_;
+    my $hs = HTML::Strip->new( emit_spaces => 0 );
+    $code = $hs->parse($code);
+    $code =~ tr/ / /s;
+    $code =~ s/\r?\n/\\n/g;
+    $hs->eof;
+    return $code;
+}
 
 sub clean_string {
     my $input = shift;
