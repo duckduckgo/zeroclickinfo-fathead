@@ -81,6 +81,7 @@ class FatWriter(object):
 
     def __init__(self, outfile):
         self.outfile = outfile
+        self.articles_index = []
 
     def writerow(self, outdict):
         """ Write the dict row. """
@@ -97,7 +98,6 @@ class MDNWriter(FatWriter):
     """ An implementation of FatWriter that knows how to convert between MDN
         objects and the FatWriter spec. """
     def writemdn(self, mdn):
-        self.articles_index = []
         code = ''
         abstract = ''
         if mdn.codesnippet:
@@ -114,7 +114,7 @@ class MDNWriter(FatWriter):
           'abstract': abstract
         }
         self.writerow(d)
-        self.articles_index.append(mdn.title)
+        self.articles_index.append(mdn.title.lower())
 
 
 class MDN(object):
@@ -200,7 +200,7 @@ class MDNParser(object):
         print title + (' ' * 30) + '\r',
 
         mdn = MDN()
-        mdn.title = title.lower()
+        mdn.title = title
         mdn.summary = summary
         mdn.codesnippet = codesnippet
         return mdn
@@ -248,30 +248,34 @@ class MDNIndexer(object):
                         match = re.search('(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
                         # remove class_word: getAnimationFrame
                         strip_title = match.group(1)
-                        # check if not an Article
-                        if all(x in [keyword, strip_title] for x in self._writer.articles_index):
-                          return
+                        # skips redirect if already an article
+                        if strip_title.lower() not in self._writer.articles_index:
+                            self._writer.writerow({
+                              'title': strip_title,
+                              'type': 'R',
+                              'redirect': mdn.title
+                            })
+                        # else:
+                            # print "skipped R for %s, already an Article" % strip_title
+                    # for all entries in the inverted index, write a redirect of
+                    # of the form <object><space><property>
+                    if ('%s %s' % (mdn.obj.lower(), mdn.prop.lower())) not in self._writer.articles_index:
                         self._writer.writerow({
-                          'title': strip_title,
+                          'title': '%s %s' % (mdn.obj.lower(), mdn.prop.lower()),
                           'type': 'R',
                           'redirect': mdn.title
                         })
-                    # For all entries in the inverted index, write a redirect of
-                    # of the form <object><space><property>
-                    self._writer.writerow({
-                      'title': '%s %s' % (mdn.obj.lower(), mdn.prop.lower()),
-                      'type': 'R',
-                      'redirect': mdn.title
-                    })
                     # If this is the only item in the inverted index,
                     # write a primary redirect on the keyword.
                     if count == 1:
-                        self._writer.writerow({
-                          'title': keyword,
-                          'type': 'R',
-                          'redirect': mdn.title
-                        })
-
+                        # check if not an Article
+                        if not all(x in [keyword, strip_title] for x in self._writer.articles_index):
+                            if keyword not in self._writer.articles_index:
+                                self._writer.writerow({
+                                  'title': keyword,
+                                  'type': 'R',
+                                  'redirect': mdn.title
+                                })
 
 def run(cachedir, cachejournal, langdefs, outfname):
     """
