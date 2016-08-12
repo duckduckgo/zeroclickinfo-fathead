@@ -235,11 +235,14 @@ class MDNIndexer(object):
                         summary = mdn.summary
                     disambig += '*[[%s]] %s' % (mdn.title, summary)
                 # Write a disambiguation
-                self._writer.writerow({
-                  'title': keyword,
-                  'type': 'D',
-                  'disambiguation': disambig
-                })
+                # skips D if already an article
+                if keyword.lower() not in self._writer.articles_index:
+                    self._writer.writerow({
+                      'title': keyword,
+                      'type': 'D',
+                      'disambiguation': disambig
+                    })
+                    self._writer.articles_index.append(keyword.lower())
 
                 for mdn in self.inverted_index[keyword]:
                     # add redirect for Web/Api pages
@@ -255,8 +258,6 @@ class MDNIndexer(object):
                               'type': 'R',
                               'redirect': mdn.title
                             })
-                        # else:
-                            # print "skipped R for %s, already an Article" % strip_title
                     # for all entries in the inverted index, write a redirect of
                     # of the form <object><space><property>
                     if ('%s %s' % (mdn.obj.lower(), mdn.prop.lower())) not in self._writer.articles_index:
@@ -270,7 +271,7 @@ class MDNIndexer(object):
                     if count == 1:
                         # check if not an Article
                         if not all(x in [keyword, strip_title] for x in self._writer.articles_index):
-                            if keyword not in self._writer.articles_index:
+                            if keyword.lower() not in self._writer.articles_index:
                                 self._writer.writerow({
                                   'title': keyword,
                                   'type': 'R',

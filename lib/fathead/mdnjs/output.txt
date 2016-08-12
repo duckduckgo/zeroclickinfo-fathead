@@ -3774,9 +3774,7 @@ audiobuffer length	R	AudioBuffer.length
 cssvaluelist length	R	CSSValueList.length										
 datatransferitemlist length	R	DataTransferItemList.length										
 history length	R	History.length										
-length	R	HTMLFormElement.length										
 htmlformelement length	R	HTMLFormElement.length										
-length	R	NodeList.length										
 nodelist length	R	NodeList.length										
 offlineaudiocontext length	R	OfflineAudoContext.length										
 sourcebufferlist length	R	SourceBufferList.length										
@@ -3787,12 +3785,10 @@ storage length	R	Storage.length
 timeranges length	R	TimeRanges.length										
 touchlist length	R	TouchList.length										
 trackdefaultlist length	R	TrackDefaultList.length										
-length	R	Window.length										
 window length	R	Window.length										
 array length	R	array.length										
 function length	R	Function.length										
 string length	R	String.prototype.length										
-type	D								*[[BiquadFilterNode.type]] A string (enum) representing a BiquadFilterType.\n*[[Blob.type]] The type property of a Blob object provides the MIME type of the file.\n*[[type]] The type property of the Credential interface returns a DOMString containing the credential's type.\n*[[CryptoKey.type]] The CryptoKey.\n*[[DataTransferItem.type]] The DataTransferItem.\n*[[Event.type]] The Event.\n*[[HTMLSelectElement.type]] The HTMLSelectElement.\n*[[HTMLStyleElement.type]] The HTMLStyleElement.\n*[[FileHandle.type]] Provides the mime type of the file.\n*[[NetworkInformation.type]] The NetworkInformation.\n*[[OscillatorNode.type]] A DOMString specifying the shape of oscillator wave.\n*[[PerformanceNavigation.type]] The PerformanceNavigation.\n*[[PerformanceNavigationTiming.type]] The type property returns a string representing the type of navigation.\n*[[Response.type]] The type read-only property of the Response interface contains the type of the response.\n*[[RTCSessionDescription.type]] The property RTCSessionDescription.\n*[[StyleSheet.type]] type specifies the style sheet language for this style sheet.\n*[[TrackDefault.type]] The type read-only property of the TrackDefault interface returns the type of track that this SourceBuffer 's media segment data relates to (i.\n*[[WebGLActiveInfo.type]] The read-only WebGLActiveInfo.			
 biquadfilternode type	R	BiquadFilterNode.type										
 blob type	R	Blob.type										
 credential type	R	type										
@@ -3811,7 +3807,6 @@ rtcsessiondescription type	R	RTCSessionDescription.type
 stylesheet type	R	StyleSheet.type										
 trackdefault type	R	TrackDefault.type										
 webglactiveinfo type	R	WebGLActiveInfo.type										
-name	D								*[[BluetoothDevice.name]] The BluetoothDevice.\n*[[BroadcastChannel.name]] The read-only BroadcastChannel.\n*[[name]] The name property of the Credential interface returns a DOMString containing a name associated with the credential.\n*[[Element.name]] name gets or sets the name property of a DOM object; it only applies to the following elements: &lt;a&gt;, &lt;applet&gt;, &lt;button&gt;, &lt;form&gt;, &lt;frame&gt;, &lt;iframe&gt;, &lt;img&gt;, &lt;input&gt;, &lt;map&gt;, &lt;meta&gt;, &lt;object&gt;, &lt;param&gt;, &lt;select&gt;, and &lt;textarea&gt;.\n*[[File.name]] Returns the name of the file represented by a File object.\n*[[HTMLFormElement.name]] The HTMLFormElement.\n*[[IDBDatabase.name]] A DOMString containing the name of the connected database.\n*[[IDBIndex.name]] A DOMString specifying a name for the index.\n*[[FileHandle.name]] Provides the name of the file.\n*[[IDBObjectStore.name]] A DOMString containing the object store's name.\n*[[PerformanceEntry.name]] The name property returns the name given to a performance entry when the entry was created (for example by calling performance.\n*[[SharedWorkerGlobalScope.name]] The name read-only property of the SharedWorkerGlobalScope interface returns the name that the SharedWorker was (optionally) given when it was created.\n*[[SpeechSynthesisEvent.name]] The name read-only property of the SpeechSynthesisUtterance interface returns the name associated with certain types of events occuring as the SpeechSynthesisUtterance.\n*[[SpeechSynthesisVoice.name]] The name read-only property of the SpeechSynthesisVoice interface returns a human-readable name that represents the voice.\n*[[WebGLActiveInfo.name]] The read-only WebGLActiveInfo.\n*[[Window.name]] Gets/sets the name of the window.\n*[[Error.prototype.name]] The name property represents a name for the type of error.\n*[[Function.name]] The function.			
 bluetoothdevice name	R	BluetoothDevice.name										
 broadcastchannel name	R	BroadcastChannel.name										
 credential name	R	name										
@@ -3832,7 +3827,6 @@ error name	R	Error.prototype.name
 function name	R	Function.name										
 onerror	D								*[[AbstractWorker.onerror]] The AbstractWorker.\n*[[GlobalEventHandlers.onerror]] An event handler for the error event.\n*[[IDBDatabase.onerror]] This example shows an IDBOpenDBRequest.\n*[[FileHandle.onerror]] Specifies an event listener to receive error events.\n*[[IDBRequest.onerror]] The following example requests a given record title, onsuccess gets the associated record from the IDBObjectStore (made available as objectStoreTitleRequest.\n*[[IDBTransaction.onerror]] In the following code snippet, we open a read/write transaction on our database and add some data to an object store.\n*[[LockedFile.onerror]] Specifies an event listener to receive error events.\n*[[MediaRecorder.onerror]] The MediaRecorder.\n*[[Notification.onerror]] The onerror property of the Notification interface specifies an event listener to receive error events.\n*[[RTCDataChannel.onerror]] The RTCDataChannel.\n*[[ServiceWorkerContainer.onerror]] The onerror property of the ServiceWorkerContainer interface is an event handler fired whenever an error event occurs in the associated service workers.\n*[[SpeechRecognition.onerror]] The onerror property of the SpeechRecognition interface represents an event handler that will run when a speech recognition error occurs (when the error event fires.\n*[[SpeechSynthesisUtterance.onerror]] The onerror property of the SpeechSynthesisUtterance interface represents an event handler that will run when an error occurs that prevents the utterance from being succesfully spoken (when the error event fires.\n*[[WorkerGlobalScope.onerror]] The onerror property of the WorkerGlobalScope interface represents an EventHandler to be called when the error event occurs and bubbles through the Worker.\n*[[XDomainRequest.onerror]] An event handler which is called when an XDomainRequest encounters an error.\n*[[XMLHttpRequestEventTarget.onerror]] The XMLHttpRequestEventTarget.			
 abstractworker onerror	R	AbstractWorker.onerror										
-onerror	R	GlobalEventHandlers.onerror										
 global onerror	R	GlobalEventHandlers.onerror										
 idbdatabase onerror	R	IDBDatabase.onerror										
 idbmutablefile onerror	R	FileHandle.onerror										
@@ -3847,13 +3841,10 @@ speechrecognition onerror	R	SpeechRecognition.onerror
 speechsynthesisutterance onerror	R	SpeechSynthesisUtterance.onerror										
 global onerror	R	WorkerGlobalScope.onerror										
 xdomainrequest onerror	R	XDomainRequest.onerror										
-onerror	R	XMLHttpRequestEventTarget.onerror										
 xmlhttprequesteventtarget onerror	R	XMLHttpRequestEventTarget.onerror										
 tostring	D								*[[HTMLHyperlinkElementUtils.toString()]] The HTMLHyperlinkElementUtils.\n*[[Range.toString()]] The Range.\n*[[Selection.toString()]] The Selection.\n*[[URLSearchParams.toString()]] The toString() method of the URLSearchParams interface returns a string containg a query string suitable for use in a URL.\n*[[URLUtilsReadOnly.toString()]] The URLUtilsReadOnly.\n*[[Array.prototype.toString]] The toString() method returns a string representing the specified array and its elements.\n*[[Boolean.prototype.toString]] The toString() method returns a string representing the specified Boolean object.\n*[[Date.prototype.toString]] The toString() method returns a string representing the specified Date object.\n*[[Error.prototype.toString]] The toString() method returns a string representing the specified Error object.\n*[[Function.prototype.toString]] The toString() method returns a string representing the source code of the function.\n*[[Number.prototype.toString]] The toString() method returns a string representing the specified Number object.\n*[[Object.prototype.toString]] The toString() method returns a string representing the object.\n*[[RegExp.prototype.toString]] The toString() method returns a string representing the regular expression.\n*[[String.prototype.toString]] The toString() method returns a string representing the specified object.			
-toString	R	HTMLHyperlinkElementUtils.toString()										
 htmlhyperlinkelementutils tostring	R	HTMLHyperlinkElementUtils.toString()										
 range tostring	R	Range.toString()										
-toString	R	Selection.toString()										
 selection tostring	R	Selection.toString()										
 urlsearchparams tostring	R	URLSearchParams.toString()										
 urlutilsreadonly tostring	R	URLUtilsReadOnly.toString()										
@@ -3866,7 +3857,6 @@ number tostring	R	Number.prototype.toString
 object tostring	R	Object.prototype.toString										
 regexp tostring	R	RegExp.prototype.toString										
 string tostring	R	String.prototype.toString										
-close	D								*[[AudioContext.close()]] The close() method of the AudioContext Interface closes the audio context, releasing any system audio resources that it uses.\n*[[BroadcastChannel.close()]] The BroadcastChannel.\n*[[Document.close()]] The document.\n*[[IDBDatabase.close()]] The connection is not actually closed until all transactions created using this connection are complete.\n*[[ImageBitmap.close()]] The ImageBitmap.\n*[[close()]] The MediaKeySession.\n*[[MessagePort.close()]] The close() method of the MessagePort interface disconnects the port, so it is no longer active.\n*[[Notification.close()]] The close() method of the Notification interface is used to close a previously displayed notification.\n*[[close]] When the close () method is called on a PresentationConnection S, the user agent MUST start closing the presentation connection S with closed as closeReason and an empty message as closeMessage.\n*[[RTCDataChannel.close()]] The RTCDataChannel.\n*[[RTCPeerConnection.close()]] The RTCPeerConnection.\n*[[Window.close()]] The Window.\n*[[WorkerGlobalScope.close()]] The close() method of the WorkerGlobalScope interface discards any tasks queued in the WorkerGlobalScope 's event loop, effectively closing this particular scope.			
 audiocontext close	R	AudioContext.close()										
 broadcastchannel close	R	BroadcastChannel.close()										
 document close	R	Document.close()										
@@ -3880,7 +3870,6 @@ rtcdatachannel close	R	RTCDataChannel.close()
 rtcpeerconnection close	R	RTCPeerConnection.close()										
 window close	R	Window.close()										
 global close	R	WorkerGlobalScope.close()										
-id	D								*[[Animation.id]] The Animation.\n*[[id]] The BluetoothDevice.\n*[[Client.id]] The id read-only property of the Client interface returns the universally unique identifier of the Client object.\n*[[id]] The id property of the Credential interface returns  a DOMString containing the credential's identifier.\n*[[Element.id]] The Element.\n*[[Gamepad.id]] The Gamepad.\n*[[MediaStream.id]] The MediaStream.\n*[[MediaStreamTrack.id]] The read-only property MediaStreamTrack.\n*[[Navigator.id]] The BrowserID protocol defines a new id property on the window.\n*[[id]] The id attribute specifies the presentation connection 's presentation identifier.\n*[[RTCDataChannel.id]] The read-only RTCDataChannel property id returns an ID number (between 0 and 65,534) which uniquely identifies the RTCDataChannel.\n*[[id]] tbd			
 animation id	R	Animation.id										
 bluetoothdevice id	R	id										
 client id	R	Client.id										
@@ -3896,14 +3885,11 @@ syncregistration id	R	id
 width	D								*[[Document.width]] Returns the width of the body element of the current document in pixels.\n*[[DOMRectReadOnly.width]] The width read-only property of the DOMRectReadOnly interface represents the width of the DOMRect.\n*[[HTMLCanvasElement.width]] The HTMLCanvasElement.\n*[[HTMLTableElement.width]] Where width is a string representing the width in number of pixels or as a percentage value.\n*[[ImageBitmap.width]] The read-only ImageBitmap.\n*[[ImageData.width]] The readonly ImageData.\n*[[OffscreenCanvas.width]] The width property returns and sets the width of an OffscreenCanvas object.\n*[[PointerEvent.width]] The width of the pointer's contact geometry&#160;along the x-axis, measured in CSS pixels.\n*[[Screen.width]] Returns the width of the screen.\n*[[TextMetrics.width]] The readonly TextMetrics.			
 document width	R	Document.width										
 domrectreadonly width	R	DOMRectReadOnly.width										
-width	R	HTMLCanvasElement.width										
 htmlcanvaselement width	R	HTMLCanvasElement.width										
-width	R	HTMLTableElement.width										
 htmltableelement width	R	HTMLTableElement.width										
 imagebitmap width	R	ImageBitmap.width										
 imagedata width	R	ImageData.width										
 offscreencanvas width	R	OffscreenCanvas.width										
-width	R	PointerEvent.width										
 pointerevent width	R	PointerEvent.width										
 screen width	R	Screen.width										
 textmetrics width	R	TextMetrics.width										
@@ -3917,7 +3903,6 @@ number prototype	R	Number.prototype
 object prototype	R	Object.prototype										
 regexp prototype	R	RegExp.prototype										
 string prototype	R	String.prototype										
-value	D								*[[AudioParam.value]] Though value can be set, any modifications happening while there are automation events scheduled — that is, events scheduled using the methods of the AudioParam — are ignored, without raising any exception.\n*[[value]] The BluetoothGATTDescriptor.\n*[[BluetoothRemoteGATTCharacteristic.value]] The BluetoothRemoteGATTCharacteristic.\n*[[DeviceLightEvent.value]] The value property provides the current level of the ambient light.\n*[[DeviceProximityEvent.value]] The value property of DeviceProximityEvent objects provides the current distance between the device and the detected object, in centimeters.\n*[[GamepadButton.value]] The GamepadButton.\n*[[IDBCursorWithValue.value]] The value of the current cursor.\n*[[value]] The value attribute MUST return the last value it was set to.\n*[[RadioNodeList.value]] If the underlying element collection contains radio buttons, the RadioNodeList.			
 audioparam value	R	AudioParam.value										
 bluetoothgattdescriptor value	R	value										
 bluetoothremotegattcharacteristic value	R	BluetoothRemoteGATTCharacteristic.value										
@@ -3927,7 +3912,6 @@ gamepadbutton value	R	GamepadButton.value
 idbcursorwithvalue value	R	IDBCursorWithValue.value										
 presentationavailability value	R	value										
 radionodelist value	R	RadioNodeList.value										
-error	D								*[[Console.error()]] Outputs an error message to the Web Console.\n*[[FileReader.error]] Returns the error that occurred while reading the file.\n*[[HTMLMediaElement.error]] The HTMLMediaElement.\n*[[IDBRequest.error]] A DOMError containing the relevant error.\n*[[IDBTransaction.error]] A DOMError containing the relevant error.\n*[[Response.error()]] The error() method of the Response interface returns a new Response object associated with a network error.\n*[[SpeechRecognitionError.error]] The error read-only property of the SpeechRecognitionError interface returns the type of error raised.\n*[[SpeechSynthesisErrorEvent.error]] The error property of the SpeechSynthesisErrorEvent interface returns an error code indicating what has gone wrong with a speech synthesis attempt.\n*[[Error]] The Error constructor creates an error object.			
 console error	R	Console.error()										
 filereader error	R	FileReader.error										
 htmlmediaelement error	R	HTMLMediaElement.error										
@@ -3950,26 +3934,21 @@ string tosource	R	String.prototype.toSource()
 height	D								*[[Document.height]] Returns the height of the document object.\n*[[DOMRectReadOnly.height]] The height read-only property of the DOMRectReadOnly interface represents the height of the DOMRect.\n*[[HTMLCanvasElement.height]] The HTMLCanvasElement.\n*[[ImageBitmap.height]] The read-only ImageBitmap.\n*[[ImageData.height]] The readonly ImageData.\n*[[OffscreenCanvas.height]] The height property returns and sets the height of an OffscreenCanvas object.\n*[[PointerEvent.height]] The height of the pointer's contact geometry, along the Y axis (in CSS pixels).\n*[[Screen.height]] Returns the height of the screen in pixels.			
 document height	R	Document.height										
 domrectreadonly height	R	DOMRectReadOnly.height										
-height	R	HTMLCanvasElement.height										
 htmlcanvaselement height	R	HTMLCanvasElement.height										
 imagebitmap height	R	ImageBitmap.height										
 imagedata height	R	ImageData.height										
 offscreencanvas height	R	OffscreenCanvas.height										
-height	R	PointerEvent.height										
 pointerevent height	R	PointerEvent.height										
 screen height	R	Screen.height										
 item	D								*[[CSSValueList.item()]] The item() method of the CSSValueList interface is used to retrieve a CSSValue by ordinal index.\n*[[HTMLCollection.item]] HTMLCollection.\n*[[HTMLSelectElement.item()]] The HTMLSelectElement.\n*[[NodeList.item()]] Returns a node from a NodeList by index.\n*[[SpeechGrammarList.item()]] The item getter of the SpeechGrammarList interface is a standard getter — it allows individual SpeechGrammar objects to be retrieved from the SpeechGrammarList using array syntax.\n*[[SpeechRecognitionResult.item()]] The item getter of the SpeechRecognitionResult interface is a standard getter that allows SpeechRecognitionAlternative objects within the result to be accessed via array syntax.\n*[[SpeechRecognitionResultList.item()]] The item getter of the SpeechRecognitionResultList interface is a standard getter — it allows SpeechRecognitionResult objects in the list to be accessed via array syntax.\n*[[TouchList.item()]] Returns the Touch object at the specified index in the TouchList.			
 cssvaluelist item	R	CSSValueList.item()										
 htmlcollection item	R	HTMLCollection.item										
-item	R	HTMLSelectElement.item()										
 htmlselectelement item	R	HTMLSelectElement.item()										
-item	R	NodeList.item()										
 nodelist item	R	NodeList.item()										
 speechgrammarlist item	R	SpeechGrammarList.item()										
 speechrecognitionresult item	R	SpeechRecognitionResult.item()										
 speechrecognitionresultlist item	R	SpeechRecognitionResultList.item()										
 touchlist item	R	TouchList.item()										
-abort	D								*[[FileReader.abort()]] The abort method aborts the read operation.\n*[[IDBTransaction.abort()]] All pending IDBRequest objects created during this transaction have their IDBRequest.\n*[[LockedFile.abort()]] The abort method is used to release the lock on the LockedFile object, making it inactive: its active property is set to false and all ongoing operations are canceled.\n*[[abort]] The PaymentRequest.\n*[[SourceBuffer.abort()]] The abort() method of the SourceBuffer interface aborts the current segment and resets the segment parser.\n*[[SpeechRecognition.abort()]] The abort() method of the Web Speech API stops the speech recognition service from listening to incoming audio, and doesn't attempt to return a SpeechRecognitionResult.\n*[[XDomainRequest.abort()]] Aborts an XDomainRequest.\n*[[XMLHttpRequest.abort()]] The XMLHttpRequest.			
 filereader abort	R	FileReader.abort()										
 idbtransaction abort	R	IDBTransaction.abort()										
 lockedfile abort	R	LockedFile.abort()										
@@ -3987,7 +3966,6 @@ idbindex get	R	IDBIndex.get()
 idbobjectstore get	R	IDBObjectStore.get()										
 identitymanager get	R	IdentityManager.get()										
 urlsearchparams get	R	URLSearchParams.get()										
-url	D								*[[Client.url]] The url read-only property of the Client interface returns the URL of the current service worker client.\n*[[Document.URL]] The URL read-only property of the Document interface returns the document location as a string.\n*[[Request.url]] The url read-only property of the Request interface contains the URL of the request.\n*[[Response.url]] The url read-only property of the Response interface contains the URL of the response.\n*[[RTCIceServer.url]] The obsolete RTCIceServer dictionary's url property specifies the URL of a single ICE server to be used while negotiating connections.\n*[[URL]] The URL interface represent an object providing static methods used for creating object URLs.\n*[[URL()]] The URL() constructor returns a newly created URL object representing the URL defined by the parameters.\n*[[Window.URL]] The Window.			
 client url	R	Client.url										
 document url	R	Document.URL										
 request url	R	Request.url										
@@ -3999,7 +3977,6 @@ window url	R	Window.URL
 readystate	D								*[[Document.readyState]] The Document.\n*[[FileReader.readyState]] Provides the current state of the reading operation.\n*[[HTMLMediaElement.readyState]] The HTMLMediaElement.\n*[[IDBRequest.readyState]] The IDBRequestReadyState of the request, which takes one of the following two values:\n*[[MediaSource.readyState]] The readyState read-only property of the MediaSource interface returns an enum representing the state of the current MediaSource.\n*[[MediaStreamTrack.readyState]] The read-only property MediaStreamTrack.\n*[[RTCDataChannel.readyState]] The read-only RTCDataChannel property readyState returns an enum of type RTCDataChannelState which indicates the state of the data channel's underlying data connection.\n*[[XMLHttpRequest.readyState]] The XMLHttpRequest.			
 document readystate	R	Document.readyState										
 filereader readystate	R	FileReader.readyState										
-readyState	R	HTMLMediaElement.readyState										
 htmlmediaelement readystate	R	HTMLMediaElement.readyState										
 idbrequest readystate	R	IDBRequest.readyState										
 mediasource readystate	R	MediaSource.readyState										
@@ -4019,7 +3996,6 @@ cachestorage open	R	CacheStorage.open()
 document open	R	Document.open()										
 idbfactory open	R	IDBFactory.open()										
 idbmutablefile open	R	FileHandle.open()										
-open	R	Window.open()										
 window open	R	Window.open()										
 xdomainrequest open	R	XDomainRequest.open()										
 xmlhttprequest open	R	XMLHttpRequest.open()										
@@ -4031,7 +4007,6 @@ rtcdatachannel onmessage	R	RTCDataChannel.onmessage
 serviceworkercontainer onmessage	R	ServiceWorkerContainer.onmessage										
 global onmessage	R	ServiceWorkerGlobalScope.onmessage										
 worker onmessage	R	Worker.onmessage										
-start	D								*[[AudioBufferSourceNode.start()]] The most simple example just starts the audio buffer playing from the beginning — you don't need to specify any parameters in this case:\n*[[MediaRecorder.start()]] The MediaRecorder.\n*[[MessagePort.start()]] The start() method of the MessagePort interface starts the sending of messages queued on the port.\n*[[OscillatorNode.start()]] The following example shows basic usage of an AudioContext to create an oscillator node.\n*[[start]] When the start method is called, the user agent MUST run the following steps to start a presentation :\n*[[SpeechRecognition.start()]] The start() method of the Web Speech API starts the speech recognition service listening to incoming audio with intent to recognize grammars associated with the current SpeechRecognition.\n*[[TimeRanges.start()]] Returns the time offset at which a specified time range begins.			
 audiobuffersourcenode start	R	AudioBufferSourceNode.start()										
 mediarecorder start	R	MediaRecorder.start()										
 messageport start	R	MessagePort.start()										
@@ -4056,39 +4031,27 @@ urlsearchparams keys	R	URLSearchParams.keys()
 array keys	R	Array.prototype.keys()										
 object keys	R	Object.keys										
 stop	D								*[[AudioBufferSourceNode.stop()]] The most simple example just stops the audio buffer playing immediately — you don't need to specify any parameters in this case:\n*[[HTMLIFrameElement.stop()]] The stop() method of the HTMLIFrameElement interface is used to stop loading the content of the iframe.\n*[[MediaRecorder.stop()]] The MediaRecorder.\n*[[MediaStreamTrack.stop()]] The MediaStreamTrack.\n*[[OscillatorNode.stop()]] The following example shows basic usage of an AudioContext to create an oscillator node.\n*[[SpeechRecognition.stop()]] The start() method of the Web Speech API stops the speech recognition service from listening to incoming audio, and attempts to return a SpeechRecognitionResult using the audio captured so far.\n*[[Window.stop()]] This method stops window loading.			
-stop	R	AudioBufferSourceNode.stop()										
 audiobuffersourcenode stop	R	AudioBufferSourceNode.stop()										
-stop	R	HTMLIFrameElement.stop()										
 htmliframeelement stop	R	HTMLIFrameElement.stop()										
 mediarecorder stop	R	MediaRecorder.stop()										
 mediastreamtrack stop	R	MediaStreamTrack.stop()										
-stop	R	OscillatorNode.stop()										
 oscillatornode stop	R	OscillatorNode.stop()										
 speechrecognition stop	R	SpeechRecognition.stop()										
-stop	R	Window.stop()										
 window stop	R	Window.stop()										
 data	D								*[[BlobEvent.data]] The BlobEvent.\n*[[ExtendableMessageEvent.data]] The data read-only property of the ExtendableMessageEvent interface returns the event's data.\n*[[ImageData.data]] The readonly ImageData.\n*[[Notification.data]] The data read-only property of the Notification interface returns a structured clone of the notification's data, as specified in the data option of the Notification() constructor.\n*[[PushEvent.data]] The data read-only property of the PushEvent interface returns a reference to a PushMessageData object containing data sent to the PushSubscription.\n*[[ServiceWorkerMessageEvent.data]] The data read-only property of the ServiceWorkerMessageEvent interface returns the event's data.			
-data	R	BlobEvent.data										
 blobevent data	R	BlobEvent.data										
-data	R	ExtendableMessageEvent.data										
 extendablemessageevent data	R	ExtendableMessageEvent.data										
 imagedata data	R	ImageData.data										
 notification data	R	Notification.data										
-data	R	PushEvent.data										
 pushevent data	R	PushEvent.data										
-data	R	ServiceWorkerMessageEvent.data										
 serviceworkermessageevent data	R	ServiceWorkerMessageEvent.data										
 origin	D								*[[Document.origin]] The Document.\n*[[ExtendableMessageEvent.origin]] The origin read-only property of the ExtendableMessageEvent interface returns the origin of the ServiceWorkerClient that sent the message.\n*[[HTMLHyperlinkElementUtils.origin]] The HTMLHyperlinkElementUtils.\n*[[ServiceWorkerMessageEvent.origin]] The origin read-only property of the ServiceWorkerMessageEvent interface returns the origin of the service worker's environment settings object.\n*[[URL.origin]] The URL.\n*[[URLUtilsReadOnly.origin]] The URLUtilsReadOnly.			
 document origin	R	Document.origin										
-origin	R	ExtendableMessageEvent.origin										
 extendablemessageevent origin	R	ExtendableMessageEvent.origin										
-origin	R	HTMLHyperlinkElementUtils.origin										
 htmlhyperlinkelementutils origin	R	HTMLHyperlinkElementUtils.origin										
-origin	R	ServiceWorkerMessageEvent.origin										
 serviceworkermessageevent origin	R	ServiceWorkerMessageEvent.origin										
 url origin	R	URL.origin										
 urlutilsreadonly origin	R	URLUtilsReadOnly.origin										
-duration	D								*[[Duration]] The duration property of the Web Animations API represents the duration in milliseconds to complete a single iteration of the animation.\n*[[AnimationEffectTimingReadOnly.duration]] The duration property of AnimationEffectTimingReadOnly represents the duration in milliseconds to complete a single iteration of the animation.\n*[[AudioBuffer.duration]] A double.\n*[[HTMLMediaElement.duration]] The HTMLMediaElement.\n*[[MediaSource.duration]] The duration property of the MediaSource interface gets and sets the duration of the current media being presented.\n*[[PerformanceEntry.duration]] The duration property returns a timestamp that is the duration of the performance entry.			
 animationeffecttimingproperties duration	R	Duration										
 animationeffecttimingreadonly duration	R	AnimationEffectTimingReadOnly.duration										
 audiobuffer duration	R	AudioBuffer.duration										
@@ -4100,10 +4063,8 @@ broadcastchannel postmessage	R	BroadcastChannel.postMessage()
 client postmessage	R	Client.postMessage()										
 global postmessage	R	DedicatedWorkerGlobalScope.postMessage()										
 messageport postmessage	R	MessagePort.postMessage()										
-postMessage	R	Window.postMessage()										
 window postmessage	R	Window.postMessage()										
 worker postmessage	R	Worker.postMessage()										
-timestamp	D								*[[Console.timeStamp()]] Adds a single marker to the browser's Timeline or Waterfall tool.\n*[[Event.timeStamp]] Returns the time (in milliseconds) at which the event was created.\n*[[Gamepad.timestamp]] The Gamepad.\n*[[timestamp]] The timestamp read-only property of the Notification interface returns a DOMTimeStamp, as specified in the timestamp option of the Notification() constructor.\n*[[Position.timestamp]] The Position.\n*[[VRPose.timestamp]] The timestamp read-only property of the VRPose interface returns the current time stamp of the system — a monotonically increasing value representing the time since the current app was started.			
 console timestamp	R	Console.timeStamp()										
 event timestamp	R	Event.timeStamp										
 gamepad timestamp	R	Gamepad.timestamp										
@@ -4118,15 +4079,12 @@ idbobjectstore clear	R	IDBObjectStore.clear()
 storage clear	R	Storage.clear()										
 webglrenderingcontext clear	R	WebGLRenderingContext.clear()										
 source	D								*[[ExtendableMessageEvent.source]] The source read-only property of the ExtendableMessageEvent returns a reference to the Client object from which the message was sent.\n*[[IDBCursor.source]] The IDBObjectStore or IDBIndex that the cursor is iterating over.\n*[[IDBRequest.source]] An object representing the source of the request, such as an IDBIndex, IDBObjectStore or IDBCursor.\n*[[ServiceWorkerMessageEvent.source]] The source read-only property of the ServiceWorkerMessageEvent returns a reference to the ServiceWorker object of the associated service worker that sent the message.\n*[[VRLayer.source]] The source read-only property of the VRLayer interface (dictionary) defines the canvas whose contents will be presented by the VRDisplay.\n*[[RegExp.prototype.source]] The source property returns a String containing the source text of the regexp object, and it doesn't contain the two forward slashes on both sides and any flags.			
-source	R	ExtendableMessageEvent.source										
 extendablemessageevent source	R	ExtendableMessageEvent.source										
 idbcursor source	R	IDBCursor.source										
 idbrequest source	R	IDBRequest.source										
-source	R	ServiceWorkerMessageEvent.source										
 serviceworkermessageevent source	R	ServiceWorkerMessageEvent.source										
 vrlayer source	R	VRLayer.source										
 regexp source	R	RegExp.prototype.source										
-location	D								*[[Document.location]] The Document.\n*[[KeyboardEvent.location]] The KeyboardEvent.\n*[[Location]] The Location interface represents the location (URL) of the object it is linked to.\n*[[LockedFile.location]] The location property is a zero-based index representing the position of the read/write pointer within the file.\n*[[Window.location]] The Window.\n*[[WorkerGlobalScope.location]] The location read-only property of the WorkerGlobalScope interface returns the WorkerLocation associated with the worker.			
 document location	R	Document.location										
 keyboardevent location	R	KeyboardEvent.location										
 api location	R	Location										
@@ -4134,24 +4092,18 @@ lockedfile location	R	LockedFile.location
 window location	R	Window.location										
 global location	R	WorkerGlobalScope.location										
 onabort	D								*[[GlobalEventHandlers.onabort]] An event handler for abort events sent to the window.\n*[[IDBDatabase.onabort]] This example shows an IDBOpenDBRequest.\n*[[FileHandle.onabort]] Specifies an event listener to receive abort events.\n*[[IDBTransaction.onabort]] In the following code snippet, we open a read/write transaction on our database and add some data to an object store.\n*[[LockedFile.onabort]] Specifies an event listener to receive abort events.\n*[[XMLHttpRequestEventTarget.onabort]] The XMLHttpRequestEventTarget.			
-onabort	R	GlobalEventHandlers.onabort										
 global onabort	R	GlobalEventHandlers.onabort										
 idbdatabase onabort	R	IDBDatabase.onabort										
 idbmutablefile onabort	R	FileHandle.onabort										
 idbtransaction onabort	R	IDBTransaction.onabort										
 lockedfile onabort	R	LockedFile.onabort										
-onabort	R	XMLHttpRequestEventTarget.onabort										
 xmlhttprequesteventtarget onabort	R	XMLHttpRequestEventTarget.onabort										
 target	D								*[[Event.target]] A reference to the object that dispatched the event.\n*[[HTMLFormElement.target]] The HTMLFormElement.\n*[[KeyframeEffectReadOnly.target]] The target property of a KeyframeEffectReadOnly or a KeyframeEffect interface represents the element or pseudo-element being animated.\n*[[SVGAElement.target]] The SVGAElement.\n*[[Touch.target]] Returns the Element (EventTarget) on which the touch contact started when it was first placed on the surface, even if the touch point has since moved outside the interactive area of that element or even been removed from the document.			
-target	R	Event.target										
 event target	R	Event.target										
-target	R	HTMLFormElement.target										
 htmlformelement target	R	HTMLFormElement.target										
 keyframeeffectreadonly target	R	KeyframeEffectReadOnly.target										
-target	R	SVGAElement.target										
 svgaelement target	R	SVGAElement.target										
 touch target	R	Touch.target										
-onchange	D								*[[Connection.onchange]] The Connection.\n*[[GlobalEventHandlers.onchange]] The onchange property sets and returns the event handler for the change event.\n*[[NetworkInformation.onchange]] The NetworkInformation.\n*[[PermissionStatus.onchange]] The PermissionStatus.\n*[[onchange]] The onchange attribute is an event handler whose corresponding event handler event type is change.			
 connection onchange	R	Connection.onchange										
 global onchange	R	GlobalEventHandlers.onchange										
 networkinformation onchange	R	NetworkInformation.onchange										
@@ -4170,21 +4122,15 @@ urlsearchparams values	R	URLSearchParams.values()
 array values	R	Array.prototype.values()										
 object values	R	Object.values()										
 referrerpolicy	D								*[[HTMLAnchorElement.referrerPolicy]] The HTMLAnchorElement.\n*[[HTMLAreaElement.referrerPolicy]] The HTMLAreaElement.\n*[[HTMLIFrameElement.referrerPolicy]] The HTMLIFrameElement.\n*[[HTMLImageElement.referrerPolicy]] The HTMLImageElement.\n*[[Request.referrerPolicy]] The referrerPolicy read-only property of the Request interface contains the referrer policy governing the referrer for the  request.			
-referrerPolicy	R	HTMLAnchorElement.referrerPolicy										
 htmlanchorelement referrerpolicy	R	HTMLAnchorElement.referrerPolicy										
-referrerPolicy	R	HTMLAreaElement.referrerPolicy										
 htmlareaelement referrerpolicy	R	HTMLAreaElement.referrerPolicy										
-referrerPolicy	R	HTMLIFrameElement.referrerPolicy										
 htmliframeelement referrerpolicy	R	HTMLIFrameElement.referrerPolicy										
-referrerPolicy	R	HTMLImageElement.referrerPolicy										
 htmlimageelement referrerpolicy	R	HTMLImageElement.referrerPolicy										
 request referrerpolicy	R	Request.referrerPolicy										
 status	D								*[[BluetoothStatusChangedEvent.status]] The status property indicates if the connection is active (true) or not (false).\n*[[PermissionStatus.status]] The PermissionStatus.\n*[[Response.status]] The status read-only property of the Response interface contains the status code of the response (e.\n*[[Window.status]] Sets the text in the status bar at the bottom of the browser or returns the previously set text.\n*[[XMLHttpRequest.status]] The XMLHttpRequest.			
-status	R	BluetoothStatusChangedEvent.status										
 bluetoothstatuschangedevent status	R	BluetoothStatusChangedEvent.status										
 permissionstatus status	R	PermissionStatus.status										
 response status	R	Response.status										
-status	R	Window.status										
 window status	R	Window.status										
 xmlhttprequest status	R	XMLHttpRequest.status										
 valueof	D								*[[Boolean.prototype.valueOf]] The valueOf() method returns the primitive value of a Boolean object.\n*[[Date.prototype.valueOf]] The valueOf() method returns the primitive value of a Date object.\n*[[Number.prototype.valueOf]] The valueOf() method returns the wrapped primitive value of a Number object.\n*[[Object.prototype.valueOf]] The valueOf() method returns the primitive value of the specified object.\n*[[String.prototype.valueOf]] The valueOf() method returns the primitive value of a String object.			
@@ -4194,15 +4140,12 @@ number valueof	R	Number.prototype.valueOf
 object valueof	R	Object.prototype.valueOf										
 string valueof	R	String.prototype.valueOf										
 remove	D								*[[ChildNode.remove()]] The ChildNode.\n*[[DataTransferItemList.remove()]] The DataTransferItemList.\n*[[HTMLSelectElement.remove()]] The HTMLSelectElement.\n*[[remove()]] The MediaKeySession.\n*[[SourceBuffer.remove()]] The remove() method of the SourceBuffer interface removes media segments within a specific time range from the SourceBuffer.			
-remove	R	ChildNode.remove()										
 childnode remove	R	ChildNode.remove()										
 datatransferitemlist remove	R	DataTransferItemList.remove()										
-remove	R	HTMLSelectElement.remove()										
 htmlselectelement remove	R	HTMLSelectElement.remove()										
 mediakeysession remove	R	remove()										
 sourcebuffer remove	R	SourceBuffer.remove()										
 lang	D								*[[HTMLElement.lang]] The HTMLElement.\n*[[Notification.lang]] The lang read-only property of the Notification interface indicates the text direction of the notification, as specified in the lang option of the Notification() constructor.\n*[[SpeechRecognition.lang]] The lang property of the SpeechRecognition interface returns and sets the language of the current SpeechRecognition.\n*[[SpeechSynthesisUtterance.lang]] The lang property of the SpeechSynthesisUtterance interface gets and sets the language of the utterance.\n*[[SpeechSynthesisVoice.lang]] The lang read-only property of the SpeechSynthesisVoice interface returns a BCP 47 language tag indicating the language of the voice.			
-lang	R	HTMLElement.lang										
 htmlelement lang	R	HTMLElement.lang										
 notification lang	R	Notification.lang										
 speechrecognition lang	R	SpeechRecognition.lang										
@@ -4212,7 +4155,6 @@ append	D								*[[FormData.append()]] The append() method of the FormData inter
 formdata append	R	FormData.append()										
 headers append	R	Headers.append()										
 lockedfile append	R	LockedFile.append()										
-append	R	ParentNode.append()										
 parentnode append	R	ParentNode.append()										
 urlsearchparams append	R	URLSearchParams.append()										
 getall	D								*[[FormData.getAll()]] The getAll() method of the FormData interface returns all the values associated with a given key from within a FormData object.\n*[[Headers.getAll()]] The getAll() method of the Headers interface returns an array of all the values of a header within a Headers object with a given name.\n*[[IDBIndex.getAll()]] There is a performance cost associated with looking at the value property of a cursor, because the object is created lazily.\n*[[IDBObjectStore.getAll()]] If a value is successfully found, then a structured clone of it is created and set as the result of the request object.\n*[[URLSearchParams.getAll()]] The getAll() method of the URLSearchParams interface returns all the values associated with a given search parameter as an array.			
@@ -4221,19 +4163,16 @@ headers getall	R	Headers.getAll()
 idbindex getall	R	IDBIndex.getAll()										
 idbobjectstore getall	R	IDBObjectStore.getAll()										
 urlsearchparams getall	R	URLSearchParams.getAll()										
-text	D								*[[Body.text()]] The text() method of the Body mixin takes a Response stream and reads it to completion.\n*[[PushMessageData.text()]] The text() method of the PushMessageData interface extracts push message data as a plain text string.\n*[[SpeechSynthesisUtterance.text]] The text property of the SpeechSynthesisUtterance interface gets and sets the text that will be synthesised when the utterance is spoken.\n*[[Text]] The Text interface represents the textual content of Element or Attr.\n*[[Text()]] The Text() constructor returns a newly created Text object with the optional DOMString given in parameter as its textual content.			
 body text	R	Body.text()										
 pushmessagedata text	R	PushMessageData.text()										
 speechsynthesisutterance text	R	SpeechSynthesisUtterance.text										
 api text	R	Text										
 text text	R	Text()										
-state	D								*[[AudioContext.state]] A DOMString.\n*[[MediaRecorder.state]] The MediaRecorder.\n*[[PermissionStatus.state]] The PermissionStatus.\n*[[state]] The state attribute represents the presentation connection 's current state.\n*[[ServiceWorker.state]] The state read-only property of the ServiceWorker interface returns a string representing the current state of the service worker.			
 audiocontext state	R	AudioContext.state										
 mediarecorder state	R	MediaRecorder.state										
 permissionstatus state	R	PermissionStatus.state										
 presentationconnection state	R	state										
 serviceworker state	R	ServiceWorker.state										
-prefix	D								*[[Attr.prefix]] The Attr.\n*[[prefix]] The CSSNamespaceRule.\n*[[Element.prefix]] The Element.\n*[[Node.prefix]] The Node.			
 attr prefix	R	Attr.prefix										
 cssnamespacerule prefix	R	prefix										
 element prefix	R	Element.prefix										
@@ -4245,7 +4184,6 @@ offlineaudiocontext resume	R	OfflineAudioContext.resume()
 speechsynthesis resume	R	SpeechSynthesis.resume()										
 filter	D								*[[CanvasRenderingContext2D.filter]] The CanvasRenderingContext2D.\n*[[NodeIterator.filter]] The NodeIterator.\n*[[TreeWalker.filter]] The TreeWalker.\n*[[Array.prototype.filter]] The filter() method creates a new array with all elements that pass the test implemented by the provided function.			
 canvasrenderingcontext2d filter	R	CanvasRenderingContext2D.filter										
-filter	R	NodeIterator.filter										
 nodeiterator filter	R	NodeIterator.filter										
 treewalker filter	R	TreeWalker.filter										
 array filter	R	Array.prototype.filter										
@@ -4255,54 +4193,42 @@ formdata has	R	FormData.has()
 headers has	R	Headers.has()										
 urlsearchparams has	R	URLSearchParams.has()										
 protocol	D								*[[HTMLHyperlinkElementUtils.protocol]] The HTMLHyperlinkElementUtils.\n*[[RTCDataChannel.protocol]] The read-only RTCDataChannel property protocol returns a DOMString containing the name of the subprotocol in use.\n*[[RTCIdentityErrorEvent.protocol]] The read-only property RTCIdentityErrorEvent.\n*[[URLUtilsReadOnly.protocol]] The URLUtilsReadOnly.			
-protocol	R	HTMLHyperlinkElementUtils.protocol										
 htmlhyperlinkelementutils protocol	R	HTMLHyperlinkElementUtils.protocol										
 rtcdatachannel protocol	R	RTCDataChannel.protocol										
-protocol	R	RTCIdentityErrorEvent.protocol										
 rtcidentityerrorevent protocol	R	RTCIdentityErrorEvent.protocol										
 urlutilsreadonly protocol	R	URLUtilsReadOnly.protocol										
 onload	D								*[[FileReader.onload]] The FileReader.\n*[[GlobalEventHandlers.onload]] An event handler for the load event of a window.\n*[[XDomainRequest.onload]] An event handler for when an XDomainRequest has finished receiving the response from the server.\n*[[XMLHttpRequestEventTarget.onload]] The XMLHttpRequestEventTarget.			
 filereader onload	R	FileReader.onload										
-onload	R	GlobalEventHandlers.onload										
 global onload	R	GlobalEventHandlers.onload										
 xdomainrequest onload	R	XDomainRequest.onload										
-onload	R	XMLHttpRequestEventTarget.onload										
 xmlhttprequesteventtarget onload	R	XMLHttpRequestEventTarget.onload										
 stream	D								*[[MediaRecorder.stream]] The MediaRecorder.\n*[[MediaStreamAudioDestinationNode.stream]] A MediaStream.\n*[[MediaStreamEvent.stream]] The read-only property MediaStreamEvent.\n*[[RTCDataChannel.stream]] The deprecated (and never part of the official specification) read-only RTCDataChannel property stream returns an ID number (between 0 and 65,535) which uniquely identifies the RTCDataChannel.			
 mediarecorder stream	R	MediaRecorder.stream										
-stream	R	MediaStreamAudioDestinationNode.stream										
 mediastreamaudiodestinationnode stream	R	MediaStreamAudioDestinationNode.stream										
-stream	R	MediaStreamEvent.stream										
 mediastreamevent stream	R	MediaStreamEvent.stream										
 rtcdatachannel stream	R	RTCDataChannel.stream										
-message	D								*[[message]] The MediaKeyMessageEvent.\n*[[PositionError.message]] The PositionError.\n*[[SpeechRecognitionError.message]] The message read-only property of the SpeechRecognitionError interface returns a message describing the error in more detail.\n*[[Error.prototype.message]] The message property is a human-readable description of the error.			
 mediakeymessageevent message	R	message										
 positionerror message	R	PositionError.message										
 speechrecognitionerror message	R	SpeechRecognitionError.message										
 error message	R	Error.prototype.message										
 title	D								*[[Document.title]] Gets or sets the title of the document.\n*[[HTMLElement.title]] The HTMLElement.\n*[[Notification.title]] The title read-only property of the Notification interface indicates the title of the notification, as specified in the title parameter of the Notification() constructor.\n*[[StyleSheet.title]] title returns the advisory title of the current style sheet.			
 document title	R	Document.title										
-title	R	HTMLElement.title										
 htmlelement title	R	HTMLElement.title										
 notification title	R	Notification.title										
 stylesheet title	R	StyleSheet.title										
 dir	D								*[[Console.dir()]] Displays an interactive list of the properties of the specified JavaScript object.\n*[[Document.dir]] The Document.\n*[[HTMLElement.dir]] The HTMLElement.\n*[[Notification.dir]] The dir read-only property of the Notification interface indicates the text direction of the notification, as specified in the dir option of the Notification() constructor.			
 console dir	R	Console.dir()										
 document dir	R	Document.dir										
-dir	R	HTMLElement.dir										
 htmlelement dir	R	HTMLElement.dir										
 notification dir	R	Notification.dir										
-direction	D								*[[Direction]] The direction property of the Web Animations API represents the direction of the animation's playback along its timeline and its behavior after completing each iteration.\n*[[AnimationEffectTimingReadOnly.direction]] The direction property of the AnimationEffectTimingReadOnly dictionary object represents the direction of the animation's playback along its timeline and its behavior after completing each iteration.\n*[[CanvasRenderingContext2D.direction]] The CanvasRenderingContext2D.\n*[[IDBCursor.direction]] A string (defined by the IDBCursorDirection enum) indicating the direction in which the cursor is traversing the data.			
 animationeffecttimingproperties direction	R	Direction										
 animationeffecttimingreadonly direction	R	AnimationEffectTimingReadOnly.direction										
 canvasrenderingcontext2d direction	R	CanvasRenderingContext2D.direction										
 idbcursor direction	R	IDBCursor.direction										
-blob	D								*[[Blob]] A Blob object represents a file-like object of immutable, raw data.\n*[[Blob()]] The Blob() constructor returns a new Blob object.\n*[[Body.blob()]] The blob() method of the Body mixin takes a Response stream and reads it to completion.\n*[[PushMessageData.blob()]] The blob() method of the PushMessageData interface extracts push message data as a Blob object.			
 api blob	R	Blob										
 blob blob	R	Blob()										
 body blob	R	Body.blob()										
 pushmessagedata blob	R	PushMessageData.blob()										
-fill	D								*[[Fill]] The fill property of the Web Animations API dictates how and when the animation's effects should be reflected by the element(s) visual state.\n*[[AnimationEffectTimingReadOnly.fill]] The fill property of AnimationEffectTimingReadOnly dictates how and when the animation's effects should be reflected by the element(s) visual state.\n*[[CanvasRenderingContext2D.fill()]] The CanvasRenderingContext2D.\n*[[Array.prototype.fill()]] The fill() method fills all the elements of an array from a start index to an end index with a static value.			
 animationeffecttimingproperties fill	R	Fill										
 animationeffecttimingreadonly fill	R	AnimationEffectTimingReadOnly.fill										
 canvasrenderingcontext2d fill	R	CanvasRenderingContext2D.fill()										
@@ -4312,7 +4238,6 @@ array tolocalestring	R	Array.prototype.toLocaleString
 date tolocalestring	R	Date.prototype.toLocaleString										
 number tolocalestring	R	Number.prototype.toLocaleString										
 object tolocalestring	R	Object.prototype.toLocaleString										
-headers	D								*[[Headers]] The Headers interface of the Fetch API allows you to perform various actions on HTTP request and response headers.\n*[[Headers()]] The Headers() constructor creates a new Headers object.\n*[[Request.headers]] The headers read-only property of the Request interface contains the Headers object associated with the request.\n*[[Response.headers]] The headers read-only property of the Response interface contains the Headers object associated with the response.			
 api headers	R	Headers										
 headers headers	R	Headers()										
 request headers	R	Request.headers										
@@ -4321,9 +4246,7 @@ x	D								*[[DeviceAcceleration.x]] This read-only property indicates the amoun
 deviceacceleration x	R	DeviceAcceleration.x										
 dompointreadonly x	R	DOMPoint.x										
 domrectreadonly x	R	DOMRectReadOnly.x										
-x	R	MouseEvent.x										
 mouseevent x	R	MouseEvent.x										
-set	D								*[[FormData.set()]] The set() method of the FormData interface sets a new value for an existing key inside a FormData object, or adds the key/value if it does not already exist.\n*[[Headers.set()]] The set() method of the Headers interface sets a new value for an existing header inside a Headers object, or adds the header if it does not already exist.\n*[[URLSearchParams.set()]] The set() method of the URLSearchParams interface sets the value associated with a given search parameter to the given value.\n*[[Set]] The Set object lets you store unique values of any type, whether primitive values or object references.			
 formdata set	R	FormData.set()										
 headers set	R	Headers.set()										
 urlsearchparams set	R	URLSearchParams.set()										
@@ -4332,31 +4255,25 @@ y	D								*[[DeviceAcceleration.y]] This read-only property indicates the amoun
 deviceacceleration y	R	DeviceAcceleration.y										
 dompointreadonly y	R	DOMPoint.y										
 domrectreadonly y	R	DOMRectReadOnly.y										
-y	R	MouseEvent.y										
 mouseevent y	R	MouseEvent.y										
-send	D								*[[send]] The PresentationConnection.\n*[[RTCDataChannel.send()]] The send() method of the RTCDataChannel interface sends data across the data channel to the remote peer.\n*[[XDomainRequest.send()]] Sends an XDomainRequest which has previously been opened calling XDomainRequest.\n*[[XMLHttpRequest.send()]] The XMLHttpRequest.			
 presentationconnection send	R	send										
 rtcdatachannel send	R	RTCDataChannel.send()										
 xdomainrequest send	R	XDomainRequest.send()										
 xmlhttprequest send	R	XMLHttpRequest.send()										
 currenttime	D								*[[Animation.currentTime]] The Animation.\n*[[AnimationPlaybackEvent.currentTime]] The currentTime read-only property of the AnimationPlaybackEvent interface represents the current time of the animation that generated the event at the moment the event is queued.\n*[[AnimationTimeline.currentTime]] The currentTime read only property of the AnimationTimeline interface returns the current time value for the associated timeline in milliseconds or null if the timeline is inactive.\n*[[HTMLMediaElement.currentTime]] The HTMLMediaElement.			
 animation currenttime	R	Animation.currentTime										
-currentTime	R	AnimationPlaybackEvent.currentTime										
 animationplaybackevent currenttime	R	AnimationPlaybackEvent.currentTime										
 animationtimeline currenttime	R	AnimationTimeline.currentTime										
-currentTime	R	HTMLMediaElement.currentTime										
 htmlmediaelement currenttime	R	HTMLMediaElement.currentTime										
 mode	D								*[[IDBTransaction.mode]] An IDBTransactionMode object defining the mode for isolating access to data in the current object stores:\n*[[LockedFile.mode]] The mode property provides the read/write status of the LockedFile file.\n*[[Request.mode]] The mode read-only property of the Request interface contains the mode of the request (e.\n*[[SourceBuffer.mode]] The mode property of the SourceBuffer interface controls whether media segments can be appended to the SourceBuffer in any order, or in a strict sequence.			
 idbtransaction mode	R	IDBTransaction.mode										
 lockedfile mode	R	LockedFile.mode										
 request mode	R	Request.mode										
 sourcebuffer mode	R	SourceBuffer.mode										
-namespaceuri	D								*[[Attr.namespaceURI]] The Attr.\n*[[namespaceURI]] The CSSNamespaceRule.\n*[[Element.namespaceURI]] The Element.\n*[[Node.namespaceURI]] The Node.			
 attr namespaceuri	R	Attr.namespaceURI										
 cssnamespacerule namespaceuri	R	namespaceURI										
 element namespaceuri	R	Element.namespaceURI										
 node namespaceuri	R	Node.namespaceURI										
-request	D								*[[FetchEvent.request]] The request read-only property of the FetchEvent interface returns the Request that triggered the event handler.\n*[[IdentityManager.request()]] This function enables a web site to use Persona to authenticate its users.\n*[[Request]] The Request interface of the Fetch API represents a resource request.\n*[[Request()]] The Request() constructor creates a new Request object.			
 fetchevent request	R	FetchEvent.request										
 identitymanager request	R	IdentityManager.request()										
 api request	R	Request										
@@ -4364,7 +4281,6 @@ request request	R	Request()
 add	D								*[[Cache.add()]] The add() method of the Cache interface takes a URL, retrieves it and adds the resulting response object to the given cache.\n*[[DataTransferItemList.add()]] The DataTransferItemList.\n*[[HTMLSelectElement.add()]] The HTMLSelectElement.\n*[[IDBObjectStore.add()]] To determine if the add operation has completed successfully, listen for the transaction’s complete event in addition to the IDBObjectStore.			
 cache add	R	Cache.add()										
 datatransferitemlist add	R	DataTransferItemList.add()										
-add	R	HTMLSelectElement.add()										
 htmlselectelement add	R	HTMLSelectElement.add()										
 idbobjectstore add	R	IDBObjectStore.add()										
 count	D								*[[Console.count()]] Logs the number of times that this particular call to count() has been called.\n*[[IDBIndex.count()]] A IDBRequest object on which subsequent events related to this operation are fired.\n*[[IDBObjectStore.count()]] An IDBRequest object on which subsequent events related to this operation are fired.\n*[[Object.prototype.__count__]] The __count__ property used to store the count of enumerable properties on the object, but it has been removed.			
@@ -4373,12 +4289,10 @@ idbindex count	R	IDBIndex.count()
 idbobjectstore count	R	IDBObjectStore.count()										
 object count	R	Object.prototype.__count__										
 onclose	D								*[[GlobalEventHandlers.onclose]] An event handler for close events sent to the window.\n*[[Notification.onclose]] The onclose property of the Notification interface specifies an event listener to receive close events.\n*[[RTCDataChannel.onclose]] The RTCDataChannel.\n*[[WorkerGlobalScope.onclose]] The onclose property of the WorkerGlobalScope interface represents an EventHandler to be called when the close event occurs and bubbles through the Worker.			
-onclose	R	GlobalEventHandlers.onclose										
 global onclose	R	GlobalEventHandlers.onclose										
 notification onclose	R	Notification.onclose										
 rtcdatachannel onclose	R	RTCDataChannel.onclose										
 global onclose	R	WorkerGlobalScope.onclose										
-active	D								*[[LockedFile.active]] The active property allows to know if the LockedFile object is still usable (true) or not (false).\n*[[active]] The active read-only property of the MediaStream interface returns a Boolean value that will return to be true if the MediaStream is active, else false.\n*[[ServiceWorkerRegistration.active]] The active property of the ServiceWorkerRegistration interface returns a service worker whose ServiceWorker.			
 lockedfile active	R	LockedFile.active										
 mediastream active	R	active										
 serviceworkerregistration active	R	ServiceWorkerRegistration.active										
@@ -4386,7 +4300,6 @@ replace	D								*[[DOMTokenList.replace()]] The replace () method of the DOMTok
 domtokenlist replace	R	DOMTokenList.replace()										
 location replace	R	Location.replace()										
 string replace	R	String.prototype.replace										
-uuid	D								*[[uuid]] The BluetoothGATTDescriptor.\n*[[uuid]] The BluetoothGATTService.\n*[[BluetoothRemoteGATTCharacteristic.uuid]] The BluetoothRemoteGATTCharacteristic.			
 bluetoothgattdescriptor uuid	R	uuid										
 bluetoothgattservice uuid	R	uuid										
 bluetoothremotegattcharacteristic uuid	R	BluetoothRemoteGATTCharacteristic.uuid										
@@ -4394,7 +4307,6 @@ oncomplete	D								*[[IDBTransaction.oncomplete]] The oncomplete event handler 
 idbtransaction oncomplete	R	IDBTransaction.oncomplete										
 lockedfile oncomplete	R	LockedFile.oncomplete										
 offlineaudiocontext oncomplete	R	OfflineAudioContext.oncomplete										
-unregister	D								*[[PushManager.unregister()]] The unregister() method was used to ask the system to unregister and delete the specified endpoint.\n*[[ServiceWorkerRegistration.unregister()]] The unregister method of the ServiceWorkerRegistration interface unregisters the service worker registration and returns a Promise.\n*[[unregister]] The unregister() method of the SyncRegistration interface returns a Promise that resolves to a  Boolean indicating whether the SyncRegistration object was unregistered.			
 pushmanager unregister	R	PushManager.unregister()										
 serviceworkerregistration unregister	R	ServiceWorkerRegistration.unregister()										
 syncregistration unregister	R	unregister										
@@ -4405,49 +4317,36 @@ xmlhttprequest timeout	R	XMLHttpRequest.timeout
 top	D								*[[DOMRectReadOnly.top]] The top read-only property of the DOMRectReadOnly interface returns the top coordinate value of the DOMRect.\n*[[Screen.top]] Returns the distance in pixels from the top side of the current screen.\n*[[Window.top]] Returns a reference to the topmost window in the window hierarchy.			
 domrectreadonly top	R	DOMRectReadOnly.top										
 screen top	R	Screen.top										
-top	R	Window.top										
 window top	R	Window.top										
 playbackrate	D								*[[Animation.playbackRate]] The Animation.\n*[[AudioBufferSourceNode.playbackRate]] The default value is 1.\n*[[HTMLMediaElement.playbackRate]] The HTMLMediaElement.			
 animation playbackrate	R	Animation.playbackRate										
-playbackRate	R	AudioBufferSourceNode.playbackRate										
 audiobuffersourcenode playbackrate	R	AudioBufferSourceNode.playbackRate										
-playbackRate	R	HTMLMediaElement.playbackRate										
 htmlmediaelement playbackrate	R	HTMLMediaElement.playbackRate										
 screeny	D								*[[MouseEvent.screenY]] The MouseEvent.\n*[[Touch.screenY]] Returns the Y coordinate of the touch point relative to the screen, not including any scroll offset.\n*[[Window.screenY]] The Window.			
-screenY	R	MouseEvent.screenY										
 mouseevent screeny	R	MouseEvent.screenY										
 touch screeny	R	Touch.screenY										
-screenY	R	Window.screenY										
 window screeny	R	Window.screenY										
-notification	D								*[[Notification]] The Notification interface of the Notifications API is used to configure and display desktop notifications to the user.\n*[[Notification.Notification()]] The Notification() constructor creates a new Notification object instance.\n*[[NotificationEvent.notification]] The notification read-only property of the NotificationEvent interface returns the Notification that was clicked to fire the event.			
 api notification	R	Notification										
 notification notification	R	Notification.Notification()										
 notificationevent notification	R	NotificationEvent.notification										
 queryselectorall	D								*[[Document.querySelectorAll()]] Returns a list of the elements within the document (using depth-first pre-order traversal of the document's nodes) that match the specified group of selectors.\n*[[DocumentFragment.querySelectorAll()]] The DocumentFragment.\n*[[Element.querySelectorAll()]] Returns a non-live NodeList of all elements descended from the element on which it is invoked that match the specified group of CSS selectors.			
 document queryselectorall	R	Document.querySelectorAll()										
 documentfragment queryselectorall	R	DocumentFragment.querySelectorAll()										
-querySelectorAll	R	Element.querySelectorAll()										
 element queryselectorall	R	Element.querySelectorAll()										
 update	D								*[[IDBCursor.update()]] The update() method of the IDBCursor interface returns an IDBRequest object, and, in a separate thread, updates the value at the current position of the cursor in the object store.\n*[[update()]] The MediaKeySession.\n*[[ServiceWorkerRegistration.update()]] The update method of the ServiceWorkerRegistration interface attempts to update the service worker.			
 idbcursor update	R	IDBCursor.update()										
 mediakeysession update	R	update()										
 serviceworkerregistration update	R	ServiceWorkerRegistration.update()										
 focus	D								*[[HTMLElement.focus()]] The HTMLElement.\n*[[Window.focus()]] Makes a request to bring the window to the front.\n*[[WindowClient.focus()]] The focus() method of the WindowClient interface gives user input focus to the current client and returns a Promise that resolves to the existing WindowClient.			
-focus	R	HTMLElement.focus()										
 htmlelement focus	R	HTMLElement.focus()										
-focus	R	Window.focus()										
 window focus	R	Window.focus()										
-focus	R	WindowClient.focus()										
 windowclient focus	R	WindowClient.focus()										
 onprogress	D								*[[FileRequest.onprogress]] This property specifies a callback function to be run repeatedly while the operation represented by a FileRequest object is in progress.\n*[[XDomainRequest.onprogress]] This method is called periodically as an event handler for progress events on XDomainRequest s, so that code can monitor progress while loading content.\n*[[XMLHttpRequestEventTarget.onprogress]] The XMLHttpRequestEventTarget.			
 filerequest onprogress	R	FileRequest.onprogress										
 xdomainrequest onprogress	R	XDomainRequest.onprogress										
-onprogress	R	XMLHttpRequestEventTarget.onprogress										
 xmlhttprequesteventtarget onprogress	R	XMLHttpRequestEventTarget.onprogress										
 normalize	D								*[[ConvolverNode.normalize]] A boolean.\n*[[Node.normalize()]] The Node.\n*[[String.prototype.normalize()]] The normalize() method returns the Unicode Normalization Form of a given string (if the value isn't a string, it will be converted to one first).			
-normalize	R	ConvolverNode.normalize										
 convolvernode normalize	R	ConvolverNode.normalize										
-normalize	R	Node.normalize()										
 node normalize	R	Node.normalize()										
 string normalize	R	String.prototype.normalize()										
 clone	D								*[[MediaStreamTrack.clone()]] The clone method of the MediaStreamTrack interface returns a duplicate of the MediaStreamTrack.\n*[[Request.clone()]] The clone() method of the Request interface creates a copy of the current Request object.\n*[[Response.clone()]] The clone() method of the Response interface creates a clone of a response object, identical in every way, but stored in a different variable.			
@@ -4455,7 +4354,6 @@ mediastreamtrack clone	R	MediaStreamTrack.clone()
 request clone	R	Request.clone()										
 response clone	R	Response.clone()										
 disconnect	D								*[[AudioNode.disconnect()]] Void.\n*[[BluetoothRemoteGATTServer.disconnect()]] The BluetoothRemoteGATTServer.\n*[[PeformanceObserver.disconnect()]] The disconnect() method of the PerformanceObserver interface is used to stop the performance observer from receiving any performance entry events.			
-disconnect	R	AudioNode.disconnect()										
 audionode disconnect	R	AudioNode.disconnect()										
 bluetoothremotegattserver disconnect	R	BluetoothRemoteGATTServer.disconnect()										
 performanceobserver disconnect	R	PeformanceObserver.disconnect()										
@@ -4463,7 +4361,6 @@ csstext	D								*[[CSSRule.cssText]] cssText returns the actual text of a CSSSt
 cssrule csstext	R	CSSRule.cssText										
 cssstyledeclaration csstext	R	CSSStyleDeclaration.cssText										
 cssvalue csstext	R	CSSValue.cssText										
-permissions	D								*[[Navigator.permissions]] The Navigator.\n*[[Permissions]] The Permissions interface of the Permissions API provides the core Permission API functionality, such as methods for querying and revoking permissions\n*[[WorkerNavigator.permissions]] The WorkerNavigator.			
 navigator permissions	R	Navigator.permissions										
 api permissions	R	Permissions										
 workernavigator permissions	R	WorkerNavigator.permissions										
@@ -4471,21 +4368,16 @@ canvas	D								*[[CanvasCaptureMediaStream.canvas]] The CanvasCaptureMediaStrea
 canvascapturemediastream canvas	R	CanvasCaptureMediaStream.canvas										
 canvasrenderingcontext2d canvas	R	CanvasRenderingContext2D.canvas										
 webglrenderingcontext canvas	R	WebGLRenderingContext.canvas										
-performance	D								*[[Performance]] The Performance interface represents timing-related performance information for the given page.\n*[[Window.performance]] The Web Performance API allows web pages access to certain functions for measuring the performance of web pages and web applications, including the Navigation Timing API and high-resolution time data.\n*[[WorkerGlobalScope.performance]] The performance read-only property of the WorkerGlobalScope interface returns a Performance object to be used on the worker.			
 api performance	R	Performance										
 window performance	R	Window.performance										
 global performance	R	WorkerGlobalScope.performance										
 pagex	D								*[[MouseEvent.pageX]] The MouseEvent.\n*[[Touch.pageX]] The Touch.\n*[[UIEvent.pageX]] The UIEvent.			
-pageX	R	MouseEvent.pageX										
 mouseevent pagex	R	MouseEvent.pageX										
 touch pagex	R	Touch.pageX										
-pageX	R	UIEvent.pageX										
 uievent pagex	R	UIEvent.pageX										
 pagey	D								*[[MouseEvent.pageY]] The MouseEvent.\n*[[Touch.pageY]] The Touch.\n*[[UIEvent.pageY]] The UIEvent.			
-pageY	R	MouseEvent.pageY										
 mouseevent pagey	R	MouseEvent.pageY										
 touch pagey	R	Touch.pageY										
-pageY	R	UIEvent.pageY										
 uievent pagey	R	UIEvent.pageY										
 label	D								*[[MediaStreamTrack.label]] The read-only property MediaStreamTrack.\n*[[RTCDataChannel.label]] The read-only RTCDataChannel property label returns a DOMString containing a name describing the data channel.\n*[[TrackDefault.label]] The label read-only property of the TrackDefault interface returns the default label for an associated SourceBuffer to use when an initialization segment does not contain label information for a new track.			
 mediastreamtrack label	R	MediaStreamTrack.label										
@@ -4493,16 +4385,11 @@ rtcdatachannel label	R	RTCDataChannel.label
 trackdefault label	R	TrackDefault.label										
 localname	D								*[[Attr.localName]] The Attr.\n*[[Element.localName]] The Element.\n*[[Node.localName]] The Node.			
 attr localname	R	Attr.localName										
-localName	R	Element.localName										
 element localname	R	Element.localName										
-localName	R	Node.localName										
 node localname	R	Node.localName										
 rellist	D								*[[HTMLAnchorElement.relList]] The HTMLAnchorElement.\n*[[HTMLAreaElement.relList]] The HTMLAreaElement.\n*[[HTMLLinkElement.relList]] The HTMLLinkElement.			
-relList	R	HTMLAnchorElement.relList										
 htmlanchorelement rellist	R	HTMLAnchorElement.relList										
-relList	R	HTMLAreaElement.relList										
 htmlareaelement rellist	R	HTMLAreaElement.relList										
-relList	R	HTMLLinkElement.relList										
 htmllinkelement rellist	R	HTMLLinkElement.relList										
 observe	D								*[[PerformanceObserver.observe()]] The observe() method of the PerformanceObserver interface is used to specify the set of performance interface types to observe.\n*[[Array.observe()]] The Array.\n*[[Object.observe()]] The Object.			
 performanceobserver observe	R	PerformanceObserver.observe()										
@@ -4511,13 +4398,11 @@ object observe	R	Object.observe()
 orientation	D								*[[Screen.orientation]] The Screen.\n*[[VRPose.orientation]] The orientation read-only property of the VRPositionState interface returns the orientation of the sensor at the current VRPose.\n*[[Window.orientation]] Returns the orientation in degrees (in 90-degree increments) of the viewport relative to the device's natural orientation.			
 screen orientation	R	Screen.orientation										
 vrpose orientation	R	VRPose.orientation										
-orientation	R	Window.orientation										
 window orientation	R	Window.orientation										
 slice	D								*[[Blob.slice()]] The slice is used to create a new Blob object containing the data in the specified range of bytes of the source Blob.\n*[[Array.prototype.slice]] The slice() method returns a shallow copy of a portion of an array into a new array object.\n*[[String.prototype.slice]] The slice() method extracts a section of a string and returns a new string.			
 blob slice	R	Blob.slice()										
 array slice	R	Array.prototype.slice										
 string slice	R	String.prototype.slice										
-trackdefault	D								*[[TrackDefault]] The TrackDefault interface provides a SourceBuffer with kind, label, and language information for tracks that do not contain this information in the initialization segments of a media chunk.\n*[[TrackDefault.TrackDefault()]] The TrackDefault() constructor of the TrackDefault interface constructs and returns a new TrackDefault object.\n*[[TrackDefaultList.TrackDefault()]] The TrackDefault() getter method of the TrackDefaultList interface allows the TrackDefault objects in the list to be accessed with an array operator (i.			
 api trackdefault	R	TrackDefault										
 trackdefault trackdefault	R	TrackDefault.TrackDefault()										
 trackdefaultlist trackdefault	R	TrackDefaultList.TrackDefault()										
@@ -4530,35 +4415,25 @@ idbkeyrange includes	R	IDBKeyRange.includes()
 array includes	R	Array.prototype.includes()										
 string includes	R	String.prototype.includes()										
 version	D								*[[HTMLHtmlElement.version]] Returns version information about the document type definition (DTD)&#160;of a document.\n*[[IDBDatabase.version]] An integer containing the version of the connected database.\n*[[IDBVersionChangeEvent.version]] The version property of the IDBVersionChangeEvent interface returns The new version of the database in a versionchange transaction.			
-version	R	HTMLHtmlElement.version										
 htmlhtmlelement version	R	HTMLHtmlElement.version										
 idbdatabase version	R	IDBDatabase.version										
-version	R	IDBVersionChangeEvent.version										
 idbversionchangeevent version	R	IDBVersionChangeEvent.version										
 search	D								*[[HTMLHyperlinkElementUtils.search]] The HTMLHyperlinkElementUtils.\n*[[URLUtilsReadOnly.search]] The URLUtilsReadOnly.\n*[[String.prototype.search]] The search() method executes a search for a match between a regular expression and this String object.			
-search	R	HTMLHyperlinkElementUtils.search										
 htmlhyperlinkelementutils search	R	HTMLHyperlinkElementUtils.search										
 urlutilsreadonly search	R	URLUtilsReadOnly.search										
 string search	R	String.prototype.search										
 href	D								*[[HTMLHyperlinkElementUtils.href]] The HTMLHyperlinkElementUtils.\n*[[Stylesheet.href]] Returns the location of the stylesheet.\n*[[URLUtilsReadOnly.href]] The URLUtilsReadOnly.			
-href	R	HTMLHyperlinkElementUtils.href										
 htmlhyperlinkelementutils href	R	HTMLHyperlinkElementUtils.href										
 stylesheet href	R	Stylesheet.href										
 urlutilsreadonly href	R	URLUtilsReadOnly.href										
 screenx	D								*[[MouseEvent.screenX]] The MouseEvent.\n*[[Touch.screenX]] Returns the X coordinate of the touch point relative to the screen, not including any scroll offset.\n*[[Window.screenX]] The Window.			
-screenX	R	MouseEvent.screenX										
 mouseevent screenx	R	MouseEvent.screenX										
 touch screenx	R	Touch.screenX										
-screenX	R	Window.screenX										
 window screenx	R	Window.screenX										
 shiftkey	D								*[[KeyboardEvent.shiftKey]] The KeyboardEvent.\n*[[MouseEvent.shiftKey]] The MouseEvent.\n*[[TouchEvent.shiftKey]] A Boolean value indicating whether or not the shift key is enabled when the touch event is created.			
-shiftKey	R	KeyboardEvent.shiftKey										
 keyboardevent shiftkey	R	KeyboardEvent.shiftKey										
-shiftKey	R	MouseEvent.shiftKey										
 mouseevent shiftkey	R	MouseEvent.shiftKey										
-shiftKey	R	TouchEvent.shiftKey										
 touchevent shiftkey	R	TouchEvent.shiftKey										
-response	D								*[[Response]] The Response interface of the Fetch API represents the response to a request.\n*[[Response()]] The Response() constructor creates a new Response object.\n*[[XMLHttpRequest.response]] The XMLHttpRequest.			
 api response	R	Response										
 response response	R	Response()										
 xmlhttprequest response	R	XMLHttpRequest.response										
@@ -4566,50 +4441,35 @@ register	D								*[[PushManager.register()]] The register method is used to ask
 pushmanager register	R	PushManager.register()										
 serviceworkercontainer register	R	ServiceWorkerContainer.register()										
 syncmanager register	R	SyncManager.register()										
-event	D								*[[Event]] The Event interface represents any event of the DOM.\n*[[Event()]] The Event() constructor creates a new Event.\n*[[Window.event]] window.			
 api event	R	Event										
 event event	R	Event()										
 window event	R	Window.event										
 encoding	D								*[[HTMLFormElement.encoding]] The HTMLFormElement.\n*[[TextDecoder.encoding]] The TextDecoder.\n*[[TextEncoder.encoding]] The TextEncoder.			
-encoding	R	HTMLFormElement.encoding										
 htmlformelement encoding	R	HTMLFormElement.encoding										
 textdecoder encoding	R	TextDecoder.encoding										
 textencoder encoding	R	TextEncoder.encoding										
-introduction	D								*[[Introduction to the DOM]] This section provides a brief conceptual introduction to the DOM : what it is, how it provides structure for HTML and XML documents, how you can access it, and how this API presents the reference information and examples.\n*[[Introduction to the File System API]] The File System API simulates a local file system that web apps can navigate around.\n*[[Introduction]] One noticeable trend in W3C standards has been the effort to separate content from style.			
 document_object_model introduction	R	Introduction to the DOM										
 file_system_api introduction	R	Introduction to the File System API										
 xsltprocessor introduction	R	Introduction										
 metakey	D								*[[KeyboardEvent.metaKey]] The KeyboardEvent.\n*[[MouseEvent.metaKey]] The MouseEvent.\n*[[TouchEvent.metaKey]] A Boolean value indicating whether or not the Meta key is enabled when the touch event is created.			
-metaKey	R	KeyboardEvent.metaKey										
 keyboardevent metakey	R	KeyboardEvent.metaKey										
-metaKey	R	MouseEvent.metaKey										
 mouseevent metakey	R	MouseEvent.metaKey										
-metaKey	R	TouchEvent.metaKey										
 touchevent metakey	R	TouchEvent.metaKey										
 ctrlkey	D								*[[KeyboardEvent.ctrlKey]] The KeyboardEvent.\n*[[MouseEvent.ctrlKey]] The MouseEvent.\n*[[TouchEvent.ctrlKey]] A Boolean value indicating whether the control (Control) key is enabled when the touch event is created.			
-ctrlKey	R	KeyboardEvent.ctrlKey										
 keyboardevent ctrlkey	R	KeyboardEvent.ctrlKey										
-ctrlKey	R	MouseEvent.ctrlKey										
 mouseevent ctrlkey	R	MouseEvent.ctrlKey										
-ctrlKey	R	TouchEvent.ctrlKey										
 touchevent ctrlkey	R	TouchEvent.ctrlKey										
-arraybuffer	D								*[[Body.arrayBuffer()]] The arrayBuffer() method of the Body mixin takes a Response stream and reads it to completion.\n*[[PushMessageData.arrayBuffer()]] The arrayBuffer() method of the PushMessageData interface extracts push message data as an ArrayBuffer object.\n*[[ArrayBuffer]] The ArrayBuffer object is used to represent a generic, fixed-length raw binary data buffer.			
 body arraybuffer	R	Body.arrayBuffer()										
 pushmessagedata arraybuffer	R	PushMessageData.arrayBuffer()										
 global arraybuffer	R	ArrayBuffer										
 port	D								*[[HTMLHyperlinkElementUtils.port]] The HTMLHyperlinkElementUtils.\n*[[SharedWorker.port]] The port property of the SharedWorker interface returns a MessagePort object used to communicate and control the shared worker.\n*[[URLUtilsReadOnly.port]] The URLUtilsReadOnly.			
-port	R	HTMLHyperlinkElementUtils.port										
 htmlhyperlinkelementutils port	R	HTMLHyperlinkElementUtils.port										
 sharedworker port	R	SharedWorker.port										
 urlutilsreadonly port	R	URLUtilsReadOnly.port										
 elapsedtime	D								*[[AnimationEvent.elapsedTime]] The AnimationEvent.\n*[[SpeechSynthesisEvent.elapsedTime]] The elapsedTime read-only property of the SpeechSynthesisUtterance interface returns the elapsed time in milliseconds after the SpeechSynthesisUtterance.\n*[[TransitionEvent.elapsedTime]] The TransitionEvent.			
-elapsedTime	R	AnimationEvent.elapsedTime										
 animationevent elapsedtime	R	AnimationEvent.elapsedTime										
-elapsedTime	R	SpeechSynthesisEvent.elapsedTime										
 speechsynthesisevent elapsedtime	R	SpeechSynthesisEvent.elapsedTime										
-elapsedTime	R	TransitionEvent.elapsedTime										
 transitionevent elapsedtime	R	TransitionEvent.elapsedTime										
-connection	D								*[[Navigator.connection]] The Navigator.\n*[[connection]] A receiving user agent fires a trusted event named connectionavailable on a PresentationReceiver when an incoming connection is created.\n*[[Navigator.connection]] The Navigator.			
 navigator connection	R	Navigator.connection										
 presentationconnectionavailableevent connection	R	connection										
 navigator connection	R	Navigator.connection										
@@ -4621,52 +4481,37 @@ ready	D								*[[Animation.ready]] The Animation.\n*[[FontFaceSet.ready]] The r
 animation ready	R	Animation.ready										
 fontfaceset ready	R	FontFaceSet.ready										
 serviceworkercontainer ready	R	ServiceWorkerContainer.ready										
-navigator	D								*[[Navigator]] The Navigator interface represents the state and the identity of the user agent.\n*[[Window.navigator]] The Window.\n*[[WorkerGlobalScope.navigator]] The navigator read-only property of the WorkerGlobalScope interface returns the WorkerNavigator associated with the worker.			
 api navigator	R	Navigator										
 window navigator	R	Window.navigator										
 global navigator	R	WorkerGlobalScope.navigator										
 altkey	D								*[[KeyboardEvent.altKey]] The KeyboardEvent.\n*[[MouseEvent.altKey]] The MouseEvent.\n*[[TouchEvent.altKey]] A Boolean value indicating whether or not the alt (Alternate) key is enabled when the touch event is created.			
-altKey	R	KeyboardEvent.altKey										
 keyboardevent altkey	R	KeyboardEvent.altKey										
-altKey	R	MouseEvent.altKey										
 mouseevent altkey	R	MouseEvent.altKey										
-altKey	R	TouchEvent.altKey										
 touchevent altkey	R	TouchEvent.altKey										
-formdata	D								*[[Body.formData()]] The formData() method of the Body mixin takes a Response stream and reads it to completion.\n*[[FormData]] The FormData interface provides a way to easily construct a set of key/value pairs representing form fields and their values, which can then be easily sent using the XMLHttpRequest.\n*[[FormData()]] The FormData() constructor creates a new FormData object.			
 body formdata	R	Body.formData()										
 api formdata	R	FormData										
 formdata formdata	R	FormData()										
 code	D								*[[KeyboardEvent.code]] The KeyboardEvent.\n*[[MediaError.code]] The MediaError.\n*[[PositionError.code]] The PositionError.			
-code	R	KeyboardEvent.code										
 keyboardevent code	R	KeyboardEvent.code										
 mediaerror code	R	MediaError.code										
 positionerror code	R	PositionError.code										
-index	D								*[[Gamepad.index]] The Gamepad.\n*[[IDBObjectStore.index()]] An IDBIndex object for accessing the index.\n*[[Index]] Found 2889 pages:			
 gamepad index	R	Gamepad.index										
 idbobjectstore index	R	IDBObjectStore.index()										
 api index	R	Index										
-body	D								*[[Body]] The Body mixin of the Fetch API represents the body of the response/request, allowing you to declare what its content type is and how it should be handled.\n*[[Document.body]] Returns the body or frameset node of the current document, or null if no such element exists.\n*[[Notification.body]] The body read-only property of the Notification interface indicates the body string of the notification, as specified in the body option of the Notification() constructor.			
 api body	R	Body										
 document body	R	Document.body										
 notification body	R	Notification.body										
 detune	D								*[[AudioBufferSourceNode.detune]] The detune property of the AudioBufferSourceNode interface is an k-rate AudioParam representing detuning of oscillation in cents.\n*[[BiquadFilterNode.detune]] An a-rate AudioParam.\n*[[OscillatorNode.detune]] An a-rate AudioParam.			
-detune	R	AudioBufferSourceNode.detune										
 audiobuffersourcenode detune	R	AudioBufferSourceNode.detune										
-detune	R	BiquadFilterNode.detune										
 biquadfilternode detune	R	BiquadFilterNode.detune										
-detune	R	OscillatorNode.detune										
 oscillatornode detune	R	OscillatorNode.detune										
 tag	D								*[[Notification.tag]] The tag read-only property of the Notification interface signifies an identifying tag for the notification, as specified in the tag option of the Notification() constructor.\n*[[SyncEvent.tag]] The SyncEvent.\n*[[SyncRegistration.tag]] The tag read-only property of the SyncRegistration interface provides the unique identifier of the specified SyncRegistration object.			
 notification tag	R	Notification.tag										
-tag	R	SyncEvent.tag										
 syncevent tag	R	SyncEvent.tag										
 syncregistration tag	R	SyncRegistration.tag										
 rel	D								*[[HTMLAnchorElement.rel]] The HTMLAnchorElement.\n*[[HTMLAreaElement.rel]] The HTMLAreaElement.\n*[[HTMLLinkElement.rel]] The HTMLLinkElement.			
-rel	R	HTMLAnchorElement.rel										
 htmlanchorelement rel	R	HTMLAnchorElement.rel										
-rel	R	HTMLAreaElement.rel										
 htmlareaelement rel	R	HTMLAreaElement.rel										
-rel	R	HTMLLinkElement.rel										
 htmllinkelement rel	R	HTMLLinkElement.rel										
 pause	D								*[[Animation.pause()]] The Animation.\n*[[MediaRecorder.pause()]] The Media.\n*[[SpeechSynthesis.pause()]] The pause() method of the SpeechSynthesis interface puts the SpeechSynthesis object into a paused state.			
 animation pause	R	Animation.pause()										
@@ -4674,15 +4519,12 @@ mediarecorder pause	R	MediaRecorder.pause()
 speechsynthesis pause	R	SpeechSynthesis.pause()										
 caches	D								*[[ServiceWorkerGlobalScope.caches]] The ServiceWorkerGlobalScope.\n*[[Window.caches]] The Window.\n*[[WorkerGlobalScope.caches]] The caches read-only property of the WorkerGlobalScope interface returns the CacheStorage object associated with the current worker context.			
 global caches	R	ServiceWorkerGlobalScope.caches										
-caches	R	Window.caches										
 window caches	R	Window.caches										
 global caches	R	WorkerGlobalScope.caches										
 key	D								*[[IDBCursor.key]] The value can be of any type.\n*[[KeyboardEvent.key]] The KeyboardEvent.\n*[[Storage.key()]] The key() method of the Storage interface, when passed a number n, returns the name of the nth key in the storage.			
 idbcursor key	R	IDBCursor.key										
-key	R	KeyboardEvent.key										
 keyboardevent key	R	KeyboardEvent.key										
 storage key	R	Storage.key()										
-json	D								*[[Body.json()]] The json() method of the Body mixin takes a Response stream and reads it to completion.\n*[[PushMessageData.json()]] The json() method of the PushMessageData interface extracts push message data as a JSON object.\n*[[JSON]] The JSON object contains methods for parsing JavaScript Object Notation (JSON) and converting values to JSON.			
 body json	R	Body.json()										
 pushmessagedata json	R	PushMessageData.json()										
 global json	R	JSON										
@@ -4694,63 +4536,46 @@ match	D								*[[Cache.match()]] The match() method of the Cache interface retu
 cache match	R	Cache.match()										
 cachestorage match	R	CacheStorage.match()										
 string match	R	String.prototype.match										
-parentnode	D								*[[Node.parentNode]] The Node.\n*[[ParentNode]] The ParentNode interface contains methods that are particular to Node objects that can have children.\n*[[TreeWalker.parentNode()]] The TreeWalker.			
 node parentnode	R	Node.parentNode										
 api parentnode	R	ParentNode										
 treewalker parentnode	R	TreeWalker.parentNode()										
-promise	D								*[[promise]] The promise read-only property of the PromiseRejection returns the ID of the Promise that the current notification is about.\n*[[PromiseRejectionEvent.promise]] The PromiseRejectionEvent.\n*[[Promise]] The Promise object is used for asynchronous computations.			
 promiserejection promise	R	promise										
 promiserejectionevent promise	R	PromiseRejectionEvent.promise										
 global promise	R	Promise										
 queryselector	D								*[[Document.querySelector()]] Returns the first element within the document (using depth-first pre-order traversal of the document's nodes|by first element in document markup and iterating through sequential nodes by order of amount of child nodes) that matches the specified group of selectors.\n*[[DocumentFragment.querySelector()]] The DocumentFragment.\n*[[Element.querySelector()]] Returns the first element that is a descendant of the element on which it is invoked that matches the specified group of selectors.			
 document queryselector	R	Document.querySelector()										
 documentfragment queryselector	R	DocumentFragment.querySelector()										
-querySelector	R	Element.querySelector()										
 element queryselector	R	Element.querySelector()										
 mozaudiochanneltype	D								*[[AudioContext.mozAudioChannelType]] The readonly mozAudioChannelType property of the AudioContext interface can be used to set the audio channel that the sound playing in an audio context element will play in, on a Firefox OS device.\n*[[HTMLMediaElement.mozAudioChannelType]] The mozAudioChannelType property of the HTMLMediaElement interface can be used to set the audio channel that the sound coming from an audio or video element will play in, on a Firefox OS device.			
 audiocontext mozaudiochanneltype	R	AudioContext.mozAudioChannelType										
-mozAudioChannelType	R	HTMLMediaElement.mozAudioChannelType										
 htmlmediaelement mozaudiochanneltype	R	HTMLMediaElement.mozAudioChannelType										
 lasteventid	D								*[[ExtendableMessageEvent.lastEventId]] The lastEventID read-only property of the ExtendableMessageEvent interface represents, in server-sent events, the last event ID of the event source.\n*[[ServiceWorkerMessageEvent.lastEventId]] The lastEventID read-only property of the ServiceWorkerMessageEvent interface represents, in server-sent events, the last event ID of the event source.			
-lastEventId	R	ExtendableMessageEvent.lastEventId										
 extendablemessageevent lasteventid	R	ExtendableMessageEvent.lastEventId										
-lastEventId	R	ServiceWorkerMessageEvent.lastEventId										
 serviceworkermessageevent lasteventid	R	ServiceWorkerMessageEvent.lastEventId										
 getallkeys	D								*[[IDBIndex.getAllKeys()]] An IDBRequest object on which subsequent events related to this operation are fired.\n*[[IDBObjectStore.getAllKeys()]] If a value is successfully found, then a structured clone of it is created and set as the result of the request object.			
 idbindex getallkeys	R	IDBIndex.getAllKeys()										
 idbobjectstore getallkeys	R	IDBObjectStore.getAllKeys()										
 unloadeventstart	D								*[[PerformanceNavigationTiming.unloadEventStart]] The unloadEventStart property returns a timestamp representing the time value equal to the time immediately before the user agent starts the unload event of the previous document.\n*[[PerformanceTiming.unloadEventStart]] The PerformanceTiming.			
-unloadEventStart	R	PerformanceNavigationTiming.unloadEventStart										
 performancenavigationtiming unloadeventstart	R	PerformanceNavigationTiming.unloadEventStart										
-unloadEventStart	R	PerformanceTiming.unloadEventStart										
 performancetiming unloadeventstart	R	PerformanceTiming.unloadEventStart										
 paused	D								*[[HTMLMediaElement.paused]] The read-only HTMLMediaElement.\n*[[SpeechSynthesis.paused]] The paused read-only property of the SpeechSynthesis interface is a Boolean that returns true if the SpeechSynthesis object is in a paused state, or false if not.			
-paused	R	HTMLMediaElement.paused										
 htmlmediaelement paused	R	HTMLMediaElement.paused										
 speechsynthesis paused	R	SpeechSynthesis.paused										
 starttime	D								*[[Animation.startTime]] The Animation.\n*[[PerformanceEntry.startTime]] The startTime property returns the first recorded timestamp of the performance entry.			
 animation starttime	R	Animation.startTime										
 performanceentry starttime	R	PerformanceEntry.startTime										
 blur	D								*[[HTMLElement.blur()]] The HTMLElement.\n*[[Window.blur()]] Shifts focus away from the window.			
-blur	R	HTMLElement.blur()										
 htmlelement blur	R	HTMLElement.blur()										
-blur	R	Window.blur()										
 window blur	R	Window.blur()										
-vrfieldofview	D								*[[VRFieldOfView]] The VRFieldOfView interface of the WebVR API represents a field of view defined by 4 different degree values describing the view from a center point.\n*[[VRFieldOfView.VRFieldOfView()]] The VRFieldOfView() constructor creates a new VRFieldOFView object.			
 api vrfieldofview	R	VRFieldOfView										
 vrfieldofview vrfieldofview	R	VRFieldOfView.VRFieldOfView()										
 domcontentloadedeventstart	D								*[[PerformanceNavigationTiming.domContentLoadedEventStart]] The domContentLoadedEventStart property returns a timestamp representing the time value equal to the time immediately before the user agent fires the DOMContentLoaded event at the current document.\n*[[PerformanceTiming.domContentLoadedEventStart]] The PerformanceTiming.			
-domContentLoadedEventStart	R	PerformanceNavigationTiming.domContentLoadedEventStart										
 performancenavigationtiming domcontentloadedeventstart	R	PerformanceNavigationTiming.domContentLoadedEventStart										
-domContentLoadedEventStart	R	PerformanceTiming.domContentLoadedEventStart										
 performancetiming domcontentloadedeventstart	R	PerformanceTiming.domContentLoadedEventStart										
-credentials	D								*[[credentials]] The credentials property of the Navigator interface returns the CredentialsContainer interface which exposes methods to request credentials and notify the user agent when interesting events occur, such as successful sign in or sign out.\n*[[Request.credentials]] The credentials read-only property of the Request interface indicates whether the user agent should send cookies from the other domain in the case of cross-origin requests.			
 navigator credentials	R	credentials										
 request credentials	R	Request.credentials										
 loop	D								*[[AudioBufferSourceNode.loop]] The loop property's default value is false.\n*[[HTMLMediaElement.loop]] The HTMLMediaElement.			
-loop	R	AudioBufferSourceNode.loop										
 audiobuffersourcenode loop	R	AudioBufferSourceNode.loop										
-loop	R	HTMLMediaElement.loop										
 htmlmediaelement loop	R	HTMLMediaElement.loop										
 readvalue	D								*[[readValue()]] The BluetoothGATTDescriptor.\n*[[BluetoothRemoteGATTCharacteristic.readValue()]] The BluetoothRemoteGATTCharacteristic.			
 bluetoothgattdescriptor readvalue	R	readValue()										
@@ -4762,18 +4587,15 @@ responsetext	D								*[[XDomainRequest.responseText]] Returns the response body
 xdomainrequest responsetext	R	XDomainRequest.responseText										
 xmlhttprequest responsetext	R	XMLHttpRequest.responseText										
 root	D								*[[NodeIterator.root]] The NodeIterator.\n*[[TreeWalker.root]] The TreeWalker.			
-root	R	NodeIterator.root										
 nodeiterator root	R	NodeIterator.root										
 treewalker root	R	TreeWalker.root										
 example	D								*[[Compositing example]] This sample program demonstrates a number of compositing operations.\n*[[Ajax navigation example]] This is an example of an AJAX web site composed only of three pages (first_page.			
 history_api example	R	Ajax navigation example										
-extendablemessageevent	D								*[[ExtendableMessageEvent]] The ExtendableMessageEvent interface of the ServiceWorker API represents the event object of a message event fired on a service worker (when a channel message is received on the ServiceWorkerGlobalScope from another context) — extends the lifetime of such events.\n*[[ExtendableMessageEvent.ExtendableMessageEvent()]] The Extendable MessageEvent() constructor creates a new ExtendableMessageEvent object instance.			
 api extendablemessageevent	R	ExtendableMessageEvent										
 extendablemessageevent extendablemessageevent	R	ExtendableMessageEvent.ExtendableMessageEvent()										
 readastext	D								*[[FileReader.readAsText()]] The readAsText method is used to read the contents of the specified Blob or File.\n*[[LockedFile.readAsText()]] The readAsText method is used to read the content of the LockedFile object and provide the result of that reading as a string.			
 filereader readastext	R	FileReader.readAsText()										
 lockedfile readastext	R	LockedFile.readAsText()										
-credential	D								*[[Credential]] The Credential interface of the the Credential Management API provides information about an entity as a prerequisite to a trust decision.\n*[[RTCIceServer.credential]] The RTCIceServer dictionary's credential property is a string providing the credential to use when connecting to the described server.			
 api credential	R	Credential										
 rtciceserver credential	R	RTCIceServer.credential										
 types	D								*[[DataTransfer.types]] The DataTransfer.\n*[[WebGL types]] The following types are used in WebGL interfaces.			
@@ -4788,29 +4610,20 @@ webglrenderingcontext linewidth	R	WebGLRenderingContext.lineWidth()
 openkeycursor	D								*[[IDBIndex.openKeyCursor()]] The method sets the position of the cursor to the appropriate key, based on the specified direction.\n*[[IDBObjectStore.openKeyCursor()]] To determine if the add operation has completed successfully, listen for the results’s success event.			
 idbindex openkeycursor	R	IDBIndex.openKeyCursor()										
 idbobjectstore openkeycursor	R	IDBObjectStore.openKeyCursor()										
-pointerevent	D								*[[PointerEvent]] A pointer is a hardware agnostic representation of input devices (such as a mouse, pen or contact point on a touch-enable surface).\n*[[PointerEvent()]] The PointerEvent() constructor creates a new synthetic and untrusted PointerEvent.			
 api pointerevent	R	PointerEvent										
 pointerevent pointerevent	R	PointerEvent()										
 getelementsbytagname	D								*[[Document.getElementsByTagName()]] Returns an HTMLCollection of elements with the given tag name.\n*[[Element.getElementsByTagName()]] The Element.			
-getElementsByTagName	R	Document.getElementsByTagName()										
 document getelementsbytagname	R	Document.getElementsByTagName()										
-getElementsByTagName	R	Element.getElementsByTagName()										
 element getelementsbytagname	R	Element.getElementsByTagName()										
 getselection	D								*[[Document.getSelection()]] This method functions identically to the Window.\n*[[Window.getSelection()]] Returns a Selection object representing the range of text selected by the user or the current position of the caret.			
-getSelection	R	Document.getSelection()										
 document getselection	R	Document.getSelection()										
-getSelection	R	Window.getSelection()										
 window getselection	R	Window.getSelection()										
-wheelevent	D								*[[WheelEvent]] The WheelEvent interface represents events that occur due to the user moving a mouse wheel or similar input device.\n*[[WheelEvent()]] The WheelEvent() constructor returns a newly created FocusEvent object.			
 api wheelevent	R	WheelEvent										
 wheelevent wheelevent	R	WheelEvent()										
-pushmanager	D								*[[PushManager]] The PushManager interface of the Push API provides a way to receive notifications from third-party servers as well as request URLs for push notifications.\n*[[ServiceWorkerRegistration.pushManager]] The pushManager property of the ServiceWorkerRegistration interface returns a reference to the PushManager interface for managing push subscriptions; this includes support for subscribing, getting an active subscription, and accessing push permission status.			
 api pushmanager	R	PushManager										
 serviceworkerregistration pushmanager	R	ServiceWorkerRegistration.pushManager										
-urlsearchparams	D								*[[URLSearchParams]] The URLSearchParams interface defines utility methods to work with the query string of a URL.\n*[[URLSearchParams()]] The URLSearchParams() constructor creates and returns a new URLSearchParams object.			
 api urlsearchparams	R	URLSearchParams										
 urlsearchparams urlsearchparams	R	URLSearchParams()										
-enabled	D								*[[enabled]] Indicates whether or not Software Installation is enabled for this client machine.\n*[[MediaStreamTrack.enabled]] The MediaStreamTrack.			
 installtrigger enabled	R	enabled										
 mediastreamtrack enabled	R	MediaStreamTrack.enabled										
 createbuffer	D								*[[AudioContext.createBuffer()]] An AudioBuffer.\n*[[WebGLRenderingContext.createBuffer()]] The WebGLRenderingContext.			
@@ -4819,33 +4632,25 @@ webglrenderingcontext createbuffer	R	WebGLRenderingContext.createBuffer()
 watch	D								*[[IdentityManager.watch()]] This function registers callbacks that respond to a Persona user logging in or out.\n*[[Object.prototype.watch()]] The watch() method watches for a property to be assigned a value and runs a function when that occurs.			
 identitymanager watch	R	IdentityManager.watch()										
 object watch	R	Object.prototype.watch()										
-presentationconnectionavailableevent	D								*[[PresentationConnectionAvailableEvent]] The PresentationConnectionAvailableEvent interface of the Presentation API is fired on a PresentationRequest when a connection associated with the object is created.\n*[[PresentationConnectionAvailableEvent]] The PresentationConnectionAvailableInit() constructor creates a new PresentationConnectionAvailableEvent.			
 api presentationconnectionavailableevent	R	PresentationConnectionAvailableEvent										
 presentationconnectionavailableevent presentationconnectionavailableevent	R	PresentationConnectionAvailableEvent										
-focusevent	D								*[[FocusEvent]] The FocusEvent interface represents focus-related events like focus, blur, focusin, or focusout.\n*[[FocusEvent()]] The FocusEvent() constructor returns a newly created FocusEvent object with an optional EventTarget.			
 api focusevent	R	FocusEvent										
 focusevent focusevent	R	FocusEvent()										
-federatedcredential	D								*[[FederatedCredential]] The FederatedCredential interface of the the Credential Management API provides information about credentials from a federated identity provider, which is an entity that a website trusts to correctly authenticate a user, and which provides an API for that purpose.\n*[[FederatedCredential]] The FederatedCredential constructor creates a new FederatedCredential object.			
 api federatedcredential	R	FederatedCredential										
 federatedcredential federatedcredential	R	FederatedCredential										
 method	D								*[[HTMLFormElement.method]] The HTMLFormElement.\n*[[Request.method]] The method read-only property of the Request interface contains the request's method (GET, POST, etc.			
-method	R	HTMLFormElement.method										
 htmlformelement method	R	HTMLFormElement.method										
 request method	R	Request.method										
 reload	D								*[[HTMLIFrameElement.reload()]] The reload() method of the HTMLIFrameElement interface is used to reload the content of the iframe.\n*[[Location.reload()]] The Location.			
-reload	R	HTMLIFrameElement.reload()										
 htmliframeelement reload	R	HTMLIFrameElement.reload()										
 location reload	R	Location.reload()										
 loadeventstart	D								*[[PerformanceNavigationTiming.loadEventStart]] The loadEventStart property returns a timestamp representing the time value equal to the time immediately before the load event of the current document is fired.\n*[[PerformanceTiming.loadEventStart]] The PerformanceTiming.			
-loadEventStart	R	PerformanceNavigationTiming.loadEventStart										
 performancenavigationtiming loadeventstart	R	PerformanceNavigationTiming.loadEventStart										
-loadEventStart	R	PerformanceTiming.loadEventStart										
 performancetiming loadeventstart	R	PerformanceTiming.loadEventStart										
 result	D								*[[FileReader.result]] Returns the file's contents.\n*[[IDBRequest.result]] An IDBObjectStore containing the result of the request.			
 filereader result	R	FileReader.result										
 idbrequest result	R	IDBRequest.result										
 onlanguagechange	D								*[[WindowEventHandlers.onlanguagechange]] The WindowEventHandlers.\n*[[WorkerGlobalScope.onlanguagechange]] The onlanguagechange property of the WorkerGlobalScope interface represents an EventHandler to be called when the languagechange event occurs and bubbles through the Worker.			
-onlanguagechange	R	WindowEventHandlers.onlanguagechange										
 windoweventhandlers onlanguagechange	R	WindowEventHandlers.onlanguagechange										
 global onlanguagechange	R	WorkerGlobalScope.onlanguagechange										
 filename	D								*[[File.fileName]] Returns the name of the file.\n*[[Error.prototype.fileName]] The fileName property contains the path to the file that raised this error.			
@@ -4854,35 +4659,24 @@ error filename	R	Error.prototype.fileName
 onoffline	D								*[[Document.onoffline]] This event handler is called when an offline is fired on body and bubbles up, when navigator.\n*[[WorkerGlobalScope.onoffline]] The onoffline property of the WorkerGlobalScope interface represents an EventHandler to be called when the offline event occurs and bubbles through the Worker.			
 document onoffline	R	Document.onoffline										
 global onoffline	R	WorkerGlobalScope.onoffline										
-customevent	D								*[[CustomEvent]] This interface inherits properties from its parent, Event :\n*[[CustomEvent()]] The CustomEvent() constructor creates a new CustomEvent.			
 api customevent	R	CustomEvent										
 customevent customevent	R	CustomEvent()										
 getmodifierstate	D								*[[KeyboardEvent.getModifierState()]] The KeyboardEvent.\n*[[MouseEvent.getModifierState()]] The MouseEvent.			
-getModifierState	R	KeyboardEvent.getModifierState()										
 keyboardevent getmodifierstate	R	KeyboardEvent.getModifierState()										
-getModifierState	R	MouseEvent.getModifierState()										
 mouseevent getmodifierstate	R	MouseEvent.getModifierState()										
-worker	D								*[[Worker]] The Worker interface of the Web Workers API represents a background task that can be easily created and can send messages back to its creator.\n*[[Worker()]] The Worker() constructor creates a Worker object that executes the script at the specified URL.			
 api worker	R	Worker										
 worker worker	R	Worker()										
-datatransferitem	D								*[[DataTransferItem]] The DataTransferItem object represents one drag data item.\n*[[DataTransferItemList.DataTransferItem()]] The DataTransferItemList() getter method allows the data transfer items in the list to be accessed with an array operator (i.			
 api datatransferitem	R	DataTransferItem										
 datatransferitemlist datatransferitem	R	DataTransferItemList.DataTransferItem()										
-shadowroot	D								*[[Element.shadowRoot]] The Element.\n*[[ShadowRoot]] The ShadowRoot interface of the Shadow DOM API is the root node of a DOM subtree that is rendered separately from a document's main DOM tree.			
 element shadowroot	R	Element.shadowRoot										
 api shadowroot	R	ShadowRoot										
-document	D								*[[Document]] The Document interface represents any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree.\n*[[Window.document]] Returns a reference to the document contained in the window.			
 api document	R	Document										
 window document	R	Window.document										
-sourcebuffer	D								*[[SourceBuffer]] The SourceBuffer interface represents a chunk of media to be passed into an HTMLMediaElement and played, via a MediaSource object.\n*[[SourceBufferList.SourceBuffer()]] The SourceBuffer() getter method of the SourceBufferList interface allows the SourceBuffer objects in the list to be accessed with an array operator (i.			
 api sourcebuffer	R	SourceBuffer										
 sourcebufferlist sourcebuffer	R	SourceBufferList.SourceBuffer()										
 onended	D								*[[AudioBufferSourceNode.onended]] The onended event handler of the AudioBufferSourceNode contains the callback associated with the ended event: this allows you to run code in response to the audio track finishing playback.\n*[[OscillatorNode.onended]] The onended property of the OscillatorNode interface is used to set the event handler for the ended event, which fires when the tone has stopped playing.			
-onended	R	AudioBufferSourceNode.onended										
 audiobuffersourcenode onended	R	AudioBufferSourceNode.onended										
-onended	R	OscillatorNode.onended										
 oscillatornode onended	R	OscillatorNode.onended										
-client	D								*[[Client]] The Client interface of the ServiceWorker API represents the scope of a service worker client.\n*[[FetchEvent.client]] The FetchEvent.			
 api client	R	Client										
 fetchevent client	R	FetchEvent.client										
 left	D								*[[DOMRectReadOnly.left]] The left read-only property of the DOMRectReadOnly interface returns the left coordinate value of the DOMRect.\n*[[Screen.left]] Returns the distance in pixels from the left side of the main screen to the left side of the current screen.			
@@ -4891,15 +4685,11 @@ screen left	R	Screen.left
 getkey	D								*[[IDBIndex.getKey()]] If a key is successfully found it is set as the result of the request object: this returns the primary key of the record the key is associated with, not the whole record as IDBIndex.\n*[[PushSubscription.getKey()]] The getKey() method of the PushSubscription interface returns an ArrayBuffer representing a client public key, which can then be sent to a server and used in encrypting push message data.			
 idbindex getkey	R	IDBIndex.getKey()										
 pushsubscription getkey	R	PushSubscription.getKey()										
-xmlhttprequest	D								*[[XMLHttpRequest]] XMLHttpRequest is an API that provides client functionality for transferring data between a client and a server.\n*[[XMLHttpRequest()]] For details about how to use XMLHttpRequest, see Using XMLHttpRequest.			
 api xmlhttprequest	R	XMLHttpRequest										
 xmlhttprequest xmlhttprequest	R	XMLHttpRequest()										
 which	D								*[[KeyboardEvent.which]] The KeyboardEvent.\n*[[MouseEvent.which]] The MouseEvent.			
-which	R	KeyboardEvent.which										
 keyboardevent which	R	KeyboardEvent.which										
-which	R	MouseEvent.which										
 mouseevent which	R	MouseEvent.which										
-dompoint	D								*[[DOMPoint]] A DOMPoint represents a 2D or 3D point in a coordinate system.\n*[[DOMPoint.DOMPoint()]] The DOMPoint() constructor creates a new DOMPoint object.			
 api dompoint	R	DOMPoint										
 dompoint dompoint	R	DOMPoint.DOMPoint()										
 escape	D								*[[CSS.escape()]] The CSS.\n*[[Global.escape]] The deprecated escape() function computes a new string in which certain characters have been replaced by a hexadecimal escape sequence.			
@@ -4911,30 +4701,22 @@ webgl_api tutorial	R	WebGL tutorial
 settransform	D								*[[CanvasPattern.setTransform()]] The CanvasPattern.\n*[[CanvasRenderingContext2D.setTransform()]] The CanvasRenderingContext2D.			
 canvaspattern settransform	R	CanvasPattern.setTransform()										
 canvasrenderingcontext2d settransform	R	CanvasRenderingContext2D.setTransform()										
-speechsynthesisutterance	D								*[[SpeechSynthesisUtterance]] The SpeechSynthesisUtterance interface of the Web Speech API represents a speech request.\n*[[SpeechSynthesisUtterance.SpeechSynthesisUtterance()]] The SpeechSynthesisUtterance() constructor of the SpeechSynthesisUtterance interface returns a new SpeechSynthesisUtterance object instance.			
 api speechsynthesisutterance	R	SpeechSynthesisUtterance										
 speechsynthesisutterance speechsynthesisutterance	R	SpeechSynthesisUtterance.SpeechSynthesisUtterance()										
 select	D								*[[HTMLContentElement.select]] The HTMLContentElement.\n*[[HTMLInputElement.select()]] The HTMLInputElement.			
-select	R	HTMLContentElement.select										
 htmlcontentelement select	R	HTMLContentElement.select										
-select	R	HTMLInputElement.select()										
 htmlinputelement select	R	HTMLInputElement.select()										
 form	D								*[[HTMLLabelElement.form]] The read-only HTMLLabelElement.\n*[[HTMLSelectElement.form]] The HTMLSelectElement.			
-form	R	HTMLLabelElement.form										
 htmllabelelement form	R	HTMLLabelElement.form										
-form	R	HTMLSelectElement.form										
 htmlselectelement form	R	HTMLSelectElement.form										
 domcomplete	D								*[[PerformanceNavigationTiming.domComplete]] The domComplete property returns a timestamp representing the time value equal to the time immediately before the user agent sets the current document readiness of the current document to complete.\n*[[PerformanceTiming.domComplete]] The PerformanceTiming.			
 performancenavigationtiming domcomplete	R	PerformanceNavigationTiming.domComplete										
 performancetiming domcomplete	R	PerformanceTiming.domComplete										
 moveto	D								*[[CanvasRenderingContext2D.moveTo()]] The CanvasRenderingContext2D.\n*[[Window.moveTo()]] Moves the window to the specified coordinates.			
 canvasrenderingcontext2d moveto	R	CanvasRenderingContext2D.moveTo()										
-moveTo	R	Window.moveTo()										
 window moveto	R	Window.moveTo()										
-speechsynthesis	D								*[[SpeechSynthesis]] The SpeechSynthesis interface of the Web Speech API is the controller interface for the speech service; this can be used to retrieve information about the synthesis voices available on the device, start and pause speech, and other commands besides.\n*[[Window.speechSynthesis]] The speechSynthesis read-only property of the Window object returns a SpeechSynthesis object, which is the entry point into using Web Speech API speech synthesis functionality.			
 api speechsynthesis	R	SpeechSynthesis										
 window speechsynthesis	R	Window.speechSynthesis										
-documentfragment	D								*[[DocumentFragment]] The DocumentFragment interface represents a minimal document object that has no parent.\n*[[DocumentFragment()]] The DocumentFragment() constructor returns an empty newly created DocumentFragment object.			
 api documentfragment	R	DocumentFragment										
 documentfragment documentfragment	R	DocumentFragment()										
 dominteractive	D								*[[PerformanceNavigationTiming.domInteractive]] The domInteractive property returns a timestamp representing the time value equal to the time immediately before the user agent sets the current document readiness of the current document to interactive.\n*[[PerformanceTiming.domInteractive]] The PerformanceTiming.			
@@ -4944,10 +4726,8 @@ statustext	D								*[[Response.statusText]] The statusText read-only property o
 response statustext	R	Response.statusText										
 xmlhttprequest statustext	R	XMLHttpRequest.statusText										
 push	D								*[[Navigator.push]] The Navigator.\n*[[Array.prototype.push]] The push() method adds one or more elements to the end of an array and returns the new length of the array.			
-push	R	Navigator.push										
 navigator push	R	Navigator.push										
 array push	R	Array.prototype.push										
-rtcsessiondescription	D								*[[RTCSessionDescription]] The RTCSessionDescription interface represents the parameters of a session.\n*[[RTCSessionDescription()]] The RTCSessionDescription() constructor creates a new RTCSessionDescription.			
 api rtcsessiondescription	R	RTCSessionDescription										
 rtcsessiondescription rtcsessiondescription	R	RTCSessionDescription()										
 uniform	D								*[[WebGL2RenderingContext.uniform[1234]ui[v]()]] The WebGL2RenderingContext.\n*[[WebGLRenderingContext.uniform[1234][fi][v]()]] The WebGLRenderingContext.			
@@ -4956,78 +4736,59 @@ webglrenderingcontext uniform	R	WebGLRenderingContext.uniform[1234][fi][v]()
 redirectcount	D								*[[PerformanceNavigation.redirectCount]] The PerformanceNavigation.\n*[[PerformanceNavigationTiming.redirectCount]] The redirectCount property returns a timestamp representing the number of redirects since the last non-redirect navigation under the current browsing context.			
 performancenavigation redirectcount	R	PerformanceNavigation.redirectCount										
 performancenavigationtiming redirectcount	R	PerformanceNavigationTiming.redirectCount										
-inputdevicecapabilities	D								*[[InputDeviceCapabilities]] The InputDeviceCapabilities interface of the Input Device Capabilities API provides information about the physical device or a group of related devices responsible for generating input events.\n*[[InputDeviceCapabilities]] The InputDeviceCapabilities() constructor creates a new InputDeviceCapabilities object provides information about the physical device responsible for generating a touch event.			
 api inputdevicecapabilities	R	InputDeviceCapabilities										
 inputdevicecapabilities inputdevicecapabilities	R	InputDeviceCapabilities										
-gamepad	D								*[[Gamepad]] The Gamepad interface of the Gamepad API defines an individual gamepad or other controller, allowing access to information such as button presses, axis positions, and id.\n*[[GamepadEvent.gamepad]] The GamepadEvent.			
 api gamepad	R	Gamepad										
 gamepadevent gamepad	R	GamepadEvent.gamepad										
-mouseevent	D								*[[MouseEvent]] The MouseEvent interface represents events that occur due to the user interacting with a pointing device (such as a mouse).\n*[[MouseEvent()]] The MouseEvent() constructor creates a new MouseEvent.			
 api mouseevent	R	MouseEvent										
 mouseevent mouseevent	R	MouseEvent()										
 pseudoelement	D								*[[AnimationEvent.pseudoElement]] The AnimationEvent.\n*[[TransitionEvent.pseudoElement]] The TransitionEvent.			
-pseudoElement	R	AnimationEvent.pseudoElement										
 animationevent pseudoelement	R	AnimationEvent.pseudoElement										
-pseudoElement	R	TransitionEvent.pseudoElement										
 transitionevent pseudoelement	R	TransitionEvent.pseudoElement										
 readasarraybuffer	D								*[[FileReader.readAsArrayBuffer()]] The FileReader interface's readAsArrayBuffer() method is used to start reading the contents of a specified Blob or File.\n*[[LockedFile.readAsArrayBuffer()]] The readAsArrayBuffer method is used to read the content of the LockedFile object and provide the result of that reading as an ArrayBuffer.			
 filereader readasarraybuffer	R	FileReader.readAsArrayBuffer()										
 lockedfile readasarraybuffer	R	LockedFile.readAsArrayBuffer()										
-domexception	D								*[[DOMException]] The DOMException interface represents an abnormal event (called an exception) which occurs as a result of calling a method or accessing a property of a web API.\n*[[DOMException()]] The DOMException() constructor returns a DOMException object with a specified message and name.			
 api domexception	R	DOMException										
 domexception domexception	R	DOMException()										
 write	D								*[[Document.write()]] Writes a string of text to a document stream opened by document.\n*[[LockedFile.write()]] The write method is used to write some data within the file.			
 document write	R	Document.write()										
 lockedfile write	R	LockedFile.write()										
-map	D								*[[Array.prototype.map]] The map() method creates a new array with the results of calling a provided function on every element in this array.\n*[[Map]] The Map object is a simple key/value map.			
 array map	R	Array.prototype.map										
 global map	R	Map										
 max	D								*[[DeviceProximityEvent.max]] The max property provides the maximum sensing distance the sensor is able to report, in centimeters.\n*[[Math.max]] The Math.			
-max	R	DeviceProximityEvent.max										
 deviceproximityevent max	R	DeviceProximityEvent.max										
 math max	R	Math.max										
-serviceworker	D								*[[Navigator.serviceWorker]] The Navigator.\n*[[ServiceWorker]] The ServiceWorker interface of the ServiceWorker API provides a reference to a service worker.			
 navigator serviceworker	R	Navigator.serviceWorker										
 api serviceworker	R	ServiceWorker										
 audiotracks	D								*[[HTMLMediaElement.audioTracks]] The HTMLMediaElement.\n*[[SourceBuffer.audioTracks]] The audioTracks read-only property of the SourceBuffer interface returns a list of the audio tracks currently contained inside the SourceBuffer.			
-audioTracks	R	HTMLMediaElement.audioTracks										
 htmlmediaelement audiotracks	R	HTMLMediaElement.audioTracks										
 sourcebuffer audiotracks	R	SourceBuffer.audioTracks										
-installevent	D								*[[InstallEvent]] The parameter passed into the oninstall handler, the InstallEvent interface represents an install action that is dispatched on the ServiceWorkerGlobalScope of a ServiceWorker.\n*[[InstallEvent.InstallEvent()]] The InstallEvent() constructor creates a new InstallEvent object.			
 api installevent	R	InstallEvent										
 installevent installevent	R	InstallEvent.InstallEvent()										
 timing	D								*[[AnimationEffectReadOnly.timing]] The AnimationEffectReadOnly.\n*[[Performance.timing]] The Performance.			
 animationeffectreadonly timing	R	AnimationEffectReadOnly.timing										
 performance timing	R	Performance.timing										
-window	D								*[[Window]] The window object represents a window containing a DOM document; the document property points to the DOM document loaded in that window.\n*[[Window.window]] The window property of a window object points to the window object itself.			
 api window	R	Window										
 window window	R	Window.window										
 sendbeacon	D								*[[Navigator.sendBeacon()]] The navigator.\n*[[WorkerNavigator.sendBeacon()]] The NavigatorWorker.			
-sendBeacon	R	Navigator.sendBeacon()										
 navigator sendbeacon	R	Navigator.sendBeacon()										
-sendBeacon	R	WorkerNavigator.sendBeacon()										
 workernavigator sendbeacon	R	WorkerNavigator.sendBeacon()										
 now	D								*[[Performance.now()]] The Performance.\n*[[Date.now]] The Date.			
 performance now	R	Performance.now()										
 date now	R	Date.now										
-crypto	D								*[[Crypto]] The Crypto interface represents basic cryptography features available in the current context.\n*[[Window.crypto]] The Window.			
 api crypto	R	Crypto										
 window crypto	R	Window.crypto										
 setposition	D								*[[AudioListener.setPosition()]] Void.\n*[[PannerNode.setPosition()]] Void.			
 audiolistener setposition	R	AudioListener.setPosition()										
-setPosition	R	PannerNode.setPosition()										
 pannernode setposition	R	PannerNode.setPosition()										
 objectstore	D								*[[IDBIndex.objectStore]] An IDBObjectStore.\n*[[IDBTransaction.objectStore()]] Every call to this method on the same transaction object, with the same name, returns the same IDBObjectStore instance.			
 idbindex objectstore	R	IDBIndex.objectStore										
 idbtransaction objectstore	R	IDBTransaction.objectStore()										
 language	D								*[[NavigatorLanguage.language]] The NavigatorLanguage.\n*[[TrackDefault.language]] The language read-only property of the TrackDefault interface returns a default language for an associated SourceBuffer to use when an initialization segment does not contain language information for a new track.			
-language	R	NavigatorLanguage.language										
 navigatorlanguage language	R	NavigatorLanguage.language										
 trackdefault language	R	TrackDefault.language										
-suspend	D								*[[AudioContext.suspend()]] The suspend() method of the AudioContext Interface suspends the progression of time in the audio context, temporarily halting audio hardware access and reducing CPU/battery usage in the process — this is useful if you want an application to power down the audio hardware when it will not be using an audio context for a while.\n*[[suspend]] The suspend() method of the OfflineAudioContext interface schedules a suspension of the time progression in the audio context at the specified time and returns a promise.			
 audiocontext suspend	R	AudioContext.suspend()										
 offlineaudiocontext suspend	R	suspend										
-localstorage	D								*[[LocalStorage]] localStorage is the same as sessionStorage with the same same-origin rules applied but it is persistent.\n*[[Window.localStorage]] The localStorage property allows you to access a local Storage object.			
 storage localstorage	R	LocalStorage										
 window localstorage	R	Window.localStorage										
 size	D								*[[Blob.size]] The Blob.\n*[[WebGLActiveInfo.size]] The read-only WebGLActiveInfo.			
@@ -5036,37 +4797,27 @@ webglactiveinfo size	R	WebGLActiveInfo.size
 parsefloat	D								*[[Number.parseFloat()]] The Number.\n*[[Global.parseFloat]] The parseFloat() function parses a string argument and returns a floating point number.			
 number parsefloat	R	Number.parseFloat()										
 global parsefloat	R	Global.parseFloat										
-animation	D								*[[Animation]] The Animation interface of the Web Animations API represents a single animation player and provides playback controls and a timeline for an animation node or source.\n*[[Animation.Animation()]] The Animation() constructor of the Web Animations API returns a new Animation object instance.			
 api animation	R	Animation										
 animation animation	R	Animation.Animation()										
-eventsource	D								*[[EventSource]] The EventSource interface is used to receive server-sent events.\n*[[EventSource()]] The EventSource () constructor returns a newly-created EventSource, which represents a remote ressource.			
 api eventsource	R	EventSource										
 eventsource eventsource	R	EventSource()										
 channel	D								*[[RTCDataChannelEvent.channel]] The read-only property RTCDataChannelEvent.\n*[[XMLHttpRequest.channel]] XMLHttpRequest.			
-channel	R	RTCDataChannelEvent.channel										
 rtcdatachannelevent channel	R	RTCDataChannelEvent.channel										
 xmlhttprequest channel	R	XMLHttpRequest.channel										
 buffer	D								*[[AudioBufferSourceNode.buffer]] If the buffer property is set to the value NULL, it defines a single channel of silence.\n*[[ConvolverNode.buffer]] An AudioBuffer.			
-buffer	R	AudioBufferSourceNode.buffer										
 audiobuffersourcenode buffer	R	AudioBufferSourceNode.buffer										
-buffer	R	ConvolverNode.buffer										
 convolvernode buffer	R	ConvolverNode.buffer										
 beta	D								*[[DeviceOrientationEvent.beta]] Returns the rotation of the device around the X axis; that is, the number of degrees, ranged between -180 and 180,  by which the device is tipped forward or backward.\n*[[DeviceRotationRate.beta]] This property indicates the rate of rotation around the X axis -- in degrees per second -- in a DeviceRotationRate object.			
-beta	R	DeviceOrientationEvent.beta										
 deviceorientationevent beta	R	DeviceOrientationEvent.beta										
 devicerotationrate beta	R	DeviceRotationRate.beta										
 parseint	D								*[[Number.parseInt()]] The Number.\n*[[Global.parseInt]] The parseInt() function parses a string argument and returns an integer of the specified radix (the base in mathematical numeral systems).			
 number parseint	R	Number.parseInt()										
 global parseint	R	Global.parseInt										
 loadeventend	D								*[[PerformanceNavigationTiming.loadEventEnd]] The loadEventEnd property returns a timestamp which is equal to the time when the load event of the current document is completed.\n*[[PerformanceTiming.loadEventEnd]] The PerformanceTiming.			
-loadEventEnd	R	PerformanceNavigationTiming.loadEventEnd										
 performancenavigationtiming loadeventend	R	PerformanceNavigationTiming.loadEventEnd										
-loadEventEnd	R	PerformanceTiming.loadEventEnd										
 performancetiming loadeventend	R	PerformanceTiming.loadEventEnd										
 outertext	D								*[[HTMLElement.outerText]] HTMLElement.\n*[[Node.outerText]] See HTMLElement.			
-outerText	R	HTMLElement.outerText										
 htmlelement outertext	R	HTMLElement.outerText										
-outerText	R	Node.outerText										
 node outertext	R	Node.outerText										
 requeststart	D								*[[PerformanceResourceTiming.requestStart]] The requestStart property returns a timestamp of the time immediately before the browser starts requesting the resource from the server, cache, or local resource.\n*[[PerformanceTiming.requestStart]] The PerformanceTiming.			
 performanceresourcetiming requeststart	R	PerformanceResourceTiming.requestStart										
@@ -5078,23 +4829,16 @@ searchparams	D								*[[URLUtils.searchParams]] The URLUtils.\n*[[URL.searchPar
 htmlhyperlinkelementutils searchparams	R	URLUtils.searchParams										
 url searchparams	R	URL.searchParams										
 createevent	D								*[[Document.createEvent()]] Creates an event of the type specified.\n*[[Event.createEvent()]] Creates a new event, which must then be initialized by calling its init() method.			
-createEvent	R	Document.createEvent()										
 document createevent	R	Document.createEvent()										
-createEvent	R	Event.createEvent()										
 event createevent	R	Event.createEvent()										
 parent	D								*[[Window.parent]] A reference to the parent of the current window or subframe.\n*[[Object.prototype.__parent__]] The __parent__ property used to point to an object's context, but it has been removed.			
-parent	R	Window.parent										
 window parent	R	Window.parent										
 object parent	R	Object.prototype.__parent__										
-screen	D								*[[Screen]] The Screen interface represents a screen, usually the one on which the current window is being rendered.\n*[[Window.screen]] Returns a reference to the screen object associated with the window.			
 api screen	R	Screen										
 window screen	R	Window.screen										
 getelementsbytagnamens	D								*[[Document.getElementsByTagNameNS()]] Returns a list of elements with the given tag name belonging to the given namespace.\n*[[Element.getElementsByTagNameNS()]] The Element.			
-getElementsByTagNameNS	R	Document.getElementsByTagNameNS()										
 document getelementsbytagnamens	R	Document.getElementsByTagNameNS()										
-getElementsByTagNameNS	R	Element.getElementsByTagNameNS()										
 element getelementsbytagnamens	R	Element.getElementsByTagNameNS()										
-iterations	D								*[[Iterations]] The iterations property of the Web Animations API the number of times the animation should repeat.\n*[[AnimationEffectTimingReadOnly.iterations]] The iterations property of AnimationEffectTimingReadOnly represents the number of times the animation should repeat.			
 animationeffecttimingproperties iterations	R	Iterations										
 animationeffecttimingreadonly iterations	R	AnimationEffectTimingReadOnly.iterations										
 cancel	D								*[[Animation.cancel()]] The Animation.\n*[[SpeechSynthesis.cancel()]] The cancel() method of the SpeechSynthesis interface removes all utterances from the utterance queue.			
@@ -5103,33 +4847,27 @@ speechsynthesis cancel	R	SpeechSynthesis.cancel()
 sticky	D								*[[Notification.sticky]] The sticky read-only property of the Notification interface specifies whether the notification should be 'sticky' or not.\n*[[RegExp.prototype.sticky]] The sticky property reflects whether or not the search is sticky (searches in strings only from the index indicated by the lastIndex property of this regular expression).			
 notification sticky	R	Notification.sticky										
 regexp sticky	R	RegExp.prototype.sticky										
-textdecoder	D								*[[TextDecoder]] The TextDecoder interface represents a decoder for a specific method, that is a specific character encoding, like utf-8, iso-8859-2, koi8, cp1261, gbk,.\n*[[TextDecoder()]] The TextDecoder() constructor returns a newly created TextDecoder object for the encoding specified in parameter.			
 api textdecoder	R	TextDecoder										
 textdecoder textdecoder	R	TextDecoder()										
-inputevent	D								*[[InputEvent]] The InputEvent interface represents an event notifying of editable content change.\n*[[InputEvent()]] The InputEvent() constructor creates a new InputEvent.			
 api inputevent	R	InputEvent										
 inputevent inputevent	R	InputEvent()										
 parse	D								*[[Date.parse]] The Date.\n*[[JSON.parse]] The JSON.			
 date parse	R	Date.parse										
 json parse	R	JSON.parse										
 media	D								*[[HTMLStyleElement.media]] The HTMLSyleElement.\n*[[StyleSheet.media]] media specifies the intended destination medium for style information.			
-media	R	HTMLStyleElement.media										
 htmlstyleelement media	R	HTMLStyleElement.media										
 stylesheet media	R	StyleSheet.media										
 hostname	D								*[[HTMLHyperlinkElementUtils.hostname]] The HTMLHyperlinkElementUtils.\n*[[URLUtilsReadOnly.hostname]] The URLUtilsReadOnly.			
-hostname	R	HTMLHyperlinkElementUtils.hostname										
 htmlhyperlinkelementutils hostname	R	HTMLHyperlinkElementUtils.hostname										
 urlutilsreadonly hostname	R	URLUtilsReadOnly.hostname										
 finish	D								*[[Animation.finish()]] None.\n*[[WebGLRenderingContext.finish()]] The WebGLRenderingContext.			
 animation finish	R	Animation.finish()										
 webglrenderingcontext finish	R	WebGLRenderingContext.finish()										
-easing	D								*[[Easing]] The easing property of the Web Animations API represents the timing function used to scale the time to produce easing effects.\n*[[AnimationEffectTimingReadOnly.easing]] The easing property of the AnimationEffectTimingReadOnly object represents the timing function used to scale the time to produce easing effects.			
 animationeffecttimingproperties easing	R	Easing										
 animationeffecttimingreadonly easing	R	AnimationEffectTimingReadOnly.easing										
 nan	D								*[[Global.NaN]] The global NaN property is a value representing Not-A-Number.\n*[[Number.NaN]] The Number.			
 global nan	R	Global.NaN										
 number nan	R	Number.NaN										
-touch	D								*[[Touch]] The Touch interface represents a single contact point on a touch-sensitive device.\n*[[Touch()]] The Touch() constructor creates a new Touch object.			
 api touch	R	Touch										
 touch touch	R	Touch()										
 displayname	D								*[[VRDisplay.displayName]] The displayName read-only property of the VRDisplay interface returns a human-readable name to identify the VRDisplay.\n*[[Function.displayName]] The function.			
@@ -5138,11 +4876,9 @@ function displayname	R	Function.displayName
 @@species	D								*[[get Array[@@species]]] The Array[@@species] accessor property returns the Array constructor.\n*[[get RegExp[@@species]]] The RegExp[@@species] accessor property returns the RegExp constructor.			
 array @@species	R	get Array[@@species]										
 regexp @@species	R	get RegExp[@@species]										
-extendableevent	D								*[[ExtendableEvent]] The ExtendableEvent interface extends the lifetime of the install and activate events dispatched on the global scope as part of the service worker lifecycle.\n*[[ExtendableEvent.ExtendableEvent()]] The ExtendableEvent() constructor creates a new ExtendableEvent object.			
 api extendableevent	R	ExtendableEvent										
 extendableevent extendableevent	R	ExtendableEvent.ExtendableEvent()										
 previoussibling	D								*[[Node.previousSibling]] The Node.\n*[[TreeWalker.previousSibling()]] The TreeWalker.			
-previousSibling	R	Node.previousSibling										
 node previoussibling	R	Node.previousSibling										
 treewalker previoussibling	R	TreeWalker.previousSibling()										
 secureconnectionstart	D								*[[PerformanceResourceTiming.secureConnectionStart]] The secureConnectionStart property returns a timestamp immediately before the browser starts the handshake process to secure the current connection.\n*[[PerformanceTiming.secureConnectionStart]] The PerformanceTiming.			
@@ -5159,74 +4895,55 @@ vrdisplaycapabilities hasposition	R	VRDisplayCapabilities.hasPosition
 vrpose hasposition	R	VRPose.hasPosition										
 visibilitystate	D								*[[Document.visibilityState]] The Document.\n*[[WindowClient.visibilityState]] The visibilityState read-only property of the WindowClient interface indicates the visibility of the current client.			
 document visibilitystate	R	Document.visibilityState										
-visibilityState	R	WindowClient.visibilityState										
 windowclient visibilitystate	R	WindowClient.visibilityState										
 responsestart	D								*[[PerformanceResourceTiming.responseStart]] The responseStart property returns a timestamp immediately after the browser receives the first byte of the response from the server, cache, or local resource.\n*[[PerformanceTiming.responseStart]] The PerformanceTiming.			
 performanceresourcetiming responsestart	R	PerformanceResourceTiming.responseStart										
 performancetiming responsestart	R	PerformanceTiming.responseStart										
-intersectionobserver	D								*[[IntersectionObserver]] The IntersectionObserver interface of the the Intersection Observer API provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.\n*[[IntersectionObserver.IntersectionObserver()]] The IntersectionObserver() constructor creates a new IntersectionObserver object.			
 api intersectionobserver	R	IntersectionObserver										
 intersectionobserver intersectionobserver	R	IntersectionObserver.IntersectionObserver()										
 concat	D								*[[Array.prototype.concat]] The concat() method returns a new array comprised of the array on which it is called joined with the array(s) and/or value(s) provided as arguments.\n*[[String.prototype.concat]] The concat() method combines the text of one or more strings and returns a new string.			
 array concat	R	Array.prototype.concat										
 string concat	R	String.prototype.concat										
-offscreencanvas	D								*[[OffscreenCanvas]] The OffscreenCanvas interface provides a canvas that can be rendered off screen.\n*[[OffscreenCanvas()]] The OffscreenCanvas() constructor returns a newly instantiated OffscreenCanvas object.			
 api offscreencanvas	R	OffscreenCanvas										
 offscreencanvas offscreencanvas	R	OffscreenCanvas()										
-sharedkeyframelist	D								*[[SharedKeyframeList]] The SharedKeyframeList interface of the Web Animations API represents a sequence of keyframes that can be shared between KeyframeEffect objects.\n*[[SharedKeyframeList.SharedKeyframeList()]] The SharedKeyframeList() constructor of the SharedKeyframeList interface creates a new SharedKeyframeList object that can be shared across multiple KeyframeEffect objects.			
 api sharedkeyframelist	R	SharedKeyframeList										
 sharedkeyframelist sharedkeyframelist	R	SharedKeyframeList.SharedKeyframeList()										
-imagedata	D								*[[ImageData]] The ImageData interface represents the underlying pixel data of an area of a canvas element.\n*[[ImageData()]] The ImageData() constructor returns a newly instantiated ImageData object build from the typed array given and having the specified width and height.			
 api imagedata	R	ImageData										
 imagedata imagedata	R	ImageData()										
 plugins	D								*[[Document.plugins]] Returns an HTMLCollection object containing one or more HTMLEmbedElement s or null which represent the embed elements in the current document.\n*[[NavigatorPlugins.plugins]] Returns a PluginArray object, listing the plugins installed in the application.			
 document plugins	R	Document.plugins										
-plugins	R	NavigatorPlugins.plugins										
 navigatorplugins plugins	R	NavigatorPlugins.plugins										
 expandentityreferences	D								*[[NodeIterator.expandEntityReferences]] The NodeIterator.\n*[[TreeWalker.expandEntityReferences]] The TreeWalker.			
-expandEntityReferences	R	NodeIterator.expandEntityReferences										
 nodeiterator expandentityreferences	R	NodeIterator.expandEntityReferences										
 treewalker expandentityreferences	R	TreeWalker.expandEntityReferences										
 hash	D								*[[HTMLHyperlinkElementUtils.hash]] The HTMLHyperlinkElementUtils.\n*[[URLUtilsReadOnly.hash]] The URLUtilsReadOnly.			
-hash	R	HTMLHyperlinkElementUtils.hash										
 htmlhyperlinkelementutils hash	R	HTMLHyperlinkElementUtils.hash										
 urlutilsreadonly hash	R	URLUtilsReadOnly.hash										
 shippingoption	D								*[[PaymentRequest.shippingOption]] The shippingOption read-only property of the PaymentRequest interface returns the ID of the selected shipping option.\n*[[PaymentResponse.shippingOption]] The shippingOption read-only property of the PaymentRequest interface returns the ID attribute of the shipping option selected by the user.			
 paymentrequest shippingoption	R	PaymentRequest.shippingOption										
 paymentresponse shippingoption	R	PaymentResponse.shippingOption										
-reason	D								*[[reason]] The reason read-only property of the PromiseRejection returns the rejection reason for the Promise that the current notification is about.\n*[[PromiseRejectionEvent.reason]] The PromiseRejectionEvent.			
 promiserejection reason	R	reason										
 promiserejectionevent reason	R	PromiseRejectionEvent.reason										
 action	D								*[[HTMLFormElement.action]] The HTMLFormElement.\n*[[NotificationEvent.action]] Returns the string ID of the notification button the user clicked.			
-action	R	HTMLFormElement.action										
 htmlformelement action	R	HTMLFormElement.action										
-action	R	NotificationEvent.action										
 notificationevent action	R	NotificationEvent.action										
-paymentrequest	D								*[[PaymentRequest]] The PaymentRequest interface of the the Payment Request API manages the process of a user making a payment.\n*[[PaymentRequest.PaymentRequest()]] The PaymentRequest() constructor creates a new PaymentRequest object.			
 api paymentrequest	R	PaymentRequest										
 paymentrequest paymentrequest	R	PaymentRequest.PaymentRequest()										
 lastchild	D								*[[Node.lastChild]] The Node.\n*[[TreeWalker.lastChild()]] The TreeWalker.			
-lastChild	R	Node.lastChild										
 node lastchild	R	Node.lastChild										
 treewalker lastchild	R	TreeWalker.lastChild()										
 writevalue	D								*[[writeValue()]] The BluetoothGATTDescriptor.\n*[[BluetoothRemoteGATTCharacteristic.writeValue()]] The BluetoothRemoteGATTCharacteristic.			
 bluetoothgattdescriptor writevalue	R	writeValue()										
 bluetoothremotegattcharacteristic writevalue	R	BluetoothRemoteGATTCharacteristic.writeValue()										
 cancelbubble	D								*[[Event.cancelBubble]] The Event.\n*[[UIEvent.cancelBubble]] The UIEvent.			
-cancelBubble	R	Event.cancelBubble										
 event cancelbubble	R	Event.cancelBubble										
-cancelBubble	R	UIEvent.cancelBubble										
 uievent cancelbubble	R	UIEvent.cancelBubble										
-history	D								*[[History]] The History interface allows to manipulate the browser session history, that is the pages visited in the tab or frame that the current page is loaded in.\n*[[Window.history]] The Window.			
 api history	R	History										
 window history	R	Window.history										
 prompt	D								*[[BeforeInstallPromptEvent.prompt()]] The prompt() method of the BeforeInstallPromptEvent interface allows a developer to show the install prompt at a time of their own choosing.\n*[[Window.prompt()]] The Window.			
-prompt	R	BeforeInstallPromptEvent.prompt()										
 beforeinstallpromptevent prompt	R	BeforeInstallPromptEvent.prompt()										
-prompt	R	Window.prompt()										
 window prompt	R	Window.prompt()										
 toblob	D								*[[HTMLCanvasElement.toBlob()]] The HTMLCanvasElement.\n*[[OffscreenCanvas.toBlob()]] The OffscreenCanvas.			
-toBlob	R	HTMLCanvasElement.toBlob()										
 htmlcanvaselement toblob	R	HTMLCanvasElement.toBlob()										
 offscreencanvas toblob	R	OffscreenCanvas.toBlob()										
 onpause	D								*[[MediaRecorder.onpause]] The MediaRecorder.\n*[[SpeechSynthesisUtterance.onpause]] The onpause property of the SpeechSynthesisUtterance interface represents an event handler that will run when the utterance is paused part way through (when the pause event fires.			
@@ -5238,7 +4955,6 @@ audiocontext samplerate	R	AudioContext.sampleRate
 fetchstart	D								*[[PerformanceResourceTiming.fetchStart]] The fetchStart property represents a timestamp immediately before the browser starts to fetch the resource.\n*[[PerformanceTiming.fetchStart]] The PerformanceTiming.			
 performanceresourcetiming fetchstart	R	PerformanceResourceTiming.fetchStart										
 performancetiming fetchstart	R	PerformanceTiming.fetchStart										
-rtcpeerconnection	D								*[[RTCPeerConnection]] The RTCPeerConnection interface represents a WebRTC connection between the local computer and a remote peer.\n*[[RTCPeerConnection()]] The RTCPeerConnection() constructor returns a newly-created RTCPeerConnection, which represents a connection between the local device and a remote peer.			
 api rtcpeerconnection	R	RTCPeerConnection										
 rtcpeerconnection rtcpeerconnection	R	RTCPeerConnection()										
 keypath	D								*[[IDBIndex.keyPath]] Any data type that can be used as a key path.\n*[[IDBObjectStore.keyPath]] If this property is null, the application must provide a key for each modification operation.			
@@ -5251,42 +4967,31 @@ opencursor	D								*[[IDBIndex.openCursor()]] The method sets the position of t
 idbindex opencursor	R	IDBIndex.openCursor()										
 idbobjectstore opencursor	R	IDBObjectStore.openCursor()										
 disabled	D								*[[HTMLSelectElement.disabled]] The HTMLSelectElement.\n*[[StyleSheet.disabled]] The StyleSheet.			
-disabled	R	HTMLSelectElement.disabled										
 htmlselectelement disabled	R	HTMLSelectElement.disabled										
 stylesheet disabled	R	StyleSheet.disabled										
 style	D								*[[CSSStyleRule.style]] The CSSRule.\n*[[HTMLElement.style]] The&#160;HTMLElement.			
 cssstylerule style	R	CSSStyleRule.style										
-style	R	HTMLElement.style										
 htmlelement style	R	HTMLElement.style										
 ononline	D								*[[Document.ononline]] " online " event is fired on the body of each page when the browser switches between online and offline mode.\n*[[WorkerGlobalScope.ononline]] The ononline property of the WorkerGlobalScope interface represents an EventHandler to be called when the online event occurs and bubbles through the Worker.			
 document ononline	R	Document.ononline										
 global ononline	R	WorkerGlobalScope.ononline										
 detach	D								*[[NodeIterator.detach()]] The NodeIterator.\n*[[Range.detach()]] The Range.			
-detach	R	NodeIterator.detach()										
 nodeiterator detach	R	NodeIterator.detach()										
 range detach	R	Range.detach()										
 getdistributednodes	D								*[[HTMLContentElement.getDistributedNodes()]] The HTMLContentElement.\n*[[HTMLShadowElement.getDistributedNodes()]] The HTMLShadowElement.			
-getDistributedNodes	R	HTMLContentElement.getDistributedNodes()										
 htmlcontentelement getdistributednodes	R	HTMLContentElement.getDistributedNodes()										
-getDistributedNodes	R	HTMLShadowElement.getDistributedNodes()										
 htmlshadowelement getdistributednodes	R	HTMLShadowElement.getDistributedNodes()										
 referrer	D								*[[Document.referrer]] Returns the URI of the page that linked to this page.\n*[[Request.referrer]] The referrer read-only property of the Request interface is set by the user agent to be the referrer of the Request.			
 document referrer	R	Document.referrer										
 request referrer	R	Request.referrer										
 ports	D								*[[ExtendableMessageEvent.ports]] The ports read-only property of the ExtendableMessageEvent interface returns the array containing the MessagePort objects representing the ports of the associated message channel (the channel the message is being sent through.\n*[[ServiceWorkerMessageEvent.ports]] The ports read-only property of the ServiceWorkerMessageEvent interface returns an array of MessagePort objects connected with the message channel the message is being sent through.			
-ports	R	ExtendableMessageEvent.ports										
 extendablemessageevent ports	R	ExtendableMessageEvent.ports										
-ports	R	ServiceWorkerMessageEvent.ports										
 serviceworkermessageevent ports	R	ServiceWorkerMessageEvent.ports										
 nextnode	D								*[[NodeIterator.nextNode()]] The NodeIterator.\n*[[TreeWalker.nextNode()]] The TreeWalker.			
-nextNode	R	NodeIterator.nextNode()										
 nodeiterator nextnode	R	NodeIterator.nextNode()										
-nextNode	R	TreeWalker.nextNode()										
 treewalker nextnode	R	TreeWalker.nextNode()										
-mediastreamevent	D								*[[MediaStreamEvent]] The MediaStreamEvent interface represents events that occurs in relation to a MediaStream.\n*[[MediaStreamEvent()]] The MediaStreamEvent() constructor creates a new MediaStreamEvent.			
 api mediastreamevent	R	MediaStreamEvent										
 mediastreamevent mediastreamevent	R	MediaStreamEvent()										
-enddelay	D								*[[EndDelay]] The endDelay property of the Web Animations API represents the number of milliseconds to delay after the end time of an animation.\n*[[AnimationEffectTimingReadOnly.endDelay]] The endDelay property of AnimationEffectTimingReadOnly represents the number of milliseconds to delay after the end time of an animation.			
 animationeffecttimingproperties enddelay	R	EndDelay										
 animationeffecttimingreadonly enddelay	R	AnimationEffectTimingReadOnly.endDelay										
 timeline	D								*[[Animation.timeline]] The Animation.\n*[[Document.timeline]] The timeline readonly property of the Document interface represents the default timeline of the current document.			
@@ -5295,7 +5000,6 @@ document timeline	R	Document.timeline
 put	D								*[[Cache.put()]] The put() method of the Cache interface allows key/value pairs to be added to the current Cache object.\n*[[IDBObjectStore.put()]] If the record is successfully stored, then a success event is fired on the returned request object with the result set to the key for the stored record, and the transaction set to the transaction in which this object store is opened.			
 cache put	R	Cache.put()										
 idbobjectstore put	R	IDBObjectStore.put()										
-promiserejection	D								*[[PromiseRejection]] This object provides information about a Promise that has been rejected.\n*[[PromiseRejection]] The PromiseRejection() constructor creates a new PromiseRejection object.			
 api promiserejection	R	PromiseRejection										
 promiserejection promiserejection	R	PromiseRejection										
 assign	D								*[[Location.assign()]] The Location.\n*[[Object.assign()]] The Object.			
@@ -5305,13 +5009,10 @@ getentriesbyname	D								*[[Performance.getEntriesByName()]] The getEntriesByNa
 performance getentriesbyname	R	Performance.getEntriesByName()										
 performanceobserverentrylist getentriesbyname	R	PerformanceObserverEntryList.getEntriesByName()										
 vibrate	D								*[[Navigator.vibrate()]] The Navigator.\n*[[Notification.vibrate]] The vibrate read-only property of the Notification interface specifies a a vibration pattern for the device's vibration hardware to emit when the notification fires.			
-vibrate	R	Navigator.vibrate()										
 navigator vibrate	R	Navigator.vibrate()										
 notification vibrate	R	Notification.vibrate										
-dragevent	D								*[[DragEvent]] The DragEvent interface is a DOM event that represents a drag and drop interaction.\n*[[DragEvent()]] This constructor is used to create a synthetic DragEvent object.			
 api dragevent	R	DragEvent										
 dragevent dragevent	R	DragEvent()										
-sharedworker	D								*[[SharedWorker]] The SharedWorker interface represents a specific kind of worker that can be accessed from several browsing contexts, such as several windows, iframes or even workers.\n*[[SharedWorker()]] The SharedWorker() constructor creates a SharedWorker object that executes the script at the specified URL.			
 api sharedworker	R	SharedWorker										
 sharedworker sharedworker	R	SharedWorker()										
 sign	D								*[[SubtleCrypto.sign()]] The SubtleCrypto.\n*[[Math.sign()]] The Math.			
@@ -5320,13 +5021,11 @@ math sign	R	Math.sign()
 kind	D								*[[DataTransferItem.kind]] The DataTransferItem.\n*[[MediaStreamTrack.kind]] The read-only property MediaStreamTrack.			
 datatransferitem kind	R	DataTransferItem.kind										
 mediastreamtrack kind	R	MediaStreamTrack.kind										
-mediarecorder	D								*[[MediaRecorder]] The MediaRecorder interface of the MediaRecorder API provides functionality to easily capture media.\n*[[MediaRecorder.MediaRecorder()]] The MediaRecorder() constructor creates a new MediaRecorder object.			
 api mediarecorder	R	MediaRecorder										
 mediarecorder mediarecorder	R	MediaRecorder.MediaRecorder()										
 matchall	D								*[[Cache.matchAll()]] The matchAll() method of the Cache interface returns a Promise that resolves to an array of all matching requests in the Cache object.\n*[[Clients.matchAll()]] The matchAll() method of the Clients interface returns a Promise for a list of service worker clients.			
 cache matchall	R	Cache.matchAll()										
 clients matchall	R	Clients.matchAll()										
-mediasource	D								*[[MediaSource]] The MediaSource interface represents a source of media data for an HTMLMediaElement object.\n*[[MediaSource.MediaSource()]] The MediaSource() constructor of the MediaSource interface constructs and returns a new MediaSource object with no associated source buffers.			
 api mediasource	R	MediaSource										
 mediasource mediasource	R	MediaSource.MediaSource()										
 getentries	D								*[[Performance.getEntries()]] The getEntries() method returns a list of PerformanceEntry objects for a given filter.\n*[[PerformanceObserverEntryList.getEntries()]] The getEntries() method of the PerformanceObserverEntryList interface returns a list of explicitly observed performance entry objects for a given filter.			
@@ -5334,45 +5033,34 @@ performance getentries	R	Performance.getEntries()
 performanceobserverentrylist getentries	R	PerformanceObserverEntryList.getEntries()										
 collapse	D								*[[Range.collapse()]] The Range.\n*[[Selection.collapse()]] The Selection.			
 range collapse	R	Range.collapse()										
-collapse	R	Selection.collapse()										
 selection collapse	R	Selection.collapse()										
 self	D								*[[Window.self]] The Window.\n*[[WorkerGlobalScope.self]] The self read-only property of the WorkerGlobalScope interface returns a reference to the WorkerGlobalScope itself.			
-self	R	Window.self										
 window self	R	Window.self										
 global self	R	WorkerGlobalScope.self										
 play	D								*[[Animation.play()]] None.\n*[[play()]] The HTMLMediaElement.			
 animation play	R	Animation.play()										
 htmlmediaelement play	R	play()										
-promiserejectionevent	D								*[[PromiseRejectionEvent]] The PromiseRejectionEvent interface represents events which are fired when JavaScript Promise s are rejected.\n*[[PromiseRejectionEvent()]] The PromiseRejectionEvent() constructor returns a newly created PromiseRejectionEvent, which represents events fired when a JavaScript Promise is rejected.			
 api promiserejectionevent	R	PromiseRejectionEvent										
 promiserejectionevent promiserejectionevent	R	PromiseRejectionEvent()										
 firstchild	D								*[[Node.firstChild]] The Node.\n*[[TreeWalker.firstChild()]] The TreeWalker.			
-firstChild	R	Node.firstChild										
 node firstchild	R	Node.firstChild										
 treewalker firstchild	R	TreeWalker.firstChild()										
 alpha	D								*[[DeviceOrientationEvent.alpha]] Returns the rotation of the device around the Z axis; that is, the number of degrees by which the device is being twisted around the center of the screen.\n*[[DeviceRotationRate.alpha]] This property indicates the rate of rotation around the Z axis -- in degrees per second -- in a DeviceRotationRate object.			
-alpha	R	DeviceOrientationEvent.alpha										
 deviceorientationevent alpha	R	DeviceOrientationEvent.alpha										
 devicerotationrate alpha	R	DeviceRotationRate.alpha										
-datatransfer	D								*[[DataTransfer]] The DataTransfer object is used to hold the data that is being dragged during a drag and drop operation.\n*[[DragEvent.dataTransfer]] The DataEvent.			
 api datatransfer	R	DataTransfer										
 dragevent datatransfer	R	DragEvent.dataTransfer										
-rtcpeerconnectioniceevent	D								*[[RTCPeerConnectionIceEvent]] The RTCPeerConnectionIceEvent interface represents events that occurs in relation to ICE candidates with the target, usually an RTCPeerConnection.\n*[[RTCPeerConnectionIceEvent()]] The RTCPeerConnectionIceEvent() constructor creates a new RTCPeerConnectionIceEvent.			
 api rtcpeerconnectioniceevent	R	RTCPeerConnectionIceEvent										
 rtcpeerconnectioniceevent rtcpeerconnectioniceevent	R	RTCPeerConnectionIceEvent()										
 restore	D								*[[CanvasRenderingContext2D.restore()]] The CanvasRenderingContext2D.\n*[[Window.restore()]] This method is currently not working, but you can use:			
 canvasrenderingcontext2d restore	R	CanvasRenderingContext2D.restore()										
-restore	R	Window.restore()										
 window restore	R	Window.restore()										
 getboundingclientrect	D								*[[Element.getBoundingClientRect()]] The Element.\n*[[Range.getBoundingClientRect()]] The Range.			
-getBoundingClientRect	R	Element.getBoundingClientRect()										
 element getboundingclientrect	R	Element.getBoundingClientRect()										
 range getboundingclientrect	R	Range.getBoundingClientRect()										
-speechgrammarlist	D								*[[SpeechGrammarList]] The SpeechGrammarList interface of the Web Speech API represents a list of SpeechGrammar objects containing words or patterns of words that we want the recognition service to recognize.\n*[[SpeechGrammarList.SpeechGrammarList()]] The SpeechGrammarList() constructor creates a new SpeechGrammarList object instance.			
 api speechgrammarlist	R	SpeechGrammarList										
 speechgrammarlist speechgrammarlist	R	SpeechGrammarList.SpeechGrammarList()										
 find	D								*[[Window.find()]] Finds a string in a window.\n*[[Array.prototype.find()]] The find() method returns a value in the array, if an element in the array satisfies the provided testing function.			
-find	R	Window.find()										
 window find	R	Window.find()										
 array find	R	Array.prototype.find()										
 redirectend	D								*[[PerformanceResourceTiming.redirectEnd]] The redirectEnd property returns a timestamp immediately after receiving the last byte of the response of the last redirect.\n*[[PerformanceTiming.redirectEnd]] The PerformanceTiming.			
@@ -5380,9 +5068,7 @@ performanceresourcetiming redirectend	R	PerformanceResourceTiming.redirectEnd
 performancetiming redirectend	R	PerformanceTiming.redirectEnd										
 nameditem	D								*[[HTMLFormControlsCollection.namedItem()]] Note that this version of namedItem() hide the one inherited from HTMLCollection.\n*[[HTMLSelectElement.namedItem()]] The HTMLSelectElement.			
 htmlformcontrolscollection nameditem	R	HTMLFormControlsCollection.namedItem()										
-namedItem	R	HTMLSelectElement.namedItem()										
 htmlselectelement nameditem	R	HTMLSelectElement.namedItem()										
-notificationevent	D								*[[NotificationEvent]] The parameter passed into the onnotificationclick handler, the NotificationEvent interface represents a notification click event that is dispatched on the ServiceWorkerGlobalScope of a ServiceWorker.\n*[[NotificationEvent.NotificationEvent()]] The NotificationEvent() constructor creates a new NotificationEvent object.			
 api notificationevent	R	NotificationEvent										
 notificationevent notificationevent	R	NotificationEvent.NotificationEvent()										
 responseend	D								*[[PerformanceResourceTiming.responseEnd]] The responseEnd property returns a timestamp immediately after the browser receives the last byte of the resource or immediately before the transport connection is closed, whichever comes first.\n*[[PerformanceTiming.responseEnd]] The PerformanceTiming.			
@@ -5390,10 +5076,8 @@ performanceresourcetiming responseend	R	PerformanceResourceTiming.responseEnd
 performancetiming responseend	R	PerformanceTiming.responseEnd										
 getusermedia	D								*[[MediaDevices.getUserMedia()]] The MediaDevices.\n*[[Navigator.getUserMedia()]] The Navigator.			
 mediadevices getusermedia	R	MediaDevices.getUserMedia()										
-getUserMedia	R	Navigator.getUserMedia()										
 navigator getusermedia	R	Navigator.getUserMedia()										
 dump	D								*[[Window.dump()]] Prints messages to the (native) console.\n*[[WorkerGlobalScope.dump()]] The dump() method of the WorkerGlobalScope interface allows you to write a message to stdout — i.			
-dump	R	Window.dump()										
 window dump	R	Window.dump()										
 global dump	R	WorkerGlobalScope.dump()										
 geteyeparameters	D								*[[HMDVRDevice.getEyeParameters()]] The getEyeParameters() method of the HMDVRDevice interface returns current parameters for the eye specified as its argument ("left" or "right") — stored in a VREyeParameters object.\n*[[VRDisplay.getEyeParameters()]] The getEyeParameters() method of the VRDisplay interface returns the VREyeParameters object containing the eye parameters for the specified eye.			
@@ -5401,69 +5085,51 @@ hmdvrdevice geteyeparameters	R	HMDVRDevice.getEyeParameters()
 vrdisplay geteyeparameters	R	VRDisplay.getEyeParameters()										
 fullscreen	D								*[[Document.fullscreen]] The Document.\n*[[Window.fullScreen]] This property indicates whether the window is displayed in full screen mode or not.			
 document fullscreen	R	Document.fullscreen										
-fullScreen	R	Window.fullScreen										
 window fullscreen	R	Window.fullScreen										
-muted	D								*[[HTMLMediaElement.muted]] The HTMLMediaElement.\n*[[muted]] The muted read-only property of the MediaStreamTrack interface returns a Boolean value indicating whether the track is muted.			
 htmlmediaelement muted	R	HTMLMediaElement.muted										
 mediastreamtrack muted	R	muted										
 reverse	D								*[[Animation.reverse()]] None.\n*[[Array.prototype.reverse]] The reverse() method reverses an array in place.			
 animation reverse	R	Animation.reverse()										
 array reverse	R	Array.prototype.reverse										
 context	D								*[[AudioNode.context]] An AudioContext object.\n*[[Request.context]] The context read-only property of the Request interface contains the context of the Request (e.			
-context	R	AudioNode.context										
 audionode context	R	AudioNode.context										
 request context	R	Request.context										
-geolocation	D								*[[Geolocation]] The Geolocation interface represents an object able to programmatically obtain the position of the device.\n*[[Navigator.geolocation]] The Navigator.			
 api geolocation	R	Geolocation										
 navigator geolocation	R	Navigator.geolocation										
 oninstall	D								*[[ServiceWorkerGlobalScope.oninstall]] The oninstall property of the ServiceWorkerGlobalScope interface is an event handler fired whenever an install event occurs (when the service worker installs).\n*[[Window.oninstall]] The oninstall property of the Window interface represent the event handler for the install event, which is thrown each time the page is successfully installed as a web app.			
 global oninstall	R	ServiceWorkerGlobalScope.oninstall										
-oninstall	R	Window.oninstall										
 window oninstall	R	Window.oninstall										
 bgcolor	D								*[[Document.bgColor]] The deprecated bgColor property gets or sets the background color of the current document.\n*[[HTMLTableElement.bgColor]] The HTMLTableElement.			
 document bgcolor	R	Document.bgColor										
-bgColor	R	HTMLTableElement.bgColor										
 htmltableelement bgcolor	R	HTMLTableElement.bgColor										
-documenttimeline	D								*[[DocumentTimeline]] The DocumentTimeline interface of the the Web Animations API represents animation timelines, including the default document timeline (accessed via Document.\n*[[DocumentTimeline.DocumentTimeline()]] The DocumentTimeline() constructor of the Web Animations API creates a new instance of the DocumentTimeline object associated with the active document of the current browsing context.			
 api documenttimeline	R	DocumentTimeline										
 documenttimeline documenttimeline	R	DocumentTimeline.DocumentTimeline()										
-clipboardevent	D								*[[ClipboardEvent]] The ClipboardEvent interface represents events providing information related to modification of the clipboard, that is cut, copy, and paste events.\n*[[ClipboardEvent()]] The ClipboardEvent() constructor returns a newly created ClipboardEvent, representing an event providing information related to modification of the clipboard, that is cut, copy, and paste events.			
 api clipboardevent	R	ClipboardEvent										
 clipboardevent clipboardevent	R	ClipboardEvent()										
-blobevent	D								*[[BlobEvent]] The BlobEvent interface represents events associated with a Blob.\n*[[BlobEvent()]] The BlobEvent() constructor returns a newly created BlobEvent object with an associated Blob.			
 api blobevent	R	BlobEvent										
 blobevent blobevent	R	BlobEvent()										
 onclick	D								*[[GlobalEventHandlers.onclick]] The onclick property returns the click event handler code on the current element.\n*[[Notification.onclick]] The onclick property of the Notification interface specifies an event listener to receive click events.			
-onclick	R	GlobalEventHandlers.onclick										
 global onclick	R	GlobalEventHandlers.onclick										
 notification onclick	R	Notification.onclick										
 cancelanimationframe	D								*[[VRDisplay.cancelAnimationFrame()]] The cancelAnimationFrame() method of the VRDisplay interface is a special implementation of Window.\n*[[window.cancelAnimationFrame()]] Cancels an animation frame request previously scheduled through a call to window.			
 vrdisplay cancelanimationframe	R	VRDisplay.cancelAnimationFrame()										
 window cancelanimationframe	R	window.cancelAnimationFrame()										
 previousnode	D								*[[NodeIterator.previousNode()]] The NodeIterator.\n*[[TreeWalker.previousNode()]] The TreeWalker.			
-previousNode	R	NodeIterator.previousNode()										
 nodeiterator previousnode	R	NodeIterator.previousNode()										
-previousNode	R	TreeWalker.previousNode()										
 treewalker previousnode	R	TreeWalker.previousNode()										
 getelementsbyclassname	D								*[[Document.getElementsByClassName()]] Returns an array-like object of all child elements which have all of the given class names.\n*[[Element.getElementsByClassName()]] The Element.			
-getElementsByClassName	R	Document.getElementsByClassName()										
 document getelementsbyclassname	R	Document.getElementsByClassName()										
-getElementsByClassName	R	Element.getElementsByClassName()										
 element getelementsbyclassname	R	Element.getElementsByClassName()										
 indexof	D								*[[Array.prototype.indexOf]] The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.\n*[[String.prototype.indexOf]] The indexOf() method returns the index within the calling String object of the first occurrence of the specified value, starting the search at fromIndex.			
 array indexof	R	Array.prototype.indexOf										
 string indexof	R	String.prototype.indexOf										
-passwordcredential	D								*[[PasswordCredential]] The interface of the the Credential Management API provides information about a username/password pair.\n*[[PasswordCredential]] The PasswordCredential constructor creates a new PasswordCredential object.			
 api passwordcredential	R	PasswordCredential										
 passwordcredential passwordcredential	R	PasswordCredential										
-binarytype	D								*[[binaryType]] When a PresentationConnection object is created, its binaryType IDL attribute MUST be set to the string " arraybuffer ".\n*[[RTCDataChannel.binaryType]] The property binaryType on the RTCDataChannel interface is a DOMString which specifies the type of JavaScript object which should be used to represent binary data received on the RTCDataChannel.			
 presentationconnection binarytype	R	binaryType										
 rtcdatachannel binarytype	R	RTCDataChannel.binaryType										
-range	D								*[[Range]] The Range interface represents a fragment of a document that can contain nodes and parts of text nodes.\n*[[Range()]] The Range() constructor returns a newly created Range object whose start and end is the global Document object.			
 api range	R	Range										
 range range	R	Range()										
 gamma	D								*[[DeviceOrientationEvent.gamma]] Returns the rotation of the device around the Y axis; that is, the number of degrees, ranged between -90 and 90, by which the device is turned left or right.\n*[[DeviceRotationRate.gamma]] This property indicates the rate of rotation around the Y axis -- in degrees per second -- in a DeviceRotationRate object.			
-gamma	R	DeviceOrientationEvent.gamma										
 deviceorientationevent gamma	R	DeviceOrientationEvent.gamma										
 devicerotationrate gamma	R	DeviceRotationRate.gamma										
 connectend	D								*[[PerformanceResourceTiming.connectEnd]] The connectEnd property returns the timestamp immediately after the browser finishes establishing the connection to the server to retrieve the resource.\n*[[PerformanceTiming.connectEnd]] The PerformanceTiming.			
@@ -5472,7 +5138,6 @@ performancetiming connectend	R	PerformanceTiming.connectEnd
 uniformmatrix	D								*[[WebGL2RenderingContext.uniformMatrix[234]x[234]fv()]] The WebGL2RenderingContext.\n*[[WebGLRenderingContext.uniformMatrix[234]fv()]] The WebGLRenderingContext.			
 webgl2renderingcontext uniformmatrix	R	WebGL2RenderingContext.uniformMatrix[234]x[234]fv()										
 webglrenderingcontext uniformmatrix	R	WebGLRenderingContext.uniformMatrix[234]fv()										
-fetchevent	D								*[[FetchEvent]] The parameter passed into the ServiceWorkerGlobalScope.\n*[[FetchEvent.FetchEvent()]] The FetchEvent() constructor creates a new FetchEvent object.			
 api fetchevent	R	FetchEvent										
 fetchevent fetchevent	R	FetchEvent.FetchEvent()										
 z	D								*[[DeviceAcceleration.z]] This read-only property indicates the amount of acceleration that occurred along the Z axis in a DeviceAcceleration object.\n*[[DOMPoint.z]] The z read-only property of the DOMPointReadOnly interface represents the z coordinate of a point.			
@@ -5482,99 +5147,71 @@ dompointreadonly z	R	DOMPoint.z
 array @@iterator	R	Array.prototype[@@iterator]()										
 string @@iterator	R	String.prototype[@@iterator]()										
 unloadeventend	D								*[[PerformanceNavigationTiming.unloadEventEnd]] The unloadEventEnd property returns a timestamp representing the time value equal to the time immediately after the user agent finishes the unload event of the previous document.\n*[[PerformanceTiming.unloadEventEnd]] The PerformanceTiming.			
-unloadEventEnd	R	PerformanceNavigationTiming.unloadEventEnd										
 performancenavigationtiming unloadeventend	R	PerformanceNavigationTiming.unloadEventEnd										
-unloadEventEnd	R	PerformanceTiming.unloadEventEnd										
 performancetiming unloadeventend	R	PerformanceTiming.unloadEventEnd										
 iscomposing	D								*[[InputEvent.isComposing]] The InputEvent.\n*[[KeyboardEvent.isComposing]] The KeyboardEvent.			
-isComposing	R	InputEvent.isComposing										
 inputevent iscomposing	R	InputEvent.isComposing										
-isComposing	R	KeyboardEvent.isComposing										
 keyboardevent iscomposing	R	KeyboardEvent.isComposing										
 eval	D								*[[Global.eval]] The eval() function evaluates JavaScript code represented as a string.\n*[[Object.prototype.eval()]] The Object.			
 global eval	R	Global.eval										
 object eval	R	Object.prototype.eval()										
-speechrecognition	D								*[[SpeechRecognition]] The SpeechRecognition interface of the Web Speech API is the controller interface for the recognition service; this also handles the SpeechRecognitionEvent sent from the recognition service.\n*[[SpeechRecognition()]] The SpeechRecognition() constructor creates a new SpeechRecognition object instance.			
 api speechrecognition	R	SpeechRecognition										
 speechrecognition speechrecognition	R	SpeechRecognition()										
-iterationstart	D								*[[IterationStart]] The iterationStart property of the Web Animations API represents which repetition the animation begins at and its progress through it.\n*[[AnimationEffectTimingReadOnly.iterationStart]] The iterationStart property of AnimationEffectTimingReadOnly represents which repetition the animation begins at and its progress through it.			
 animationeffecttimingproperties iterationstart	R	IterationStart										
 animationeffecttimingreadonly iterationstart	R	AnimationEffectTimingReadOnly.iterationStart										
 lastindexof	D								*[[Array.prototype.lastIndexOf]] The lastIndexOf() method returns the last index at which a given element can be found in the array, or -1 if it is not present.\n*[[String.prototype.lastIndexOf]] The lastIndexOf() method returns the index within the calling String object of the last occurrence of the specified value, searching backwards from fromIndex.			
 array lastindexof	R	Array.prototype.lastIndexOf										
 string lastindexof	R	String.prototype.lastIndexOf										
-animationplaybackevent	D								*[[AnimationPlaybackEvent]] The AnimationPlaybackEvent interface of the Web Animations API represents animation events.\n*[[AnimationPlaybackEvent.AnimationPlaybackEvent()]] The AnimationPlaybackEvent() constructor of the Web Animations API returns a new AnimationPlaybackEvent object instance.			
 api animationplaybackevent	R	AnimationPlaybackEvent										
 animationplaybackevent animationplaybackevent	R	AnimationPlaybackEvent.AnimationPlaybackEvent()										
 onstatechange	D								*[[AudioContext.onstatechange]] The following snippet is taken from our AudioContext states demo (see it running live.\n*[[ServiceWorker.onstatechange]] An EventListener property called whenever an event of type statechange is fired; it is basically fired anytime the ServiceWorker.			
 audiocontext onstatechange	R	AudioContext.onstatechange										
 serviceworker onstatechange	R	ServiceWorker.onstatechange										
 clienty	D								*[[MouseEvent.clientY]] The MouseEvent.\n*[[Touch.clientY]] The Touch.			
-clientY	R	MouseEvent.clientY										
 mouseevent clienty	R	MouseEvent.clientY										
 touch clienty	R	Touch.clientY										
 animationname	D								*[[AnimationEvent.animationName]] The AnimationEvent.\n*[[TransitionEvent.animationName]] The TransitionEvent.			
-animationName	R	AnimationEvent.animationName										
 animationevent animationname	R	AnimationEvent.animationName										
-animationName	R	TransitionEvent.animationName										
 transitionevent animationname	R	TransitionEvent.animationName										
-textencoder	D								*[[TextEncoder]] The TextEncoder interface represents an encoder for a specific method, that is a specific character encoding, like utf-8, iso-8859-2, koi8, cp1261, gbk,.\n*[[TextEncoder()]] The TextEncoder() constructor returns a newly created TextEncoder object for the encoding specified in parameter.			
 api textencoder	R	TextEncoder										
 textencoder textencoder	R	TextEncoder()										
 domcontentloadedeventend	D								*[[PerformanceNavigationTiming.domContentLoadedEventEnd]] The domContentLoadedEventEnd property returns a timestamp representing the time value equal to the time immediately after the current document's DOMContentLoaded event completes.\n*[[PerformanceTiming.domContentLoadedEventEnd]] The PerformanceTiming.			
-domContentLoadedEventEnd	R	PerformanceNavigationTiming.domContentLoadedEventEnd										
 performancenavigationtiming domcontentloadedeventend	R	PerformanceNavigationTiming.domContentLoadedEventEnd										
-domContentLoadedEventEnd	R	PerformanceTiming.domContentLoadedEventEnd										
 performancetiming domcontentloadedeventend	R	PerformanceTiming.domContentLoadedEventEnd										
-transitionevent	D								*[[TransitionEvent]] The Transition Event interface represents events providing information related to transitions.\n*[[TransitionEvent()]] The TransitionEvent() constructor returns a newly created TransitionEvent, representing an event in relation with an transition.			
 api transitionevent	R	TransitionEvent										
 transitionevent transitionevent	R	TransitionEvent()										
 buffered	D								*[[HTMLMediaElement.buffered]] The HTMLMediaElement.\n*[[SourceBuffer.buffered]] The buffered read-only property of the SourceBuffer interface returns the time ranges that are currently buffered in the SourceBuffer.			
-buffered	R	HTMLMediaElement.buffered										
 htmlmediaelement buffered	R	HTMLMediaElement.buffered										
 sourcebuffer buffered	R	SourceBuffer.buffered										
 relatedtarget	D								*[[FocusEvent.relatedTarget]] The FocusEvent.\n*[[MouseEvent.relatedTarget]] The MouseEvent.			
-relatedTarget	R	FocusEvent.relatedTarget										
 focusevent relatedtarget	R	FocusEvent.relatedTarget										
-relatedTarget	R	MouseEvent.relatedTarget										
 mouseevent relatedtarget	R	MouseEvent.relatedTarget										
-progressevent	D								*[[ProgressEvent]] The ProgressEvent interface represents events measuring progress of an underlying process, like an HTTP request (for an XMLHttpRequest, or the loading of the underlying resource of an img, audio, video, style or link).\n*[[ProgressEvent()]] The ProgressEvent() constructor returns a newly created ProgressEvent, representing the current completion of a long process.			
 api progressevent	R	ProgressEvent										
 progressevent progressevent	R	ProgressEvent()										
 clientx	D								*[[MouseEvent.clientX]] The MouseEvent.\n*[[Touch.clientX]] The Touch.			
-clientX	R	MouseEvent.clientX										
 mouseevent clientx	R	MouseEvent.clientX										
 touch clientx	R	Touch.clientX										
-clients	D								*[[Clients]] The Clients interface of the Service Workers API represents a container for a list of Client objects.\n*[[ServiceWorkerGlobalScope.clients]] The clients read-only property of the ServiceWorkerGlobalScope interface returns the Clients object associated with the service worker.			
 api clients	R	Clients										
 global clients	R	ServiceWorkerGlobalScope.clients										
-performanceobserver	D								*[[PerformanceObserver]] The PerformanceObserver interface is used to observe performance measurement events and be notified of new performance entries as they are recorded in the browser's performance timeline.\n*[[PerformanceObserver()]] The PerformanceObserver() constructor creates a new PerformanceObserver object with the given observer callback.			
 api performanceobserver	R	PerformanceObserver										
 performanceobserver performanceobserver	R	PerformanceObserver()										
-delay	D								*[[Delay]] The delay property of the Web Animations API represents the number of milliseconds to delay the start of the animation.\n*[[AnimationEffectTimingReadOnly.delay]] The delay property of the AnimationEffectTimingReadOnly object represents the number of milliseconds to delay the start of the animation.			
 animationeffecttimingproperties delay	R	Delay										
 animationeffecttimingreadonly delay	R	AnimationEffectTimingReadOnly.delay										
 applicationcache	D								*[[SharedWorkerGlobalScope.applicationCache]] The applicationCache read-only property of the SharedWorkerGlobalScope interface returns the ApplicationCache object for the worker (see Using the application cache).\n*[[Window.applicationCache]] Returns a reference to the application cache object for the window.			
 global applicationcache	R	SharedWorkerGlobalScope.applicationCache										
-applicationCache	R	Window.applicationCache										
 window applicationcache	R	Window.applicationCache										
 nextsibling	D								*[[Node.nextSibling]] The Node.\n*[[TreeWalker.nextSibling()]] The TreeWalker.			
-nextSibling	R	Node.nextSibling										
 node nextsibling	R	Node.nextSibling										
 treewalker nextsibling	R	TreeWalker.nextSibling()										
-isprimary	D								*[[isPrimary]] The BluetoothGATTService.\n*[[PointerEvent.isPrimary]] The property indicates whether or not the pointer device that created the event is the primary pointer.			
 bluetoothgattservice isprimary	R	isPrimary										
 pointerevent isprimary	R	PointerEvent.isPrimary										
-speechgrammar	D								*[[SpeechGrammar]] The SpeechGrammar interface of the Web Speech API represents a set of words or patterns of words that we want the recognition service to recognize.\n*[[SpeechGrammar.SpeechGrammar()]] The SpeechGrammar constructor of the SpeechGrammar interface creates a new SpeechGrammar object instance.			
 api speechgrammar	R	SpeechGrammar										
 speechgrammar speechgrammar	R	SpeechGrammar.SpeechGrammar()										
 getentriesbytype	D								*[[Performance.getEntriesByType()]] The getEntriesByType() method returns a list of PerformanceEntry objects for a given type.\n*[[PerformanceObserverEntryList.getEntriesByType()]] The getEntriesByType() method of the PerformanceObserverEntryList returns a list of explicitly observed performance entry objects for a given performance entry type.			
 performance getentriesbytype	R	Performance.getEntriesByType()										
 performanceobserverentrylist getentriesbytype	R	PerformanceObserverEntryList.getEntriesByType()										
 frequency	D								*[[BiquadFilterNode.frequency]] An AudioParam.\n*[[OscillatorNode.frequency]] An a-rate AudioParam.			
-frequency	R	BiquadFilterNode.frequency										
 biquadfilternode frequency	R	BiquadFilterNode.frequency										
-frequency	R	OscillatorNode.frequency										
 oscillatornode frequency	R	OscillatorNode.frequency										
 domainlookupend	D								*[[PerformanceResourceTiming.domainLookupEnd]] The domainLookupEnd property returns the timestamp immediately after the browser finishes the domain name lookup for the resource.\n*[[PerformanceTiming.domainLookupEnd]] The PerformanceTiming.			
 performanceresourcetiming domainlookupend	R	PerformanceResourceTiming.domainLookupEnd										
@@ -5586,62 +5223,46 @@ domainlookupstart	D								*[[PerformanceResourceTiming.domainLookupStart]] The 
 performanceresourcetiming domainlookupstart	R	PerformanceResourceTiming.domainLookupStart										
 performancetiming domainlookupstart	R	PerformanceTiming.domainLookupStart										
 pathname	D								*[[HTMLHyperlinkElementUtils.pathname]] The HTMLHyperlinkElementUtils.\n*[[URLUtilsReadOnly.pathname]] The URLUtilsReadOnly.			
-pathname	R	HTMLHyperlinkElementUtils.pathname										
 htmlhyperlinkelementutils pathname	R	HTMLHyperlinkElementUtils.pathname										
 urlutilsreadonly pathname	R	URLUtilsReadOnly.pathname										
 getcontext	D								*[[HTMLCanvasElement.getContext()]] The HTMLCanvasElement.\n*[[OffscreenCanvas.getContext()]] The OffscreenCanvas.			
-getContext	R	HTMLCanvasElement.getContext()										
 htmlcanvaselement getcontext	R	HTMLCanvasElement.getContext()										
 offscreencanvas getcontext	R	OffscreenCanvas.getContext()										
 onend	D								*[[SpeechRecognition.onend]] The onend property of the SpeechRecognition interface represents an event handler that will run when the speech recognition service has disconnected (when the end event fires.\n*[[SpeechSynthesisUtterance.onend]] The onend property of the SpeechSynthesisUtterance interface represents an event handler that will run when the utterance has finished being spoken (when the end event fires.			
 speechrecognition onend	R	SpeechRecognition.onend										
 speechsynthesisutterance onend	R	SpeechSynthesisUtterance.onend										
-pushevent	D								*[[PushEvent]] The PushEvent interface of the Push API represents a push message that has been received.\n*[[PushEvent.PushEvent()]] The PushEvent() constructor creates a new PushEvent object.			
 api pushevent	R	PushEvent										
 pushevent pushevent	R	PushEvent.PushEvent()										
-trackdefaultlist	D								*[[TrackDefaultList]] The TrackDefaultList interface represents a simple container list for multiple TrackDefault objects.\n*[[TrackDefaultList.TrackDefaultList()]] The TrackDefaultList() constructor of the TrackDefaultList interface constructs and returns a new TrackDefaultList object.			
 api trackdefaultlist	R	TrackDefaultList										
 trackdefaultlist trackdefaultlist	R	TrackDefaultList.TrackDefaultList()										
 min	D								*[[DeviceProximityEvent.min]] The min property provides the minimum distance the sensor can report, in centimeters.\n*[[Math.min]] The Math.			
-min	R	DeviceProximityEvent.min										
 deviceproximityevent min	R	DeviceProximityEvent.min										
 math min	R	Math.min										
 connected	D								*[[BluetoothRemoteGATTServer.connected]] The BluetoothRemoteGATTServer.\n*[[Gamepad.connected]] The Gamepad.			
 bluetoothremotegattserver connected	R	BluetoothRemoteGATTServer.connected										
 gamepad connected	R	Gamepad.connected										
-device	D								*[[device]] The BluetoothGATTService.\n*[[BluetoothRemoteGATTServer.device]] The BluetoothRemoteGATTServer.			
 bluetoothgattservice device	R	device										
 bluetoothremotegattserver device	R	BluetoothRemoteGATTServer.device										
-domrect	D								*[[DOMRect]] A DOMRect represents a rectangle.\n*[[DOMRect.DOMRect()]] The DOMRect() constructor creates a new DOMRect object.			
 api domrect	R	DOMRect										
 domrect domrect	R	DOMRect.DOMRect()										
 getclientrects	D								*[[Element.getClientRects()]] The Element.\n*[[Range.getClientRects()]] The Range.			
-getClientRects	R	Element.getClientRects()										
 element getclientrects	R	Element.getClientRects()										
 range getclientrects	R	Range.getClientRects()										
-terminate	D								*[[terminate]] When the terminate () method is called on a PresentationConnection S in a controlling browsing context, the user agent MUST run the algorithm to terminate a presentation in a controlling browsing context using S.\n*[[Worker.terminate()]] The terminate() method of the Worker interface immediately terminates the Worker.			
 presentationconnection terminate	R	terminate										
 worker terminate	R	Worker.terminate()										
-serviceworkermessageevent	D								*[[ServiceWorkerMessageEvent]] The ServiceWorkerMessageEvent interface of the ServiceWorker API contains information about an event sent to a ServiceWorkerContainer target.\n*[[ServiceWorkerMessageEvent.ServiceWorkerMessageEvent()]] The ServiceWorkerMessageEvent() constructor creates a new ServiceWorkerMessageEvent object instance.			
 api serviceworkermessageevent	R	ServiceWorkerMessageEvent										
 serviceworkermessageevent serviceworkermessageevent	R	ServiceWorkerMessageEvent.ServiceWorkerMessageEvent()										
-lockedfile	D								*[[FileRequest.lockedFile]] The lockedFile property represents the LockedFile object from which the request was started.\n*[[LockedFile]] The LockedFile interface provides tools to deal with a given file with all the necessary locks.			
 filerequest lockedfile	R	FileRequest.lockedFile										
 api lockedfile	R	LockedFile										
-cache	D								*[[Cache]] The Cache interface provides a storage mechanism for Request / Response object pairs that are cached, for example as part of the ServiceWorker life cycle.\n*[[Request.cache]] The cache read-only property of the Request interface contains the cache mode of the request.			
 api cache	R	Cache										
 request cache	R	Request.cache										
 buttons	D								*[[Gamepad.buttons]] The Gamepad.\n*[[MouseEvent.buttons]] The MouseEvent.			
 gamepad buttons	R	Gamepad.buttons										
-buttons	R	MouseEvent.buttons										
 mouseevent buttons	R	MouseEvent.buttons										
-messagechannel	D								*[[MessageChannel]] The MessageChannel interface of the Channel Messaging API allows us to create a new message channel and send data through it via its two MessagePort properties.\n*[[MessageChannel()]] The MessageChannel() constructor of the MessageChannel interface returns a new MessageChannel object with two new MessagePort objects.			
 api messagechannel	R	MessageChannel										
 messagechannel messagechannel	R	MessageChannel()										
-broadcastchannel	D								*[[BroadcastChannel]] The BroadcastChannel interface represents a named channel that any browsing context of a given origin can subscribe to.\n*[[BroadcastChannel()]] The BroadcastChannel() constructor creates a new BroadcastChannel and connects it to the underlying channel.			
 api broadcastchannel	R	BroadcastChannel										
 broadcastchannel broadcastchannel	R	BroadcastChannel()										
-syncevent	D								*[[SyncEvent]] The SyncEvent interface represents a sync action that is dispatched on the ServiceWorkerGlobalScope of a ServiceWorker.\n*[[SyncEvent.SyncEvent()]] The SyncEvent() constructor creates a new SyncEvent object.			
 api syncevent	R	SyncEvent										
 syncevent syncevent	R	SyncEvent.SyncEvent()										
 parentstylesheet	D								*[[CSSRule.parentStyleSheet]] parentStyleSheet returns the stylesheet object in which the current rule is defined.\n*[[StyleSheet.parentStyleSheet]] Returns the stylesheet that is including this one, if any.			
@@ -5655,63 +5276,47 @@ performanceresourcetiming connectstart	R	PerformanceResourceTiming.connectStart
 performancetiming connectstart	R	PerformanceTiming.connectStart										
 setorientation	D								*[[AudioListener.setOrientation()]] Void.\n*[[PannerNode.setOrientation()]] Void.			
 audiolistener setorientation	R	AudioListener.setOrientation()										
-setOrientation	R	PannerNode.setOrientation()										
 pannernode setorientation	R	PannerNode.setOrientation()										
 isnan	D								*[[Global.isNaN]] The isNaN() function determines whether a value is NaN or not.\n*[[Number.isNaN()]] The Number.			
 global isnan	R	Global.isNaN										
 number isnan	R	Number.isNaN()										
-closed	D								*[[closed]] The MediaKeySession.\n*[[Window.closed]] This read-only property indicates whether the referenced window is closed or not.			
 mediakeysession closed	R	closed										
 window closed	R	Window.closed										
-mediadevices	D								*[[MediaDevices]] The MediaDevices interface provides access to connected media input devices like cameras and microphones, as well as screensharing.\n*[[Navigator.mediaDevices]] The Navigator.			
 api mediadevices	R	MediaDevices										
 navigator mediadevices	R	Navigator.mediaDevices										
 requestanimationframe	D								*[[VRDisplay.requestAnimationFrame()]] The requestAnimationFrame() method of the VRDisplay interface is a special implementation of Window.\n*[[window.requestAnimationFrame()]] You should call this method whenever you're ready to update your animation onscreen.			
 vrdisplay requestanimationframe	R	VRDisplay.requestAnimationFrame()										
 window requestanimationframe	R	window.requestAnimationFrame()										
-comment	D								*[[Comment]] The Comment interface represents textual notations within markup; although it is generally not visually shown, such comments are available to be read in the source view.\n*[[Comment()]] The Comment() constructor returns a newly created Comment object with the optional DOMString given in parameter as its textual content.			
 api comment	R	Comment										
 comment comment	R	Comment()										
 multi-touch_interaction	D								*[[Multi-touch interaction]] Pointer events extend DOM input events to support various pointing input devices such as pen/stylus and touch screens as well as mouse.\n*[[Multi-touch interaction]] The touch event interfaces support application-specific single and multi-touch interactions.			
 pointer_events multi-touch_interaction	R	Multi-touch interaction										
 touch_events multi-touch_interaction	R	Multi-touch interaction										
 username	D								*[[HTMLHyperlinkElementUtils.username]] The HTMLHyperlinkElementUtils.\n*[[RTCIceServer.username]] The RTCIceServer dictionary's username property is a string which specifies the username to use when authenticating with the ICE server being described.			
-username	R	HTMLHyperlinkElementUtils.username										
 htmlhyperlinkelementutils username	R	HTMLHyperlinkElementUtils.username										
 rtciceserver username	R	RTCIceServer.username										
 controller	D								*[[HTMLMediaElement.controller]] The HTMLMediaElement.\n*[[ServiceWorkerContainer.controller]] The controller read-only property of the ServiceWorkerContainer interface returns a ServiceWorker object if its state is activated (the same object returned by ServiceWorkerRegistration.			
-controller	R	HTMLMediaElement.controller										
 htmlmediaelement controller	R	HTMLMediaElement.controller										
 serviceworkercontainer controller	R	ServiceWorkerContainer.controller										
-closeevent	D								*[[CloseEvent]] A CloseEvent is sent to clients using WebSockets when the connection is closed.\n*[[CloseEvent()]] The CloseEvent() constructor creates a new CloseEvent.			
 api closeevent	R	CloseEvent										
 closeevent closeevent	R	CloseEvent()										
-keyframeeffectreadonly	D								*[[KeyframeEffectReadOnly]] The KeyframeEffectReadOnly interface of the Web Animations API describes sets of animatable properties and values that can be played using the Animation.\n*[[KeyframeEffectReadOnly.KeyframeEffectReadOnly()]] The KeyframeEffectReadOnly() constructor of the Web Animations API returns a new KeyframeEffectReadOnly object instance.			
 api keyframeeffectreadonly	R	KeyframeEffectReadOnly										
 keyframeeffectreadonly keyframeeffectreadonly	R	KeyframeEffectReadOnly.KeyframeEffectReadOnly()										
-position	D								*[[Position]] The Position interface represents the position of the concerned device at a given time.\n*[[VRPose.position]] The position read-only property of the VRPose interface returns the position of the VRDisplay at the current VRPose.			
 api position	R	Position										
 vrpose position	R	VRPose.position										
-keyboardevent	D								*[[KeyboardEvent]] KeyboardEvent objects describe a user interaction with the keyboard.\n*[[KeyboardEvent()]] The KeyboardEvent() constructor creates a new KeyboardEvent.			
 api keyboardevent	R	KeyboardEvent										
 keyboardevent keyboardevent	R	KeyboardEvent()										
-console	D								*[[Console]] The Console object provides access to the browser's debugging console (e.\n*[[WorkerGlobalScope.console]] The console read-only property of the WorkerGlobalScope interface returns a Console object providing access to the browser console for the worker.			
 api console	R	Console										
 global console	R	WorkerGlobalScope.console										
-keyframeeffect	D								*[[KeyframeEffect]] The KeyframeEffect interface of the Web Animations API lets us create sets of animatable properties and values, called keyframes.\n*[[KeyframeEffect.KeyframeEffect()]] The KeyframeEffect() constructor of the Web Animations API returns a new KeyframeEffect object instance.			
 api keyframeeffect	R	KeyframeEffect										
 keyframeeffect keyframeeffect	R	KeyframeEffect.KeyframeEffect()										
-animationevent	D								*[[AnimationEvent]] The AnimationEvent interface represents events providing information related to animations.\n*[[AnimationEvent()]] The AnimationEvent() constructor returns a newly created AnimationEvent, representing an event in relation with an animation.			
 api animationevent	R	AnimationEvent										
 animationevent animationevent	R	AnimationEvent()										
-path2d	D								*[[Path2D]] The Path2D interface of the Canvas 2D API is used to declare paths that are then later used on CanvasRenderingContext2D objects.\n*[[Path2D()]] The Path2D() constructor returns a newly instantiated Path2D object, optionally with another path as an argument (creates a copy), or optionally with a string consisting of SVG path data.			
 api path2d	R	Path2D										
 path2d path2d	R	Path2D()										
-uievent	D								*[[UIEvent]] The UIEvent interface represents simple user interface events.\n*[[UIEvent()]] The UIEvent() constructor creates a new UIEvent.			
 api uievent	R	UIEvent										
 uievent uievent	R	UIEvent()										
 repeat	D								*[[KeyboardEvent.repeat]] The KeyboardEvent.\n*[[String.prototype.repeat()]] The repeat() method constructs and returns a new string which contains the specified number of copies of the string on which it was called, concatenated together.			
-repeat	R	KeyboardEvent.repeat										
 keyboardevent repeat	R	KeyboardEvent.repeat										
 string repeat	R	String.prototype.repeat()										
 flush	D								*[[LockedFile.flush()]] The flush method is used to ensure any change made to a file is properly written on disk.\n*[[WebGLRenderingContext.flush()]] The WebGLRenderingContext.			
@@ -5721,31 +5326,23 @@ hasorientation	D								*[[VRDisplayCapabilities.hasOrientation]] The hasOrienta
 vrdisplaycapabilities hasorientation	R	VRDisplayCapabilities.hasOrientation										
 vrpose hasorientation	R	VRPose.hasOrientation										
 host	D								*[[HTMLHyperlinkElementUtils.host]] The HTMLHyperlinkElementUtils.\n*[[URLUtilsReadOnly.host]] The URLUtilsReadOnly.			
-host	R	HTMLHyperlinkElementUtils.host										
 htmlhyperlinkelementutils host	R	HTMLHyperlinkElementUtils.host										
 urlutilsreadonly host	R	URLUtilsReadOnly.host										
 unobserve	D								*[[Array.unobserve()]] The Array.\n*[[Object.unobserve()]] The Object.			
 array unobserve	R	Array.unobserve()										
 object unobserve	R	Object.unobserve()										
-registration	D								*[[ServiceWorkerGlobalScope.registration]] The registration read-only property of the ServiceWorkerGlobalScope interface returns a reference to the ServiceWorkerRegistration object, which represents the service worker's registration.\n*[[registration]] The registration read-only property of the SyncEvent interface returns a reference to a SyncRegistration object.			
 global registration	R	ServiceWorkerGlobalScope.registration										
 syncevent registration	R	registration										
-rtcdatachannelevent	D								*[[RTCDataChannelEvent]] The RTCDataChannelEvent() constructor returns a new RTCDataChannelEvent object, which represents a datachannel event.\n*[[RTCDataChannelEvent()]] The RTCDataChannelEvent() constructor creates a new RTCDataChannelEvent.			
 api rtcdatachannelevent	R	RTCDataChannelEvent										
 rtcdatachannelevent rtcdatachannelevent	R	RTCDataChannelEvent()										
 whattoshow	D								*[[NodeIterator.whatToShow]] The NodeIterator.\n*[[TreeWalker.whatToShow]] The TreeWalker.			
-whatToShow	R	NodeIterator.whatToShow										
 nodeiterator whattoshow	R	NodeIterator.whatToShow										
 treewalker whattoshow	R	TreeWalker.whatToShow										
-volume	D								*[[volume]] The HTMLMediaElement.\n*[[SpeechSynthesisUtterance.volume]] The volume property of the SpeechSynthesisUtterance interface gets and sets the volume that the utterance will be spoken at.			
 htmlmediaelement volume	R	volume										
 speechsynthesisutterance volume	R	SpeechSynthesisUtterance.volume										
 gain	D								*[[BiquadFilterNode.gain]] An AudioParam.\n*[[GainNode.gain]] An AudioParam.			
-gain	R	BiquadFilterNode.gain										
 biquadfilternode gain	R	BiquadFilterNode.gain										
-gain	R	GainNode.gain										
 gainnode gain	R	GainNode.gain										
-touchevent	D								*[[TouchEvent]] The TouchEvent interface represents an event sent when the state of contacts with a touch-sensitive surface changes.\n*[[TouchEvent()]] The Touch Event() constructor creates a new TouchEvent.			
 api touchevent	R	TouchEvent										
 touchevent touchevent	R	TouchEvent()										
 objectstorenames	D								*[[IDBDatabase.objectStoreNames]] A DOMStringList containing a list of the names of the object stores currently in the connected database.\n*[[IDBTransaction.objectStoreNames]] The objectStoreNames property of the IDBTransaction interface returns a DOMStringList of names of IDBObjectStore objects.			
