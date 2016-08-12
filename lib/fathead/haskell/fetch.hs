@@ -1,17 +1,17 @@
 module Main where
 
-import Network.HTTP (simpleHTTP, getRequest, getResponseBody)
-import System.FilePath ((</>))
-import Text.JSON.String (runGetJSON, readJSArray)
-import Text.JSON.Types (JSValue(JSBool, JSArray, JSString), JSString(fromJSString))
-import qualified Data.Map as M
 import Data.Function (on)
 import Data.List (groupBy, elemIndices)
-import Data.Monoid ((<>))
-import qualified Codec.Archive.Tar as Tar
 import Data.List (isPrefixOf)
-import System.Process (runCommand)
+import Data.Monoid ((<>))
+import Network.HTTP (simpleHTTP, getRequest, getResponseBody)
 import System.Directory (listDirectory, createDirectoryIfMissing)
+import System.FilePath ((</>))
+import System.Process (runCommand)
+import Text.JSON.String (runGetJSON, readJSArray)
+import Text.JSON.Types (JSValue(JSBool, JSArray, JSString), JSString(fromJSString))
+import qualified Codec.Archive.Tar as Tar
+import qualified Data.Map as M
 
 
 haskellUrlBase :: String
