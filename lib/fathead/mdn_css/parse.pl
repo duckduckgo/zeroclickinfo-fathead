@@ -230,6 +230,13 @@ sub clean_string {
     return $clean;
 }
 
+sub build_initial_value {
+    my ($content) = @_;
+    $content = clean_code($content);
+    my $initial_value = "<p><b>Initial Value: </b><em>$content</em></p>";
+    return $initial_value;
+}
+
 sub build_abstract {
     my ( $description, $code ) = @_;
     say "NO DESCRIPTION!" if $description eq "";
