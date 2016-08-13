@@ -70,8 +70,8 @@ class Documentation
     OutputRow.new do |row|
       row.title = title
       row.type = 'A' # article
-      row.categories = categories.join("\n")
-      row.related = related.join("\n")
+      row.categories = categories.join('\n')
+      row.related = related.join('\n')
       row.abstract = abstract
       row.url = url
     end
