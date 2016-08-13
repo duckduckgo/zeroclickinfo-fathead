@@ -6,4 +6,4 @@ download_dir=${dir}/download
 script=${dir}/parse.js
 output=${dir}/output.txt
 
-node "${script}" "${download_dir}/"*.xml > "${output}"
+node "${script}" "${download_dir}/"*.xml | sort > "${output}"
