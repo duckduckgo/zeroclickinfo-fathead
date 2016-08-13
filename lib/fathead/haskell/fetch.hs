@@ -69,7 +69,7 @@ latestPackages = (onlyLatest . onlyDocumented) <$> hasDocs
 fetchBase :: IO ()
 fetchBase = basePackages >>= fetchPackages
   where basePackages = filter isBasePackage <$> latestPackages
-        isBasePackage p = isPrefixOf "base" p && length (elemIndices '-' p) == 1
+        isBasePackage p = isPrefixOf "base-" p && length (elemIndices '-' p) == 1
 
 
 main :: IO ()
