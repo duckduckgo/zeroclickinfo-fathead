@@ -129,7 +129,6 @@ foreach my $html_file ( glob 'download/*.html' ) {
         $code = trim($code);
         say '';
         say $code;
-        $code =~ s/\r?\n/\\n/g;
     }
     my $initial_value;
 
