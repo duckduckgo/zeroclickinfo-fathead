@@ -94,8 +94,8 @@ class Document(object):
         layed outlike this as requested in the DuckDuckHack docs found
         here: http://docs.duckduckhack.com/resources/fathead-overview.html#data-file-format
         """
-        title = name or 'No title found'
-        typez = 'A'
+        title = name
+        type_ = 'A'
         redirect = ''
         four = ''  # IGNORE
         categories = ''
@@ -109,11 +109,11 @@ class Document(object):
           Description: {0},
           Version: {1}
         """.format(description, version)
-        url = url or "No URL found"
+        url = url
 
         data = [
             title,
-            typez,
+            type_,
             redirect,
             four,
             categories,
