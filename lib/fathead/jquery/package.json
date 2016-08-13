@@ -2,6 +2,7 @@
   "name": "zeroclickinfo-fathead-jquery",
   "private": true,
   "dependencies": {
-    "cheerio": "^0.20.0"
+    "xmldom": "^0.1.22",
+    "xpath": "0.0.23"
   }
 }
