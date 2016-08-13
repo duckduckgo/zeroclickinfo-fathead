@@ -7,7 +7,7 @@ import Data.Monoid ((<>))
 import Network.HTTP (simpleHTTP, getRequest, getResponseBody)
 import System.Directory (listDirectory, createDirectoryIfMissing)
 import System.FilePath ((</>))
-import System.Process (runCommand)
+import System.Process (callCommand)
 import Text.JSON.String (runGetJSON, readJSArray)
 import Text.JSON.Types (JSValue(JSBool, JSArray, JSString), JSString(fromJSString))
 import qualified Codec.Archive.Tar as Tar
@@ -46,19 +46,20 @@ onlyLatest = fmap last . byName
         packageName = reverse . tail . snd . break (=='-') . reverse
 
 
-downloadPackages :: [String] -> IO ()
-downloadPackages ps = createDirectoryIfMissing True "download" >> (sequence_ $ fmap (fetchPackage) ps)
-  where fetchPackage p = runCommand $ "wget " <> tarUrl <> " -P download -O " <> outputPath
+downloadPackages :: [String] -> IO [String]
+downloadPackages ps = createDirectoryIfMissing True "download" >> (sequence $ fmap (fetchPackage) ps)
+  where fetchPackage p = grab >> pure outputPath
           where tarUrl = haskellUrlBase <> "/package/" <> p <> "/docs.tar"
                 outputPath = "download" </> p <> ".tar"
+                grab = callCommand $ concat ["wget ", tarUrl, " -P download", " -O " <> outputPath]
 
 
 extractPackages :: [String] -> IO ()
-extractPackages = sequence_ . fmap (Tar.extract "download" . ("download"</>))
+extractPackages = sequence_ . fmap (Tar.extract "download")
 
 
 fetchPackages :: [String] -> IO ()
-fetchPackages ps = downloadPackages ps >> extractPackages ps
+fetchPackages ps = downloadPackages ps >>= extractPackages
 
 
 latestPackages :: IO [String]
