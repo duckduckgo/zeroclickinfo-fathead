@@ -153,9 +153,8 @@ foreach my $html_file ( glob 'download/*.html' ) {
           make_external_links( $link, $external_lis_collection );
     }
     $external_links ||= '';
-
-    push @entries,
-      make_article( $title_clean, $description, $link, $external_links );
+    make_and_write_article( $title_clean, $description, $link,
+        $external_links );
 
     # Check for CSS Functions
     # e.g. "not()"
@@ -170,8 +169,6 @@ foreach my $html_file ( glob 'download/*.html' ) {
         $temp =~ s/\(\)$//;
         push @entries, make_redirect( $temp, $title );
     }
-
-    write_to_file(@entries);
 }
 
 # PRIVATE FUNCTIONS
@@ -233,18 +230,18 @@ sub build_abstract {
     return $out;
 }
 
-sub make_article {
+sub make_and_write_article {
     my ( $title, $description, $link, $external_links ) = @_;
     say '';
     say "TITLE: $title";
     say "LINK: $link";
     say "DESCRIPTION: $description"       if $description;
     say "EXTERNAL LINKS $external_links " if $external_links;
-    my @data = (
+    my $data = join "\t", (
         $title, 'A', '', '', '', '', '', '', $external_links || '',
         '', '', $description, $link
     );
-    return join "\t", @data;
+    write_to_file($data);
 }
 
 sub make_external_links {
@@ -321,8 +318,7 @@ sub parse_fragment_data {
             $paragraphs    = trim($paragraphs);
             $code_fragment = clean_code($code_fragment);
             $description   = build_abstract( $paragraphs, $code_fragment );
-            my @article_data = make_article( $title, $description, $url );
-            write_to_file(@article_data);
+            make_and_write_article( $title, $description, $url );
         }
     }
     elsif ( $link =~ qr/filter/ ) {
@@ -367,8 +363,7 @@ sub parse_fragment_data {
             $paragraphs    = trim($paragraphs);
             $code_fragment = clean_code($code_fragment);
             $description   = build_abstract( $paragraphs, $code_fragment );
-            my @article_data = make_article( $title, $description, $url );
-            write_to_file(@article_data);
+            make_and_write_article( $title, $description, $url );
         }
     }
     elsif ( $link =~ qr/length/ ) {
@@ -384,8 +379,7 @@ sub parse_fragment_data {
                 if ($dd) {
                     $description = build_abstract( $dd->all_text );
                 }
-                my @article_data = make_article( $title, $description, $url );
-                write_to_file(@article_data);
+                make_and_write_article( $title, $description, $url );
             }
         }
     }
@@ -433,8 +427,7 @@ sub parse_fragment_data {
                     }
                 }
                 my $description = build_abstract( $paragraph, $code );
-                my @article_data = make_article( $title, $description, $url );
-                write_to_file(@article_data);
+                make_and_write_article( $title, $description, $url );
             }
         }
     }
