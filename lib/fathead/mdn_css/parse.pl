@@ -155,20 +155,6 @@ foreach my $html_file ( glob 'download/*.html' ) {
     $external_links ||= '';
     make_and_write_article( $title_clean, $description, $link,
         $external_links );
-
-    # Check for CSS Functions
-    # e.g. "not()"
-    # Replace "()" with "function" in title
-    # e.g. "not()" - > "not function"
-    if ( $title_clean =~ m/\(\)$/ ) {
-        say "Found Function: $title_clean";
-        my $temp = $title_clean;
-        $temp =~ s/\(\)$/ function/;
-        push @entries, make_redirect( $temp, $title );
-        $temp = $title_clean;
-        $temp =~ s/\(\)$//;
-        push @entries, make_redirect( $temp, $title );
-    }
 }
 
 # PRIVATE FUNCTIONS
@@ -237,11 +223,25 @@ sub make_and_write_article {
     say "LINK: $link";
     say "DESCRIPTION: $description"       if $description;
     say "EXTERNAL LINKS $external_links " if $external_links;
-    my $data = join "\t", (
+    my @data = join "\t", (
         $title, 'A', '', '', '', '', '', '', $external_links || '',
         '', '', $description, $link
     );
-    write_to_file($data);
+
+    # Check for CSS Functions
+    # e.g. "not()"
+    # Replace "()" with "function" in title
+    # e.g. "not()" - > "not function"
+    if ( $title =~ m/\(\)$/ ) {
+        say "\nFound Function: $title";
+        my $temp = $title;
+        $temp =~ s/\(\)$/ function/;
+        push @data, make_redirect( $temp, $title );
+        $temp = $title;
+        $temp =~ s/\(\)$//;
+        push @data, make_redirect( $temp, $title );
+    }
+    write_to_file(@data);
 }
 
 sub make_external_links {
