@@ -223,10 +223,11 @@ sub make_and_write_article {
     say "LINK: $link";
     say "DESCRIPTION: $description"       if $description;
     say "EXTERNAL LINKS $external_links " if $external_links;
-    my @data = join "\t", (
+    my @data = join "\t",
+      (
         $title, 'A', '', '', '', '', '', '', $external_links || '',
         '', '', $description, $link
-    );
+      );
 
     # Check for CSS Functions
     # e.g. "not()"
