@@ -210,6 +210,8 @@ sub build_initial_value {
 sub build_abstract {
     my ( $description, $code ) = @_;
     say "NO DESCRIPTION!" if $description eq "";
+    $description = trim($description);
+    $description =~ s/\r?\n+/\\n/g;
     my $out;
     $out .= "<p>$description</p>" if $description;
     $out .= "<br><pre><code>$code</code></pre>" if $code;
