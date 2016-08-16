@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 
 from bs4 import BeautifulSoup
@@ -156,26 +157,47 @@ class DataParser(object):
         """
         anchor = self.parse_for_anchor(section)
         heading = self.soup_data.find(id=anchor[1:])
-        print anchor
-        print '-'
-        print heading
         return heading.parent
 
     def parse_for_example(self, section):
         info = self.parse_for_section_div(section)
-        print'-'
-        print info
         example = info.find('div', {'class': 'examples'})
-        print'-------'
-        print example
-        print
-        print
         if example:
-            text = str(example)
+            code = example.find('pre')
+            text = '<h5>Examples</h5>'+ str(code)
             text = '\\n'.join(text.split('\n'))
             return text
         return None
+    
+    def parse_for_parameters(self, section):
+        info = self.parse_for_section_div(section)
+        parameters = info.find('ul', {'class': 'param'})
+        if parameters:
+            code = self.fix_parameter_links(parameters)
+            text = '<h5>Parameters</h5><ul>'
+            code = code.find_all('li')
+            for parameter in code:
+                text = text + '<li>'
+                name = parameter.find('span', {'class':"name"})
+                if name:
+                    text = text + name.text
+                inline = parameter.find('div', {'class':"inline"})
+                if inline:
+                    inline = parameter.find('p')
+                    inline = str(inline)
+                    inline = inline.replace('’','&#39;')
+                    text = text + " - " + inline
+                text = text + '</li>'
+            text = text + '</ul>'
         
+            return text
+        return None
+        
+    def fix_parameter_links(self, parameters):
+        for a in parameters.findAll('a'):
+            path = a['href']
+            a['href'] = a['href'].replace(a['href'],'http://sass-lang.com/documentation/Sass/Script/'+path)
+        return parameters
     def create_url(self, anchor):
         """
         Helper method to create URL back to document
@@ -201,9 +223,12 @@ class DataParser(object):
                 description = self.parse_for_description(function_section[1])
                 anchor = self.parse_for_anchor(function_section[0])
                 example = self.parse_for_example(function_section[0])
+                parameter = self.parse_for_parameters(function_section[0])
 
                 if example:
                     description = description + '<br>'+ example
+                if parameter:
+                    description = "%s<br>%s"%(description, parameter)
 
                 url = self.create_url(anchor)
 
@@ -270,7 +295,7 @@ class DataOutput(object):
                         'A',                        # type is article
                         '',                         # no redirect data
                         '',                         # ignore
-                        'functions',                # no categories
+                        'sass functions',                # no categories
                         '',                         # ignore
                         '',                         # no related topics
                         '',                         # ignore
