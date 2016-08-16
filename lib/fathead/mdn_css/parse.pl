@@ -135,9 +135,8 @@ foreach my $html_file ( glob 'download/*.html' ) {
     my $table_properties = $dom->at('table.properties');
     if ($table_properties) {
         $initial_value = parse_initial_value($table_properties);
-        $description = "$description $initial_value" if $initial_value;
     }
-    $description = build_abstract( $description, $code );
+    $description = build_abstract( $description, $code, $initial_value );
 
     next unless $title && $link && $description;
 
@@ -206,13 +205,15 @@ sub build_initial_value {
 }
 
 sub build_abstract {
-    my ( $description, $code ) = @_;
+    my ( $description, $code, $initial_value ) = @_;
     say "NO DESCRIPTION!" if $description eq "";
     $description = trim($description);
     $description =~ s/\r?\n+/\\n/g;
+    $initial_value =~ s/\r?\n+/\\n/g if $initial_value;
     my $out;
-    $out .= "<p>$description</p>" if $description;
-    $out .= "<br><pre><code>$code</code></pre>" if $code;
+    $out .= "<p>$description</p>"           if $description;
+    $out .= "$initial_value"                if $initial_value;
+    $out .= "<pre><code>$code</code></pre>" if $code;
     return $out;
 }
 
