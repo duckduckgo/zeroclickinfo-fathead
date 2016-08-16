@@ -132,6 +132,7 @@ class DataParser(object):
         Main gateway into parsing the data. Will retrieve all necessary data elements.
         """
         data = []
+        names = []
         
         for function_section in self.function_sections:
             name = self.parse_for_name(function_section)
@@ -140,13 +141,19 @@ class DataParser(object):
                 id = self.parse_for_id(function_section)
 
                 url = self.create_url(id)
+                if name in names:
+                    index = names.index(name)
+                    data_elements = data[index]
+                    data_elements['description'] += description
+                else:
+                    names.append(name)
+                    data_elements = {
+                        'name': name,
+                        'description': description,
+                        'url': url
+                    }
 
-                data_elements = {
-                    'name': name,
-                    'description': description,
-                    'url': url
-                }
-                data.append(data_elements)
+                    data.append(data_elements)
 
         self.parsed_data = data
 

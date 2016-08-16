@@ -215,6 +215,7 @@ class DataParser(object):
         Main gateway into parsing the data. Will retrieve all necessary data elements.
         """
         data = []
+        functions = []
         
         for function_section in self.function_sections:
             function = self.parse_for_function_name(function_section[0])
@@ -224,24 +225,25 @@ class DataParser(object):
                 anchor = self.parse_for_anchor(function_section[0])
                 example = self.parse_for_example(function_section[0])
                 parameter = self.parse_for_parameters(function_section[0])
-
+                abstract = method_signature + "<br>" + description
                 if example:
-                    description = description + example
+                    description =  abstract + example
                 if parameter:
-                    description = "%s<br>%s"%(description, parameter)
+                     abstract = "%s<br>%s"%(abstract, parameter)
 
                 url = self.create_url(anchor)
-
-                data_elements = {
-                    'function': function,
-                    'method_signature': method_signature,
-                    'description': description,
-                    'url': url
-                }
-                
-                
-
-                data.append(data_elements)
+                if function in functions:
+                    index = functions.index(function)
+                    data_elements = data[index]
+                    data_elements['abstract'] += abstract
+                else:
+                    functions.append(function)
+                    data_elements = {
+                        'function': function,
+                        'abstract': abstract,
+                        'url': url
+                    }
+                    data.append(data_elements)
 
         self.parsed_data = data
 
@@ -286,12 +288,10 @@ class DataOutput(object):
         with open('output.txt', 'a') as output_file:
             for data_element in self.data:
                 if data_element.get('function'):
-                    method_signature = data_element.get('method_signature').encode('utf-8')
-                    description = data_element.get('description').encode('utf-8')
                     name = data_element.get('function').encode('utf-8')
-                        
-                    abstract = str(method_signature) + '<br>' + str(description)
+                    abstract = data_element.get('abstract').encode('utf-8')
                     url = data_element.get('url').encode('utf-8')
+                    
                     list_of_data = [
                         name,                       # unique name
                         'A',                        # type is article
