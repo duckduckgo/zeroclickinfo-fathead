@@ -101,14 +101,13 @@ foreach my $html_file ( glob 'download/*.html' ) {
         last if $title and $description;
     }
 
-    # Clean title and check if article already processed
-    my $title_clean = clean_string($title);
-    if ( exists $seen{$title_clean} ) {
-        say "SKIPPING: $title_clean!";
+    # Check if article already processed
+    if ( exists $seen{$title} ) {
+        say "SKIPPING: $title!";
         next;
     }
 
-    $seen{$title_clean} = 1;
+    $seen{$title} = 1;
 
     # Get syntax code snippet
     my $code;
@@ -153,8 +152,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
           make_external_links( $link, $external_lis_collection );
     }
     $external_links ||= '';
-    make_and_write_article( $title_clean, $description, $link,
-        $external_links );
+    make_and_write_article( $title, $description, $link, $external_links );
 }
 
 # PRIVATE FUNCTIONS
@@ -225,9 +223,10 @@ sub make_and_write_article {
     say "LINK: $link";
     say "DESCRIPTION: $description"       if $description;
     say "EXTERNAL LINKS $external_links " if $external_links;
-    my @data = join "\t",
+    my $title_clean = clean_string($title);
+    my @data        = join "\t",
       (
-        $title, 'A', '', '', '', '', '', '', $external_links || '',
+        $title_clean, 'A', '', '', '', '', '', '', $external_links || '',
         '', '', $description, $link
       );
 
@@ -242,6 +241,11 @@ sub make_and_write_article {
         push @data, make_redirect( $temp, $title );
         $temp = $title;
         $temp =~ s/\(\)$//;
+        push @data, make_redirect( $temp, $title );
+    }
+    elsif ( $title =~ qr/@/ ) {
+        my $temp = $title;
+        $temp =~ s/@//;
         push @data, make_redirect( $temp, $title );
     }
     write_to_file(@data);
