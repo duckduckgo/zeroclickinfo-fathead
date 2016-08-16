@@ -122,7 +122,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
             $code = $pre->child_nodes->first->text;
         }
         else {
-            $code = clean_code( $pre->to_string );
+            $code = $pre->to_string;
         }
 
         $code = trim($code);
@@ -210,6 +210,7 @@ sub build_abstract {
     $description = trim($description);
     $description =~ s/\r?\n+/\\n/g;
     $initial_value =~ s/\r?\n+/\\n/g if $initial_value;
+    $code = clean_code($code) if $code;
     my $out;
     $out .= "<p>$description</p>"           if $description;
     $out .= "$initial_value"                if $initial_value;
@@ -337,9 +338,7 @@ sub parse_fragment_data {
                 }
                 $next_element = $next_element->next;
             } while ( $next_element && $next_element->tag ne 'h3' );
-            $paragraphs    = trim($paragraphs);
-            $code_fragment = clean_code($code_fragment);
-            $description   = build_abstract( $paragraphs, $code_fragment );
+            $description = build_abstract( $paragraphs, $code_fragment );
             make_and_write_article( $title, $description, $url );
         }
     }
@@ -382,9 +381,7 @@ sub parse_fragment_data {
                 }
                 $next_element = $next_element->next;
             } while ( $next_element && $next_element->tag ne 'div' );
-            $paragraphs    = trim($paragraphs);
-            $code_fragment = clean_code($code_fragment);
-            $description   = build_abstract( $paragraphs, $code_fragment );
+            $description = build_abstract( $paragraphs, $code_fragment );
             make_and_write_article( $title, $description, $url );
         }
     }
