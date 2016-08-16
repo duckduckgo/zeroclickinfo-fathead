@@ -176,7 +176,7 @@ sub clean_string {
     # E.g. "::before (:before)"
     my $paren_re = qr/\((.+)\)/;
 
-    $clean =~ s/[:<>@]//g;
+    $clean =~ s/[():<>@]//g;
 
     if ( $clean ne $input ) {
         say "Input: $input";
@@ -230,23 +230,8 @@ sub make_and_write_article {
         '', '', $description, $link
       );
 
-    # Check for CSS Functions
-    # e.g. "not()"
-    # Replace "()" with "function" in title
-    # e.g. "not()" - > "not function"
-    if ( $title =~ m/\(\)$/ ) {
-        say "\nFound Function: $title";
-        my $temp = $title;
-        $temp =~ s/\(\)$/ function/;
-        push @data, make_redirect( $temp, $title );
-        $temp = $title;
-        $temp =~ s/\(\)$//;
-        push @data, make_redirect( $temp, $title );
-    }
-    elsif ( $title =~ qr/@/ ) {
-        my $temp = $title;
-        $temp =~ s/@//;
-        push @data, make_redirect( $temp, $title );
+    if ( $title =~ /\(\)$/ or $title =~ qr/@/ ) {
+        push @data, make_redirect($title);
     }
     write_to_file(@data);
 }
@@ -271,10 +256,39 @@ sub make_url_absolute {
 }
 
 sub make_redirect {
-    my ( $title, $redirect ) = @_;
-    my @data =
-      ( $title, 'R', $redirect, '', '', '', '', '', '', '', '', '', '' );
-    return join "\t", @data;
+
+=begin
+    Check for CSS Functions like not() or for titles
+    beginning with @ like @page and replace "()"
+    with "function" in title e.g. "not()" - >
+    "not function". remove @ and create
+    output entry with redirect field
+=cut
+
+    my ($title) = @_;
+    my @data;
+    my $outputline;
+    if ( $title =~ m/\(\)$/ ) {
+        say "\nFound Function: $title";
+        my $temp = $title;
+        $temp =~ s/\(\)$/ function/;
+        $outputline = join "\t",
+          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
+        push @data, $outputline;
+        $temp = $title;
+        $temp =~ s/\(\)$//;
+        $outputline = join "\t",
+          ( $title, 'R', $temp, '', '', '', '', '', '', '', '', '', '' );
+        push @data, $outputline;
+    }
+    elsif ( $title =~ qr/@/ ) {
+        my $temp = $title;
+        $temp =~ s/@//;
+        $outputline = join "\t",
+          ( $title, 'R', $temp, '', '', '', '', '', '', '', '', '', '' );
+        push @data, $outputline;
+    }
+    return @data;
 }
 
 sub parse_fragment_data {
