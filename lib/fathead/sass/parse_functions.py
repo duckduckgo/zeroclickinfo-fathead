@@ -293,9 +293,9 @@ class DataOutput(object):
                     list_of_data = [
                         name,                       # unique name
                         'A',                        # type is article
-                        '',                         # no redirect data
+                        name + ' function',          # redirect data
                         '',                         # ignore
-                        'sass functions',                # no categories
+                        'sass functions',            # no categories
                         '',                         # ignore
                         '',                         # no related topics
                         '',                         # ignore
@@ -309,10 +309,6 @@ class DataOutput(object):
                     line = '\t'.join(list_of_data)
                     
                     output_file.write(line+'\n')
-
-    
-
-
 
 if __name__ == "__main__":
     file_path = 'download/Functions.html'
