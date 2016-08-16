@@ -1,5 +1,3 @@
-import os
-
 from bs4 import BeautifulSoup
 
 SASS_DOC_BASE_URL = 'http://sass-lang.com/documentation/file.SASS_REFERENCE.html'
@@ -76,10 +74,14 @@ class DataParser(object):
             Name of section
 
         """
-        if section.text[0]==':':
-            return str(section.text.encode('utf-8'))
-        else:
-            return str(section.text.encode('utf-8')).split(':')[0]
+        name = section.text
+        name = name.replace(":", "")
+        name = name.replace("@", "")
+        name = name.replace("-", "")
+        name = name.replace("(", "")
+        name = name.replace(")", "")
+        name = name.replace(".", "")
+        return name
     
     def parse_for_id(self, section):
         """

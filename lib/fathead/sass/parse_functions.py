@@ -205,7 +205,7 @@ class DataParser(object):
             anchor: #anchor
 
         Returns:
-            Full URL to function on the python doc
+            Full URL to function on the sass doc
 
         """
         return SASS_DOC_BASE_URL + anchor
@@ -226,7 +226,7 @@ class DataParser(object):
                 parameter = self.parse_for_parameters(function_section[0])
 
                 if example:
-                    description = description + '<br>'+ example
+                    description = description + example
                 if parameter:
                     description = "%s<br>%s"%(description, parameter)
 
@@ -238,6 +238,8 @@ class DataParser(object):
                     'description': description,
                     'url': url
                 }
+                
+                
 
                 data.append(data_elements)
 
@@ -287,7 +289,7 @@ class DataOutput(object):
                     method_signature = data_element.get('method_signature').encode('utf-8')
                     description = data_element.get('description').encode('utf-8')
                     name = data_element.get('function').encode('utf-8')
-
+                        
                     abstract = str(method_signature) + '<br>' + str(description)
                     url = data_element.get('url').encode('utf-8')
                     list_of_data = [
@@ -309,6 +311,10 @@ class DataOutput(object):
                     line = '\t'.join(list_of_data)
                     
                     output_file.write(line+'\n')
+
+    
+
+
 
 if __name__ == "__main__":
     file_path = 'download/Functions.html'
