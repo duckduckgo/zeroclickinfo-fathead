@@ -200,7 +200,7 @@ sub clean_string {
 
 sub build_initial_value {
     my ($content) = @_;
-    my $initial_value = "<p><b>Initial Value: </b><em>$content</em></p>";
+    my $initial_value = "<b>Initial Value: </b><em>$content</em>";
     return $initial_value;
 }
 
@@ -213,7 +213,7 @@ sub build_abstract {
     $code = clean_code($code) if $code;
     my $out;
     $out .= "<p>$description</p>"           if $description;
-    $out .= "$initial_value"                if $initial_value;
+    $out .= "<p>$initial_value</p>"         if $initial_value;
     $out .= "<pre><code>$code</code></pre>" if $code;
     return $out;
 }
