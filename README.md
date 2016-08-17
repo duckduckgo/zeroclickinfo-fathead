@@ -1,6 +1,5 @@
 # Welcome to DuckDuckHack! 
 
-[![Build Status](https://travis-ci.org/duckduckgo/zeroclickinfo-fathead.png?branch=master)](https://travis-ci.org/duckduckgo/zeroclickinfo-fathead)
 
 ![](http://docs.duckduckhack.com/assets/hack search engine.png)
 
