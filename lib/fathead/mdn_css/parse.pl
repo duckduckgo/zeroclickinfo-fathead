@@ -17,17 +17,17 @@ use Data::Printer return_value => 'dump';
 
 =begin
 This script extracts data from html files under the
-dowloads folder
+downloads folder
 =cut
 
 # Keep track of unique keys
 my %seen;
 
 =begin
-will process fragment data like matrix3d() in
+Process fragment data like matrix3d() in
 https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#matrix3d()
-whenever a url matches one of these regexes
-each fragment shall go to its own line in the output.txt file
+whenever a url matches one of these regexes.
+Each fragment shall go to its own line in the output.txt file
 TODO: Confirm this is the correct approach
 =cut
 
@@ -42,8 +42,6 @@ if ( -e $fragments_file ) {
         $url = Mojo::URL->new($url);
         my $url_clone = $url->clone;
         my $fragment  = $url->fragment;
-
-        #TODO: Find a better way of removing the fragment from the url
         $url = Mojo::URL->new( sprintf "%s://%s",
             $url_clone->protocol, $url_clone->host )->path( $url_clone->path );
         push @{ $url_fragment{$url} }, $fragment;
@@ -100,26 +98,16 @@ foreach my $html_file ( glob 'download/*.html' ) {
         elsif ( $meta->attr('property') =~ /og\:description/ ) {
             $description = $meta->attr('content');
         }
-
-        #no need to keep looping if we have both of these
         last if $title and $description;
     }
 
-    # Clean title and check if article already processed
-    # # TODO
-    #   Some links point to page anchors!
-    #   Need to account this and find correct page content
-    #   E.g. units of <length>: px, em, cm,
-    #   https://developer.mozilla.org/en-US/docs/Web/CSS/length#px
-    #
-    #   Need to grab <dt id=$title>
-    my $title_clean = clean_string($title);
-    if ( exists $seen{$title_clean} ) {
-        say "SKIPPING: $title_clean!";
+    # Check if article already processed
+    if ( exists $seen{$title} ) {
+        say "SKIPPING: $title!";
         next;
     }
 
-    $seen{$title_clean} = 1;
+    $seen{$title} = 1;
 
     # Get syntax code snippet
     my $code;
@@ -128,24 +116,27 @@ foreach my $html_file ( glob 'download/*.html' ) {
     # Preserve HTML and use the same lib as Mozilla
     # (http://prismjs.com/) to render code?
 
-    my $hs = HTML::Strip->new( emit_spaces => 0 );
     if ( my $pre = $dom->at('#Syntax ~ pre') ) {
 
         if ( $pre->child_nodes->first->matches('code') ) {
             $code = $pre->child_nodes->first->text;
         }
         else {
-            $code = $hs->parse( $pre->to_string );
-            $code =~ tr/ / /s;
+            $code = $pre->to_string;
         }
 
         $code = trim($code);
         say '';
         say $code;
-        $code =~ s/\r?\n/\\n/g;
     }
-    $hs->eof;
-    $description = build_abstract( $description, $code );
+    my $initial_value;
+
+    #initial value is found in the table properties
+    my $table_properties = $dom->at('table.properties');
+    if ($table_properties) {
+        $initial_value = parse_initial_value($table_properties);
+    }
+    $description = build_abstract( $description, $code, $initial_value );
 
     next unless $title && $link && $description;
 
@@ -160,28 +151,20 @@ foreach my $html_file ( glob 'download/*.html' ) {
           make_external_links( $link, $external_lis_collection );
     }
     $external_links ||= '';
-
-    push @entries,
-      make_article( $title_clean, $description, $link, $external_links );
-
-    # Check for CSS Functions
-    # e.g. "not()"
-    # Replace "()" with "function" in title
-    # e.g. "not()" - > "not function"
-    if ( $title_clean =~ m/\(\)$/ ) {
-        say "Found Function: $title_clean";
-        my $temp = $title_clean;
-        $temp =~ s/\(\)$/ function/;
-        push @entries, make_redirect( $temp, $title );
-        $temp = $title_clean;
-        $temp =~ s/\(\)$//;
-        push @entries, make_redirect( $temp, $title );
-    }
-
-    write_to_file(@entries);
+    make_and_write_article( $title, $description, $link, $external_links );
 }
 
 # PRIVATE FUNCTIONS
+
+sub clean_code {
+    my ($code) = @_;
+    my $hs = HTML::Strip->new( emit_spaces => 0 );
+    $code = $hs->parse($code);
+    $code =~ tr/ / /s;
+    $code =~ s/\r?\n/\\n/g;
+    $hs->eof;
+    return $code;
+}
 
 sub clean_string {
     my $input = shift;
@@ -192,7 +175,7 @@ sub clean_string {
     # E.g. "::before (:before)"
     my $paren_re = qr/\((.+)\)/;
 
-    $clean =~ s/[:<>@]//g;
+    $clean =~ s/[():<>@]//g;
 
     if ( $clean ne $input ) {
         say "Input: $input";
@@ -215,27 +198,44 @@ sub clean_string {
     return $clean;
 }
 
+sub build_initial_value {
+    my ($content) = @_;
+    my $initial_value = "<p><b>Initial Value: </b><em>$content</em></p>";
+    return $initial_value;
+}
+
 sub build_abstract {
-    my ( $description, $code ) = @_;
+    my ( $description, $code, $initial_value ) = @_;
     say "NO DESCRIPTION!" if $description eq "";
+    $description = trim($description);
+    $description =~ s/\r?\n+/\\n/g;
+    $initial_value =~ s/\r?\n+/\\n/g if $initial_value;
+    $code = clean_code($code) if $code;
     my $out;
-    $out .= "<p>$description</p>" if $description;
-    $out .= "<br><pre><code>$code</code></pre>" if $code;
+    $out .= "<p>$description</p>"           if $description;
+    $out .= "$initial_value"                if $initial_value;
+    $out .= "<pre><code>$code</code></pre>" if $code;
     return $out;
 }
 
-sub make_article {
+sub make_and_write_article {
     my ( $title, $description, $link, $external_links ) = @_;
     say '';
     say "TITLE: $title";
     say "LINK: $link";
-    say "DESCRIPTION: $description" if $description;
+    say "DESCRIPTION: $description"       if $description;
     say "EXTERNAL LINKS $external_links " if $external_links;
-    my @data = (
-        $title, 'A', '', '', '', '', '', '', $external_links || '',
+    my $title_clean = clean_string($title);
+    my @data        = join "\t",
+      (
+        $title_clean, 'A', '', '', '', '', '', '', $external_links || '',
         '', '', $description, $link
-    );
-    return join "\t", @data;
+      );
+
+    if ( $title =~ /\(\)$/ or $title =~ qr/@/ ) {
+        push @data, make_redirect($title);
+    }
+    write_to_file(@data);
 }
 
 sub make_external_links {
@@ -258,10 +258,39 @@ sub make_url_absolute {
 }
 
 sub make_redirect {
-    my ( $title, $redirect ) = @_;
-    my @data =
-      ( $title, 'R', $redirect, '', '', '', '', '', '', '', '', '', '' );
-    return join "\t", @data;
+
+=begin
+    Check for CSS Functions like not() or for titles
+    beginning with @ like @page and replace "()"
+    with "function" in title e.g. "not()" - >
+    "not function". remove @ and create
+    output entry with redirect field
+=cut
+
+    my ($title) = @_;
+    my @data;
+    my $outputline;
+    if ( $title =~ m/\(\)$/ ) {
+        say "\nFound Function: $title";
+        my $temp = $title;
+        $temp =~ s/\(\)$/ function/;
+        $outputline = join "\t",
+          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
+        push @data, $outputline;
+        $temp = $title;
+        $temp =~ s/\(\)$//;
+        $outputline = join "\t",
+          ( $title, 'R', $temp, '', '', '', '', '', '', '', '', '', '' );
+        push @data, $outputline;
+    }
+    elsif ( $title =~ qr/@/ ) {
+        my $temp = $title;
+        $temp =~ s/@//;
+        $outputline = join "\t",
+          ( $title, 'R', $temp, '', '', '', '', '', '', '', '', '', '' );
+        push @data, $outputline;
+    }
+    return @data;
 }
 
 sub parse_fragment_data {
@@ -270,22 +299,91 @@ sub parse_fragment_data {
     return if exists $already_processed{$link};
     $already_processed{$link} = 1;
     if ( $link =~ qr/font-variant/ ) {
+
+        #TODO: Implement parsing when the page is available. Currently
+        #it generates 404 not found response
         say "Font Variant $link";
     }
     elsif ( $link =~ qr/src/ ) {
+
+        #TODO: Implement parsing when the page is available. Currently
+        #it generates 404 not found response
         say "src $link";
     }
-    elsif ( $link =~ qr/angle/ ) {
-        say "angle $link";
-    }
     elsif ( $link =~ qr/color_value/ ) {
-        say "color_value $link";
+        for my $fragment ( @{ $url_fragment{$link} } ) {
+            my $h3 = $dom->at("h3#$fragment");
+            next unless $h3;
+            my $title = $fragment;
+            my $url   = $link->clone->fragment($title);
+            my $description;
+            my $next_element = $h3->next;
+
+=begin
+            Collect all the description and code for the
+            fragment in all the nodes following the current h3.
+            When another h3 is encountered, write the previous h3 data
+            and start over again until all h3s are processed
+=cut
+
+            my $paragraphs;
+            my $code_fragment;
+            do {
+                next unless $next_element;
+                if ( $next_element->tag eq 'p' ) {
+                    $paragraphs .= $next_element->all_text;
+                }
+                else {
+                    $code_fragment .= $next_element->to_string;
+                }
+                $next_element = $next_element->next;
+            } while ( $next_element && $next_element->tag ne 'h3' );
+            $description = build_abstract( $paragraphs, $code_fragment );
+            make_and_write_article( $title, $description, $url );
+        }
     }
     elsif ( $link =~ qr/filter/ ) {
-        say "filter $link";
-    }
-    elsif ( $link =~ qr/frequency/ ) {
-        say "frequency $link";
+        for my $fragment ( @{ $url_fragment{$link} } ) {
+
+=begin
+        Some h3 elements have a variant form of the fragment
+        as the id like <h3 id="blur()_2"> instead of <h3 id="blur()">
+        so regex will be used to match fragment with its correct h3
+=cut
+
+            my $h3 = $dom->find('h3')->first(
+                sub {
+                    $_->attr('id') =~ qr/$fragment/;
+                }
+            );
+            next unless $h3;
+            my $title = $fragment;
+            my $url   = $link->clone->fragment( $h3->attr('id') );
+            my $description;
+            my $next_element = $h3->next;
+
+=begin
+            Collect all the description and code for the
+            fragment in h3 until we encounter a div which
+            means we have reached the end of all the data for
+            our current h3
+=cut
+
+            my $paragraphs;
+            my $code_fragment;
+            do {
+                next unless $next_element;
+                if ( $next_element->tag eq 'p' ) {
+                    $paragraphs .= $next_element->all_text;
+                }
+                else {
+                    $code_fragment .= $next_element->to_string;
+                }
+                $next_element = $next_element->next;
+            } while ( $next_element && $next_element->tag ne 'div' );
+            $description = build_abstract( $paragraphs, $code_fragment );
+            make_and_write_article( $title, $description, $url );
+        }
     }
     elsif ( $link =~ qr/length/ ) {
         my $dl_collection = $dom->find('dl');
@@ -298,22 +396,95 @@ sub parse_fragment_data {
                 my $dd  = $dt->next;
                 my $description;
                 if ($dd) {
-                    $description = build_abstract($dd->all_text);
+                    $description = build_abstract( $dd->all_text );
                 }
-                my @article_data = make_article($title, $description, $url);
-                write_to_file(@article_data);
+                make_and_write_article( $title, $description, $url );
             }
         }
     }
-    elsif ( $link =~ qr/time/ ) {
-        say "time $link";
-    }
-    elsif ( $link =~ qr/url/ ) {
-        say "url $link";
+    elsif ( $link =~ qr/time|frequency|angle/ ) {
+        my $h2 = $dom->at('h2#Summary');
+        my $ul_containing_fragments =
+          $h2->following->first( sub { $_->tag eq 'ul' } );
+        if ($ul_containing_fragments) {
+
+            for my $li ( $ul_containing_fragments->find('li')->each ) {
+                my $title = $li->at('a')->text;
+                my $url   = $link->clone->fragment($title);
+
+=begin
+              Taking 's' and 'ms' fragments for /time/ as examples
+              their current description appears as below:
+              s which represents a time in seconds...
+              ms which represents a time in milliseconds...
+
+              We remove the 'which' so that the description appears as:
+              s represents a time in seconds...
+              Which sounds right.
+=cut
+
+                my $paragraph = $li->all_text;
+                $paragraph =~ s/\s{1}which//;
+
+                #for /frequency/ and /angle/ the example code
+                #is contained in a table
+                #for /time/ it is contained in a <pre>
+                my $node_with_code = $link =~ /time/ ? 'pre' : 'table';
+                my $code_dom = $dom->at('h2#Examples')->following->first(
+                    sub {
+                        $_->tag eq $node_with_code;
+                    }
+                ) if $dom->at('h2#Examples');
+                my $code;
+                if ($code_dom) {
+                    if ( $code_dom->tag eq 'pre' ) {
+                        $code = $code_dom->all_text;
+                    }
+                    else {
+                        $code = $code_dom->at('tbody')->to_string;
+                        $code = clean_code($code);
+                    }
+                }
+                my $description = build_abstract( $paragraph, $code );
+                make_and_write_article( $title, $description, $url );
+            }
+        }
     }
     else {
         warn "Unmatched $link in parse_fragment_data()";
     }
+}
+
+sub parse_initial_value {
+    my ($table_properties) = @_;
+
+    #first <tr> Contains the initial value
+    my $tr = $table_properties->find('tr')->first;
+    my $th = $tr->at('th');
+    my $initial_value;
+    if ($th) {
+        my $a = $th->at('a');
+        if ( $a && $a->text =~ /Initial value/ ) {
+            my $td = $tr->at('td');
+            if ( $td->at('ul') ) {
+                my $ul = $td->at('ul');
+
+                #get text not in ul
+                $initial_value .= $td->at('ul')->remove->all_text;
+
+                #add new line after each li text so that it appears correctly
+                for my $li ( $ul->find('li')->each ) {
+                    $initial_value .= $li->all_text . '\\n ';
+                }
+            }
+            else {
+                $initial_value = trim( $td->all_text );
+            }
+            $initial_value = trim($initial_value);
+            $initial_value = build_initial_value($initial_value);
+        }
+    }
+    return $initial_value;
 }
 
 sub write_to_file {
