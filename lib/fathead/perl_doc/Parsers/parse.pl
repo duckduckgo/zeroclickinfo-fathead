@@ -672,7 +672,7 @@ sub parse_pod_formatting_codes {
     ul_list_parser(
         selector_main => 'a[name="Formatting-Codes"]',
         title => sub {
-            Mojo::Util::xml_escape($_[0]->at('code')->all_text =~ s/\s</</r)
+            $_[0]->at('code')->all_text =~ s/\s</</r
         },
         aliases => sub {
             my ($code) = $_[1] =~ /^(\w+)/;
@@ -743,7 +743,7 @@ sub aliasas_diag_messages {
 sub parse_diag_messages {
     ul_list_parser(
         selector_main => 'a[name="DESCRIPTION"]',
-        title => sub { Mojo::Util::xml_escape($_[0]->find('b')->first->text) },
+        title => sub { $_[0]->find('b')->first->text },
         aliases => sub { aliasas_diag_messages($_[1]) },
     )->(@_);
 }
