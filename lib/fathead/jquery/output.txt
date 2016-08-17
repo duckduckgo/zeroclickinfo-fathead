@@ -2,60 +2,113 @@
 .addBack()	A			jQuery methods							Add the previous set of elements on the stack to the current set, optionally filtered by a selector.<pre><code>.addBack(selector) → jQuery</code></pre>	https://api.jquery.com/addBack/
 add back	R	.addBack()										
 addback	R	.addBack()										
+.addBack	R	.addBack()										
+addBack()	R	.addBack()										
+addBack	R	.addBack()										
 .addClass()	A			jQuery methods							Adds the specified class(es) to each element in the set of matched elements.<pre><code>.addClass(className) → jQuery\n.addClass(function, index, currentClassName) → jQuery</code></pre>	https://api.jquery.com/addClass/
 add class	R	.addClass()										
 addclass	R	.addClass()										
+.addClass	R	.addClass()										
+addClass()	R	.addClass()										
+addClass	R	.addClass()										
+.add	R	.add()										
+add()	R	.add()										
 add	R	.add()										
+.add()	R	callbacks.add()										
+.add	R	callbacks.add()										
 add()	R	callbacks.add()										
 add	R	callbacks.add()										
 .after()	A			jQuery methods							Insert content, specified by the parameter, after each element in the set of matched elements.<pre><code>.after(content, content) → jQuery\n.after(function, index) → jQuery\n.after(function-html, index, html) → jQuery</code></pre>	https://api.jquery.com/after/
+.after	R	.after()										
+after()	R	.after()										
 after	R	.after()										
 .ajaxComplete()	A			jQuery methods							Register a handler to be called when Ajax requests complete. This is an AjaxEvent.<pre><code>.ajaxComplete(handler, event, jqXHR, ajaxOptions) → jQuery</code></pre>	https://api.jquery.com/ajaxComplete/
 ajax complete	R	.ajaxComplete()										
 ajaxcomplete	R	.ajaxComplete()										
+.ajaxComplete	R	.ajaxComplete()										
+ajaxComplete()	R	.ajaxComplete()										
+ajaxComplete	R	.ajaxComplete()										
 .ajaxError()	A			jQuery methods							Register a handler to be called when Ajax requests complete with an error. This is an Ajax Event.<pre><code>.ajaxError(handler, event, jqXHR, ajaxSettings, thrownError) → jQuery</code></pre>	https://api.jquery.com/ajaxError/
 ajax error	R	.ajaxError()										
 ajaxerror	R	.ajaxError()										
+.ajaxError	R	.ajaxError()										
+ajaxError()	R	.ajaxError()										
+ajaxError	R	.ajaxError()										
 ajax prefilter	R	jQuery.ajaxPrefilter()										
 ajaxprefilter	R	jQuery.ajaxPrefilter()										
+.ajaxPrefilter()	R	jQuery.ajaxPrefilter()										
+.ajaxPrefilter	R	jQuery.ajaxPrefilter()										
 ajaxPrefilter()	R	jQuery.ajaxPrefilter()										
+ajaxPrefilter	R	jQuery.ajaxPrefilter()										
+.ajax()	R	jQuery.ajax()										
+.ajax	R	jQuery.ajax()										
 ajax()	R	jQuery.ajax()										
 ajax	R	jQuery.ajax()										
 .ajaxSend()	A			jQuery methods							Attach a function to be executed before an Ajax request is sent. This is an Ajax Event.<pre><code>.ajaxSend(handler, event, jqXHR, ajaxOptions) → jQuery</code></pre>	https://api.jquery.com/ajaxSend/
 ajax send	R	.ajaxSend()										
 ajaxsend	R	.ajaxSend()										
+.ajaxSend	R	.ajaxSend()										
+ajaxSend()	R	.ajaxSend()										
+ajaxSend	R	.ajaxSend()										
 ajax setup	R	jQuery.ajaxSetup()										
 ajaxsetup	R	jQuery.ajaxSetup()										
+.ajaxSetup()	R	jQuery.ajaxSetup()										
+.ajaxSetup	R	jQuery.ajaxSetup()										
 ajaxSetup()	R	jQuery.ajaxSetup()										
+ajaxSetup	R	jQuery.ajaxSetup()										
 .ajaxStart()	A			jQuery methods							Register a handler to be called when the first Ajax request begins. This is an Ajax Event.<pre><code>.ajaxStart(handler) → jQuery</code></pre>	https://api.jquery.com/ajaxStart/
 ajax start	R	.ajaxStart()										
 ajaxstart	R	.ajaxStart()										
+.ajaxStart	R	.ajaxStart()										
+ajaxStart()	R	.ajaxStart()										
+ajaxStart	R	.ajaxStart()										
 .ajaxStop()	A			jQuery methods							Register a handler to be called when all Ajax requests have completed. This is an Ajax Event.<pre><code>.ajaxStop(handler) → jQuery</code></pre>	https://api.jquery.com/ajaxStop/
 ajax stop	R	.ajaxStop()										
 ajaxstop	R	.ajaxStop()										
+.ajaxStop	R	.ajaxStop()										
+ajaxStop()	R	.ajaxStop()										
+ajaxStop	R	.ajaxStop()										
 .ajaxSuccess()	A			jQuery methods							Attach a function to be executed whenever an Ajax request completes successfully. This is an Ajax Event.<pre><code>.ajaxSuccess(handler, event, jqXHR, ajaxOptions, data) → jQuery</code></pre>	https://api.jquery.com/ajaxSuccess/
 ajax success	R	.ajaxSuccess()										
 ajaxsuccess	R	.ajaxSuccess()										
+.ajaxSuccess	R	.ajaxSuccess()										
+ajaxSuccess()	R	.ajaxSuccess()										
+ajaxSuccess	R	.ajaxSuccess()										
 ajax transport	R	jQuery.ajaxTransport()										
 ajaxtransport	R	jQuery.ajaxTransport()										
+.ajaxTransport()	R	jQuery.ajaxTransport()										
+.ajaxTransport	R	jQuery.ajaxTransport()										
 ajaxTransport()	R	jQuery.ajaxTransport()										
+ajaxTransport	R	jQuery.ajaxTransport()										
 All Selector ("*")	A			jQuery selectors							Selects all elements.<pre><code>All Selector ("*")</code></pre>	https://api.jquery.com/all-selector/
 all selector	R	All Selector ("*")										
 All Selector	R	All Selector ("*")										
+.always()	R	deferred.always()										
+.always	R	deferred.always()										
 always()	R	deferred.always()										
 always	R	deferred.always()										
 .andSelf()	A			jQuery methods							Add the previous set of elements on the stack to the current set.<pre><code>.andSelf() → jQuery</code></pre>	https://api.jquery.com/andSelf/
 and self	R	.andSelf()										
 andself	R	.andSelf()										
+.andSelf	R	.andSelf()										
+andSelf()	R	.andSelf()										
+andSelf	R	.andSelf()										
 .animate()	A			jQuery methods							Perform a custom animation of a set of CSS properties.<pre><code>.animate(properties) → jQuery\n.animate(properties) → jQuery</code></pre>	https://api.jquery.com/animate/
 :animated Selector	A			jQuery selectors							Select all elements that are in the progress of an animation at the time the selector is run.<pre><code>:animated Selector</code></pre>	https://api.jquery.com/animated-selector/
 animated selector	R	:animated Selector										
+.animate	R	.animate()										
+animate()	R	.animate()										
 animate	R	.animate()										
 .append()	A			jQuery methods							Insert content, specified by the parameter, to the end of each element in the set of matched elements.<pre><code>.append(content, content) → jQuery\n.append(function, index, html) → jQuery</code></pre>	https://api.jquery.com/append/
+.append	R	.append()										
+append()	R	.append()										
 append	R	.append()										
 .appendTo()	A			jQuery methods							Insert every element in the set of matched elements to the end of the target.<pre><code>.appendTo(target) → jQuery</code></pre>	https://api.jquery.com/appendTo/
 append to	R	.appendTo()										
 appendto	R	.appendTo()										
+.appendTo	R	.appendTo()										
+appendTo()	R	.appendTo()										
+appendTo	R	.appendTo()										
 .attr()	A			jQuery methods							Get the value of an attribute for the first element in the set of matched elements.<pre><code>.attr(attributeName) → String</code></pre>\nSet one or more attributes for the set of matched elements.<pre><code>.attr(attributeName, value) → jQuery\n.attr(attributes) → jQuery\n.attr(attributeName, function, index, attr) → jQuery</code></pre>	https://api.jquery.com/attr/
 Attribute Contains Prefix Selector [name|="value"]	A			jQuery selectors							Selects elements that have the specified attribute with a value either equal to a given string or starting with that string followed by a hyphen (-).<pre><code>Attribute Contains Prefix Selector [name|="value"]</code></pre>	https://api.jquery.com/attribute-contains-prefix-selector/
 attribute contains prefix selector name value	R	Attribute Contains Prefix Selector [name|="value"]										
@@ -85,54 +138,91 @@ Attribute Starts With Selector [name^="value"]	A			jQuery selectors							Select
 attribute starts with selector name value	R	Attribute Starts With Selector [name^="value"]										
 attribute starts with selector	R	Attribute Starts With Selector [name^="value"]										
 Attribute Starts With Selector	R	Attribute Starts With Selector [name^="value"]										
+.attr	R	.attr()										
+attr()	R	.attr()										
 attr	R	.attr()										
 .before()	A			jQuery methods							Insert content, specified by the parameter, before each element in the set of matched elements.<pre><code>.before(content, content) → jQuery\n.before(function, index) → jQuery\n.before(function-html, index, html) → jQuery</code></pre>	https://api.jquery.com/before/
+.before	R	.before()										
+before()	R	.before()										
 before	R	.before()										
 .bind()	A			jQuery methods							Attach a handler to an event for the elements.<pre><code>.bind(eventType, eventData, handler, eventObject) → jQuery\n.bind(eventType, eventData, preventBubble) → jQuery\n.bind(events) → jQuery</code></pre>	https://api.jquery.com/bind/
+.bind event	R	.bind()										
+.bind() event	R	.bind()										
 bind event	R	.bind()										
+bind() event	R	.bind()										
+.bind	R	.bind()										
+bind()	R	.bind()										
 bind	R	.bind()										
 .blur()	A			jQuery methods							Bind an event handler to the "blur" JavaScript event, or trigger that event on an element.<pre><code>.blur(handler, eventObject) → jQuery\n.blur(eventData, handler, eventObject) → jQuery\n.blur() → jQuery</code></pre>	https://api.jquery.com/blur/
+.blur event	R	.blur()										
+.blur() event	R	.blur()										
 blur event	R	.blur()										
+blur() event	R	.blur()										
+.blur	R	.blur()										
+blur()	R	.blur()										
 blur	R	.blur()										
 box model	R	jQuery.boxModel										
 boxmodel	R	jQuery.boxModel										
+.boxModel	R	jQuery.boxModel										
 boxModel	R	jQuery.boxModel										
+.browser	R	jQuery.browser										
 browser	R	jQuery.browser										
 :button Selector	A			jQuery selectors							Selects all button elements and elements of type button.<pre><code>:button Selector</code></pre>	https://api.jquery.com/button-selector/
 button selector	R	:button Selector										
 callbacks.add()	A			jQuery methods							Add a callback or a collection of callbacks to a callback list.<pre><code>callbacks.add(callbacks) → Callbacks</code></pre>	https://api.jquery.com/callbacks.add/
 callbacks add	R	callbacks.add()										
+callbacks.add	R	callbacks.add()										
 callbacks.disable()	A			jQuery methods							Disable a callback list from doing anything more.<pre><code>callbacks.disable() → Callbacks</code></pre>	https://api.jquery.com/callbacks.disable/
 callbacks.disabled()	A			jQuery methods							Determine if the callbacks list has been disabled.<pre><code>callbacks.disabled() → Boolean</code></pre>	https://api.jquery.com/callbacks.disabled/
 callbacks disabled	R	callbacks.disabled()										
+callbacks.disabled	R	callbacks.disabled()										
 callbacks disable	R	callbacks.disable()										
+callbacks.disable	R	callbacks.disable()										
 callbacks.empty()	A			jQuery methods							Remove all of the callbacks from a list.<pre><code>callbacks.empty() → Callbacks</code></pre>	https://api.jquery.com/callbacks.empty/
 callbacks empty	R	callbacks.empty()										
+callbacks.empty	R	callbacks.empty()										
 callbacks.fire()	A			jQuery methods							Call all of the callbacks with the given arguments.<pre><code>callbacks.fire(arguments) → Callbacks</code></pre>	https://api.jquery.com/callbacks.fire/
 callbacks.fired()	A			jQuery methods							Determine if the callbacks have already been called at least once.<pre><code>callbacks.fired() → Boolean</code></pre>	https://api.jquery.com/callbacks.fired/
 callbacks fired	R	callbacks.fired()										
+callbacks.fired	R	callbacks.fired()										
 callbacks fire	R	callbacks.fire()										
+callbacks.fire	R	callbacks.fire()										
 callbacks.fireWith()	A			jQuery methods							Call all callbacks in a list with the given context and arguments.<pre><code>callbacks.fireWith(context, args) → Callbacks</code></pre>	https://api.jquery.com/callbacks.fireWith/
 callbacks fire with	R	callbacks.fireWith()										
 callbacks firewith	R	callbacks.fireWith()										
+callbacks.fireWith	R	callbacks.fireWith()										
 callbacks.has()	A			jQuery methods							Determine whether or not the list has any callbacks attached. If a callback is provided as an argument, determine whether it is in a list.<pre><code>callbacks.has(callback) → Boolean</code></pre>	https://api.jquery.com/callbacks.has/
 callbacks has	R	callbacks.has()										
+callbacks.has	R	callbacks.has()										
 callbacks.lock()	A			jQuery methods							Lock a callback list in its current state.<pre><code>callbacks.lock() → Callbacks</code></pre>	https://api.jquery.com/callbacks.lock/
 callbacks.locked()	A			jQuery methods							Determine if the callbacks list has been locked.<pre><code>callbacks.locked() → Boolean</code></pre>	https://api.jquery.com/callbacks.locked/
 callbacks locked	R	callbacks.locked()										
+callbacks.locked	R	callbacks.locked()										
 callbacks lock	R	callbacks.lock()										
+callbacks.lock	R	callbacks.lock()										
 callbacks.remove()	A			jQuery methods							Remove a callback or a collection of callbacks from a callback list.<pre><code>callbacks.remove(callbacks) → Callbacks</code></pre>	https://api.jquery.com/callbacks.remove/
 callbacks remove	R	callbacks.remove()										
+callbacks.remove	R	callbacks.remove()										
 callbacks	R	jQuery.Callbacks()										
+.Callbacks()	R	jQuery.Callbacks()										
+.Callbacks	R	jQuery.Callbacks()										
 Callbacks()	R	jQuery.Callbacks()										
+Callbacks	R	jQuery.Callbacks()										
 .change()	A			jQuery methods							Bind an event handler to the "change" JavaScript event, or trigger that event on an element.<pre><code>.change(handler, eventObject) → jQuery\n.change(eventData, handler, eventObject) → jQuery\n.change() → jQuery</code></pre>	https://api.jquery.com/change/
+.change event	R	.change()										
+.change() event	R	.change()										
 change event	R	.change()										
+change() event	R	.change()										
+.change	R	.change()										
+change()	R	.change()										
 change	R	.change()										
 :checkbox Selector	A			jQuery selectors							Selects all elements of type checkbox.<pre><code>:checkbox Selector</code></pre>	https://api.jquery.com/checkbox-selector/
 checkbox selector	R	:checkbox Selector										
 :checked Selector	A			jQuery selectors							Matches all elements that are checked or selected.<pre><code>:checked Selector</code></pre>	https://api.jquery.com/checked-selector/
 checked selector	R	:checked Selector										
 .children()	A			jQuery methods							Get the children of each element in the set of matched elements, optionally filtered by a selector.<pre><code>.children(selector) → jQuery</code></pre>	https://api.jquery.com/children/
+.children	R	.children()										
+children()	R	.children()										
 children	R	.children()										
 Child Selector ("parent > child")	A			jQuery selectors							Selects all direct child elements specified by "child" of elements specified by "parent".<pre><code>Child Selector ("parent > child")</code></pre>	https://api.jquery.com/child-selector/
 child selector parent child	R	Child Selector ("parent > child")										
@@ -145,92 +235,159 @@ Class Selector	R	Class Selector (".class")
 .clearQueue()	A			jQuery methods							Remove from the queue all items that have not yet been run.<pre><code>.clearQueue(queueName) → jQuery</code></pre>	https://api.jquery.com/clearQueue/
 clear queue	R	.clearQueue()										
 clearqueue	R	.clearQueue()										
+.clearQueue	R	.clearQueue()										
+clearQueue()	R	.clearQueue()										
+clearQueue	R	.clearQueue()										
 .click()	A			jQuery methods							Bind an event handler to the "click" JavaScript event, or trigger that event on an element.<pre><code>.click(handler, eventObject) → jQuery\n.click(eventData, handler, eventObject) → jQuery\n.click() → jQuery</code></pre>	https://api.jquery.com/click/
+.click event	R	.click()										
+.click() event	R	.click()										
 click event	R	.click()										
+click() event	R	.click()										
+.click	R	.click()										
+click()	R	.click()										
 click	R	.click()										
 .clone()	A			jQuery methods							Create a deep copy of the set of matched elements.<pre><code>.clone(withDataAndEvents) → jQuery\n.clone(withDataAndEvents, deepWithDataAndEvents) → jQuery</code></pre>	https://api.jquery.com/clone/
+.clone	R	.clone()										
+clone()	R	.clone()										
 clone	R	.clone()										
 .closest()	A			jQuery methods							For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.<pre><code>.closest(selector) → jQuery\n.closest(selector, context) → jQuery\n.closest(selection) → jQuery\n.closest(element) → jQuery</code></pre>\nGet an array of all the elements and selectors matched against the current element up through the DOM tree.<pre><code>.closest(selectors, context) → Array</code></pre>	https://api.jquery.com/closest/
+.closest	R	.closest()										
+closest()	R	.closest()										
 closest	R	.closest()										
+.contains()	R	jQuery.contains()										
+.contains	R	jQuery.contains()										
 contains()	R	jQuery.contains()										
 contains	R	jQuery.contains()										
 :contains() Selector	A			jQuery selectors							Select all elements that contain the specified text.<pre><code>:contains(text) →  Selector</code></pre>	https://api.jquery.com/contains-selector/
 contains selector	R	:contains() Selector										
 .contents()	A			jQuery methods							Get the children of each element in the set of matched elements, including text and comment nodes.<pre><code>.contents() → jQuery</code></pre>	https://api.jquery.com/contents/
+.contents	R	.contents()										
+contents()	R	.contents()										
 contents	R	.contents()										
 .context	A			jQuery properties							The DOM node context originally passed to jQuery(); if none was passed then context will likely be the document.<pre><code>.context</code></pre>	https://api.jquery.com/context/
 .contextmenu()	A			jQuery methods							Bind an event handler to the "contextmenu" JavaScript event, or trigger that event on an element.<pre><code>.contextmenu(handler, eventObject) → jQuery\n.contextmenu(eventData, handler, eventObject) → jQuery\n.contextmenu() → jQuery</code></pre>	https://api.jquery.com/contextmenu/
+.contextmenu event	R	.contextmenu()										
+.contextmenu() event	R	.contextmenu()										
 contextmenu event	R	.contextmenu()										
+contextmenu() event	R	.contextmenu()										
+.contextmenu	R	.contextmenu()										
+contextmenu()	R	.contextmenu()										
 contextmenu	R	.contextmenu()										
 context	R	.context										
 .css()	A			jQuery methods							Get the computed style properties for the first element in the set of matched elements.<pre><code>.css(propertyName) → String\n.css(propertyNames) → String</code></pre>\nSet one or more CSS properties for the set of matched elements.<pre><code>.css(propertyName, value) → jQuery\n.css(propertyName, function, index, value) → jQuery\n.css(properties) → jQuery</code></pre>	https://api.jquery.com/css/
 css hooks	R	jQuery.cssHooks										
 csshooks	R	jQuery.cssHooks										
+.cssHooks	R	jQuery.cssHooks										
 cssHooks	R	jQuery.cssHooks										
 css number	R	jQuery.cssNumber										
 cssnumber	R	jQuery.cssNumber										
+.cssNumber	R	jQuery.cssNumber										
 cssNumber	R	jQuery.cssNumber										
+.css	R	.css()										
+css()	R	.css()										
 css	R	.css()										
 current target	R	event.currentTarget										
 currenttarget	R	event.currentTarget										
+.currentTarget	R	event.currentTarget										
 currentTarget	R	event.currentTarget										
 .data()	A			jQuery methods							Store arbitrary data associated with the matched elements.<pre><code>.data(key, value) → jQuery\n.data(obj) → jQuery</code></pre>\nReturn the value at the named data store for the first element in the jQuery collection, as set by data(name, value) or by an HTML5 data-* attribute.<pre><code>.data(key) → Object\n.data() → Object</code></pre>	https://api.jquery.com/data/
+.data	R	.data()										
+data()	R	.data()										
 data	R	.data()										
+.data	R	event.data										
 data	R	event.data										
+.data()	R	jQuery.data()										
+.data	R	jQuery.data()										
 data()	R	jQuery.data()										
 data	R	jQuery.data()										
 .dblclick()	A			jQuery methods							Bind an event handler to the "dblclick" JavaScript event, or trigger that event on an element.<pre><code>.dblclick(handler, eventObject) → jQuery\n.dblclick(eventData, handler, eventObject) → jQuery\n.dblclick() → jQuery</code></pre>	https://api.jquery.com/dblclick/
+.dblclick event	R	.dblclick()										
+.dblclick() event	R	.dblclick()										
 dblclick event	R	.dblclick()										
+dblclick() event	R	.dblclick()										
+.dblclick	R	.dblclick()										
+dblclick()	R	.dblclick()										
 dblclick	R	.dblclick()										
 deferred.always()	A			jQuery methods							 Add handlers to be called when the Deferred object is either resolved or rejected. <pre><code>deferred.always(alwaysCallbacks, alwaysCallbacks) → Deferred</code></pre>	https://api.jquery.com/deferred.always/
 deferred always	R	deferred.always()										
+deferred.always	R	deferred.always()										
 deferred.done()	A			jQuery methods							 Add handlers to be called when the Deferred object is resolved. <pre><code>deferred.done(doneCallbacks, doneCallbacks) → Deferred</code></pre>	https://api.jquery.com/deferred.done/
 deferred done	R	deferred.done()										
+deferred.done	R	deferred.done()										
 deferred.fail()	A			jQuery methods							 Add handlers to be called when the Deferred object is rejected. <pre><code>deferred.fail(failCallbacks, failCallbacks) → Deferred</code></pre>	https://api.jquery.com/deferred.fail/
 deferred fail	R	deferred.fail()										
+deferred.fail	R	deferred.fail()										
 deferred.isRejected()	A			jQuery methods							 Determine whether a Deferred object has been rejected. <pre><code>deferred.isRejected() → Boolean</code></pre>	https://api.jquery.com/deferred.isRejected/
 deferred is rejected	R	deferred.isRejected()										
 deferred isrejected	R	deferred.isRejected()										
+deferred.isRejected	R	deferred.isRejected()										
 deferred.isResolved()	A			jQuery methods							 Determine whether a Deferred object has been resolved. <pre><code>deferred.isResolved() → Boolean</code></pre>	https://api.jquery.com/deferred.isResolved/
 deferred is resolved	R	deferred.isResolved()										
 deferred isresolved	R	deferred.isResolved()										
+deferred.isResolved	R	deferred.isResolved()										
 deferred.notify()	A			jQuery methods							 Call the progressCallbacks on a Deferred object with the given args. <pre><code>deferred.notify(args) → Deferred</code></pre>	https://api.jquery.com/deferred.notify/
 deferred notify	R	deferred.notify()										
+deferred.notify	R	deferred.notify()										
 deferred.notifyWith()	A			jQuery methods							 Call the progressCallbacks on a Deferred object with the given context and args. <pre><code>deferred.notifyWith(context, args) → Deferred</code></pre>	https://api.jquery.com/deferred.notifyWith/
 deferred notify with	R	deferred.notifyWith()										
 deferred notifywith	R	deferred.notifyWith()										
+deferred.notifyWith	R	deferred.notifyWith()										
 deferred.pipe()	A			jQuery methods							 Utility method to filter and/or chain Deferreds.  <pre><code>deferred.pipe(doneFilter, failFilter) → Promise\ndeferred.pipe(doneFilter, failFilter, progressFilter) → Promise</code></pre>	https://api.jquery.com/deferred.pipe/
 deferred pipe	R	deferred.pipe()										
+deferred.pipe	R	deferred.pipe()										
 deferred.progress()	A			jQuery methods							 Add handlers to be called when the Deferred object generates progress notifications.<pre><code>deferred.progress(progressCallbacks, progressCallbacks) → Deferred</code></pre>	https://api.jquery.com/deferred.progress/
 deferred progress	R	deferred.progress()										
+deferred.progress	R	deferred.progress()										
 deferred.promise()	A			jQuery methods							 Return a Deferred's Promise object. <pre><code>deferred.promise(target) → Promise</code></pre>	https://api.jquery.com/deferred.promise/
 deferred promise	R	deferred.promise()										
+deferred.promise	R	deferred.promise()										
 deferred.reject()	A			jQuery methods							 Reject a Deferred object and call any failCallbacks with the given args. <pre><code>deferred.reject(args) → Deferred</code></pre>	https://api.jquery.com/deferred.reject/
 deferred reject	R	deferred.reject()										
+deferred.reject	R	deferred.reject()										
 deferred.rejectWith()	A			jQuery methods							 Reject a Deferred object and call any failCallbacks with the given context and args. <pre><code>deferred.rejectWith(context, args) → Deferred</code></pre>	https://api.jquery.com/deferred.rejectWith/
 deferred reject with	R	deferred.rejectWith()										
 deferred rejectwith	R	deferred.rejectWith()										
+deferred.rejectWith	R	deferred.rejectWith()										
 deferred.resolve()	A			jQuery methods							 Resolve a Deferred object and call any doneCallbacks with the given args. <pre><code>deferred.resolve(args) → Deferred</code></pre>	https://api.jquery.com/deferred.resolve/
 deferred resolve	R	deferred.resolve()										
+deferred.resolve	R	deferred.resolve()										
 deferred.resolveWith()	A			jQuery methods							 Resolve a Deferred object and call any doneCallbacks with the given context and args. <pre><code>deferred.resolveWith(context, args) → Deferred</code></pre>	https://api.jquery.com/deferred.resolveWith/
 deferred resolve with	R	deferred.resolveWith()										
 deferred resolvewith	R	deferred.resolveWith()										
+deferred.resolveWith	R	deferred.resolveWith()										
 deferred	R	jQuery.Deferred()										
+.Deferred()	R	jQuery.Deferred()										
+.Deferred	R	jQuery.Deferred()										
 Deferred()	R	jQuery.Deferred()										
+Deferred	R	jQuery.Deferred()										
 deferred.state()	A			jQuery methods							Determine the current state of a Deferred object. <pre><code>deferred.state() → String</code></pre>	https://api.jquery.com/deferred.state/
 deferred state	R	deferred.state()										
+deferred.state	R	deferred.state()										
 deferred.then()	A			jQuery methods							Add handlers to be called when the Deferred object is resolved, rejected, or still in progress. <pre><code>deferred.then(doneFilter, failFilter, progressFilter) → Promise\ndeferred.then(doneCallbacks, failCallbacks) → Promise\ndeferred.then(doneCallbacks, failCallbacks, progressCallbacks) → Promise</code></pre>	https://api.jquery.com/deferred.then/
 deferred then	R	deferred.then()										
+deferred.then	R	deferred.then()										
 .delay()	A			jQuery methods							Set a timer to delay execution of subsequent items in the queue.<pre><code>.delay(duration, queueName) → jQuery</code></pre>	https://api.jquery.com/delay/
+.delay	R	.delay()										
+delay()	R	.delay()										
 delay	R	.delay()										
 .delegate()	A			jQuery methods							Attach a handler to one or more events for all elements that match the selector, now or in the future, based on a specific set of root elements.<pre><code>.delegate(selector, eventType, handler, eventObject) → jQuery\n.delegate(selector, eventType, eventData, handler, eventObject) → jQuery\n.delegate(selector, events) → jQuery</code></pre>	https://api.jquery.com/delegate/
+.delegate event	R	.delegate()										
+.delegate() event	R	.delegate()										
 delegate event	R	.delegate()										
+delegate() event	R	.delegate()										
+.delegate	R	.delegate()										
+delegate()	R	.delegate()										
 delegate	R	.delegate()										
 delegate target	R	event.delegateTarget										
 delegatetarget	R	event.delegateTarget										
+.delegateTarget	R	event.delegateTarget										
 delegateTarget	R	event.delegateTarget										
 .dequeue()	A			jQuery methods							Execute the next function on the queue for the matched elements.<pre><code>.dequeue(queueName) → jQuery</code></pre>	https://api.jquery.com/dequeue/
+.dequeue	R	.dequeue()										
+dequeue()	R	.dequeue()										
 dequeue	R	.dequeue()										
+.dequeue()	R	jQuery.dequeue()										
+.dequeue	R	jQuery.dequeue()										
 dequeue()	R	jQuery.dequeue()										
 dequeue	R	jQuery.dequeue()										
 Descendant Selector ("ancestor descendant")	A			jQuery selectors							Selects all elements that are descendants of a given ancestor.<pre><code>Descendant Selector ("ancestor descendant")</code></pre>	https://api.jquery.com/descendant-selector/
@@ -238,20 +395,37 @@ descendant selector ancestor descendant	R	Descendant Selector ("ancestor descend
 descendant selector	R	Descendant Selector ("ancestor descendant")										
 Descendant Selector	R	Descendant Selector ("ancestor descendant")										
 .detach()	A			jQuery methods							Remove the set of matched elements from the DOM.<pre><code>.detach(selector) → jQuery</code></pre>	https://api.jquery.com/detach/
+.detach	R	.detach()										
+detach()	R	.detach()										
 detach	R	.detach()										
 .die()	A			jQuery methods							Remove event handlers previously attached using .live() from the elements.<pre><code>.die() → jQuery\n.die(eventType, handler) → jQuery\n.die(events) → jQuery</code></pre>	https://api.jquery.com/die/
+.die event	R	.die()										
+.die() event	R	.die()										
 die event	R	.die()										
+die() event	R	.die()										
+.die	R	.die()										
+die()	R	.die()										
 die	R	.die()										
+.disabled()	R	callbacks.disabled()										
+.disabled	R	callbacks.disabled()										
 disabled()	R	callbacks.disabled()										
 disabled	R	callbacks.disabled()										
 :disabled Selector	A			jQuery selectors							Selects all elements that are disabled.<pre><code>:disabled Selector</code></pre>	https://api.jquery.com/disabled-selector/
 disabled selector	R	:disabled Selector										
+.disable()	R	callbacks.disable()										
+.disable	R	callbacks.disable()										
 disable()	R	callbacks.disable()										
 disable	R	callbacks.disable()										
+.done()	R	deferred.done()										
+.done	R	deferred.done()										
 done()	R	deferred.done()										
 done	R	deferred.done()										
 .each()	A			jQuery methods							Iterate over a jQuery object, executing a function for each matched element. <pre><code>.each(function, index, element) → jQuery</code></pre>	https://api.jquery.com/each/
+.each	R	.each()										
+each()	R	.each()										
 each	R	.each()										
+.each()	R	jQuery.each()										
+.each	R	jQuery.each()										
 each()	R	jQuery.each()										
 each	R	jQuery.each()										
 Element Selector ("element")	A			jQuery selectors							Selects all elements with the given tag name.<pre><code>Element Selector ("element")</code></pre>	https://api.jquery.com/element-selector/
@@ -259,27 +433,45 @@ element selector element	R	Element Selector ("element")
 element selector	R	Element Selector ("element")										
 Element Selector	R	Element Selector ("element")										
 .empty()	A			jQuery methods							Remove all child nodes of the set of matched elements from the DOM.<pre><code>.empty() → jQuery</code></pre>	https://api.jquery.com/empty/
+.empty()	R	callbacks.empty()										
+.empty	R	callbacks.empty()										
 empty()	R	callbacks.empty()										
 empty	R	callbacks.empty()										
+.empty	R	.empty()										
+empty()	R	.empty()										
 empty	R	.empty()										
 :empty Selector	A			jQuery selectors							Select all elements that have no children (including text nodes).<pre><code>:empty Selector</code></pre>	https://api.jquery.com/empty-selector/
 empty selector	R	:empty Selector										
 :enabled Selector	A			jQuery selectors							Selects all elements that are enabled.<pre><code>:enabled Selector</code></pre>	https://api.jquery.com/enabled-selector/
 enabled selector	R	:enabled Selector										
 .end()	A			jQuery methods							End the most recent filtering operation in the current chain and return the set of matched elements to its previous state.<pre><code>.end() → jQuery</code></pre>	https://api.jquery.com/end/
+.end	R	.end()										
+end()	R	.end()										
 end	R	.end()										
 .eq()	A			jQuery methods							Reduce the set of matched elements to the one at the specified index.<pre><code>.eq(index) → jQuery\n.eq(indexFromEnd) → jQuery</code></pre>	https://api.jquery.com/eq/
+.eq	R	.eq()										
+eq()	R	.eq()										
 eq	R	.eq()										
 :eq() Selector	A			jQuery selectors							Select the element at index n within the matched set.<pre><code>:eq(index) →  Selector\n:eq(indexFromEnd) →  Selector</code></pre>	https://api.jquery.com/eq-selector/
 eq selector	R	:eq() Selector										
 .error()	A			jQuery methods							Bind an event handler to the "error" JavaScript event.<pre><code>.error(handler, eventObject) → jQuery\n.error(eventData, handler, eventObject) → jQuery</code></pre>	https://api.jquery.com/error/
+.error event	R	.error()										
+.error() event	R	.error()										
 error event	R	.error()										
+error() event	R	.error()										
+.error	R	.error()										
+error()	R	.error()										
 error	R	.error()										
+.error()	R	jQuery.error()										
+.error	R	jQuery.error()										
 error()	R	jQuery.error()										
 error	R	jQuery.error()										
 escape selector	R	jQuery.escapeSelector()										
 escapeselector	R	jQuery.escapeSelector()										
+.escapeSelector()	R	jQuery.escapeSelector()										
+.escapeSelector	R	jQuery.escapeSelector()										
 escapeSelector()	R	jQuery.escapeSelector()										
+escapeSelector	R	jQuery.escapeSelector()										
 :even Selector	A			jQuery selectors							Selects even elements, zero-indexed.  See also odd.<pre><code>:even Selector</code></pre>	https://api.jquery.com/even-selector/
 even selector	R	:even Selector										
 event.currentTarget	A			jQuery properties							 The current DOM element within the event bubbling phase.  <pre><code>event.currentTarget</code></pre>	https://api.jquery.com/event.currentTarget/
@@ -293,12 +485,15 @@ event delegatetarget	R	event.delegateTarget
 event.isDefaultPrevented()	A			jQuery methods							Returns whether event.preventDefault() was ever called on this event object. <pre><code>event.isDefaultPrevented() → Boolean</code></pre>	https://api.jquery.com/event.isDefaultPrevented/
 event is default prevented	R	event.isDefaultPrevented()										
 event isdefaultprevented	R	event.isDefaultPrevented()										
+event.isDefaultPrevented	R	event.isDefaultPrevented()										
 event.isImmediatePropagationStopped()	A			jQuery methods							  Returns whether event.stopImmediatePropagation() was ever called on this event object. <pre><code>event.isImmediatePropagationStopped() → Boolean</code></pre>	https://api.jquery.com/event.isImmediatePropagationStopped/
 event is immediate propagation stopped	R	event.isImmediatePropagationStopped()										
 event isimmediatepropagationstopped	R	event.isImmediatePropagationStopped()										
+event.isImmediatePropagationStopped	R	event.isImmediatePropagationStopped()										
 event.isPropagationStopped()	A			jQuery methods							  Returns whether event.stopPropagation() was ever called on this event object. <pre><code>event.isPropagationStopped() → Boolean</code></pre>	https://api.jquery.com/event.isPropagationStopped/
 event is propagation stopped	R	event.isPropagationStopped()										
 event ispropagationstopped	R	event.isPropagationStopped()										
+event.isPropagationStopped	R	event.isPropagationStopped()										
 event.metaKey	A			jQuery properties							Indicates whether the META key was pressed when the event fired.<pre><code>event.metaKey</code></pre>	https://api.jquery.com/event.metaKey/
 event meta key	R	event.metaKey										
 event metakey	R	event.metaKey										
@@ -313,6 +508,7 @@ event pagey	R	event.pageY
 event.preventDefault()	A			jQuery methods							If this method is called, the default action of the event will not be triggered.<pre><code>event.preventDefault() → undefined</code></pre>	https://api.jquery.com/event.preventDefault/
 event prevent default	R	event.preventDefault()										
 event preventdefault	R	event.preventDefault()										
+event.preventDefault	R	event.preventDefault()										
 event.relatedTarget	A			jQuery properties							The other DOM element involved in the event, if any.<pre><code>event.relatedTarget</code></pre>	https://api.jquery.com/event.relatedTarget/
 event related target	R	event.relatedTarget										
 event relatedtarget	R	event.relatedTarget										
@@ -321,9 +517,11 @@ event result	R	event.result
 event.stopImmediatePropagation()	A			jQuery methods							Keeps the rest of the handlers from being executed and prevents the event from bubbling up the DOM tree.<pre><code>event.stopImmediatePropagation() → </code></pre>	https://api.jquery.com/event.stopImmediatePropagation/
 event stop immediate propagation	R	event.stopImmediatePropagation()										
 event stopimmediatepropagation	R	event.stopImmediatePropagation()										
+event.stopImmediatePropagation	R	event.stopImmediatePropagation()										
 event.stopPropagation()	A			jQuery methods							Prevents the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event.<pre><code>event.stopPropagation() → </code></pre>	https://api.jquery.com/event.stopPropagation/
 event stop propagation	R	event.stopPropagation()										
 event stoppropagation	R	event.stopPropagation()										
+event.stopPropagation	R	event.stopPropagation()										
 event.target	A			jQuery properties							 The DOM element that initiated the event.  <pre><code>event.target</code></pre>	https://api.jquery.com/event.target/
 event target	R	event.target										
 event.timeStamp	A			jQuery properties							The difference in milliseconds between the time the browser created the event and January 1, 1970.<pre><code>event.timeStamp</code></pre>	https://api.jquery.com/event.timeStamp/
@@ -333,75 +531,141 @@ event.type	A			jQuery properties							Describes the nature of the event.<pre><c
 event type	R	event.type										
 event.which	A			jQuery properties							For key or mouse events, this property indicates the specific key or button that was pressed.<pre><code>event.which</code></pre>	https://api.jquery.com/event.which/
 event which	R	event.which										
+.extend()	R	jQuery.extend()										
+.extend	R	jQuery.extend()										
 extend()	R	jQuery.extend()										
 extend	R	jQuery.extend()										
 .fadeIn()	A			jQuery methods							Display the matched elements by fading them to opaque.<pre><code>.fadeIn() → jQuery\n.fadeIn() → jQuery\n.fadeIn() → jQuery</code></pre>	https://api.jquery.com/fadeIn/
 fade in	R	.fadeIn()										
 fadein	R	.fadeIn()										
+.fadeIn	R	.fadeIn()										
+fadeIn()	R	.fadeIn()										
+fadeIn	R	.fadeIn()										
 .fadeOut()	A			jQuery methods							Hide the matched elements by fading them to transparent.<pre><code>.fadeOut() → jQuery\n.fadeOut() → jQuery\n.fadeOut() → jQuery</code></pre>	https://api.jquery.com/fadeOut/
 fade out	R	.fadeOut()										
 fadeout	R	.fadeOut()										
+.fadeOut	R	.fadeOut()										
+fadeOut()	R	.fadeOut()										
+fadeOut	R	.fadeOut()										
 .fadeTo()	A			jQuery methods							Adjust the opacity of the matched elements.<pre><code>.fadeTo(duration, opacity, complete) → jQuery\n.fadeTo(duration, opacity, easing, complete) → jQuery</code></pre>	https://api.jquery.com/fadeTo/
 .fadeToggle()	A			jQuery methods							Display or hide the matched elements by animating their opacity.<pre><code>.fadeToggle() → jQuery\n.fadeToggle() → jQuery</code></pre>	https://api.jquery.com/fadeToggle/
 fade toggle	R	.fadeToggle()										
 fadetoggle	R	.fadeToggle()										
+.fadeToggle	R	.fadeToggle()										
+fadeToggle()	R	.fadeToggle()										
+fadeToggle	R	.fadeToggle()										
 fade to	R	.fadeTo()										
 fadeto	R	.fadeTo()										
+.fadeTo	R	.fadeTo()										
+fadeTo()	R	.fadeTo()										
+fadeTo	R	.fadeTo()										
+.fail()	R	deferred.fail()										
+.fail	R	deferred.fail()										
 fail()	R	deferred.fail()										
 fail	R	deferred.fail()										
 :file Selector	A			jQuery selectors							Selects all elements of type file.<pre><code>:file Selector</code></pre>	https://api.jquery.com/file-selector/
 file selector	R	:file Selector										
 .filter()	A			jQuery methods							Reduce the set of matched elements to those that match the selector or pass the function's test. <pre><code>.filter(selector) → jQuery\n.filter(function, index, element) → jQuery\n.filter(elements) → jQuery\n.filter(selection) → jQuery</code></pre>	https://api.jquery.com/filter/
+.filter	R	.filter()										
+filter()	R	.filter()										
 filter	R	.filter()										
 .find()	A			jQuery methods							Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.<pre><code>.find(selector) → jQuery\n.find(element) → jQuery</code></pre>	https://api.jquery.com/find/
+.find	R	.find()										
+find()	R	.find()										
 find	R	.find()										
 .finish()	A			jQuery methods							Stop the currently-running animation, remove all queued animations, and complete all animations for the matched elements.<pre><code>.finish(queue) → jQuery</code></pre>	https://api.jquery.com/finish/
+.finish	R	.finish()										
+finish()	R	.finish()										
 finish	R	.finish()										
+.fired()	R	callbacks.fired()										
+.fired	R	callbacks.fired()										
 fired()	R	callbacks.fired()										
 fired	R	callbacks.fired()										
+.fire()	R	callbacks.fire()										
+.fire	R	callbacks.fire()										
 fire()	R	callbacks.fire()										
 fire	R	callbacks.fire()										
 fire with	R	callbacks.fireWith()										
 firewith	R	callbacks.fireWith()										
+.fireWith()	R	callbacks.fireWith()										
+.fireWith	R	callbacks.fireWith()										
 fireWith()	R	callbacks.fireWith()										
+fireWith	R	callbacks.fireWith()										
 .first()	A			jQuery methods							Reduce the set of matched elements to the first in the set.<pre><code>.first() → jQuery</code></pre>	https://api.jquery.com/first/
 :first-child Selector	A			jQuery selectors							Selects all elements that are the first child of their parent.<pre><code>:first-child Selector</code></pre>	https://api.jquery.com/first-child-selector/
 first child selector	R	:first-child Selector										
 :first-of-type Selector	A			jQuery selectors							Selects all elements that are the first among siblings of the same element name.<pre><code>:first-of-type Selector</code></pre>	https://api.jquery.com/first-of-type-selector/
 first of type selector	R	:first-of-type Selector										
+.first	R	.first()										
+first()	R	.first()										
 first	R	.first()										
 :first Selector	A			jQuery selectors							Selects the first matched DOM element.<pre><code>:first Selector</code></pre>	https://api.jquery.com/first-selector/
 first selector	R	:first Selector										
+.fn.extend()	R	jQuery.fn.extend()										
+.fn.extend	R	jQuery.fn.extend()										
 fn extend	R	jQuery.fn.extend()										
 fn.extend()	R	jQuery.fn.extend()										
+fn.extend	R	jQuery.fn.extend()										
 .focus()	A			jQuery methods							Bind an event handler to the "focus" JavaScript event, or trigger that event on an element.<pre><code>.focus(handler, eventObject) → jQuery\n.focus(eventData, handler, eventObject) → jQuery\n.focus() → jQuery</code></pre>	https://api.jquery.com/focus/
+.focus event	R	.focus()										
+.focus() event	R	.focus()										
 focus event	R	.focus()										
+focus() event	R	.focus()										
 .focusin()	A			jQuery methods							Bind an event handler to the "focusin" event.<pre><code>.focusin(handler, eventObject) → jQuery\n.focusin(eventData, handler, eventObject) → jQuery\n.focusin() → jQuery</code></pre>	https://api.jquery.com/focusin/
+.focusin event	R	.focusin()										
+.focusin() event	R	.focusin()										
 focusin event	R	.focusin()										
+focusin() event	R	.focusin()										
+.focusin	R	.focusin()										
+focusin()	R	.focusin()										
 focusin	R	.focusin()										
 .focusout()	A			jQuery methods							Bind an event handler to the "focusout" JavaScript event.<pre><code>.focusout(handler, eventObject) → jQuery\n.focusout(eventData, handler, eventObject) → jQuery\n.focusout() → jQuery</code></pre>	https://api.jquery.com/focusout/
+.focusout event	R	.focusout()										
+.focusout() event	R	.focusout()										
 focusout event	R	.focusout()										
+focusout() event	R	.focusout()										
+.focusout	R	.focusout()										
+focusout()	R	.focusout()										
 focusout	R	.focusout()										
+.focus	R	.focus()										
+focus()	R	.focus()										
 focus	R	.focus()										
 :focus Selector	A			jQuery selectors							Selects element if it is currently focused.<pre><code>:focus Selector</code></pre>	https://api.jquery.com/focus-selector/
 focus selector	R	:focus Selector										
+.fx.interval	R	jQuery.fx.interval										
 fx interval	R	jQuery.fx.interval										
 fx.interval	R	jQuery.fx.interval										
+.fx.off	R	jQuery.fx.off										
 fx off	R	jQuery.fx.off										
 fx.off	R	jQuery.fx.off										
 .get()	A			jQuery methods							Retrieve one of the elements matched by the jQuery object.<pre><code>.get(index) → Element</code></pre>\nRetrieve the elements matched by the jQuery object.<pre><code>.get() → Array</code></pre>	https://api.jquery.com/get/
 get json	R	jQuery.getJSON()										
 getjson	R	jQuery.getJSON()										
+.getJSON()	R	jQuery.getJSON()										
+.getJSON	R	jQuery.getJSON()										
 getJSON()	R	jQuery.getJSON()										
+getJSON	R	jQuery.getJSON()										
+.get	R	.get()										
+get()	R	.get()										
 get	R	.get()										
+.get()	R	jQuery.get()										
+.get	R	jQuery.get()										
 get()	R	jQuery.get()										
 get	R	jQuery.get()										
 get script	R	jQuery.getScript()										
 getscript	R	jQuery.getScript()										
+.getScript()	R	jQuery.getScript()										
+.getScript	R	jQuery.getScript()										
 getScript()	R	jQuery.getScript()										
+getScript	R	jQuery.getScript()										
 global eval	R	jQuery.globalEval()										
 globaleval	R	jQuery.globalEval()										
+.globalEval()	R	jQuery.globalEval()										
+.globalEval	R	jQuery.globalEval()										
 globalEval()	R	jQuery.globalEval()										
+globalEval	R	jQuery.globalEval()										
+.grep()	R	jQuery.grep()										
+.grep	R	jQuery.grep()										
 grep()	R	jQuery.grep()										
 grep	R	jQuery.grep()										
 :gt() Selector	A			jQuery selectors							Select all elements at an index greater than index within the matched set.<pre><code>:gt(index) →  Selector\n:gt(indexFromEnd) →  Selector</code></pre>	https://api.jquery.com/gt-selector/
@@ -414,32 +678,59 @@ Has Attribute Selector	R	Has Attribute Selector [name]
 .hasClass()	A			jQuery methods							Determine whether any of the matched elements are assigned the given class.<pre><code>.hasClass(className) → Boolean</code></pre>	https://api.jquery.com/hasClass/
 has class	R	.hasClass()										
 hasclass	R	.hasClass()										
+.hasClass	R	.hasClass()										
+hasClass()	R	.hasClass()										
+hasClass	R	.hasClass()										
 has data	R	jQuery.hasData()										
 hasdata	R	jQuery.hasData()										
+.hasData()	R	jQuery.hasData()										
+.hasData	R	jQuery.hasData()										
 hasData()	R	jQuery.hasData()										
+hasData	R	jQuery.hasData()										
+.has()	R	callbacks.has()										
+.has	R	callbacks.has()										
 has()	R	callbacks.has()										
 has	R	callbacks.has()										
+.has	R	.has()										
+has()	R	.has()										
 has	R	.has()										
 :has() Selector	A			jQuery selectors							Selects elements which contain at least one element that matches the specified selector.<pre><code>:has(selector) →  Selector</code></pre>	https://api.jquery.com/has-selector/
 has selector	R	:has() Selector										
 :header Selector	A			jQuery selectors							Selects all elements that are headers, like h1, h2, h3 and so on.<pre><code>:header Selector</code></pre>	https://api.jquery.com/header-selector/
 header selector	R	:header Selector										
 .height()	A			jQuery methods							Get the current computed height for the first element in the set of matched elements.<pre><code>.height() → Number</code></pre>\nSet the CSS height of every matched element.<pre><code>.height(value) → jQuery\n.height(function, index, height) → jQuery</code></pre>	https://api.jquery.com/height/
+.height	R	.height()										
+height()	R	.height()										
 height	R	.height()										
 :hidden Selector	A			jQuery selectors							Selects all elements that are hidden.<pre><code>:hidden Selector</code></pre>	https://api.jquery.com/hidden-selector/
 hidden selector	R	:hidden Selector										
 .hide()	A			jQuery methods							Hide the matched elements.<pre><code>.hide() → jQuery\n.hide() → jQuery\n.hide() → jQuery\n.hide(duration) → jQuery</code></pre>	https://api.jquery.com/hide/
+.hide	R	.hide()										
+hide()	R	.hide()										
 hide	R	.hide()										
 hold ready	R	jQuery.holdReady()										
 holdready	R	jQuery.holdReady()										
+.holdReady()	R	jQuery.holdReady()										
+.holdReady	R	jQuery.holdReady()										
 holdReady()	R	jQuery.holdReady()										
+holdReady	R	jQuery.holdReady()										
 .hover()	A			jQuery methods							Bind two handlers to the matched elements, to be executed when the mouse pointer enters and leaves the elements.<pre><code>.hover(handlerIn, eventObject, handlerOut, eventObject) → jQuery</code></pre>\nBind a single handler to the matched elements, to be executed when the mouse pointer enters or leaves the elements.<pre><code>.hover(handlerInOut, eventObject) → jQuery</code></pre>	https://api.jquery.com/hover/
+.hover event	R	.hover()										
+.hover() event	R	.hover()										
 hover event	R	.hover()										
+hover() event	R	.hover()										
+.hover	R	.hover()										
+hover()	R	.hover()										
 hover	R	.hover()										
 .html()	A			jQuery methods							Get the HTML contents of the first element in the set of matched elements.<pre><code>.html() → String</code></pre>\nSet the HTML contents of each element in the set of matched elements.<pre><code>.html(htmlString) → jQuery\n.html(function, index, oldhtml) → jQuery</code></pre>	https://api.jquery.com/html/
 html prefilter	R	jQuery.htmlPrefilter()										
 htmlprefilter	R	jQuery.htmlPrefilter()										
+.htmlPrefilter()	R	jQuery.htmlPrefilter()										
+.htmlPrefilter	R	jQuery.htmlPrefilter()										
 htmlPrefilter()	R	jQuery.htmlPrefilter()										
+htmlPrefilter	R	jQuery.htmlPrefilter()										
+.html	R	.html()										
+html()	R	.html()										
 html	R	.html()										
 ID Selector ("#id")	A			jQuery selectors							Selects a single element with the given id attribute. <pre><code>ID Selector ("#id")</code></pre>	https://api.jquery.com/id-selector/
 id selector id	R	ID Selector ("#id")										
@@ -449,72 +740,131 @@ ID Selector	R	ID Selector ("#id")
 image selector	R	:image Selector										
 in array	R	jQuery.inArray()										
 inarray	R	jQuery.inArray()										
+.inArray()	R	jQuery.inArray()										
+.inArray	R	jQuery.inArray()										
 inArray()	R	jQuery.inArray()										
+inArray	R	jQuery.inArray()										
 .index()	A			jQuery methods							Search for a given element from among the matched elements.<pre><code>.index() → Integer\n.index(selector) → Integer\n.index(element) → Integer</code></pre>	https://api.jquery.com/index/
+.index	R	.index()										
+index()	R	.index()										
 index	R	.index()										
 .innerHeight()	A			jQuery methods							Get the current computed height for the first element in the set of matched elements, including padding but not border.<pre><code>.innerHeight() → Number</code></pre>\nSet the CSS inner height of each element in the set of matched elements.<pre><code>.innerHeight(value) → jQuery\n.innerHeight(function, index, height) → jQuery</code></pre>	https://api.jquery.com/innerHeight/
 inner height	R	.innerHeight()										
 innerheight	R	.innerHeight()										
+.innerHeight	R	.innerHeight()										
+innerHeight()	R	.innerHeight()										
+innerHeight	R	.innerHeight()										
 .innerWidth()	A			jQuery methods							Get the current computed inner width for the first element in the set of matched elements, including padding but not border.<pre><code>.innerWidth() → Number</code></pre>\nSet the CSS inner width of each element in the set of matched elements.<pre><code>.innerWidth(value) → jQuery\n.innerWidth(function, index, width) → jQuery</code></pre>	https://api.jquery.com/innerWidth/
 inner width	R	.innerWidth()										
 innerwidth	R	.innerWidth()										
+.innerWidth	R	.innerWidth()										
+innerWidth()	R	.innerWidth()										
+innerWidth	R	.innerWidth()										
 :input Selector	A			jQuery selectors							Selects all input, textarea, select and button elements.<pre><code>:input Selector</code></pre>	https://api.jquery.com/input-selector/
 input selector	R	:input Selector										
 .insertAfter()	A			jQuery methods							Insert every element in the set of matched elements after the target.<pre><code>.insertAfter(target) → jQuery</code></pre>	https://api.jquery.com/insertAfter/
 insert after	R	.insertAfter()										
 insertafter	R	.insertAfter()										
+.insertAfter	R	.insertAfter()										
+insertAfter()	R	.insertAfter()										
+insertAfter	R	.insertAfter()										
 .insertBefore()	A			jQuery methods							Insert every element in the set of matched elements before the target.<pre><code>.insertBefore(target) → jQuery</code></pre>	https://api.jquery.com/insertBefore/
 insert before	R	.insertBefore()										
 insertbefore	R	.insertBefore()										
+.insertBefore	R	.insertBefore()										
+insertBefore()	R	.insertBefore()										
+insertBefore	R	.insertBefore()										
 .is()	A			jQuery methods							Check the current matched set of elements against a selector, element, or jQuery object and return true if at least one of these elements matches the given arguments.<pre><code>.is(selector) → Boolean\n.is(function, index, element) → Boolean\n.is(selection) → Boolean\n.is(elements) → Boolean</code></pre>	https://api.jquery.com/is/
 is array	R	jQuery.isArray()										
 isarray	R	jQuery.isArray()										
+.isArray()	R	jQuery.isArray()										
+.isArray	R	jQuery.isArray()										
 isArray()	R	jQuery.isArray()										
+isArray	R	jQuery.isArray()										
 is default prevented	R	event.isDefaultPrevented()										
 isdefaultprevented	R	event.isDefaultPrevented()										
+.isDefaultPrevented()	R	event.isDefaultPrevented()										
+.isDefaultPrevented	R	event.isDefaultPrevented()										
 isDefaultPrevented()	R	event.isDefaultPrevented()										
+isDefaultPrevented	R	event.isDefaultPrevented()										
 is empty object	R	jQuery.isEmptyObject()										
 isemptyobject	R	jQuery.isEmptyObject()										
+.isEmptyObject()	R	jQuery.isEmptyObject()										
+.isEmptyObject	R	jQuery.isEmptyObject()										
 isEmptyObject()	R	jQuery.isEmptyObject()										
+isEmptyObject	R	jQuery.isEmptyObject()										
 is function	R	jQuery.isFunction()										
 isfunction	R	jQuery.isFunction()										
+.isFunction()	R	jQuery.isFunction()										
+.isFunction	R	jQuery.isFunction()										
 isFunction()	R	jQuery.isFunction()										
+isFunction	R	jQuery.isFunction()										
 is immediate propagation stopped	R	event.isImmediatePropagationStopped()										
 isimmediatepropagationstopped	R	event.isImmediatePropagationStopped()										
+.isImmediatePropagationStopped()	R	event.isImmediatePropagationStopped()										
+.isImmediatePropagationStopped	R	event.isImmediatePropagationStopped()										
 isImmediatePropagationStopped()	R	event.isImmediatePropagationStopped()										
+isImmediatePropagationStopped	R	event.isImmediatePropagationStopped()										
 is numeric	R	jQuery.isNumeric()										
 isnumeric	R	jQuery.isNumeric()										
+.isNumeric()	R	jQuery.isNumeric()										
+.isNumeric	R	jQuery.isNumeric()										
 isNumeric()	R	jQuery.isNumeric()										
+isNumeric	R	jQuery.isNumeric()										
 is plain object	R	jQuery.isPlainObject()										
 isplainobject	R	jQuery.isPlainObject()										
+.isPlainObject()	R	jQuery.isPlainObject()										
+.isPlainObject	R	jQuery.isPlainObject()										
 isPlainObject()	R	jQuery.isPlainObject()										
+isPlainObject	R	jQuery.isPlainObject()										
 is propagation stopped	R	event.isPropagationStopped()										
 ispropagationstopped	R	event.isPropagationStopped()										
+.isPropagationStopped()	R	event.isPropagationStopped()										
+.isPropagationStopped	R	event.isPropagationStopped()										
 isPropagationStopped()	R	event.isPropagationStopped()										
+isPropagationStopped	R	event.isPropagationStopped()										
 is rejected	R	deferred.isRejected()										
 isrejected	R	deferred.isRejected()										
+.isRejected()	R	deferred.isRejected()										
+.isRejected	R	deferred.isRejected()										
 isRejected()	R	deferred.isRejected()										
+isRejected	R	deferred.isRejected()										
 is resolved	R	deferred.isResolved()										
 isresolved	R	deferred.isResolved()										
+.isResolved()	R	deferred.isResolved()										
+.isResolved	R	deferred.isResolved()										
 isResolved()	R	deferred.isResolved()										
+isResolved	R	deferred.isResolved()										
+.is	R	.is()										
+is()	R	.is()										
 is	R	.is()										
 is window	R	jQuery.isWindow()										
 iswindow	R	jQuery.isWindow()										
+.isWindow()	R	jQuery.isWindow()										
+.isWindow	R	jQuery.isWindow()										
 isWindow()	R	jQuery.isWindow()										
+isWindow	R	jQuery.isWindow()										
 is xmldoc	R	jQuery.isXMLDoc()										
 isxmldoc	R	jQuery.isXMLDoc()										
+.isXMLDoc()	R	jQuery.isXMLDoc()										
+.isXMLDoc	R	jQuery.isXMLDoc()										
 isXMLDoc()	R	jQuery.isXMLDoc()										
+isXMLDoc	R	jQuery.isXMLDoc()										
 jQuery.ajax()	A			jQuery methods							Perform an asynchronous HTTP (Ajax) request.<pre><code>jQuery.ajax(url, settings) → jqXHR\njQuery.ajax(settings, jqXHR, settings, jqXHR, textStatus, data, type, jqXHR, textStatus, errorThrown, data, textStatus, jqXHR) → jqXHR</code></pre>	https://api.jquery.com/jQuery.ajax/
 jQuery.ajaxPrefilter()	A			jQuery methods							Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().<pre><code>jQuery.ajaxPrefilter(dataTypes, handler, options, originalOptions, jqXHR) → undefined</code></pre>	https://api.jquery.com/jQuery.ajaxPrefilter/
 jquery ajax prefilter	R	jQuery.ajaxPrefilter()										
 jquery ajaxprefilter	R	jQuery.ajaxPrefilter()										
+jQuery.ajaxPrefilter	R	jQuery.ajaxPrefilter()										
 jquery ajax	R	jQuery.ajax()										
+jQuery.ajax	R	jQuery.ajax()										
 jQuery.ajaxSetup()	A			jQuery methods							Set default values for future Ajax requests. Its use is not recommended.<pre><code>jQuery.ajaxSetup(options) → </code></pre>	https://api.jquery.com/jQuery.ajaxSetup/
 jquery ajax setup	R	jQuery.ajaxSetup()										
 jquery ajaxsetup	R	jQuery.ajaxSetup()										
+jQuery.ajaxSetup	R	jQuery.ajaxSetup()										
 jQuery.ajaxTransport()	A			jQuery methods							Creates an object that handles the actual transmission of Ajax data.<pre><code>jQuery.ajaxTransport(dataType, handler, options, originalOptions, jqXHR) → undefined</code></pre>	https://api.jquery.com/jQuery.ajaxTransport/
 jquery ajax transport	R	jQuery.ajaxTransport()										
 jquery ajaxtransport	R	jQuery.ajaxTransport()										
+jQuery.ajaxTransport	R	jQuery.ajaxTransport()										
 jQuery()	A			jQuery methods							Accepts a string containing a CSS selector which is then used to match a set of elements.<pre><code>jQuery(selector, context) → jQuery\njQuery(element) → jQuery\njQuery(elementArray) → jQuery\njQuery(object) → jQuery\njQuery(selection) → jQuery\njQuery() → jQuery</code></pre>\nCreates DOM elements on the fly from the provided string of raw HTML.<pre><code>jQuery(html, ownerDocument) → jQuery\njQuery(html, attributes) → jQuery</code></pre>\nBinds a function to be executed when the DOM has finished loading.<pre><code>jQuery(callback) → jQuery</code></pre>	https://api.jquery.com/jQuery/
 .jquery	A			jQuery properties							A string containing the jQuery version number.<pre><code>.jquery</code></pre>	https://api.jquery.com/jquery-2/
 jQuery.boxModel	A			jQuery properties							States if the current page, in the user's browser, is being rendered using the W3C CSS Box Model. This property was removed in jQuery 1.8. Please try to use feature detection instead.<pre><code>jQuery.boxModel</code></pre>	https://api.jquery.com/jQuery.boxModel/
@@ -524,8 +874,10 @@ jQuery.browser	A			jQuery properties							Contains flags for the useragent, rea
 jquery browser	R	jQuery.browser										
 jQuery.Callbacks()	A			jQuery methods							A multi-purpose callbacks list object that provides a powerful way to manage callback lists.<pre><code>jQuery.Callbacks(flags) → Callbacks</code></pre>	https://api.jquery.com/jQuery.Callbacks/
 jquery callbacks	R	jQuery.Callbacks()										
+jQuery.Callbacks	R	jQuery.Callbacks()										
 jQuery.contains()	A			jQuery methods							Check to see if a DOM element is a descendant of another DOM element.<pre><code>jQuery.contains(container, contained) → Boolean</code></pre>	https://api.jquery.com/jQuery.contains/
 jquery contains	R	jQuery.contains()										
+jQuery.contains	R	jQuery.contains()										
 jQuery.cssHooks	A			jQuery properties							Hook directly into jQuery to override how particular CSS properties are retrieved or set, normalize CSS property naming, or create custom properties.<pre><code>jQuery.cssHooks</code></pre>	https://api.jquery.com/jQuery.cssHooks/
 jquery css hooks	R	jQuery.cssHooks										
 jquery csshooks	R	jQuery.cssHooks										
@@ -534,21 +886,29 @@ jquery css number	R	jQuery.cssNumber
 jquery cssnumber	R	jQuery.cssNumber										
 jQuery.data()	A			jQuery methods							Store arbitrary data associated with the specified element. Returns the value that was set.<pre><code>jQuery.data(element, key, value) → Object</code></pre>\nReturns value at named data store for the element, as set by jQuery.data(element, name, value), or the full data store for the element.<pre><code>jQuery.data(element, key) → Object\njQuery.data(element) → Object</code></pre>	https://api.jquery.com/jQuery.data/
 jquery data	R	jQuery.data()										
+jQuery.data	R	jQuery.data()										
 jQuery.Deferred()	A			jQuery methods							 A factory function that returns a chainable utility object with methods to register multiple callbacks into callback queues, invoke callback queues, and relay the success or failure state of any synchronous or asynchronous function.<pre><code>jQuery.Deferred(beforeStart, deferred) → Deferred</code></pre>	https://api.jquery.com/jQuery.Deferred/
 jquery deferred	R	jQuery.Deferred()										
+jQuery.Deferred	R	jQuery.Deferred()										
 jQuery.dequeue()	A			jQuery methods							Execute the next function on the queue for the matched element.<pre><code>jQuery.dequeue(element, queueName) → undefined</code></pre>	https://api.jquery.com/jQuery.dequeue/
 jquery dequeue	R	jQuery.dequeue()										
+jQuery.dequeue	R	jQuery.dequeue()										
 jQuery.each()	A			jQuery methods							A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.<pre><code>jQuery.each(array, callback, indexInArray, value) → Object\njQuery.each(object, callback, propertyName, valueOfProperty) → Object</code></pre>	https://api.jquery.com/jQuery.each/
 jquery each	R	jQuery.each()										
+jQuery.each	R	jQuery.each()										
 jQuery.error()	A			jQuery methods							Takes a string and throws an exception containing it.<pre><code>jQuery.error(message) → </code></pre>	https://api.jquery.com/jQuery.error/
 jquery error	R	jQuery.error()										
+jQuery.error	R	jQuery.error()										
 jQuery.escapeSelector()	A			jQuery methods							Escapes any character that has a special meaning in a CSS selector.<pre><code>jQuery.escapeSelector(selector) → Selector</code></pre>	https://api.jquery.com/jQuery.escapeSelector/
 jquery escape selector	R	jQuery.escapeSelector()										
 jquery escapeselector	R	jQuery.escapeSelector()										
+jQuery.escapeSelector	R	jQuery.escapeSelector()										
 jQuery.extend()	A			jQuery methods							Merge the contents of two or more objects together into the first object.<pre><code>jQuery.extend(target, object1, objectN) → Object\njQuery.extend(deep, target, object1, objectN) → Object</code></pre>	https://api.jquery.com/jQuery.extend/
 jquery extend	R	jQuery.extend()										
+jQuery.extend	R	jQuery.extend()										
 jQuery.fn.extend()	A			jQuery methods							Merge the contents of an object onto the jQuery prototype to provide new jQuery instance methods.<pre><code>jQuery.fn.extend(object) → Object</code></pre>	https://api.jquery.com/jQuery.fn.extend/
 jquery fn extend	R	jQuery.fn.extend()										
+jQuery.fn.extend	R	jQuery.fn.extend()										
 jQuery.fx.interval	A			jQuery properties							The rate (in milliseconds) at which animations fire.<pre><code>jQuery.fx.interval</code></pre>	https://api.jquery.com/jQuery.fx.interval/
 jquery fx interval	R	jQuery.fx.interval										
 jQuery.fx.off	A			jQuery properties							Globally disable all animations.<pre><code>jQuery.fx.off</code></pre>	https://api.jquery.com/jQuery.fx.off/
@@ -557,112 +917,165 @@ jQuery.get()	A			jQuery methods							Load data from the server using a HTTP GET
 jQuery.getJSON()	A			jQuery methods							Load JSON-encoded data from the server using a GET HTTP request.<pre><code>jQuery.getJSON(url, data, success, data, textStatus, jqXHR) → jqXHR</code></pre>	https://api.jquery.com/jQuery.getJSON/
 jquery get json	R	jQuery.getJSON()										
 jquery getjson	R	jQuery.getJSON()										
+jQuery.getJSON	R	jQuery.getJSON()										
 jquery get	R	jQuery.get()										
+jQuery.get	R	jQuery.get()										
 jQuery.getScript()	A			jQuery methods							Load a JavaScript file from the server using a GET HTTP request, then execute it.<pre><code>jQuery.getScript(url, success, script, textStatus, jqXHR) → jqXHR</code></pre>	https://api.jquery.com/jQuery.getScript/
 jquery get script	R	jQuery.getScript()										
 jquery getscript	R	jQuery.getScript()										
+jQuery.getScript	R	jQuery.getScript()										
 jQuery.globalEval()	A			jQuery methods							Execute some JavaScript code globally.<pre><code>jQuery.globalEval(code) → </code></pre>	https://api.jquery.com/jQuery.globalEval/
 jquery global eval	R	jQuery.globalEval()										
 jquery globaleval	R	jQuery.globalEval()										
+jQuery.globalEval	R	jQuery.globalEval()										
 jQuery.grep()	A			jQuery methods							Finds the elements of an array which satisfy a filter function. The original array is not affected.<pre><code>jQuery.grep(array, function, elementOfArray, indexInArray, invert) → Array</code></pre>	https://api.jquery.com/jQuery.grep/
 jquery grep	R	jQuery.grep()										
+jQuery.grep	R	jQuery.grep()										
 jQuery.hasData()	A			jQuery methods							Determine whether an element has any jQuery data associated with it.<pre><code>jQuery.hasData(element) → Boolean</code></pre>	https://api.jquery.com/jQuery.hasData/
 jquery has data	R	jQuery.hasData()										
 jquery hasdata	R	jQuery.hasData()										
+jQuery.hasData	R	jQuery.hasData()										
 jQuery.holdReady()	A			jQuery methods							Holds or releases the execution of jQuery's ready event.<pre><code>jQuery.holdReady(hold) → undefined</code></pre>	https://api.jquery.com/jQuery.holdReady/
 jquery hold ready	R	jQuery.holdReady()										
 jquery holdready	R	jQuery.holdReady()										
+jQuery.holdReady	R	jQuery.holdReady()										
 jQuery.htmlPrefilter()	A			jQuery methods							Modify and filter HTML strings passed through jQuery manipulation methods.<pre><code>jQuery.htmlPrefilter(html) → String</code></pre>	https://api.jquery.com/jQuery.htmlPrefilter/
 jquery html prefilter	R	jQuery.htmlPrefilter()										
 jquery htmlprefilter	R	jQuery.htmlPrefilter()										
+jQuery.htmlPrefilter	R	jQuery.htmlPrefilter()										
 jQuery.inArray()	A			jQuery methods							Search for a specified value within an array and return its index (or -1 if not found).<pre><code>jQuery.inArray(value, array, fromIndex) → Number</code></pre>	https://api.jquery.com/jQuery.inArray/
 jquery in array	R	jQuery.inArray()										
 jquery inarray	R	jQuery.inArray()										
+jQuery.inArray	R	jQuery.inArray()										
 jQuery.isArray()	A			jQuery methods							Determine whether the argument is an array.<pre><code>jQuery.isArray(obj) → boolean</code></pre>	https://api.jquery.com/jQuery.isArray/
 jquery is array	R	jQuery.isArray()										
 jquery isarray	R	jQuery.isArray()										
+jQuery.isArray	R	jQuery.isArray()										
 jQuery.isEmptyObject()	A			jQuery methods							Check to see if an object is empty (contains no enumerable properties).<pre><code>jQuery.isEmptyObject(object) → Boolean</code></pre>	https://api.jquery.com/jQuery.isEmptyObject/
 jquery is empty object	R	jQuery.isEmptyObject()										
 jquery isemptyobject	R	jQuery.isEmptyObject()										
+jQuery.isEmptyObject	R	jQuery.isEmptyObject()										
 jQuery.isFunction()	A			jQuery methods							Determine if the argument passed is a JavaScript function object. <pre><code>jQuery.isFunction(obj) → boolean</code></pre>	https://api.jquery.com/jQuery.isFunction/
 jquery is function	R	jQuery.isFunction()										
 jquery isfunction	R	jQuery.isFunction()										
+jQuery.isFunction	R	jQuery.isFunction()										
 jQuery.isNumeric()	A			jQuery methods							Determines whether its argument represents a JavaScript number.<pre><code>jQuery.isNumeric(value) → Boolean</code></pre>	https://api.jquery.com/jQuery.isNumeric/
 jquery is numeric	R	jQuery.isNumeric()										
 jquery isnumeric	R	jQuery.isNumeric()										
+jQuery.isNumeric	R	jQuery.isNumeric()										
 jQuery.isPlainObject()	A			jQuery methods							Check to see if an object is a plain object (created using "{}" or "new Object").<pre><code>jQuery.isPlainObject(object) → Boolean</code></pre>	https://api.jquery.com/jQuery.isPlainObject/
 jquery is plain object	R	jQuery.isPlainObject()										
 jquery isplainobject	R	jQuery.isPlainObject()										
+jQuery.isPlainObject	R	jQuery.isPlainObject()										
 jQuery.isWindow()	A			jQuery methods							Determine whether the argument is a window.<pre><code>jQuery.isWindow(obj) → boolean</code></pre>	https://api.jquery.com/jQuery.isWindow/
 jquery is window	R	jQuery.isWindow()										
 jquery iswindow	R	jQuery.isWindow()										
+jQuery.isWindow	R	jQuery.isWindow()										
 jQuery.isXMLDoc()	A			jQuery methods							Check to see if a DOM node is within an XML document (or is an XML document).<pre><code>jQuery.isXMLDoc(node) → Boolean</code></pre>	https://api.jquery.com/jQuery.isXMLDoc/
 jquery is xmldoc	R	jQuery.isXMLDoc()										
 jquery isxmldoc	R	jQuery.isXMLDoc()										
+jQuery.isXMLDoc	R	jQuery.isXMLDoc()										
 jQuery.makeArray()	A			jQuery methods							Convert an array-like object into a true JavaScript array.<pre><code>jQuery.makeArray(obj) → Array</code></pre>	https://api.jquery.com/jQuery.makeArray/
 jquery make array	R	jQuery.makeArray()										
 jquery makearray	R	jQuery.makeArray()										
+jQuery.makeArray	R	jQuery.makeArray()										
 jQuery.map()	A			jQuery methods							Translate all items in an array or object to new array of items.<pre><code>jQuery.map(array, callback, elementOfArray, indexInArray) → Array\njQuery.map(object, callback, propertyOfObject, key) → Array</code></pre>	https://api.jquery.com/jQuery.map/
 jquery map	R	jQuery.map()										
+jQuery.map	R	jQuery.map()										
 jQuery.merge()	A			jQuery methods							Merge the contents of two arrays together into the first array. <pre><code>jQuery.merge(first, second) → Array</code></pre>	https://api.jquery.com/jQuery.merge/
 jquery merge	R	jQuery.merge()										
+jQuery.merge	R	jQuery.merge()										
 jQuery.noConflict()	A			jQuery methods							Relinquish jQuery's control of the $ variable.<pre><code>jQuery.noConflict(removeAll) → Object</code></pre>	https://api.jquery.com/jQuery.noConflict/
 jquery no conflict	R	jQuery.noConflict()										
 jquery noconflict	R	jQuery.noConflict()										
+jQuery.noConflict	R	jQuery.noConflict()										
 jQuery.noop()	A			jQuery methods							An empty function.<pre><code>jQuery.noop() → undefined</code></pre>	https://api.jquery.com/jQuery.noop/
 jquery noop	R	jQuery.noop()										
+jQuery.noop	R	jQuery.noop()										
 jQuery.now()	A			jQuery methods							Return a number representing the current time.<pre><code>jQuery.now() → Number</code></pre>	https://api.jquery.com/jQuery.now/
 jquery now	R	jQuery.now()										
+jQuery.now	R	jQuery.now()										
 jQuery.param()	A			jQuery methods							Create a serialized representation of an array, a plain object, or a jQuery object suitable for use in a URL query string or Ajax request. In case a jQuery object is passed, it should contain input elements with name/value properties.<pre><code>jQuery.param(obj) → String\njQuery.param(obj, traditional) → String</code></pre>	https://api.jquery.com/jQuery.param/
 jquery param	R	jQuery.param()										
+jQuery.param	R	jQuery.param()										
 jQuery.parseHTML()	A			jQuery methods							Parses a string into an array of DOM nodes.<pre><code>jQuery.parseHTML(data, context, keepScripts) → Array</code></pre>	https://api.jquery.com/jQuery.parseHTML/
 jquery parse html	R	jQuery.parseHTML()										
 jquery parsehtml	R	jQuery.parseHTML()										
+jQuery.parseHTML	R	jQuery.parseHTML()										
 jQuery.parseJSON()	A			jQuery methods							Takes a well-formed JSON string and returns the resulting JavaScript value.<pre><code>jQuery.parseJSON(json) → </code></pre>	https://api.jquery.com/jQuery.parseJSON/
 jquery parse json	R	jQuery.parseJSON()										
 jquery parsejson	R	jQuery.parseJSON()										
+jQuery.parseJSON	R	jQuery.parseJSON()										
 jQuery.parseXML()	A			jQuery methods							Parses a string into an XML document.<pre><code>jQuery.parseXML(data) → XMLDocument</code></pre>	https://api.jquery.com/jQuery.parseXML/
 jquery parse xml	R	jQuery.parseXML()										
 jquery parsexml	R	jQuery.parseXML()										
+jQuery.parseXML	R	jQuery.parseXML()										
 jQuery.post()	A			jQuery methods							Load data from the server using a HTTP POST request.<pre><code>jQuery.post(url, data, success, data, textStatus, jqXHR, dataType) → jqXHR\njQuery.post(settings) → jqXHR</code></pre>	https://api.jquery.com/jQuery.post/
 jquery post	R	jQuery.post()										
+jQuery.post	R	jQuery.post()										
 jQuery.proxy()	A			jQuery methods							Takes a function and returns a new one that will always have a particular context.<pre><code>jQuery.proxy(function, context) → Function\njQuery.proxy(context, name) → Function\njQuery.proxy(function, context, additionalArguments) → Function\njQuery.proxy(context, name, additionalArguments) → Function</code></pre>	https://api.jquery.com/jQuery.proxy/
 jquery proxy	R	jQuery.proxy()										
+jQuery.proxy	R	jQuery.proxy()										
 jQuery.queue()	A			jQuery methods							Show the queue of functions to be executed on the matched element.<pre><code>jQuery.queue(element, queueName) → Array</code></pre>\nManipulate the queue of functions to be executed on the matched element.<pre><code>jQuery.queue(element, queueName, newQueue) → jQuery\njQuery.queue(element, queueName, callback) → jQuery</code></pre>	https://api.jquery.com/jQuery.queue/
 jquery queue	R	jQuery.queue()										
+jQuery.queue	R	jQuery.queue()										
 jQuery.readyException()	A			jQuery methods							Handles errors thrown synchronously in functions wrapped in jQuery().<pre><code>jQuery.readyException(error) → Selector</code></pre>	https://api.jquery.com/jQuery.readyException/
 jquery ready exception	R	jQuery.readyException()										
 jquery readyexception	R	jQuery.readyException()										
+jQuery.readyException	R	jQuery.readyException()										
 jQuery.removeData()	A			jQuery methods							Remove a previously-stored piece of data.<pre><code>jQuery.removeData(element, name) → jQuery</code></pre>	https://api.jquery.com/jQuery.removeData/
 jquery remove data	R	jQuery.removeData()										
 jquery removedata	R	jQuery.removeData()										
+jQuery.removeData	R	jQuery.removeData()										
 jquery	R	.jquery										
 jquery	R	jQuery()										
+jQuery	R	jQuery()										
 jQuery.speed	A			jQuery methods							Creates an object containing a set of properties ready to be used in the definition of custom animations.<pre><code>jQuery.speed\njQuery.speed\njQuery.speed</code></pre>	https://api.jquery.com/jQuery.speed/
 jquery speed	R	jQuery.speed										
 jQuery.sub()	A			jQuery methods							Creates a new copy of jQuery whose properties and methods can be modified without affecting the original jQuery object.<pre><code>jQuery.sub() → jQuery</code></pre>	https://api.jquery.com/jQuery.sub/
 jquery sub	R	jQuery.sub()										
+jQuery.sub	R	jQuery.sub()										
 jQuery.support	A			jQuery properties							A collection of properties that represent the presence of different browser features or bugs. Intended for jQuery's internal use; specific properties may be removed when they are no longer needed internally to improve page startup performance. For your own project's feature-detection needs, we strongly recommend the use of an external library such as Modernizr instead of dependency on properties in jQuery.support.<pre><code>jQuery.support</code></pre>	https://api.jquery.com/jQuery.support/
 jquery support	R	jQuery.support										
 jQuery.trim()	A			jQuery methods							Remove the whitespace from the beginning and end of a string.<pre><code>jQuery.trim(str) → String</code></pre>	https://api.jquery.com/jQuery.trim/
 jquery trim	R	jQuery.trim()										
+jQuery.trim	R	jQuery.trim()										
 jQuery.type()	A			jQuery methods							Determine the internal JavaScript [[Class]] of an object.<pre><code>jQuery.type(obj) → String</code></pre>	https://api.jquery.com/jQuery.type/
 jquery type	R	jQuery.type()										
+jQuery.type	R	jQuery.type()										
 jQuery.unique()	A			jQuery methods							Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.<pre><code>jQuery.unique(array) → Array</code></pre>	https://api.jquery.com/jQuery.unique/
 jquery unique	R	jQuery.unique()										
+jQuery.unique	R	jQuery.unique()										
 jQuery.uniqueSort()	A			jQuery methods							Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.<pre><code>jQuery.uniqueSort(array) → Array</code></pre>	https://api.jquery.com/jQuery.uniqueSort/
 jquery unique sort	R	jQuery.uniqueSort()										
 jquery uniquesort	R	jQuery.uniqueSort()										
+jQuery.uniqueSort	R	jQuery.uniqueSort()										
 jQuery.when()	A			jQuery methods							Provides a way to execute callback functions based on zero or more objects, usually Deferred objects that represent asynchronous events.<pre><code>jQuery.when(deferreds) → Promise</code></pre>	https://api.jquery.com/jQuery.when/
 jquery when	R	jQuery.when()										
+jQuery.when	R	jQuery.when()										
 .keydown()	A			jQuery methods							Bind an event handler to the "keydown" JavaScript event, or trigger that event on an element.<pre><code>.keydown(handler, eventObject) → jQuery\n.keydown(eventData, handler, eventObject) → jQuery\n.keydown() → jQuery</code></pre>	https://api.jquery.com/keydown/
+.keydown event	R	.keydown()										
+.keydown() event	R	.keydown()										
 keydown event	R	.keydown()										
+keydown() event	R	.keydown()										
+.keydown	R	.keydown()										
+keydown()	R	.keydown()										
 keydown	R	.keydown()										
 .keypress()	A			jQuery methods							Bind an event handler to the "keypress" JavaScript event, or trigger that event on an element.<pre><code>.keypress(handler, eventObject) → jQuery\n.keypress(eventData, handler, eventObject) → jQuery\n.keypress() → jQuery</code></pre>	https://api.jquery.com/keypress/
+.keypress event	R	.keypress()										
+.keypress() event	R	.keypress()										
 keypress event	R	.keypress()										
+keypress() event	R	.keypress()										
+.keypress	R	.keypress()										
+keypress()	R	.keypress()										
 keypress	R	.keypress()										
 .keyup()	A			jQuery methods							Bind an event handler to the "keyup" JavaScript event, or trigger that event on an element.<pre><code>.keyup(handler, eventObject) → jQuery\n.keyup(eventData, handler, eventObject) → jQuery\n.keyup() → jQuery</code></pre>	https://api.jquery.com/keyup/
+.keyup event	R	.keyup()										
+.keyup() event	R	.keyup()										
 keyup event	R	.keyup()										
+keyup() event	R	.keyup()										
+.keyup	R	.keyup()										
+keyup()	R	.keyup()										
 keyup	R	.keyup()										
 :lang() Selector	A			jQuery selectors							Selects all elements of the specified language.<pre><code>:lang(language) →  Selector</code></pre>	https://api.jquery.com/lang-selector/
 lang selector	R	:lang() Selector										
@@ -671,71 +1084,134 @@ lang selector	R	:lang() Selector
 last child selector	R	:last-child Selector										
 :last-of-type Selector	A			jQuery selectors							Selects all elements that are the last among siblings of the same element name.<pre><code>:last-of-type Selector</code></pre>	https://api.jquery.com/last-of-type-selector/
 last of type selector	R	:last-of-type Selector										
+.last	R	.last()										
+last()	R	.last()										
 last	R	.last()										
 :last Selector	A			jQuery selectors							Selects the last matched element.<pre><code>:last Selector</code></pre>	https://api.jquery.com/last-selector/
 last selector	R	:last Selector										
 .length	A			jQuery properties							The number of elements in the jQuery object.<pre><code>.length</code></pre>	https://api.jquery.com/length/
 length	R	.length										
 .live()	A			jQuery methods							Attach an event handler for all elements which match the current selector, now and in the future.<pre><code>.live(events, handler, eventObject) → jQuery\n.live(events, data, handler, eventObject) → jQuery\n.live(events) → jQuery</code></pre>	https://api.jquery.com/live/
+.live event	R	.live()										
+.live() event	R	.live()										
 live event	R	.live()										
+live() event	R	.live()										
+.live	R	.live()										
+live()	R	.live()										
 live	R	.live()										
 .load()	A			jQuery methods							Bind an event handler to the "load" JavaScript event.<pre><code>.load(handler, eventObject) → jQuery\n.load(eventData, handler, eventObject) → jQuery</code></pre>	https://api.jquery.com/load-event/
 .load()	A			jQuery methods							Load data from the server and place the returned HTML into the matched element.<pre><code>.load(url, data, complete, responseText, textStatus, jqXHR) → jQuery</code></pre>	https://api.jquery.com/load/
+.load event	R	.load()										
+.load() event	R	.load()										
 load event	R	.load()										
+load() event	R	.load()										
+.load	R	.load()										
+.load	R	.load()										
+load()	R	.load()										
+load()	R	.load()										
 load	R	.load()										
 load	R	.load()										
+.locked()	R	callbacks.locked()										
+.locked	R	callbacks.locked()										
 locked()	R	callbacks.locked()										
 locked	R	callbacks.locked()										
+.lock()	R	callbacks.lock()										
+.lock	R	callbacks.lock()										
 lock()	R	callbacks.lock()										
 lock	R	callbacks.lock()										
 :lt() Selector	A			jQuery selectors							Select all elements at an index less than index within the matched set.<pre><code>:lt(index) →  Selector\n:lt(indexFromEnd) →  Selector</code></pre>	https://api.jquery.com/lt-selector/
 lt selector	R	:lt() Selector										
 make array	R	jQuery.makeArray()										
 makearray	R	jQuery.makeArray()										
+.makeArray()	R	jQuery.makeArray()										
+.makeArray	R	jQuery.makeArray()										
 makeArray()	R	jQuery.makeArray()										
+makeArray	R	jQuery.makeArray()										
 .map()	A			jQuery methods							Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.<pre><code>.map(callback, index, domElement) → jQuery</code></pre>	https://api.jquery.com/map/
+.map()	R	jQuery.map()										
+.map	R	jQuery.map()										
 map()	R	jQuery.map()										
 map	R	jQuery.map()										
+.map	R	.map()										
+map()	R	.map()										
 map	R	.map()										
+.merge()	R	jQuery.merge()										
+.merge	R	jQuery.merge()										
 merge()	R	jQuery.merge()										
 merge	R	jQuery.merge()										
 meta key	R	event.metaKey										
 metakey	R	event.metaKey										
+.metaKey	R	event.metaKey										
 metaKey	R	event.metaKey										
 .mousedown()	A			jQuery methods							Bind an event handler to the "mousedown" JavaScript event, or trigger that event on an element.<pre><code>.mousedown(handler, eventObject) → jQuery\n.mousedown(eventData, handler, eventObject) → jQuery\n.mousedown() → jQuery</code></pre>	https://api.jquery.com/mousedown/
+.mousedown event	R	.mousedown()										
+.mousedown() event	R	.mousedown()										
 mouse down event	R	.mousedown()										
 mousedown event	R	.mousedown()										
+mousedown() event	R	.mousedown()										
+.mousedown	R	.mousedown()										
 mouse down	R	.mousedown()										
+mousedown()	R	.mousedown()										
 mousedown	R	.mousedown()										
 .mouseenter()	A			jQuery methods							Bind an event handler to be fired when the mouse enters an element, or trigger that handler on an element.<pre><code>.mouseenter(handler, eventObject) → jQuery\n.mouseenter(eventData, handler, eventObject) → jQuery\n.mouseenter() → jQuery</code></pre>	https://api.jquery.com/mouseenter/
+.mouseenter event	R	.mouseenter()										
+.mouseenter() event	R	.mouseenter()										
 mouse enter event	R	.mouseenter()										
 mouseenter event	R	.mouseenter()										
+mouseenter() event	R	.mouseenter()										
+.mouseenter	R	.mouseenter()										
 mouse enter	R	.mouseenter()										
+mouseenter()	R	.mouseenter()										
 mouseenter	R	.mouseenter()										
 .mouseleave()	A			jQuery methods							Bind an event handler to be fired when the mouse leaves an element, or trigger that handler on an element.<pre><code>.mouseleave(handler, eventObject) → jQuery\n.mouseleave(eventData, handler, eventObject) → jQuery\n.mouseleave() → jQuery</code></pre>	https://api.jquery.com/mouseleave/
+.mouseleave event	R	.mouseleave()										
+.mouseleave() event	R	.mouseleave()										
 mouse leave event	R	.mouseleave()										
 mouseleave event	R	.mouseleave()										
+mouseleave() event	R	.mouseleave()										
+.mouseleave	R	.mouseleave()										
 mouse leave	R	.mouseleave()										
+mouseleave()	R	.mouseleave()										
 mouseleave	R	.mouseleave()										
 .mousemove()	A			jQuery methods							Bind an event handler to the "mousemove" JavaScript event, or trigger that event on an element.<pre><code>.mousemove(handler, eventObject) → jQuery\n.mousemove(eventData, handler, eventObject) → jQuery\n.mousemove() → jQuery</code></pre>	https://api.jquery.com/mousemove/
+.mousemove event	R	.mousemove()										
+.mousemove() event	R	.mousemove()										
 mouse move event	R	.mousemove()										
 mousemove event	R	.mousemove()										
+mousemove() event	R	.mousemove()										
+.mousemove	R	.mousemove()										
 mouse move	R	.mousemove()										
+mousemove()	R	.mousemove()										
 mousemove	R	.mousemove()										
 .mouseout()	A			jQuery methods							Bind an event handler to the "mouseout" JavaScript event, or trigger that event on an element.<pre><code>.mouseout(handler, eventObject) → jQuery\n.mouseout(eventData, handler, eventObject) → jQuery\n.mouseout() → jQuery</code></pre>	https://api.jquery.com/mouseout/
+.mouseout event	R	.mouseout()										
+.mouseout() event	R	.mouseout()										
 mouse out event	R	.mouseout()										
 mouseout event	R	.mouseout()										
+mouseout() event	R	.mouseout()										
+.mouseout	R	.mouseout()										
 mouse out	R	.mouseout()										
+mouseout()	R	.mouseout()										
 mouseout	R	.mouseout()										
 .mouseover()	A			jQuery methods							Bind an event handler to the "mouseover" JavaScript event, or trigger that event on an element.<pre><code>.mouseover(handler, eventObject) → jQuery\n.mouseover(eventData, handler, eventObject) → jQuery\n.mouseover() → jQuery</code></pre>	https://api.jquery.com/mouseover/
+.mouseover event	R	.mouseover()										
+.mouseover() event	R	.mouseover()										
 mouse over event	R	.mouseover()										
 mouseover event	R	.mouseover()										
+mouseover() event	R	.mouseover()										
+.mouseover	R	.mouseover()										
 mouse over	R	.mouseover()										
+mouseover()	R	.mouseover()										
 mouseover	R	.mouseover()										
 .mouseup()	A			jQuery methods							Bind an event handler to the "mouseup" JavaScript event, or trigger that event on an element.<pre><code>.mouseup(handler, eventObject) → jQuery\n.mouseup(eventData, handler, eventObject) → jQuery\n.mouseup() → jQuery</code></pre>	https://api.jquery.com/mouseup/
+.mouseup event	R	.mouseup()										
+.mouseup() event	R	.mouseup()										
 mouse up event	R	.mouseup()										
 mouseup event	R	.mouseup()										
+mouseup() event	R	.mouseup()										
+.mouseup	R	.mouseup()										
 mouse up	R	.mouseup()										
+mouseup()	R	.mouseup()										
 mouseup	R	.mouseup()										
 Multiple Attribute Selector [name="value"][name2="value2"]	A			jQuery selectors							Matches elements that match all of the specified attribute filters.<pre><code>Multiple Attribute Selector [name="value"][name2="value2"]</code></pre>	https://api.jquery.com/multiple-attribute-selector/
 multiple attribute selector name value name value	R	Multiple Attribute Selector [name="value"][name2="value2"]										
@@ -746,6 +1222,7 @@ Multiple Selector	R	Multiple Selector ("selector1, selector2, selectorN")
 Multiple Selector ("selector1, selector2, selectorN")	A			jQuery selectors							Selects the combined results of all the specified selectors.<pre><code>Multiple Selector ("selector1, selector2, selectorN")</code></pre>	https://api.jquery.com/multiple-selector/
 multiple selector selector selector selector n	R	Multiple Selector ("selector1, selector2, selectorN")										
 multiple selector selector selector selectorn	R	Multiple Selector ("selector1, selector2, selectorN")										
+.namespace	R	event.namespace										
 namespace	R	event.namespace										
 Next Adjacent Selector ("prev + next")	A			jQuery selectors							Selects all next elements matching "next" that are immediately preceded by a sibling "prev".<pre><code>Next Adjacent Selector ("prev + next")</code></pre>	https://api.jquery.com/next-adjacent-selector/
 next adjacent selector prev next	R	Next Adjacent Selector ("prev + next")										
@@ -755,6 +1232,11 @@ Next Adjacent Selector	R	Next Adjacent Selector ("prev + next")
 .nextAll()	A			jQuery methods							Get all following siblings of each element in the set of matched elements, optionally filtered by a selector.<pre><code>.nextAll(selector) → jQuery</code></pre>	https://api.jquery.com/nextAll/
 next all	R	.nextAll()										
 nextall	R	.nextAll()										
+.nextAll	R	.nextAll()										
+nextAll()	R	.nextAll()										
+nextAll	R	.nextAll()										
+.next	R	.next()										
+next()	R	.next()										
 next	R	.next()										
 Next Siblings Selector ("prev ~ siblings")	A			jQuery selectors							Selects all sibling elements that follow after the "prev" element, have the same parent, and match the filtering "siblings" selector.<pre><code>Next Siblings Selector ("prev ~ siblings")</code></pre>	https://api.jquery.com/next-siblings-selector/
 next siblings selector prev siblings	R	Next Siblings Selector ("prev ~ siblings")										
@@ -763,20 +1245,37 @@ Next Siblings Selector	R	Next Siblings Selector ("prev ~ siblings")
 .nextUntil()	A			jQuery methods							Get all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.<pre><code>.nextUntil(selector, filter) → jQuery\n.nextUntil(element, filter) → jQuery</code></pre>	https://api.jquery.com/nextUntil/
 next until	R	.nextUntil()										
 nextuntil	R	.nextUntil()										
+.nextUntil	R	.nextUntil()										
+nextUntil()	R	.nextUntil()										
+nextUntil	R	.nextUntil()										
 no conflict	R	jQuery.noConflict()										
 noconflict	R	jQuery.noConflict()										
+.noConflict()	R	jQuery.noConflict()										
+.noConflict	R	jQuery.noConflict()										
 noConflict()	R	jQuery.noConflict()										
+noConflict	R	jQuery.noConflict()										
+.noop()	R	jQuery.noop()										
+.noop	R	jQuery.noop()										
 noop()	R	jQuery.noop()										
 noop	R	jQuery.noop()										
 .not()	A			jQuery methods							Remove elements from the set of matched elements.<pre><code>.not(selector) → jQuery\n.not(function, index, element) → jQuery\n.not(selection) → jQuery</code></pre>	https://api.jquery.com/not/
+.notify()	R	deferred.notify()										
+.notify	R	deferred.notify()										
 notify()	R	deferred.notify()										
 notify	R	deferred.notify()										
 notify with	R	deferred.notifyWith()										
 notifywith	R	deferred.notifyWith()										
+.notifyWith()	R	deferred.notifyWith()										
+.notifyWith	R	deferred.notifyWith()										
 notifyWith()	R	deferred.notifyWith()										
+notifyWith	R	deferred.notifyWith()										
+.not	R	.not()										
+not()	R	.not()										
 not	R	.not()										
 :not() Selector	A			jQuery selectors							Selects all elements that do not match the given selector.<pre><code>:not(selector) →  Selector</code></pre>	https://api.jquery.com/not-selector/
 not selector	R	:not() Selector										
+.now()	R	jQuery.now()										
+.now	R	jQuery.now()										
 now()	R	jQuery.now()										
 now	R	jQuery.now()										
 :nth-child() Selector	A			jQuery selectors							Selects all elements that are the nth-child of their parent.<pre><code>:nth-child(index) →  Selector</code></pre>	https://api.jquery.com/nth-child-selector/
@@ -790,320 +1289,703 @@ nth of type selector	R	:nth-of-type() Selector
 :odd Selector	A			jQuery selectors							Selects odd elements, zero-indexed.  See also even.<pre><code>:odd Selector</code></pre>	https://api.jquery.com/odd-selector/
 odd selector	R	:odd Selector										
 .off()	A			jQuery methods							Remove an event handler.<pre><code>.off(events, selector, handler, eventObject) → jQuery\n.off(events, selector) → jQuery\n.off(event) → jQuery\n.off() → jQuery</code></pre>	https://api.jquery.com/off/
+.off event	R	.off()										
+.off() event	R	.off()										
 off event	R	.off()										
+off() event	R	.off()										
+.off	R	.off()										
+off()	R	.off()										
 off	R	.off()										
 .offset()	A			jQuery methods							Get the current coordinates of the first element in the set of matched elements, relative to the document.<pre><code>.offset() → Object</code></pre>\nSet the current coordinates of every element in the set of matched elements, relative to the document.<pre><code>.offset(coordinates) → jQuery\n.offset(function, index, coords) → jQuery</code></pre>	https://api.jquery.com/offset/
 .offsetParent()	A			jQuery methods							Get the closest ancestor element that is positioned.<pre><code>.offsetParent() → jQuery</code></pre>	https://api.jquery.com/offsetParent/
 offset parent	R	.offsetParent()										
 offsetparent	R	.offsetParent()										
+.offsetParent	R	.offsetParent()										
+offsetParent()	R	.offsetParent()										
+offsetParent	R	.offsetParent()										
+.offset	R	.offset()										
+offset()	R	.offset()										
 offset	R	.offset()										
 .on()	A			jQuery methods							Attach an event handler function for one or more events to the selected elements.<pre><code>.on(events, selector, data, handler, eventObject, extraParameter) → jQuery\n.on(events, selector, data) → jQuery</code></pre>	https://api.jquery.com/on/
+on .bind()	R	.bind()										
+on .bind	R	.bind()										
+on bind()	R	.bind()										
 on bind	R	.bind()										
+on .blur()	R	.blur()										
+on .blur	R	.blur()										
+on blur()	R	.blur()										
 on blur	R	.blur()										
+on .change()	R	.change()										
+on .change	R	.change()										
+on change()	R	.change()										
 on change	R	.change()										
+on .click()	R	.click()										
+on .click	R	.click()										
+on click()	R	.click()										
 on click	R	.click()										
+on .contextmenu()	R	.contextmenu()										
+on .contextmenu	R	.contextmenu()										
+on contextmenu()	R	.contextmenu()										
 on contextmenu	R	.contextmenu()										
+on .dblclick()	R	.dblclick()										
+on .dblclick	R	.dblclick()										
+on dblclick()	R	.dblclick()										
 on dblclick	R	.dblclick()										
+on .delegate()	R	.delegate()										
+on .delegate	R	.delegate()										
+on delegate()	R	.delegate()										
 on delegate	R	.delegate()										
+on .die()	R	.die()										
+on .die	R	.die()										
+on die()	R	.die()										
 on die	R	.die()										
 .one()	A			jQuery methods							Attach a handler to an event for the elements. The handler is executed at most once per element per event type.<pre><code>.one(events, data, handler, eventObject) → jQuery\n.one(events, selector, data, handler, eventObject) → jQuery\n.one(events, selector, data) → jQuery</code></pre>	https://api.jquery.com/one/
+.one event	R	.one()										
+.one() event	R	.one()										
 one event	R	.one()										
+one() event	R	.one()										
+.one	R	.one()										
+one()	R	.one()										
 one	R	.one()										
+on .error()	R	.error()										
+on .error	R	.error()										
+on error()	R	.error()										
 on error	R	.error()										
+.on event	R	.on()										
+.on() event	R	.on()										
 on event	R	.on()										
+on() event	R	.on()										
+on .focusin()	R	.focusin()										
+on .focusin	R	.focusin()										
+on focusin()	R	.focusin()										
 on focusin	R	.focusin()										
+on .focusout()	R	.focusout()										
+on .focusout	R	.focusout()										
+on focusout()	R	.focusout()										
 on focusout	R	.focusout()										
+on .focus()	R	.focus()										
+on .focus	R	.focus()										
+on focus()	R	.focus()										
 on focus	R	.focus()										
+on .hover()	R	.hover()										
+on .hover	R	.hover()										
+on hover()	R	.hover()										
 on hover	R	.hover()										
+on .keydown()	R	.keydown()										
+on .keydown	R	.keydown()										
+on keydown()	R	.keydown()										
 on keydown	R	.keydown()										
+on .keypress()	R	.keypress()										
+on .keypress	R	.keypress()										
+on keypress()	R	.keypress()										
 on keypress	R	.keypress()										
+on .keyup()	R	.keyup()										
+on .keyup	R	.keyup()										
+on keyup()	R	.keyup()										
 on keyup	R	.keyup()										
+on .live()	R	.live()										
+on .live	R	.live()										
+on live()	R	.live()										
 on live	R	.live()										
+on .load()	R	.load()										
+on .load	R	.load()										
+on load()	R	.load()										
 on load	R	.load()										
 :only-child Selector	A			jQuery selectors							Selects all elements that are the only child of their parent.<pre><code>:only-child Selector</code></pre>	https://api.jquery.com/only-child-selector/
 only child selector	R	:only-child Selector										
 :only-of-type Selector	A			jQuery selectors							Selects all elements that have no siblings with the same element name.<pre><code>:only-of-type Selector</code></pre>	https://api.jquery.com/only-of-type-selector/
 only of type selector	R	:only-of-type Selector										
+on .mousedown()	R	.mousedown()										
+on .mousedown	R	.mousedown()										
 on mouse down	R	.mousedown()										
+on mousedown()	R	.mousedown()										
 on mousedown	R	.mousedown()										
+on .mouseenter()	R	.mouseenter()										
+on .mouseenter	R	.mouseenter()										
 on mouse enter	R	.mouseenter()										
+on mouseenter()	R	.mouseenter()										
 on mouseenter	R	.mouseenter()										
+on .mouseleave()	R	.mouseleave()										
+on .mouseleave	R	.mouseleave()										
 on mouse leave	R	.mouseleave()										
+on mouseleave()	R	.mouseleave()										
 on mouseleave	R	.mouseleave()										
+on .mousemove()	R	.mousemove()										
+on .mousemove	R	.mousemove()										
 on mouse move	R	.mousemove()										
+on mousemove()	R	.mousemove()										
 on mousemove	R	.mousemove()										
+on .mouseout()	R	.mouseout()										
+on .mouseout	R	.mouseout()										
 on mouse out	R	.mouseout()										
+on mouseout()	R	.mouseout()										
 on mouseout	R	.mouseout()										
+on .mouseover()	R	.mouseover()										
+on .mouseover	R	.mouseover()										
 on mouse over	R	.mouseover()										
+on mouseover()	R	.mouseover()										
 on mouseover	R	.mouseover()										
+on .mouseup()	R	.mouseup()										
+on .mouseup	R	.mouseup()										
 on mouse up	R	.mouseup()										
+on mouseup()	R	.mouseup()										
 on mouseup	R	.mouseup()										
+on .off()	R	.off()										
+on .off	R	.off()										
+on off()	R	.off()										
 on off	R	.off()										
+on .one()	R	.one()										
+on .one	R	.one()										
+on one()	R	.one()										
 on one	R	.one()										
+on .on()	R	.on()										
+on .on	R	.on()										
+on on()	R	.on()										
 on on	R	.on()										
+on .ready()	R	.ready()										
+on .ready	R	.ready()										
+on ready()	R	.ready()										
 on ready	R	.ready()										
+on .resize()	R	.resize()										
+on .resize	R	.resize()										
+on resize()	R	.resize()										
 on resize	R	.resize()										
+.on	R	.on()										
+on()	R	.on()										
 on	R	.on()										
+on .scroll()	R	.scroll()										
+on .scroll	R	.scroll()										
+on scroll()	R	.scroll()										
 on scroll	R	.scroll()										
+on .select()	R	.select()										
+on .select	R	.select()										
+on select()	R	.select()										
 on select	R	.select()										
+on .submit()	R	.submit()										
+on .submit	R	.submit()										
+on submit()	R	.submit()										
 on submit	R	.submit()										
+on .toggle()	R	.toggle()										
+on .toggle	R	.toggle()										
+on toggle()	R	.toggle()										
 on toggle	R	.toggle()										
 on trigger handler	R	.triggerHandler()										
 on triggerhandler	R	.triggerHandler()										
+on .triggerHandler()	R	.triggerHandler()										
+on .triggerHandler	R	.triggerHandler()										
+on triggerHandler()	R	.triggerHandler()										
+on triggerHandler	R	.triggerHandler()										
+on .trigger()	R	.trigger()										
+on .trigger	R	.trigger()										
+on trigger()	R	.trigger()										
 on trigger	R	.trigger()										
+on .unbind()	R	.unbind()										
+on .unbind	R	.unbind()										
+on unbind()	R	.unbind()										
 on unbind	R	.unbind()										
+on .undelegate()	R	.undelegate()										
+on .undelegate	R	.undelegate()										
+on undelegate()	R	.undelegate()										
 on undelegate	R	.undelegate()										
+on .unload()	R	.unload()										
+on .unload	R	.unload()										
+on unload()	R	.unload()										
 on unload	R	.unload()										
 .outerHeight()	A			jQuery methods							Get the current computed height for the first element in the set of matched elements, including padding, border, and optionally margin. Returns a number (without "px") representation of the value or null if called on an empty set of elements.<pre><code>.outerHeight(includeMargin) → Number</code></pre>\nSet the CSS outer Height of each element in the set of matched elements.<pre><code>.outerHeight(value) → jQuery\n.outerHeight(function(index, height)) → jQuery</code></pre>	https://api.jquery.com/outerHeight/
 outer height	R	.outerHeight()										
 outerheight	R	.outerHeight()										
+.outerHeight	R	.outerHeight()										
+outerHeight()	R	.outerHeight()										
+outerHeight	R	.outerHeight()										
 .outerWidth()	A			jQuery methods							Get the current computed width for the first element in the set of matched elements, including padding and border.<pre><code>.outerWidth(includeMargin) → Number</code></pre>\nSet the CSS outer width of each element in the set of matched elements.<pre><code>.outerWidth(value) → jQuery\n.outerWidth(function(index, width)) → jQuery</code></pre>	https://api.jquery.com/outerWidth/
 outer width	R	.outerWidth()										
 outerwidth	R	.outerWidth()										
+.outerWidth	R	.outerWidth()										
+outerWidth()	R	.outerWidth()										
+outerWidth	R	.outerWidth()										
 page x	R	event.pageX										
 pagex	R	event.pageX										
+.pageX	R	event.pageX										
 pageX	R	event.pageX										
 page y	R	event.pageY										
 pagey	R	event.pageY										
+.pageY	R	event.pageY										
 pageY	R	event.pageY										
+.param()	R	jQuery.param()										
+.param	R	jQuery.param()										
 param()	R	jQuery.param()										
 param	R	jQuery.param()										
 .parent()	A			jQuery methods							Get the parent of each element in the current set of matched elements, optionally filtered by a selector.<pre><code>.parent(selector) → jQuery</code></pre>	https://api.jquery.com/parent/
+.parent	R	.parent()										
+parent()	R	.parent()										
 parent	R	.parent()										
 .parents()	A			jQuery methods							Get the ancestors of each element in the current set of matched elements, optionally filtered by a selector.<pre><code>.parents(selector) → jQuery</code></pre>	https://api.jquery.com/parents/
 :parent Selector	A			jQuery selectors							Select all elements that have at least one child node (either an element or text).<pre><code>:parent Selector</code></pre>	https://api.jquery.com/parent-selector/
 parent selector	R	:parent Selector										
+.parents	R	.parents()										
+parents()	R	.parents()										
 parents	R	.parents()										
 .parentsUntil()	A			jQuery methods							Get the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.<pre><code>.parentsUntil(selector, filter) → jQuery\n.parentsUntil(element, filter) → jQuery</code></pre>	https://api.jquery.com/parentsUntil/
 parents until	R	.parentsUntil()										
 parentsuntil	R	.parentsUntil()										
+.parentsUntil	R	.parentsUntil()										
+parentsUntil()	R	.parentsUntil()										
+parentsUntil	R	.parentsUntil()										
 parse html	R	jQuery.parseHTML()										
 parsehtml	R	jQuery.parseHTML()										
+.parseHTML()	R	jQuery.parseHTML()										
+.parseHTML	R	jQuery.parseHTML()										
 parseHTML()	R	jQuery.parseHTML()										
+parseHTML	R	jQuery.parseHTML()										
 parse json	R	jQuery.parseJSON()										
 parsejson	R	jQuery.parseJSON()										
+.parseJSON()	R	jQuery.parseJSON()										
+.parseJSON	R	jQuery.parseJSON()										
 parseJSON()	R	jQuery.parseJSON()										
+parseJSON	R	jQuery.parseJSON()										
 parse xml	R	jQuery.parseXML()										
 parsexml	R	jQuery.parseXML()										
+.parseXML()	R	jQuery.parseXML()										
+.parseXML	R	jQuery.parseXML()										
 parseXML()	R	jQuery.parseXML()										
+parseXML	R	jQuery.parseXML()										
 :password Selector	A			jQuery selectors							Selects all elements of type password.<pre><code>:password Selector</code></pre>	https://api.jquery.com/password-selector/
 password selector	R	:password Selector										
+.pipe()	R	deferred.pipe()										
+.pipe	R	deferred.pipe()										
 pipe()	R	deferred.pipe()										
 pipe	R	deferred.pipe()										
 .position()	A			jQuery methods							Get the current coordinates of the first element in the set of matched elements, relative to the offset parent.<pre><code>.position() → Object</code></pre>	https://api.jquery.com/position/
+.position	R	.position()										
+position()	R	.position()										
 position	R	.position()										
+.post()	R	jQuery.post()										
+.post	R	jQuery.post()										
 post()	R	jQuery.post()										
 post	R	jQuery.post()										
 .prepend()	A			jQuery methods							Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.<pre><code>.prepend(content, content) → jQuery\n.prepend(function, elementOfArray, html) → jQuery</code></pre>	https://api.jquery.com/prepend/
+.prepend	R	.prepend()										
+prepend()	R	.prepend()										
 prepend	R	.prepend()										
 .prependTo()	A			jQuery methods							Insert every element in the set of matched elements to the beginning of the target.<pre><code>.prependTo(target) → jQuery</code></pre>	https://api.jquery.com/prependTo/
 prepend to	R	.prependTo()										
 prependto	R	.prependTo()										
+.prependTo	R	.prependTo()										
+prependTo()	R	.prependTo()										
+prependTo	R	.prependTo()										
 .prev()	A			jQuery methods							Get the immediately preceding sibling of each element in the set of matched elements. If a selector is provided, it retrieves the previous sibling only if it matches that selector.<pre><code>.prev(selector) → jQuery</code></pre>	https://api.jquery.com/prev/
 .prevAll()	A			jQuery methods							Get all preceding siblings of each element in the set of matched elements, optionally filtered by a selector.<pre><code>.prevAll(selector) → jQuery</code></pre>	https://api.jquery.com/prevAll/
 prev all	R	.prevAll()										
 prevall	R	.prevAll()										
+.prevAll	R	.prevAll()										
+prevAll()	R	.prevAll()										
+prevAll	R	.prevAll()										
 prevent default	R	event.preventDefault()										
 preventdefault	R	event.preventDefault()										
+.preventDefault()	R	event.preventDefault()										
+.preventDefault	R	event.preventDefault()										
 preventDefault()	R	event.preventDefault()										
+preventDefault	R	event.preventDefault()										
+.prev	R	.prev()										
+prev()	R	.prev()										
 prev	R	.prev()										
 .prevUntil()	A			jQuery methods							Get all preceding siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object.<pre><code>.prevUntil(selector, filter) → jQuery\n.prevUntil(element, filter) → jQuery</code></pre>	https://api.jquery.com/prevUntil/
 prev until	R	.prevUntil()										
 prevuntil	R	.prevUntil()										
+.prevUntil	R	.prevUntil()										
+prevUntil()	R	.prevUntil()										
+prevUntil	R	.prevUntil()										
+.progress()	R	deferred.progress()										
+.progress	R	deferred.progress()										
 progress()	R	deferred.progress()										
 progress	R	deferred.progress()										
 .promise()	A			jQuery methods							 Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished. <pre><code>.promise(type, target) → Promise</code></pre>	https://api.jquery.com/promise/
+.promise()	R	deferred.promise()										
+.promise	R	deferred.promise()										
 promise()	R	deferred.promise()										
 promise	R	deferred.promise()										
+.promise	R	.promise()										
+promise()	R	.promise()										
 promise	R	.promise()										
 .prop()	A			jQuery methods							Get the value of a property for the first element in the set of matched elements.<pre><code>.prop(propertyName) → </code></pre>\nSet one or more properties for the set of matched elements.<pre><code>.prop(propertyName, value) → jQuery\n.prop(properties) → jQuery\n.prop(propertyName, function, index, oldPropertyValue) → jQuery</code></pre>	https://api.jquery.com/prop/
+.prop	R	.prop()										
+prop()	R	.prop()										
 prop	R	.prop()										
+.proxy()	R	jQuery.proxy()										
+.proxy	R	jQuery.proxy()										
 proxy()	R	jQuery.proxy()										
 proxy	R	jQuery.proxy()										
 .pushStack()	A			jQuery methods							Add a collection of DOM elements onto the jQuery stack.<pre><code>.pushStack(elements) → jQuery\n.pushStack(elements, name, arguments) → jQuery</code></pre>	https://api.jquery.com/pushStack/
 push stack	R	.pushStack()										
 pushstack	R	.pushStack()										
+.pushStack	R	.pushStack()										
+pushStack()	R	.pushStack()										
+pushStack	R	.pushStack()										
 .queue()	A			jQuery methods							Show the queue of functions to be executed on the matched elements.<pre><code>.queue(queueName) → Array</code></pre>\nManipulate the queue of functions to be executed, once for each matched element.<pre><code>.queue(queueName, newQueue) → jQuery\n.queue(queueName, callback, next) → jQuery</code></pre>	https://api.jquery.com/queue/
+.queue()	R	jQuery.queue()										
+.queue	R	jQuery.queue()										
 queue()	R	jQuery.queue()										
 queue	R	jQuery.queue()										
+.queue	R	.queue()										
+queue()	R	.queue()										
 queue	R	.queue()										
 :radio Selector	A			jQuery selectors							Selects all  elements of type radio.<pre><code>:radio Selector</code></pre>	https://api.jquery.com/radio-selector/
 radio selector	R	:radio Selector										
 .ready()	A			jQuery methods							Specify a function to execute when the DOM is fully loaded.<pre><code>.ready(handler) → jQuery</code></pre>	https://api.jquery.com/ready/
+.ready event	R	.ready()										
+.ready() event	R	.ready()										
 ready event	R	.ready()										
+ready() event	R	.ready()										
 ready exception	R	jQuery.readyException()										
 readyexception	R	jQuery.readyException()										
+.readyException()	R	jQuery.readyException()										
+.readyException	R	jQuery.readyException()										
 readyException()	R	jQuery.readyException()										
+readyException	R	jQuery.readyException()										
+.ready	R	.ready()										
+ready()	R	.ready()										
 ready	R	.ready()										
+.reject()	R	deferred.reject()										
+.reject	R	deferred.reject()										
 reject()	R	deferred.reject()										
 reject	R	deferred.reject()										
 reject with	R	deferred.rejectWith()										
 rejectwith	R	deferred.rejectWith()										
+.rejectWith()	R	deferred.rejectWith()										
+.rejectWith	R	deferred.rejectWith()										
 rejectWith()	R	deferred.rejectWith()										
+rejectWith	R	deferred.rejectWith()										
 related target	R	event.relatedTarget										
 relatedtarget	R	event.relatedTarget										
+.relatedTarget	R	event.relatedTarget										
 relatedTarget	R	event.relatedTarget										
 .remove()	A			jQuery methods							Remove the set of matched elements from the DOM.<pre><code>.remove(selector) → jQuery</code></pre>	https://api.jquery.com/remove/
 .removeAttr()	A			jQuery methods							Remove an attribute from each element in the set of matched elements.<pre><code>.removeAttr(attributeName) → jQuery</code></pre>	https://api.jquery.com/removeAttr/
 remove attr	R	.removeAttr()										
 removeattr	R	.removeAttr()										
+.removeAttr	R	.removeAttr()										
+removeAttr()	R	.removeAttr()										
+removeAttr	R	.removeAttr()										
 .removeClass()	A			jQuery methods							Remove a single class, multiple classes, or all classes from each element in the set of matched elements.<pre><code>.removeClass(className) → jQuery\n.removeClass(function, index, className) → jQuery</code></pre>	https://api.jquery.com/removeClass/
 remove class	R	.removeClass()										
 removeclass	R	.removeClass()										
+.removeClass	R	.removeClass()										
+removeClass()	R	.removeClass()										
+removeClass	R	.removeClass()										
 .removeData()	A			jQuery methods							Remove a previously-stored piece of data.<pre><code>.removeData(name) → jQuery\n.removeData(list) → jQuery</code></pre>	https://api.jquery.com/removeData/
 remove data	R	jQuery.removeData()										
 removedata	R	jQuery.removeData()										
+.removeData()	R	jQuery.removeData()										
+.removeData	R	jQuery.removeData()										
 removeData()	R	jQuery.removeData()										
+removeData	R	jQuery.removeData()										
 remove data	R	.removeData()										
 removedata	R	.removeData()										
+.removeData	R	.removeData()										
+removeData()	R	.removeData()										
+removeData	R	.removeData()										
 .removeProp()	A			jQuery methods							Remove a property for the set of matched elements.<pre><code>.removeProp(propertyName) → jQuery</code></pre>	https://api.jquery.com/removeProp/
 remove prop	R	.removeProp()										
 removeprop	R	.removeProp()										
+.removeProp	R	.removeProp()										
+removeProp()	R	.removeProp()										
+removeProp	R	.removeProp()										
+.remove()	R	callbacks.remove()										
+.remove	R	callbacks.remove()										
 remove()	R	callbacks.remove()										
 remove	R	callbacks.remove()										
+.remove	R	.remove()										
+remove()	R	.remove()										
 remove	R	.remove()										
 .replaceAll()	A			jQuery methods							Replace each target element with the set of matched elements.<pre><code>.replaceAll(target) → jQuery</code></pre>	https://api.jquery.com/replaceAll/
 replace all	R	.replaceAll()										
 replaceall	R	.replaceAll()										
+.replaceAll	R	.replaceAll()										
+replaceAll()	R	.replaceAll()										
+replaceAll	R	.replaceAll()										
 .replaceWith()	A			jQuery methods							Replace each element in the set of matched elements with the provided new content and return the set of elements that was removed.<pre><code>.replaceWith(newContent) → jQuery\n.replaceWith(function) → jQuery</code></pre>	https://api.jquery.com/replaceWith/
 replace with	R	.replaceWith()										
 replacewith	R	.replaceWith()										
+.replaceWith	R	.replaceWith()										
+replaceWith()	R	.replaceWith()										
+replaceWith	R	.replaceWith()										
 :reset Selector	A			jQuery selectors							Selects all elements of type reset.<pre><code>:reset Selector</code></pre>	https://api.jquery.com/reset-selector/
 reset selector	R	:reset Selector										
 .resize()	A			jQuery methods							Bind an event handler to the "resize" JavaScript event, or trigger that event on an element.<pre><code>.resize(handler, eventObject) → jQuery\n.resize(eventData, handler, eventObject) → jQuery\n.resize() → jQuery</code></pre>	https://api.jquery.com/resize/
+.resize event	R	.resize()										
+.resize() event	R	.resize()										
 resize event	R	.resize()										
+resize() event	R	.resize()										
+.resize	R	.resize()										
+resize()	R	.resize()										
 resize	R	.resize()										
+.resolve()	R	deferred.resolve()										
+.resolve	R	deferred.resolve()										
 resolve()	R	deferred.resolve()										
 resolve	R	deferred.resolve()										
 resolve with	R	deferred.resolveWith()										
 resolvewith	R	deferred.resolveWith()										
+.resolveWith()	R	deferred.resolveWith()										
+.resolveWith	R	deferred.resolveWith()										
 resolveWith()	R	deferred.resolveWith()										
+resolveWith	R	deferred.resolveWith()										
+.result	R	event.result										
 result	R	event.result										
 :root Selector	A			jQuery selectors							Selects the element that is the root of the document.<pre><code>:root Selector</code></pre>	https://api.jquery.com/root-selector/
 root selector	R	:root Selector										
 .scroll()	A			jQuery methods							Bind an event handler to the "scroll" JavaScript event, or trigger that event on an element.<pre><code>.scroll(handler, eventObject) → jQuery\n.scroll(eventData, handler, eventObject) → jQuery\n.scroll() → jQuery</code></pre>	https://api.jquery.com/scroll/
+.scroll event	R	.scroll()										
+.scroll() event	R	.scroll()										
 scroll event	R	.scroll()										
+scroll() event	R	.scroll()										
 .scrollLeft()	A			jQuery methods							Get the current horizontal position of the scroll bar for the first element in the set of matched elements.<pre><code>.scrollLeft() → Integer</code></pre>\nSet the current horizontal position of the scroll bar for each of the set of matched elements.<pre><code>.scrollLeft(value) → jQuery</code></pre>	https://api.jquery.com/scrollLeft/
 scroll left	R	.scrollLeft()										
 scrollleft	R	.scrollLeft()										
+.scrollLeft	R	.scrollLeft()										
+scrollLeft()	R	.scrollLeft()										
+scrollLeft	R	.scrollLeft()										
+.scroll	R	.scroll()										
+scroll()	R	.scroll()										
 scroll	R	.scroll()										
 .scrollTop()	A			jQuery methods							Get the current vertical position of the scroll bar for the first element in the set of matched elements or set the vertical position of the scroll bar for every matched element.<pre><code>.scrollTop() → Number</code></pre>\nSet the current vertical position of the scroll bar for each of the set of matched elements.<pre><code>.scrollTop(value) → jQuery</code></pre>	https://api.jquery.com/scrollTop/
 scroll top	R	.scrollTop()										
 scrolltop	R	.scrollTop()										
+.scrollTop	R	.scrollTop()										
+scrollTop()	R	.scrollTop()										
+scrollTop	R	.scrollTop()										
 .select()	A			jQuery methods							Bind an event handler to the "select" JavaScript event, or trigger that event on an element.<pre><code>.select(handler, eventObject) → jQuery\n.select(eventData, handler, eventObject) → jQuery\n.select() → jQuery</code></pre>	https://api.jquery.com/select/
 :selected Selector	A			jQuery selectors							Selects all elements that are selected.<pre><code>:selected Selector</code></pre>	https://api.jquery.com/selected-selector/
 selected selector	R	:selected Selector										
+.select event	R	.select()										
+.select() event	R	.select()										
 select event	R	.select()										
+select() event	R	.select()										
 .selector	A			jQuery properties							A selector representing selector passed to jQuery(), if any, when creating the original set.<pre><code>.selector</code></pre>	https://api.jquery.com/selector/
 selector	R	.selector										
+.select	R	.select()										
+select()	R	.select()										
 select	R	.select()										
 .serialize()	A			jQuery methods							Encode a set of form elements as a string for submission.<pre><code>.serialize() → String</code></pre>	https://api.jquery.com/serialize/
 .serializeArray()	A			jQuery methods							Encode a set of form elements as an array of names and values.<pre><code>.serializeArray() → Array</code></pre>	https://api.jquery.com/serializeArray/
 serialize array	R	.serializeArray()										
 serializearray	R	.serializeArray()										
+.serializeArray	R	.serializeArray()										
+serializeArray()	R	.serializeArray()										
+serializeArray	R	.serializeArray()										
+.serialize	R	.serialize()										
+serialize()	R	.serialize()										
 serialize	R	.serialize()										
 .show()	A			jQuery methods							Display the matched elements.<pre><code>.show() → jQuery\n.show() → jQuery\n.show() → jQuery\n.show(duration) → jQuery</code></pre>	https://api.jquery.com/show/
+.show	R	.show()										
+show()	R	.show()										
 show	R	.show()										
 .siblings()	A			jQuery methods							Get the siblings of each element in the set of matched elements, optionally filtered by a selector.<pre><code>.siblings(selector) → jQuery</code></pre>	https://api.jquery.com/siblings/
+.siblings	R	.siblings()										
+siblings()	R	.siblings()										
 siblings	R	.siblings()										
 .size()	A			jQuery methods							Return the number of elements in the jQuery object.<pre><code>.size() → Integer</code></pre>	https://api.jquery.com/size/
+.size	R	.size()										
+size()	R	.size()										
 size	R	.size()										
 .slice()	A			jQuery methods							Reduce the set of matched elements to a subset specified by a range of indices.<pre><code>.slice(start, end) → jQuery</code></pre>	https://api.jquery.com/slice/
+.slice	R	.slice()										
+slice()	R	.slice()										
 slice	R	.slice()										
 .slideDown()	A			jQuery methods							Display the matched elements with a sliding motion.<pre><code>.slideDown() → jQuery\n.slideDown() → jQuery\n.slideDown() → jQuery</code></pre>	https://api.jquery.com/slideDown/
 slide down	R	.slideDown()										
 slidedown	R	.slideDown()										
+.slideDown	R	.slideDown()										
+slideDown()	R	.slideDown()										
+slideDown	R	.slideDown()										
 .slideToggle()	A			jQuery methods							Display or hide the matched elements with a sliding motion.<pre><code>.slideToggle() → jQuery\n.slideToggle() → jQuery\n.slideToggle() → jQuery</code></pre>	https://api.jquery.com/slideToggle/
 slide toggle	R	.slideToggle()										
 slidetoggle	R	.slideToggle()										
+.slideToggle	R	.slideToggle()										
+slideToggle()	R	.slideToggle()										
+slideToggle	R	.slideToggle()										
 .slideUp()	A			jQuery methods							Hide the matched elements with a sliding motion.<pre><code>.slideUp() → jQuery\n.slideUp() → jQuery\n.slideUp() → jQuery</code></pre>	https://api.jquery.com/slideUp/
 slide up	R	.slideUp()										
 slideup	R	.slideUp()										
+.slideUp	R	.slideUp()										
+slideUp()	R	.slideUp()										
+slideUp	R	.slideUp()										
+.speed	R	jQuery.speed										
 speed	R	jQuery.speed										
+.state()	R	deferred.state()										
+.state	R	deferred.state()										
 state()	R	deferred.state()										
 state	R	deferred.state()										
 .stop()	A			jQuery methods							Stop the currently-running animation on the matched elements.<pre><code>.stop(clearQueue, jumpToEnd) → jQuery\n.stop(queue, clearQueue, jumpToEnd) → jQuery</code></pre>	https://api.jquery.com/stop/
 stop immediate propagation	R	event.stopImmediatePropagation()										
 stopimmediatepropagation	R	event.stopImmediatePropagation()										
+.stopImmediatePropagation()	R	event.stopImmediatePropagation()										
+.stopImmediatePropagation	R	event.stopImmediatePropagation()										
 stopImmediatePropagation()	R	event.stopImmediatePropagation()										
+stopImmediatePropagation	R	event.stopImmediatePropagation()										
 stop propagation	R	event.stopPropagation()										
 stoppropagation	R	event.stopPropagation()										
+.stopPropagation()	R	event.stopPropagation()										
+.stopPropagation	R	event.stopPropagation()										
 stopPropagation()	R	event.stopPropagation()										
+stopPropagation	R	event.stopPropagation()										
+.stop	R	.stop()										
+stop()	R	.stop()										
 stop	R	.stop()										
 .submit()	A			jQuery methods							Bind an event handler to the "submit" JavaScript event, or trigger that event on an element.<pre><code>.submit(handler, eventObject) → jQuery\n.submit(eventData, handler, eventObject) → jQuery\n.submit() → jQuery</code></pre>	https://api.jquery.com/submit/
+.submit event	R	.submit()										
+.submit() event	R	.submit()										
 submit event	R	.submit()										
+submit() event	R	.submit()										
+.submit	R	.submit()										
+submit()	R	.submit()										
 submit	R	.submit()										
 :submit Selector	A			jQuery selectors							Selects all elements of type submit.<pre><code>:submit Selector</code></pre>	https://api.jquery.com/submit-selector/
 submit selector	R	:submit Selector										
+.sub()	R	jQuery.sub()										
+.sub	R	jQuery.sub()										
 sub()	R	jQuery.sub()										
 sub	R	jQuery.sub()										
+.support	R	jQuery.support										
 support	R	jQuery.support										
+.target	R	event.target										
 target	R	event.target										
 :target Selector	A			jQuery selectors							Selects the target element indicated by the fragment identifier of the document's URI.<pre><code>:target Selector</code></pre>	https://api.jquery.com/target-selector/
 target selector	R	:target Selector										
 .text()	A			jQuery methods							Get the combined text contents of each element in the set of matched elements, including their descendants.<pre><code>.text() → String</code></pre>\nSet the content of each element in the set of matched elements to the specified text.<pre><code>.text(text) → jQuery\n.text(function, index, text) → jQuery</code></pre>	https://api.jquery.com/text/
+.text	R	.text()										
+text()	R	.text()										
 text	R	.text()										
 :text Selector	A			jQuery selectors							Selects all input elements of type text.<pre><code>:text Selector</code></pre>	https://api.jquery.com/text-selector/
 text selector	R	:text Selector										
+.then()	R	deferred.then()										
+.then	R	deferred.then()										
 then()	R	deferred.then()										
 then	R	deferred.then()										
 time stamp	R	event.timeStamp										
 timestamp	R	event.timeStamp										
+.timeStamp	R	event.timeStamp										
 timeStamp	R	event.timeStamp										
 .toArray()	A			jQuery methods							Retrieve all the elements contained in the jQuery set, as an array.<pre><code>.toArray() → Array</code></pre>	https://api.jquery.com/toArray/
 to array	R	.toArray()										
 toarray	R	.toArray()										
+.toArray	R	.toArray()										
+toArray()	R	.toArray()										
+toArray	R	.toArray()										
 .toggle()	A			jQuery methods							Bind two or more handlers to the matched elements, to be executed on alternate clicks.<pre><code>.toggle(handler, eventObject, handler, eventObject, handler, eventObject) → jQuery</code></pre>	https://api.jquery.com/toggle-event/
 .toggle()	A			jQuery methods							Display or hide the matched elements.<pre><code>.toggle() → jQuery\n.toggle() → jQuery\n.toggle(duration) → jQuery\n.toggle(display) → jQuery</code></pre>	https://api.jquery.com/toggle/
 .toggleClass()	A			jQuery methods							Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the state argument.<pre><code>.toggleClass(className) → jQuery\n.toggleClass(className, state) → jQuery\n.toggleClass(function, index, className, state, state) → jQuery</code></pre>\n<pre><code>.toggleClass(state) → jQuery</code></pre>	https://api.jquery.com/toggleClass/
 toggle class	R	.toggleClass()										
 toggleclass	R	.toggleClass()										
+.toggleClass	R	.toggleClass()										
+toggleClass()	R	.toggleClass()										
+toggleClass	R	.toggleClass()										
+.toggle event	R	.toggle()										
+.toggle() event	R	.toggle()										
 toggle event	R	.toggle()										
+toggle() event	R	.toggle()										
+.toggle	R	.toggle()										
+.toggle	R	.toggle()										
+toggle()	R	.toggle()										
+toggle()	R	.toggle()										
 toggle	R	.toggle()										
 toggle	R	.toggle()										
 .trigger()	A			jQuery methods							Execute all handlers and behaviors attached to the matched elements for the given event type.<pre><code>.trigger(eventType, extraParameters) → jQuery\n.trigger(event, extraParameters) → jQuery</code></pre>	https://api.jquery.com/trigger/
+.trigger event	R	.trigger()										
+.trigger() event	R	.trigger()										
 trigger event	R	.trigger()										
+trigger() event	R	.trigger()										
 .triggerHandler()	A			jQuery methods							Execute all handlers attached to an element for an event.<pre><code>.triggerHandler(eventType, extraParameters) → Object\n.triggerHandler(event, extraParameters) → Object</code></pre>	https://api.jquery.com/triggerHandler/
 trigger handler event	R	.triggerHandler()										
 triggerhandler event	R	.triggerHandler()										
+.triggerHandler event	R	.triggerHandler()										
+.triggerHandler() event	R	.triggerHandler()										
+triggerHandler event	R	.triggerHandler()										
+triggerHandler() event	R	.triggerHandler()										
 trigger handler	R	.triggerHandler()										
 triggerhandler	R	.triggerHandler()										
+.triggerHandler	R	.triggerHandler()										
+triggerHandler()	R	.triggerHandler()										
+triggerHandler	R	.triggerHandler()										
+.trigger	R	.trigger()										
+trigger()	R	.trigger()										
 trigger	R	.trigger()										
+.trim()	R	jQuery.trim()										
+.trim	R	jQuery.trim()										
 trim()	R	jQuery.trim()										
 trim	R	jQuery.trim()										
+.type	R	event.type										
 type	R	event.type										
+.type()	R	jQuery.type()										
+.type	R	jQuery.type()										
 type()	R	jQuery.type()										
 type	R	jQuery.type()										
 .unbind()	A			jQuery methods							Remove a previously-attached event handler from the elements.<pre><code>.unbind(eventType, handler, eventObject) → jQuery\n.unbind(eventType, false) → jQuery\n.unbind(event) → jQuery\n.unbind() → jQuery</code></pre>	https://api.jquery.com/unbind/
+.unbind event	R	.unbind()										
+.unbind() event	R	.unbind()										
 unbind event	R	.unbind()										
+unbind() event	R	.unbind()										
+.unbind	R	.unbind()										
+unbind()	R	.unbind()										
 unbind	R	.unbind()										
 .undelegate()	A			jQuery methods							Remove a handler from the event for all elements which match the current selector, based upon a specific set of root elements.<pre><code>.undelegate() → jQuery\n.undelegate(selector, eventType) → jQuery\n.undelegate(selector, eventType, handler, eventObject) → jQuery\n.undelegate(selector, events) → jQuery\n.undelegate(namespace) → jQuery</code></pre>	https://api.jquery.com/undelegate/
+.undelegate event	R	.undelegate()										
+.undelegate() event	R	.undelegate()										
 undelegate event	R	.undelegate()										
+undelegate() event	R	.undelegate()										
+.undelegate	R	.undelegate()										
+undelegate()	R	.undelegate()										
 undelegate	R	.undelegate()										
+.unique()	R	jQuery.unique()										
+.unique	R	jQuery.unique()										
 unique()	R	jQuery.unique()										
 unique	R	jQuery.unique()										
 unique sort	R	jQuery.uniqueSort()										
 uniquesort	R	jQuery.uniqueSort()										
+.uniqueSort()	R	jQuery.uniqueSort()										
+.uniqueSort	R	jQuery.uniqueSort()										
 uniqueSort()	R	jQuery.uniqueSort()										
+uniqueSort	R	jQuery.uniqueSort()										
 .unload()	A			jQuery methods							Bind an event handler to the "unload" JavaScript event.<pre><code>.unload(handler, eventObject) → jQuery\n.unload(eventData, handler, eventObject) → jQuery</code></pre>	https://api.jquery.com/unload/
+.unload event	R	.unload()										
+.unload() event	R	.unload()										
 unload event	R	.unload()										
+unload() event	R	.unload()										
+.unload	R	.unload()										
+unload()	R	.unload()										
 unload	R	.unload()										
 .unwrap()	A			jQuery methods							Remove the parents of the set of matched elements from the DOM, leaving the matched elements in their place.<pre><code>.unwrap() → jQuery\n.unwrap(selector) → jQuery</code></pre>	https://api.jquery.com/unwrap/
+.unwrap	R	.unwrap()										
+unwrap()	R	.unwrap()										
 unwrap	R	.unwrap()										
 .val()	A			jQuery methods							Get the current value of the first element in the set of matched elements.<pre><code>.val() → </code></pre>\nSet the value of each element in the set of matched elements.<pre><code>.val(value) → jQuery\n.val(function, index, value) → jQuery</code></pre>	https://api.jquery.com/val/
+.val	R	.val()										
+val()	R	.val()										
 val	R	.val()										
 :visible Selector	A			jQuery selectors							Selects all elements that are visible.<pre><code>:visible Selector</code></pre>	https://api.jquery.com/visible-selector/
 visible selector	R	:visible Selector										
+.when()	R	jQuery.when()										
+.when	R	jQuery.when()										
 when()	R	jQuery.when()										
 when	R	jQuery.when()										
+.which	R	event.which										
 which	R	event.which										
 .width()	A			jQuery methods							Get the current computed width for the first element in the set of matched elements.<pre><code>.width() → Number</code></pre>\nSet the CSS width of each element in the set of matched elements.<pre><code>.width(value) → jQuery\n.width(function, index, value) → jQuery</code></pre>	https://api.jquery.com/width/
+.width	R	.width()										
+width()	R	.width()										
 width	R	.width()										
 .wrap()	A			jQuery methods							Wrap an HTML structure around each element in the set of matched elements.<pre><code>.wrap(wrappingElement) → jQuery\n.wrap(function, index) → jQuery</code></pre>	https://api.jquery.com/wrap/
 .wrapAll()	A			jQuery methods							Wrap an HTML structure around all elements in the set of matched elements.<pre><code>.wrapAll(wrappingElement) → jQuery\n.wrapAll(function) → jQuery</code></pre>	https://api.jquery.com/wrapAll/
 wrap all	R	.wrapAll()										
 wrapall	R	.wrapAll()										
+.wrapAll	R	.wrapAll()										
+wrapAll()	R	.wrapAll()										
+wrapAll	R	.wrapAll()										
 .wrapInner()	A			jQuery methods							Wrap an HTML structure around the content of each element in the set of matched elements.<pre><code>.wrapInner(wrappingElement) → jQuery\n.wrapInner(function, index) → jQuery</code></pre>	https://api.jquery.com/wrapInner/
 wrap inner	R	.wrapInner()										
 wrapinner	R	.wrapInner()										
+.wrapInner	R	.wrapInner()										
+wrapInner()	R	.wrapInner()										
+wrapInner	R	.wrapInner()										
+.wrap	R	.wrap()										
+wrap()	R	.wrap()										
 wrap	R	.wrap()										
