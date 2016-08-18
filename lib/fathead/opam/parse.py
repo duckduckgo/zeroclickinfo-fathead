@@ -87,7 +87,7 @@ class Document(object):
 
         return data
 
-    def concat(self, name, description, url, version):
+    def concat(self, name, desc, url, version):
         """
         The concat (concatenation) member function is responsible for
         preparing the data to be written to the file. The file is
@@ -105,10 +105,7 @@ class Document(object):
         external_links = ''
         ten = ''  # IGNORE
         image = ''
-        abstract = u"""
-          Description: {0},
-          Version: {1}
-        """.format(description, version)
+        abstract = u"""Description: {0}, Version: {1}""".format(desc, version)
         url = url
 
         data = [
