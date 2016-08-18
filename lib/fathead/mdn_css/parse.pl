@@ -441,15 +441,13 @@ sub parse_initial_value {
                 #get text not in ul
                 $initial_value .= $td->at('ul')->remove->all_text;
 
-                my $li_collection = $ul->find('li');
-                my $last_li       = $li_collection->last;
-                $li_collection->last->remove;
-
-                #Separate multiple values by commas
-                for my $li ( $li_collection->each ) {
-                    $initial_value .= $li->all_text . ', ';
-                }
-                $initial_value .= $last_li->all_text . '.';
+                #Take the <ul> as it is but remove <a> and <code> from <li>s
+                $ul->find('li')->map(
+                    sub {
+                        $_->content( $_->all_text );
+                    }
+                );
+                $initial_value .= $ul->to_string;
             }
             else {
                 $initial_value = trim( $td->all_text );
