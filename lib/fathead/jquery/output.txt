@@ -84,9 +84,8 @@ $.ajaxTransport()	R	jQuery.ajaxTransport()
 $.ajaxTransport	R	jQuery.ajaxTransport()										
 ajaxTransport()	R	jQuery.ajaxTransport()										
 ajaxTransport	R	jQuery.ajaxTransport()										
-All Selector ("*")	A			jQuery selectors							Selects all elements.<pre><code>$("*") → jQuery</code></pre>	https://api.jquery.com/all-selector/
-all selector	R	All Selector ("*")										
-All Selector	R	All Selector ("*")										
+All Selector	A			jQuery selectors							Selects all elements.<pre><code>$("*") → jQuery</code></pre>	https://api.jquery.com/all-selector/
+all selector	R	All Selector										
 .always()	R	deferred.always()										
 .always	R	deferred.always()										
 always()	R	deferred.always()										
@@ -114,34 +113,20 @@ appendto	R	.appendTo()
 appendTo()	R	.appendTo()										
 appendTo	R	.appendTo()										
 .attr()	A			jQuery methods							Get the value of an attribute for the first element in the set of matched elements.<pre><code>$(selector).attr(attributeName) → String</code></pre>\nSet one or more attributes for the set of matched elements.<pre><code>$(selector).attr(attributeName, value) → jQuery\n$(selector).attr(attributes) → jQuery\n$(selector).attr(attributeName, function) → jQuery</code></pre>	https://api.jquery.com/attr/
-Attribute Contains Prefix Selector [name|="value"]	A			jQuery selectors							Selects elements that have the specified attribute with a value either equal to a given string or starting with that string followed by a hyphen (-).<pre><code>$("[attribute|='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-contains-prefix-selector/
-attribute contains prefix selector name value	R	Attribute Contains Prefix Selector [name|="value"]										
-attribute contains prefix selector	R	Attribute Contains Prefix Selector [name|="value"]										
-Attribute Contains Prefix Selector	R	Attribute Contains Prefix Selector [name|="value"]										
-Attribute Contains Selector [name*="value"]	A			jQuery selectors							Selects elements that have the specified attribute with a value containing a given substring.<pre><code>$("[attribute*='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-contains-selector/
-attribute contains selector name value	R	Attribute Contains Selector [name*="value"]										
-attribute contains selector	R	Attribute Contains Selector [name*="value"]										
-Attribute Contains Selector	R	Attribute Contains Selector [name*="value"]										
-Attribute Contains Word Selector [name~="value"]	A			jQuery selectors							Selects elements that have the specified attribute with a value containing a given word, delimited by spaces.<pre><code>$("[attribute~='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-contains-word-selector/
-attribute contains word selector name value	R	Attribute Contains Word Selector [name~="value"]										
-attribute contains word selector	R	Attribute Contains Word Selector [name~="value"]										
-Attribute Contains Word Selector	R	Attribute Contains Word Selector [name~="value"]										
-Attribute Ends With Selector [name$="value"]	A			jQuery selectors							Selects elements that have the specified attribute with a value ending exactly with a given string. The comparison is case sensitive.<pre><code>$("[attribute$='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-ends-with-selector/
-attribute ends with selector name value	R	Attribute Ends With Selector [name$="value"]										
-attribute ends with selector	R	Attribute Ends With Selector [name$="value"]										
-Attribute Ends With Selector	R	Attribute Ends With Selector [name$="value"]										
-Attribute Equals Selector [name="value"]	A			jQuery selectors							Selects elements that have the specified attribute with a value exactly equal to a certain value.<pre><code>$("[attribute='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-equals-selector/
-attribute equals selector name value	R	Attribute Equals Selector [name="value"]										
-attribute equals selector	R	Attribute Equals Selector [name="value"]										
-Attribute Equals Selector	R	Attribute Equals Selector [name="value"]										
-Attribute Not Equal Selector [name!="value"]	A			jQuery selectors							Select elements that either don't have the specified attribute, or do have the specified attribute but not with a certain value.<pre><code>$("[attribute!='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-not-equal-selector/
-attribute not equal selector name value	R	Attribute Not Equal Selector [name!="value"]										
-attribute not equal selector	R	Attribute Not Equal Selector [name!="value"]										
-Attribute Not Equal Selector	R	Attribute Not Equal Selector [name!="value"]										
-Attribute Starts With Selector [name^="value"]	A			jQuery selectors							Selects elements that have the specified attribute with a value beginning exactly with a given string.<pre><code>$("[attribute^='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-starts-with-selector/
-attribute starts with selector name value	R	Attribute Starts With Selector [name^="value"]										
-attribute starts with selector	R	Attribute Starts With Selector [name^="value"]										
-Attribute Starts With Selector	R	Attribute Starts With Selector [name^="value"]										
+Attribute Contains Prefix Selector	A			jQuery selectors							Selects elements that have the specified attribute with a value either equal to a given string or starting with that string followed by a hyphen (-).<pre><code>$("[attribute|='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-contains-prefix-selector/
+attribute contains prefix selector	R	Attribute Contains Prefix Selector										
+Attribute Contains Selector	A			jQuery selectors							Selects elements that have the specified attribute with a value containing a given substring.<pre><code>$("[attribute*='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-contains-selector/
+attribute contains selector	R	Attribute Contains Selector										
+Attribute Contains Word Selector	A			jQuery selectors							Selects elements that have the specified attribute with a value containing a given word, delimited by spaces.<pre><code>$("[attribute~='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-contains-word-selector/
+attribute contains word selector	R	Attribute Contains Word Selector										
+Attribute Ends With Selector	A			jQuery selectors							Selects elements that have the specified attribute with a value ending exactly with a given string. The comparison is case sensitive.<pre><code>$("[attribute$='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-ends-with-selector/
+attribute ends with selector	R	Attribute Ends With Selector										
+Attribute Equals Selector	A			jQuery selectors							Selects elements that have the specified attribute with a value exactly equal to a certain value.<pre><code>$("[attribute='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-equals-selector/
+attribute equals selector	R	Attribute Equals Selector										
+Attribute Not Equal Selector	A			jQuery selectors							Select elements that either don't have the specified attribute, or do have the specified attribute but not with a certain value.<pre><code>$("[attribute!='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-not-equal-selector/
+attribute not equal selector	R	Attribute Not Equal Selector										
+Attribute Starts With Selector	A			jQuery selectors							Selects elements that have the specified attribute with a value beginning exactly with a given string.<pre><code>$("[attribute^='value']") → jQuery</code></pre>	https://api.jquery.com/attribute-starts-with-selector/
+attribute starts with selector	R	Attribute Starts With Selector										
 .attr	R	.attr()										
 attr()	R	.attr()										
 attr	R	.attr()										
@@ -232,14 +217,10 @@ checked selector	R	:checked Selector
 .children	R	.children()										
 children()	R	.children()										
 children	R	.children()										
-Child Selector ("parent > child")	A			jQuery selectors							Selects all direct child elements specified by "child" of elements specified by "parent".<pre><code>$("parent > child") → jQuery</code></pre>	https://api.jquery.com/child-selector/
-child selector parent child	R	Child Selector ("parent > child")										
-child selector	R	Child Selector ("parent > child")										
-Child Selector	R	Child Selector ("parent > child")										
-Class Selector (".class")	A			jQuery selectors							Selects all elements with the given class. <pre><code>$(".class") → jQuery</code></pre>	https://api.jquery.com/class-selector/
-class selector class	R	Class Selector (".class")										
-class selector	R	Class Selector (".class")										
-Class Selector	R	Class Selector (".class")										
+Child Selector	A			jQuery selectors							Selects all direct child elements specified by "child" of elements specified by "parent".<pre><code>$("parent > child") → jQuery</code></pre>	https://api.jquery.com/child-selector/
+child selector	R	Child Selector										
+Class Selector	A			jQuery selectors							Selects all elements with the given class. <pre><code>$(".class") → jQuery</code></pre>	https://api.jquery.com/class-selector/
+class selector	R	Class Selector										
 .clearQueue()	A			jQuery methods							Remove from the queue all items that have not yet been run.<pre><code>$(selector).clearQueue(queueName) → jQuery</code></pre>	https://api.jquery.com/clearQueue/
 clear queue	R	.clearQueue()										
 clearqueue	R	.clearQueue()										
@@ -398,10 +379,8 @@ dequeue()	D								*[[.dequeue()]] Execute the next function on the queue for th
 dequeue	D								*[[.dequeue()]] Execute the next function on the queue for the matched elements.\n*[[jQuery.dequeue()]] Execute the next function on the queue for the matched element.			
 $.dequeue()	R	jQuery.dequeue()										
 $.dequeue	R	jQuery.dequeue()										
-Descendant Selector ("ancestor descendant")	A			jQuery selectors							Selects all elements that are descendants of a given ancestor.<pre><code>$("ancestor descendant") → jQuery</code></pre>	https://api.jquery.com/descendant-selector/
-descendant selector ancestor descendant	R	Descendant Selector ("ancestor descendant")										
-descendant selector	R	Descendant Selector ("ancestor descendant")										
-Descendant Selector	R	Descendant Selector ("ancestor descendant")										
+Descendant Selector	A			jQuery selectors							Selects all elements that are descendants of a given ancestor.<pre><code>$("ancestor descendant") → jQuery</code></pre>	https://api.jquery.com/descendant-selector/
+descendant selector	R	Descendant Selector										
 .detach()	A			jQuery methods							Remove the set of matched elements from the DOM.<pre><code>$(selector).detach(selector) → jQuery</code></pre>	https://api.jquery.com/detach/
 .detach	R	.detach()										
 detach()	R	.detach()										
@@ -434,10 +413,8 @@ each()	D								*[[.each()]] Iterate over a jQuery object, executing a function 
 each	D								*[[.each()]] Iterate over a jQuery object, executing a function for each matched element.\n*[[jQuery.each()]] A generic iterator function, which can be used to seamlessly iterate over both objects and arrays.			
 $.each()	R	jQuery.each()										
 $.each	R	jQuery.each()										
-Element Selector ("element")	A			jQuery selectors							Selects all elements with the given tag name.<pre><code>$("element") → jQuery</code></pre>	https://api.jquery.com/element-selector/
-element selector element	R	Element Selector ("element")										
-element selector	R	Element Selector ("element")										
-Element Selector	R	Element Selector ("element")										
+Element Selector	A			jQuery selectors							Selects all elements with the given tag name.<pre><code>$("element") → jQuery</code></pre>	https://api.jquery.com/element-selector/
+element selector	R	Element Selector										
 .empty()	A			jQuery methods							Remove all child nodes of the set of matched elements from the DOM.<pre><code>$(selector).empty() → jQuery</code></pre>	https://api.jquery.com/empty/
 .empty	D								*[[.empty()]] Remove all child nodes of the set of matched elements from the DOM.\n*[[callbacks.empty()]] Remove all of the callbacks from a list.			
 empty()	D								*[[.empty()]] Remove all child nodes of the set of matched elements from the DOM.\n*[[callbacks.empty()]] Remove all of the callbacks from a list.			
@@ -685,10 +662,8 @@ grep	R	jQuery.grep()
 :gt() Selector	A			jQuery selectors							Select all elements at an index greater than index within the matched set.<pre><code>$(":gt(index)") → jQuery\n$(":gt(-index)") → jQuery</code></pre>	https://api.jquery.com/gt-selector/
 gt selector	R	:gt() Selector										
 .has()	A			jQuery methods							Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.<pre><code>$(selector).has(selector) → jQuery\n$(selector).has(contained) → jQuery</code></pre>	https://api.jquery.com/has/
-Has Attribute Selector [name]	A			jQuery selectors							Selects elements that have the specified attribute, with any value. <pre><code>$("[attribute]") → jQuery</code></pre>	https://api.jquery.com/has-attribute-selector/
-has attribute selector name	R	Has Attribute Selector [name]										
-has attribute selector	R	Has Attribute Selector [name]										
-Has Attribute Selector	R	Has Attribute Selector [name]										
+Has Attribute Selector	A			jQuery selectors							Selects elements that have the specified attribute, with any value. <pre><code>$("[attribute]") → jQuery</code></pre>	https://api.jquery.com/has-attribute-selector/
+has attribute selector	R	Has Attribute Selector										
 .hasClass()	A			jQuery methods							Determine whether any of the matched elements are assigned the given class.<pre><code>$(selector).hasClass(className) → Boolean</code></pre>	https://api.jquery.com/hasClass/
 has class	R	.hasClass()										
 hasclass	R	.hasClass()										
@@ -748,10 +723,8 @@ htmlPrefilter	R	jQuery.htmlPrefilter()
 .html	R	.html()										
 html()	R	.html()										
 html	R	.html()										
-ID Selector ("#id")	A			jQuery selectors							Selects a single element with the given id attribute. <pre><code>$("#id") → jQuery</code></pre>	https://api.jquery.com/id-selector/
-id selector id	R	ID Selector ("#id")										
-id selector	R	ID Selector ("#id")										
-ID Selector	R	ID Selector ("#id")										
+ID Selector	A			jQuery selectors							Selects a single element with the given id attribute. <pre><code>$("#id") → jQuery</code></pre>	https://api.jquery.com/id-selector/
+id selector	R	ID Selector										
 :image Selector	A			jQuery selectors							Selects all elements of type image.<pre><code>$(":image") → jQuery</code></pre>	https://api.jquery.com/image-selector/
 image selector	R	:image Selector										
 in array	R	jQuery.inArray()										
@@ -1242,21 +1215,14 @@ mouseup() event	R	.mouseup()
 mouse up	R	.mouseup()										
 mouseup()	R	.mouseup()										
 mouseup	R	.mouseup()										
-Multiple Attribute Selector [name="value"][name2="value2"]	A			jQuery selectors							Matches elements that match all of the specified attribute filters.<pre><code>$("[attributeFilter1][attributeFilter2][attributeFilterN]") → jQuery</code></pre>	https://api.jquery.com/multiple-attribute-selector/
-multiple attribute selector name value name value	R	Multiple Attribute Selector [name="value"][name2="value2"]										
-multiple attribute selector	R	Multiple Attribute Selector [name="value"][name2="value2"]										
-Multiple Attribute Selector	R	Multiple Attribute Selector [name="value"][name2="value2"]										
-multiple selector	R	Multiple Selector ("selector1, selector2, selectorN")										
-Multiple Selector	R	Multiple Selector ("selector1, selector2, selectorN")										
-Multiple Selector ("selector1, selector2, selectorN")	A			jQuery selectors							Selects the combined results of all the specified selectors.<pre><code>$("selector1, selector2, selectorN") → jQuery</code></pre>	https://api.jquery.com/multiple-selector/
-multiple selector selector selector selector n	R	Multiple Selector ("selector1, selector2, selectorN")										
-multiple selector selector selector selectorn	R	Multiple Selector ("selector1, selector2, selectorN")										
+Multiple Attribute Selector	A			jQuery selectors							Matches elements that match all of the specified attribute filters.<pre><code>$("[attributeFilter1][attributeFilter2][attributeFilterN]") → jQuery</code></pre>	https://api.jquery.com/multiple-attribute-selector/
+multiple attribute selector	R	Multiple Attribute Selector										
+Multiple Selector	A			jQuery selectors							Selects the combined results of all the specified selectors.<pre><code>$("selector1, selector2, selectorN") → jQuery</code></pre>	https://api.jquery.com/multiple-selector/
+multiple selector	R	Multiple Selector										
 .namespace	R	event.namespace										
 namespace	R	event.namespace										
-Next Adjacent Selector ("prev + next")	A			jQuery selectors							Selects all next elements matching "next" that are immediately preceded by a sibling "prev".<pre><code>$("prev + next") → jQuery</code></pre>	https://api.jquery.com/next-adjacent-selector/
-next adjacent selector prev next	R	Next Adjacent Selector ("prev + next")										
-next adjacent selector	R	Next Adjacent Selector ("prev + next")										
-Next Adjacent Selector	R	Next Adjacent Selector ("prev + next")										
+Next Adjacent Selector	A			jQuery selectors							Selects all next elements matching "next" that are immediately preceded by a sibling "prev".<pre><code>$("prev + next") → jQuery</code></pre>	https://api.jquery.com/next-adjacent-selector/
+next adjacent selector	R	Next Adjacent Selector										
 .next()	A			jQuery methods							Get the immediately following sibling of each element in the set of matched elements. If a selector is provided, it retrieves the next sibling only if it matches that selector.<pre><code>$(selector).next(selector) → jQuery</code></pre>	https://api.jquery.com/next/
 .nextAll()	A			jQuery methods							Get all following siblings of each element in the set of matched elements, optionally filtered by a selector.<pre><code>$(selector).nextAll(selector) → jQuery</code></pre>	https://api.jquery.com/nextAll/
 next all	R	.nextAll()										
@@ -1267,10 +1233,8 @@ nextAll	R	.nextAll()
 .next	R	.next()										
 next()	R	.next()										
 next	R	.next()										
-Next Siblings Selector ("prev ~ siblings")	A			jQuery selectors							Selects all sibling elements that follow after the "prev" element, have the same parent, and match the filtering "siblings" selector.<pre><code>$("prev ~ siblings") → jQuery</code></pre>	https://api.jquery.com/next-siblings-selector/
-next siblings selector prev siblings	R	Next Siblings Selector ("prev ~ siblings")										
-next siblings selector	R	Next Siblings Selector ("prev ~ siblings")										
-Next Siblings Selector	R	Next Siblings Selector ("prev ~ siblings")										
+Next Siblings Selector	A			jQuery selectors							Selects all sibling elements that follow after the "prev" element, have the same parent, and match the filtering "siblings" selector.<pre><code>$("prev ~ siblings") → jQuery</code></pre>	https://api.jquery.com/next-siblings-selector/
+next siblings selector	R	Next Siblings Selector										
 .nextUntil()	A			jQuery methods							Get all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.<pre><code>$(selector).nextUntil(selector, filter) → jQuery\n$(selector).nextUntil(element, filter) → jQuery</code></pre>	https://api.jquery.com/nextUntil/
 next until	R	.nextUntil()										
 nextuntil	R	.nextUntil()										
