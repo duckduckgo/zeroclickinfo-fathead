@@ -186,6 +186,8 @@ class DataParser(object):
                     inline = parameter.find('p')
                     inline = str(inline)
                     inline = inline.replace('’','&#39;')
+                    inline = inline.strip('<p>')
+                    inline = inline.strip('</p>')
                     text = text + " - " + inline
                 text = text + '</li>'
             text = text + '</ul>'
@@ -225,9 +227,9 @@ class DataParser(object):
                 anchor = self.parse_for_anchor(function_section[0])
                 example = self.parse_for_example(function_section[0])
                 parameter = self.parse_for_parameters(function_section[0])
-                abstract = method_signature + "<br>" + description
+                abstract = description + "<br>" + method_signature
                 if example:
-                    description =  abstract + example
+                    abstract =  abstract + example
                 if parameter:
                      abstract = "%s<br>%s"%(abstract, parameter)
 
@@ -295,9 +297,9 @@ class DataOutput(object):
                     list_of_data = [
                         name,                       # unique name
                         'A',                        # type is article
-                        name + ' function',          # redirect data
+                        name + ' function',         # redirect data
                         '',                         # ignore
-                        'sass functions',            # no categories
+                        '',                         # no categories
                         '',                         # ignore
                         '',                         # no related topics
                         '',                         # ignore
@@ -311,10 +313,37 @@ class DataOutput(object):
                     line = '\t'.join(list_of_data)
                     
                     output_file.write(line+'\n')
+    def create_redirect(self):
+        """
+        Iterate through the data and add redirects to output.txt file, appending to file as necessary.
 
-    
-
-
+        """
+        with open('output.txt', 'a') as output_file:
+            for data_element in self.data:
+                if data_element.get('function'):
+                    name = data_element.get('function').encode('utf-8')
+                    abstract = data_element.get('abstract').encode('utf-8')
+                    url = data_element.get('url').encode('utf-8')
+                    
+                    list_of_data = [
+                        name + ' function',         # unique name
+                        'R',                        # type is article
+                        name,                       # redirect data
+                        '',                         # ignore
+                        '',                         # no categories
+                        '',                         # ignore
+                        '',                         # no related topics
+                        '',                         # ignore
+                        '',                         # external link
+                        '',                         # no disambiguation
+                        '',                         # images
+                        '',                         # abstract
+                        ''                          # url to doc
+                    ]
+                    
+                    line = '\t'.join(list_of_data)
+                    
+                    output_file.write(line+'\n')
 
 if __name__ == "__main__":
     file_path = 'download/Functions.html'
@@ -323,3 +352,4 @@ if __name__ == "__main__":
     parser.parse_for_data()
     output = DataOutput(parser.get_data())
     output.create_file()
+    output.create_redirect()
