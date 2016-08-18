@@ -139,6 +139,8 @@ foreach my $html_file ( glob 'download/*.html' ) {
     $description = build_abstract( $description, $code, $initial_value );
 
     next unless $title && $link && $description;
+
+    make_and_write_article( $title, $description, $link );
 }
 
 # PRIVATE FUNCTIONS
@@ -206,17 +208,16 @@ sub build_abstract {
 }
 
 sub make_and_write_article {
-    my ( $title, $description, $link, $external_links ) = @_;
+    my ( $title, $description, $link ) = @_;
     say '';
     say "TITLE: $title";
     say "LINK: $link";
     say "DESCRIPTION: $description"       if $description;
-    say "EXTERNAL LINKS $external_links " if $external_links;
     my $title_clean = clean_string($title);
     my @data        = join "\t",
       (
-        $title_clean, 'A', '', '', '', '', '', '', $external_links || '',
-        '', '', $description, $link
+        $title_clean, 'A', '', '', '', '', '', '', '', '', '', $description,
+        $link
       );
 
     if ( $title =~ /\(\)$/ or $title =~ qr/@/ ) {
