@@ -11,9 +11,9 @@ addclass	R	.addClass()
 .addClass	R	.addClass()										
 addClass()	R	.addClass()										
 addClass	R	.addClass()										
-.add	D								*[[.add()]] Create a new jQuery object with elements added to the set of matched elements.\n*[[callbacks.add()]] Add a callback or a collection of callbacks to a callback list.			
-add()	D								*[[.add()]] Create a new jQuery object with elements added to the set of matched elements.\n*[[callbacks.add()]] Add a callback or a collection of callbacks to a callback list.			
-add	D								*[[.add()]] Create a new jQuery object with elements added to the set of matched elements.\n*[[callbacks.add()]] Add a callback or a collection of callbacks to a callback list.			
+.add	D								*[[jQuery .add()|.add()]] Create a new jQuery object with elements added to the set of matched elements.\n*[[jQuery callbacks.add()|callbacks.add()]] Add a callback or a collection of callbacks to a callback list.			
+add()	D								*[[jQuery .add()|.add()]] Create a new jQuery object with elements added to the set of matched elements.\n*[[jQuery callbacks.add()|callbacks.add()]] Add a callback or a collection of callbacks to a callback list.			
+add	D								*[[jQuery .add()|.add()]] Create a new jQuery object with elements added to the set of matched elements.\n*[[jQuery callbacks.add()|callbacks.add()]] Add a callback or a collection of callbacks to a callback list.			
 .after()	A			jQuery methods							Insert content, specified by the parameter, after each element in the set of matched elements.<pre><code>$(selector).after(content, content) → jQuery\n$(selector).after(function) → jQuery\n$(selector).after(function-html) → jQuery</code></pre>	https://api.jquery.com/after/
 .after	R	.after()										
 after()	R	.after()										
@@ -284,9 +284,9 @@ currenttarget	R	event.currentTarget
 .currentTarget	R	event.currentTarget										
 currentTarget	R	event.currentTarget										
 .data()	A			jQuery methods							Store arbitrary data associated with the matched elements.<pre><code>$(selector).data(key, value) → jQuery\n$(selector).data(obj) → jQuery</code></pre>\nReturn the value at the named data store for the first element in the jQuery collection, as set by data(name, value) or by an HTML5 data-* attribute.<pre><code>$(selector).data(key) → Object\n$(selector).data() → Object</code></pre>	https://api.jquery.com/data/
-.data	D								*[[.data()]] Store arbitrary data associated with the matched elements.\n*[[event.data]] An optional object of data passed to an event method when the current executing handler is bound.\n*[[jQuery.data()]] Store arbitrary data associated with the specified element.			
-data	D								*[[.data()]] Store arbitrary data associated with the matched elements.\n*[[event.data]] An optional object of data passed to an event method when the current executing handler is bound.\n*[[jQuery.data()]] Store arbitrary data associated with the specified element.			
-data()	D								*[[.data()]] Store arbitrary data associated with the matched elements.\n*[[jQuery.data()]] Store arbitrary data associated with the specified element.			
+.data	D								*[[jQuery .data()|.data()]] Store arbitrary data associated with the matched elements.\n*[[jQuery event.data|event.data]] An optional object of data passed to an event method when the current executing handler is bound.\n*[[jQuery jQuery.data()|jQuery.data()]] Store arbitrary data associated with the specified element.			
+data	D								*[[jQuery .data()|.data()]] Store arbitrary data associated with the matched elements.\n*[[jQuery event.data|event.data]] An optional object of data passed to an event method when the current executing handler is bound.\n*[[jQuery jQuery.data()|jQuery.data()]] Store arbitrary data associated with the specified element.			
+data()	D								*[[jQuery .data()|.data()]] Store arbitrary data associated with the matched elements.\n*[[jQuery jQuery.data()|jQuery.data()]] Store arbitrary data associated with the specified element.			
 $.data()	R	jQuery.data()										
 $.data	R	jQuery.data()										
 .dblclick()	A			jQuery methods							Bind an event handler to the "dblclick" JavaScript event, or trigger that event on an element.<pre><code>$(selector).dblclick(handler) → jQuery\n$(selector).dblclick(eventData, handler) → jQuery\n$(selector).dblclick() → jQuery</code></pre>	https://api.jquery.com/dblclick/
@@ -374,9 +374,9 @@ delegatetarget	R	event.delegateTarget
 .delegateTarget	R	event.delegateTarget										
 delegateTarget	R	event.delegateTarget										
 .dequeue()	A			jQuery methods							Execute the next function on the queue for the matched elements.<pre><code>$(selector).dequeue(queueName) → jQuery</code></pre>	https://api.jquery.com/dequeue/
-.dequeue	D								*[[.dequeue()]] Execute the next function on the queue for the matched elements.\n*[[jQuery.dequeue()]] Execute the next function on the queue for the matched element.			
-dequeue()	D								*[[.dequeue()]] Execute the next function on the queue for the matched elements.\n*[[jQuery.dequeue()]] Execute the next function on the queue for the matched element.			
-dequeue	D								*[[.dequeue()]] Execute the next function on the queue for the matched elements.\n*[[jQuery.dequeue()]] Execute the next function on the queue for the matched element.			
+.dequeue	D								*[[jQuery .dequeue()|.dequeue()]] Execute the next function on the queue for the matched elements.\n*[[jQuery jQuery.dequeue()|jQuery.dequeue()]] Execute the next function on the queue for the matched element.			
+dequeue()	D								*[[jQuery .dequeue()|.dequeue()]] Execute the next function on the queue for the matched elements.\n*[[jQuery jQuery.dequeue()|jQuery.dequeue()]] Execute the next function on the queue for the matched element.			
+dequeue	D								*[[jQuery .dequeue()|.dequeue()]] Execute the next function on the queue for the matched elements.\n*[[jQuery jQuery.dequeue()|jQuery.dequeue()]] Execute the next function on the queue for the matched element.			
 $.dequeue()	R	jQuery.dequeue()										
 $.dequeue	R	jQuery.dequeue()										
 Descendant Selector	A			jQuery selectors							Selects all elements that are descendants of a given ancestor.<pre><code>$("ancestor descendant") → jQuery</code></pre>	https://api.jquery.com/descendant-selector/
@@ -408,17 +408,17 @@ disable	R	callbacks.disable()
 done()	R	deferred.done()										
 done	R	deferred.done()										
 .each()	A			jQuery methods							Iterate over a jQuery object, executing a function for each matched element. <pre><code>$(selector).each(function) → jQuery</code></pre>	https://api.jquery.com/each/
-.each	D								*[[.each()]] Iterate over a jQuery object, executing a function for each matched element.\n*[[jQuery.each()]] A generic iterator function, which can be used to seamlessly iterate over both objects and arrays.			
-each()	D								*[[.each()]] Iterate over a jQuery object, executing a function for each matched element.\n*[[jQuery.each()]] A generic iterator function, which can be used to seamlessly iterate over both objects and arrays.			
-each	D								*[[.each()]] Iterate over a jQuery object, executing a function for each matched element.\n*[[jQuery.each()]] A generic iterator function, which can be used to seamlessly iterate over both objects and arrays.			
+.each	D								*[[jQuery .each()|.each()]] Iterate over a jQuery object, executing a function for each matched element.\n*[[jQuery jQuery.each()|jQuery.each()]] A generic iterator function, which can be used to seamlessly iterate over both objects and arrays.			
+each()	D								*[[jQuery .each()|.each()]] Iterate over a jQuery object, executing a function for each matched element.\n*[[jQuery jQuery.each()|jQuery.each()]] A generic iterator function, which can be used to seamlessly iterate over both objects and arrays.			
+each	D								*[[jQuery .each()|.each()]] Iterate over a jQuery object, executing a function for each matched element.\n*[[jQuery jQuery.each()|jQuery.each()]] A generic iterator function, which can be used to seamlessly iterate over both objects and arrays.			
 $.each()	R	jQuery.each()										
 $.each	R	jQuery.each()										
 Element Selector	A			jQuery selectors							Selects all elements with the given tag name.<pre><code>$("element") → jQuery</code></pre>	https://api.jquery.com/element-selector/
 element selector	R	Element Selector										
 .empty()	A			jQuery methods							Remove all child nodes of the set of matched elements from the DOM.<pre><code>$(selector).empty() → jQuery</code></pre>	https://api.jquery.com/empty/
-.empty	D								*[[.empty()]] Remove all child nodes of the set of matched elements from the DOM.\n*[[callbacks.empty()]] Remove all of the callbacks from a list.			
-empty()	D								*[[.empty()]] Remove all child nodes of the set of matched elements from the DOM.\n*[[callbacks.empty()]] Remove all of the callbacks from a list.			
-empty	D								*[[.empty()]] Remove all child nodes of the set of matched elements from the DOM.\n*[[callbacks.empty()]] Remove all of the callbacks from a list.			
+.empty	D								*[[jQuery .empty()|.empty()]] Remove all child nodes of the set of matched elements from the DOM.\n*[[jQuery callbacks.empty()|callbacks.empty()]] Remove all of the callbacks from a list.			
+empty()	D								*[[jQuery .empty()|.empty()]] Remove all child nodes of the set of matched elements from the DOM.\n*[[jQuery callbacks.empty()|callbacks.empty()]] Remove all of the callbacks from a list.			
+empty	D								*[[jQuery .empty()|.empty()]] Remove all child nodes of the set of matched elements from the DOM.\n*[[jQuery callbacks.empty()|callbacks.empty()]] Remove all of the callbacks from a list.			
 :empty Selector	A			jQuery selectors							Select all elements that have no children (including text nodes).<pre><code>$(":empty") → jQuery</code></pre>	https://api.jquery.com/empty-selector/
 empty selector	R	:empty Selector										
 :enabled Selector	A			jQuery selectors							Selects all elements that are enabled.<pre><code>$(":enabled") → jQuery</code></pre>	https://api.jquery.com/enabled-selector/
@@ -434,9 +434,9 @@ eq	R	.eq()
 :eq() Selector	A			jQuery selectors							Select the element at index n within the matched set.<pre><code>$(":eq(index)") → jQuery\n$(":eq(-index)") → jQuery</code></pre>	https://api.jquery.com/eq-selector/
 eq selector	R	:eq() Selector										
 .error()	A			jQuery methods							Bind an event handler to the "error" JavaScript event.<pre><code>$(selector).error(handler) → jQuery\n$(selector).error(eventData, handler) → jQuery</code></pre>	https://api.jquery.com/error/
-.error	D								*[[.error()]] Bind an event handler to the "error" JavaScript event.\n*[[jQuery.error()]] Takes a string and throws an exception containing it.			
-error()	D								*[[.error()]] Bind an event handler to the "error" JavaScript event.\n*[[jQuery.error()]] Takes a string and throws an exception containing it.			
-error	D								*[[.error()]] Bind an event handler to the "error" JavaScript event.\n*[[jQuery.error()]] Takes a string and throws an exception containing it.			
+.error	D								*[[jQuery .error()|.error()]] Bind an event handler to the "error" JavaScript event.\n*[[jQuery jQuery.error()|jQuery.error()]] Takes a string and throws an exception containing it.			
+error()	D								*[[jQuery .error()|.error()]] Bind an event handler to the "error" JavaScript event.\n*[[jQuery jQuery.error()|jQuery.error()]] Takes a string and throws an exception containing it.			
+error	D								*[[jQuery .error()|.error()]] Bind an event handler to the "error" JavaScript event.\n*[[jQuery jQuery.error()|jQuery.error()]] Takes a string and throws an exception containing it.			
 .error event	R	.error()										
 .error() event	R	.error()										
 error event	R	.error()										
@@ -624,9 +624,9 @@ $.fx.off	R	jQuery.fx.off
 fx off	R	jQuery.fx.off										
 fx.off	R	jQuery.fx.off										
 .get()	A			jQuery methods							Retrieve one of the elements matched by the jQuery object.<pre><code>$(selector).get(index) → Element</code></pre>\nRetrieve the elements matched by the jQuery object.<pre><code>$(selector).get() → Array</code></pre>	https://api.jquery.com/get/
-.get	D								*[[.get()]] Retrieve one of the elements matched by the jQuery object.\n*[[jQuery.get()]] Load data from the server using a HTTP GET request.			
-get()	D								*[[.get()]] Retrieve one of the elements matched by the jQuery object.\n*[[jQuery.get()]] Load data from the server using a HTTP GET request.			
-get	D								*[[.get()]] Retrieve one of the elements matched by the jQuery object.\n*[[jQuery.get()]] Load data from the server using a HTTP GET request.			
+.get	D								*[[jQuery .get()|.get()]] Retrieve one of the elements matched by the jQuery object.\n*[[jQuery jQuery.get()|jQuery.get()]] Load data from the server using a HTTP GET request.			
+get()	D								*[[jQuery .get()|.get()]] Retrieve one of the elements matched by the jQuery object.\n*[[jQuery jQuery.get()|jQuery.get()]] Load data from the server using a HTTP GET request.			
+get	D								*[[jQuery .get()|.get()]] Retrieve one of the elements matched by the jQuery object.\n*[[jQuery jQuery.get()|jQuery.get()]] Load data from the server using a HTTP GET request.			
 get json	R	jQuery.getJSON()										
 getjson	R	jQuery.getJSON()										
 .getJSON()	R	jQuery.getJSON()										
@@ -678,9 +678,9 @@ $.hasData()	R	jQuery.hasData()
 $.hasData	R	jQuery.hasData()										
 hasData()	R	jQuery.hasData()										
 hasData	R	jQuery.hasData()										
-.has	D								*[[.has()]] Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.\n*[[callbacks.has()]] Determine whether or not the list has any callbacks attached.			
-has()	D								*[[.has()]] Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.\n*[[callbacks.has()]] Determine whether or not the list has any callbacks attached.			
-has	D								*[[.has()]] Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.\n*[[callbacks.has()]] Determine whether or not the list has any callbacks attached.			
+.has	D								*[[jQuery .has()|.has()]] Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.\n*[[jQuery callbacks.has()|callbacks.has()]] Determine whether or not the list has any callbacks attached.			
+has()	D								*[[jQuery .has()|.has()]] Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.\n*[[jQuery callbacks.has()|callbacks.has()]] Determine whether or not the list has any callbacks attached.			
+has	D								*[[jQuery .has()|.has()]] Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.\n*[[jQuery callbacks.has()|callbacks.has()]] Determine whether or not the list has any callbacks attached.			
 :has() Selector	A			jQuery selectors							Selects elements which contain at least one element that matches the specified selector.<pre><code>$(":has(selector)") → jQuery</code></pre>	https://api.jquery.com/has-selector/
 has selector	R	:has() Selector										
 :header Selector	A			jQuery selectors							Selects all elements that are headers, like h1, h2, h3 and so on.<pre><code>$(":header") → jQuery</code></pre>	https://api.jquery.com/header-selector/
@@ -898,7 +898,7 @@ jQuery.Deferred	R	jQuery.Deferred()
 jQuery.dequeue()	A			jQuery methods							Execute the next function on the queue for the matched element.<pre><code>jQuery.dequeue(element, queueName) → undefined</code></pre>	https://api.jquery.com/jQuery.dequeue/
 jquery dequeue	R	jQuery.dequeue()										
 jQuery.dequeue	R	jQuery.dequeue()										
-jquery	D								*[[.jquery]] A string containing the jQuery version number.\n*[[jQuery()]] Accepts a string containing a CSS selector which is then used to match a set of elements.			
+jquery	D								*[[jQuery .jquery|.jquery]] A string containing the jQuery version number.\n*[[jQuery jQuery()|jQuery()]] Accepts a string containing a CSS selector which is then used to match a set of elements.			
 jQuery.each()	A			jQuery methods							A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.<pre><code>jQuery.each(array, callback) → Object\njQuery.each(object, callback) → Object</code></pre>	https://api.jquery.com/jQuery.each/
 jquery each	R	jQuery.each()										
 jQuery.each	R	jQuery.each()										
@@ -1130,9 +1130,9 @@ $.makeArray	R	jQuery.makeArray()
 makeArray()	R	jQuery.makeArray()										
 makeArray	R	jQuery.makeArray()										
 .map()	A			jQuery methods							Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.<pre><code>$(selector).map(callback) → jQuery</code></pre>	https://api.jquery.com/map/
-.map	D								*[[.map()]] Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.\n*[[jQuery.map()]] Translate all items in an array or object to new array of items.			
-map()	D								*[[.map()]] Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.\n*[[jQuery.map()]] Translate all items in an array or object to new array of items.			
-map	D								*[[.map()]] Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.\n*[[jQuery.map()]] Translate all items in an array or object to new array of items.			
+.map	D								*[[jQuery .map()|.map()]] Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.\n*[[jQuery jQuery.map()|jQuery.map()]] Translate all items in an array or object to new array of items.			
+map()	D								*[[jQuery .map()|.map()]] Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.\n*[[jQuery jQuery.map()|jQuery.map()]] Translate all items in an array or object to new array of items.			
+map	D								*[[jQuery .map()|.map()]] Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.\n*[[jQuery jQuery.map()|jQuery.map()]] Translate all items in an array or object to new array of items.			
 $.map()	R	jQuery.map()										
 $.map	R	jQuery.map()										
 .merge()	R	jQuery.merge()										
@@ -1609,9 +1609,9 @@ prevUntil	R	.prevUntil()
 progress()	R	deferred.progress()										
 progress	R	deferred.progress()										
 .promise()	A			jQuery methods							 Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished. <pre><code>$(selector).promise(type, target) → Promise</code></pre>	https://api.jquery.com/promise/
-.promise	D								*[[.promise()]]  Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.\n*[[deferred.promise()]]  Return a Deferred's Promise object.			
-promise()	D								*[[.promise()]]  Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.\n*[[deferred.promise()]]  Return a Deferred's Promise object.			
-promise	D								*[[.promise()]]  Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.\n*[[deferred.promise()]]  Return a Deferred's Promise object.			
+.promise	D								*[[jQuery .promise()|.promise()]]  Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.\n*[[jQuery deferred.promise()|deferred.promise()]]  Return a Deferred's Promise object.			
+promise()	D								*[[jQuery .promise()|.promise()]]  Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.\n*[[jQuery deferred.promise()|deferred.promise()]]  Return a Deferred's Promise object.			
+promise	D								*[[jQuery .promise()|.promise()]]  Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.\n*[[jQuery deferred.promise()|deferred.promise()]]  Return a Deferred's Promise object.			
 .prop()	A			jQuery methods							Get the value of a property for the first element in the set of matched elements.<pre><code>$(selector).prop(propertyName) → </code></pre>\nSet one or more properties for the set of matched elements.<pre><code>$(selector).prop(propertyName, value) → jQuery\n$(selector).prop(properties) → jQuery\n$(selector).prop(propertyName, function) → jQuery</code></pre>	https://api.jquery.com/prop/
 .prop	R	.prop()										
 prop()	R	.prop()										
@@ -1629,9 +1629,9 @@ pushstack	R	.pushStack()
 pushStack()	R	.pushStack()										
 pushStack	R	.pushStack()										
 .queue()	A			jQuery methods							Show the queue of functions to be executed on the matched elements.<pre><code>$(selector).queue(queueName) → Array</code></pre>\nManipulate the queue of functions to be executed, once for each matched element.<pre><code>$(selector).queue(queueName, newQueue) → jQuery\n$(selector).queue(queueName, callback) → jQuery</code></pre>	https://api.jquery.com/queue/
-.queue	D								*[[.queue()]] Show the queue of functions to be executed on the matched elements.\n*[[jQuery.queue()]] Show the queue of functions to be executed on the matched element.			
-queue()	D								*[[.queue()]] Show the queue of functions to be executed on the matched elements.\n*[[jQuery.queue()]] Show the queue of functions to be executed on the matched element.			
-queue	D								*[[.queue()]] Show the queue of functions to be executed on the matched elements.\n*[[jQuery.queue()]] Show the queue of functions to be executed on the matched element.			
+.queue	D								*[[jQuery .queue()|.queue()]] Show the queue of functions to be executed on the matched elements.\n*[[jQuery jQuery.queue()|jQuery.queue()]] Show the queue of functions to be executed on the matched element.			
+queue()	D								*[[jQuery .queue()|.queue()]] Show the queue of functions to be executed on the matched elements.\n*[[jQuery jQuery.queue()|jQuery.queue()]] Show the queue of functions to be executed on the matched element.			
+queue	D								*[[jQuery .queue()|.queue()]] Show the queue of functions to be executed on the matched elements.\n*[[jQuery jQuery.queue()|jQuery.queue()]] Show the queue of functions to be executed on the matched element.			
 $.queue()	R	jQuery.queue()										
 $.queue	R	jQuery.queue()										
 :radio Selector	A			jQuery selectors							Selects all  elements of type radio.<pre><code>$(":radio") → jQuery</code></pre>	https://api.jquery.com/radio-selector/
@@ -1680,16 +1680,16 @@ removeclass	R	.removeClass()
 removeClass()	R	.removeClass()										
 removeClass	R	.removeClass()										
 .removeData()	A			jQuery methods							Remove a previously-stored piece of data.<pre><code>$(selector).removeData(name) → jQuery\n$(selector).removeData(list) → jQuery</code></pre>	https://api.jquery.com/removeData/
-remove data	D								*[[.removeData()]] Remove a previously-stored piece of data.\n*[[jQuery.removeData()]] Remove a previously-stored piece of data.			
-removedata	D								*[[.removeData()]] Remove a previously-stored piece of data.\n*[[jQuery.removeData()]] Remove a previously-stored piece of data.			
-.removeData	D								*[[.removeData()]] Remove a previously-stored piece of data.\n*[[jQuery.removeData()]] Remove a previously-stored piece of data.			
-removeData()	D								*[[.removeData()]] Remove a previously-stored piece of data.\n*[[jQuery.removeData()]] Remove a previously-stored piece of data.			
-removeData	D								*[[.removeData()]] Remove a previously-stored piece of data.\n*[[jQuery.removeData()]] Remove a previously-stored piece of data.			
+remove data	D								*[[jQuery .removeData()|.removeData()]] Remove a previously-stored piece of data.\n*[[jQuery jQuery.removeData()|jQuery.removeData()]] Remove a previously-stored piece of data.			
+removedata	D								*[[jQuery .removeData()|.removeData()]] Remove a previously-stored piece of data.\n*[[jQuery jQuery.removeData()|jQuery.removeData()]] Remove a previously-stored piece of data.			
+.removeData	D								*[[jQuery .removeData()|.removeData()]] Remove a previously-stored piece of data.\n*[[jQuery jQuery.removeData()|jQuery.removeData()]] Remove a previously-stored piece of data.			
+removeData()	D								*[[jQuery .removeData()|.removeData()]] Remove a previously-stored piece of data.\n*[[jQuery jQuery.removeData()|jQuery.removeData()]] Remove a previously-stored piece of data.			
+removeData	D								*[[jQuery .removeData()|.removeData()]] Remove a previously-stored piece of data.\n*[[jQuery jQuery.removeData()|jQuery.removeData()]] Remove a previously-stored piece of data.			
 $.removeData()	R	jQuery.removeData()										
 $.removeData	R	jQuery.removeData()										
-.remove	D								*[[.remove()]] Remove the set of matched elements from the DOM.\n*[[callbacks.remove()]] Remove a callback or a collection of callbacks from a callback list.			
-remove()	D								*[[.remove()]] Remove the set of matched elements from the DOM.\n*[[callbacks.remove()]] Remove a callback or a collection of callbacks from a callback list.			
-remove	D								*[[.remove()]] Remove the set of matched elements from the DOM.\n*[[callbacks.remove()]] Remove a callback or a collection of callbacks from a callback list.			
+.remove	D								*[[jQuery .remove()|.remove()]] Remove the set of matched elements from the DOM.\n*[[jQuery callbacks.remove()|callbacks.remove()]] Remove a callback or a collection of callbacks from a callback list.			
+remove()	D								*[[jQuery .remove()|.remove()]] Remove the set of matched elements from the DOM.\n*[[jQuery callbacks.remove()|callbacks.remove()]] Remove a callback or a collection of callbacks from a callback list.			
+remove	D								*[[jQuery .remove()|.remove()]] Remove the set of matched elements from the DOM.\n*[[jQuery callbacks.remove()|callbacks.remove()]] Remove a callback or a collection of callbacks from a callback list.			
 .removeProp()	A			jQuery methods							Remove a property for the set of matched elements.<pre><code>$(selector).removeProp(propertyName) → jQuery</code></pre>	https://api.jquery.com/removeProp/
 remove prop	R	.removeProp()										
 removeprop	R	.removeProp()										
@@ -1916,8 +1916,8 @@ $.trim()	R	jQuery.trim()
 $.trim	R	jQuery.trim()										
 trim()	R	jQuery.trim()										
 trim	R	jQuery.trim()										
-.type	D								*[[event.type]] Describes the nature of the event.\n*[[jQuery.type()]] Determine the internal JavaScript [[Class]] of an object.			
-type	D								*[[event.type]] Describes the nature of the event.\n*[[jQuery.type()]] Determine the internal JavaScript [[Class]] of an object.			
+.type	D								*[[jQuery event.type|event.type]] Describes the nature of the event.\n*[[jQuery jQuery.type()|jQuery.type()]] Determine the internal JavaScript [[Class]] of an object.			
+type	D								*[[jQuery event.type|event.type]] Describes the nature of the event.\n*[[jQuery jQuery.type()|jQuery.type()]] Determine the internal JavaScript [[Class]] of an object.			
 .type()	R	jQuery.type()										
 $.type()	R	jQuery.type()										
 $.type	R	jQuery.type()										
