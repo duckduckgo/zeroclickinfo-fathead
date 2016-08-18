@@ -476,6 +476,8 @@ end	R	.end()
 .eq	R	.eq()										
 eq()	R	.eq()										
 eq	R	.eq()										
+:eq() Selector	A			jQuery selectors							Select the element at index n within the matched set.<pre><code>$(":eq(index)") → jQuery\n$(":eq(-index)") → jQuery</code></pre>	https://api.jquery.com/eq-selector/
+eq selector	R	:eq() Selector										
 .error()	A			jQuery methods							Bind an event handler to the "error" JavaScript event.<pre><code>$(selector).error(handler) → jQuery\n$(selector).error(eventData, handler) → jQuery</code></pre>	https://api.jquery.com/error/
 .error event	R	.error()										
 .error() event	R	.error()										
@@ -710,6 +712,8 @@ $.grep()	R	jQuery.grep()
 $.grep	R	jQuery.grep()										
 grep()	R	jQuery.grep()										
 grep	R	jQuery.grep()										
+:gt() Selector	A			jQuery selectors							Select all elements at an index greater than index within the matched set.<pre><code>$(":gt(index)") → jQuery\n$(":gt(-index)") → jQuery</code></pre>	https://api.jquery.com/gt-selector/
+gt selector	R	:gt() Selector										
 .has()	A			jQuery methods							Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.<pre><code>$(selector).has(selector) → jQuery\n$(selector).has(contained) → jQuery</code></pre>	https://api.jquery.com/has/
 Has Attribute Selector [name]	A			jQuery selectors							Selects elements that have the specified attribute, with any value. <pre><code>$("[attribute]") → jQuery</code></pre>	https://api.jquery.com/has-attribute-selector/
 has attribute selector name	R	Has Attribute Selector [name]										
@@ -1181,6 +1185,8 @@ locked	R	callbacks.locked()
 .lock	R	callbacks.lock()										
 lock()	R	callbacks.lock()										
 lock	R	callbacks.lock()										
+:lt() Selector	A			jQuery selectors							Select all elements at an index less than index within the matched set.<pre><code>$(":lt(index)") → jQuery\n$(":lt(-index)") → jQuery</code></pre>	https://api.jquery.com/lt-selector/
+lt selector	R	:lt() Selector										
 make array	R	jQuery.makeArray()										
 makearray	R	jQuery.makeArray()										
 .makeArray()	R	jQuery.makeArray()										
