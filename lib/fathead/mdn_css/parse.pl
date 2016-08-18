@@ -149,7 +149,16 @@ foreach my $html_file ( glob 'download/*.html' ) {
         $external_links = make_external_links( $link, $div_external );
     }
     $external_links ||= '';
-    make_and_write_article( $title, $description, $link, $external_links );
+
+    my $see_also;
+    my $h2 = $dom->at('h2#See_also');
+    if ($h2) {
+        my $ul = $h2->following->first( sub { $_->tag eq 'ul' } );
+        $see_also = make_related_articles($ul) if $ul;
+    }
+    $see_also ||= '';
+    make_and_write_article( $title, $description, $link, $external_links,
+        $see_also );
 }
 
 # PRIVATE FUNCTIONS
@@ -219,16 +228,17 @@ sub build_abstract {
 }
 
 sub make_and_write_article {
-    my ( $title, $description, $link, $external_links ) = @_;
+    my ( $title, $description, $link, $external_links, $see_also ) = @_;
     say '';
     say "TITLE: $title";
     say "LINK: $link";
     say "DESCRIPTION: $description"       if $description;
     say "EXTERNAL LINKS $external_links " if $external_links;
+    say "SEE ALSO $see_also"              if $see_also;
     my $title_clean = clean_string($title);
     my @data        = join "\t",
       (
-        $title_clean, 'A', '', '', '', '', '', '', $external_links || '',
+        $title_clean, 'A', '', '', '', '', $see_also, '', $external_links || '',
         '', '', $description, $link
       );
 
@@ -253,6 +263,18 @@ sub make_external_links {
         $external_links .= sprintf '[[%s %s]]', $absolute_link, $link_text;
     }
     return $external_links;
+}
+
+sub make_related_articles {
+    my ($ul) = @_;
+    my $related_articles;
+    my @related_titles;
+    for my $a ( $ul->find('a')->each ) {
+        push @related_titles, '[' . clean_string( $a->all_text ) . ']';
+    }
+    $related_articles = '[' . join( '\\\n', @related_titles ) . ']'
+      if @related_titles;
+    return $related_articles;
 }
 
 sub make_url_absolute {
