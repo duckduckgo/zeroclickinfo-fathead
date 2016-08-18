@@ -144,11 +144,9 @@ foreach my $html_file ( glob 'download/*.html' ) {
     my $external_links;
     my $div_external = $dom->at('div#toc');
     if ($div_external) {
-        my $external_lis_collection = $div_external->find('li');
 
         #link is used to make link absolute
-        $external_links =
-          make_external_links( $link, $external_lis_collection );
+        $external_links = make_external_links( $link, $div_external );
     }
     $external_links ||= '';
     make_and_write_article( $title, $description, $link, $external_links );
@@ -241,15 +239,18 @@ sub make_and_write_article {
 }
 
 sub make_external_links {
-    my ( $link, $lis_collection ) = @_;
+    my ( $link, $div_external ) = @_;
     my $external_links;
-    for my $li ( $lis_collection->each ) {
-        my $a = $li->at('a');
-        next unless $a;
-        my $href          = $a->attr('href');
+    my $browser_compatibility_link = $div_external->find('a')->first(
+        sub {
+            $_->text =~ m/Browser compatibility/;
+        }
+    );
+    if ($browser_compatibility_link) {
+        my $href          = $browser_compatibility_link->attr('href');
         my $absolute_link = make_url_absolute( $href, $link );
-        my $link_text     = $a->text;
-        $external_links .= sprintf '[%s %s]\\\n', $link_text, $absolute_link;
+        my $link_text     = $browser_compatibility_link->text;
+        $external_links .= sprintf '[[%s %s]]', $absolute_link, $link_text;
     }
     return $external_links;
 }
