@@ -857,205 +857,117 @@ isXMLDoc()	R	jQuery.isXMLDoc()
 isXMLDoc	R	jQuery.isXMLDoc()										
 jQuery.ajax()	A			jQuery methods							Perform an asynchronous HTTP (Ajax) request.<pre><code>jQuery.ajax(url, settings) → jqXHR\njQuery.ajax(settings) → jqXHR</code></pre>	https://api.jquery.com/jQuery.ajax/
 jQuery.ajaxPrefilter()	A			jQuery methods							Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().<pre><code>jQuery.ajaxPrefilter(dataTypes, handler) → undefined</code></pre>	https://api.jquery.com/jQuery.ajaxPrefilter/
-jquery ajax prefilter	R	jQuery.ajaxPrefilter()										
-jquery ajaxprefilter	R	jQuery.ajaxPrefilter()										
 jQuery.ajaxPrefilter	R	jQuery.ajaxPrefilter()										
-jquery ajax	R	jQuery.ajax()										
 jQuery.ajax	R	jQuery.ajax()										
 jQuery.ajaxSetup()	A			jQuery methods							Set default values for future Ajax requests. Its use is not recommended.<pre><code>jQuery.ajaxSetup(options) → undefined</code></pre>	https://api.jquery.com/jQuery.ajaxSetup/
-jquery ajax setup	R	jQuery.ajaxSetup()										
-jquery ajaxsetup	R	jQuery.ajaxSetup()										
 jQuery.ajaxSetup	R	jQuery.ajaxSetup()										
 jQuery.ajaxTransport()	A			jQuery methods							Creates an object that handles the actual transmission of Ajax data.<pre><code>jQuery.ajaxTransport(dataType, handler) → undefined</code></pre>	https://api.jquery.com/jQuery.ajaxTransport/
-jquery ajax transport	R	jQuery.ajaxTransport()										
-jquery ajaxtransport	R	jQuery.ajaxTransport()										
 jQuery.ajaxTransport	R	jQuery.ajaxTransport()										
 jQuery()	A			jQuery methods							Accepts a string containing a CSS selector which is then used to match a set of elements.<pre><code>$(selector).jQuery(selector, context) → jQuery\n$(selector).jQuery(element) → jQuery\n$(selector).jQuery(elementArray) → jQuery\n$(selector).jQuery(object) → jQuery\n$(selector).jQuery(selection) → jQuery\n$(selector).jQuery() → jQuery</code></pre>\nCreates DOM elements on the fly from the provided string of raw HTML.<pre><code>$(selector).jQuery(html, ownerDocument) → jQuery\n$(selector).jQuery(html, attributes) → jQuery</code></pre>\nBinds a function to be executed when the DOM has finished loading.<pre><code>$(selector).jQuery(callback) → jQuery</code></pre>	https://api.jquery.com/jQuery/
 .jquery	A			jQuery properties							A string containing the jQuery version number.<pre><code>$(selector).jquery → String</code></pre>	https://api.jquery.com/jquery-2/
 jQuery.boxModel	A			jQuery properties							States if the current page, in the user's browser, is being rendered using the W3C CSS Box Model. This property was removed in jQuery 1.8. Please try to use feature detection instead.<pre><code>jQuery.boxModel → Boolean</code></pre>	https://api.jquery.com/jQuery.boxModel/
-jquery box model	R	jQuery.boxModel										
-jquery boxmodel	R	jQuery.boxModel										
 jQuery.browser	A			jQuery properties							Contains flags for the useragent, read from navigator.userAgent. This property was removed in jQuery 1.9 and is available only through the jQuery.migrate plugin. Please try to use feature detection instead.<pre><code>jQuery.browser → PlainObject</code></pre>\nThe version number of the rendering engine for the user's browser. This property was removed in jQuery 1.9 and is available only through the jQuery.migrate plugin.<pre><code>jQuery.browser.version → String</code></pre>	https://api.jquery.com/jQuery.browser/
-jquery browser	R	jQuery.browser										
 jQuery.Callbacks()	A			jQuery methods							A multi-purpose callbacks list object that provides a powerful way to manage callback lists.<pre><code>jQuery.Callbacks(flags) → Callbacks</code></pre>	https://api.jquery.com/jQuery.Callbacks/
-jquery callbacks	R	jQuery.Callbacks()										
 jQuery.Callbacks	R	jQuery.Callbacks()										
 jQuery.contains()	A			jQuery methods							Check to see if a DOM element is a descendant of another DOM element.<pre><code>jQuery.contains(container, contained) → Boolean</code></pre>	https://api.jquery.com/jQuery.contains/
-jquery contains	R	jQuery.contains()										
 jQuery.contains	R	jQuery.contains()										
 jQuery.cssHooks	A			jQuery properties							Hook directly into jQuery to override how particular CSS properties are retrieved or set, normalize CSS property naming, or create custom properties.<pre><code>jQuery.cssHooks → Object</code></pre>	https://api.jquery.com/jQuery.cssHooks/
-jquery css hooks	R	jQuery.cssHooks										
-jquery csshooks	R	jQuery.cssHooks										
 jQuery.cssNumber	A			jQuery properties							An object containing all CSS properties that may be used without a unit. The .css() method uses this object to see if it may append px to unitless values.<pre><code>jQuery.cssNumber → Object</code></pre>	https://api.jquery.com/jQuery.cssNumber/
-jquery css number	R	jQuery.cssNumber										
-jquery cssnumber	R	jQuery.cssNumber										
 jQuery.data()	A			jQuery methods							Store arbitrary data associated with the specified element. Returns the value that was set.<pre><code>jQuery.data(element, key, value) → Object</code></pre>\nReturns value at named data store for the element, as set by jQuery.data(element, name, value), or the full data store for the element.<pre><code>jQuery.data(element, key) → Object\njQuery.data(element) → Object</code></pre>	https://api.jquery.com/jQuery.data/
-jquery data	R	jQuery.data()										
 jQuery.data	R	jQuery.data()										
 jQuery.Deferred()	A			jQuery methods							 A factory function that returns a chainable utility object with methods to register multiple callbacks into callback queues, invoke callback queues, and relay the success or failure state of any synchronous or asynchronous function.<pre><code>jQuery.Deferred(beforeStart) → Deferred</code></pre>	https://api.jquery.com/jQuery.Deferred/
-jquery deferred	R	jQuery.Deferred()										
 jQuery.Deferred	R	jQuery.Deferred()										
 jQuery.dequeue()	A			jQuery methods							Execute the next function on the queue for the matched element.<pre><code>jQuery.dequeue(element, queueName) → undefined</code></pre>	https://api.jquery.com/jQuery.dequeue/
-jquery dequeue	R	jQuery.dequeue()										
 jQuery.dequeue	R	jQuery.dequeue()										
 jQuery.each()	A			jQuery methods							A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.<pre><code>jQuery.each(array, callback) → Object\njQuery.each(object, callback) → Object</code></pre>	https://api.jquery.com/jQuery.each/
-jquery each	R	jQuery.each()										
 jQuery.each	R	jQuery.each()										
 jQuery.error()	A			jQuery methods							Takes a string and throws an exception containing it.<pre><code>jQuery.error(message) → undefined</code></pre>	https://api.jquery.com/jQuery.error/
-jquery error	R	jQuery.error()										
 jQuery.error	R	jQuery.error()										
 jQuery.escapeSelector()	A			jQuery methods							Escapes any character that has a special meaning in a CSS selector.<pre><code>jQuery.escapeSelector(selector) → Selector</code></pre>	https://api.jquery.com/jQuery.escapeSelector/
-jquery escape selector	R	jQuery.escapeSelector()										
-jquery escapeselector	R	jQuery.escapeSelector()										
 jQuery.escapeSelector	R	jQuery.escapeSelector()										
 jQuery.extend()	A			jQuery methods							Merge the contents of two or more objects together into the first object.<pre><code>jQuery.extend(target, object1, objectN) → Object\njQuery.extend(deep, target, object1, objectN) → Object</code></pre>	https://api.jquery.com/jQuery.extend/
-jquery extend	R	jQuery.extend()										
 jQuery.extend	R	jQuery.extend()										
 jQuery.fn.extend()	A			jQuery methods							Merge the contents of an object onto the jQuery prototype to provide new jQuery instance methods.<pre><code>jQuery.fn.extend(object) → Object</code></pre>	https://api.jquery.com/jQuery.fn.extend/
-jquery fn extend	R	jQuery.fn.extend()										
 jQuery.fn.extend	R	jQuery.fn.extend()										
 jQuery.fx.interval	A			jQuery properties							The rate (in milliseconds) at which animations fire.<pre><code>jQuery.fx.interval → Number</code></pre>	https://api.jquery.com/jQuery.fx.interval/
-jquery fx interval	R	jQuery.fx.interval										
 jQuery.fx.off	A			jQuery properties							Globally disable all animations.<pre><code>jQuery.fx.off → Boolean</code></pre>	https://api.jquery.com/jQuery.fx.off/
-jquery fx off	R	jQuery.fx.off										
 jQuery.get()	A			jQuery methods							Load data from the server using a HTTP GET request.<pre><code>jQuery.get(url, data, success, dataType) → jqXHR\njQuery.get(settings) → jqXHR</code></pre>	https://api.jquery.com/jQuery.get/
 jQuery.getJSON()	A			jQuery methods							Load JSON-encoded data from the server using a GET HTTP request.<pre><code>jQuery.getJSON(url, data, success) → jqXHR</code></pre>	https://api.jquery.com/jQuery.getJSON/
-jquery get json	R	jQuery.getJSON()										
-jquery getjson	R	jQuery.getJSON()										
 jQuery.getJSON	R	jQuery.getJSON()										
-jquery get	R	jQuery.get()										
 jQuery.get	R	jQuery.get()										
 jQuery.getScript()	A			jQuery methods							Load a JavaScript file from the server using a GET HTTP request, then execute it.<pre><code>jQuery.getScript(url, success) → jqXHR</code></pre>	https://api.jquery.com/jQuery.getScript/
-jquery get script	R	jQuery.getScript()										
-jquery getscript	R	jQuery.getScript()										
 jQuery.getScript	R	jQuery.getScript()										
 jQuery.globalEval()	A			jQuery methods							Execute some JavaScript code globally.<pre><code>jQuery.globalEval(code) → undefined</code></pre>	https://api.jquery.com/jQuery.globalEval/
-jquery global eval	R	jQuery.globalEval()										
-jquery globaleval	R	jQuery.globalEval()										
 jQuery.globalEval	R	jQuery.globalEval()										
 jQuery.grep()	A			jQuery methods							Finds the elements of an array which satisfy a filter function. The original array is not affected.<pre><code>jQuery.grep(array, function, invert) → Array</code></pre>	https://api.jquery.com/jQuery.grep/
-jquery grep	R	jQuery.grep()										
 jQuery.grep	R	jQuery.grep()										
 jQuery.hasData()	A			jQuery methods							Determine whether an element has any jQuery data associated with it.<pre><code>jQuery.hasData(element) → Boolean</code></pre>	https://api.jquery.com/jQuery.hasData/
-jquery has data	R	jQuery.hasData()										
-jquery hasdata	R	jQuery.hasData()										
 jQuery.hasData	R	jQuery.hasData()										
 jQuery.holdReady()	A			jQuery methods							Holds or releases the execution of jQuery's ready event.<pre><code>jQuery.holdReady(hold) → undefined</code></pre>	https://api.jquery.com/jQuery.holdReady/
-jquery hold ready	R	jQuery.holdReady()										
-jquery holdready	R	jQuery.holdReady()										
 jQuery.holdReady	R	jQuery.holdReady()										
 jQuery.htmlPrefilter()	A			jQuery methods							Modify and filter HTML strings passed through jQuery manipulation methods.<pre><code>jQuery.htmlPrefilter(html) → String</code></pre>	https://api.jquery.com/jQuery.htmlPrefilter/
-jquery html prefilter	R	jQuery.htmlPrefilter()										
-jquery htmlprefilter	R	jQuery.htmlPrefilter()										
 jQuery.htmlPrefilter	R	jQuery.htmlPrefilter()										
 jQuery.inArray()	A			jQuery methods							Search for a specified value within an array and return its index (or -1 if not found).<pre><code>jQuery.inArray(value, array, fromIndex) → Number</code></pre>	https://api.jquery.com/jQuery.inArray/
-jquery in array	R	jQuery.inArray()										
-jquery inarray	R	jQuery.inArray()										
 jQuery.inArray	R	jQuery.inArray()										
 jQuery.isArray()	A			jQuery methods							Determine whether the argument is an array.<pre><code>jQuery.isArray(obj) → boolean</code></pre>	https://api.jquery.com/jQuery.isArray/
-jquery is array	R	jQuery.isArray()										
-jquery isarray	R	jQuery.isArray()										
 jQuery.isArray	R	jQuery.isArray()										
 jQuery.isEmptyObject()	A			jQuery methods							Check to see if an object is empty (contains no enumerable properties).<pre><code>jQuery.isEmptyObject(object) → Boolean</code></pre>	https://api.jquery.com/jQuery.isEmptyObject/
-jquery is empty object	R	jQuery.isEmptyObject()										
-jquery isemptyobject	R	jQuery.isEmptyObject()										
 jQuery.isEmptyObject	R	jQuery.isEmptyObject()										
 jQuery.isFunction()	A			jQuery methods							Determine if the argument passed is a JavaScript function object. <pre><code>jQuery.isFunction(obj) → boolean</code></pre>	https://api.jquery.com/jQuery.isFunction/
-jquery is function	R	jQuery.isFunction()										
-jquery isfunction	R	jQuery.isFunction()										
 jQuery.isFunction	R	jQuery.isFunction()										
 jQuery.isNumeric()	A			jQuery methods							Determines whether its argument represents a JavaScript number.<pre><code>jQuery.isNumeric(value) → Boolean</code></pre>	https://api.jquery.com/jQuery.isNumeric/
-jquery is numeric	R	jQuery.isNumeric()										
-jquery isnumeric	R	jQuery.isNumeric()										
 jQuery.isNumeric	R	jQuery.isNumeric()										
 jQuery.isPlainObject()	A			jQuery methods							Check to see if an object is a plain object (created using "{}" or "new Object").<pre><code>jQuery.isPlainObject(object) → Boolean</code></pre>	https://api.jquery.com/jQuery.isPlainObject/
-jquery is plain object	R	jQuery.isPlainObject()										
-jquery isplainobject	R	jQuery.isPlainObject()										
 jQuery.isPlainObject	R	jQuery.isPlainObject()										
 jQuery.isWindow()	A			jQuery methods							Determine whether the argument is a window.<pre><code>jQuery.isWindow(obj) → boolean</code></pre>	https://api.jquery.com/jQuery.isWindow/
-jquery is window	R	jQuery.isWindow()										
-jquery iswindow	R	jQuery.isWindow()										
 jQuery.isWindow	R	jQuery.isWindow()										
 jQuery.isXMLDoc()	A			jQuery methods							Check to see if a DOM node is within an XML document (or is an XML document).<pre><code>jQuery.isXMLDoc(node) → Boolean</code></pre>	https://api.jquery.com/jQuery.isXMLDoc/
-jquery is xmldoc	R	jQuery.isXMLDoc()										
-jquery isxmldoc	R	jQuery.isXMLDoc()										
 jQuery.isXMLDoc	R	jQuery.isXMLDoc()										
 jQuery.makeArray()	A			jQuery methods							Convert an array-like object into a true JavaScript array.<pre><code>jQuery.makeArray(obj) → Array</code></pre>	https://api.jquery.com/jQuery.makeArray/
-jquery make array	R	jQuery.makeArray()										
-jquery makearray	R	jQuery.makeArray()										
 jQuery.makeArray	R	jQuery.makeArray()										
 jQuery.map()	A			jQuery methods							Translate all items in an array or object to new array of items.<pre><code>jQuery.map(array, callback) → Array\njQuery.map(object, callback) → Array</code></pre>	https://api.jquery.com/jQuery.map/
-jquery map	R	jQuery.map()										
 jQuery.map	R	jQuery.map()										
 jQuery.merge()	A			jQuery methods							Merge the contents of two arrays together into the first array. <pre><code>jQuery.merge(first, second) → Array</code></pre>	https://api.jquery.com/jQuery.merge/
-jquery merge	R	jQuery.merge()										
 jQuery.merge	R	jQuery.merge()										
 jQuery.noConflict()	A			jQuery methods							Relinquish jQuery's control of the $ variable.<pre><code>jQuery.noConflict(removeAll) → Object</code></pre>	https://api.jquery.com/jQuery.noConflict/
-jquery no conflict	R	jQuery.noConflict()										
-jquery noconflict	R	jQuery.noConflict()										
 jQuery.noConflict	R	jQuery.noConflict()										
 jQuery.noop()	A			jQuery methods							An empty function.<pre><code>jQuery.noop() → undefined</code></pre>	https://api.jquery.com/jQuery.noop/
-jquery noop	R	jQuery.noop()										
 jQuery.noop	R	jQuery.noop()										
 jQuery.now()	A			jQuery methods							Return a number representing the current time.<pre><code>jQuery.now() → Number</code></pre>	https://api.jquery.com/jQuery.now/
-jquery now	R	jQuery.now()										
 jQuery.now	R	jQuery.now()										
 jQuery.param()	A			jQuery methods							Create a serialized representation of an array, a plain object, or a jQuery object suitable for use in a URL query string or Ajax request. In case a jQuery object is passed, it should contain input elements with name/value properties.<pre><code>jQuery.param(obj) → String\njQuery.param(obj, traditional) → String</code></pre>	https://api.jquery.com/jQuery.param/
-jquery param	R	jQuery.param()										
 jQuery.param	R	jQuery.param()										
 jQuery.parseHTML()	A			jQuery methods							Parses a string into an array of DOM nodes.<pre><code>jQuery.parseHTML(data, context, keepScripts) → Array</code></pre>	https://api.jquery.com/jQuery.parseHTML/
-jquery parse html	R	jQuery.parseHTML()										
-jquery parsehtml	R	jQuery.parseHTML()										
 jQuery.parseHTML	R	jQuery.parseHTML()										
 jQuery.parseJSON()	A			jQuery methods							Takes a well-formed JSON string and returns the resulting JavaScript value.<pre><code>jQuery.parseJSON(json) → String|Number|Object|Array|Boolean</code></pre>	https://api.jquery.com/jQuery.parseJSON/
-jquery parse json	R	jQuery.parseJSON()										
-jquery parsejson	R	jQuery.parseJSON()										
 jQuery.parseJSON	R	jQuery.parseJSON()										
 jQuery.parseXML()	A			jQuery methods							Parses a string into an XML document.<pre><code>jQuery.parseXML(data) → XMLDocument</code></pre>	https://api.jquery.com/jQuery.parseXML/
-jquery parse xml	R	jQuery.parseXML()										
-jquery parsexml	R	jQuery.parseXML()										
 jQuery.parseXML	R	jQuery.parseXML()										
 jQuery.post()	A			jQuery methods							Load data from the server using a HTTP POST request.<pre><code>jQuery.post(url, data, success, dataType) → jqXHR\njQuery.post(settings) → jqXHR</code></pre>	https://api.jquery.com/jQuery.post/
-jquery post	R	jQuery.post()										
 jQuery.post	R	jQuery.post()										
 jQuery.proxy()	A			jQuery methods							Takes a function and returns a new one that will always have a particular context.<pre><code>jQuery.proxy(function, context) → Function\njQuery.proxy(context, name) → Function\njQuery.proxy(function, context, additionalArguments) → Function\njQuery.proxy(context, name, additionalArguments) → Function</code></pre>	https://api.jquery.com/jQuery.proxy/
-jquery proxy	R	jQuery.proxy()										
 jQuery.proxy	R	jQuery.proxy()										
 jQuery.queue()	A			jQuery methods							Show the queue of functions to be executed on the matched element.<pre><code>jQuery.queue(element, queueName) → Array</code></pre>\nManipulate the queue of functions to be executed on the matched element.<pre><code>jQuery.queue(element, queueName, newQueue) → jQuery\njQuery.queue(element, queueName, callback) → jQuery</code></pre>	https://api.jquery.com/jQuery.queue/
-jquery queue	R	jQuery.queue()										
 jQuery.queue	R	jQuery.queue()										
 jQuery.readyException()	A			jQuery methods							Handles errors thrown synchronously in functions wrapped in jQuery().<pre><code>jQuery.readyException(error) → Selector</code></pre>	https://api.jquery.com/jQuery.readyException/
-jquery ready exception	R	jQuery.readyException()										
-jquery readyexception	R	jQuery.readyException()										
 jQuery.readyException	R	jQuery.readyException()										
 jQuery.removeData()	A			jQuery methods							Remove a previously-stored piece of data.<pre><code>jQuery.removeData(element, name) → jQuery</code></pre>	https://api.jquery.com/jQuery.removeData/
-jquery remove data	R	jQuery.removeData()										
-jquery removedata	R	jQuery.removeData()										
 jQuery.removeData	R	jQuery.removeData()										
 jquery	R	.jquery										
 jQuery	R	jQuery()										
 jQuery.speed	A			jQuery methods							Creates an object containing a set of properties ready to be used in the definition of custom animations.<pre><code>jQuery.speed(duration) → PlainObject\njQuery.speed(duration, easing, complete) → PlainObject\njQuery.speed(settings) → PlainObject</code></pre>	https://api.jquery.com/jQuery.speed/
-jquery speed	R	jQuery.speed										
 jQuery.sub()	A			jQuery methods							Creates a new copy of jQuery whose properties and methods can be modified without affecting the original jQuery object.<pre><code>jQuery.sub() → jQuery</code></pre>	https://api.jquery.com/jQuery.sub/
-jquery sub	R	jQuery.sub()										
 jQuery.sub	R	jQuery.sub()										
 jQuery.support	A			jQuery properties							A collection of properties that represent the presence of different browser features or bugs. Intended for jQuery's internal use; specific properties may be removed when they are no longer needed internally to improve page startup performance. For your own project's feature-detection needs, we strongly recommend the use of an external library such as Modernizr instead of dependency on properties in jQuery.support.<pre><code>jQuery.support → Object</code></pre>	https://api.jquery.com/jQuery.support/
-jquery support	R	jQuery.support										
 jQuery.trim()	A			jQuery methods							Remove the whitespace from the beginning and end of a string.<pre><code>jQuery.trim(str) → String</code></pre>	https://api.jquery.com/jQuery.trim/
-jquery trim	R	jQuery.trim()										
 jQuery.trim	R	jQuery.trim()										
 jQuery.type()	A			jQuery methods							Determine the internal JavaScript [[Class]] of an object.<pre><code>jQuery.type(obj) → String</code></pre>	https://api.jquery.com/jQuery.type/
-jquery type	R	jQuery.type()										
 jQuery.type	R	jQuery.type()										
 jQuery.unique()	A			jQuery methods							Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.<pre><code>jQuery.unique(array) → Array</code></pre>	https://api.jquery.com/jQuery.unique/
-jquery unique	R	jQuery.unique()										
 jQuery.unique	R	jQuery.unique()										
 jQuery.uniqueSort()	A			jQuery methods							Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.<pre><code>jQuery.uniqueSort(array) → Array</code></pre>	https://api.jquery.com/jQuery.uniqueSort/
-jquery unique sort	R	jQuery.uniqueSort()										
-jquery uniquesort	R	jQuery.uniqueSort()										
 jQuery.uniqueSort	R	jQuery.uniqueSort()										
 jQuery.when()	A			jQuery methods							Provides a way to execute callback functions based on zero or more objects, usually Deferred objects that represent asynchronous events.<pre><code>jQuery.when(deferreds) → Promise</code></pre>	https://api.jquery.com/jQuery.when/
-jquery when	R	jQuery.when()										
 jQuery.when	R	jQuery.when()										
 .keydown()	A			jQuery methods							Bind an event handler to the "keydown" JavaScript event, or trigger that event on an element.<pre><code>$(selector).keydown(handler) → jQuery\n$(selector).keydown(eventData, handler) → jQuery\n$(selector).keydown() → jQuery</code></pre>	https://api.jquery.com/keydown/
 .keydown event	R	.keydown()										
