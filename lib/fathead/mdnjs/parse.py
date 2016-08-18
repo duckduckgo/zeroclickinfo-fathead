@@ -244,39 +244,39 @@ class MDNIndexer(object):
                     })
                     self._writer.articles_index.append(keyword.lower())
 
-                for mdn in self.inverted_index[keyword]:
-                    # add redirect for Web/Api pages
-                    if any(word in mdn.title for word in self.CLASS_WORDS) and '.' in mdn.title:
-                        # original title: Window.getAnimationFrame()
-                        match = re.search('(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
-                        # remove class_word: getAnimationFrame
-                        strip_title = match.group(1)
-                        # skips redirect if already an article
-                        if strip_title.lower() not in self._writer.articles_index:
-                            self._writer.writerow({
-                              'title': strip_title,
-                              'type': 'R',
-                              'redirect': mdn.title
-                            })
-                    # for all entries in the inverted index, write a redirect of
-                    # of the form <object><space><property>
-                    if ('%s %s' % (mdn.obj.lower(), mdn.prop.lower())) not in self._writer.articles_index:
+            for mdn in self.inverted_index[keyword]:
+                # add redirect for Web/Api pages
+                if any(word in mdn.title for word in self.CLASS_WORDS) and '.' in mdn.title:
+                    # original title: Window.getAnimationFrame()
+                    match = re.search('(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
+                    # remove class_word: getAnimationFrame
+                    strip_title = match.group(1)
+                    # skips redirect if already an article
+                    if strip_title.lower() not in self._writer.articles_index:
                         self._writer.writerow({
-                          'title': '%s %s' % (mdn.obj.lower(), mdn.prop.lower()),
+                          'title': strip_title,
                           'type': 'R',
                           'redirect': mdn.title
                         })
-                    # If this is the only item in the inverted index,
-                    # write a primary redirect on the keyword.
-                    if count == 1:
-                        # check if not an Article
-                        if not all(x in [keyword, strip_title] for x in self._writer.articles_index):
-                            if keyword.lower() not in self._writer.articles_index:
-                                self._writer.writerow({
-                                  'title': keyword,
-                                  'type': 'R',
-                                  'redirect': mdn.title
-                                })
+                # for all entries in the inverted index, write a redirect of
+                # of the form <object><space><property>
+                if ('%s %s' % (mdn.obj.lower(), mdn.prop.lower())) not in self._writer.articles_index:
+                    self._writer.writerow({
+                      'title': '%s %s' % (mdn.obj.lower(), mdn.prop.lower()),
+                      'type': 'R',
+                      'redirect': mdn.title
+                    })
+                # If this is the only item in the inverted index,
+                # write a primary redirect on the keyword.
+                if count == 1:
+                    # check if not an Article
+                    if not all(x in [keyword, strip_title] for x in self._writer.articles_index):
+                        if keyword.lower() not in self._writer.articles_index:
+                            self._writer.writerow({
+                              'title': keyword,
+                              'type': 'R',
+                              'redirect': mdn.title
+                            })
 
 def run(cachedir, cachejournal, langdefs, outfname):
     """
