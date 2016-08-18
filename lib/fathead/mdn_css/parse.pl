@@ -140,18 +140,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
 
     next unless $title && $link && $description;
 
-    #get external links
-    my $external_links;
-    my $div_external = $dom->at('div#toc');
-    if ($div_external) {
-        my $external_lis_collection = $div_external->find('li');
-
-        #link is used to make link absolute
-        $external_links =
-          make_external_links( $link, $external_lis_collection );
-    }
-    $external_links ||= '';
-    make_and_write_article( $title, $description, $link, $external_links );
+    make_and_write_article( $title, $description, $link );
 }
 
 # PRIVATE FUNCTIONS
@@ -219,42 +208,22 @@ sub build_abstract {
 }
 
 sub make_and_write_article {
-    my ( $title, $description, $link, $external_links ) = @_;
+    my ( $title, $description, $link ) = @_;
     say '';
     say "TITLE: $title";
     say "LINK: $link";
     say "DESCRIPTION: $description"       if $description;
-    say "EXTERNAL LINKS $external_links " if $external_links;
     my $title_clean = clean_string($title);
     my @data        = join "\t",
       (
-        $title_clean, 'A', '', '', '', '', '', '', $external_links || '',
-        '', '', $description, $link
+        $title_clean, 'A', '', '', '', '', '', '', '', '', '', $description,
+        $link
       );
 
     if ( $title =~ /\(\)$/ or $title =~ qr/@/ ) {
         push @data, make_redirect($title);
     }
     write_to_file(@data);
-}
-
-sub make_external_links {
-    my ( $link, $lis_collection ) = @_;
-    my $external_links;
-    for my $li ( $lis_collection->each ) {
-        my $a = $li->at('a');
-        next unless $a;
-        my $href          = $a->attr('href');
-        my $absolute_link = make_url_absolute( $href, $link );
-        my $link_text     = $a->text;
-        $external_links .= sprintf '[%s %s]\\\n', $link_text, $absolute_link;
-    }
-    return $external_links;
-}
-
-sub make_url_absolute {
-    my ( $fragment, $base ) = map { Mojo::URL->new($_) } @_;
-    return $fragment->to_abs($base);
 }
 
 sub make_redirect {
