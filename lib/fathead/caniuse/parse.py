@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import json
+import markdown
 import os
 import re
 
@@ -31,12 +32,16 @@ def generate_answers(data):
         ])
         print ','.join(titles)
 
-        # Generate Related Topics
-        links = feature_data.get('links', [])
-        related = u' '.join([u'[[{} {}]]'.format(link['title'], link['url']) for link in links])
+        # Commented out for now -- we can revive if we ever have a way to display
+        # external links in the Related Topics Infobox
+        ## Generate Related Topics
+        #links = feature_data.get('links', [])
+        #related = u' '.join([u'[[{} {}]]'.format(link['title'], link['url']) for link in links])
+        related = ''
 
         # Generate abstract
-        abstract = feature_data['description']
+        abstract = '<p>{}</p>'.format(feature_data['description'])
+
         for browser in ['ie', 'firefox', 'chrome', 'safari', 'ios_saf', 'android']:
             agent = data['agents'][browser]
             out = browser_support(
@@ -48,7 +53,8 @@ def generate_answers(data):
         # Add notes to abstract, if there are any
         notes = feature_data.get('notes', '')
         if notes:
-            abstract += '<br>' + notes
+            notes_in_html = markdown.markdown(notes)
+            abstract += '<p><b>Notes:</b> {}</p>'.format(notes_in_html)
 
         abstract = abstract.replace('\n', '').replace('\r', '')
         print abstract
