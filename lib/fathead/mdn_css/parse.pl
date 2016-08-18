@@ -212,7 +212,7 @@ sub make_and_write_article {
     say '';
     say "TITLE: $title";
     say "LINK: $link";
-    say "DESCRIPTION: $description"       if $description;
+    say "DESCRIPTION: $description" if $description;
     my $title_clean = clean_string($title);
     my @data        = join "\t",
       (
@@ -441,10 +441,15 @@ sub parse_initial_value {
                 #get text not in ul
                 $initial_value .= $td->at('ul')->remove->all_text;
 
-                #add new line after each li text so that it appears correctly
-                for my $li ( $ul->find('li')->each ) {
-                    $initial_value .= $li->all_text . '\\n ';
+                my $li_collection = $ul->find('li');
+                my $last_li       = $li_collection->last;
+                $li_collection->last->remove;
+
+                #Separate multiple values by commas
+                for my $li ( $li_collection->each ) {
+                    $initial_value .= $li->all_text . ', ';
                 }
+                $initial_value .= $last_li->all_text . '.';
             }
             else {
                 $initial_value = trim( $td->all_text );
