@@ -139,19 +139,6 @@ foreach my $html_file ( glob 'download/*.html' ) {
     $description = build_abstract( $description, $code, $initial_value );
 
     next unless $title && $link && $description;
-
-    #get external links
-    my $external_links;
-    my $div_external = $dom->at('div#toc');
-    if ($div_external) {
-        my $external_lis_collection = $div_external->find('li');
-
-        #link is used to make link absolute
-        $external_links =
-          make_external_links( $link, $external_lis_collection );
-    }
-    $external_links ||= '';
-    make_and_write_article( $title, $description, $link, $external_links );
 }
 
 # PRIVATE FUNCTIONS
@@ -236,25 +223,6 @@ sub make_and_write_article {
         push @data, make_redirect($title);
     }
     write_to_file(@data);
-}
-
-sub make_external_links {
-    my ( $link, $lis_collection ) = @_;
-    my $external_links;
-    for my $li ( $lis_collection->each ) {
-        my $a = $li->at('a');
-        next unless $a;
-        my $href          = $a->attr('href');
-        my $absolute_link = make_url_absolute( $href, $link );
-        my $link_text     = $a->text;
-        $external_links .= sprintf '[%s %s]\\\n', $link_text, $absolute_link;
-    }
-    return $external_links;
-}
-
-sub make_url_absolute {
-    my ( $fragment, $base ) = map { Mojo::URL->new($_) } @_;
-    return $fragment->to_abs($base);
 }
 
 sub make_redirect {
