@@ -493,11 +493,11 @@ event related target	R	event.relatedTarget
 event relatedtarget	R	event.relatedTarget										
 event.result	A			jQuery properties							The last value returned by an event handler that was triggered by this event, unless the value was undefined.<pre><code>event.result → Object</code></pre>	https://api.jquery.com/event.result/
 event result	R	event.result										
-event.stopImmediatePropagation()	A			jQuery methods							Keeps the rest of the handlers from being executed and prevents the event from bubbling up the DOM tree.<pre><code>event.stopImmediatePropagation() → </code></pre>	https://api.jquery.com/event.stopImmediatePropagation/
+event.stopImmediatePropagation()	A			jQuery methods							Keeps the rest of the handlers from being executed and prevents the event from bubbling up the DOM tree.<pre><code>event.stopImmediatePropagation() → undefined</code></pre>	https://api.jquery.com/event.stopImmediatePropagation/
 event stop immediate propagation	R	event.stopImmediatePropagation()										
 event stopimmediatepropagation	R	event.stopImmediatePropagation()										
 event.stopImmediatePropagation	R	event.stopImmediatePropagation()										
-event.stopPropagation()	A			jQuery methods							Prevents the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event.<pre><code>event.stopPropagation() → </code></pre>	https://api.jquery.com/event.stopPropagation/
+event.stopPropagation()	A			jQuery methods							Prevents the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event.<pre><code>event.stopPropagation() → undefined</code></pre>	https://api.jquery.com/event.stopPropagation/
 event stop propagation	R	event.stopPropagation()										
 event stoppropagation	R	event.stopPropagation()										
 event.stopPropagation	R	event.stopPropagation()										
@@ -862,7 +862,7 @@ jquery ajaxprefilter	R	jQuery.ajaxPrefilter()
 jQuery.ajaxPrefilter	R	jQuery.ajaxPrefilter()										
 jquery ajax	R	jQuery.ajax()										
 jQuery.ajax	R	jQuery.ajax()										
-jQuery.ajaxSetup()	A			jQuery methods							Set default values for future Ajax requests. Its use is not recommended.<pre><code>jQuery.ajaxSetup(options) → </code></pre>	https://api.jquery.com/jQuery.ajaxSetup/
+jQuery.ajaxSetup()	A			jQuery methods							Set default values for future Ajax requests. Its use is not recommended.<pre><code>jQuery.ajaxSetup(options) → undefined</code></pre>	https://api.jquery.com/jQuery.ajaxSetup/
 jquery ajax setup	R	jQuery.ajaxSetup()										
 jquery ajaxsetup	R	jQuery.ajaxSetup()										
 jQuery.ajaxSetup	R	jQuery.ajaxSetup()										
@@ -902,7 +902,7 @@ jquery	D								*[[jquery .jquery|.jquery]] A string containing the jQuery versi
 jQuery.each()	A			jQuery methods							A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.<pre><code>jQuery.each(array, callback) → Object\njQuery.each(object, callback) → Object</code></pre>	https://api.jquery.com/jQuery.each/
 jquery each	R	jQuery.each()										
 jQuery.each	R	jQuery.each()										
-jQuery.error()	A			jQuery methods							Takes a string and throws an exception containing it.<pre><code>jQuery.error(message) → </code></pre>	https://api.jquery.com/jQuery.error/
+jQuery.error()	A			jQuery methods							Takes a string and throws an exception containing it.<pre><code>jQuery.error(message) → undefined</code></pre>	https://api.jquery.com/jQuery.error/
 jquery error	R	jQuery.error()										
 jQuery.error	R	jQuery.error()										
 jQuery.escapeSelector()	A			jQuery methods							Escapes any character that has a special meaning in a CSS selector.<pre><code>jQuery.escapeSelector(selector) → Selector</code></pre>	https://api.jquery.com/jQuery.escapeSelector/
@@ -930,7 +930,7 @@ jQuery.getScript()	A			jQuery methods							Load a JavaScript file from the serv
 jquery get script	R	jQuery.getScript()										
 jquery getscript	R	jQuery.getScript()										
 jQuery.getScript	R	jQuery.getScript()										
-jQuery.globalEval()	A			jQuery methods							Execute some JavaScript code globally.<pre><code>jQuery.globalEval(code) → </code></pre>	https://api.jquery.com/jQuery.globalEval/
+jQuery.globalEval()	A			jQuery methods							Execute some JavaScript code globally.<pre><code>jQuery.globalEval(code) → undefined</code></pre>	https://api.jquery.com/jQuery.globalEval/
 jquery global eval	R	jQuery.globalEval()										
 jquery globaleval	R	jQuery.globalEval()										
 jQuery.globalEval	R	jQuery.globalEval()										
@@ -1008,7 +1008,7 @@ jQuery.parseHTML()	A			jQuery methods							Parses a string into an array of DOM
 jquery parse html	R	jQuery.parseHTML()										
 jquery parsehtml	R	jQuery.parseHTML()										
 jQuery.parseHTML	R	jQuery.parseHTML()										
-jQuery.parseJSON()	A			jQuery methods							Takes a well-formed JSON string and returns the resulting JavaScript value.<pre><code>jQuery.parseJSON(json) → </code></pre>	https://api.jquery.com/jQuery.parseJSON/
+jQuery.parseJSON()	A			jQuery methods							Takes a well-formed JSON string and returns the resulting JavaScript value.<pre><code>jQuery.parseJSON(json) → String|Number|Object|Array|Boolean</code></pre>	https://api.jquery.com/jQuery.parseJSON/
 jquery parse json	R	jQuery.parseJSON()										
 jquery parsejson	R	jQuery.parseJSON()										
 jQuery.parseJSON	R	jQuery.parseJSON()										
@@ -1612,7 +1612,7 @@ progress	R	deferred.progress()
 .promise	D								*[[jquery .promise()|.promise()]]  Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.\n*[[jquery deferred.promise()|deferred.promise()]]  Return a Deferred's Promise object.			
 promise()	D								*[[jquery .promise()|.promise()]]  Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.\n*[[jquery deferred.promise()|deferred.promise()]]  Return a Deferred's Promise object.			
 promise	D								*[[jquery .promise()|.promise()]]  Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.\n*[[jquery deferred.promise()|deferred.promise()]]  Return a Deferred's Promise object.			
-.prop()	A			jQuery methods							Get the value of a property for the first element in the set of matched elements.<pre><code>$(selector).prop(propertyName) → </code></pre>\nSet one or more properties for the set of matched elements.<pre><code>$(selector).prop(propertyName, value) → jQuery\n$(selector).prop(properties) → jQuery\n$(selector).prop(propertyName, function) → jQuery</code></pre>	https://api.jquery.com/prop/
+.prop()	A			jQuery methods							Get the value of a property for the first element in the set of matched elements.<pre><code>$(selector).prop(propertyName) → Anything</code></pre>\nSet one or more properties for the set of matched elements.<pre><code>$(selector).prop(propertyName, value) → jQuery\n$(selector).prop(properties) → jQuery\n$(selector).prop(propertyName, function) → jQuery</code></pre>	https://api.jquery.com/prop/
 .prop	R	.prop()										
 prop()	R	.prop()										
 prop	R	.prop()										
@@ -1964,7 +1964,7 @@ unload	R	.unload()
 .unwrap	R	.unwrap()										
 unwrap()	R	.unwrap()										
 unwrap	R	.unwrap()										
-.val()	A			jQuery methods							Get the current value of the first element in the set of matched elements.<pre><code>$(selector).val() → </code></pre>\nSet the value of each element in the set of matched elements.<pre><code>$(selector).val(value) → jQuery\n$(selector).val(function) → jQuery</code></pre>	https://api.jquery.com/val/
+.val()	A			jQuery methods							Get the current value of the first element in the set of matched elements.<pre><code>$(selector).val() → String|Number|Array</code></pre>\nSet the value of each element in the set of matched elements.<pre><code>$(selector).val(value) → jQuery\n$(selector).val(function) → jQuery</code></pre>	https://api.jquery.com/val/
 .val	R	.val()										
 val()	R	.val()										
 val	R	.val()										
