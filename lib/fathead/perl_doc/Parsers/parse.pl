@@ -9,7 +9,7 @@ binmode STDERR, ":utf8";
 use Cwd qw( getcwd );
 use DBI;
 use File::Spec;
-use IO::All;
+use IO::All -utf8;
 use Mojo::DOM;
 use Moo;
 use Text::CSV_XS;
