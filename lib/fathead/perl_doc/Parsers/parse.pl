@@ -286,6 +286,7 @@ sub article {
 sub entry {
     my ( $self, %article ) = @_;
     my ($title, $text, $url, $related) = @article{qw(title text url related)};
+    $text =~ s{\\}{\\\\}g;
     my $related_text = '';
     # TODO: Find out how the related links should *actually* be formatted
     if (defined $related && @$related) {
