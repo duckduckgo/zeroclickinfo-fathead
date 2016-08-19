@@ -256,6 +256,10 @@ sub alias {
 
 sub insert_alias {
     my ($self, $new, $orig) = @_;
+    my $fh = $self->output_txt;
+    return printf $fh "%s\tR\t%s\t\t\t\t\t\t\t\t\t\t\n",
+        $new,
+        $orig;
     $self->insert({
         title => $new,
         type  => 'R',
@@ -269,6 +273,10 @@ sub disambiguation {
         "*[[$_->{link}]], $_->{description}.";
     } @{ $disambiguation->{disambiguations} };
     my $dtext = join '\n', @disambiguations;
+    my $fh = $self->output_txt;
+    return printf $fh "%s\tD\t\t\t\t\t\t\t\t%s\t\t\t\n",
+        $disambiguation->{title},
+        $dtext;
     $self->insert({
         type => 'D',
         title => $disambiguation->{title},
@@ -301,6 +309,13 @@ sub entry {
     }
     my $category_text = join '\n', @{$article{categories} || []};
     return warn "No text for '$title'" unless $text;
+    my $fh = $self->output_txt;
+    return printf $fh "%s\tA\t\t%s\t\t%s\t\t\t\t\t\t%s\t%s\n",
+        $title,
+        $category_text,
+        $related_text,
+        $text,
+        $url;
     $self->insert({
         abstract => $text,
         categories => $category_text,
