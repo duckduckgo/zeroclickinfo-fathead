@@ -75,12 +75,12 @@ sub _build_aliases {
     return \%aliases;
 }
 
-has redirect => (
+has force_redirect => (
     is => 'ro',
     builder => 1,
 );
 
-sub _build_redirect {
+sub _build_force_redirect {
     my $csv = Text::CSV_XS->new({
             binary => 1,
             sep => '>',
@@ -88,13 +88,13 @@ sub _build_redirect {
     });
     open my $fh, "<", "redirect.txt"
         or (warn "No external redirect file detected" and return {});
-    my %redirects;
+    my %force_redirects;
     while (my $row = $csv->getline($fh)) {
         my ($from, $to, undef) = @$row;
-        $redirects{$from} = $to;
+        $force_redirects{$from} = $to;
     }
     close $fh;
-    return \%redirects;
+    return \%force_redirects;
 }
 
 has related => ( is => 'lazy' );
@@ -391,7 +391,7 @@ sub ul_list_parser {
         aliases => sub { () },
         uls => [],
         is_empty => sub { !($_[0]->find('p')->each) },
-        redirect => sub { undef },
+        force_redirect => sub { undef },
         disambiguation => sub { undef },
         related => sub { [] },
         categories => sub { [] },
@@ -444,7 +444,7 @@ sub ul_list_parser {
                     push @disambiguations, $disambiguation;
                     next;
                 }
-                if (my $redir = $options{redirect}->($item, $article)) {
+                if (my $redir = $options{force_redirect}->($item, $article)) {
                     @aliases = (@aliases, make_aliases($redir, $title));
                     next;
                 }
@@ -605,7 +605,7 @@ sub parse_glossary_definitions {
             );
         },
         uls   => sub { $_[0]->find('h2 ~ ul')->each },
-        redirect => sub {
+        force_redirect => sub {
             return undef unless $_[1]->{text} =~ qr{^<p>See <b>([^<]+)</b>\.</p>$};
             return $1;
         },
@@ -922,8 +922,8 @@ sub resolve_articles {
     my ($self) = @_;
     my %articles = %{$self->articles};
     foreach my $article (values %articles) {
-        if (my $redirect = $self->redirect->{$article->{title}}) {
-            $self->alias($article->{title}, $redirect);
+        if (my $force_redirect = $self->force_redirect->{$article->{title}}) {
+            $self->alias($article->{title}, $force_redirect);
             next;
         }
         my $dom = Mojo::DOM->new->parse($article->{text});
