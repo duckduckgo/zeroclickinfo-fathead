@@ -107,6 +107,7 @@ sub _build_related {
 
 has tsv => ( is => 'lazy' );
 sub _build_tsv {
+    return undef;
     my $dbh = DBI->connect ("dbi:CSV:", undef, undef, {
         f_encoding       => "UTF-8",
         csv_sep_char     => "\t",
