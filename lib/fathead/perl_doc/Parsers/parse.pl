@@ -107,7 +107,6 @@ sub _build_related {
 
 has tsv => ( is => 'lazy' );
 sub _build_tsv {
-    return undef;
     my $dbh = DBI->connect ("dbi:CSV:", undef, undef, {
         f_encoding       => "UTF-8",
         csv_sep_char     => "\t",
@@ -256,10 +255,6 @@ sub alias {
 
 sub insert_alias {
     my ($self, $new, $orig) = @_;
-    my $fh = $self->output_txt;
-    return printf $fh "%s\tR\t%s\t\t\t\t\t\t\t\t\t\t\n",
-        $new,
-        $orig;
     $self->insert({
         title => $new,
         type  => 'R',
@@ -267,16 +262,23 @@ sub insert_alias {
     });
 }
 
+
+has disambiguations => (
+    is => 'ro',
+    default => sub { {} },
+);
+
 sub disambiguation {
+    my ($self, $disambiguation) = @_;
+    $self->disambiguations->{$disambiguation->{title}} = $disambiguation;
+}
+
+sub insert_disambiguation {
     my ($self, $disambiguation) = @_;
     my @disambiguations = map {
         "*[[$_->{link}]], $_->{description}.";
     } @{ $disambiguation->{disambiguations} };
     my $dtext = join '\n', @disambiguations;
-    my $fh = $self->output_txt;
-    return printf $fh "%s\tD\t\t\t\t\t\t\t\t%s\t\t\t\n",
-        $disambiguation->{title},
-        $dtext;
     $self->insert({
         type => 'D',
         title => $disambiguation->{title},
@@ -309,13 +311,6 @@ sub entry {
     }
     my $category_text = join '\n', @{$article{categories} || []};
     return warn "No text for '$title'" unless $text;
-    my $fh = $self->output_txt;
-    return printf $fh "%s\tA\t\t%s\t\t%s\t\t\t\t\t\t%s\t%s\n",
-        $title,
-        $category_text,
-        $related_text,
-        $text,
-        $url;
     $self->insert({
         abstract => $text,
         categories => $category_text,
@@ -359,6 +354,12 @@ sub get_anchors {
     my ( $self, $dom ) = @_;
     my $articles;
 }
+
+sub retrieve_entry {
+    my ($self, $title) = @_;
+    return $self->articles->{$title} // $self->disambiguations->{$title};
+}
+
 
 #######################################################################
 #                               Helpers                               #
@@ -890,14 +891,11 @@ sub parse_page {
     }
 }
 
-sub resolve_alias {
-    my ($self, $title) = @_;
-    my $to = $self->select(title => $title);
-    while ($to->{type} eq 'R') {
-        $to = $self->select(title => $to->{alias});
-    }
-    return $to;
+sub text_for_disambiguation {
+    my ($abstract) = @_;
+    return $abstract;
 }
+
 
 sub resolve_aliases {
     my ($self) = @_;
@@ -905,15 +903,17 @@ sub resolve_aliases {
     while (my ($alias, $to) = each %aliases) {
         my @to = @$to;
         @to == 1 and $self->insert_alias($alias, $to[0]) and next;
-        next;
-        my @articles = map { $self->resolve_alias($_) } @to;
+        my @articles = map { $self->retrieve_entry($_) } @to;
         scalar (uniq map { $_->{title} } @articles ) == 1
             and $self->insert_alias($alias, $to[0]) and next;
         $self->disambiguation({
             title => $alias,
-            disambiguations => [map {
-                { link => $_->{title}, description => $_->{abstract} },
-            } @articles],
+            disambiguations => [
+                map { {
+                    link => $_->{title},
+                    description => text_for_disambiguation($_->{text}),
+                } } @articles
+            ],
         });
     }
 }
@@ -938,6 +938,14 @@ sub resolve_articles {
     }
 }
 
+
+sub resolve_disambiguations {
+    my ($self) = @_;
+    foreach my $d (values %{$self->disambiguations}) {
+        $self->insert_disambiguation($d);
+    }
+}
+
 sub parse {
     my ( $self ) = @_;
     foreach my $index ( sort keys %{$self->indices} ) {
@@ -948,6 +956,7 @@ sub parse {
 
     $self->resolve_articles;
     $self->resolve_aliases;
+    $self->resolve_disambiguations;
 }
 
 main->new->parse;
