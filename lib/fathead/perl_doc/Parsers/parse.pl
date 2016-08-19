@@ -126,6 +126,12 @@ sub _build_tsv {
     return $dbh;
 }
 
+has output_txt => ( is => 'lazy' );
+sub _build_output_txt {
+    open my $fh, '>:encoding(UTF-8)', 'output.txt';
+    return $fh;
+};
+
 sub dom_for_file { Mojo::DOM->new( io($_[0])->all ); }
 
 sub doc_fullpath {
