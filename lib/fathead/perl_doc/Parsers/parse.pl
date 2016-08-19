@@ -859,9 +859,6 @@ sub dom_for_parsing {
     my $dom = dom_for_file($page);
     normalize_dom_links($url, $dom);
     $dom->find('strong')->map('strip');
-    # NOTE: Once (external) parser issue is fixed, allow links in
-    # pre/code blocks
-    $dom->find('pre a, code a')->map(tag => 'span');
     return $dom;
 }
 
