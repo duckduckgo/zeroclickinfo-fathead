@@ -1,0 +1,3 @@
+for (function)     > For Loops
+foreach (function) > Foreach Loops
+while (function)   > For Loops
