@@ -436,18 +436,10 @@ sub parse_initial_value {
         if ( $a && $a->text =~ /Initial value/ ) {
             my $td = $tr->at('td');
             if ( $td->at('ul') ) {
-                my $ul = $td->at('ul');
-
-                #get text not in ul
-                $initial_value .= $td->at('ul')->remove->all_text;
-
-                #Take the <ul> as it is but remove <a> and <code> from <li>s
-                $ul->find('li')->map(
-                    sub {
-                        $_->content( $_->all_text );
-                    }
-                );
-                $initial_value .= $ul->to_string;
+                for my $element ( $td->find('code, a, br')->each ) {
+                    $element->replace( $element->all_text );
+                }
+                $initial_value .= $td->content;
             }
             else {
                 $initial_value = trim( $td->all_text );
