@@ -212,7 +212,7 @@ sub make_and_write_article {
     say '';
     say "TITLE: $title";
     say "LINK: $link";
-    say "DESCRIPTION: $description"       if $description;
+    say "DESCRIPTION: $description" if $description;
     my $title_clean = clean_string($title);
     my @data        = join "\t",
       (
@@ -436,15 +436,10 @@ sub parse_initial_value {
         if ( $a && $a->text =~ /Initial value/ ) {
             my $td = $tr->at('td');
             if ( $td->at('ul') ) {
-                my $ul = $td->at('ul');
-
-                #get text not in ul
-                $initial_value .= $td->at('ul')->remove->all_text;
-
-                #add new line after each li text so that it appears correctly
-                for my $li ( $ul->find('li')->each ) {
-                    $initial_value .= $li->all_text . '\\n ';
+                for my $element ( $td->find('code, a, br')->each ) {
+                    $element->replace( $element->all_text );
                 }
+                $initial_value .= $td->content;
             }
             else {
                 $initial_value = trim( $td->all_text );
