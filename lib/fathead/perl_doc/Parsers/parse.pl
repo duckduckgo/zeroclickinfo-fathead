@@ -282,7 +282,8 @@ sub insert_disambiguation {
     $self->insert({
         type => 'D',
         title => $disambiguation->{title},
-        disambiguation => $dtext,
+        # TODO: Remove the escaping when the DB is fixed.
+        disambiguation => $dtext =~ s{\\}{\\\\}gr,
     });
 }
 
