@@ -1,0 +1,3 @@
+oo,  Where can I learn about object-oriented Perl programming?
+oop, Where can I learn about object-oriented Perl programming?
+for each, foreach loops
