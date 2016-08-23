@@ -196,6 +196,7 @@ BluetoothDevice	A										The BluetoothDevice interface of the Web Bluetooth AP
 adData	A										<pre><code>var instanceOfBluetoothAdData = instanceOfBluetoothDevice.adData</code></pre>The BluetoothDevice.adData read-only property returns instance of BluetoothAdvertisingData containing the most recent advertising data received for the device.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice/adData
 connectGATT()	A										<pre><code>instanceOfBluetoothDevice.connectGATT().then(function(BluetoothGATTRemoteServer) { ... })</code></pre>The BluetoothDevice.connectGATT() method returns a Promise that resolves to an instance of BluetoothGATTRemoteServer.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice/connectGATT
 deviceClass	A										<pre><code>var deviceClass = instanceOfBluetoothDevice.deviceClass</code></pre>The BluetoothDevice.deviceClass read-only property returns a number representing the Bluetooth devices "Class of Device".	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice/deviceClass
+BluetoothDevice.gatt	A										<pre><code>var gattServer = instanceOfBluetoothDevice.gatt</code></pre>The BluetoothDevice.gatt read-only property returns a reference to the device's BluetoothRemoteGATTServer or null if the device is disconnected.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice/gatt
 gattServer	A										<pre><code>var gattServer = instanceOfBluetoothDevice.gattServer</code></pre>The BluetoothDevice.gattServer read-only property returns a reference to the device's GATT server or null if the device is disconnected.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice/gattServer
 id	A										<pre><code>var id = instanceOfBluetoothDevice.id</code></pre>The BluetoothDevice.id read-only property returns a DOMString that uniquely identifies a device.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice/id
 BluetoothDevice.name	A										<pre><code>var name = instanceOfBluetoothDevice.name</code></pre>The BluetoothDevice.name read-only property returns a DOMString that provides a human-readable name for the device.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice/name
@@ -231,6 +232,7 @@ BluetoothRemoteGATTCharacteristic.uuid	A										<pre><code>var uuid = Bluetoot
 BluetoothRemoteGATTCharacteristic.value	A										<pre><code>var value = BluetoothRemoteGATTCharacteristic.value</code></pre>The BluetoothRemoteGATTCharacteristic.value read-only property returns currently cached characteristic value. This value gets updated when the value of the characteristic is read or updated via a notification or indication.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/value
 BluetoothRemoteGATTCharacteristic.writeValue()	A										<pre><code>BluetoothRemoteGATTCharacteristic.writeValue(value).then(function() { ... })</code></pre>The BluetoothRemoteGATTCharacteristic.writeValue() method sets the value property to the bytes contained in an ArrayBuffer and returns a Promise.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/writeValue
 BluetoothRemoteGATTServer	A										The BluetoothRemoteGATTServer interface of the Web Bluetooth API represents a GATT Server on a remote device.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTServer
+BluetoothRemoteGATTServer.connect()	A										<pre><code>BluetoothRemoteGATTServer.connect()\n&#160; .then(function(bluetoothRemoteGATTServer) { ... })</code></pre>The BluetoothRemoteGATTServer.connect() method causes the script execution environment to disconnect from this.device.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTServer/connect
 BluetoothRemoteGATTServer.connected	A										<pre><code>var connected = BluetoothRemoteGATTServer.connected</code></pre>The BluetoothRemoteGATTServer.connected read-only property returns a boolean value that returns true while this script execution environment is connected to this.device. It can be false while the user agent is physically connected.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTServer/connected
 BluetoothRemoteGATTServer.device	A										<pre><code>var device = BluetoothRemoteGATTServer.device</code></pre>The BluetoothRemoteGATTServer.device read-only property returns a reference to the BluetoothDevice running the server.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTServer/device
 BluetoothRemoteGATTServer.disconnect()	A										<pre><code>BluetoothRemoteGATTServer.disconnect()</code></pre>The BluetoothRemoteGATTServer.disconnect() method causes the script execution environment to disconnect from this.device.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTServer/disconnect
@@ -1588,8 +1590,8 @@ persistentState	A										<pre><code>var persistentState = mediaSystemConfigura
 videoCapabilities	A										<pre><code>var videoCapabilities[{contentType: 'contentType', robustness:'robustness'}] = mediaSystemConfiguration.videoCapabilities;</code></pre>The MediaKeySystemConfiguration.videoCapabilities read-only property returns an array of supported video type and capability pairs.	https://developer.mozilla.org/en-US/docs/Web/API/MediaKeySystemConfiguration/videoCapabilities
 MediaQueryList	A										A MediaQueryList object maintains a list of media queries on a document, and handles sending notifications to listeners when the media queries on the document change.	https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList
 MediaQueryListListener	A										A MediaQueryList object maintains a list of media queries on a document, and handles sending notifications to listeners when the media queries on the document change.	https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryListListener
-MediaRecorder	A										The MediaRecorder interface of the MediaRecorder API provides functionality to easily capture media. It is created by the invocation of the MediaRecorder() constructor.	https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
-canRecordMimeType	A										<pre><code>var canRecord = MediaRecorder.isMimeTypeSupported()</code></pre>The MediaRecorder.isMimeTypeSupported() method returns a DOMString that indicates whether the value of the argument is one the user agent can record. isMimeTypeSupported	https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/canRecordMimeType
+MediaRecorder	A										The MediaRecorder interface of the MediaRecorder API provides functionality to easily record media. It is created by the invocation of the MediaRecorder() constructor.	https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
+Media.Recorder.isMimeTypeSupported	A										<pre><code>var canRecord = MediaRecorder.isMimeTypeSupported(mimeType)</code></pre>The MediaRecorder.isMimeTypeSupported() method returns a true that indicates whether the value of the argument is one the user agent can record. isMimeTypeSupported	https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/canRecordMimeType
 MediaRecorder.MediaRecorder()	A										<pre><code>var m = new MediaRecorder(stream, options);</code></pre>The MediaRecorder() constructor creates a new MediaRecorder object.	https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/MediaRecorder
 MediaRecorder.mimeType	A										<pre><code>var mimeType&#160;= MediaRecorder.mimeType</code></pre>The MediaRecorder.mimeType read-only property returns the mime type that was selected as the recording container when it was created.	https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/mimeType
 MediaRecorder.ondataavailable	A										<pre><code>MediaRecorder.ondataavailable = function(event) { ... }\nMediaRecorder.addEventListener('dataavailable', function(event) { ... })\n</code></pre>The MediaRecorder.ondataavailable event handler (part of the MediaRecorder API) handles the dataavailable event, allowing you to run code in response to Blob data being made available for use.	https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/ondataavailable
@@ -1607,7 +1609,7 @@ MediaRecorder.state	A										<pre><code>var state&#160;= MediaRecorder.state</
 MediaRecorder.stop()	A										<pre><code> MediaRecorder.stop()</code></pre>The MediaRecorder.stop() method (part of the MediaRecorder API) is used to stop media capture.	https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/stop
 MediaRecorder.stream	A										<pre><code>var stream&#160;= MediaRecorder.stream</code></pre>The MediaRecorder.stream read-only property returns the stream that was passed into the MediaRecorder() constructor when the MediaRecorder was created.	https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/stream
 MediaRecorder API	A										The MediaRecorder API (MediaStream Recording) aims to provide a really simple mechanism by which developers can record media streams from the user's input devices and instantly use them in web apps, rather than having to perform manual encoding operations on raw PCM data, etc., which would be required when using Navigator.getUserMedia() alone.	https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder_API
-Using the MediaRecorder API	A										The MediaRecorder API is a simple construct, used with Navigator.getUserMedia(), which provides an easy way of recording media streams from the user's input devices and instantly using them in web apps, rather than having to perform manual encoding operations on raw PCM data, etc., which would be required when using getUserMedia() alone. This article aims to provide a basic guide on how to use MediaRecorder.	https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder_API/Using_the_MediaRecorder_API
+Using the MediaRecorder API	A										The MediaRecorder API is a simple construct to record media streams. When used with Navigator.getUserMedia(), it provides an easy way of recording from the user's input devices and instantly using the result in web apps. Both audio and video may be recorded, separately or together. This article aims to provide a basic guide on how to use MediaRecorder.	https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder_API/Using_the_MediaRecorder_API
 MediaSource	A										The MediaSource interface represents a source of media data for an HTMLMediaElement object. A MediaSource object can be attached to a HTMLMediaElement to be played in the user agent.	https://developer.mozilla.org/en-US/docs/Web/API/MediaSource
 MediaSource.activeSourceBuffers	A										<pre><code>var myActiveSourceBuffers = mediaSource.activeSourceBuffers;</code></pre>The activeSourceBuffers read-only property of the MediaSource interface returns a SourceBufferList object containing a subset of the SourceBuffer objects contained within SourceBuffers — the list of objects providing the selected video track,  enabled audio tracks, and shown/hidden text tracks.	https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/activeSourceBuffers
 MediaSource.addSourceBuffer()	A										<pre><code>var sourceBuffer = mediaSource.addSourceBuffer(mimeType);</code></pre>The addSourceBuffer() method of the MediaSource interface creates a new SourceBuffer of the given MIME type and adds it to the MediaSource 's SourceBuffers list.	https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/addSourceBuffer
@@ -3351,7 +3353,7 @@ XMLHttpRequest.multipart	A										Is a boolean. This Gecko-only feature was re
 XMLHttpRequest.onreadystatechange	A										<pre><code>XMLHttpRequest.onreadystatechange = callback;</code></pre>An EventHandler that is called whenever the readyState attribute changes. The callback is called from the user interface thread. The XMLHttpRequest.onreadystatechange property contains the event handler to be called when the readystatechange event is fired, that is every time the readyState property of the XMLHttpRequest changes. The callback is called from the user interface thread.	https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/onreadystatechange
 XMLHttpRequest.open()	A										The XMLHttpRequest.open() method initializes a request. This method is to be used from JavaScript code; to initialize a request from native code, use openRequest() instead.	https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
 XMLHttpRequest.openRequest()	A										Initializes a request. This method is to be used from native code; to initialize a request from JavaScript code, use open() instead. See the documentation for open().	https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/openRequest
-XMLHttpRequest.overrideMimeType()	A										<pre><code>var newRequest = request.clone();</code></pre>The XMLHttpRequest.overrideMimeType() method overrides the MIME type returned by the server. This may be used, for example, to force a stream to be treated and parsed as text/xml, even if the server does not report it as such. This method must be called before send().	https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/overrideMimeType
+XMLHttpRequest.overrideMimeType()	A										<pre><code>// Needs content</code></pre>The XMLHttpRequest.overrideMimeType() method overrides the MIME type returned by the server. This may be used, for example, to force a stream to be treated and parsed as text/xml, even if the server does not report it as such. This method must be called before send().	https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/overrideMimeType
 XMLHttpRequest.readyState	A										The XMLHttpRequest.readyState property returns the state an XMLHttpRequest client is in. An XHR client exists in one of the following states:	https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
 XMLHttpRequest.response	A										The XMLHttpRequest.response property returns the response's body. It can be of the type ArrayBuffer, Blob, Document, JavaScript object, or a DOMString, depending of the value of XMLHttpRequest.responseType property. Value of response is null if the request is not complete or was not successful. However, if the value of responseType was set to "text" or the empty string, response can contain the partial text response while the request is still in the loading state.	https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
 XMLHttpRequest.responseText	A										The XMLHttpRequest.responseText property returns a DOMString that contains the response to the request as text, or null if the request was unsuccessful or has not yet been sent. The responseText property will have the partial response as it arrives even before the request is complete. If responseType is set to anything other than the empty string or "text", accessing responseText will throw InvalidStateError exception.	https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseText
@@ -3386,6 +3388,44 @@ Browser Differences	A										Netscape 7.x (all platforms) and Internet Explore
 Generating HTML	A										One common application of XSLT in the browser is to transform XML into HTML on the client. The second example will transform the input document (example2.xml), which again contains information about an article, into an HTML document.	https://developer.mozilla.org/en-US/docs/Web/API/XSLTProcessor/Generating_HTML
 Introduction	A										One noticeable trend in W3C standards has been the effort to separate content from style. This would allow the same style to be reused for multiple content, as well as simplify maintenance and allow a quick (only modify one file) way to change the look of content.	https://developer.mozilla.org/en-US/docs/Web/API/XSLTProcessor/Introduction
 XSL Transformations in Mozilla FAQ	A										Make sure the mime type for both source and stylesheet are set to an XML mimetype, namely text/xml or application/xml. The XSLT namespace is http://www.w3.org/1999/XSL/Transform. Use the ?xml-stylesheet ? processing instruction instead of the non-standard xml:stylesheet. The most common cause is the MIME type handling. To find out which MIME type your server sends, look at Page Info, use extensions like LiveHTTPHeaders or a download manager like wget. Mozilla won't load XSLT stylesheets from a different domain for security reasons.	https://developer.mozilla.org/en-US/docs/Web/API/XSLTProcessor/XSL_Transformations_in_Mozilla_FAQ
+JavaScript error reference	A										Errors, errors everywhere.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors
+Warning: -file- is being assigned a //# sourceMappingURL, but already has one	A										A source map has been specified more than once for a given JavaScript source.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Already_has_pragma
+TypeError: invalid Array.prototype.sort argument	A										<pre><code>Invalid Cases:\nValid Cases:\n[1, 3, 2].sort();   // [1, 2, 3]\n\n\nvar cmp = { asc: (x, y) => x >= y, dsc : (x, y) => x <= y };\n[1, 3, 2].sort(cmp[this.key || 'asc']); // [1, 2, 3]\nValid Cases:\n[1, 3, 2].sort();   // [1, 2, 3]\n\n\nvar cmp = { asc: (x, y) => x >= y, dsc : (x, y) => x <= y };\n[1, 3, 2].sort(cmp[this.key || 'asc']); // [1, 2, 3]</code></pre>The argument of Array.prototype.sort() is expected to be either undefined or a function which compares its operands.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Array_sort_argument
+SyntaxError: "x" is not a legal ECMA-262 octal constant	A										Decimal literals can start with a zero (0) followed by another decimal digit, but If all digits after the leading 0 are smaller than 8, the number is interpreted as an octal number. Because this is not the case with 08 and 09, JavaScript warns about it.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Bad_octal
+RangeError: radix must be an integer	A										<pre><code>Invalid Cases:\nValid Cases:\n(42).toString(2);     // "101010" (binary)\n(13).toString(8);     // "15"     (octal)\n(0x42).toString(10);  // "66"     (decimal)\n(100000).toString(16) // "186a0"  (hexadecimal)\n\nValid Cases:\n(42).toString(2);     // "101010" (binary)\n(13).toString(8);     // "15"     (octal)\n(0x42).toString(10);  // "66"     (decimal)\n(100000).toString(16) // "186a0"  (hexadecimal)\n</code></pre>The optional radix parameter with the Number.prototype.toString() method has been used. This parameter must be an integer (a number) between 2 and 36 specifying the base of the number system to be used for representing numeric values.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Bad_radix
+SyntaxError: return not in function	A										A return or yield statement is called outside of a function. Maybe there are missing curly brackets somewhere? The return and yield statements must be in a function, because they end (or pause and resume) function execution and specify a value to be returned to the function caller.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Bad_return_or_yield
+TypeError: property "x" is non-configurable and can't be deleted	A										It was attempted to delete a property, but that property is non-configurable. The configurable attribute controls whether the property can be deleted from the object and whether its attributes (other than writable) can be changed.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cant_delete
+ReferenceError: deprecated caller or arguments usage	A										In strict mode, the Function.caller or Function.arguments properties are used and shouldn't be. They are deprecated, because they leak the function caller, are non-standard, hard to optimize and potentially a performance-harmful feature.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Deprecated_caller_or_arguments_usage
+SyntaxError: Using //@ to indicate sourceURL pragmas is deprecated. Use //# instead	A										There is a deprecated source map syntax in a JavaScript source.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Deprecated_source_map_pragma
+SyntaxError: test for equality (==) mistyped as assignment (=)?	A										There was an assignment (=) when you would normally expect a test for equality (==). To help debugging, JavaScript (with strict warnings enabled) warns about this pattern.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Equal_as_assign
+RangeError: invalid array length	A										<pre><code>Invalid Cases:\nValid Cases:\n[ Math.pow(2, 40) ]                     // [ 1099511627776 ]\n[ -1 ]                                  // [ -1 ]\nnew ArrayBuffer(Math.pow(2, 32) - 1)\nnew ArrayBuffer(0)\n\nlet a = [];\na.length = Math.max(0, a.length - 1);\n\nlet b = new Array(Math.pow(2, 32) - 1);\nb.length = Math.min(0xffffffff, b.length + 1);   \n\n// 0xffffffff is the hexadecimal notation for 2^32 - 1\n// which can also be written as (-1 >>> 0)\n\nValid Cases:\n[ Math.pow(2, 40) ]                     // [ 1099511627776 ]\n[ -1 ]                                  // [ -1 ]\nnew ArrayBuffer(Math.pow(2, 32) - 1)\nnew ArrayBuffer(0)\n\nlet a = [];\na.length = Math.max(0, a.length - 1);\n\nlet b = new Array(Math.pow(2, 32) - 1);\nb.length = Math.min(0xffffffff, b.length + 1);   \n\n// 0xffffffff is the hexadecimal notation for 2^32 - 1\n// which can also be written as (-1 >>> 0)\n</code></pre>An invalid array length might appear in these situations:	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_array_length
+ReferenceError: invalid assignment left-hand side	A										There was an unexpected assignment somewhere. This might be due to a mismatch of a assignment operator and a comparison operator, for example. While a single "=" sign assigns a value to a variable, the "==" or "===" operators compare a value.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_assignment_left-hand_side
+SyntaxError: JSON.parse: bad parsing	A										JSON.parse() parses a string as JSON. This string has to be valid JSON and will throw this error if incorrect syntax was encountered.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/JSON_bad_parse
+SyntaxError: Malformed formal parameter	A										<pre><code>Invalid Cases:\nValid Cases:\nvar f = Function("x, y", "return x + y;");  // correctly punctuated\n\nvar f = Function("x", "return x;");\n\n// if you can, avoid using Function - this is much faster\nvar f = function (x) { return x; };\n\nValid Cases:\nvar f = Function("x, y", "return x + y;");  // correctly punctuated\n\nvar f = Function("x", "return x;");\n\n// if you can, avoid using Function - this is much faster\nvar f = function (x) { return x; };\n</code></pre>There is a Function() constructor with at least two arguments passed in the code. The last argument is the source code for the new function you're creating. All the rest make up your new function's argument list.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Malformed_formal_parameter
+SyntaxError: missing ] after element list	A										There is an error with the array initializer syntax somewhere. Likely there is a closing bracket ("]") or a comma (",") missing.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Missing_bracket_after_list
+SyntaxError: missing } after property list	A										There is a mistake in the object initializer syntax somewhere. Might be in fact a missing curly bracket, but could also be a missing comma, for example. Also check if any closing curly brackets or parenthesis are in the correct order. Indenting or formatting the code a bit nicer might also help you to see through the jungle.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Missing_curly_after_property_list
+SyntaxError: missing ) after argument list	A										There is an error with how a function is called. This might be a typo, a missing operator, or an unescaped string, for example.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Missing_parenthesis_after_argument_list
+SyntaxError: missing ; before statement	A										There is a semicolon (;) missing somewhere. JavaScript statements must be terminated with semicolons. Some of them are affected by automatic semicolon insertion (ASI), but in this case you need to provide a semicolon, so that JavaScript can parse the source code correctly.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Missing_semicolon_before_statement
+TypeError: More arguments needed	A										There is an error with how a function is called. More arguments need to be provided.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/More_arguments_needed
+RangeError: repeat count must be non-negative	A										<pre><code>Invalid Cases:\nValid Cases:\n'abc'.repeat(0);    // ''\n'abc'.repeat(1);    // 'abc'\n'abc'.repeat(2);    // 'abcabc'\n'abc'.repeat(3.5);  // 'abcabcabc' (count will be converted to integer)\n\nValid Cases:\n'abc'.repeat(0);    // ''\n'abc'.repeat(1);    // 'abc'\n'abc'.repeat(2);    // 'abcabc'\n'abc'.repeat(3.5);  // 'abcabcabc' (count will be converted to integer)\n</code></pre>The String.prototype.repeat() method has been used. It has a count parameter indicating the number of times to repeat the string. It must be between 0 and less than positive Infinity and cannot be a negative number. The range of allowed values can be described like this: [0, +&#8734;).	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Negative_repetition_count
+RangeError: argument is not a valid code point	A										<pre><code>Invalid Cases:\nValid Cases:\nString.fromCodePoint(42);       // "*"\nString.fromCodePoint(65, 90);   // "AZ"\nString.fromCodePoint(0x404);    // "\u0404"\nString.fromCodePoint(0x2F804);  // "\uD87E\uDC04"\nString.fromCodePoint(194564);   // "\uD87E\uDC04"\nString.fromCodePoint(0x1D306, 0x61, 0x1D307) // "\uD834\uDF06a\uD834\uDF07"\n\nValid Cases:\nString.fromCodePoint(42);       // "*"\nString.fromCodePoint(65, 90);   // "AZ"\nString.fromCodePoint(0x404);    // "\u0404"\nString.fromCodePoint(0x2F804);  // "\uD87E\uDC04"\nString.fromCodePoint(194564);   // "\uD87E\uDC04"\nString.fromCodePoint(0x1D306, 0x61, 0x1D307) // "\uD834\uDF06a\uD834\uDF07"\n</code></pre>The String.fromCodePoint() method accepts valid code points only.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_codepoint
+TypeError: "x" is not a constructor	A										<pre><code>Invalid Cases:\n\n</code></pre>There was an attempt to use an object or a variable as a constructor, but that object or variable is not a constructor. See constructor or the new operator for more information on what a constructor is.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_constructor
+TypeError: "x" is not a function	A										It was attempted to call a value like a function, but the value is not actually a function. Some code expects you to provide a function, but that didn't happen.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_function
+ReferenceError: "x" is not defined	A										There is a non-existent variable referenced somewhere. This variable needs to be declared, or you need make sure it is available in your current script or scope.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_defined
+TypeError: "x" has no properties	A										Both, null and undefined, have no properties you could access.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/No_properties
+RangeError: precision is out of range	A										<pre><code>Invalid Cases:\nValid Cases:\n77.1234.toExponential(4); // 7.7123e+1\n77.1234.toExponential(2); // 7.71e+1\n\n2.34.toFixed(1); // 2.3\n2.35.toFixed(1); // 2.4 (note that it rounds up in this case)\n\n5.123456.toPrecision(5); // 5.1235\n5.123456.toPrecision(2); // 5.1\n5.123456.toPrecision(1); // 5\n\nValid Cases:\n77.1234.toExponential(4); // 7.7123e+1\n77.1234.toExponential(2); // 7.71e+1\n\n2.34.toFixed(1); // 2.3\n2.35.toFixed(1); // 2.4 (note that it rounds up in this case)\n\n5.123456.toPrecision(5); // 5.1235\n5.123456.toPrecision(2); // 5.1\n5.123456.toPrecision(1); // 5\n</code></pre>There was an out of range precision argument in one of these methods:	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Precision_range
+Error: Permission denied to access property "x"	A										There was attempt to access an object for which you have no permission. This is likely an &lt;iframe&gt; element loaded from a different domain for which you violated the same-origin policy.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Property_access_denied
+TypeError: "x" is read-only	A										<pre><code>Invalid Cases:\nValid Cases:\n"use strict";\nvar obj = Object.freeze({name: "Score", points: 157});\nobj = {name: obj.name, points: 0};   // replacing it with a new object works\n\n"use strict";\nvar LUNG_COUNT = 2;  // a `var` works, because it's not read-only\nLUNG_COUNT = 3;  // ok (anatomically unlikely, though)\n\nValid Cases:\n"use strict";\nvar obj = Object.freeze({name: "Score", points: 157});\nobj = {name: obj.name, points: 0};   // replacing it with a new object works\n\n"use strict";\nvar LUNG_COUNT = 2;  // a `var` works, because it's not read-only\nLUNG_COUNT = 3;  // ok (anatomically unlikely, though)\n</code></pre>The global variable or object property that was assigned to is a read-only property. (Technically, it is a non-writable data property.)	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Read-only
+SyntaxError: redeclaration of formal parameter "x"	A										The same variable name occurs as a function parameter and is then redeclared using a let assignment in a function body again. Redeclaring the same variable within the same function or block scope using let is not allowed in JavaScript.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Redeclared_parameter
+RangeError: repeat count must be less than infinity	A										<pre><code>Invalid Cases:\nValid Cases:\n'abc'.repeat(0);    // ''\n'abc'.repeat(1);    // 'abc'\n'abc'.repeat(2);    // 'abcabc'\n'abc'.repeat(3.5);  // 'abcabcabc' (count will be converted to integer)\n\nValid Cases:\n'abc'.repeat(0);    // ''\n'abc'.repeat(1);    // 'abc'\n'abc'.repeat(2);    // 'abcabc'\n'abc'.repeat(3.5);  // 'abcabcabc' (count will be converted to integer)\n</code></pre>The String.prototype.repeat() method has been used. It has a count parameter indicating the number of times to repeat the string. It must be between 0 and less than positive Infinity and cannot be a negative number. The range of allowed values can be described like this: [0, +&#8734;).	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Resulting_string_too_large
+Warning: unreachable code after return statement	A										<pre><code>Invalid Cases:\nValid Cases:\nfunction f() {\n  var x = 3;\n  x += 4;\n  x -= 3;\n  return x;  // OK: return after all other statements\n}\n\nfunction f() {\n  return 3 + 4  // OK: semicolon-less return with expression on the same line\n}\n\nValid Cases:\nfunction f() {\n  var x = 3;\n  x += 4;\n  x -= 3;\n  return x;  // OK: return after all other statements\n}\n\nfunction f() {\n  return 3 + 4  // OK: semicolon-less return with expression on the same line\n}\n</code></pre>Unreachable code after a return statement might occur in these situations:	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Stmt_after_return
+InternalError: too much recursion	A										A function that calls itself is called a recursive function. In some ways, recursion is analogous to a loop. Both execute the same code multiple times, and both require a condition (to avoid an infinite loop, or rather, infinite recursion in this case). When there is too much or infinite recursion, JavaScript will throw this error.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Too_much_recursion
+ReferenceError: assignment to undeclared variable "x"	A										<pre><code>Invalid Cases:\nValid Cases:\nfunction foo() {\n  "use strict";\n  var bar = true;\n}\nfoo();\nValid Cases:\nfunction foo() {\n  "use strict";\n  var bar = true;\n}\nfoo();</code></pre>A value has been assigned to an undeclared variable. In other words, there was an assignment without the var keyword. There are some differences between declared and undeclared variables, which might lead to unexpected results and that's why JavaScript presents an error in strict mode.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Undeclared_var
+ReferenceError: reference to undefined property "x"	A										<pre><code>Invalid Cases:\nValid Cases:\n"use strict";\n\nvar foo = {};\n\n// Define the bar property\n\nfoo.bar = "moon";\nconsole.log(foo.bar); // "moon"\n\n// Test to be sure bar exists before accessing it\n\nif (foo.hasOwnProperty("bar") {\n  console.log(foo.bar);\n}\nValid Cases:\n"use strict";\n\nvar foo = {};\n\n// Define the bar property\n\nfoo.bar = "moon";\nconsole.log(foo.bar); // "moon"\n\n// Test to be sure bar exists before accessing it\n\nif (foo.hasOwnProperty("bar") {\n  console.log(foo.bar);\n}</code></pre>The script attempted to access an object property which doesn't exist. There are two ways to access properties; see the property accessors reference page to learn more about them.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Undefined_prop
+SyntaxError: Unexpected token	A										A specific language construct was expected, but something else was provided. This might be a simple typo.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Unexpected_token
+TypeError: "x" is (not) "y"	A										<pre><code>Invalid Cases:\n\n</code></pre>There was an unexpected type. This occurs oftentimes with undefined or null values.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Unexpected_type
+SyntaxError: unterminated string literal	A										There is an unterminated String somewhere. String literals must be enclosed by single (') or double (") quotes. JavaScript makes no distinction between single-quoted strings and double-quoted strings. Escape sequences work in strings created with either single or double quotes. To fix this error, check if:	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Unterminated_string_literal
+TypeError: variable "x" redeclares argument	A										<pre><code>Invalid Cases:\nValid Cases:\n"use strict";\n\nfunction f(arg) {\n  arg = "foo";\n}\n\nValid Cases:\n"use strict";\n\nfunction f(arg) {\n  arg = "foo";\n}\n</code></pre>The same variable name occurs as a function parameter and is then redeclared using a var assignment in a function body again. This might be a naming conflict and thus JavaScript warns about it.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Var_hides_argument
 Array	A										<pre><code>[element0, element1, ..., elementN]\nnew Array(element0, element1[, ...[, elementN]])\nnew Array(arrayLength)</code></pre>The JavaScript Array object is a global object that is used in the construction of arrays; which are high-level, list-like objects.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
 Array.prototype[@@iterator]()	A										<pre><code>arr[Symbol.iterator]()</code></pre>The initial value of the @@iterator property is the same function object as the initial value of the values() property.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/@@iterator
 get Array[@@species]	A										<pre><code>Array[Symbol.species]\n</code></pre>The Array[@@species] accessor property returns the Array constructor.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/@@species
@@ -5440,6 +5480,8 @@ convertpointfromnodetopage	R	Window.convertPointFromNodeToPage()
 api svgmaskelement	R	SVGMaskElement										
 math asin	R	Math.asin										
 asin	R	Math.asin										
+reference errors	R	JavaScript error reference										
+errors	R	JavaScript error reference										
 global numberformat	R	Intl.NumberFormat										
 numberformat	R	Intl.NumberFormat										
 date gettime	R	Date.prototype.getTime										
@@ -5459,7 +5501,8 @@ navigatorid appcodename	R	NavigatorID.appCodeName
 appcodename	R	NavigatorID.appCodeName										
 array join	R	Array.prototype.join										
 join	R	Array.prototype.join										
-global internalerror	R	InternalError										
+errors not_a_codepoint	R	RangeError: argument is not a valid code point										
+not_a_codepoint	R	RangeError: argument is not a valid code point										
 vrdisplay hardwareunitid	R	VRDevice.hardwareUnitId										
 hardwareunitid	R	VRDevice.hardwareUnitId										
 mediasource endofstream	R	MediaSource.endOfStream()										
@@ -5531,7 +5574,8 @@ upperopen	R	IDBKeyRange.upperOpen
 ext_disjoint_timer_query getqueryext	R	EXT_disjoint_timer_query.getQueryEXT()										
 getqueryext	R	EXT_disjoint_timer_query.getQueryEXT()										
 api channelsplitternode	R	ChannelSplitterNode										
-mediarecorder canrecordmimetype	R	canRecordMimeType										
+mediarecorder canrecordmimetype	R	Media.Recorder.isMimeTypeSupported										
+canrecordmimetype	R	Media.Recorder.isMimeTypeSupported										
 web_crypto_api checking_authenticity_with_password	R	Checking authenticity with password										
 checking_authenticity_with_password	R	Checking authenticity with password										
 doNotTrack	R	Navigator.doNotTrack										
@@ -5612,6 +5656,8 @@ deviceorientationevent absolute	R	DeviceOrientationEvent.absolute
 absolute	R	DeviceOrientationEvent.absolute										
 timeranges end	R	TimeRanges.end()										
 end	R	TimeRanges.end()										
+bluetoothdevice gatt	R	BluetoothDevice.gatt										
+gatt	R	BluetoothDevice.gatt										
 referenceNode	R	NodeIterator.referenceNode										
 nodeiterator referencenode	R	NodeIterator.referenceNode										
 referencenode	R	NodeIterator.referenceNode										
@@ -5631,6 +5677,8 @@ after	R	ChildNode.after()
 date setutcfullyear	R	Date.prototype.setUTCFullYear										
 setutcfullyear	R	Date.prototype.setUTCFullYear										
 api mediastreamaudiosourcenode	R	MediaStreamAudioSourceNode										
+errors not_a_function	R	TypeError: "x" is not a function										
+not_a_function	R	TypeError: "x" is not a function										
 onpaste	R	HTMLElement.onpaste										
 htmlelement onpaste	R	HTMLElement.onpaste										
 onpaste	R	HTMLElement.onpaste										
@@ -5691,6 +5739,8 @@ object getownpropertydescriptor	R	Object.getOwnPropertyDescriptor
 getownpropertydescriptor	R	Object.getOwnPropertyDescriptor										
 number max_safe_integer	R	Number.MAX_SAFE_INTEGER										
 max_safe_integer	R	Number.MAX_SAFE_INTEGER										
+errors stmt_after_return	R	Warning: unreachable code after return statement										
+stmt_after_return	R	Warning: unreachable code after return statement										
 batterymanager dischargingtime	R	BatteryManager.dischargingTime										
 dischargingtime	R	BatteryManager.dischargingTime										
 passwordcredential passwordname	R	PasswordCredential.passwordName										
@@ -5740,6 +5790,8 @@ getinternalformatparameter	R	WebGL2RenderingContext.getInternalformatParameter()
 onpointerover	R	GlobalEventHandlers.onpointerover										
 global onpointerover	R	GlobalEventHandlers.onpointerover										
 onpointerover	R	GlobalEventHandlers.onpointerover										
+errors var_hides_argument	R	TypeError: variable "x" redeclares argument										
+var_hides_argument	R	TypeError: variable "x" redeclares argument										
 api web_bluetooth_api	R	Web Bluetooth API										
 web_bluetooth_api	R	Web Bluetooth API										
 api svgaltglyphelement	R	SVGAltGlyphElement										
@@ -5836,6 +5888,8 @@ detachevent	R	EventTarget.detachEvent()
 mediakeysystemconfiguration audiocapabilities	R	audioCapabilities										
 performance_api using_the_performance_api	R	Using the Performance API										
 using_the_performance_api	R	Using the Performance API										
+date settime	R	Date.prototype.setTime										
+settime	R	Date.prototype.setTime										
 webglrenderingcontext blendfunc	R	WebGLRenderingContext.blendFunc()										
 blendfunc	R	WebGLRenderingContext.blendFunc()										
 bluetoothremotegattcharacteristic service	R	BluetoothRemoteGATTCharacteristic.service										
@@ -5889,6 +5943,8 @@ regexp @@replace	R	RegExp.prototype[@@replace]()
 cryptokey usages	R	CryptoKey.usages										
 usages	R	CryptoKey.usages										
 api websocket	R	WebSocket										
+errors bad_return_or_yield	R	SyntaxError: return not in function										
+bad_return_or_yield	R	SyntaxError: return not in function										
 webglrenderingcontext colormask	R	WebGLRenderingContext.colorMask()										
 colormask	R	WebGLRenderingContext.colorMask()										
 navigate	R	WindowClient.navigate()										
@@ -5916,6 +5972,8 @@ api compositionevent	R	CompositionEvent
 api bluetoothdevice	R	BluetoothDevice										
 response usefinalurl	R	Response.useFinalURL										
 usefinalurl	R	Response.useFinalURL										
+errors no_properties	R	TypeError: "x" has no properties										
+no_properties	R	TypeError: "x" has no properties										
 global object	R	Object										
 cookieEnabled	R	Navigator.cookieEnabled										
 navigator cookieenabled	R	Navigator.cookieEnabled										
@@ -6073,8 +6131,8 @@ media_source_extensions_api transcoding_assets_for_mse	R	Transcoding assets for 
 transcoding_assets_for_mse	R	Transcoding assets for Media Source Extensions										
 date getutchours	R	Date.prototype.getUTCHours										
 getutchours	R	Date.prototype.getUTCHours										
-object issealed	R	Object.isSealed										
-issealed	R	Object.isSealed										
+errors unexpected_token	R	SyntaxError: Unexpected token										
+unexpected_token	R	SyntaxError: Unexpected token										
 webglrenderingcontext depthfunc	R	WebGLRenderingContext.depthFunc()										
 depthfunc	R	WebGLRenderingContext.depthFunc()										
 rangeCount	R	Selection.rangeCount										
@@ -6167,6 +6225,8 @@ linearvelocity	R	VRPose.linearVelocity
 baseURIObject	R	Node.baseURIObject										
 node baseuriobject	R	Node.baseURIObject										
 baseuriobject	R	Node.baseURIObject										
+errors unterminated_string_literal	R	SyntaxError: unterminated string literal										
+unterminated_string_literal	R	SyntaxError: unterminated string literal										
 canvasrenderingcontext2d putimagedata	R	CanvasRenderingContext2D.putImageData()										
 putimagedata	R	CanvasRenderingContext2D.putImageData()										
 audiolistener speedofsound	R	AudioListener.speedOfSound										
@@ -6286,6 +6346,8 @@ api renderingcontext	R	RenderingContext
 api htmlkeygenelement	R	HTMLKeygenElement										
 screen pixeldepth	R	Screen.pixelDepth										
 pixeldepth	R	Screen.pixelDepth										
+errors unexpected_type	R	TypeError: "x" is (not) "y"										
+unexpected_type	R	TypeError: "x" is (not) "y"										
 xmlhttprequest mozresponsearraybuffer	R	XMLHttpRequest.mozResponseArrayBuffer										
 mozresponsearraybuffer	R	XMLHttpRequest.mozResponseArrayBuffer										
 api force_touch_events	R	Force Touch events										
@@ -6338,6 +6400,8 @@ htmlcanvaselement transfercontroltooffscreen	R	HTMLCanvasElement.transferControl
 transfercontroltooffscreen	R	HTMLCanvasElement.transferControlToOffscreen()										
 webgl_lose_context restorecontext	R	WEBGL_lose_context.restoreContext()										
 restorecontext	R	WEBGL_lose_context.restoreContext()										
+errors already_has_pragma	R	Warning: -file- is being assigned a //# sourceMappingURL, but already has one										
+already_has_pragma	R	Warning: -file- is being assigned a //# sourceMappingURL, but already has one										
 anchorNode	R	Selection.anchorNode										
 selection anchornode	R	Selection.anchorNode										
 anchornode	R	Selection.anchorNode										
@@ -6433,8 +6497,8 @@ clipboardevent clipboarddata	R	ClipboardEvent.clipboardData
 clipboarddata	R	ClipboardEvent.clipboardData										
 audiolistener dopplerfactor	R	AudioListener.dopplerFactor										
 dopplerfactor	R	AudioListener.dopplerFactor										
-date settime	R	Date.prototype.setTime										
-settime	R	Date.prototype.setTime										
+errors redeclared_parameter	R	SyntaxError: redeclaration of formal parameter "x"										
+redeclared_parameter	R	SyntaxError: redeclaration of formal parameter "x"										
 api htmldialogelement	R	HTMLDialogElement										
 rtcpeerconnection removestream	R	RTCPeerConnection.removeStream()										
 removestream	R	RTCPeerConnection.removeStream()										
@@ -6728,11 +6792,14 @@ vrdisplaycapabilities maxlayers	R	VRDisplayCapabilities.maxLayers
 maxlayers	R	VRDisplayCapabilities.maxLayers										
 idbcursor primarykey	R	IDBCursor.primaryKey										
 primarykey	R	IDBCursor.primaryKey										
+errors negative_repetition_count	R	RangeError: repeat count must be non-negative										
+negative_repetition_count	R	RangeError: repeat count must be non-negative										
 webglrenderingcontext getshaderprecisionformat	R	WebGLRenderingContext.getShaderPrecisionFormat()										
 getshaderprecisionformat	R	WebGLRenderingContext.getShaderPrecisionFormat()										
 api svgpoint	R	SVGPoint										
 gamepad axes	R	Gamepad.axes										
 axes	R	Gamepad.axes										
+global internalerror	R	InternalError										
 appendWindowStart	R	SourceBuffer.appendWindowStart										
 sourcebuffer appendwindowstart	R	SourceBuffer.appendWindowStart										
 appendwindowstart	R	SourceBuffer.appendWindowStart										
@@ -6949,6 +7016,8 @@ presentation defaultrequest	R	Presentation.defaultRequest
 defaultrequest	R	Presentation.defaultRequest										
 speechsynthesisutterance pitch	R	SpeechSynthesisUtterance.pitch										
 pitch	R	SpeechSynthesisUtterance.pitch										
+errors invalid_array_length	R	RangeError: invalid array length										
+invalid_array_length	R	RangeError: invalid array length										
 webglrenderingcontext deleteframebuffer	R	WebGLRenderingContext.deleteFramebuffer()										
 deleteframebuffer	R	WebGLRenderingContext.deleteFramebuffer()										
 api htmlquoteelement	R	HTMLQuoteElement										
@@ -7099,6 +7168,8 @@ node nodevalue	R	Node.nodeValue
 nodevalue	R	Node.nodeValue										
 string blink	R	String.prototype.blink()										
 blink	R	String.prototype.blink()										
+errors read-only	R	TypeError: "x" is read-only										
+read-only	R	TypeError: "x" is read-only										
 global datetimeformat	R	Intl.DateTimeFormat										
 datetimeformat	R	Intl.DateTimeFormat										
 webglrenderingcontext bindtexture	R	WebGLRenderingContext.bindTexture()										
@@ -7228,6 +7299,8 @@ notification icon	R	Notification.icon
 icon	R	Notification.icon										
 api treewalker	R	TreeWalker										
 api processinginstruction	R	ProcessingInstruction										
+errors property_access_denied	R	Error: Permission denied to access property "x"										
+property_access_denied	R	Error: Permission denied to access property "x"										
 createJavaScriptNode	R	AudioContext.createJavaScriptNode()										
 audiocontext createjavascriptnode	R	AudioContext.createJavaScriptNode()										
 createjavascriptnode	R	AudioContext.createJavaScriptNode()										
@@ -7244,6 +7317,8 @@ redirected	R	Response.redirected
 ontouchstart	R	GlobalEventHandlers.ontouchstart										
 global ontouchstart	R	GlobalEventHandlers.ontouchstart										
 ontouchstart	R	GlobalEventHandlers.ontouchstart										
+errors deprecated_caller_or_arguments_usage	R	ReferenceError: deprecated caller or arguments usage										
+deprecated_caller_or_arguments_usage	R	ReferenceError: deprecated caller or arguments usage										
 paymentrequest show	R	PaymentRequest.show()										
 show	R	PaymentRequest.show()										
 mediakeysystemconfiguration videocapabilities	R	videoCapabilities										
@@ -7252,6 +7327,8 @@ availleft	R	Screen.availLeft
 dateTime	R	HTMLTimeElement.dateTime										
 htmltimeelement datetime	R	HTMLTimeElement.dateTime										
 datetime	R	HTMLTimeElement.dateTime										
+object issealed	R	Object.isSealed										
+issealed	R	Object.isSealed										
 date getmilliseconds	R	Date.prototype.getMilliseconds										
 getmilliseconds	R	Date.prototype.getMilliseconds										
 webglrenderingcontext isframebuffer	R	WebGLRenderingContext.isFramebuffer()										
@@ -7492,6 +7569,8 @@ onloadstart	R	XMLHttpRequestEventTarget.onloadstart
 domstring binary	R	Binary strings										
 binary	R	Binary strings										
 api htmlbodyelement	R	HTMLBodyElement										
+errors bad_radix	R	RangeError: radix must be an integer										
+bad_radix	R	RangeError: radix must be an integer										
 animation playstate	R	Animation.playState										
 playstate	R	Animation.playState										
 vrdisplay stageparameters	R	VRDisplay.stageParameters										
@@ -7557,6 +7636,8 @@ ondeviceorientation	R	Window.ondeviceorientation
 onselectstart	R	GlobalEventHandlers.onselectstart										
 global onselectstart	R	GlobalEventHandlers.onselectstart										
 onselectstart	R	GlobalEventHandlers.onselectstart										
+errors undefined_prop	R	ReferenceError: reference to undefined property "x"										
+undefined_prop	R	ReferenceError: reference to undefined property "x"										
 tutorial animating_objects_with_webgl	R	Animating objects with WebGL										
 animating_objects_with_webgl	R	Animating objects with WebGL										
 canvasrenderingcontext2d quadraticcurveto	R	CanvasRenderingContext2D.quadraticCurveTo()										
@@ -7745,6 +7826,8 @@ htmlimageelement image	R	Image()
 image	R	Image()										
 date getfullyear	R	Date.prototype.getFullYear										
 getfullyear	R	Date.prototype.getFullYear										
+errors deprecated_source_map_pragma	R	SyntaxError: Using //@ to indicate sourceURL pragmas is deprecated. Use //# instead										
+deprecated_source_map_pragma	R	SyntaxError: Using //@ to indicate sourceURL pragmas is deprecated. Use //# instead										
 attachEvent	R	EventTarget.attachEvent()										
 eventtarget attachevent	R	EventTarget.attachEvent()										
 attachevent	R	EventTarget.attachEvent()										
@@ -7831,6 +7914,8 @@ api serviceworkerstate	R	ServiceWorkerState
 onmouseout	R	GlobalEventHandlers.onmouseout										
 global onmouseout	R	GlobalEventHandlers.onmouseout										
 onmouseout	R	GlobalEventHandlers.onmouseout										
+errors bad_octal	R	SyntaxError: "x" is not a legal ECMA-262 octal constant										
+bad_octal	R	SyntaxError: "x" is not a legal ECMA-262 octal constant										
 date gethours	R	Date.prototype.getHours										
 gethours	R	Date.prototype.getHours										
 api storage	R	Storage										
@@ -8037,6 +8122,8 @@ audiobuffer copytochannel	R	AudioBuffer.copyToChannel()
 copytochannel	R	AudioBuffer.copyToChannel()										
 api svganimatemotionelement	R	SVGAnimateMotionElement										
 api audiodestinationnode	R	AudioDestinationNode										
+errors too_much_recursion	R	InternalError: too much recursion										
+too_much_recursion	R	InternalError: too much recursion										
 onpointerenter	R	GlobalEventHandlers.onpointerenter										
 global onpointerenter	R	GlobalEventHandlers.onpointerenter										
 onpointerenter	R	GlobalEventHandlers.onpointerenter										
@@ -8131,6 +8218,8 @@ webrtc_api connectivity	R	WebRTC connectivity
 connectivity	R	WebRTC connectivity										
 webglrenderingcontext disable	R	WebGLRenderingContext.disable()										
 disable	R	WebGLRenderingContext.disable()										
+errors missing_parenthesis_after_argument_list	R	SyntaxError: missing ) after argument list										
+missing_parenthesis_after_argument_list	R	SyntaxError: missing ) after argument list										
 api speechsynthesisevent	R	SpeechSynthesisEvent										
 object preventextensions	R	Object.preventExtensions										
 preventextensions	R	Object.preventExtensions										
@@ -8189,6 +8278,8 @@ uievent ischar	R	UIEvent.isChar
 ischar	R	UIEvent.isChar										
 messagechannel port1	R	MessageChannel.port1										
 port1	R	MessageChannel.port1										
+errors invalid_assignment_left-hand_side	R	ReferenceError: invalid assignment left-hand side										
+invalid_assignment_left-hand_side	R	ReferenceError: invalid assignment left-hand side										
 number min_value	R	Number.MIN_VALUE										
 min_value	R	Number.MIN_VALUE										
 idbrequest onsuccess	R	IDBRequest.onsuccess										
@@ -8226,7 +8317,8 @@ reduce	R	Array.prototype.reduce
 api vrdisplay	R	VRDisplay										
 webglrenderingcontext attachshader	R	WebGLRenderingContext.attachShader()										
 attachshader	R	WebGLRenderingContext.attachShader()										
-api svgaelement	R	SVGAElement										
+bluetoothremotegattserver connect	R	BluetoothRemoteGATTServer.connect()										
+connect	R	BluetoothRemoteGATTServer.connect()										
 nodeName	R	Node.nodeName										
 node nodename	R	Node.nodeName										
 nodename	R	Node.nodeName										
@@ -8262,6 +8354,8 @@ global proxy	R	Proxy
 frameElement	R	Window.frameElement										
 window frameelement	R	Window.frameElement										
 frameelement	R	Window.frameElement										
+errors array_sort_argument	R	TypeError: invalid Array.prototype.sort argument										
+array_sort_argument	R	TypeError: invalid Array.prototype.sort argument										
 audiocontext createdynamicscompressor	R	AudioContext.createDynamicsCompressor()										
 createdynamicscompressor	R	AudioContext.createDynamicsCompressor()										
 canvasrenderingcontext2d rect	R	CanvasRenderingContext2D.rect()										
@@ -8373,6 +8467,8 @@ writing_websocket_servers	R	Writing WebSocket servers
 scrollLeft	R	Element.scrollLeft										
 element scrollleft	R	Element.scrollLeft										
 scrollleft	R	Element.scrollLeft										
+errors missing_semicolon_before_statement	R	SyntaxError: missing ; before statement										
+missing_semicolon_before_statement	R	SyntaxError: missing ; before statement										
 pushmanager permissionstate	R	PushManager.permissionState()										
 permissionstate	R	PushManager.permissionState()										
 tutorial lighting_in_webgl	R	Lighting in WebGL										
@@ -8421,6 +8517,8 @@ window personalbar	R	Window.personalbar
 personalbar	R	Window.personalbar										
 hmdvrdevice setfieldofview	R	HMDVRDevice.setFieldOfView()										
 setfieldofview	R	HMDVRDevice.setFieldOfView()										
+errors precision_range	R	RangeError: precision is out of range										
+precision_range	R	RangeError: precision is out of range										
 string codepointat	R	String.prototype.codePointAt()										
 codepointat	R	String.prototype.codePointAt()										
 vendorSub	R	Navigator.vendorSub										
@@ -8436,6 +8534,8 @@ createdocumentfragment	R	Document.createDocumentFragment()
 api rtcsctptransport	R	RTCSctpTransport										
 canvasrenderingcontext2d font	R	CanvasRenderingContext2D.font										
 font	R	CanvasRenderingContext2D.font										
+errors resulting_string_too_large	R	RangeError: repeat count must be less than infinity										
+resulting_string_too_large	R	RangeError: repeat count must be less than infinity										
 xmlhttprequest withcredentials	R	XMLHttpRequest.withCredentials										
 withcredentials	R	XMLHttpRequest.withCredentials										
 getFrequencyResponse	R	IIRFilterNode.getFrequencyResponse()										
@@ -8458,6 +8558,8 @@ speechrecognition serviceuri	R	SpeechRecognition.serviceURI
 serviceuri	R	SpeechRecognition.serviceURI										
 subtlecrypto wrapkey	R	SubtleCrypto.wrapKey()										
 wrapkey	R	SubtleCrypto.wrapKey()										
+errors cant_delete	R	TypeError: property "x" is non-configurable and can't be deleted										
+cant_delete	R	TypeError: property "x" is non-configurable and can't be deleted										
 global onnotificationclose	R	onnotificationclose										
 api bluetoothstatuschangedevent	R	BluetoothStatusChangedEvent										
 createTHead	R	HTMLTableElement.createTHead()										
@@ -8635,6 +8737,8 @@ api document_object_model	R	Document Object Model (DOM)
 document_object_model	R	Document Object Model (DOM)										
 oes_vertex_array_object bindvertexarrayoes	R	OES_vertex_array_object.bindVertexArrayOES()										
 bindvertexarrayoes	R	OES_vertex_array_object.bindVertexArrayOES()										
+errors undeclared_var	R	ReferenceError: assignment to undeclared variable "x"										
+undeclared_var	R	ReferenceError: assignment to undeclared variable "x"										
 setAttribute	R	Element.setAttribute()										
 element setattribute	R	Element.setAttribute()										
 setattribute	R	Element.setAttribute()										
@@ -8818,6 +8922,7 @@ regexp exec	R	RegExp.prototype.exec
 exec	R	RegExp.prototype.exec										
 cssprimitivevalue setfloatvalue	R	CSSPrimitiveValue.setFloatValue()										
 setfloatvalue	R	CSSPrimitiveValue.setFloatValue()										
+api svgaelement	R	SVGAElement										
 performanceresourcetiming initiatortype	R	PerformanceResourceTiming.initiatorType										
 initiatortype	R	PerformanceResourceTiming.initiatorType										
 api gamepad_api	R	Gamepad API										
@@ -8964,6 +9069,8 @@ createlineargradient	R	CanvasRenderingContext2D.createLinearGradient()
 api paymentresponse	R	PaymentResponse										
 rtcpeerconnection cantrickleicecandidates	R	RTCPeerConnection.canTrickleIceCandidates										
 cantrickleicecandidates	R	RTCPeerConnection.canTrickleIceCandidates										
+errors missing_bracket_after_list	R	SyntaxError: missing ] after element list										
+missing_bracket_after_list	R	SyntaxError: missing ] after element list										
 api cdatasection	R	CDATASection										
 global uint8clampedarray	R	Uint8ClampedArray										
 document images	R	Document.images										
@@ -9263,6 +9370,8 @@ document exitfullscreen	R	Document.exitFullscreen()
 exitfullscreen	R	Document.exitFullscreen()										
 bluetoothgattservice getincludedservice	R	getIncludedService()										
 getincludedservice	R	getIncludedService()										
+errors equal_as_assign	R	SyntaxError: test for equality (==) mistyped as assignment (=)?										
+equal_as_assign	R	SyntaxError: test for equality (==) mistyped as assignment (=)?										
 global fetch	R	GlobalFetch.fetch()										
 fetch	R	GlobalFetch.fetch()										
 regexp lastparen	R	RegExp.lastParen ($+)										
@@ -9381,6 +9490,8 @@ latitude	R	Coordinates.latitude
 speechsynthesis pending	R	SpeechSynthesis.pending										
 pending	R	SpeechSynthesis.pending										
 api positionoptions	R	PositionOptions										
+errors missing_curly_after_property_list	R	SyntaxError: missing } after property list										
+missing_curly_after_property_list	R	SyntaxError: missing } after property list										
 id cebutaxidriver	R	cebutaxidriver										
 api microdata_dom_api	R	Microdata DOM API										
 microdata_dom_api	R	Microdata DOM API										
@@ -9618,8 +9729,12 @@ createanalyser	R	AudioContext.createAnalyser()
 speechrecognitionalternative transcript	R	SpeechRecognitionAlternative.transcript										
 transcript	R	SpeechRecognitionAlternative.transcript										
 api htmlcanvaselement	R	HTMLCanvasElement										
+errors not_defined	R	ReferenceError: "x" is not defined										
+not_defined	R	ReferenceError: "x" is not defined										
 webglrenderingcontext bindattriblocation	R	WebGLRenderingContext.bindAttribLocation()										
 bindattriblocation	R	WebGLRenderingContext.bindAttribLocation()										
+errors not_a_constructor	R	TypeError: "x" is not a constructor										
+not_a_constructor	R	TypeError: "x" is not a constructor										
 canvasrenderingcontext2d shadowoffsetx	R	CanvasRenderingContext2D.shadowOffsetX										
 shadowoffsetx	R	CanvasRenderingContext2D.shadowOffsetX										
 canvasrenderingcontext2d shadowoffsety	R	CanvasRenderingContext2D.shadowOffsetY										
@@ -9942,6 +10057,8 @@ bindtransformfeedback	R	WebGL2RenderingContext.bindTransformFeedback()
 date togmtstring	R	Date.prototype.toGMTString										
 togmtstring	R	Date.prototype.toGMTString										
 api networkinformation	R	NetworkInformation										
+errors malformed_formal_parameter	R	SyntaxError: Malformed formal parameter										
+malformed_formal_parameter	R	SyntaxError: Malformed formal parameter										
 api htmlformcontrolscollection	R	HTMLFormControlsCollection										
 rtcpeerconnection onconnectionstatechange	R	RTCPeerConnection.onconnectionstatechange										
 onconnectionstatechange	R	RTCPeerConnection.onconnectionstatechange										
@@ -9997,6 +10114,8 @@ capabilities	R	VRDisplay.capabilities
 maxDecibels	R	AnalyserNode.maxDecibels										
 analysernode maxdecibels	R	AnalyserNode.maxDecibels										
 maxdecibels	R	AnalyserNode.maxDecibels										
+errors more_arguments_needed	R	TypeError: More arguments needed										
+more_arguments_needed	R	TypeError: More arguments needed										
 api audiolistener	R	AudioListener										
 global collator	R	Intl.Collator										
 collator	R	Intl.Collator										
@@ -10086,6 +10205,8 @@ idbdatabase createobjectstore	R	IDBDatabase.createObjectStore()
 createobjectstore	R	IDBDatabase.createObjectStore()										
 math cosh	R	Math.cosh()										
 cosh	R	Math.cosh()										
+errors json_bad_parse	R	SyntaxError: JSON.parse: bad parsing										
+json_bad_parse	R	SyntaxError: JSON.parse: bad parsing										
 mediakeysystemconfiguration persistentstate	R	persistentState										
 pressure	R	PointerEvent.pressure										
 pointerevent pressure	R	PointerEvent.pressure										

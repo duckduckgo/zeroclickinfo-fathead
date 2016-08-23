@@ -197,6 +197,32 @@ class MDNParser(object):
                     tag.attrib.pop('class')
                 codesnippet += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
 
+        # Error pages
+        if "Error" in htmlfile.name:
+
+          # What went wrong?
+          whatWentWrong_summary = ""
+          whatWentWrong = tree.xpath("//h2[contains(@id,'What_went_wrong')]/following-sibling::p[1]")
+          for element in whatWentWrong:
+              for tag in element.xpath('//*[@class]'):
+                  tag.attrib.pop('class')
+              whatWentWrong_summary += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+
+          if whatWentWrong_summary:
+            summary = whatWentWrong_summary
+
+          # Examples
+          exampleGood = ''.join(tree.xpath("//h3[contains(@id,'Valid_cases')]/following-sibling::pre/text()"))
+          exampleBad = ''.join(tree.xpath("//h3[contains(@id,'Invalid_cases')]/following-sibling::pre/text()"))
+
+          if exampleGood:
+            exampleGood = "Valid Cases:\n" + exampleGood
+          if exampleBad:
+            exampleBad = "Invalid Cases:\n" + exampleGood
+
+          if exampleBad or exampleGood:
+            codesnippet = exampleBad + "\n" + exampleGood
+
         print title + (' ' * 30) + '\r',
 
         mdn = MDN()
@@ -246,6 +272,7 @@ class MDNIndexer(object):
 
             for mdn in self.inverted_index[keyword]:
                 # add redirect for Web/Api pages
+                strip_title = ""
                 if any(word in mdn.title for word in self.CLASS_WORDS) and '.' in mdn.title:
                     # original title: Window.getAnimationFrame()
                     match = re.search('(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)

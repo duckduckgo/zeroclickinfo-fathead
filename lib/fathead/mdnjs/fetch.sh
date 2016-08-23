@@ -30,7 +30,7 @@ getUrlsFromPattern() {
                     PAGES=$((PAGES + 1))
                     # pause every 75 pages
                     if [ $(( $PAGES % 75 )) -eq 0 ] ; then
-                        wait; sleep 1
+                        wait; sleep 2
                     fi
                 fi
             done
@@ -44,6 +44,7 @@ getUrlsFromPattern() {
 patterns=(
     "en-US/docs/Web/API"
     "en-US/docs/Web/JavaScript/Reference/Global_Objects"
+    "en-US/docs/Web/JavaScript/Reference/Errors"
 )
 
 downloadSiteMap
