@@ -410,7 +410,19 @@ sub parse_fragment_data {
                         $code = $code_dom->all_text;
                     }
                     else {
-                        $code = $code_dom->at('tbody')->to_string;
+                        my $tbody = $code_dom->at('tbody');
+                        my $trs   = $tbody->find('tr');
+                        for my $tr ( $trs->each ) {
+                            my $tds = $tr->find('td');
+                            $tds->each(
+                                sub {
+                                    my ( $td, $num ) = @_;
+                                    my $td_text = trim( $td->all_text );
+                                    $code .= $td_text if $num == 1;
+                                    $code .= " $td_text\n" if $num == 2;
+                                }
+                            );
+                        }
                         $code = clean_code($code);
                     }
                 }
