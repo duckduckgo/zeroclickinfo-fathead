@@ -1,8 +1,14 @@
 {
   "name": "zeroclickinfo-fathead-jquery",
   "private": true,
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+  },
   "dependencies": {
     "xmldom": "^0.1.22",
     "xpath": "0.0.23"
+  },
+  "devDependencies": {
+    "mocha": "^3.0.2"
   }
 }
