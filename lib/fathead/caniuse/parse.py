@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from BeautifulSoup import BeautifulSoup
 import json
 import markdown
 import os
@@ -54,7 +55,10 @@ def generate_answers(data):
         notes = feature_data.get('notes', '')
         if notes:
             notes_in_html = markdown.markdown(notes)
-            abstract += '<p><b>Notes:</b> {}</p>'.format(notes_in_html)
+            bs = BeautifulSoup(notes_in_html)
+            for a in bs.findAll('a'):
+                a.replaceWithChildren()
+            abstract += '<p><b>Notes:</b> {}</p>'.format(bs.renderContents())
 
         abstract = abstract.replace('\n', '').replace('\r', '')
         print abstract
