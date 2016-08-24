@@ -163,7 +163,7 @@ def generate_redirects(f):
             if entry.get_type() == 'R':
                 continue
 
-            key = entry.get_key()
+            key = "'" + entry.get_key() + "'"
 
             # Do we have the entry yet?
             if key not in output:
