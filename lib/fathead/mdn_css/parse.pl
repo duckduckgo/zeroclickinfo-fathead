@@ -221,7 +221,7 @@ sub make_and_write_article {
       );
 
     if ( $title =~ /\(\)$/ or $title =~ qr/@/ ) {
-        push @data, make_redirect($title);
+        push @data, make_redirect( $title, $title_clean );
     }
     write_to_file(@data);
 }
@@ -236,7 +236,7 @@ sub make_redirect {
     output entry with redirect field
 =cut
 
-    my ($title) = @_;
+    my ( $title, $title_clean ) = @_;
     my @data;
     my $outputline;
     if ( $title =~ m/\(\)$/ ) {
@@ -244,19 +244,17 @@ sub make_redirect {
         my $temp = $title;
         $temp =~ s/\(\)$/ function/;
         $outputline = join "\t",
-          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
+          ( $temp, 'R', $title_clean, '', '', '', '', '', '', '', '', '', '' );
         push @data, $outputline;
         $temp = $title;
         $temp =~ s/\(\)$//;
         $outputline = join "\t",
-          ( $title, 'R', $temp, '', '', '', '', '', '', '', '', '', '' );
+          ( $title, 'R', $title_clean, '', '', '', '', '', '', '', '', '', '' );
         push @data, $outputline;
     }
     elsif ( $title =~ qr/@/ ) {
-        my $temp = $title;
-        $temp =~ s/@//;
         $outputline = join "\t",
-          ( $title, 'R', $temp, '', '', '', '', '', '', '', '', '', '' );
+          ( $title, 'R', $title_clean, '', '', '', '', '', '', '', '', '', '' );
         push @data, $outputline;
     }
     return @data;
