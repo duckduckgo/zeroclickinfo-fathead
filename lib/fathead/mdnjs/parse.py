@@ -215,6 +215,9 @@ class MDNParser(object):
           exampleGood = ''.join(tree.xpath("//h3[contains(@id,'Valid_cases')]/following-sibling::pre/text()"))
           exampleBad = ''.join(tree.xpath("//h3[contains(@id,'Invalid_cases')]/following-sibling::pre/text()"))
 
+          exampleGood = re.sub('<[^<]+?>', '', exampleGood)
+          exampleBad = re.sub('<[^<]+?>', '', exampleBad)
+
           if exampleGood:
             exampleGood = "Valid Cases:\n" + exampleGood
           if exampleBad:
@@ -237,7 +240,7 @@ class MDNIndexer(object):
         self.counter = Counter()
         self.inverted_index = {}
         # for Web/Api pages
-        self.CLASS_WORDS = ['Window', 'Navigator', 'MouseEvent',
+        self.WEBAPI_CLASS_WORDS = ['Window', 'Navigator', 'MouseEvent',
                             'KeyboardEvent', 'GlobalEventHandlers', 'Element',
                             'Node', 'Event', 'Selection']
 
@@ -273,7 +276,7 @@ class MDNIndexer(object):
             for mdn in self.inverted_index[keyword]:
                 # add redirect for Web/Api pages
                 strip_title = ""
-                if any(word in mdn.title for word in self.CLASS_WORDS) and '.' in mdn.title:
+                if any(word in mdn.title for word in self.WEBAPI_CLASS_WORDS) and '.' in mdn.title:
                     # original title: Window.getAnimationFrame()
                     match = re.search('(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
                     # remove class_word: getAnimationFrame
@@ -281,7 +284,7 @@ class MDNIndexer(object):
                     # skips redirect if already an article
                     if strip_title.lower() not in self._writer.articles_index:
                         self._writer.writerow({
-                          'title': strip_title,
+                          'title': strip_title.replace("_", " "),
                           'type': 'R',
                           'redirect': mdn.title
                         })
@@ -289,7 +292,7 @@ class MDNIndexer(object):
                 # of the form <object><space><property>
                 if ('%s %s' % (mdn.obj.lower(), mdn.prop.lower())) not in self._writer.articles_index:
                     self._writer.writerow({
-                      'title': '%s %s' % (mdn.obj.lower(), mdn.prop.lower()),
+                      'title': ('%s %s' % (mdn.obj.lower(), mdn.prop.lower())).replace("_", " "),
                       'type': 'R',
                       'redirect': mdn.title
                     })
@@ -300,7 +303,7 @@ class MDNIndexer(object):
                     if not all(x in [keyword, strip_title] for x in self._writer.articles_index):
                         if keyword.lower() not in self._writer.articles_index:
                             self._writer.writerow({
-                              'title': keyword,
+                              'title': keyword.replace("_", " "),
                               'type': 'R',
                               'redirect': mdn.title
                             })
