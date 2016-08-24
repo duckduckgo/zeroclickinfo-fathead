@@ -1,5 +1,7 @@
 #!/usr/bin/python
+from BeautifulSoup import BeautifulSoup
 import json
+import markdown
 import os
 import re
 
@@ -31,15 +33,33 @@ def generate_answers(data):
         ])
         print ','.join(titles)
 
+        # Commented out for now -- we can revive if we ever have a way to display
+        # external links in the Related Topics Infobox
+        ## Generate Related Topics
+        #links = feature_data.get('links', [])
+        #related = u' '.join([u'[[{} {}]]'.format(link['title'], link['url']) for link in links])
+        related = ''
+
         # Generate abstract
-        abstract = feature_data['description']
+        abstract = '<p>{}</p>'.format(feature_data['description'])
+
         for browser in ['ie', 'firefox', 'chrome', 'safari', 'ios_saf', 'android']:
             agent = data['agents'][browser]
             out = browser_support(
-                browser=agent['browser'], 
-                prefix=agent['prefix'], 
+                browser=agent['browser'],
+                prefix=agent['prefix'],
                 stats=feature_data['stats'][browser])
             abstract += '<br>' + out
+
+        # Add notes to abstract, if there are any
+        notes = feature_data.get('notes', '')
+        if notes:
+            notes_in_html = markdown.markdown(notes)
+            bs = BeautifulSoup(notes_in_html)
+            for a in bs.findAll('a'):
+                a.replaceWithChildren()
+            abstract += '<p><b>Notes:</b> {}</p>'.format(bs.renderContents())
+
         abstract = abstract.replace('\n', '').replace('\r', '')
         print abstract
         print '------------------------------------------'
@@ -53,7 +73,7 @@ def generate_answers(data):
                 '',         # Other uses
                 '',         # Categories
                 '',         # References
-                '',         # See also
+                related,    # See also
                 '',         # Further reading
                 '',         # External links
                 '',         # Disambiguation
@@ -82,7 +102,7 @@ def browser_support(browser, prefix, stats):
     """
     # Browser versions, sorted newest to oldest
     versions = sorted(stats.items(), key=lambda v: v[0], cmp=version_cmp)
-    
+
     # Find the earliest version which has equal support to latest
     scores = {'y': 3, 'a': 2, 'x': -1, 'p': -2, 'n': -3}
     current = versions[0]
@@ -113,6 +133,14 @@ def browser_support(browser, prefix, stats):
 
 def version_cmp(a, b):
     """Sort versions from newest to oldest"""
+    # "TP" is the Technology Preview version, and this version is by definition
+    # the latest version
+    if a == b == 'TP':
+        return 0
+    if a == 'TP':
+        return -1
+    elif b == 'TP':
+        return 1
     d = version2float(b) - version2float(a)
     return 1 if d > 0 else -1 if d < 0 else 0
 
@@ -130,5 +158,3 @@ def version2float(s):
 
 if __name__ == '__main__':
     main()
-
-
