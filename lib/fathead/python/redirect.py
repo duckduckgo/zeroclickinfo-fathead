@@ -3,6 +3,15 @@
 import itertools
 import re
 
+built_in = ['abs','dict','help','min','setattr','all','dir','hex','next',
+'slice','any','divmod','id','object','sorted','ascii','enumerate','input',
+'oct','staticmethod','bin','eval','int','open','str','bool','exec','isinstance',
+'ord','sum','bytearray','filter','issubclass','pow','super','bytes','float',
+'iter','print','tuple','callable','format','len','property','type','chr',
+'frozenset','list','range','vars','classmethod','getattr','locals','repr',
+'zip','compile','globals','map','reversed','import','complex','hasattr',
+'max','round','delattr','hash','memoryview','set']
+
 class BadEntryException(Exception):
     """
     Thrown when entry data is invalid
@@ -116,13 +125,14 @@ class Entry(object):
 
     def get_redirects(self):
         redirs = []
-
         for alt_key in list(self.alternative_keys):
+            if alt_key in built_in:
+                continue
             entry = Entry([
-                alt_key,
-                'R',
-                self.key
-            ])
+                    alt_key,
+                    'R',
+                    self.key
+                ])
             redirs.append(entry)
 
         return redirs
@@ -155,15 +165,6 @@ def generate_redirects(f):
 
     # For debugging purposes
     duplicate_count = 0
-    
-    built_in = ['abs','dict','help','min','setattr','all','dir','hex','next',
-    'slice','any','divmod','id','object','sorted','ascii','enumerate','input',
-    'oct','staticmethod','bin','eval','int','open','str','bool','exec','isinstance',
-    'ord','sum','bytearray','filter','issubclass','pow','super','bytes','float',
-    'iter','print','tuple','callable','format','len','property','type','chr',
-    'frozenset','list','range','vars','classmethod','getattr','locals','repr',
-    'zip','compile','globals','map','reversed','import','complex','hasattr',
-    'max','round','delattr','hash','memoryview','set']
 
     for line in f.readlines():
         try:
