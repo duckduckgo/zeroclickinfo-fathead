@@ -96,7 +96,7 @@ andself	R	.andSelf()
 .andSelf	R	.andSelf()										
 andSelf()	R	.andSelf()										
 andSelf	R	.andSelf()										
-.animate()	A			jQuery methods							Perform a custom animation of a set of CSS properties.<pre><code>$(selector).animate(duration, easing, complete) → jQuery\n$(selector).animate(options) → jQuery</code></pre>	https://api.jquery.com/animate/
+.animate()	A			jQuery methods							Perform a custom animation of a set of CSS properties.<pre><code>$(selector).animate(properties, duration, easing, complete) → jQuery\n$(selector).animate(properties, options) → jQuery</code></pre>	https://api.jquery.com/animate/
 :animated Selector	A			jQuery selectors							Select all elements that are in the progress of an animation at the time the selector is run.<pre><code>$(":animated") → jQuery</code></pre>	https://api.jquery.com/animated-selector/
 animated selector	R	:animated Selector										
 .animate	R	.animate()										
@@ -691,7 +691,7 @@ height()	R	.height()
 height	R	.height()										
 :hidden Selector	A			jQuery selectors							Selects all elements that are hidden.<pre><code>$(":hidden") → jQuery</code></pre>	https://api.jquery.com/hidden-selector/
 hidden selector	R	:hidden Selector										
-.hide()	A			jQuery methods							Hide the matched elements.<pre><code>$(selector).hide() → jQuery\n$(selector).hide(duration, complete) → jQuery\n$(selector).hide(options) → jQuery\n$(selector).hide(easing, complete) → jQuery</code></pre>	https://api.jquery.com/hide/
+.hide()	A			jQuery methods							Hide the matched elements.<pre><code>$(selector).hide() → jQuery\n$(selector).hide(duration, complete) → jQuery\n$(selector).hide(options) → jQuery\n$(selector).hide(duration, easing, complete) → jQuery</code></pre>	https://api.jquery.com/hide/
 .hide	R	.hide()										
 hide()	R	.hide()										
 hide	R	.hide()										
@@ -955,7 +955,7 @@ jQuery.removeData()	A			jQuery methods							Remove a previously-stored piece of
 jQuery.removeData	R	jQuery.removeData()										
 jquery	R	.jquery										
 jQuery	R	jQuery()										
-jQuery.speed	A			jQuery methods							Creates an object containing a set of properties ready to be used in the definition of custom animations.<pre><code>jQuery.speed(duration) → PlainObject\njQuery.speed(duration, easing, complete) → PlainObject\njQuery.speed(settings) → PlainObject</code></pre>	https://api.jquery.com/jQuery.speed/
+jQuery.speed	A			jQuery methods							Creates an object containing a set of properties ready to be used in the definition of custom animations.<pre><code>jQuery.speed(duration, settings) → PlainObject\njQuery.speed(duration, easing, complete) → PlainObject\njQuery.speed(settings) → PlainObject</code></pre>	https://api.jquery.com/jQuery.speed/
 jQuery.sub()	A			jQuery methods							Creates a new copy of jQuery whose properties and methods can be modified without affecting the original jQuery object.<pre><code>jQuery.sub() → jQuery</code></pre>	https://api.jquery.com/jQuery.sub/
 jQuery.sub	R	jQuery.sub()										
 jQuery.support	A			jQuery properties							A collection of properties that represent the presence of different browser features or bugs. Intended for jQuery's internal use; specific properties may be removed when they are no longer needed internally to improve page startup performance. For your own project's feature-detection needs, we strongly recommend the use of an external library such as Modernizr instead of dependency on properties in jQuery.support.<pre><code>jQuery.support → Object</code></pre>	https://api.jquery.com/jQuery.support/
@@ -1688,7 +1688,7 @@ serializeArray	R	.serializeArray()
 .serialize	R	.serialize()										
 serialize()	R	.serialize()										
 serialize	R	.serialize()										
-.show()	A			jQuery methods							Display the matched elements.<pre><code>$(selector).show() → jQuery\n$(selector).show(duration, complete) → jQuery\n$(selector).show(options) → jQuery\n$(selector).show(easing, complete) → jQuery</code></pre>	https://api.jquery.com/show/
+.show()	A			jQuery methods							Display the matched elements.<pre><code>$(selector).show() → jQuery\n$(selector).show(duration, complete) → jQuery\n$(selector).show(options) → jQuery\n$(selector).show(duration, easing, complete) → jQuery</code></pre>	https://api.jquery.com/show/
 .show	R	.show()										
 show()	R	.show()										
 show	R	.show()										
@@ -1788,7 +1788,7 @@ toarray	R	.toArray()
 .toArray	R	.toArray()										
 toArray()	R	.toArray()										
 toArray	R	.toArray()										
-.toggle()	A			jQuery methods							Display or hide the matched elements.<pre><code>$(selector).toggle(duration, complete) → jQuery\n$(selector).toggle(options) → jQuery\n$(selector).toggle(easing, complete) → jQuery\n$(selector).toggle(display) → jQuery</code></pre>	https://api.jquery.com/toggle/
+.toggle()	A			jQuery methods							Display or hide the matched elements.<pre><code>$(selector).toggle(duration, complete) → jQuery\n$(selector).toggle(options) → jQuery\n$(selector).toggle(duration, easing, complete) → jQuery\n$(selector).toggle(display) → jQuery</code></pre>	https://api.jquery.com/toggle/
 .toggleClass()	A			jQuery methods							Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the state argument.<pre><code>$(selector).toggleClass(className) → jQuery\n$(selector).toggleClass(className, state) → jQuery\n$(selector).toggleClass(function, state) → jQuery</code></pre>\n<pre><code>$(selector).toggleClass(state) → jQuery</code></pre>	https://api.jquery.com/toggleClass/
 toggle class	R	.toggleClass()										
 toggleclass	R	.toggleClass()										
