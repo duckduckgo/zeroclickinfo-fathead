@@ -215,7 +215,7 @@ sub make_and_write_article {
     say "DESCRIPTION: $description" if $description;
     my $title_clean = clean_string($title);
     my @data;
-    if ( $title =~ /\(\)$/ or $title =~ qr/@/ ) {
+    if ( $title =~ /[():<>@]/ ) {
         push @data, join "\t",
           (
             $title, 'A', '', '', '', '', '', '', '', '', '', $description,
