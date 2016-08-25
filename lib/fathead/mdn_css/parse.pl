@@ -221,7 +221,7 @@ sub make_and_write_article {
             $title, 'A', '', '', '', '', '', '', '', '', '', $description,
             $link
           );
-        push @data, make_redirect($title);
+        push @data, make_redirect( $title, $title_clean );
     }
     else {
         push @data, join "\t",
@@ -243,7 +243,7 @@ sub make_redirect {
     output entry with redirect field
 =cut
 
-    my ($title) = @_;
+    my ( $title, $title_clean ) = @_;
     my @data;
     my $outputline;
     if ( $title =~ m/\(\)$/ ) {
@@ -258,6 +258,23 @@ sub make_redirect {
         $outputline = join "\t",
           ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
         push @data, $outputline;
+
+        if ( $temp =~ /^:/ ) {
+
+            #Example :dir becomes :dir function and dir function entries
+            $outputline = join "\t",
+              (
+                $title_clean, 'R', $title, '', '', '', '', '', '', '', '', '',
+                ''
+              );
+            push @data, $outputline;
+            $outputline = join "\t",
+              (
+                "$title_clean function",
+                'R', $title, '', '', '', '', '', '', '', '', '', ''
+              );
+            push @data, $outputline;
+        }
     }
     elsif ( $title =~ qr/@/ ) {
         my $temp = $title;
