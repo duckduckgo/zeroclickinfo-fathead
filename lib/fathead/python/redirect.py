@@ -178,7 +178,7 @@ def generate_redirects(f):
                 key = redirect.get_key()
                 if key not in output or '3.5/library/functions.html' in str(redirect.get_entry()):
                     output[key] = str(redirect.get_entry())
-                elif '3.5/library/functions.html' not in str(redirect.get_entry()):
+                else:
                     del output[key]
                     duplicate_count += 1
         except BadEntryException as e:
