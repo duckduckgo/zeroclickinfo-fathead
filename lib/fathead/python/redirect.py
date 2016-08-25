@@ -166,7 +166,7 @@ def generate_redirects(f):
             key = "'" + entry.get_key() + "'"
 
             # Do we have the entry yet?
-            if key not in output:
+            if key not in output or '3.5/library/functions.html' in str(entry):
                 output[key] = str(entry)
             elif '3.5/library/functions.html' not in str(entry):
                 del output[key]
@@ -175,8 +175,8 @@ def generate_redirects(f):
             # Get all possible redirect entries
             redirects = entry.get_redirects()
             for redirect in redirects:
-                key = "'" + redirect.get_key() + "'"
-                if key not in output:
+                key = redirect.get_key()
+                if key not in output or '3.5/library/functions.html' in str(redirect.get_entry()):
                     output[key] = str(redirect.get_entry())
                 elif '3.5/library/functions.html' not in str(redirect.get_entry()):
                     del output[key]
