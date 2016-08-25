@@ -175,7 +175,7 @@ def generate_redirects(f):
             # Get all possible redirect entries
             redirects = entry.get_redirects()
             for redirect in redirects:
-                key = redirect.get_key()
+                key = "'" + redirect.get_key() + "'"
                 if key not in output:
                     output[key] = str(redirect.get_entry())
                 else:
