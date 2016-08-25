@@ -214,14 +214,21 @@ sub make_and_write_article {
     say "LINK: $link";
     say "DESCRIPTION: $description" if $description;
     my $title_clean = clean_string($title);
-    my @data        = join "\t",
-      (
-        $title_clean, 'A', '', '', '', '', '', '', '', '', '', $description,
-        $link
-      );
-
+    my @data;
     if ( $title =~ /\(\)$/ or $title =~ qr/@/ ) {
-        push @data, make_redirect( $title, $title_clean );
+        push @data, join "\t",
+          (
+            $title, 'A', '', '', '', '', '', '', '', '', '', $description,
+            $link
+          );
+        push @data, make_redirect($title);
+    }
+    else {
+        push @data, join "\t",
+          (
+            $title_clean, 'A', '', '', '', '', '', '', '', '', '', $description,
+            $link
+          );
     }
     write_to_file(@data);
 }
@@ -236,7 +243,7 @@ sub make_redirect {
     output entry with redirect field
 =cut
 
-    my ( $title, $title_clean ) = @_;
+    my ($title) = @_;
     my @data;
     my $outputline;
     if ( $title =~ m/\(\)$/ ) {
@@ -244,17 +251,19 @@ sub make_redirect {
         my $temp = $title;
         $temp =~ s/\(\)$/ function/;
         $outputline = join "\t",
-          ( $temp, 'R', $title_clean, '', '', '', '', '', '', '', '', '', '' );
+          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
         push @data, $outputline;
         $temp = $title;
         $temp =~ s/\(\)$//;
         $outputline = join "\t",
-          ( $title, 'R', $title_clean, '', '', '', '', '', '', '', '', '', '' );
+          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
         push @data, $outputline;
     }
     elsif ( $title =~ qr/@/ ) {
+        my $temp = $title;
+        $temp =~ s/@//;
         $outputline = join "\t",
-          ( $title, 'R', $title_clean, '', '', '', '', '', '', '', '', '', '' );
+          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
         push @data, $outputline;
     }
     return @data;
