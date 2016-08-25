@@ -283,6 +283,13 @@ sub make_redirect {
           ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
         push @data, $outputline;
     }
+    elsif ( $title =~ /[<>]/ ) {
+        my $temp = $title;
+        $temp =~ s/[<>]//g;
+        $outputline = join "\t",
+          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
+        push @data, $outputline;
+    }
     return @data;
 }
 
