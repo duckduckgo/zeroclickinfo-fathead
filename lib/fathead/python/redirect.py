@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import itertools
+import re
 
 class BadEntryException(Exception):
     """
@@ -154,6 +155,15 @@ def generate_redirects(f):
 
     # For debugging purposes
     duplicate_count = 0
+    
+    built_in = ['abs','dict','help','min','setattr','all','dir','hex','next',
+    'slice','any','divmod','id','object','sorted','ascii','enumerate','input',
+    'oct','staticmethod','bin','eval','int','open','str','bool','exec','isinstance',
+    'ord','sum','bytearray','filter','issubclass','pow','super','bytes','float',
+    'iter','print','tuple','callable','format','len','property','type','chr',
+    'frozenset','list','range','vars','classmethod','getattr','locals','repr',
+    'zip','compile','globals','map','reversed','import','complex','hasattr',
+    'max','round','delattr','hash','memoryview','set']
 
     for line in f.readlines():
         try:
@@ -168,19 +178,23 @@ def generate_redirects(f):
             # Do we have the entry yet?
             if key not in output or '3.5/library/functions.html' in str(entry):
                 output[key] = str(entry)
-            elif '3.5/library/functions.html' not in str(entry):
+            else:
                 del output[key]
                 duplicate_count += 1
 
             # Get all possible redirect entries
-            redirects = entry.get_redirects()
-            for redirect in redirects:
-                key = redirect.get_key()
-                if key not in output or '3.5/library/functions.html' in str(redirect.get_entry()):
-                    output[key] = str(redirect.get_entry())
-                else:
-                    del output[key]
-                    duplicate_count += 1
+            key = entry.get_key() 
+            key_length = len((re.findall(r"[\w']+", key)))
+            if key_length > 1:
+                redirects = entry.get_redirects()
+                for redirect in redirects:
+                    key = redirect.get_key()
+                    built_in_key = '"' + redirect.get_key() + '"'
+                    if key not in output and built_in_key not in built_in:
+                        output[key] = str(redirect.get_entry())
+                    else:                    
+                        del output[key]
+                        duplicate_count += 1
         except BadEntryException as e:
             pass  # Continue execution entry data is invalid.
 
