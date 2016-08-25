@@ -168,7 +168,7 @@ def generate_redirects(f):
             # Do we have the entry yet?
             if key not in output:
                 output[key] = str(entry)
-            else:
+            elif '3.5/library/functions.html' not in str(entry):
                 del output[key]
                 duplicate_count += 1
 
@@ -178,7 +178,7 @@ def generate_redirects(f):
                 key = "'" + redirect.get_key() + "'"
                 if key not in output:
                     output[key] = str(redirect.get_entry())
-                else:
+                elif '3.5/library/functions.html' not in str(redirect.get_entry()):
                     del output[key]
                     duplicate_count += 1
         except BadEntryException as e:
