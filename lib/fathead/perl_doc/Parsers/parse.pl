@@ -815,11 +815,28 @@ sub parse_variables {
 #                              Packages                               #
 #######################################################################
 
+sub grab_section {
+    my ($section_name, $dom) = @_;
+    my $start = $dom->at(qq(a[name="$section_name"] + h1));
+    return Mojo::Collection::c() unless $start;
+    my $elt = $start;
+    my @elts;
+    while (1) {
+        $elt = $elt->next;
+        last unless $elt;
+        if ($elt->matches('a[name]') && $elt->attr('name') =~ /^[A-Z]+$/) {
+            last;
+        }
+        push @elts, $elt;
+    }
+    return Mojo::Collection::c(@elts); # Give back a Mojo collection
+}
+
 sub parse_package {
     my ($self, $dom) = @_;
     my $package_name = $dom->at('div#from_search + h1')->text;
-    my $synopsis = $dom->at('a[name="SYNOPSIS"] + h1 + pre');
-    $synopsis //=  $dom->at('a[name="SYNOPSIS"] + h1 + p');
+    my $syns = grab_section('SYNOPSIS', $dom);
+    my $synopsis = $syns->join();
     return {} unless $synopsis;
     $synopsis = $synopsis->to_string;
     my $short_desc = $dom->at('a[name="NAME"] + h1 + p') // '';
