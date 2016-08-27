@@ -156,8 +156,6 @@ sub doc_fullurl {
 my %parser_map = (
     'index-faq'       => ['parse_faq'],
     'index-functions' => ['parse_functions'],
-    'index-module'    => ['get_synopsis'],
-    'index-default'   => ['get_anchors'],
     'perldiag'        => ['parse_diag_messages'],
     'perlglossary'    => ['parse_glossary_definitions'],
     'perlop'          => ['parse_operators'],
@@ -323,40 +321,6 @@ sub entry {
         related  => $related_text,
         sourceurl => $url,
     });
-}
-
-sub get_synopsis {
-    my ( $self, $dom ) = @_;
-    my $articles;
-    my $title = $dom->at('title')->text;
-    my $module = $title =~ s/\s.*//r;
-    my $first_code_block = $dom->find('pre')->[0];
-
-    if ( !$first_code_block ) {
-        warn "No code block for $module";
-        return {};
-    }
-
-    my @articles = @{$articles->{articles} || []};
-    push @articles, {
-        title => $title,
-        text  => $first_code_block->to_string
-    };
-    $articles->{articles} = \@articles;
-
-    my @aliases = @{$articles->{aliases} || []};
-    push @aliases, {
-        new  => $module,
-        orig => $title,
-    };
-    $articles->{aliases} = \@aliases;
-
-    return $articles;
-}
-
-sub get_anchors {
-    my ( $self, $dom ) = @_;
-    my $articles;
 }
 
 sub retrieve_entry {
