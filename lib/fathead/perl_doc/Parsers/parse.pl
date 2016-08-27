@@ -815,6 +815,13 @@ sub parse_variables {
 #                              Packages                               #
 #######################################################################
 
+sub aliases_package {
+    my ($package) = @_;
+    make_aliases($package,
+        $package =~ s/::/ /gr,
+    );
+}
+
 sub grab_section {
     my ($section_name, $dom) = @_;
     my $start = $dom->at(qq(a[name="$section_name"] + h1));
@@ -847,6 +854,7 @@ sub parse_package {
     };
     return {
         articles => [$article],
+        aliases  => [aliases_package($package_name)],
     };
 }
 
