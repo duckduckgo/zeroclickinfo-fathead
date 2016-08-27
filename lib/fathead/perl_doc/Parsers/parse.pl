@@ -307,9 +307,8 @@ sub entry {
     my ($title, $text, $url, $related) = @article{qw(title text url related)};
     $text =~ s{\\}{\\\\}g;
     my $related_text = '';
-    # TODO: Find out how the related links should *actually* be formatted
     if (defined $related && @$related) {
-        $related_text = join '', map { "[[$_]]" } @$related;
+        $related_text = join '\n', map { "[[$_]]" } @$related;
     }
     my $category_text = join '\n', @{$article{categories} || []};
     return warn "No text for '$title'" unless $text;
