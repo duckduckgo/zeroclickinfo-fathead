@@ -51,6 +51,10 @@ sub _build_indices {
        index-platforms
     / );
 
+    foreach my $l ('A'..'Z') {
+        push @index_pages, "index-modules-$l";
+    }
+
     for ( @index_pages ) {
         $indices->{$_} = $self->links_from_index( $_ );
     }
@@ -166,7 +170,7 @@ my %parser_map = (
     'perlvar'         => ['parse_variables'],
 );
 
-my @parsers = sort keys %parser_map;
+map { $parser_map{"index-modules-$_"} = ['parse_package'] } ('A'..'Z');
 
 sub get_parsers {
     my ($index, $basename) = @_;
@@ -841,6 +845,28 @@ sub parse_variables {
         aliases => sub { $_[1] =~ s/ \(variable\)//r },
         categories => sub { ['Variables'] },
     )->(@_);
+}
+
+#######################################################################
+#                              Packages                               #
+#######################################################################
+
+sub parse_package {
+    my ($self, $dom) = @_;
+    my $package_name = $dom->at('div#from_search + h1')->text;
+    my $synopsis = $dom->at('a[name="SYNOPSIS"] + h1 + pre');
+    $synopsis //=  $dom->at('a[name="SYNOPSIS"] + h1 + p');
+    return {} unless $synopsis;
+    $synopsis = $synopsis->to_string;
+    my $short_desc = $dom->at('a[name="NAME"] + h1 + p') // '';
+    $short_desc = $short_desc->to_string . "\n" if $short_desc;
+    my $article = {
+        text  => "$short_desc$synopsis",
+        title => $package_name,
+    };
+    return {
+        articles => [$article],
+    };
 }
 
 #######################################################################
