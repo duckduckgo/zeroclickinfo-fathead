@@ -822,7 +822,8 @@ sub aliases_package {
 }
 
 sub grab_section {
-    my ($section_name, $dom) = @_;
+    my ($section_name, $dom, $match) = @_;
+    $match //= '*';
     my $start = $dom->at(qq(a[name="$section_name"] + h1));
     return Mojo::Collection::c() unless $start;
     my $elt = $start;
@@ -833,6 +834,7 @@ sub grab_section {
         if ($elt->matches('a[name]') && $elt->attr('name') =~ /^[A-Z]+$/) {
             last;
         }
+        next unless $elt->matches($match);
         push @elts, $elt;
     }
     return Mojo::Collection::c(@elts); # Give back a Mojo collection
@@ -847,9 +849,13 @@ sub parse_package {
     $synopsis = $synopsis->to_string;
     my $short_desc = $dom->at('a[name="NAME"] + h1 + p') // '';
     $short_desc = $short_desc->to_string . "\n" if $short_desc;
+    my $rel = grab_section('SEE-ALSO', $dom, 'p');
+    my @related = $rel->map(sub { $_->find('a[href]') })->flatten
+        ->map('text')->each;
     my $article = {
         text  => "$short_desc$synopsis",
         title => $package_name,
+        related => \@related,
     };
     return {
         articles => [$article],
