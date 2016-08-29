@@ -89,16 +89,28 @@ foreach my $html_file ( glob 'download/*.html' ) {
         parse_fragment_data( $link, $dom );
     }
 
-    # Get article title and description
+    # Get article title
     for my $meta ( $dom->find('meta')->each ) {
         next unless $meta->attr('property');
         if ( $meta->attr('property') =~ /og\:title/ ) {
             $title = lc $meta->attr('content');
         }
-        elsif ( $meta->attr('property') =~ /og\:description/ ) {
-            $description = $meta->attr('content');
+        last if $title;
+    }
+
+    my $h2 = $dom->at('h2#Summary');
+    if ($h2) {
+        my $p = $h2->next;
+        if ($p) {
+            my $next = $p->next;
+            if ( $next && $next->tag eq 'ul' ) {
+                $description = $p->all_text;
+                $description .= $next->find('li')->map('all_text')->join(', ');
+            }
+            else {
+                $description = $p->all_text;
+            }
         }
-        last if $title and $description;
     }
 
     # Check if article already processed
