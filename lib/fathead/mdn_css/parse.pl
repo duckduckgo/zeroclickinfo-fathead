@@ -214,14 +214,21 @@ sub make_and_write_article {
     say "LINK: $link";
     say "DESCRIPTION: $description" if $description;
     my $title_clean = clean_string($title);
-    my @data        = join "\t",
-      (
-        $title_clean, 'A', '', '', '', '', '', '', '', '', '', $description,
-        $link
-      );
-
-    if ( $title =~ /\(\)$/ or $title =~ qr/@/ ) {
-        push @data, make_redirect($title);
+    my @data;
+    if ( $title =~ /[():<>@]/ ) {
+        push @data, join "\t",
+          (
+            $title, 'A', '', '', '', '', '', '', '', '', '', $description,
+            $link
+          );
+        push @data, make_redirect( $title, $title_clean );
+    }
+    else {
+        push @data, join "\t",
+          (
+            $title_clean, 'A', '', '', '', '', '', '', '', '', '', $description,
+            $link
+          );
     }
     write_to_file(@data);
 }
@@ -236,7 +243,7 @@ sub make_redirect {
     output entry with redirect field
 =cut
 
-    my ($title) = @_;
+    my ( $title, $title_clean ) = @_;
     my @data;
     my $outputline;
     if ( $title =~ m/\(\)$/ ) {
@@ -249,14 +256,38 @@ sub make_redirect {
         $temp = $title;
         $temp =~ s/\(\)$//;
         $outputline = join "\t",
-          ( $title, 'R', $temp, '', '', '', '', '', '', '', '', '', '' );
+          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
         push @data, $outputline;
+
+        if ( $temp =~ /^:/ ) {
+
+            #Example :dir becomes :dir function and dir function entries
+            $outputline = join "\t",
+              (
+                $title_clean, 'R', $title, '', '', '', '', '', '', '', '', '',
+                ''
+              );
+            push @data, $outputline;
+            $outputline = join "\t",
+              (
+                "$title_clean function",
+                'R', $title, '', '', '', '', '', '', '', '', '', ''
+              );
+            push @data, $outputline;
+        }
     }
     elsif ( $title =~ qr/@/ ) {
         my $temp = $title;
         $temp =~ s/@//;
         $outputline = join "\t",
-          ( $title, 'R', $temp, '', '', '', '', '', '', '', '', '', '' );
+          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
+        push @data, $outputline;
+    }
+    elsif ( $title =~ /[<>]/ ) {
+        my $temp = $title;
+        $temp =~ s/[<>]//g;
+        $outputline = join "\t",
+          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
         push @data, $outputline;
     }
     return @data;
