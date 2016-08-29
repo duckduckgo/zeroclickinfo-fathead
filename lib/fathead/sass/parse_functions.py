@@ -297,7 +297,7 @@ class DataOutput(object):
                     list_of_data = [
                         name,                       # unique name
                         'A',                        # type is article
-                        name + ' function',         # redirect data
+                        '',                         # redirect data
                         '',                         # ignore
                         '',                         # no categories
                         '',                         # ignore
