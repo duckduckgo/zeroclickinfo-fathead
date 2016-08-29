@@ -551,27 +551,18 @@ sub parse_faq {
 
 # TODO: Some functions (e.g., 'xor') are documented in 'perlop' so do not
 # receive a good description from this parser.
-my $skip = qr/To get the best experience. |Please note: Many features/;
 sub parse_functions {
     my ($self, $dom) = @_;
 
-    my $fname = $dom->at('title')->text;
-    $fname =~ s/\s-\s.*//;
-
-    my $hint = $dom->at('b')->text;
-
-    $dom = $dom->at('div[id="content_body"]');
-
-    my $description;
-    foreach my $n ($dom->find('p, code')->each){
-        next unless $n->content;
-        next if $n->content =~ /$skip/;
-        $description .= $n->content;
-    }
-    return unless $description;
-    $description = trim_abstract($description, 100);
-    $description = "<code><br>$hint<br></code><br>". $description;
+    my $fname = $dom->at('div#from_search + h1')->text;
+    my $description = text_from_selector(
+        $dom->at('ul > li > a[name]')->parent
+    );
+    # TODO: Fall back on using the index description if we cannae find a good
+    # one.
+    warn "No text for $fname\n" and return {} unless $description;
     my $title = "$fname (function)";
+
     return {
         articles => [
             { title => $title, text => $description }
