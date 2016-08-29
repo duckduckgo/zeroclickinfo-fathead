@@ -558,12 +558,17 @@ sub parse_functions {
     my ($self, $dom) = @_;
 
     my $fname = $dom->at('div#from_search + h1')->text;
+    my @syntaxes = $dom->find('ul > li > a[name] + b')->map('text')->each;
 
     my $description = text_from_selector(
         $dom->at('ul:last-of-type > li > a[name]')->parent
     )->to_string;
     $description ||= $functions_fallback{$fname};
     return unless $description;
+    my $syntax = Mojo::DOM->new("<pre>$syntaxes[0]</pre>");
+    map { $syntax->at('pre')->append_content("<br />$_") }
+        @syntaxes[1..$#syntaxes];
+    $description = $syntax->to_string . $description;
 
     my $title = "$fname (function)";
 
