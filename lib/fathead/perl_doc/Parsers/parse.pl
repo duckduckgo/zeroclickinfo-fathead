@@ -560,7 +560,7 @@ sub parse_functions {
     my $fname = $dom->at('div#from_search + h1')->text;
 
     my $description = text_from_selector(
-        $dom->at('ul > li > a[name]')->parent
+        $dom->at('ul:last-of-type > li > a[name]')->parent
     )->to_string;
     $description ||= $functions_fallback{$fname};
     return unless $description;
