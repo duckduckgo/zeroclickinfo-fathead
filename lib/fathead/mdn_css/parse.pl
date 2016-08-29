@@ -102,13 +102,10 @@ foreach my $html_file ( glob 'download/*.html' ) {
     if ($h2) {
         my $p = $h2->next;
         if ($p) {
+            $description = $p->all_text;
             my $next = $p->next;
             if ( $next && $next->tag eq 'ul' ) {
-                $description = $p->all_text;
                 $description .= $next->find('li')->map('all_text')->join(', ');
-            }
-            else {
-                $description = $p->all_text;
             }
         }
     }
