@@ -227,7 +227,7 @@ class DataParser(object):
                 anchor = self.parse_for_anchor(function_section[0])
                 example = self.parse_for_example(function_section[0])
                 parameter = self.parse_for_parameters(function_section[0])
-                abstract = description + "<br>" + method_signature
+                abstract = "<p>" + description + "</p>" + method_signature
                 if example:
                     abstract =  abstract + example
                 if parameter:
@@ -299,7 +299,7 @@ class DataOutput(object):
                         'A',                        # type is article
                         '',                         # redirect data
                         '',                         # ignore
-                        '',                         # no categories
+                        'sass functions,            # categories
                         '',                         # ignore
                         '',                         # no related topics
                         '',                         # ignore
