@@ -549,18 +549,22 @@ sub parse_faq {
 #                              Functions                              #
 #######################################################################
 
+# Fallback descriptions for when the page is empty.
+my %functions_fallback;
+
 # TODO: Some functions (e.g., 'xor') are documented in 'perlop' so do not
 # receive a good description from this parser.
 sub parse_functions {
     my ($self, $dom) = @_;
 
     my $fname = $dom->at('div#from_search + h1')->text;
+
     my $description = text_from_selector(
         $dom->at('ul > li > a[name]')->parent
-    );
-    # TODO: Fall back on using the index description if we cannae find a good
-    # one.
-    warn "No text for $fname\n" and return {} unless $description;
+    )->to_string;
+    $description ||= $functions_fallback{$fname};
+    return unless $description;
+
     my $title = "$fname (function)";
 
     return {
@@ -578,7 +582,12 @@ sub parse_functions {
 
 sub parse_index_functions_links {
     my ($self, $dom) = @_;
-    return @{$dom->find('a[href^="functions"]')->to_array};
+    my @fns = $dom->find('a[href^=functions]')->each;
+    foreach my $fn (@fns) {
+        my ($descr) = $fn->parent->text =~ /- (.+)\s*+$/;
+        $functions_fallback{$fn->text} = $descr;
+    }
+    return @fns;
 }
 
 #######################################################################
