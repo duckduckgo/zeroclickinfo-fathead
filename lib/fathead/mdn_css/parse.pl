@@ -90,13 +90,14 @@ foreach my $html_file ( glob 'download/*.html' ) {
     }
 
     # Get article title
-    for my $meta ( $dom->find('meta')->each ) {
-        next unless $meta->attr('property');
-        if ( $meta->attr('property') =~ /og\:title/ ) {
-            $title = lc $meta->attr('content');
+    my $meta_with_title = $dom->find('meta')->first(
+        sub {
+            my $meta     = $_;
+            my $property = $meta->attr('property');
+            $property && $property =~ /og\:title/;
         }
-        last if $title;
-    }
+    );
+    $title = lc $meta_with_title->attr('content') if $meta_with_title;
 
     my $h2 = $dom->at('h2#Summary');
     if ($h2) {
