@@ -170,7 +170,6 @@ class MDNParser(object):
         tree = html.fromstring(page)
 
         if self._is_obsolete(tree):
-          print "obsolete"
           return None
 
         title = tree.xpath("//meta[@property='og:title']/@content")[0]
@@ -188,6 +187,17 @@ class MDNParser(object):
             if summary_el:
               summary = summary_el[0]
 
+        # if there's no summary or description, getting tags
+        if not summary:
+            summary_el = tree.xpath("//ul[contains(@class,'tag')]")
+            if summary_el:
+              elements = tree.xpath("//ul[contains(@class,'tag')]/li/..")
+              for element in elements:
+                  for tag in element.xpath('//*[@class]'):
+                      tag.attrib.pop('class')
+                  summary += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+              summary = "Tags: " + summary.strip()
+
         codesnippet = ""
         syntax_header = tree.xpath("//h2[contains(@id,'Syntax')]")
         if syntax_header:
@@ -196,6 +206,20 @@ class MDNParser(object):
                 for tag in element.xpath('//*[@class]'):
                     tag.attrib.pop('class')
                 codesnippet += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+
+        # if there's no codesnippet, getting see also
+        see_also_title = ""
+        if not codesnippet:
+            see_also_header = tree.xpath("//h3[contains(@id,'See_also')]")
+            if see_also_header:
+                elements = tree.xpath("//h3[contains(@id,'See_also')]/following-sibling::ul[1]")
+                for element in elements:
+                    for tag in element.xpath('//*[@class]'):
+                        tag.attrib.pop('class')
+                    see_also_title = re.findall('title="([^"]*)"', etree.tostring(element).strip())
+                    codesnippet += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+                if see_also_title and codesnippet:
+                    codesnippet = "See also:\n  " + codesnippet.strip() + "\n  " + see_also_title[0].strip()
 
         # Error pages
         if "Error" in htmlfile.name:
