@@ -3,12 +3,13 @@ package Util::Page;
 
 use Moo;
 use Mojo;
+use Path::Tiny;
 
 my $ua = Mojo::UserAgent->new;
 
 has url => (
     is       => 'ro',
-    doc      => 'full URL to the page',
+    doc      => q{full URL to the page. Prefix with 'file://' to use a local file},
     required => 1,
 );
 
@@ -25,9 +26,22 @@ has dom => (
 sub _build_dom {
     my ($self) = @_;
     my $url = $self->url;
-    my $res = $ua->get($url)->success
-        or warn "Unable to fetch DOM for '$url'\n";
-    return $res->dom if $res;
+    if (my $path = $self->_local_path) {
+        warn "No such file '$path'" and return unless $path->exists;
+        my $dom = Mojo::DOM->new($path->slurp_utf8)
+            or warn "Unable to parse DOM for '$path'\n" and return;
+        return $dom;
+    } else {
+        my $res = $ua->get($url)->success
+            or warn "Unable to fetch DOM for '$url'\n";
+        return $res->dom if $res;
+    }
+}
+
+sub _local_path {
+    my ($self) = @_;
+    return unless my ($path) = $self->url =~ q{^file://(.+)$};
+    return path($path);
 }
 
 1;
