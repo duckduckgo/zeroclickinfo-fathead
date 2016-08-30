@@ -1,70 +1,54 @@
-# Contributing to the **Fathead** repository
+# Contributing an Instant Answer to DuckDuckGo.com
 
-At DuckDuckGo, we truly appreciate our community members taking the time to contribute to our open-source repositories. In an effort to ensure contributions are easy for you to make and for us to manage, we have written some guidelines that we ask our contributors to follow so that we can handle pull requests in a timely manner with as little friction as possible.
+We're a community dedicated to improving search results with open source, "Instant Answers." Instant Answers use the Web's best APIs and data to solve searches in few or zero clicks. Together and openly, we can create the best search engine for every type of search.
 
-## Getting Started
+**The DuckDuckHack community and DuckDuckGo staff are working together on a mission to create the best search engine for programmers. To fully focus there, we are only accepting Pull Requests and Issues related to the [Programming Mission](https://forum.duckduckhack.com/t/duckduckhack-programming-mission-overview/53).** By working directly with contributors to this mission, we can more quickly provide search data and open source tools which give contributors and their Instant Answers more impact than ever before!
 
-Before you can do anything, you first need a [GitHub account](https://github.com/signup/free). This is required because we use GitHub to handle all incoming *Pull Requests* (code modifications) and *Issues* (bug reports) which cannot be made without a GitHub account.
+[**Join the Programming Mission!**](https://forum.duckduckhack.com/t/duckduckhack-programming-mission-overview/53)  
 
-## Submitting a **Bug** or **Suggestion**
+*Your help and expertise can have a huge impact on improving the search experience for developers and DuckDuckGo users around the world!* 
 
-- Firstly, please make sure the bug is related to the **Fathead** repository. If this bug is about the DuckDuckGo API, or the relevancy of our search results, please visit our feedback page at <https://duckduckgo.com/feedback>. If you're unsure, its best to use the feedback page (your message will be passed along to the correct people).
+## Formatting Your Pull Request
 
-- Check the **Fathead** [issues](https://github.com/duckduckgo/zeroclickinfo-fathead/issues) to see if an issue already exists for the given bug or suggestion
-  - If one doesn't exist, create a GitHub issue in the **Fathead** repository
-    - Clearly describe the bug/improvemnt, including steps to reproduce when it is a bug
-  - If one already exists, please add any additional comments you have regarding the matter
+When submitting a pull request, the following guidelines help speed up the review process:
 
-If you're submitting a **pull request** (bugfix/addition):
-- Fork the **Fathead** repository on GitHub
+### New Instant Answers
 
-## Making Changes
+1. New IAs should be titled as follows: **`New {IA TOPIC} {IA TYPE}`**. For example, `New Instagram Spice` or `New Firefox Cheat Sheet`
 
-- Before making any changes, refer to the [DuckDuckHack Styleguide](https://dukgo.com/duckduckhack/styleguide_overview) to ensure your changes are made in the correct fashion
-- Make sure your commits are of a reasonable size. They shouldn't be too big (or too small)
-- Make sure your commit messages effectively explain what changes have been made, and please identify which instant answer or file has been modified:
+2. Paste the relevant [Instant Answer Page URL](https://duck.co/ia/new_ia) in the description field. This will automatically link the PR to the Instant Answer.
+	
+### Improvements
 
-  ```shell
-  CONTRIBUTING.md - Added the example commit message because it was missing
-  ```
+1. Fixes should be titled as follows: **`{IA NAME}: Brief explanation`**. For example: `PeopleInSpace: Use smaller local image, fallback to API when needed.`
 
-  is much better than:
+2. Paste the relevant [Instant Answer Page URL](https://duck.co/ia/new_ia) in the description field. This will automatically link the PR to the Instant Answer.
 
-  ```shell
-  <bad_commit_example>
-  ```
+3. Include the issue number in the description (conveniently, this will automatically resolve the issue upon merging). Describe your motivation, thought process, and solution in the description. For example:
 
-- Make sure you have added the necessary tests for your changes
-- Run `dzil test` (executes all tests in t/) to ensure nothing else was accidentally broken
-- If your change affects an instant answer, remember to add yourself to the Metadata attribution list in the appropriate `.pm` file
+	"**Fixes #2038.** The images used by the API are very large and don't change often. I've put a smaller version of each image (and a 2x version for retina screens) in the share directory. The callback will try and load a local image based on the astronauts name and fallback to using the API's image if one does not exist."
 
-## Submitting Changes
+> **IMPORTANT:** Don't worry if you get an initial error regarding failing Travis tests. The reason is that your IA page hasn't yet been moved out of the "Planning" status - which only community leaders/staff can do. As long as the ID in your IA page matches the ID in your code, and you've pasted the URL to your IA page, you can ignore this initial error.
 
-1. Commit your changes.
+## Formatting Your Pull Request
 
-  ```shell
-  git commit -a -m "My first instant answer that does X is ready to go!"
-  ```
+When submitting a pull request, the following guidelines help speed up the review process:
 
-2. Get your commit history [how you like it](http://book.git-scm.com/4_interactive_rebasing.html).
+### New Instant Answers
 
-  ```shell
-  git rebase -i origin/master
-  ```
+1. New IAs should be titled as follows: **`New {IA TOPIC} {IA TYPE}`**. For example, `New Instagram Spice` or `New Firefox Cheat Sheet`
 
-  or
+2. Paste the relevant [Instant Answer Page URL](https://duck.co/ia/new_ia) in the description field. This will automatically link the PR to the Instant Answer.
+	
+### Improvements
 
-  ```shell
-  git pull --rebase origin/master
-  ```
+1. Fixes should be titled as follows: **`{IA NAME}: Brief explanation`**. For example: `PeopleInSpace: Use smaller local image, fallback to API when needed.`
 
-3. Push your forked repository back to GitHub.
+2. Paste the relevant [Instant Answer Page URL](https://duck.co/ia/new_ia) in the description field. This will automatically link the PR to the Instant Answer.
 
-  ```shell
-  git push
-  ```
+3. Include the issue number in the description (conveniently, this will automatically resolve the issue upon merging). Describe your motivation, thought process, and solution in the description. For example:
 
-4. Add your info to the instant answer so we can give you credit for it on the [Goodies page](https://duckduckgo.com/goodies). You'll see your name or handle on the live site!
-Check out the [Metadata documentation](https://dukgo.com/duckduckhack/metadata) for detailed instructions on how to include your name and links.
+	"**Fixes #2038.** The images used by the API are very large and don't change often. I've but a smaller version of each image (and a 2x version for retina screens) in the share directory. The callback will try and load a local image based on the astronauts name and fallback to using the API's image if one does not exist."
 
-5. Go into GitHub and submit a [pull request!](http://help.github.com/send-pull-requests/) to the **Fathead** repository, making sure to use the **Fathead** repository's **[Pull Request Template](https://github.com/duckduckgo/zeroclickinfo-fathead/blob/master/pull_request_template_fathead.md)**. This will let us know about your changes and start the conversation about integrating it into the live code.
+> **IMPORTANT:** Don't worry if you get an initial error regarding failing Travis tests. The reason is that your IA page hasn't yet been moved out of the "Planning" status - which only community leaders/staff can do. As long as the ID in your IA page matches the ID in your code, and you've pasted the URL to your IA page, you can ignore this initial error.
+	
