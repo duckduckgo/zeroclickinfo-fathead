@@ -16,8 +16,7 @@ use HTML::Entities;    # Used by HTML::Strip
 use Data::Printer return_value => 'dump';
 
 =begin
-This script extracts data from html files under the
-downloads folder
+This script extracts data from html files under the downloads folder
 =cut
 
 # Keep track of unique keys
@@ -33,7 +32,7 @@ TODO: Confirm this is the correct approach
 
 my $fragments_file = catfile 'download', 'fragments.txt';
 
-#keys are urls, values are fragments
+# keys are urls, values are fragments
 my %url_fragment;
 if ( -e $fragments_file ) {
     open( my $fh, '<:encoding(UTF-8)', $fragments_file ) or die $!;
@@ -50,6 +49,11 @@ if ( -e $fragments_file ) {
 
 open( my $fh, ">", 'output.txt' ) or croak $!;
 
+
+###############
+# PARSING LOOP
+###############
+
 foreach my $html_file ( glob 'download/*.html' ) {
 
     say "\n----------------------------------------\n";
@@ -57,18 +61,18 @@ foreach my $html_file ( glob 'download/*.html' ) {
     my $dom = Mojo::DOM->new( slurp $html_file);
 
 =begin
-  Name of CSS tag is found here:
-  <!-- document-specific social tags -->
-  <meta property="og:title" content=":right">
+    Name of CSS tag is found here:
+    <!-- document-specific social tags -->
+    <meta property="og:title" content=":right">
 
-  and the description is from here:
-  <meta property="og:description"
-  content="The :right CSS page pseudo-class matches any right page when
-  printing a page. It allows to describe the styling of right-side page.">
+    and the description is from here:
+    <meta property="og:description"
+    content="The :right CSS page pseudo-class matches any right page when
+    printing a page. It allows to describe the styling of right-side page.">
 
-  The link is found in a this section
-  <link rel="canonical"
-  ref="https://developer.mozilla.org/en-US/docs/Web/CSS/:right" >
+    The link is found in a this section
+    <link rel="canonical"
+    ref="https://developer.mozilla.org/en-US/docs/Web/CSS/:right" >
 =cut
 
     my ( $title, $link, $description, @entries );
@@ -136,16 +140,127 @@ foreach my $html_file ( glob 'download/*.html' ) {
     if ($table_properties) {
         $initial_value = parse_initial_value($table_properties);
     }
-    $description = build_abstract( $description, $code, $initial_value );
+    $description = create_abstract( $description, $code, $initial_value );
 
     next unless $title && $link && $description;
 
-    make_and_write_article( $title, $description, $link );
+    create_article( $title, $description, $link );
+    create_redirects( $title ) if $title =~ m/[():<>@]/;
 }
 
-# PRIVATE FUNCTIONS
 
-sub clean_code {
+
+####################
+# HELPER FUNCTIONS
+####################
+
+# Build HTML string containing Initial Value data
+sub create_abstract {
+    my ( $description, $code, $initial_value ) = @_;
+    say "NO DESCRIPTION!" if $description eq "";
+    $description = trim($description);
+    $description =~ s/\r?\n+/\\n/g;
+    $initial_value =~ s/\r?\n+/\\n/g if $initial_value;
+    $code = _clean_code($code) if $code;
+    my $out;
+    $out .= "<p>$description</p>"           if $description;
+    $out .= "<p>$initial_value</p>"         if $initial_value;
+    $out .= "<pre><code>$code</code></pre>" if $code;
+    return $out;
+}
+
+sub parse_initial_value {
+    my ($table_properties) = @_;
+
+    #first <tr> Contains the initial value
+    my $tr = $table_properties->find('tr')->first;
+    my $th = $tr->at('th');
+    my $initial_value;
+    if ($th) {
+        my $a = $th->at('a');
+        if ( $a && $a->text =~ /Initial value/ ) {
+            my $td = $tr->at('td');
+            if ( $td->at('ul') ) {
+                for my $element ( $td->find('code, a, br')->each ) {
+                    $element->replace( $element->all_text );
+                }
+                $initial_value .= $td->content;
+            }
+            else {
+                $initial_value = trim( $td->all_text );
+            }
+            $initial_value = trim($initial_value);
+            $initial_value = _build_initial_value($initial_value);
+        }
+    }
+    return $initial_value;
+}
+
+
+# Create Article and Redirects as needed
+# Write to output files
+sub create_article {
+    my ( $title, $description, $link ) = @_;
+    my @data;
+    push @data, _build_article($title, $description, $link);
+    _write_to_file(@data);
+}
+
+
+sub create_redirects {
+
+=begin
+    Check for CSS Functions like not() or for titles
+    beginning with @ like @page and replace "()"
+    with "function" in title e.g. "not()" -> "not function".
+    remove @ and create output entry with redirect field
+=cut
+
+    my $title = shift;
+    my $title_clean = _clean_string($title);
+    my @data;
+    my $outputline;
+
+    # Capture content inside parentheses
+    # E.g. "::before (:before)"
+    if ( $title =~ m/(::.+) \((:.+)\)/ ) {
+        say "Has parens!";
+        my $outer = $1;
+        my $inner = $2;
+        say "INNER: $inner";
+        say "OUTER: $outer";
+
+        push @data, _build_redirect($inner, $title);
+        push @data, _build_redirect($outer, $title);
+
+        my $inner_clean = _clean_string($inner);
+        push @data, _build_redirect($inner_clean, $title);
+    }
+    else {
+        push @data, _build_redirect($title_clean, $title);
+    }
+    _write_to_file(@data);
+}
+
+
+
+####################
+# PRIVATE FUNCTIONS
+####################
+
+
+# Build HTML string containing Initial Value data
+sub _build_initial_value {
+    my ($content) = @_;
+    my $initial_value = "<b>Initial Value: </b><em>$content</em>";
+    return $initial_value;
+}
+
+# Clean up code blocks
+# - strip HTML content
+# - collapse spaces
+# - escape newlines
+sub _clean_code {
     my ($code) = @_;
     my $hs = HTML::Strip->new( emit_spaces => 0 );
     $code = $hs->parse($code);
@@ -155,143 +270,50 @@ sub clean_code {
     return $code;
 }
 
-sub clean_string {
+
+# Remove certain non-alphanumeric characters
+sub _clean_string {
     my $input = shift;
-    my $clean = $input;
-
-    # Capture content inside parentheses
-    # Check if identical or not
-    # E.g. "::before (:before)"
-    my $paren_re = qr/\((.+)\)/;
-
-    $clean =~ s/[():<>@]//g;
-
-    if ( $clean ne $input ) {
-        say "Input: $input";
-        say "Cleaned: $clean";
-    }
-
-    if ( $clean =~ m/$paren_re/ ) {
-        say "Has parens!";
-        my $paren_text = trim($1);
-        say "Paren Text: $paren_text";
-        $clean =~ s/$paren_re//;
-        trim($clean);
-        say "Clean Now: $clean";
-        unless ( $clean eq $paren_text ) {
-            say "Paren Text is Different!";
-            $clean = "$clean $paren_text";
-        }
-        say "Clean Final: $clean";
-    }
-    return $clean;
+    say "Input: '$input'";
+    $input =~ s/[:<>@()]//g;
+    trim($input);
+    say "Cleaned: '$input'";
+    return $input;
 }
 
-sub build_initial_value {
-    my ($content) = @_;
-    my $initial_value = "<b>Initial Value: </b><em>$content</em>";
-    return $initial_value;
-}
 
-sub build_abstract {
-    my ( $description, $code, $initial_value ) = @_;
-    say "NO DESCRIPTION!" if $description eq "";
-    $description = trim($description);
-    $description =~ s/\r?\n+/\\n/g;
-    $initial_value =~ s/\r?\n+/\\n/g if $initial_value;
-    $code = clean_code($code) if $code;
-    my $out;
-    $out .= "<p>$description</p>"           if $description;
-    $out .= "<p>$initial_value</p>"         if $initial_value;
-    $out .= "<pre><code>$code</code></pre>" if $code;
-    return $out;
-}
-
-sub make_and_write_article {
-    my ( $title, $description, $link ) = @_;
+# Build Article string for given title, description, and link
+sub _build_article {
+    my ($title, $description, $link) = @_;
     say '';
-    say "TITLE: $title";
+    say "ARTICLE: $title";
     say "LINK: $link";
-    say "DESCRIPTION: $description" if $description;
-    my $title_clean = clean_string($title);
-    my @data;
-    if ( $title =~ /[():<>@]/ ) {
-        push @data, join "\t",
-          (
-            $title, 'A', '', '', '', '', '', '', '', '', '', $description,
-            $link
-          );
-        push @data, make_redirect( $title, $title_clean );
-    }
-    else {
-        push @data, join "\t",
-          (
-            $title_clean, 'A', '', '', '', '', '', '', '', '', '', $description,
-            $link
-          );
-    }
-    write_to_file(@data);
+    # say "DESCRIPTION: $description" if $description;
+    return join "\t",
+    ( $title, 'A', '', '', '', '', '', '', '', '', '', $description, $link );
 }
 
-sub make_redirect {
 
-=begin
-    Check for CSS Functions like not() or for titles
-    beginning with @ like @page and replace "()"
-    with "function" in title e.g. "not()" - >
-    "not function". remove @ and create
-    output entry with redirect field
-=cut
-
-    my ( $title, $title_clean ) = @_;
-    my @data;
-    my $outputline;
-    if ( $title =~ m/\(\)$/ ) {
-        say "\nFound Function: $title";
-        my $temp = $title;
-        $temp =~ s/\(\)$/ function/;
-        $outputline = join "\t",
-          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
-        push @data, $outputline;
-        $temp = $title;
-        $temp =~ s/\(\)$//;
-        $outputline = join "\t",
-          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
-        push @data, $outputline;
-
-        if ( $temp =~ /^:/ ) {
-
-            #Example :dir becomes :dir function and dir function entries
-            $outputline = join "\t",
-              (
-                $title_clean, 'R', $title, '', '', '', '', '', '', '', '', '',
-                ''
-              );
-            push @data, $outputline;
-            $outputline = join "\t",
-              (
-                "$title_clean function",
-                'R', $title, '', '', '', '', '', '', '', '', '', ''
-              );
-            push @data, $outputline;
-        }
-    }
-    elsif ( $title =~ qr/@/ ) {
-        my $temp = $title;
-        $temp =~ s/@//;
-        $outputline = join "\t",
-          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
-        push @data, $outputline;
-    }
-    elsif ( $title =~ /[<>]/ ) {
-        my $temp = $title;
-        $temp =~ s/[<>]//g;
-        $outputline = join "\t",
-          ( $temp, 'R', $title, '', '', '', '', '', '', '', '', '', '' );
-        push @data, $outputline;
-    }
-    return @data;
+sub _build_redirect {
+    my ($title, $redirect) = @_;
+    say "REDIRECT: $title =========> $redirect";
+    return join "\t",
+    ( $title, 'R', $redirect, '', '', '', '', '', '', '', '', '', '' );
 }
+
+
+sub _write_to_file {
+    my @parts = @_;
+    for my $part (@parts) {
+        say $fh $part;
+    }
+}
+
+
+
+####################
+# PARSING FRAGMENTS
+####################
 
 sub parse_fragment_data {
     my ( $link, $dom ) = @_;
@@ -338,8 +360,8 @@ sub parse_fragment_data {
                 }
                 $next_element = $next_element->next;
             } while ( $next_element && $next_element->tag ne 'h3' );
-            $description = build_abstract( $paragraphs, $code_fragment );
-            make_and_write_article( $title, $description, $url );
+            $description = create_abstract( $paragraphs, $code_fragment );
+            create_article( $title, $description, $url );
         }
     }
     elsif ( $link =~ qr/filter/ ) {
@@ -381,8 +403,8 @@ sub parse_fragment_data {
                 }
                 $next_element = $next_element->next;
             } while ( $next_element && $next_element->tag ne 'div' );
-            $description = build_abstract( $paragraphs, $code_fragment );
-            make_and_write_article( $title, $description, $url );
+            $description = create_abstract( $paragraphs, $code_fragment );
+            create_article( $title, $description, $url );
         }
     }
     elsif ( $link =~ qr/length/ ) {
@@ -396,9 +418,9 @@ sub parse_fragment_data {
                 my $dd  = $dt->next;
                 my $description;
                 if ($dd) {
-                    $description = build_abstract( $dd->all_text );
+                    $description = create_abstract( $dd->all_text );
                 }
-                make_and_write_article( $title, $description, $url );
+                create_article( $title, $description, $url );
             }
         }
     }
@@ -454,49 +476,14 @@ sub parse_fragment_data {
                                 }
                             );
                         }
-                        $code = clean_code($code);
                     }
                 }
-                my $description = build_abstract( $paragraph, $code );
-                make_and_write_article( $title, $description, $url );
+                my $description = create_abstract( $paragraph, $code );
+                create_article( $title, $description, $url );
             }
         }
     }
     else {
         warn "Unmatched $link in parse_fragment_data()";
-    }
-}
-
-sub parse_initial_value {
-    my ($table_properties) = @_;
-
-    #first <tr> Contains the initial value
-    my $tr = $table_properties->find('tr')->first;
-    my $th = $tr->at('th');
-    my $initial_value;
-    if ($th) {
-        my $a = $th->at('a');
-        if ( $a && $a->text =~ /Initial value/ ) {
-            my $td = $tr->at('td');
-            if ( $td->at('ul') ) {
-                for my $element ( $td->find('code, a, br')->each ) {
-                    $element->replace( $element->all_text );
-                }
-                $initial_value .= $td->content;
-            }
-            else {
-                $initial_value = trim( $td->all_text );
-            }
-            $initial_value = trim($initial_value);
-            $initial_value = build_initial_value($initial_value);
-        }
-    }
-    return $initial_value;
-}
-
-sub write_to_file {
-    my @parts = @_;
-    for my $part (@parts) {
-        say $fh $part;
     }
 }
