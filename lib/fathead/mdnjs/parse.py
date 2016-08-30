@@ -157,7 +157,7 @@ class MDNParser(object):
     pages change causing this Fathead to break, then the queries in this class
     should be checked. """
     def _is_obsolete(self, tree):
-        obsolete = tree.xpath("//meta[@class='obsoleteHeader']")
+        obsolete = tree.xpath("//*[contains(@class, 'obsoleteHeader')]")
         return obsolete
 
     def parse(self, htmlfile):
