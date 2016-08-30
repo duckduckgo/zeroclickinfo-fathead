@@ -48,7 +48,8 @@ sub _local_path {
 
 sub _url_cache_path {
     my ($url) = @_;
-    return path('download/.cache', Mojo::URL->new($url)->path);
+    my $u = Mojo::URL->new($url);
+    return path('download/.cache', $u->host, $u->path);
 }
 
 sub _cache {
