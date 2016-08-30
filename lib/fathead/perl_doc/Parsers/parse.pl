@@ -551,6 +551,18 @@ sub parse_faq {
 # Fallback descriptions for when the page is empty.
 my %functions_fallback;
 
+sub build_description_functions {
+    my ($fname, $syntaxes, $description) = @_;
+    my @syntaxes = @$syntaxes;
+    $description ||= $functions_fallback{$fname};
+    return unless $description;
+    my $syntax = Mojo::DOM->new("<pre>$syntaxes[0]</pre>");
+    map { $syntax->at('pre')->append_content("<br />$_") }
+        @syntaxes[1..$#syntaxes];
+    $description = $syntax->to_string . $description;
+    return $description;
+}
+
 # TODO: Some functions (e.g., 'xor') are documented in 'perlop' so do not
 # receive a good description from this parser.
 sub parse_functions {
@@ -562,12 +574,8 @@ sub parse_functions {
     my $description = text_from_selector(
         $dom->at('ul:last-of-type > li > a[name]')->parent
     )->to_string;
-    $description ||= $functions_fallback{$fname};
-    return unless $description;
-    my $syntax = Mojo::DOM->new("<pre>$syntaxes[0]</pre>");
-    map { $syntax->at('pre')->append_content("<br />$_") }
-        @syntaxes[1..$#syntaxes];
-    $description = $syntax->to_string . $description;
+    $description = build_description_functions($fname, [@syntaxes], $description)
+        or return;
 
     my $title = "$fname (function)";
 
