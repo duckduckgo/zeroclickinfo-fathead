@@ -151,7 +151,6 @@ sub doc_fullurl {
 # Parsers for other keys (basenames) will only run on the matching file.
 my %parser_map = (
     'index-faq'       => ['parse_faq'],
-    'index-language'  => ['parse_faq'],
     'index-functions' => ['parse_functions'],
     'index-module'    => ['get_synopsis'],
     'index-default'   => ['get_anchors'],
