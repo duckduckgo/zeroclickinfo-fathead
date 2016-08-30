@@ -572,7 +572,7 @@ sub parse_functions {
     my @syntaxes = $dom->find('ul > li > a[name] + b')->map('text')->each;
 
     my $description = text_from_selector(
-        $dom->at('ul:last-of-type > li > a[name]')->parent
+        $dom->at('ul:last-of-type > li:last-child > a[name]')->parent
     )->to_string;
     $description = build_description_functions($fname, [@syntaxes], $description)
         or return;
