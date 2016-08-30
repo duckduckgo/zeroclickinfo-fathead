@@ -143,14 +143,14 @@ class MDN(object):
       prop: The calling object's property.
     """
     def __init__(self, title=None, url=None, summary=None, codesnippet=None,
-                 obj=None, prop=None):
+                 obj=None, prop=None, articletype=None):
         self.title = title
         self.url = url
         self.summary = summary
         self.codesnippet = codesnippet
         self.obj = obj
         self.prop = prop
-
+        self.articletype = articletype
 
 class MDNParser(object):
     """ A parser that takes an MDN wiki page and returns an MDN object. If
@@ -221,9 +221,11 @@ class MDNParser(object):
                 if see_also_title and codesnippet:
                     codesnippet = "See also:\n  " + codesnippet.strip() + "\n  " + see_also_title[0].strip()
 
+        articletype = ""
         # Error pages
         if "Error" in htmlfile.name:
 
+          articletype = "Error"
           # What went wrong?
           whatWentWrong_summary = ""
           whatWentWrong = tree.xpath("//h2[contains(@id,'What_went_wrong')]/following-sibling::p[1]")
@@ -256,6 +258,7 @@ class MDNParser(object):
         mdn.title = title
         mdn.summary = summary
         mdn.codesnippet = codesnippet
+        mdn.articletype = articletype
         return mdn
 
 class MDNIndexer(object):
@@ -267,6 +270,8 @@ class MDNIndexer(object):
         self.WEBAPI_CLASS_WORDS = ['Window', 'Navigator', 'MouseEvent',
                             'KeyboardEvent', 'GlobalEventHandlers', 'Element',
                             'Node', 'Event', 'Selection']
+        # for Error pages
+        self.ERROR_SYNONYMS = [ ["bad", "not legal", "invalid", "not a valid"] ]
 
     def add(self, mdn):
         keyword = mdn.prop.lower()
@@ -274,6 +279,34 @@ class MDNIndexer(object):
         if keyword not in self.inverted_index:
             self.inverted_index[keyword] = []
         self.inverted_index[keyword].append(mdn)
+
+    def writeredirect(self, title, mdn):
+        title = title.replace('_', ' ')
+        # write redirects with synomyms for error pages
+        if mdn.articletype == "Error":
+            for synonyms_list in self.ERROR_SYNONYMS:
+                if any(word in title.lower() for word in synonyms_list): 
+                    word = set(synonyms_list).intersection(title.lower().split()).pop()
+                    for synonym in synonyms_list:
+                        self._writer.writerow({
+                            'title': title.replace(word, synonym),
+                            'type': 'R',
+                            'redirect': mdn.title
+                        })
+        else:
+            self._writer.writerow({
+              'title': title,
+              'type': 'R',
+              'redirect': mdn.title
+            })
+
+    def writedisambiguation(self, keyword, disambig):
+        self._writer.writerow({
+          'title': keyword,
+          'type': 'D',
+          'disambiguation': disambig
+        })
+        self._writer.articles_index.append(keyword.lower())
 
     def writerows(self):
         for keyword, count in self.counter.most_common():
@@ -290,13 +323,8 @@ class MDNIndexer(object):
                 # Write a disambiguation
                 # skips D if already an article
                 if keyword.lower() not in self._writer.articles_index:
-                    self._writer.writerow({
-                      'title': keyword,
-                      'type': 'D',
-                      'disambiguation': disambig
-                    })
-                    self._writer.articles_index.append(keyword.lower())
-
+                    self.writedisambiguation(keyword, disambig)
+                    
             for mdn in self.inverted_index[keyword]:
                 # add redirect for Web/Api pages
                 strip_title = ""
@@ -307,30 +335,19 @@ class MDNIndexer(object):
                     strip_title = match.group(1)
                     # skips redirect if already an article
                     if strip_title.lower() not in self._writer.articles_index:
-                        self._writer.writerow({
-                          'title': strip_title.replace("_", " "),
-                          'type': 'R',
-                          'redirect': mdn.title
-                        })
+                        self.writeredirect(strip_title, mdn)
                 # for all entries in the inverted index, write a redirect of
                 # of the form <object><space><property>
-                if ('%s %s' % (mdn.obj.lower(), mdn.prop.lower())) not in self._writer.articles_index:
-                    self._writer.writerow({
-                      'title': ('%s %s' % (mdn.obj.lower(), mdn.prop.lower())).replace("_", " "),
-                      'type': 'R',
-                      'redirect': mdn.title
-                    })
+                obj_prop_entry = mdn.obj.lower() + ' ' + mdn.prop.lower()
+                if obj_prop_entry not in self._writer.articles_index:
+                    self.writeredirect(obj_prop_entry, mdn)
                 # If this is the only item in the inverted index,
                 # write a primary redirect on the keyword.
                 if count == 1:
                     # check if not an Article
                     if not all(x in [keyword, strip_title] for x in self._writer.articles_index):
                         if keyword.lower() not in self._writer.articles_index:
-                            self._writer.writerow({
-                              'title': keyword.replace("_", " "),
-                              'type': 'R',
-                              'redirect': mdn.title
-                            })
+                            self.writeredirect(keyword, mdn)
 
 def run(cachedir, cachejournal, langdefs, outfname):
     """
