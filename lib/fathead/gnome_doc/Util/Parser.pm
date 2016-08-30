@@ -414,11 +414,11 @@ sub dom_for_parsing {
 
 sub parse_page {
     my ( $self, $page ) = @_;
-    my $fullpath = $page->{full_path};
-    my $url = $page->{full_url};
-    my $parser = $page->{parser};
+    my $fullpath = $page->full_path;
+    my $url = $page->full_url;
+    my $parser = $page->parser;
     my @parsed;
-    foreach my $parser (@{$page->{parsers}}) {
+    foreach my $parser (@{$page->parsers}) {
         push @parsed, $self->$parser(dom_for_parsing($url, $fullpath));
     }
     foreach my $parsed (@parsed) {

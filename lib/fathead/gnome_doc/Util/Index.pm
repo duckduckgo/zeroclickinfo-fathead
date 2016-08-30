@@ -3,6 +3,8 @@ package Util::Index;
 use Cwd qw( getcwd );
 use Moo;
 
+use Util::Page;
+
 has docs_dir => ( is => 'lazy' );
 sub _build_docs_dir {
     File::Spec->catdir( $_[0]->working_dir, qw/ .. download / );
@@ -67,13 +69,13 @@ sub links_from_index {
         my $basename = $filename =~ s/\.html$//r;
         my @parsers = get_parsers($index, $basename);
 
-        $links->{$name} = {
+        $links->{$name} = Util::Page->new(
             basename  => $basename,
             filename  => $filename,
             parsers   => \@parsers,
             full_path => $self->doc_fullpath($basename),
             full_url  => $self->doc_fullurl($filename),
-        };
+        );
     }
 
     return $links;
