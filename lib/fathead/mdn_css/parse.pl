@@ -20,7 +20,7 @@ This script extracts data from html files under the downloads folder
 =cut
 
 # Keep track of unique keys
-my %seen;
+my %SEEN;
 
 =begin
 Process fragment data like matrix3d() in
@@ -106,12 +106,12 @@ foreach my $html_file ( glob 'download/*.html' ) {
     }
 
     # Check if article already processed
-    if ( exists $seen{$title} ) {
+    if ( exists $SEEN{$title} ) {
         say "SKIPPING: $title!";
         next;
     }
 
-    $seen{$title} = 1;
+    $SEEN{$title} = 1;
 
     # Get syntax code snippet
     my $code;
@@ -368,9 +368,9 @@ sub parse_fragment_data {
         for my $fragment ( @{ $url_fragment{$link} } ) {
 
 =begin
-        Some h3 elements have a variant form of the fragment
-        as the id like <h3 id="blur()_2"> instead of <h3 id="blur()">
-        so regex will be used to match fragment with its correct h3
+            Some h3 elements have a variant form of the fragment
+            as the id like <h3 id="blur()_2"> instead of <h3 id="blur()">
+            so regex will be used to match fragment with its correct h3
 =cut
 
             my $h3 = $dom->find('h3')->first(
