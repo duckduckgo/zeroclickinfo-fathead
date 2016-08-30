@@ -1,6 +1,24 @@
 package Util::Index;
 
+use Cwd qw( getcwd );
 use Moo;
+
+has docs_dir => ( is => 'lazy' );
+sub _build_docs_dir {
+    File::Spec->catdir( $_[0]->working_dir, qw/ .. download / );
+}
+
+has working_dir => ( is => 'lazy' );
+sub _build_working_dir {
+    getcwd;
+}
+
+sub doc_fullurl {
+    my ( $self, $part ) = @_;
+    URI->new(
+        sprintf( '%s%s', $self->perldoc_url, $part )
+    )->canonical
+}
 
 sub build_indices {
     my ( $self ) = @_;
@@ -23,6 +41,12 @@ sub build_indices {
     return $indices;
 }
 
+sub doc_fullpath {
+    my ( $self, @parts ) = @_;
+    $parts[-1] = $parts[-1] . '.html';
+    File::Spec->catfile( $self->docs_dir, @parts );
+}
+
 sub links_from_index {
     my ( $self, $index ) = @_;
     my $path = $self->doc_fullpath( $index );
@@ -43,9 +67,13 @@ sub links_from_index {
         my $basename = $filename =~ s/\.html$//r;
         my @parsers = get_parsers($index, $basename);
 
-        $links->{ $name }->{ basename } = $basename;
-        $links->{ $name }->{ filename } = $filename;
-        $links->{ $name }->{ parsers } = \@parsers;
+        $links->{$name} = {
+            basename  => $basename,
+            filename  => $filename,
+            parsers   => \@parsers,
+            full_path => $self->doc_fullpath($basename),
+            full_url  => $self->doc_fullurl($filename),
+        };
     }
 
     return $links;

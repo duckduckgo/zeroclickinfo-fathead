@@ -6,7 +6,6 @@ use warnings;
 binmode STDOUT, ":utf8";
 binmode STDERR, ":utf8";
 
-use Cwd qw( getcwd );
 use DBI;
 use File::Spec;
 use IO::All -utf8;
@@ -22,16 +21,6 @@ my %links;
 has perldoc_url => ( is => 'lazy' );
 sub _build_perldoc_url {
     'http://perldoc.perl.org/';
-}
-
-has working_dir => ( is => 'lazy' );
-sub _build_working_dir {
-    getcwd;
-}
-
-has docs_dir => ( is => 'lazy' );
-sub _build_docs_dir {
-    File::Spec->catdir( $_[0]->working_dir, qw/ .. download / );
 }
 
 has indexer => (
@@ -116,19 +105,6 @@ sub _build_output_txt {
 };
 
 sub dom_for_file { Mojo::DOM->new( io($_[0])->all ); }
-
-sub doc_fullpath {
-    my ( $self, @parts ) = @_;
-    $parts[-1] = $parts[-1] . '.html';
-    File::Spec->catfile( $self->docs_dir, @parts );
-}
-
-sub doc_fullurl {
-    my ( $self, $part ) = @_;
-    URI->new(
-        sprintf( '%s%s', $self->perldoc_url, $part )
-    )->canonical
-}
 
 # Parsers for the 'index-*' keys will run on *all* files produced from parsing
 # links in the index files.
@@ -438,8 +414,8 @@ sub dom_for_parsing {
 
 sub parse_page {
     my ( $self, $page ) = @_;
-    my $fullpath = $self->doc_fullpath( $page->{basename} );
-    my $url = $self->doc_fullurl( $page->{filename} );
+    my $fullpath = $page->{full_path};
+    my $url = $page->{full_url};
     my $parser = $page->{parser};
     my @parsed;
     foreach my $parser (@{$page->{parsers}}) {
