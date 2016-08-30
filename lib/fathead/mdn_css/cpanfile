@@ -2,4 +2,5 @@ requires 'Text::Trim', '1.02';
 requires 'HTML::Strip', '2.10';
 requires 'HTML::Entities', '3.69';
 requires 'Data::Printer', '0.38';
+requires 'YAML::XS', '0.63';
 requires 'Mojo', '';

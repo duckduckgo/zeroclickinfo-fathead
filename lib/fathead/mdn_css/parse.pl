@@ -14,6 +14,7 @@ use Text::Trim;
 use HTML::Strip;
 use HTML::Entities;    # Used by HTML::Strip
 use Data::Printer return_value => 'dump';
+use YAML::XS 'LoadFile';
 
 =begin
 This script extracts data from html files under the downloads folder
