@@ -590,6 +590,7 @@ sub parse_index_functions_links {
     my @fns = $dom->find('a[href^=functions]')->each;
     foreach my $fn (@fns) {
         my ($descr) = $fn->parent->text =~ /- (.+)\s*+$/;
+        $descr = ucfirst $descr . '.' if $descr;
         $functions_fallback{$fn->text} = $descr;
     }
     return @fns;
