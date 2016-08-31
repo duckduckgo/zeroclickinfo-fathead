@@ -130,7 +130,7 @@ def create_fathead(database, platform):
             prop = pack['redirect'][0][1]
             pack['name'] = cl + "." + prop
 
-            pack['alt_names'] = [cl + " " + prop, prop + " " + cl]
+            pack['alt_names'] = [cl + " " + prop, prop + " " + cl, prop]
         else:
             pack['redirect'] = None
 
