@@ -13,10 +13,6 @@ has url => (
     required => 1,
 );
 
-has [qw(basename filename parsers full_path full_url)] => (
-    is => 'ro',
-);
-
 has dom => (
     is      => 'ro',
     lazy    => 1,
