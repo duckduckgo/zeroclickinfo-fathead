@@ -2,7 +2,7 @@ package Util::Disambiguation;
 
 use Moo;
 
-has articles => (
+has [qw(title articles)] => (
     is       => 'ro',
     required => 1,
 );
