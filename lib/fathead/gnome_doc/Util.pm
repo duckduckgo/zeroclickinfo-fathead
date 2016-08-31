@@ -2,6 +2,8 @@ package Util;
 
 use Util::Article;
 use Util::Disambiguation;
+use Util::Index;
+use Util::Parser;
 
 BEGIN {
     require Exporter;
