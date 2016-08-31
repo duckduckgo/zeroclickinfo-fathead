@@ -35,7 +35,7 @@ sys.setdefaultencoding('utf8')
 osx = "/Applications/Xcode.app/Contents/Developer/Documentation/DocSets/com.apple.adc.documentation.OSX.docset/Contents/Resources/docSet.dsidx"
 
 # This is the link to the docs.
-url = "https://developer.apple.com/library/mac/";
+url = "https://developer.apple.com/library/mac/"
 
 # Format the output as specified in https://duck.co/duckduckhack/fathead_overview
 def generate_output(result):
