@@ -70,7 +70,7 @@ class SoupDataParser(object):
         a_tag = section.find('a', {'class': 'headerlink'})
         if a_tag:
             anchor = a_tag['href']
-            name = "".join(anchor[1:])
+            name = a_tag.parent.text[:-1].replace('()', '').replace('.', '')
         return name, anchor
 
     def parse_first_paragraph_from_data(self, section):
