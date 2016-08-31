@@ -241,4 +241,12 @@ sub resolve_disambiguations {
     }
 }
 
+# Resolve articles and build the output database
+sub build_output {
+    my ($self) = @_;
+    $self->resolve_articles;
+    $self->resolve_aliases;
+    $self->resolve_disambiguations;
+}
+
 1;

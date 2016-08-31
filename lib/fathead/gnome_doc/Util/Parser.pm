@@ -16,6 +16,8 @@ use URI;
 use List::Util qw(first);
 use List::MoreUtils qw(uniq);
 
+use Util::DB;
+
 my %links;
 
 has perldoc_url => ( is => 'lazy' );
@@ -29,6 +31,18 @@ has indexer => (
     required => 1,
     doc      => 'Used to generate indices for parsing',
 );
+
+has db => (
+    is      => 'ro',
+    isa     => sub { die 'Not a Util::DB' unless ref $_[0] eq 'Util::DB' },
+    doc     => 'Internal database interface',
+    builder => 1,
+    lazy    => 1,
+);
+
+sub _build_db {
+    return Util::DB->new;
+}
 
 sub dom_for_file { Mojo::DOM->new( io($_[0])->all ); }
 
@@ -136,14 +150,14 @@ sub parse_page {
             $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
 
             $article->{url} = $anchored_url;
-            $self->article($article);
+            $self->db->article($article);
         }
 
         for my $alias ( @{ $parsed->{aliases} } ) {
-            $self->alias( $alias->{new}, $alias->{orig} );
+            $self->db->alias( $alias->{new}, $alias->{orig} );
         }
         for my $disambiguation ( @{ $parsed->{disambiguations} } ) {
-            $self->disambiguation( $disambiguation );
+            $self->db->disambiguation( $disambiguation );
         }
     }
 }
@@ -163,9 +177,8 @@ sub parse {
         }
     }
 
-    $self->resolve_articles;
-    $self->resolve_aliases;
-    $self->resolve_disambiguations;
+    $self->db->build_output;
+
 }
 
 1;
