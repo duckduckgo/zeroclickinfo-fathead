@@ -29,7 +29,7 @@ sub _build_dom {
             return $dom;
         }
         my $res = $ua->get($url)->success
-            or warn "Unable to fetch DOM for '$url'\n";
+            or die "Unable to fetch DOM for '$url'\n";
         my $dom = $res->dom if $res;
         $self->_cache($dom) if $dom;
         return $dom;
@@ -59,15 +59,17 @@ sub _retrieve_from_cache {
     my ($self) = @_;
     my $path = _url_cache_path($self->url);
     return unless $path->exists;
-    _dom_from_file($path)
-        or $path->remove; # Maybe it'll correct itself in a future parse.
+    _dom_from_file($path);
 }
 
 sub _dom_from_file {
     my ($path) = @_;
-    warn "No such file '$path'" and return unless $path->exists;
+    die "No such file '$path'" and return unless $path->exists;
     my $dom = Mojo::DOM->new($path->slurp_utf8);
-    warn "Unable to parse DOM for '$path'\n" and return unless $dom->[0];
+    do {
+        $path->remove; # Maybe it'll correct itself in a future parse.
+        die "Unable to parse DOM for '$path'\n";
+    } unless $dom->[0];
     return $dom;
 }
 
