@@ -20,51 +20,8 @@ my %links;
 
 has aliases => (
     is => 'ro',
-    builder => 1,
+    default => sub { {} },
 );
-
-sub _build_aliases {
-    my $csv = Text::CSV_XS->new( { binary => 1, allow_whitespace => 1 });
-    open my $fh, "<", "aliases.txt"
-        or (warn "No external aliases file detected" and return {});
-    my %aliases;
-    while (my $row = $csv->getline($fh)) {
-        my ($alias, @orig) = @$row;
-        $aliases{$alias} = [@orig];
-    }
-    close $fh;
-    return \%aliases;
-}
-
-has force_redirect => (
-    is => 'ro',
-    builder => 1,
-);
-
-sub _build_force_redirect {
-    my $csv = Text::CSV_XS->new({
-            binary => 1,
-            sep => '>',
-            allow_whitespace => 1
-    });
-    open my $fh, "<", "redirect.txt"
-        or (warn "No external redirect file detected" and return {});
-    my %force_redirects;
-    while (my $row = $csv->getline($fh)) {
-        my ($from, $to, undef) = @$row;
-        $force_redirects{$from} = $to;
-    }
-    close $fh;
-    return \%force_redirects;
-}
-
-has related => ( is => 'lazy' );
-sub _build_related {
-    # As with the ad-hoc aliases, this should be moved to an external source.
-    [
-        [ 'For Loops', 'Foreach Loops', 'Loop Control', 'Compound Statements', 'Statement Modifiers' ],
-    ]
-}
 
 has tsv => ( is => 'lazy' );
 sub _build_tsv {
@@ -218,10 +175,6 @@ sub resolve_articles {
     my ($self) = @_;
     my %articles = %{$self->articles};
     foreach my $article (values %articles) {
-        if (my $force_redirect = $self->force_redirect->{$article->{title}}) {
-            $self->alias($article->{title}, $force_redirect);
-            next;
-        }
         my $dom = Mojo::DOM->new->parse($article->{text});
         $dom->find('a[href]')->map(sub {
             my $link = $_->attr('href');
