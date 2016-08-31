@@ -1,5 +1,6 @@
 package Util::Index;
 
+use List::MoreUtils qw(uniq);
 use Moo;
 
 use Util::Page;
@@ -69,7 +70,7 @@ sub _build_pages {
     my $res = $self->index_function->($dom);
     return [map { Util::Page->new(
         url => '' . _merge_index_url($self->index_url, $_)
-    ) } @$res];
+    ) } uniq @$res];
 }
 
 1;
