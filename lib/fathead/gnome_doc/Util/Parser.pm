@@ -104,25 +104,9 @@ sub normalize_dom_links {
 #                       Normalize Parse Results                       #
 #######################################################################
 
-sub normalize_article {
-    my ($article) = @_;
-    my $text = $article->{text};
-    $text =~ s/\n/ /g;
-    # Okay, the parser *really* hates links...
-    my $dom = Mojo::DOM->new->parse($text);
-    $dom->find('a')->map(tag => 'span');
-    $text = $dom->to_string;
-    return {
-        %$article,
-        text => $text,
-    };
-}
-
 sub normalize_parse_result {
     my ($parsed) = @_;
-    $parsed->{articles} = [
-        map { normalize_article($_) } (@{$parsed->{articles}})
-    ];
+    map { $_->normalize } @{$parsed->{articles}};
     return $parsed;
 }
 
