@@ -18,18 +18,6 @@ use List::MoreUtils qw(uniq);
 
 my %links;
 
-has perldoc_url => ( is => 'lazy' );
-sub _build_perldoc_url {
-    'http://perldoc.perl.org/';
-}
-
-has indexer => (
-    is       => 'ro',
-    isa      => sub { die 'Not a Util::Index' unless ref $_[0] eq 'Util::Index' },
-    required => 1,
-    doc      => 'Used to generate indices for parsing',
-);
-
 has aliases => (
     is => 'ro',
     builder => 1,
