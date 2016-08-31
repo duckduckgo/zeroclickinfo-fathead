@@ -15,6 +15,7 @@ use Text::CSV_XS;
 use URI;
 use List::Util qw(first);
 use List::MoreUtils qw(uniq);
+use Path::Tiny;
 
 my %links;
 
@@ -189,9 +190,15 @@ sub resolve_disambiguations {
     }
 }
 
+# Ensure we don't already have an output.txt
+sub _clean_working_directory {
+    path('output.txt')->remove;
+}
+
 # Resolve articles and build the output database
 sub build_output {
     my ($self) = @_;
+    _clean_working_directory;
     $self->resolve_articles;
     $self->resolve_aliases;
     $self->resolve_disambiguations;
