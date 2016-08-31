@@ -20,11 +20,6 @@ use Util::DB;
 
 my %links;
 
-has perldoc_url => ( is => 'lazy' );
-sub _build_perldoc_url {
-    'http://perldoc.perl.org/';
-}
-
 has indexer => (
     is       => 'ro',
     isa      => sub { die 'Not a Util::Index' unless ref $_[0] eq 'Util::Index' },
@@ -42,54 +37,6 @@ has db => (
 
 sub _build_db {
     return Util::DB->new;
-}
-
-sub dom_for_file { Mojo::DOM->new( io($_[0])->all ); }
-
-# Parsers for the 'index-*' keys will run on *all* files produced from parsing
-# links in the index files.
-# Parsers for other keys (basenames) will only run on the matching file.
-my %parser_map = (
-    'index-faq'       => ['parse_faq'],
-    'index-functions' => ['parse_functions'],
-    'index-module'    => ['get_synopsis'],
-    'index-default'   => ['get_anchors'],
-    'perldiag'        => ['parse_diag_messages'],
-    'perlglossary'    => ['parse_glossary_definitions'],
-    'perlop'          => ['parse_operators'],
-    'perlpod'         => ['parse_pod_formatting_codes'],
-    'perlpodspec'     => ['parse_pod_commands'],
-    'perlre'          => [
-        'parse_regex_modifiers',
-    ],
-    'perlrun'         => ['parse_cli_switches'],
-    'perlvar'         => ['parse_variables'],
-);
-
-my @parsers = sort keys %parser_map;
-
-sub get_parsers {
-    my ($index, $basename) = @_;
-    my $index_parsers = $parser_map{$index};
-    my $basename_parsers = $parser_map{$basename};
-    return (@{$index_parsers || []}, @{$basename_parsers || []});
-}
-
-my %link_parser_for_index = (
-    'functions' => 'parse_index_functions_links',
-    'default'   => 'parse_index_links',
-);
-
-sub link_parser_for_index {
-    my $index = shift;
-    $index =~ s/index-//;
-    return $link_parser_for_index{$index} // $link_parser_for_index{default};
-}
-
-sub parse_index_links {
-    my ($self, $dom) = @_;
-    my $content = $dom->find('ul')->[4];
-    return @{$content->find('a')->to_array};
 }
 
 sub normalize_dom_links {
