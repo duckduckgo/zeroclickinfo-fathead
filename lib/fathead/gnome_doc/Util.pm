@@ -1,5 +1,17 @@
 package Util;
 
+use Util::Article;
+
+BEGIN {
+    require Exporter;
+    our @ISA = qw(Exporter);
+    our @EXPORT_OK = qw(article);
+}
+
+sub article {
+    Util::Article->new(@_);
+}
+
 #######################################################################
 #                               Helpers                               #
 #######################################################################
