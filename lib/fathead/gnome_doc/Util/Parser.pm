@@ -14,9 +14,8 @@ use Util::DB;
 
 my %links;
 
-has indexer => (
+has indexers => (
     is       => 'ro',
-    isa      => sub { die 'Not a Util::Index' unless ref $_[0] eq 'Util::Index' },
     required => 1,
     doc      => 'Used to generate indices for parsing',
 );
@@ -84,9 +83,10 @@ sub text_for_disambiguation {
 sub parse {
     my ( $self ) = @_;
 
-    my @pages = @{$self->indexer->pages};
-    foreach my $page (@pages) {
-        $self->parse_page($self->indexer, $page);
+    foreach my $indexer (@{$self->indexers}) {
+        foreach my $page (@{$indexer->pages}) {
+            $self->parse_page($indexer, $page);
+        }
     }
 
     $self->db->build_output;
