@@ -114,31 +114,33 @@ has articles => (
 
 sub article {
     my ($self, $article) = @_;
-    my $title = $article->{title};
+    my $title = $article->title;
     warn "Duplicate article with title '$title' detected\n" and return
         if exists $self->articles->{$title};
-    $links{$article->{url}} = $title;
+    $links{$article->url} = $title;
     $self->articles->{$title} = $article;
 }
 
 sub entry {
-    my ( $self, %article ) = @_;
-    my ($title, $text, $url, $related) = @article{qw(title text url related)};
+    my ($self, $article) = @_;
+    my ($title, $text, $related) = map { $article->$_ } (
+        qw(title abstract related)
+    );
     $text =~ s{\\}{\\\\}g;
     my $related_text = '';
     # TODO: Find out how the related links should *actually* be formatted
     if (defined $related && @$related) {
         $related_text = join '', map { "[[$_]]" } @$related;
     }
-    my $category_text = join '\n', @{$article{categories} || []};
+    my $category_text = join '\n', @{$article->categories};
     return warn "No text for '$title'" unless $text;
     $self->insert({
         abstract => $text,
         categories => $category_text,
-        title => $title,
+        title => $article->title,
         type  => 'A',
         related  => $related_text,
-        sourceurl => $url,
+        sourceurl => $article->url,
     });
 }
 
