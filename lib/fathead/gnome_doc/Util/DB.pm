@@ -7,13 +7,9 @@ binmode STDOUT, ":utf8";
 binmode STDERR, ":utf8";
 
 use DBI;
-use File::Spec;
-use IO::All -utf8;
 use Mojo::DOM;
 use Moo;
 use Text::CSV_XS;
-use URI;
-use List::Util qw(first);
 use List::MoreUtils qw(uniq);
 use Path::Tiny;
 
