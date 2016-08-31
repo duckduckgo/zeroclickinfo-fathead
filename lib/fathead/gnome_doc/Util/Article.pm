@@ -3,9 +3,13 @@ package Util::Article;
 use Mojo::URL;
 use Moo;
 
-has [qw(title page)] => (
+has title => (
     is       => 'ro',
     required => 1,
+);
+
+has page => (
+    is => 'rwp',
 );
 
 has abstract => (

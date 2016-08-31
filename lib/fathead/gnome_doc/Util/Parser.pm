@@ -121,6 +121,8 @@ sub parse_page {
     }
     foreach my $parsed (@parsed) {
         for my $article ( @{ $parsed->{articles} } ) {
+            # TODO: Not really sure how to get around this at the moment.
+            $article->_set_page($page);
             $self->db->article($article);
         }
 
