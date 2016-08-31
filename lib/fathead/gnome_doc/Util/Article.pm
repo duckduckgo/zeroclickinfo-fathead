@@ -13,7 +13,7 @@ has abstract => (
     required => 1,
 );
 
-has [qw(aliases categories)] => (
+has [qw(aliases categories related)] => (
     is      => 'ro',
     default => sub { [] },
 );
