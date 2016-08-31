@@ -32,14 +32,10 @@ sys.setdefaultencoding('utf8')
 
 # These contains all of the API documentation
 # It only has classes and methods--it doesn't have actual tutorials.
-ios = "/Applications/Xcode.app/Contents/Developer/Documentation/DocSets/com.apple.adc.documentation.iOS.docset/Contents/Resources/docSet.dsidx"
-osx = "/Applications/Xcode.app/Contents/Developer/Documentation/DocSets/com.apple.adc.documentation.OSX.docset/Contents/Resources/docSet.dsidx"
+osx = "/home/sahildua2305/appledocs_macos/Documents/Docsets/com.apple.adc.documentation.OSX.docset/Contents/Resources/docSet.dsidx"
 
 # This is the link to the docs.
-urls = {
-    'iOS': "https://developer.apple.com/library/ios/",
-    'Mac': "https://developer.apple.com/library/mac/",
-}
+url = "https://developer.apple.com/library/mac/";
 
 # Format the output as specified in https://duck.co/duckduckhack/fathead_overview
 def generate_output(result):
@@ -57,7 +53,7 @@ def generate_output(result):
 
     f.close()
 
-def create_fathead(database, platform):
+def create_fathead(database):
     # Connect to the documentation's sqlite database.
     conn = sqlite3.connect(database)
     c = conn.cursor()
@@ -89,9 +85,9 @@ def create_fathead(database, platform):
         pack = {
             "name": name,
             "abstract": abstract or "",
-            "path": urls[platform] + path + "#" + anchor,
+            "path": url + path + "#" + anchor,
             "original": abstract or "",
-            "platform": platform,
+            "platform": "Mac",
             "snippet": snippet or "",
         }
         
@@ -145,4 +141,4 @@ def create_fathead(database, platform):
     generate_output(result)
 
 # Only create Fathead for macOS
-create_fathead(osx, 'Mac')
+create_fathead(osx)
