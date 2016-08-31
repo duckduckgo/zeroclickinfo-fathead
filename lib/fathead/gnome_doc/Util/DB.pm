@@ -123,18 +123,17 @@ sub article {
 
 sub entry {
     my ($self, $article) = @_;
-    my ($title, $text, $related) = map { $article->$_ } (
-        qw(title abstract related)
+    my ($title, $related) = map { $article->$_ } (
+        qw(title related)
     );
-    $text =~ s{\\}{\\\\}g;
     my $related_text = '';
     if (defined $related && @$related) {
         $related_text = join '\n', map { "[[$_]]" } @$related;
     }
     my $category_text = join '\n', @{$article->categories};
-    return warn "No text for '$title'" unless $text;
+    return warn "No text for '$title'" unless $article->abstract;
     $self->insert({
-        abstract => $text,
+        abstract => $article->abstract,
         categories => $category_text,
         title => $article->title,
         type  => 'A',

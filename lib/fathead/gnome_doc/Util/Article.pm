@@ -57,6 +57,8 @@ sub normalize {
     $dom = _normalize_links($links, $dom);
     $dom->find('a')->map(tag => 'span');
     $abstract = $dom->to_string;
+    # The internal DB doesn't like escapes...
+    $abstract =~ s{\\}{\\\\}g;
     $self->_set_abstract($abstract);
 }
 
