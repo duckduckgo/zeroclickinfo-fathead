@@ -170,11 +170,9 @@ sub text_for_disambiguation {
 sub parse {
     my ( $self ) = @_;
 
-    my %indices = %{$self->indexer->build_indices};
-    foreach my $index ( sort keys %indices ) {
-        foreach my $page ( sort keys %{$indices{ $index }} ) {
-            $self->parse_page( $indices{ $index }{ $page } );
-        }
+    my @pages = @{$self->indexer->build_indices};
+    foreach my $page (@pages) {
+        $self->parse_page($page);
     }
 
     $self->db->build_output;
