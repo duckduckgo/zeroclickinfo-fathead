@@ -127,29 +127,23 @@ sub normalize_parse_result {
 }
 
 sub dom_for_parsing {
-    my ($url, $page) = @_;
-    my $dom = dom_for_file($page);
-    normalize_dom_links($url, $dom);
+    my ($page) = @_;
+    # NOTE: This probably destructively modifies the pages DOM.
+    my $dom = $page->dom;
+    normalize_dom_links($page->url, $dom);
     $dom->find('strong')->map('strip');
     return $dom;
 }
 
 sub parse_page {
-    my ( $self, $page ) = @_;
-    my $fullpath = $page->full_path;
-    my $url = $page->full_url;
-    my $parser = $page->parser;
+    my ( $self, $index, $page ) = @_;
     my @parsed;
-    foreach my $parser (@{$page->parsers}) {
-        push @parsed, $self->$parser(dom_for_parsing($url, $fullpath));
+    foreach my $parser (@{$index->parsers_for($page)}) {
+        push @parsed, $parser->(dom_for_parsing($page));
     }
     foreach my $parsed (@parsed) {
         $parsed = normalize_parse_result($parsed);
         for my $article ( @{ $parsed->{articles} } ) {
-            my $anchored_url = $url;
-            $anchored_url .= "#" . $article->{anchor} if $article->{anchor};
-
-            $article->{url} = $anchored_url;
             $self->db->article($article);
         }
 
@@ -172,7 +166,7 @@ sub parse {
 
     my @pages = @{$self->indexer->build_indices};
     foreach my $page (@pages) {
-        $self->parse_page($page);
+        $self->parse_page($self->indexer, $page);
     }
 
     $self->db->build_output;
