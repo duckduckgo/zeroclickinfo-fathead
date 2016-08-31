@@ -89,18 +89,19 @@ has disambiguations => (
 
 sub disambiguation {
     my ($self, $disambiguation) = @_;
-    $self->disambiguations->{$disambiguation->{title}} = $disambiguation;
+    $self->disambiguations->{$disambiguation->title} = $disambiguation;
 }
 
 sub insert_disambiguation {
     my ($self, $disambiguation) = @_;
     my @disambiguations = map {
-        "*[[$_->{link}]], $_->{description}.";
-    } @{ $disambiguation->{disambiguations} };
+        my ($t, $a) = ($_->title, $_->abstract);
+        "*[[$t]], $a.";
+    } @{ $disambiguation->articles };
     my $dtext = join '\n', @disambiguations;
     $self->insert({
         type => 'D',
-        title => $disambiguation->{title},
+        title => $disambiguation->title,
         # TODO: Remove the escaping when the DB is fixed.
         disambiguation => $dtext =~ s{\\}{\\\\}gr,
     });
