@@ -84,7 +84,7 @@ sub text_for_disambiguation {
 sub parse {
     my ( $self ) = @_;
 
-    my @pages = @{$self->indexer->build_indices};
+    my @pages = @{$self->indexer->pages};
     foreach my $page (@pages) {
         $self->parse_page($self->indexer, $page);
     }

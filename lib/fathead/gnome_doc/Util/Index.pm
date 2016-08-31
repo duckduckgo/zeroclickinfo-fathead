@@ -59,7 +59,11 @@ sub _merge_index_url {
     return Mojo::URL->new($index_url)->path($url);
 }
 
-sub build_indices {
+has pages => (
+    is => 'lazy',
+);
+
+sub _build_pages {
     my ( $self ) = @_;
     my $dom = $self->_index_page->dom;
     my $res = $self->index_function->($dom);
