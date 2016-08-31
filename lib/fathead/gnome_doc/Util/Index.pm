@@ -31,6 +31,29 @@ same format as 'url' for Util::Page.
 EOF
 );
 
+has assign_parsers => (
+    is       => 'ro',
+    required => 1,
+    doc      => <<EOF
+Function to be used for assigning parsers to pages.
+Passed the page as a Util::Page object, and expects an ARRAY reference of
+subroutines that match the following criteria to be returned:
+
+    1. The routine must accept a Mojo::DOM object as its first argument.
+    2. The routine must return a HASH reference (possibly empty) in the
+       following format:
+        {
+           articles        => [Util::Article],
+           disambiguations => [Util::Disambiguation],
+        }
+EOF
+);
+
+sub parsers_for {
+    my ($self, $page) = @_;
+    return $self->assign_parsers->($page);
+}
+
 sub _merge_index_url {
     my ($index_url, $url) = @_;
     return Mojo::URL->new($index_url)->path($url);
