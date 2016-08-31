@@ -104,12 +104,6 @@ sub normalize_dom_links {
 #                       Normalize Parse Results                       #
 #######################################################################
 
-sub normalize_parse_result {
-    my ($parsed) = @_;
-    map { $_->normalize } @{$parsed->{articles}};
-    return $parsed;
-}
-
 sub dom_for_parsing {
     my ($page) = @_;
     # NOTE: This probably destructively modifies the pages DOM.
@@ -126,7 +120,6 @@ sub parse_page {
         push @parsed, $parser->(dom_for_parsing($page));
     }
     foreach my $parsed (@parsed) {
-        $parsed = normalize_parse_result($parsed);
         for my $article ( @{ $parsed->{articles} } ) {
             $self->db->article($article);
         }

@@ -174,16 +174,10 @@ sub resolve_aliases {
 sub resolve_articles {
     my ($self) = @_;
     my %articles = %{$self->articles};
+    my $links = \%links;
     foreach my $article (values %articles) {
-        my $dom = Mojo::DOM->new->parse($article->{text});
-        $dom->find('a[href]')->map(sub {
-            my $link = $_->attr('href');
-            if (my $point = $links{$link}) {
-                $_->attr(href => "/?q=$point&ia=about");
-            }
-        });
-        $article->{text} = $dom->to_string;
-        $self->entry(%$article);
+        $article->normalize($links);
+        $self->entry($article);
     }
 }
 
