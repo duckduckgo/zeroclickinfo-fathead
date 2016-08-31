@@ -293,12 +293,12 @@ class MDNIndexer(object):
                             'type': 'R',
                             'redirect': mdn.title
                         })
-        else:
-            self._writer.writerow({
-              'title': title,
-              'type': 'R',
-              'redirect': mdn.title
-            })
+                    return;
+        self._writer.writerow({
+          'title': title,
+          'type': 'R',
+          'redirect': mdn.title
+        })
 
     def writedisambiguation(self, keyword, disambig):
         self._writer.writerow({

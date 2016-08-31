@@ -3772,6 +3772,7 @@ speechsynthesisevent name	R	SpeechSynthesisEvent.name
 speechsynthesisvoice name	R	SpeechSynthesisVoice.name										
 webglactiveinfo name	R	WebGLActiveInfo.name										
 window name	R	Window.name										
+error name	R	Error.prototype.name										
 function name	R	Function.name										
 onerror	D								*[[AbstractWorker.onerror]] The AbstractWorker.\n*[[GlobalEventHandlers.onerror]] An event handler for the error event.\n*[[IDBDatabase.onerror]] This example shows an IDBOpenDBRequest.\n*[[FileHandle.onerror]] Specifies an event listener to receive error events.\n*[[IDBRequest.onerror]] The following example requests a given record title, onsuccess gets the associated record from the IDBObjectStore (made available as objectStoreTitleRequest.\n*[[IDBTransaction.onerror]] In the following code snippet, we open a read/write transaction on our database and add some data to an object store.\n*[[LockedFile.onerror]] Specifies an event listener to receive error events.\n*[[MediaRecorder.onerror]] The MediaRecorder.\n*[[Notification.onerror]] The onerror property of the Notification interface specifies an event listener to receive error events.\n*[[RTCDataChannel.onerror]] The RTCDataChannel.\n*[[ServiceWorkerContainer.onerror]] The onerror property of the ServiceWorkerContainer interface is an event handler fired whenever an error event occurs in the associated service workers.\n*[[SpeechRecognition.onerror]] The onerror property of the SpeechRecognition interface represents an event handler that will run when a speech recognition error occurs (when the error event fires.\n*[[SpeechSynthesisUtterance.onerror]] The onerror property of the SpeechSynthesisUtterance interface represents an event handler that will run when an error occurs that prevents the utterance from being succesfully spoken (when the error event fires.\n*[[WorkerGlobalScope.onerror]] The onerror property of the WorkerGlobalScope interface represents an EventHandler to be called when the error event occurs and bubbles through the Worker.\n*[[XMLHttpRequestEventTarget.onerror]] The XMLHttpRequestEventTarget.			
 abstractworker onerror	R	AbstractWorker.onerror										
@@ -3798,6 +3799,7 @@ urlutilsreadonly tostring	R	URLUtilsReadOnly.toString()
 array tostring	R	Array.prototype.toString										
 boolean tostring	R	Boolean.prototype.toString										
 date tostring	R	Date.prototype.toString										
+error tostring	R	Error.prototype.toString										
 function tostring	R	Function.prototype.toString										
 number tostring	R	Number.prototype.toString										
 object tostring	R	Object.prototype.toString										
@@ -3842,6 +3844,7 @@ prototype	D								*[[Array.prototype]] The Array.\n*[[Boolean.prototype]] The B
 array prototype	R	Array.prototype										
 boolean prototype	R	Boolean.prototype										
 date prototype	R	Date.prototype										
+error prototype	R	Error.prototype										
 function prototype	R	Function.prototype										
 number prototype	R	Number.prototype										
 object prototype	R	Object.prototype										
@@ -3853,6 +3856,9 @@ htmlmediaelement error	R	HTMLMediaElement.error
 idbrequest error	R	IDBRequest.error										
 idbtransaction error	R	IDBTransaction.error										
 response error	R	Response.error()										
+speechrecognitionerror error	R	SpeechRecognitionError.error										
+speechsynthesiserrorevent error	R	SpeechSynthesisErrorEvent.error										
+global error	R	Error										
 audioparam value	R	AudioParam.value										
 bluetoothgattdescriptor value	R	value										
 bluetoothremotegattcharacteristic value	R	BluetoothRemoteGATTCharacteristic.value										
@@ -3866,6 +3872,7 @@ tosource	D								*[[Array.prototype.toSource()]] The toSource() method returns 
 array tosource	R	Array.prototype.toSource()										
 boolean tosource	R	Boolean.prototype.toSource()										
 date tosource	R	Date.prototype.toSource()										
+error tosource	R	Error.prototype.toSource()										
 function tosource	R	Function.prototype.toSource()										
 number tosource	R	Number.prototype.toSource()										
 object tosource	R	Object.prototype.toSource()										
@@ -4133,8 +4140,12 @@ urlsearchparams has	R	URLSearchParams.has()
 protocol	D								*[[HTMLHyperlinkElementUtils.protocol]] The HTMLHyperlinkElementUtils.\n*[[RTCDataChannel.protocol]] The read-only RTCDataChannel property protocol returns a DOMString containing the name of the subprotocol in use.\n*[[RTCIdentityErrorEvent.protocol]] The read-only property RTCIdentityErrorEvent.\n*[[URLUtilsReadOnly.protocol]] The URLUtilsReadOnly.			
 htmlhyperlinkelementutils protocol	R	HTMLHyperlinkElementUtils.protocol										
 rtcdatachannel protocol	R	RTCDataChannel.protocol										
+rtcidentityerrorevent protocol	R	RTCIdentityErrorEvent.protocol										
 urlutilsreadonly protocol	R	URLUtilsReadOnly.protocol										
 mediakeymessageevent message	R	message										
+positionerror message	R	PositionError.message										
+speechrecognitionerror message	R	SpeechRecognitionError.message										
+error message	R	Error.prototype.message										
 title	D								*[[Document.title]] Gets or sets the title of the document.\n*[[HTMLElement.title]] The HTMLElement.\n*[[Notification.title]] The title read-only property of the Notification interface indicates the title of the notification, as specified in the title parameter of the Notification() constructor.\n*[[StyleSheet.title]] title returns the advisory title of the current style sheet.			
 document title	R	Document.title										
 htmlelement title	R	HTMLElement.title										
@@ -4396,6 +4407,8 @@ api formdata	R	FormData
 formdata formdata	R	FormData()										
 code	D								*[[KeyboardEvent.code]] The KeyboardEvent.\n*[[MediaError.code]] The MediaError.\n*[[PositionError.code]] The PositionError.			
 keyboardevent code	R	KeyboardEvent.code										
+mediaerror code	R	MediaError.code										
+positionerror code	R	PositionError.code										
 presentationconnection send	R	send										
 rtcdatachannel send	R	RTCDataChannel.send()										
 xmlhttprequest send	R	XMLHttpRequest.send()										
@@ -4567,6 +4580,7 @@ windoweventhandlers onlanguagechange	R	WindowEventHandlers.onlanguagechange
 global onlanguagechange	R	WorkerGlobalScope.onlanguagechange										
 filename	D								*[[File.fileName]] Returns the name of the file.\n*[[Error.prototype.fileName]] The fileName property contains the path to the file that raised this error.			
 file filename	R	File.fileName										
+error filename	R	Error.prototype.fileName										
 onoffline	D								*[[Document.onoffline]] This event handler is called when an offline is fired on body and bubbles up, when navigator.\n*[[WorkerGlobalScope.onoffline]] The onoffline property of the WorkerGlobalScope interface represents an EventHandler to be called when the offline event occurs and bubbles through the Worker.			
 document onoffline	R	Document.onoffline										
 global onoffline	R	WorkerGlobalScope.onoffline										
@@ -5258,6 +5272,7 @@ createindex	R	IDBObjectStore.createIndex()
 findAll	R	HTMLIFrameElement.findAll()										
 htmliframeelement findall	R	HTMLIFrameElement.findAll()										
 findall	R	HTMLIFrameElement.findAll()										
+global typeerror	R	TypeError										
 scrollMaxY	R	Window.scrollMaxY										
 window scrollmaxy	R	Window.scrollMaxY										
 scrollmaxy	R	Window.scrollMaxY										
@@ -5326,6 +5341,8 @@ convertpointfromnodetopage	R	Window.convertPointFromNodeToPage()
 api svgmaskelement	R	SVGMaskElement										
 math asin	R	Math.asin										
 asin	R	Math.asin										
+reference errors	R	JavaScript error reference										
+errors	R	JavaScript error reference										
 global numberformat	R	Intl.NumberFormat										
 numberformat	R	Intl.NumberFormat										
 date gettime	R	Date.prototype.getTime										
@@ -5336,6 +5353,7 @@ clearMatch	R	HTMLIFrameElement.clearMatch()
 htmliframeelement clearmatch	R	HTMLIFrameElement.clearMatch()										
 clearmatch	R	HTMLIFrameElement.clearMatch()										
 api animationtimeline	R	AnimationTimeline										
+global evalerror	R	EvalError										
 api vrfieldofview	R	VRFieldOfView										
 ondevicelight	R	Window.ondevicelight										
 window ondevicelight	R	Window.ondevicelight										
@@ -5345,6 +5363,8 @@ navigatorid appcodename	R	NavigatorID.appCodeName
 appcodename	R	NavigatorID.appCodeName										
 array join	R	Array.prototype.join										
 join	R	Array.prototype.join										
+errors not a codepoint	R	RangeError: argument is not a valid code point										
+not a codepoint	R	RangeError: argument is not a valid code point										
 date @@toprimitive	R	Date.prototype[@@toPrimitive]										
 @@toprimitive	R	Date.prototype[@@toPrimitive]										
 mediasource endofstream	R	MediaSource.endOfStream()										
@@ -5514,6 +5534,8 @@ after	R	ChildNode.after()
 date setutcfullyear	R	Date.prototype.setUTCFullYear										
 setutcfullyear	R	Date.prototype.setUTCFullYear										
 api mediastreamaudiosourcenode	R	MediaStreamAudioSourceNode										
+errors not a function	R	TypeError: "x" is not a function										
+not a function	R	TypeError: "x" is not a function										
 onpaste	R	HTMLElement.onpaste										
 htmlelement onpaste	R	HTMLElement.onpaste										
 onpaste	R	HTMLElement.onpaste										
@@ -5573,6 +5595,8 @@ object getownpropertydescriptor	R	Object.getOwnPropertyDescriptor
 getownpropertydescriptor	R	Object.getOwnPropertyDescriptor										
 number max safe integer	R	Number.MAX_SAFE_INTEGER										
 max safe integer	R	Number.MAX_SAFE_INTEGER										
+errors stmt after return	R	Warning: unreachable code after return statement										
+stmt after return	R	Warning: unreachable code after return statement										
 batterymanager dischargingtime	R	BatteryManager.dischargingTime										
 dischargingtime	R	BatteryManager.dischargingTime										
 passwordcredential passwordname	R	PasswordCredential.passwordName										
@@ -5604,6 +5628,7 @@ canvasrenderingcontext2d drawwindow	R	CanvasRenderingContext2D.drawWindow()
 drawwindow	R	CanvasRenderingContext2D.drawWindow()										
 number toprecision	R	Number.prototype.toPrecision										
 toprecision	R	Number.prototype.toPrecision										
+api domerror	R	DOMError										
 idbopendbrequest onblocked	R	IDBOpenDBRequest.onblocked										
 onblocked	R	IDBOpenDBRequest.onblocked										
 rtcpeerconnection onicegatheringstatechange	R	RTCPeerConnection.onicegatheringstatechange										
@@ -5621,6 +5646,8 @@ getinternalformatparameter	R	WebGL2RenderingContext.getInternalformatParameter()
 onpointerover	R	GlobalEventHandlers.onpointerover										
 global onpointerover	R	GlobalEventHandlers.onpointerover										
 onpointerover	R	GlobalEventHandlers.onpointerover										
+errors var hides argument	R	TypeError: variable "x" redeclares argument										
+var hides argument	R	TypeError: variable "x" redeclares argument										
 api web bluetooth api	R	Web Bluetooth API										
 web bluetooth api	R	Web Bluetooth API										
 api svgaltglyphelement	R	SVGAltGlyphElement										
@@ -5685,6 +5712,7 @@ tolowercase	R	String.prototype.toLowerCase
 oldVersion	R	IDBVersionChangeEvent.oldVersion										
 idbversionchangeevent oldversion	R	IDBVersionChangeEvent.oldVersion										
 oldversion	R	IDBVersionChangeEvent.oldVersion										
+global urierror	R	URIError										
 api web storage api	R	Web Storage API										
 web storage api	R	Web Storage API										
 datatransferitem getasstring	R	DataTransferItem.getAsString()										
@@ -5736,6 +5764,7 @@ setutchours	R	Date.prototype.setUTCHours
 api audiobuffer	R	AudioBuffer										
 rtcdatachannel ordered	R	RTCDataChannel.ordered										
 ordered	R	RTCDataChannel.ordered										
+api errorevent	R	ErrorEvent										
 web animations api keyframe formats	R	Keyframe Formats										
 keyframe formats	R	Keyframe Formats										
 api htmlmetaelement	R	HTMLMetaElement										
@@ -5802,6 +5831,8 @@ session lifetime	R	Lifetime of a WebRTC session
 api imagebitmaprenderingcontext	R	ImageBitmapRenderingContext										
 api compositionevent	R	CompositionEvent										
 api bluetoothdevice	R	BluetoothDevice										
+errors no properties	R	TypeError: "x" has no properties										
+no properties	R	TypeError: "x" has no properties										
 global object	R	Object										
 cookieEnabled	R	Navigator.cookieEnabled										
 navigator cookieenabled	R	Navigator.cookieEnabled										
@@ -5954,6 +5985,8 @@ media source extensions api transcoding assets for mse	R	Transcoding assets for 
 transcoding assets for mse	R	Transcoding assets for Media Source Extensions										
 date getutchours	R	Date.prototype.getUTCHours										
 getutchours	R	Date.prototype.getUTCHours										
+errors unexpected token	R	SyntaxError: Unexpected token										
+unexpected token	R	SyntaxError: Unexpected token										
 webglrenderingcontext depthfunc	R	WebGLRenderingContext.depthFunc()										
 depthfunc	R	WebGLRenderingContext.depthFunc()										
 rangeCount	R	Selection.rangeCount										
@@ -6009,6 +6042,7 @@ receiver	R	Presentation.receiver
 subtlecrypto generatekey	R	SubtleCrypto.generateKey()										
 generatekey	R	SubtleCrypto.generateKey()										
 presentationrequest getavailability	R	getAvailability										
+api mediaerror	R	MediaError										
 targetTouches	R	TouchEvent.targetTouches										
 touchevent targettouches	R	TouchEvent.targetTouches										
 targettouches	R	TouchEvent.targetTouches										
@@ -6045,6 +6079,8 @@ linearvelocity	R	VRPose.linearVelocity
 baseURIObject	R	Node.baseURIObject										
 node baseuriobject	R	Node.baseURIObject										
 baseuriobject	R	Node.baseURIObject										
+errors unterminated string literal	R	SyntaxError: unterminated string literal										
+unterminated string literal	R	SyntaxError: unterminated string literal										
 canvasrenderingcontext2d putimagedata	R	CanvasRenderingContext2D.putImageData()										
 putimagedata	R	CanvasRenderingContext2D.putImageData()										
 audiolistener speedofsound	R	AudioListener.speedOfSound										
@@ -6159,6 +6195,8 @@ api renderingcontext	R	RenderingContext
 api htmlkeygenelement	R	HTMLKeygenElement										
 screen pixeldepth	R	Screen.pixelDepth										
 pixeldepth	R	Screen.pixelDepth										
+errors unexpected type	R	TypeError: "x" is (not) "y"										
+unexpected type	R	TypeError: "x" is (not) "y"										
 xmlhttprequest mozresponsearraybuffer	R	XMLHttpRequest.mozResponseArrayBuffer										
 mozresponsearraybuffer	R	XMLHttpRequest.mozResponseArrayBuffer										
 api force touch events	R	Force Touch events										
@@ -6206,6 +6244,8 @@ htmlcanvaselement transfercontroltooffscreen	R	HTMLCanvasElement.transferControl
 transfercontroltooffscreen	R	HTMLCanvasElement.transferControlToOffscreen()										
 webgl lose context restorecontext	R	WEBGL_lose_context.restoreContext()										
 restorecontext	R	WEBGL_lose_context.restoreContext()										
+errors already has pragma	R	Warning: -file- is being assigned a //# sourceMappingURL, but already has one										
+already has pragma	R	Warning: -file- is being assigned a //# sourceMappingURL, but already has one										
 anchorNode	R	Selection.anchorNode										
 selection anchornode	R	Selection.anchorNode										
 anchornode	R	Selection.anchorNode										
@@ -6305,6 +6345,8 @@ clipboardevent clipboarddata	R	ClipboardEvent.clipboardData
 clipboarddata	R	ClipboardEvent.clipboardData										
 audiolistener dopplerfactor	R	AudioListener.dopplerFactor										
 dopplerfactor	R	AudioListener.dopplerFactor										
+errors redeclared parameter	R	SyntaxError: redeclaration of formal parameter "x"										
+redeclared parameter	R	SyntaxError: redeclaration of formal parameter "x"										
 api htmldialogelement	R	HTMLDialogElement										
 rtcpeerconnection removestream	R	RTCPeerConnection.removeStream()										
 removestream	R	RTCPeerConnection.removeStream()										
@@ -6600,11 +6642,14 @@ vrdisplaycapabilities maxlayers	R	VRDisplayCapabilities.maxLayers
 maxlayers	R	VRDisplayCapabilities.maxLayers										
 idbcursor primarykey	R	IDBCursor.primaryKey										
 primarykey	R	IDBCursor.primaryKey										
+errors negative repetition count	R	RangeError: repeat count must be non-negative										
+negative repetition count	R	RangeError: repeat count must be non-negative										
 webglrenderingcontext getshaderprecisionformat	R	WebGLRenderingContext.getShaderPrecisionFormat()										
 getshaderprecisionformat	R	WebGLRenderingContext.getShaderPrecisionFormat()										
 api svgpoint	R	SVGPoint										
 gamepad axes	R	Gamepad.axes										
 axes	R	Gamepad.axes										
+global internalerror	R	InternalError										
 appendWindowStart	R	SourceBuffer.appendWindowStart										
 sourcebuffer appendwindowstart	R	SourceBuffer.appendWindowStart										
 appendwindowstart	R	SourceBuffer.appendWindowStart										
@@ -6922,6 +6967,9 @@ rtcpeerconnection sctp	R	RTCPeerConnection.sctp
 sctp	R	RTCPeerConnection.sctp										
 api htmlunknownelement	R	HTMLUnknownElement										
 api stereopannernode	R	StereoPannerNode										
+loginUrl	R	RTCIdentityErrorEvent.loginUrl										
+rtcidentityerrorevent loginurl	R	RTCIdentityErrorEvent.loginUrl										
+loginurl	R	RTCIdentityErrorEvent.loginUrl										
 api svglineelement	R	SVGLineElement										
 intersectsNode	R	Range.intersectsNode()										
 range intersectsnode	R	Range.intersectsNode()										
@@ -6969,6 +7017,8 @@ node nodevalue	R	Node.nodeValue
 nodevalue	R	Node.nodeValue										
 string blink	R	String.prototype.blink()										
 blink	R	String.prototype.blink()										
+errors read-only	R	TypeError: "x" is read-only										
+read-only	R	TypeError: "x" is read-only										
 global datetimeformat	R	Intl.DateTimeFormat										
 datetimeformat	R	Intl.DateTimeFormat										
 webglrenderingcontext bindtexture	R	WebGLRenderingContext.bindTexture()										
@@ -7042,6 +7092,7 @@ global bool8x16	R	SIMD.Bool8x16
 bool8x16	R	SIMD.Bool8x16										
 rtcsessiondescription sdp	R	RTCSessionDescription.sdp										
 sdp	R	RTCSessionDescription.sdp										
+global referenceerror	R	ReferenceError										
 vrdisplay geteyeparameters	R	VRDisplay.getEyeParameters()										
 geteyeparameters	R	VRDisplay.getEyeParameters()										
 api canvasgradient	R	CanvasGradient										
@@ -7091,6 +7142,8 @@ notification icon	R	Notification.icon
 icon	R	Notification.icon										
 api treewalker	R	TreeWalker										
 api processinginstruction	R	ProcessingInstruction										
+errors property access denied	R	Error: Permission denied to access property "x"										
+property access denied	R	Error: Permission denied to access property "x"										
 api proximity events	R	Proximity Events										
 proximity events	R	Proximity Events										
 rtcpeerconnection createdatachannel	R	RTCPeerConnection.createDataChannel()										
@@ -7104,6 +7157,8 @@ redirected	R	Response.redirected
 ontouchstart	R	GlobalEventHandlers.ontouchstart										
 global ontouchstart	R	GlobalEventHandlers.ontouchstart										
 ontouchstart	R	GlobalEventHandlers.ontouchstart										
+errors deprecated caller or arguments usage	R	ReferenceError: deprecated caller or arguments usage										
+deprecated caller or arguments usage	R	ReferenceError: deprecated caller or arguments usage										
 paymentrequest show	R	PaymentRequest.show()										
 show	R	PaymentRequest.show()										
 mediakeysystemconfiguration videocapabilities	R	videoCapabilities										
@@ -7254,6 +7309,7 @@ global onpointercancel	R	GlobalEventHandlers.onpointercancel
 onpointercancel	R	GlobalEventHandlers.onpointercancel										
 mediastreamtrack onunmute	R	MediaStreamTrack.onunmute										
 onunmute	R	MediaStreamTrack.onunmute										
+global rangeerror	R	RangeError										
 math clz32	R	Math.clz32()										
 clz32	R	Math.clz32()										
 utterance	R	SpeechSynthesisEvent.utterance										
@@ -7431,6 +7487,8 @@ ondeviceorientation	R	Window.ondeviceorientation
 onselectstart	R	GlobalEventHandlers.onselectstart										
 global onselectstart	R	GlobalEventHandlers.onselectstart										
 onselectstart	R	GlobalEventHandlers.onselectstart										
+errors undefined prop	R	ReferenceError: reference to undefined property "x"										
+undefined prop	R	ReferenceError: reference to undefined property "x"										
 tutorial animating objects with webgl	R	Animating objects with WebGL										
 animating objects with webgl	R	Animating objects with WebGL										
 canvasrenderingcontext2d quadraticcurveto	R	CanvasRenderingContext2D.quadraticCurveTo()										
@@ -7612,6 +7670,8 @@ htmlimageelement image	R	Image()
 image	R	Image()										
 date getfullyear	R	Date.prototype.getFullYear										
 getfullyear	R	Date.prototype.getFullYear										
+errors deprecated source map pragma	R	SyntaxError: Using //@ to indicate sourceURL pragmas is deprecated. Use //# instead										
+deprecated source map pragma	R	SyntaxError: Using //@ to indicate sourceURL pragmas is deprecated. Use //# instead										
 attachEvent	R	EventTarget.attachEvent()										
 eventtarget attachevent	R	EventTarget.attachEvent()										
 attachevent	R	EventTarget.attachEvent()										
@@ -7910,6 +7970,8 @@ audiobuffer copytochannel	R	AudioBuffer.copyToChannel()
 copytochannel	R	AudioBuffer.copyToChannel()										
 api svganimatemotionelement	R	SVGAnimateMotionElement										
 api audiodestinationnode	R	AudioDestinationNode										
+errors too much recursion	R	InternalError: too much recursion										
+too much recursion	R	InternalError: too much recursion										
 onpointerenter	R	GlobalEventHandlers.onpointerenter										
 global onpointerenter	R	GlobalEventHandlers.onpointerenter										
 onpointerenter	R	GlobalEventHandlers.onpointerenter										
@@ -8001,6 +8063,8 @@ webrtc api connectivity	R	WebRTC connectivity
 connectivity	R	WebRTC connectivity										
 webglrenderingcontext disable	R	WebGLRenderingContext.disable()										
 disable	R	WebGLRenderingContext.disable()										
+errors missing parenthesis after argument list	R	SyntaxError: missing ) after argument list										
+missing parenthesis after argument list	R	SyntaxError: missing ) after argument list										
 api speechsynthesisevent	R	SpeechSynthesisEvent										
 object preventextensions	R	Object.preventExtensions										
 preventextensions	R	Object.preventExtensions										
@@ -8142,6 +8206,8 @@ global proxy	R	Proxy
 frameElement	R	Window.frameElement										
 window frameelement	R	Window.frameElement										
 frameelement	R	Window.frameElement										
+errors array sort argument	R	TypeError: invalid Array.prototype.sort argument										
+array sort argument	R	TypeError: invalid Array.prototype.sort argument										
 audiocontext createdynamicscompressor	R	AudioContext.createDynamicsCompressor()										
 createdynamicscompressor	R	AudioContext.createDynamicsCompressor()										
 canvasrenderingcontext2d rect	R	CanvasRenderingContext2D.rect()										
@@ -8182,6 +8248,7 @@ getconstraints	R	MediaStreamTrack.getConstraints()
 global uint8array	R	Uint8Array										
 api mediadeviceinfo	R	MediaDeviceInfo										
 api linkstyle	R	LinkStyle										
+api positionerror	R	PositionError										
 htmloptionelement option	R	Option()										
 option	R	Option()										
 web workers api functions and classes available to workers	R	Functions and classes available to Web Workers										
@@ -8250,6 +8317,8 @@ writing websocket servers	R	Writing WebSocket servers
 scrollLeft	R	Element.scrollLeft										
 element scrollleft	R	Element.scrollLeft										
 scrollleft	R	Element.scrollLeft										
+errors missing semicolon before statement	R	SyntaxError: missing ; before statement										
+missing semicolon before statement	R	SyntaxError: missing ; before statement										
 pushmanager permissionstate	R	PushManager.permissionState()										
 permissionstate	R	PushManager.permissionState()										
 tutorial lighting in webgl	R	Lighting in WebGL										
@@ -8292,6 +8361,8 @@ api svgstopelement	R	SVGStopElement
 personalbar	R	Window.personalbar										
 window personalbar	R	Window.personalbar										
 personalbar	R	Window.personalbar										
+errors precision range	R	RangeError: precision is out of range										
+precision range	R	RangeError: precision is out of range										
 string codepointat	R	String.prototype.codePointAt()										
 codepointat	R	String.prototype.codePointAt()										
 vendorSub	R	Navigator.vendorSub										
@@ -8307,6 +8378,8 @@ createdocumentfragment	R	Document.createDocumentFragment()
 api rtcsctptransport	R	RTCSctpTransport										
 canvasrenderingcontext2d font	R	CanvasRenderingContext2D.font										
 font	R	CanvasRenderingContext2D.font										
+errors resulting string too large	R	RangeError: repeat count must be less than infinity										
+resulting string too large	R	RangeError: repeat count must be less than infinity										
 xmlhttprequest withcredentials	R	XMLHttpRequest.withCredentials										
 withcredentials	R	XMLHttpRequest.withCredentials										
 getFrequencyResponse	R	IIRFilterNode.getFrequencyResponse()										
@@ -8329,6 +8402,8 @@ speechrecognition serviceuri	R	SpeechRecognition.serviceURI
 serviceuri	R	SpeechRecognition.serviceURI										
 subtlecrypto wrapkey	R	SubtleCrypto.wrapKey()										
 wrapkey	R	SubtleCrypto.wrapKey()										
+errors cant delete	R	TypeError: property "x" is non-configurable and can't be deleted										
+cant delete	R	TypeError: property "x" is non-configurable and can't be deleted										
 global onnotificationclose	R	onnotificationclose										
 api bluetoothstatuschangedevent	R	BluetoothStatusChangedEvent										
 createTHead	R	HTMLTableElement.createTHead()										
@@ -8504,6 +8579,8 @@ api document object model	R	Document Object Model (DOM)
 document object model	R	Document Object Model (DOM)										
 oes vertex array object bindvertexarrayoes	R	OES_vertex_array_object.bindVertexArrayOES()										
 bindvertexarrayoes	R	OES_vertex_array_object.bindVertexArrayOES()										
+errors undeclared var	R	ReferenceError: assignment to undeclared variable "x"										
+undeclared var	R	ReferenceError: assignment to undeclared variable "x"										
 setAttribute	R	Element.setAttribute()										
 element setattribute	R	Element.setAttribute()										
 setattribute	R	Element.setAttribute()										
@@ -8544,6 +8621,8 @@ document createattribute	R	Document.createAttribute()
 createattribute	R	Document.createAttribute()										
 webglrenderingcontext deleteshader	R	WebGLRenderingContext.deleteShader()										
 deleteshader	R	WebGLRenderingContext.deleteShader()										
+error stack	R	Error.prototype.stack										
+stack	R	Error.prototype.stack										
 isEqualNode	R	Node.isEqualNode()										
 node isequalnode	R	Node.isEqualNode()										
 isequalnode	R	Node.isEqualNode()										
@@ -8711,6 +8790,9 @@ api performancemark	R	PerformanceMark
 api svguseelement	R	SVGUseElement										
 document releasecapture	R	Document.releaseCapture()										
 releasecapture	R	Document.releaseCapture()										
+idp	R	RTCIdentityErrorEvent.idp										
+rtcidentityerrorevent idp	R	RTCIdentityErrorEvent.idp										
+idp	R	RTCIdentityErrorEvent.idp										
 document querycommandenabled	R	Document.queryCommandEnabled()										
 querycommandenabled	R	Document.queryCommandEnabled()										
 api credentialscontainer	R	CredentialsContainer										
@@ -8749,6 +8831,7 @@ api periodicsyncmanager	R	PeriodicSyncManager
 submit	R	HTMLFormElement.submit()										
 htmlformelement submit	R	HTMLFormElement.submit()										
 submit	R	HTMLFormElement.submit()										
+api rtcidentityerrorevent	R	RTCIdentityErrorEvent										
 addEventListener	R	EventTarget.addEventListener()										
 eventtarget addeventlistener	R	EventTarget.addEventListener()										
 addeventlistener	R	EventTarget.addEventListener()										
@@ -8817,6 +8900,8 @@ createlineargradient	R	CanvasRenderingContext2D.createLinearGradient()
 api paymentresponse	R	PaymentResponse										
 rtcpeerconnection cantrickleicecandidates	R	RTCPeerConnection.canTrickleIceCandidates										
 cantrickleicecandidates	R	RTCPeerConnection.canTrickleIceCandidates										
+errors missing bracket after list	R	SyntaxError: missing ] after element list										
+missing bracket after list	R	SyntaxError: missing ] after element list										
 api cdatasection	R	CDATASection										
 global uint8clampedarray	R	Uint8ClampedArray										
 document images	R	Document.images										
@@ -8936,6 +9021,8 @@ createnodeiterator	R	Document.createNodeIterator()
 api svgstringlist	R	SVGStringList										
 math random	R	Math.random										
 random	R	Math.random										
+webglrenderingcontext geterror	R	WebGLRenderingContext.getError()										
+geterror	R	WebGLRenderingContext.getError()										
 document preferredstylesheetset	R	Document.preferredStyleSheetSet										
 preferredstylesheetset	R	Document.preferredStyleSheetSet										
 audiocontext createscriptprocessor	R	AudioContext.createScriptProcessor()										
@@ -9104,12 +9191,16 @@ document exitfullscreen	R	Document.exitFullscreen()
 exitfullscreen	R	Document.exitFullscreen()										
 bluetoothgattservice getincludedservice	R	getIncludedService()										
 getincludedservice	R	getIncludedService()										
+errors equal as assign	R	SyntaxError: test for equality (==) mistyped as assignment (=)?										
+equal as assign	R	SyntaxError: test for equality (==) mistyped as assignment (=)?										
 global fetch	R	GlobalFetch.fetch()										
 fetch	R	GlobalFetch.fetch()										
 regexp lastparen	R	RegExp.lastParen ($+)										
 lastparen	R	RegExp.lastParen ($+)										
 api mediastream.addtrack	R	MediaStream.addTrack()										
 mediastream.addtrack	R	MediaStream.addTrack()										
+error columnnumber	R	Error.prototype.columnNumber										
+columnnumber	R	Error.prototype.columnNumber										
 document links	R	Document.links										
 links	R	Document.links										
 api rtcidentityevent	R	RTCIdentityEvent										
@@ -9141,6 +9232,7 @@ profile	R	Console.profile()
 getVRDisplays	R	Navigator.getVRDisplays()										
 navigator getvrdisplays	R	Navigator.getVRDisplays()										
 getvrdisplays	R	Navigator.getVRDisplays()										
+api speechrecognitionerror	R	SpeechRecognitionError										
 storage removeitem	R	Storage.removeItem()										
 removeitem	R	Storage.removeItem()										
 cssprimitivevalue primitivetype	R	CSSPrimitiveValue.primitiveType										
@@ -9214,6 +9306,8 @@ latitude	R	Coordinates.latitude
 speechsynthesis pending	R	SpeechSynthesis.pending										
 pending	R	SpeechSynthesis.pending										
 api positionoptions	R	PositionOptions										
+errors missing curly after property list	R	SyntaxError: missing } after property list										
+missing curly after property list	R	SyntaxError: missing } after property list										
 id cebutaxidriver	R	cebutaxidriver										
 api microdata dom api	R	Microdata DOM API										
 microdata dom api	R	Microdata DOM API										
@@ -9288,6 +9382,7 @@ api animationeffecttimingreadonly	R	AnimationEffectTimingReadOnly
 control	R	HTMLLabelElement.control										
 htmllabelelement control	R	HTMLLabelElement.control										
 control	R	HTMLLabelElement.control										
+api speechsynthesiserrorevent	R	SpeechSynthesisErrorEvent										
 api oscillatornode	R	OscillatorNode										
 initialTime	R	HTMLMediaElement.initialTime										
 htmlmediaelement initialtime	R	HTMLMediaElement.initialTime										
@@ -9425,6 +9520,8 @@ selectortext	R	CSSStyleRule.selectorText
 fullScreen	R	Window.fullScreen										
 window fullscreen	R	Window.fullScreen										
 fullscreen	R	Window.fullScreen										
+error linenumber	R	Error.prototype.lineNumber										
+linenumber	R	Error.prototype.lineNumber										
 webglrenderingcontext deleteprogram	R	WebGLRenderingContext.deleteProgram()										
 deleteprogram	R	WebGLRenderingContext.deleteProgram()										
 notifications api using the notifications api	R	Using the Notifications API										
@@ -9434,8 +9531,12 @@ createanalyser	R	AudioContext.createAnalyser()
 speechrecognitionalternative transcript	R	SpeechRecognitionAlternative.transcript										
 transcript	R	SpeechRecognitionAlternative.transcript										
 api htmlcanvaselement	R	HTMLCanvasElement										
+errors not defined	R	ReferenceError: "x" is not defined										
+not defined	R	ReferenceError: "x" is not defined										
 webglrenderingcontext bindattriblocation	R	WebGLRenderingContext.bindAttribLocation()										
 bindattriblocation	R	WebGLRenderingContext.bindAttribLocation()										
+errors not a constructor	R	TypeError: "x" is not a constructor										
+not a constructor	R	TypeError: "x" is not a constructor										
 canvasrenderingcontext2d shadowoffsetx	R	CanvasRenderingContext2D.shadowOffsetX										
 shadowoffsetx	R	CanvasRenderingContext2D.shadowOffsetX										
 canvasrenderingcontext2d shadowoffsety	R	CanvasRenderingContext2D.shadowOffsetY										
@@ -9453,6 +9554,7 @@ renderheight	R	VREyeParameters.renderHeight
 tiltX	R	PointerEvent.tiltX										
 pointerevent tiltx	R	PointerEvent.tiltX										
 tiltx	R	PointerEvent.tiltX										
+global syntaxerror	R	SyntaxError										
 serviceworkerregistration periodicsync	R	ServiceWorkerRegistration.periodicSync										
 periodicsync	R	ServiceWorkerRegistration.periodicSync										
 canvasrenderingcontext2d closepath	R	CanvasRenderingContext2D.closePath()										
@@ -9752,6 +9854,8 @@ bindtransformfeedback	R	WebGL2RenderingContext.bindTransformFeedback()
 date togmtstring	R	Date.prototype.toGMTString										
 togmtstring	R	Date.prototype.toGMTString										
 api networkinformation	R	NetworkInformation										
+errors malformed formal parameter	R	SyntaxError: Malformed formal parameter										
+malformed formal parameter	R	SyntaxError: Malformed formal parameter										
 api htmlformcontrolscollection	R	HTMLFormControlsCollection										
 rtcpeerconnection onconnectionstatechange	R	RTCPeerConnection.onconnectionstatechange										
 onconnectionstatechange	R	RTCPeerConnection.onconnectionstatechange										
@@ -9807,6 +9911,8 @@ capabilities	R	VRDisplay.capabilities
 maxDecibels	R	AnalyserNode.maxDecibels										
 analysernode maxdecibels	R	AnalyserNode.maxDecibels										
 maxdecibels	R	AnalyserNode.maxDecibels										
+errors more arguments needed	R	TypeError: More arguments needed										
+more arguments needed	R	TypeError: More arguments needed										
 api audiolistener	R	AudioListener										
 global collator	R	Intl.Collator										
 collator	R	Intl.Collator										
