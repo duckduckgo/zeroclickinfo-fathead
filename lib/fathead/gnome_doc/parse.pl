@@ -21,6 +21,9 @@ sub gtk_api_parse_functions {
     my $fnd = $dom->at('div.refsect1 > a[name$="functions_details"]')->parent;
     my @articles;
     foreach my $fn ($fnd->find('div.refsect2')->each) {
+        $fn->find('pre.programlisting')->map(
+            sub { $_->content($_->content =~ s/\s{2,}/ /gr); },
+        );
         push @articles, article(
             anchor => $fn->at('a[name]')->attr('name'),
             title  => $fn->at('h3')->text =~ s/ \(\)//r,
