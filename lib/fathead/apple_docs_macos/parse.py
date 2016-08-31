@@ -32,7 +32,7 @@ sys.setdefaultencoding('utf8')
 
 # These contains all of the API documentation
 # It only has classes and methods--it doesn't have actual tutorials.
-osx = "/home/sahildua2305/appledocs_macos/Documents/Docsets/com.apple.adc.documentation.OSX.docset/Contents/Resources/docSet.dsidx"
+osx = "/Applications/Xcode.app/Contents/Developer/Documentation/DocSets/com.apple.adc.documentation.OSX.docset/Contents/Resources/docSet.dsidx"
 
 # This is the link to the docs.
 url = "https://developer.apple.com/library/mac/";
