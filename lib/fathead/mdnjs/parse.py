@@ -143,21 +143,21 @@ class MDN(object):
       prop: The calling object's property.
     """
     def __init__(self, title=None, url=None, summary=None, codesnippet=None,
-                 obj=None, prop=None):
+                 obj=None, prop=None, articletype=None):
         self.title = title
         self.url = url
         self.summary = summary
         self.codesnippet = codesnippet
         self.obj = obj
         self.prop = prop
-
+        self.articletype = articletype
 
 class MDNParser(object):
     """ A parser that takes an MDN wiki page and returns an MDN object. If
     pages change causing this Fathead to break, then the queries in this class
     should be checked. """
     def _is_obsolete(self, tree):
-        obsolete = tree.xpath("//meta[@class='obsoleteHeader']")
+        obsolete = tree.xpath("//*[contains(@class, 'obsoleteHeader')]")
         return obsolete
 
     def parse(self, htmlfile):
@@ -170,7 +170,6 @@ class MDNParser(object):
         tree = html.fromstring(page)
 
         if self._is_obsolete(tree):
-          print "obsolete"
           return None
 
         title = tree.xpath("//meta[@property='og:title']/@content")[0]
@@ -188,6 +187,17 @@ class MDNParser(object):
             if summary_el:
               summary = summary_el[0]
 
+        # if there's no summary or description, getting tags
+        if not summary:
+            summary_el = tree.xpath("//ul[contains(@class,'tag')]")
+            if summary_el:
+              elements = tree.xpath("//ul[contains(@class,'tag')]/li/..")
+              for element in elements:
+                  for tag in element.xpath('//*[@class]'):
+                      tag.attrib.pop('class')
+                  summary += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+              summary = "Tags: " + summary.strip()
+
         codesnippet = ""
         syntax_header = tree.xpath("//h2[contains(@id,'Syntax')]")
         if syntax_header:
@@ -197,12 +207,58 @@ class MDNParser(object):
                     tag.attrib.pop('class')
                 codesnippet += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
 
+        # if there's no codesnippet, getting see also
+        see_also_title = ""
+        if not codesnippet:
+            see_also_header = tree.xpath("//h3[contains(@id,'See_also')]")
+            if see_also_header:
+                elements = tree.xpath("//h3[contains(@id,'See_also')]/following-sibling::ul[1]")
+                for element in elements:
+                    for tag in element.xpath('//*[@class]'):
+                        tag.attrib.pop('class')
+                    see_also_title = re.findall('title="([^"]*)"', etree.tostring(element).strip())
+                    codesnippet += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+                if see_also_title and codesnippet:
+                    codesnippet = "See also:\n  " + codesnippet.strip() + "\n  " + see_also_title[0].strip()
+
+        articletype = ""
+        # Error pages
+        if "Error" in htmlfile.name:
+
+          articletype = "Error"
+          # What went wrong?
+          whatWentWrong_summary = ""
+          whatWentWrong = tree.xpath("//h2[contains(@id,'What_went_wrong')]/following-sibling::p[1]")
+          for element in whatWentWrong:
+              for tag in element.xpath('//*[@class]'):
+                  tag.attrib.pop('class')
+              whatWentWrong_summary += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+
+          if whatWentWrong_summary:
+            summary = whatWentWrong_summary
+
+          # Examples
+          exampleGood = ''.join(tree.xpath("//h3[contains(@id,'Valid_cases')]/following-sibling::pre/text()"))
+          exampleBad = ''.join(tree.xpath("//h3[contains(@id,'Invalid_cases')]/following-sibling::pre/text()"))
+
+          exampleGood = re.sub('<[^<]+?>', '', exampleGood)
+          exampleBad = re.sub('<[^<]+?>', '', exampleBad)
+
+          if exampleGood:
+            exampleGood = "Valid Cases:\n" + exampleGood
+          if exampleBad:
+            exampleBad = "Invalid Cases:\n" + exampleGood
+
+          if exampleBad or exampleGood:
+            codesnippet = exampleBad + "\n" + exampleGood
+
         print title + (' ' * 30) + '\r',
 
         mdn = MDN()
         mdn.title = title
         mdn.summary = summary
         mdn.codesnippet = codesnippet
+        mdn.articletype = articletype
         return mdn
 
 class MDNIndexer(object):
@@ -211,9 +267,11 @@ class MDNIndexer(object):
         self.counter = Counter()
         self.inverted_index = {}
         # for Web/Api pages
-        self.CLASS_WORDS = ['Window', 'Navigator', 'MouseEvent',
+        self.WEBAPI_CLASS_WORDS = ['Window', 'Navigator', 'MouseEvent',
                             'KeyboardEvent', 'GlobalEventHandlers', 'Element',
                             'Node', 'Event', 'Selection']
+        # for Error pages
+        self.ERROR_SYNONYMS = [ ["bad", "not legal", "invalid", "not a valid"] ]
 
     def add(self, mdn):
         keyword = mdn.prop.lower()
@@ -221,6 +279,34 @@ class MDNIndexer(object):
         if keyword not in self.inverted_index:
             self.inverted_index[keyword] = []
         self.inverted_index[keyword].append(mdn)
+
+    def writeredirect(self, title, mdn):
+        title = title.replace('_', ' ')
+        # write redirects with synomyms for error pages
+        if mdn.articletype == "Error":
+            for synonyms_list in self.ERROR_SYNONYMS:
+                if any(word in title.lower() for word in synonyms_list): 
+                    word = set(synonyms_list).intersection(title.lower().split()).pop()
+                    for synonym in synonyms_list:
+                        self._writer.writerow({
+                            'title': title.replace(word, synonym),
+                            'type': 'R',
+                            'redirect': mdn.title
+                        })
+                    return;
+        self._writer.writerow({
+          'title': title,
+          'type': 'R',
+          'redirect': mdn.title
+        })
+
+    def writedisambiguation(self, keyword, disambig):
+        self._writer.writerow({
+          'title': keyword,
+          'type': 'D',
+          'disambiguation': disambig
+        })
+        self._writer.articles_index.append(keyword.lower())
 
     def writerows(self):
         for keyword, count in self.counter.most_common():
@@ -237,46 +323,31 @@ class MDNIndexer(object):
                 # Write a disambiguation
                 # skips D if already an article
                 if keyword.lower() not in self._writer.articles_index:
-                    self._writer.writerow({
-                      'title': keyword,
-                      'type': 'D',
-                      'disambiguation': disambig
-                    })
-                    self._writer.articles_index.append(keyword.lower())
-
+                    self.writedisambiguation(keyword, disambig)
+                    
             for mdn in self.inverted_index[keyword]:
                 # add redirect for Web/Api pages
-                if any(word in mdn.title for word in self.CLASS_WORDS) and '.' in mdn.title:
+                strip_title = ""
+                if any(word in mdn.title for word in self.WEBAPI_CLASS_WORDS) and '.' in mdn.title:
                     # original title: Window.getAnimationFrame()
                     match = re.search('(?:.*\.)([^\(]+)(?:\(\))?', mdn.title)
                     # remove class_word: getAnimationFrame
                     strip_title = match.group(1)
                     # skips redirect if already an article
                     if strip_title.lower() not in self._writer.articles_index:
-                        self._writer.writerow({
-                          'title': strip_title,
-                          'type': 'R',
-                          'redirect': mdn.title
-                        })
+                        self.writeredirect(strip_title, mdn)
                 # for all entries in the inverted index, write a redirect of
                 # of the form <object><space><property>
-                if ('%s %s' % (mdn.obj.lower(), mdn.prop.lower())) not in self._writer.articles_index:
-                    self._writer.writerow({
-                      'title': '%s %s' % (mdn.obj.lower(), mdn.prop.lower()),
-                      'type': 'R',
-                      'redirect': mdn.title
-                    })
+                obj_prop_entry = mdn.obj.lower() + ' ' + mdn.prop.lower()
+                if obj_prop_entry not in self._writer.articles_index:
+                    self.writeredirect(obj_prop_entry, mdn)
                 # If this is the only item in the inverted index,
                 # write a primary redirect on the keyword.
                 if count == 1:
                     # check if not an Article
                     if not all(x in [keyword, strip_title] for x in self._writer.articles_index):
                         if keyword.lower() not in self._writer.articles_index:
-                            self._writer.writerow({
-                              'title': keyword,
-                              'type': 'R',
-                              'redirect': mdn.title
-                            })
+                            self.writeredirect(keyword, mdn)
 
 def run(cachedir, cachejournal, langdefs, outfname):
     """
