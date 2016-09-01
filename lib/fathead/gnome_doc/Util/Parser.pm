@@ -32,14 +32,6 @@ sub _build_db {
     return Util::DB->new;
 }
 
-sub normalize_dom_links {
-    my ($url, $dom)  = @_;
-    $dom->find('a')->map(sub {
-        my $link = $_[0]->attr('href') or return;
-        $_[0]->attr(href => URI->new_abs($link, $url)->as_string);
-    });
-}
-
 #######################################################################
 #                       Normalize Parse Results                       #
 #######################################################################
@@ -48,7 +40,6 @@ sub dom_for_parsing {
     my ($page) = @_;
     # NOTE: This probably destructively modifies the pages DOM.
     my $dom = $page->dom;
-    normalize_dom_links($page->url, $dom);
     $dom->find('strong')->map('strip');
     return $dom;
 }

@@ -19,18 +19,27 @@ has dom => (
     builder => 1,
 );
 
+sub _normalize_dom {
+    my ($url, $dom) = @_;
+    $dom->find('a')->map(sub {
+        my $link = $_[0]->attr('href') or return;
+        $_[0]->attr(href => URI->new_abs($link, $url)->as_string);
+    });
+    return $dom;
+}
+
 sub _build_dom {
     my ($self) = @_;
     my $url = $self->url;
     if (my $path = $self->_local_path) {
-        _dom_from_file($path);
+        _normalize_dom($url, _dom_from_file($path));
     } else {
         if (my $dom = $self->_retrieve_from_cache) {
             return $dom;
         }
         my $res = $ua->get($url)->success
             or die "Unable to fetch DOM for '$url'\n";
-        my $dom = $res->dom if $res;
+        my $dom = _normalize_dom($url, $res->dom) if $res;
         $self->_cache($dom) if $dom;
         return $dom;
     }
