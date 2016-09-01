@@ -299,7 +299,7 @@ class DataOutput(object):
                         'A',                        # type is article
                         '',                         # redirect data
                         '',                         # ignore
-                        'sass functions,            # categories
+                        'sass functions',           # categories
                         '',                         # ignore
                         '',                         # no related topics
                         '',                         # ignore
