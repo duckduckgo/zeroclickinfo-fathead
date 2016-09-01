@@ -56,6 +56,7 @@ sub gtk_api_parse_page {
         title => $title,
         abstract => $abstract,
         related => ["$title functions"],
+        anchor => $dom->at('a[name$="top_of_page"]')->attr('name'),
     );
     return {
         articles => [$a],
