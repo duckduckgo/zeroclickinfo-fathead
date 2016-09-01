@@ -51,14 +51,11 @@ sub _normalize_links {
 sub normalize {
     my ($self, $links) = @_;
     my $abstract = $self->abstract;
-    $abstract =~ s/\n/ /g;
     # Okay, the parser *really* hates links...
     my $dom = Mojo::DOM->new->parse($abstract);
     $dom = _normalize_links($links, $dom);
     $dom->find('a')->map(tag => 'span');
     $abstract = $dom->to_string;
-    # The internal DB doesn't like escapes...
-    $abstract =~ s{\\}{\\\\}g;
     $self->_set_abstract($abstract);
 }
 

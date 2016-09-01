@@ -118,6 +118,15 @@ sub article {
     $self->articles->{$title} = $article;
 }
 
+# Ensure abstract doesn't have anything that *can't* go into the DB.
+sub normalize_abstract {
+    my ($abstract) = @_;
+    $abstract =~ s/\n/&#13;/g;
+    $abstract =~ s/\t/&#09;/g;
+    $abstract =~ s/\\/&#92;/g;
+    return $abstract;
+}
+
 sub entry {
     my ($self, $article) = @_;
     my ($title, $related) = map { $article->$_ } (
@@ -130,7 +139,7 @@ sub entry {
     my $category_text = join '\n', @{$article->categories};
     return warn "No text for '$title'" unless $article->abstract;
     $self->insert({
-        abstract => $article->abstract,
+        abstract => normalize_abstract($article->abstract),
         categories => $category_text,
         title => $article->title,
         type  => 'A',
