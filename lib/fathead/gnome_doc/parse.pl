@@ -13,8 +13,40 @@ my $gtk_api_symbol_index = indexer(
         my ($dom) = @_;
         $dom->find('div.index a.link[title]:last-child')->map(attr => 'href')->to_array;
     },
-    assign_parsers => sub { [\&gtk_api_parse_functions] },
+    assign_parsers => sub { [\&gtk_api_parse_page, \&gtk_api_parse_functions] },
 );
+
+sub normalize_listing_code {
+    my ($dom) = @_;
+    # This works for the most part in getting code on the right lines.
+    $dom->find('td.listing_code span')->grep(
+        sub { $_->content =~ /^\s{2,}/ },
+    )->map(sub {$_->prepend_content('<br />') });
+    $dom->find('table td.listing_code')->map(tag => 'span')->map('parent')
+        ->map(tag => 'span');
+    $dom->find('td.listing_lines')->map(
+        sub { $_->attr(style => 'display:none;') },
+    );
+    return $dom;
+}
+
+# Main page description
+sub gtk_api_parse_page {
+    my ($dom) = @_;
+    $dom = normalize_listing_code($dom);
+    my $title = $dom->at('span.refentrytitle')->all_text;
+    my $includes = $dom->at('div.refsect1 > a[name$="includes"]')->parent->to_string;
+    my $description = $dom->at('div.refsect1 > a[name$="description"]')->parent->to_string;
+    my $abstract = "$includes\n$description";
+    my $a = article(
+        title => $title,
+        abstract => $abstract,
+    );
+    return {
+        articles => [$a],
+        disambiguations => [],
+    };
+}
 
 sub gtk_api_parse_functions {
     my ($dom) = @_;
