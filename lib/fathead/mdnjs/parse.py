@@ -107,6 +107,11 @@ class MDNWriter(FatWriter):
                 abstract += ': '
             abstract += mdn.summary
         abstract = code + abstract
+        if mdn.exampledesc:
+            abstract += '\n' + mdn.exampledesc
+        if mdn.example:
+            code = '<pre><code>%s</code></pre>' % mdn.example
+            abstract += '\n' + code
         d = {
           'title': mdn.title,
           'type': 'A',
@@ -151,6 +156,8 @@ class MDN(object):
         self.obj = obj
         self.prop = prop
         self.articletype = articletype
+        self.exampledesc = None
+        self.example = None
 
 class MDNParser(object):
     """ A parser that takes an MDN wiki page and returns an MDN object. If
@@ -222,6 +229,8 @@ class MDNParser(object):
                     codesnippet = "See also:\n  " + codesnippet.strip() + "\n  " + see_also_title[0].strip()
 
         articletype = ""
+        exampledesc = ""
+        example = ""
         # Error pages
         if "Error" in htmlfile.name:
 
@@ -251,13 +260,32 @@ class MDNParser(object):
 
           if exampleBad or exampleGood:
             codesnippet = exampleBad + "\n" + exampleGood
-
+            
+        if "Functions." in htmlfile.name:
+            
+            articletype = "Functions"
+            desc_header = tree.xpath("//h2[contains(@id,'Description')]")
+            if desc_header:
+                elements = tree.xpath("//h2[contains(@id,'Description')]/following-sibling::p[1]")
+                for element in elements:
+                    for tag in element.xpath('//*[@class]'):
+                        tag.attrib.pop('class')
+                    exampledesc += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+                        
+                elements = tree.xpath("//h2[contains(@id,'Description')]/following-sibling::pre[1]")
+                for element in elements:
+                    for tag in element.xpath('//*[@class]'):
+                        tag.attrib.pop('class')
+                    example += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+                        
         print title + (' ' * 30) + '\r',
 
         mdn = MDN()
         mdn.title = title
         mdn.summary = summary
         mdn.codesnippet = codesnippet
+        mdn.exampledesc = exampledesc
+        mdn.example = example
         mdn.articletype = articletype
         return mdn
 
