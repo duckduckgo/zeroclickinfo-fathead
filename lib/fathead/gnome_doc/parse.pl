@@ -13,7 +13,11 @@ my $gtk_api_symbol_index = indexer(
         my ($dom) = @_;
         $dom->find('div.index a.link[title]:last-child')->map(attr => 'href')->to_array;
     },
-    assign_parsers => sub { [\&gtk_api_parse_page, \&gtk_api_parse_functions] },
+    assign_parsers => sub { [
+        \&gtk_api_parse_page,
+        \&gtk_api_parse_functions,
+        \&gtk_api_parse_types_values,
+    ] },
 );
 
 sub page_main_title {
@@ -55,7 +59,7 @@ sub gtk_api_parse_page {
     my $a = article(
         title => $title,
         abstract => $abstract,
-        related => ["$title functions"],
+        related => ["$title functions", "$title types and values"],
         anchor => $dom->at('a[name$="top_of_page"]')->attr('name'),
     );
     return {
@@ -64,25 +68,36 @@ sub gtk_api_parse_page {
     };
 }
 
-sub gtk_api_parse_functions {
-    my ($dom) = @_;
-    $dom = gtk_normalize_dom($dom);
-    my $fnd = $dom->at('div.refsect1 > a[name$="functions_details"]')->parent;
-    my @articles;
-    foreach my $fn ($fnd->find('div.refsect2')->each) {
-        push @articles, article(
-            anchor => $fn->at('a[name]')->attr('name'),
-            title  => $fn->at('h3')->text =~ s/ \(\)//r,
-            abstract => $fn->find('h3 ~ *')->join(),
-            categories => [
-                page_main_title($dom) . ' functions',
-            ],
-        );
-    }
-    return {
-        articles => \@articles,
-        disambiguations => [],
+sub gtk_api_parse_items {
+    my ($name_suffix, $category) = @_;
+    return sub {
+        my ($dom) = @_;
+        $dom = gtk_normalize_dom($dom);
+        my $fnd = $dom->at(qq{div.refsect1 > a[name\$="$name_suffix"]})->parent;
+        my @articles;
+        foreach my $fn ($fnd->find('div.refsect2')->each) {
+            push @articles, article(
+                anchor => $fn->at('a[name]')->attr('name'),
+                title  => $fn->at('h3')->text,
+                abstract => $fn->find('h3 ~ *')->join(),
+                categories => [
+                    page_main_title($dom) . " $category",
+                ],
+            );
+        }
+        return {
+            articles => \@articles,
+            disambiguations => [],
+        };
     };
+}
+
+sub gtk_api_parse_functions {
+    gtk_api_parse_items('functions_details', 'functions')->(@_);
+}
+
+sub gtk_api_parse_types_values {
+    gtk_api_parse_items('other_details', 'types and values')->(@_);
 }
 
 my $parser = parser(
