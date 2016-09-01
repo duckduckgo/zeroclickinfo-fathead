@@ -25,6 +25,8 @@ sub _normalize_dom {
         my $link = $_[0]->attr('href') or return;
         $_[0]->attr(href => URI->new_abs($link, $url)->as_string);
     });
+    # Current back-end doesn't like 'strong' tags
+    $dom->find('strong')->map('strip');
     return $dom;
 }
 

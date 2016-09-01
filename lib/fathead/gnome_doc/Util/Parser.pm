@@ -36,19 +36,11 @@ sub _build_db {
 #                       Normalize Parse Results                       #
 #######################################################################
 
-sub dom_for_parsing {
-    my ($page) = @_;
-    # NOTE: This probably destructively modifies the pages DOM.
-    my $dom = $page->dom;
-    $dom->find('strong')->map('strip');
-    return $dom;
-}
-
 sub parse_page {
     my ( $self, $index, $page ) = @_;
     my @parsed;
     foreach my $parser (@{$index->parsers_for($page)}) {
-        push @parsed, $parser->(dom_for_parsing($page));
+        push @parsed, $parser->($page->dom);
     }
     foreach my $parsed (@parsed) {
         for my $article ( @{ $parsed->{articles} } ) {
