@@ -21,12 +21,21 @@ sub page_main_title {
     $dom->at('span.refentrytitle')->all_text;
 }
 
+sub normalize_program_listing {
+    my ($dom) = @_;
+    $dom->find('pre.programlisting')->map(
+        sub { $_->content($_->content =~ s{\n}{<br />}gr) },
+    );
+    return $dom;
+}
+
+sub gtk_normalize_dom {
+    my ($dom) = @_;
+    normalize_listing_code(normalize_program_listing($dom));
+}
+
 sub normalize_listing_code {
     my ($dom) = @_;
-    # This works for the most part in getting code on the right lines.
-    $dom->find('td.listing_code span')->grep(
-        sub { $_->content =~ /^\s{2,}/ },
-    )->map(sub {$_->prepend_content('<br />') });
     $dom->find('table td.listing_code')->map(tag => 'span')->map('parent')
         ->map(tag => 'span');
     $dom->find('td.listing_lines')->map(
@@ -38,7 +47,7 @@ sub normalize_listing_code {
 # Main page description
 sub gtk_api_parse_page {
     my ($dom) = @_;
-    $dom = normalize_listing_code($dom);
+    $dom = gtk_normalize_dom($dom);
     my $title = page_main_title($dom);
     my $includes = $dom->at('div.refsect1 > a[name$="includes"]')->parent->to_string;
     my $description = $dom->at('div.refsect1 > a[name$="description"]')->parent->to_string;
@@ -56,12 +65,10 @@ sub gtk_api_parse_page {
 
 sub gtk_api_parse_functions {
     my ($dom) = @_;
+    $dom = gtk_normalize_dom($dom);
     my $fnd = $dom->at('div.refsect1 > a[name$="functions_details"]')->parent;
     my @articles;
     foreach my $fn ($fnd->find('div.refsect2')->each) {
-        $fn->find('pre.programlisting')->map(
-            sub { $_->content($_->content =~ s/\s{2,}/ /gr); },
-        );
         push @articles, article(
             anchor => $fn->at('a[name]')->attr('name'),
             title  => $fn->at('h3')->text =~ s/ \(\)//r,
