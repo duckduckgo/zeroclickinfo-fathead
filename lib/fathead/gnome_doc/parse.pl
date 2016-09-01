@@ -16,6 +16,11 @@ my $gtk_api_symbol_index = indexer(
     assign_parsers => sub { [\&gtk_api_parse_page, \&gtk_api_parse_functions] },
 );
 
+sub page_main_title {
+    my ($dom) = @_;
+    $dom->at('span.refentrytitle')->all_text;
+}
+
 sub normalize_listing_code {
     my ($dom) = @_;
     # This works for the most part in getting code on the right lines.
@@ -34,13 +39,14 @@ sub normalize_listing_code {
 sub gtk_api_parse_page {
     my ($dom) = @_;
     $dom = normalize_listing_code($dom);
-    my $title = $dom->at('span.refentrytitle')->all_text;
+    my $title = page_main_title($dom);
     my $includes = $dom->at('div.refsect1 > a[name$="includes"]')->parent->to_string;
     my $description = $dom->at('div.refsect1 > a[name$="description"]')->parent->to_string;
     my $abstract = "$includes\n$description";
     my $a = article(
         title => $title,
         abstract => $abstract,
+        related => ["$title functions"],
     );
     return {
         articles => [$a],
@@ -60,6 +66,9 @@ sub gtk_api_parse_functions {
             anchor => $fn->at('a[name]')->attr('name'),
             title  => $fn->at('h3')->text =~ s/ \(\)//r,
             abstract => $fn->find('h3 ~ *')->join(),
+            categories => [
+                page_main_title($dom) . ' functions',
+            ],
         );
     }
     return {
