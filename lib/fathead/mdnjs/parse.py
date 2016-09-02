@@ -322,11 +322,38 @@ class MDNIndexer(object):
                             'redirect': mdn.title
                         })
                     return;
-        self._writer.writerow({
-          'title': title,
-          'type': 'R',
-          'redirect': mdn.title
-        })
+        # write redirects with `syntax` and `example` for functions pages
+        if mdn.articletype == "Functions":
+            self._writer.writerow({
+                'title': title + " syntax",
+                'type': 'R',
+                'redirect': mdn.title
+            })
+            self._writer.writerow({
+                'title': title + " example",
+                'type': 'R',
+                'redirect': mdn.title
+            })
+            first_word = title.split(' ')[0].lower()
+            if first_word != title.lower():
+                self._writer.writerow({
+                    'title': first_word + " syntax",
+                    'type': 'R',
+                    'redirect': mdn.title
+                })
+                self._writer.writerow({
+                    'title': first_word + " example",
+                    'type': 'R',
+                    'redirect': mdn.title
+                })
+            
+        # To avoid redirections like "default parameters" -> "Default Parameters"
+        if title.lower() != mdn.title.lower():
+            self._writer.writerow({
+                'title': title,
+                'type': 'R',
+                'redirect': mdn.title
+            })
 
     def writedisambiguation(self, keyword, disambig):
         self._writer.writerow({
