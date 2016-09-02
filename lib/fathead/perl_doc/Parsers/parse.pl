@@ -151,7 +151,6 @@ sub doc_fullurl {
 # Parsers for other keys (basenames) will only run on the matching file.
 my %parser_map = (
     'index-faq'       => ['parse_faq'],
-    'index-language'  => ['parse_faq'],
     'index-functions' => ['parse_functions'],
     'index-module'    => ['get_synopsis'],
     'index-default'   => ['get_anchors'],
@@ -549,29 +548,37 @@ sub parse_faq {
 #                              Functions                              #
 #######################################################################
 
+# Fallback descriptions for when the page is empty.
+my %functions_fallback;
+
+sub build_description_functions {
+    my ($fname, $syntaxes, $description) = @_;
+    my @syntaxes = @$syntaxes;
+    $description ||= $functions_fallback{$fname};
+    return unless $description;
+    my $syntax = Mojo::DOM->new("<pre>$syntaxes[0]</pre>");
+    map { $syntax->at('pre')->append_content("<br />$_") }
+        @syntaxes[1..$#syntaxes];
+    $description = $syntax->to_string . $description;
+    return $description;
+}
+
 # TODO: Some functions (e.g., 'xor') are documented in 'perlop' so do not
 # receive a good description from this parser.
-my $skip = qr/To get the best experience. |Please note: Many features/;
 sub parse_functions {
     my ($self, $dom) = @_;
 
-    my $fname = $dom->at('title')->text;
-    $fname =~ s/\s-\s.*//;
+    my $fname = $dom->at('div#from_search + h1')->text;
+    my @syntaxes = $dom->find('ul > li > a[name] + b')->map('text')->each;
 
-    my $hint = $dom->at('b')->text;
+    my $description = text_from_selector(
+        $dom->at('ul:last-of-type > li:last-child > a[name]')->parent
+    )->to_string;
+    $description = build_description_functions($fname, [@syntaxes], $description)
+        or return;
 
-    $dom = $dom->at('div[id="content_body"]');
-
-    my $description;
-    foreach my $n ($dom->find('p, code')->each){
-        next unless $n->content;
-        next if $n->content =~ /$skip/;
-        $description .= $n->content;
-    }
-    return unless $description;
-    $description = trim_abstract($description, 100);
-    $description = "<code><br>$hint<br></code><br>". $description;
     my $title = "$fname (function)";
+
     return {
         articles => [
             { title => $title, text => $description }
@@ -587,7 +594,13 @@ sub parse_functions {
 
 sub parse_index_functions_links {
     my ($self, $dom) = @_;
-    return @{$dom->find('a[href^="functions"]')->to_array};
+    my @fns = $dom->find('a[href^=functions]')->each;
+    foreach my $fn (@fns) {
+        my ($descr) = $fn->parent->text =~ /- (.+)\s*+$/;
+        $descr = ucfirst $descr . '.' if $descr;
+        $functions_fallback{$fn->text} = $descr;
+    }
+    return @fns;
 }
 
 #######################################################################
