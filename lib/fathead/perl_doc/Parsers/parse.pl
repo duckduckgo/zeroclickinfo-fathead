@@ -51,6 +51,10 @@ sub _build_indices {
        index-platforms
     / );
 
+    foreach my $l ('A'..'Z') {
+        push @index_pages, "index-modules-$l";
+    }
+
     for ( @index_pages ) {
         $indices->{$_} = $self->links_from_index( $_ );
     }
@@ -152,8 +156,6 @@ sub doc_fullurl {
 my %parser_map = (
     'index-faq'       => ['parse_faq'],
     'index-functions' => ['parse_functions'],
-    'index-module'    => ['get_synopsis'],
-    'index-default'   => ['get_anchors'],
     'perldiag'        => ['parse_diag_messages'],
     'perlglossary'    => ['parse_glossary_definitions'],
     'perlop'          => ['parse_operators'],
@@ -166,7 +168,7 @@ my %parser_map = (
     'perlvar'         => ['parse_variables'],
 );
 
-my @parsers = sort keys %parser_map;
+map { $parser_map{"index-modules-$_"} = ['parse_package'] } ('A'..'Z');
 
 sub get_parsers {
     my ($index, $basename) = @_;
@@ -305,12 +307,12 @@ sub entry {
     my ($title, $text, $url, $related) = @article{qw(title text url related)};
     $text =~ s{\\}{\\\\}g;
     my $related_text = '';
-    # TODO: Find out how the related links should *actually* be formatted
     if (defined $related && @$related) {
-        $related_text = join '', map { "[[$_]]" } @$related;
+        $related_text = join '\n', map { "[[$_]]" } @$related;
     }
     my $category_text = join '\n', @{$article{categories} || []};
     return warn "No text for '$title'" unless $text;
+    $text =~ s/\t/&#09;/g;
     $self->insert({
         abstract => $text,
         categories => $category_text,
@@ -319,40 +321,6 @@ sub entry {
         related  => $related_text,
         sourceurl => $url,
     });
-}
-
-sub get_synopsis {
-    my ( $self, $dom ) = @_;
-    my $articles;
-    my $title = $dom->at('title')->text;
-    my $module = $title =~ s/\s.*//r;
-    my $first_code_block = $dom->find('pre')->[0];
-
-    if ( !$first_code_block ) {
-        warn "No code block for $module";
-        return {};
-    }
-
-    my @articles = @{$articles->{articles} || []};
-    push @articles, {
-        title => $title,
-        text  => $first_code_block->to_string
-    };
-    $articles->{articles} = \@articles;
-
-    my @aliases = @{$articles->{aliases} || []};
-    push @aliases, {
-        new  => $module,
-        orig => $title,
-    };
-    $articles->{aliases} = \@aliases;
-
-    return $articles;
-}
-
-sub get_anchors {
-    my ( $self, $dom ) = @_;
-    my $articles;
 }
 
 sub retrieve_entry {
@@ -841,6 +809,63 @@ sub parse_variables {
         aliases => sub { $_[1] =~ s/ \(variable\)//r },
         categories => sub { ['Variables'] },
     )->(@_);
+}
+
+#######################################################################
+#                              Packages                               #
+#######################################################################
+
+sub aliases_package {
+    my ($package) = @_;
+    my $spaced = $package =~ s/::/ /gr;
+    make_aliases("$package (module)",
+        "$spaced", "$package",
+        map { ("$package $_", "$spaced $_") } (
+            'module', 'library', 'package',
+        ),
+    );
+}
+
+sub grab_section {
+    my ($section_name, $dom, $match) = @_;
+    $match //= '*';
+    my $start = $dom->at(qq(a[name="$section_name"] + h1));
+    return Mojo::Collection::c() unless $start;
+    my $elt = $start;
+    my @elts;
+    while (1) {
+        $elt = $elt->next;
+        last unless $elt;
+        if ($elt->matches('a[name]') && $elt->attr('name') =~ /^[A-Z]+$/) {
+            last;
+        }
+        next unless $elt->matches($match);
+        push @elts, $elt;
+    }
+    return Mojo::Collection::c(@elts); # Give back a Mojo collection
+}
+
+sub parse_package {
+    my ($self, $dom) = @_;
+    my $package_name = $dom->at('div#from_search + h1')->text;
+    my $syns = grab_section('SYNOPSIS', $dom);
+    my $synopsis = $syns->join();
+    return {} unless $synopsis;
+    $synopsis = $synopsis->to_string;
+    my $short_desc = $dom->at('a[name="NAME"] + h1 + p') // '';
+    $short_desc = $short_desc->to_string . "\n" if $short_desc;
+    my $rel = grab_section('SEE-ALSO', $dom, 'p');
+    my @related = $rel->map(sub { $_->find('a[href]') })->flatten
+        ->map('text')->each;
+    my $article = {
+        text  => "$short_desc$synopsis",
+        title => "$package_name (module)",
+        related => \@related,
+    };
+    return {
+        articles => [$article],
+        aliases  => [aliases_package($package_name)],
+    };
 }
 
 #######################################################################
