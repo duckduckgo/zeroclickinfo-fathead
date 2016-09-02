@@ -312,6 +312,7 @@ sub entry {
     }
     my $category_text = join '\n', @{$article{categories} || []};
     return warn "No text for '$title'" unless $text;
+    $text =~ s/\t/&#09;/g;
     $self->insert({
         abstract => $text,
         categories => $category_text,
