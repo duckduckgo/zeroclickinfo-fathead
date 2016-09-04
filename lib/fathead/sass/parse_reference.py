@@ -44,12 +44,13 @@ class DataParser(object):
     """
     Object responsible for parsing the raw HTML that contains Python data
     """
-    def __init__(self, data_object):
+    def __init__(self, data_object, titles):
         """
         Given raw data, get the relevant sections
         Args:
             raw_data: HTML data
         """
+        self.titles = titles
         self.parsed_data = None
         self.function_sections = []
         self.file_being_used = data_object.get_file()
@@ -75,14 +76,33 @@ class DataParser(object):
 
         """
         name = section.text
-        name = name.replace(":", "")
-        name = name.replace("@", "")
-        name = name.replace("-", "")
-        name = name.replace("(", "")
-        name = name.replace(")", "")
-        name = name.replace(".", "")
-        return name
-    
+        if name in self.titles.keys():
+            info = self.titles[name]
+            if info[0].strip() != 'None':
+                return info[0].strip()
+            else:
+                return name
+        else:
+            return None
+    def parse_for_redirects(self, section):
+        """
+        Returns any redirects for function
+        Args:
+            section: A section of parsed HTML that represents a function definition
+
+        Returns:
+            list of redirects
+
+        """
+        name = section.text
+        if name in self.titles.keys():
+            info = self.titles[name]
+            if info[1].strip() != 'None':
+                return info[1].strip().split(',')
+            else:
+                return []
+        else:
+            return []
     def parse_for_id(self, section):
         """
         Returns the section id
@@ -133,24 +153,26 @@ class DataParser(object):
         """
         data = []
         names = []
-        
         for function_section in self.function_sections:
             name = self.parse_for_name(function_section)
             if name:
                 description = self.parse_for_description(function_section)
                 id = self.parse_for_id(function_section)
-
                 url = self.create_url(id)
+                redirect = self.parse_for_redirects(function_section)
+                
                 if name in names:
                     index = names.index(name)
                     data_elements = data[index]
                     data_elements['description'] += description
+                    data_elements['redirects'].extend(redirect)
                 else:
                     names.append(name)
                     data_elements = {
                         'name': name,
                         'description': description,
-                        'url': url
+                        'url': url,
+                        'redirects' : redirect
                     }
 
                     data.append(data_elements)
@@ -201,6 +223,7 @@ class DataOutput(object):
                     description = data_element.get('description')
                     url = data_element.get('url').encode('utf-8')
                     name = data_element.get('name').encode('utf-8')
+                    redirect = data_element.get('redirects')
                     list_of_data = [
                         name,                       # unique name
                         'A',                        # type is article
@@ -218,15 +241,53 @@ class DataOutput(object):
                     ]
                     line = '\t'.join(list_of_data)
                     output_file.write(line+'\n')
+    def create_redirects(self):
+        """
+        Iterate through the data and create the needed output.txt file, appending to file as necessary.
 
+        """
+        with open('output.txt', 'a') as output_file:
+            for data_element in self.data:
+                if data_element.get('name'):
+                    name = data_element.get('name').encode('utf-8')
+                    redirects = data_element.get('redirects')
+                    for redirect in redirects:
+                        list_of_data = [
+                            redirect.strip(),           # unique name
+                            'R',                        # type is article
+                            name,                       # redirect data
+                            '',                         # ignore
+                            '',                         # no categories
+                            '',                         # ignore
+                            '',                         # no related topics
+                            '',                         # ignore
+                            '',                         # external link 
+                            '',                         # no disambiguation
+                            '',                         # images
+                            '',                         # abstract
+                            '',                         # url to doc
+                        ]
+                        line = '\t'.join(list_of_data)
+                        output_file.write(line+'\n')
+def getTitleInfo():
+    """
+    Read through titles.txt and return title names and redirect information.
+    """
+    titles = {}
+    with open('titles.txt','r') as f:
+        for line in f:
+            line = line.split('    ')
+            if line[1].strip()!="N":
+                titles[line[0]] = [line[2], line[3].strip()]
+    return titles
     
-
-
 
 if __name__ == "__main__":
     file_path = 'download/file.SASS_REFERENCE.html'
+    title_info = getTitleInfo()
     data = Data(file_path)
-    parser = DataParser(data)
+    parser = DataParser(data, title_info)
     parser.parse_for_data()
     output = DataOutput(parser.get_data())
     output.create_file()
+    output.create_redirects()
