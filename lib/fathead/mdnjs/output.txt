@@ -190,9 +190,10 @@ manufacturerData	A										<pre><code>varmanufacturerData = BluetoothAdvertisin
 rssi	A										<pre><code>var rssi = BluetoothAdvertisingData.rssi;</code></pre>The rssi read-only property of the BluetoothAdvertisingData interface returns the power at which the device’s packets are being received, measured in dBm. This is used to compute the path loss as this.txPower - this.rssi.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothAdvertisingData/rssi
 serviceData	A										<pre><code>var serviceData = BluetoothAdvertisingData.serviceData;</code></pre>The serviceData read-only property of the BluetoothAdvertisingData interface returns a map that relates UUIDs to ArrayBuffers.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothAdvertisingData/serviceData
 txPower	A										<pre><code>var power = BluetoothAdvertisingData.txPower;</code></pre>The txPower read-only property of the BluetoothAdvertisingData interface returns the transmission power at which the device is broadcasting, measured in dBm. This is used to compute the path loss as this.txPower - this.rssi.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothAdvertisingData/txPower
+BluetoothCharacteristicProperties	A										The BluetoothCharacteristicProperties interface of the the Web Bluetooth API provides an object provides propertieds of a particular BluetoothRemoteGATTCharacteristic. This interface is returned by calling BluetoothRemoteGATTCharacteristic.properties.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothCharacteristicProperties
 BluetoothDevice	A										The BluetoothDevice interface of the Web Bluetooth API represents a Bluetooth device inside a particular script execution environment.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice
 connectGATT()	A										<pre><code>instanceOfBluetoothDevice.connectGATT().then(function(BluetoothGATTRemoteServer) { ... })</code></pre>The BluetoothDevice.connectGATT() method returns a Promise that resolves to an instance of BluetoothGATTRemoteServer.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice/connectGATT
-BluetoothDevice.gatt	A										<pre><code>var gattServer = instanceOfBluetoothDevice.gatt</code></pre>The BluetoothDevice.gatt read-only property returns a reference to the device's BluetoothRemoteGATTServer or null if the device is disconnected.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice/gatt
+BluetoothDevice.gatt	A										<pre><code>var gattServer = instanceOfBluetoothDevice.gatt</code></pre>The BluetoothDevice.gatt read-only property returns a reference to the device's BluetoothRemoteGATTServer.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice/gatt
 id	A										<pre><code>var id = instanceOfBluetoothDevice.id</code></pre>The BluetoothDevice.id read-only property returns a DOMString that uniquely identifies a device.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice/id
 BluetoothDevice.name	A										<pre><code>var name = instanceOfBluetoothDevice.name</code></pre>The BluetoothDevice.name read-only property returns a DOMString that provides a human-readable name for the device.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice/name
 BluetoothDevice.uuids	A										<pre><code>var uuids[] =&#8203; instanceOfBluetoothDevice.uuids</code></pre>The BluetoothDevice.uuids read-only property lists the UUIDs of GATT services provided by the device, that the current origin is allowed to access.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothDevice/uuids
@@ -213,11 +214,11 @@ uuid	A										<pre><code>var uuid = BluetoothGATTService.uuid</code></pre>The 
 BluetoothRemoteGATTCharacteristic	A										The BluetoothRemoteGattCharacteristic interface of the Web Bluetooth API represents a GATT Characteristic, which is a basic data element that provides further information about a peripheral’s service.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic
 BluetoothRemoteGATTCharacteristic.getDescriptor()	A										<pre><code>BluetoothRemoteGATTCharacteristic.getDescriptor(bluetoothDescriptorUUID).then(function(bluetoothGATTDescriptor) { ... })</code></pre>The BluetoothRemoteGATTCharacteristic.getDescriptor() method returns a Promise that resolves to the first BluetoothGATTDescriptor for a given descriptor UUID.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/getDescriptor
 BluetoothRemoteGATTCharacteristic.getDescriptors()	A										<pre><code>BluetoothRemoteGATTCharacteristic.getDescriptors(bluetoothDescriptorUUID).then(function(bluetoothGATTDescriptors[]) { ... })</code></pre>The BluetoothRemoteGATTCharacteristic.getDescriptors() method returns a Promise that resolves to an Array of all BluetoothGATTDescriptor objects for a given descriptor UUID.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/getDescriptors
-BluetoothRemoteGATTCharacteristic.properties	A										<pre><code>var properties = BluetoothRemoteGATTCharacteristic.properties</code></pre>The BluetoothRemoteGATTCharacteristic.properties read-only property returns the properties of this characteristic.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/properties
-BluetoothRemoteGATTCharacteristic.readValue()	A										<pre><code>BluetoothRemoteGATTCharacteristic.readValue().then(function(arrayBuffer[]) { ... })</code></pre>The BluetoothRemoteGATTCharacteristic.readValue() method returns a Promise that resolves to an ArrayBuffer holding a duplicate of the value property if it is available and supported. Otherwise it throws an error.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/readValue
+BluetoothRemoteGATTCharacteristic.properties	A										<pre><code>var properties = BluetoothRemoteGATTCharacteristic.properties</code></pre>The BluetoothRemoteGATTCharacteristic.properties read-only property returns a BluetoothCharacteristicProperties instance containing the properties of this characteristic.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/properties
+BluetoothRemoteGATTCharacteristic.readValue()	A										<pre><code>BluetoothRemoteGATTCharacteristic.readValue().then(function(dataView) { ... })</code></pre>The BluetoothRemoteGATTCharacteristic.readValue() method returns a Promise that resolves to an DataView holding a duplicate of the value property if it is available and supported. Otherwise it throws an error.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/readValue
 BluetoothRemoteGATTCharacteristic.service	A										<pre><code>var bluetoothRemoteGATTServiceInstance = BluetoothRemoteGATTCharacteristic.service</code></pre>The BluetoothRemoteGATTCharacteristic.service read-only property returns the BluetoothGATTService this characteristic belongs to.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/service
-BluetoothRemoteGATTCharacteristic.startNotifications()	A										<pre><code>BluetoothRemoteGATTCharacteristic.startNotifications().then(function() { ... })</code></pre>The BluetoothRemoteGATTCharacteristic.startNotifications() method returns a Promise when navigator.bluetooth is added to the active notification context.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/startNotifications
-BluetoothRemoteGATTCharacteristic.stopNotifications()	A										<pre><code>BluetoothRemoteGATTCharacteristic.stopNotifications().then(function() { ... })</code></pre>The BluetoothRemoteGATTCharacteristic.startNotifications() method returns a Promise when navigator.bluetooth is removed from the active notification context.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/stopNotifications
+BluetoothRemoteGATTCharacteristic.startNotifications()	A										<pre><code>BluetoothRemoteGATTCharacteristic.startNotifications().then(function(BluetoothRemoteGATTCharacteristic) { ... })</code></pre>The BluetoothRemoteGATTCharacteristic.startNotifications() method returns a Promise to the BluetoothRemoteGATTCharacteristic instance when there is an active notification on it.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/startNotifications
+BluetoothRemoteGATTCharacteristic.stopNotifications()	A										<pre><code>BluetoothRemoteGATTCharacteristic.stopNotifications().then(function(BluetoothRemoteGATTCharacteristic) { ... })</code></pre>The BluetoothRemoteGATTCharacteristic.stopNotifications() method returns a Promise to the BluetoothRemoteGATTCharacteristic instance when there is no longer an active notification on it.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/stopNotifications
 BluetoothRemoteGATTCharacteristic.uuid	A										<pre><code>var uuid = BluetoothRemoteGATTCharacteristic.uuid</code></pre>The BluetoothRemoteGATTCharacteristic.uuid read-only property returns DOMString containing the UUID of the characteristic, for example '00002a37-0000-1000-8000-00805f9b34fb' for the Heart Rate Measurement characteristic.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/uuid
 BluetoothRemoteGATTCharacteristic.value	A										<pre><code>var value = BluetoothRemoteGATTCharacteristic.value</code></pre>The BluetoothRemoteGATTCharacteristic.value read-only property returns currently cached characteristic value. This value gets updated when the value of the characteristic is read or updated via a notification or indication.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/value
 BluetoothRemoteGATTCharacteristic.writeValue()	A										<pre><code>BluetoothRemoteGATTCharacteristic.writeValue(value).then(function() { ... })</code></pre>The BluetoothRemoteGATTCharacteristic.writeValue() method sets the value property to the bytes contained in an ArrayBuffer and returns a Promise.	https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic/writeValue
@@ -418,7 +419,7 @@ Coordinates	A										The Coordinates interface represents the position and alt
 Coordinates.accuracy	A										<pre><code>acc = coordinates.accuracy\n</code></pre>The Coordinates.accuracy read-only property is a strictly positive double representing the accuracy, with a 95% confidence level, of the Coordinates.latitude and Coordinates.longitude properties expressed in meters.	https://developer.mozilla.org/en-US/docs/Web/API/Coordinates/accuracy
 Coordinates.altitude	A										<pre><code>alt = coordinates.altitude\n</code></pre>The Coordinates.altitude read-only property is a double representing the altitude of the position in meters, relative to sea level. This value is null if the implementation cannot provide this data.	https://developer.mozilla.org/en-US/docs/Web/API/Coordinates/altitude
 Coordinates.altitudeAccuracy	A										<pre><code>altAcc = coordinates.altitudeAccuracy\n</code></pre>The Coordinates.altitudeAccuracy read-only property is a strictly positive double representing the accuracy, with a 95% confidence level, of the altitude expressed in meters. This value is null if the implementation doesn't support measuring altitude.	https://developer.mozilla.org/en-US/docs/Web/API/Coordinates/altitudeAccuracy
-Coordinates.heading	A										<pre><code>heading = coordinates.heading\n</code></pre>The Coordinates.heading read-only property is a double representing the direction in which the device is traveling. This value, specified in degrees, indicates how far off from heading due north the device is. 0 degrees represents true true north, and the direction is determined clockwise (which means that east is 90 degrees and west is 270 degrees). If Coordinates.speed is 0, heading is NaN. If the device is not able to provide heading information, this value is null.	https://developer.mozilla.org/en-US/docs/Web/API/Coordinates/heading
+Coordinates.heading	A										<pre><code>heading = coordinates.heading\n</code></pre>The Coordinates.heading read-only property is a double representing the direction in which the device is traveling. This value, specified in degrees, indicates how far off from heading due north the device is. Zero degrees represents true true north, and the direction is determined clockwise (which means that east is 90 degrees and west is 270 degrees). If Coordinates.speed is 0, heading is NaN. If the device is not able to provide heading information, this value is null.	https://developer.mozilla.org/en-US/docs/Web/API/Coordinates/heading
 Coordinates.latitude	A										<pre><code>lat = coordinates.latitude\n</code></pre>The Coordinates.latitude read-only property is a double representing the latitude of the position in decimal degrees.	https://developer.mozilla.org/en-US/docs/Web/API/Coordinates/latitude
 Coordinates.longitude	A										<pre><code>lon = coordinates.longitude\n</code></pre>The Coordinates.longitude read-only property is a double representing the longitude of the position in decimal degrees.	https://developer.mozilla.org/en-US/docs/Web/API/Coordinates/longitude
 Coordinates.speed	A										<pre><code>speed = coordinates.speed\n</code></pre>The Coordinates.speed read-only property is a double representing the velocity of the device in meters per second. This value is null if the implementation is not able to measure it.	https://developer.mozilla.org/en-US/docs/Web/API/Coordinates/speed
@@ -1188,7 +1189,7 @@ HTMLMediaElement.canPlayType()	A										<pre><code>str = audioOrVideo.canPlayT
 HTMLMediaElement.controller	A										<pre><code>...</code></pre>The HTMLMediaElement.controller property represents the media controller assigned to the element.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/controller
 HTMLMediaElement.controls	A										<pre><code>var ctrls = video.controls;\naudio.controls = true;</code></pre>The HTMLMediaElement.controls property reflects the controls HTML attribute, which controls whether user interface controls for playing the media item will be displayed.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/controls
 HTMLMediaElement.crossOrigin	A										The HTMLMediaElement.crossOrigin property is the CORS setting for this image element. See CORS settings attributes for details.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/crossOrigin
-HTMLMediaElement.currentSrc	A										<pre><code>var mediaUrl = audioObject.currentSrc</code></pre>The HTMLMediaElement.currentSrc property contains the absolute URL of the chosen media resource. This could happen, for example, if the web server selects a media file based on the resolution of the user's display. The value is an empty string if the networkState property is EMPTY.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentSrc
+HTMLMediaElement.currentSrc	A										<pre><code>var mediaUrl = audioObject.currentSrc;</code></pre>The HTMLMediaElement.currentSrc property contains the absolute URL of the chosen media resource. This could happen, for example, if the web server selects a media file based on the resolution of the user's display. The value is an empty string if the networkState property is EMPTY.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentSrc
 HTMLMediaElement.currentTime	A										<pre><code>var cTime = video.currentTime;\naudio.currentTime = 35;\n</code></pre>The HTMLMediaElement.currentTime property gives the current playback time in seconds. Setting this value seeks the media to the new time.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime
 HTMLMediaElement.defaultMuted	A										<pre><code>var dMuted = video.defaultMuted;\naudio.defaultMuted = true;\n</code></pre>The HTMLMediaElement.defaultMuted property reflects the muted HTML attribute, which indicates whether the media element's audio output should be muted by default. This property has no dynamic effect. To mute and unmute the audio output, use the muted property.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/defaultMuted
 HTMLMediaElement.defaultPlaybackRate	A										<pre><code>var dSpeed = video.defaultPlaybackRate;\naudio.defaultPlaybackRate = 1.0;\n</code></pre>The HTMLMediaElement.defaultPlaybackRate property indicates the default playback rate for the media.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/defaultPlaybackRate
@@ -1210,6 +1211,7 @@ HTMLMediaElement.seekable	A										<pre><code>var seekable = audioOrVideo.seek
 HTMLMediaElement.seekToNextFrame()	A										<pre><code>var seekCompletePromise = HTMLMediaElement.seekToNextFrame();\n\nHTMLMediaElement.seekToNextFrame();\n</code></pre>The HTMLMediaElement.seekToNextFrame() method asynchronously advances the the current play position to the next frame in the media.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seekToNextFrame
 HTMLMediaElement.setSinkId()	A										<pre><code>HTMLMediaElement.setSinkId(sinkId).then(function() { ... })</code></pre>The HTMLMediaElement.setSinkId() method sets the ID of the audio device to use for output and returns a Promise. This only works when the application is authorized to use the specified device.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/setSinkId
 HTMLMediaElement.sinkId	A										<pre><code>var sinkId&#160;= HTMLMediaElement.sinkId</code></pre>The HTMLMediaElement.sinkId read-only property returns a DOMString that is the unique ID of the audio device delivering output. If it is using the user agent default, it returns an empty string. This ID should be one of the MediaDeviceInfo.deviceid values returned from MediaDevices.enumeratedDevices(), id-multimedia, or id-communications.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/sinkId
+HTMLMediaElement.src	A										<pre><code>var mediaUrl = HTMLMediaElement.src;</code></pre>The HTMLMediaElement.src property reflects the value of the HTML media element's src attribute, which indicates the URL of a media resource to use in the element.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/src
 srcObject	A										<pre><code>var mediaStream = HTMLMediaElement.srcObject\nHTMLMediaElement.srcObject = mediaStream\n</code></pre>The srcObject property of the HTMLMediaElement interface sets or returns the MediaStream to play or that has played in the current HTMLMediaElement.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
 volume	A										<pre><code>var volume &#8203;= video.volume; //1</code></pre>The HTMLMediaElement.volume property sets the volume at which the media will be played.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume
 HTMLMetaElement	A										The HTMLMetaElement interface contains descriptive metadata about a document. It inherits all of the properties and methods described in the HTMLElement interface.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMetaElement
@@ -1289,6 +1291,7 @@ HTMLTimeElement	A										The HTMLTimeElement interface provides special proper
 HTMLTimeElement.dateTime	A										<pre><code>dateTimeString = timeElt.dateTime;\ntimeElt.dateTime = dateTimeString\n</code></pre>The HTMLTimeElement.dateTime property is a DOMString that reflects the datetime HTML attribute, containing a machine-readable form of the element's date and time value.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLTimeElement/dateTime
 HTMLTitleElement	A										The HTMLTitleElement interface contains the title for a document. This element inherits all of the properties and methods of the HTMLElement interface.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLTitleElement
 HTMLTrackElement	A										The HTMLTrackElement interface provides access to the properties of track elements, as well as methods to manipulate them.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLTrackElement
+HTMLTrackElement.src	A										<pre><code>var textTrackURL = HTMLTrackElement.src;</code></pre>The HTMLTrackElement.src property reflects the value of the track element's src attribute, which indicates the URL of the text track's data.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLTrackElement/src
 HTMLUListElement	A										The HTMLUListElement interface provides special properties (beyond those defined on the regular HTMLElement interface it also has available to it by inheritance) for manipulating unordered list elements.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLUListElement
 HTMLUnknownElement	A										The HTMLUnknownElement interface represents an invalid HTML element and derives from the HTMLElement interface, but without implementing any additional properties or methods.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLUnknownElement
 HTMLVideoElement	A										The HTMLVideoElement interface provides special properties and methods for manipulating video objects. It also inherits properties and methods of HTMLMediaElement and HTMLElement.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement
@@ -1587,12 +1590,13 @@ MediaSource.MediaSource()	A										<pre><code>var mediaSource = new MediaSourc
 MediaSource.readyState	A										<pre><code>var myReadyState = mediaSource.readyState;</code></pre>The readyState read-only property of the MediaSource interface returns an enum representing the state of the current MediaSource. The three possible values are:	https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/readyState
 MediaSource.removeSourceBuffer()	A										<pre><code>mediaSource.removeSourceBuffer(sourceBuffer);</code></pre>The removeSourceBuffer() method of the MediaSource interface removes the given SourceBuffer from the SourceBuffers list associated with this MediaSource object.	https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/removeSourceBuffer
 MediaSource.sourceBuffers	A										<pre><code>var mySourceBuffers = mediaSource.sourceBuffers;</code></pre>The sourceBuffers read-only property of the MediaSource interface returns a SourceBufferList object containing the list of SourceBuffer objects associated with this MediaSource.	https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/sourceBuffers
-MediaStream	A										The MediaStream interface represents a stream of media content. A stream consists of several tracks such as video or audio tracks.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStream
-MediaStream.addTrack()	A										<pre><code>stream.addTrack(track);\n</code></pre>The MediaStream.addTrack() method adds a new track to the stream. The track is specified as a parameter of type MediaStreamTrack.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStream.addTrack
+MediaStream	A										The MediaStream interface represents a stream of media content. A stream consists of several tracks such as video or audio tracks. Each track is specified as an instance of MediaTrack.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStream
 active	A										<pre><code>var isActive = MediaStream.active;</code></pre>The active read-only property of the MediaStream interface returns a Boolean value that will return to be true if the MediaStream is active, else false.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/active
+MediaStream.addTrack()	A										<pre><code>stream.addTrack(track);\n</code></pre>The MediaStream.addTrack() method adds a new track to the stream. The track is specified as a parameter of type MediaStreamTrack.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/addTrack
 MediaStream.getTrackById()	A										<pre><code>var track = MediaStream.getTrackById(id);\n</code></pre>The MediaStream.getTrackById() method returns a MediaStreamTrack object representing the track with the specified ID string. If there is no track with the specified ID, this method returns null.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/getTrackById
 MediaStream.id	A										<pre><code>var id = mediaStream.id;\n</code></pre>The MediaStream.id() read-only property is a DOMString containing 36 characters denoting a unique identifier (GUID) for the object.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/id
 MediaStream.onaddtrack	A										<pre><code>MediaStream.onaddtrack = eventHandler;\n</code></pre>The MediaStream.onaddtrack property is an EventHandler which specifies a function to be called when the addtrack event occurs on a MediaStream instance. This happens when a new track of any kind is added to the media stream.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/onaddtrack
+MediaStream.onremovetrack	A										<pre><code>MediaStream.onremovetrack = eventHandler;\n</code></pre>The MediaStream.onremovetrack property is an EventHandler which specifies a function to be called when the removetrack event occurs on a MediaStream instance. This happens when a track of any kind is removed from the media stream.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/onremovetrack
 MediaStreamAudioDestinationNode	A										Inherits properties from its parent, AudioNode.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioDestinationNode
 MediaStreamAudioDestinationNode.stream	A										<pre><code>var audioCtx = new AudioContext();\nvar destination = audioCtx.createMediaStreamDestination();\nvar myStream = destination.stream;\n</code></pre>A MediaStream.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioDestinationNode/stream
 MediaStreamAudioSourceNode	A										A MediaElementSourceNode has no inputs and exactly one output, and is created using the AudioContext.createMediaStreamSource method. The amount of channels in the output equals the number of channels in AudioMediaStreamTrack. If there is no valid media stream, then the number of output channels will be one silent channel.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioSourceNode
@@ -1600,7 +1604,7 @@ MediaStreamEvent	A										The MediaStreamEvent interface represents events tha
 MediaStreamEvent()	A										<pre><code> var event = new MediaStreamEvent(type, mediaStreamEventInit);</code></pre>The MediaStreamEvent() constructor creates a new MediaStreamEvent.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamEvent/MediaStreamEvent
 MediaStreamEvent.stream	A										<pre><code> var stream = event.stream;</code></pre>The read-only property MediaStreamEvent.stream returns the MediaStream associated with the event.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamEvent/stream
 MediaStreamTrack	A										The MediaStreamTrack interface represents&#160;a media source in the User Agent, like video or audio tracks.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack
-MediaStreamTrack.clone()	A										<pre><code>var track&#160;= mediaStreamTrack.clone();</code></pre>The clone method of the MediaStreamTrack interface returns a duplicate of the MediaStreamTrack.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/clone
+MediaStreamTrack.clone()	A										<pre><code>var track&#160;= MediaStreamTrack.clone();</code></pre>The clone() method of the MediaStreamTrack interface creates a duplicate of the MediaStreamTrack. This new MediaStreamTrack object is identical except for its unique id.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/clone
 MediaStreamTrack.enabled	A										<pre><code>var bool = track.enabled;\ntrack.enabled = [true | false];</code></pre>The MediaStreamTrack.enabled property returns a Boolean with a value of true if the track is enabled, that is allowed to render the media source stream; or false if it is disabled, that is not rendering the media source stream but silence and blackness. If the track has been disconnected, this value can be changed but has no effect.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/enabled
 MediaStreamTrack.getConstraints()	A										<pre><code>var constraints&#160;= mediaStreamTrack.getConstraints();</code></pre>The getConstraints() method of the MediaStreamTrack interface returns a MediaTrackConstraints object containing the full set of constraints for the properties of the current MediaStreamTrack.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/getConstraints
 MediaStreamTrack.getSettings()	A										<pre><code>var settings&#160;=mediaStreamTrack.getSettings();</code></pre>The getSettings() method of the MediaStreamTrack interface returns a MediaTrackSettings object containing the state of the constrainable properties for the current MediaStreamTrack.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/getSettings
@@ -1608,6 +1612,7 @@ MediaStreamTrack.id	A										<pre><code> var id = track.id;</code></pre>The re
 MediaStreamTrack.kind	A										<pre><code> var type = track.kind;</code></pre>The read-only property MediaStreamTrack.kind returns a DOMString set to "audio" if the track is an audio track and to "video", if it is a video track. It doesn't change if the track is deassociated from its source.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/kind
 MediaStreamTrack.label	A										<pre><code> var name = track.label;</code></pre>The read-only property MediaStreamTrack.label returns a DOMString containing a user agent-assigned label that identifies the track source, as in "internal microphone". The string may be left empty and is empty as long as no source has been connected. When the track is deassociated from its source, the label is not changed.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/label
 muted	A										<pre><code>var bool&#160;= track.muted;</code></pre>The muted read-only property of the MediaStreamTrack interface returns a Boolean value indicating whether the track is muted.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/muted
+MediaStreamTrack.onended	A										<pre><code>MediaStreamTrack.onended = function;\n</code></pre>The MediaStreamTrack.onended event handler is used to specify a function which serves as an EventHandler to be called when the ended event occurs on the track. This event occurs when the track will no longer provide data to the stream for any reason, including the end of the media input being reached, the user revoking needed permissions, the source device being removed, or the remote peer ending a connection.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/onended
 MediaStreamTrack.onmute	A										<pre><code>track.onmute = function;\n</code></pre>The MediaStreamTrack.onmute event handler is a property called when the mute event is received. Such an event is sent when the track is temporarily not able to send data.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/onmute
 MediaStreamTrack.onoverconstrained	A										<pre><code>track.onoverconstrained = function;\n</code></pre>The MediaStreamTrack.onoverconstrained event handler is a property called when the overconstrained event is received. Such an event is sent when the track is again able to send data.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/onoverconstrained
 MediaStreamTrack.onunmute	A										<pre><code>track.onunmute = function;\n</code></pre>The MediaStreamTrack.onunmute event handler is a property called when the unmute event is received. Such an event is sent when the track is again able to send data.	https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/onunmute
@@ -1862,12 +1867,16 @@ PannerNode.coneOuterGain	A										<pre><code>var audioCtx = new AudioContext()
 PannerNode.distanceModel	A										<pre><code>var audioCtx = new AudioContext();\nvar panner = audioCtx.createPanner();\npanner.distanceModel = 'inverse';</code></pre>A enum — see DistanceModelType.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/distanceModel
 PannerNode.maxDistance	A										<pre><code>var audioCtx = new AudioContext();\nvar panner = audioCtx.createPanner();\npanner.maxDistance = 10000;</code></pre>A double.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/maxDistance
 PannerNode.orientationX	A										<pre><code>var orientationX = PannerNode.orientationX;\n\nPannerNode.orientationX.value = newOrientationX;\n</code></pre>An AudioParam whose value is the X component of the direction in which the audio source is facing, in 3D Cartesian coordinate space.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/orientationX
+PannerNode.orientationY	A										<pre><code>var orientationY = PannerNode.orientationY;\n\nPannerNode.orientationY.value = newOrientationY;\n</code></pre>An AudioParam whose value is the Y component of the direction the audio source is facing, in 3D Cartesian coordinate space.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/orientationY
+PannerNode.orientationZ	A										<pre><code>var orientationZ = PannerNode.orientationZ;\n\nPannerNode.orientationZ.value = newOrientationZ;\n</code></pre>An AudioParam whose value is the Z component of the direction the audio source is facing, in 3D Cartesian coordinate space.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/orientationZ
 PannerNode.panningModel	A										<pre><code>var audioCtx = new AudioContext();\nvar panner = audioCtx.createPanner();\npanner.panningModel = 'HRTF';</code></pre>A enum — see PanningModelType.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/panningModel
+PannerNode.positionX	A										<pre><code>var positionX = PannerNode.positionX;\n\nPannerNode.positionX.value = newPositionX;\n</code></pre>An AudioParam whose value is the X coordinate of the audio source's position, in 3D Cartesian coordinates.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/positionX
+PannerNode.positionY	A										<pre><code>var positionY = PannerNode.positionY;\n\nPannerNode.positionY.value = newPositionY;\n</code></pre>An AudioParam whose value is the Y coordinate of the audio source's position, in 3D Cartesian coordinates.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/positionY
+PannerNode.positionZ	A										<pre><code>var positionZ = PannerNode.positionZ;\n\nPannerNode.positionZ.value = newPositionZ;\n</code></pre>An AudioParam whose value is the Z coordinate of the audio source's position, in 3D Cartesian coordinates.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/positionZ
 PannerNode.refDistance	A										<pre><code>var audioCtx = new AudioContext();\nvar panner = audioCtx.createPanner();\npanner.refDistance = 1;</code></pre>A double.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/refDistance
 PannerNode.rolloffFactor	A										<pre><code>var audioCtx = new AudioContext();\nvar panner = audioCtx.createPanner();\npanner.rolloffFactor = 1;</code></pre>A double.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/rolloffFactor
 PannerNode.setOrientation()	A										<pre><code>var audioCtx = new AudioContext();\nvar panner = audioCtx.createPanner();\npanner.setOrientation(1,0,0);</code></pre>Void.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/setOrientation
 PannerNode.setPosition()	A										<pre><code>var audioCtx = new AudioContext();\nvar panner = audioCtx.createPanner();\npanner.setPosition(0,0,0);</code></pre>Void.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/setPosition
-PannerNode.setVelocity()	A										<pre><code>var audioCtx = new AudioContext();\nvar panner = audioCtx.createPanner();\npanner.setVelocity(0,0,17);</code></pre>Void.	https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/setVelocity
 ParentNode	A										The ParentNode interface contains methods that are particular to Node objects that can have children.	https://developer.mozilla.org/en-US/docs/Web/API/ParentNode
 ParentNode.append()	A										<pre><code>[Throws, Unscopable] \nvoid ParentNode.append((Node or DOMString)... nodes);\n</code></pre>The ParentNode.append method inserts a set of Node objects or DOMString objects after the last child of the ParentNode. DOMString objects are inserted as equivalent Text nodes.	https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append
 ParentNode.childElementCount	A										<pre><code>var elCount = elementNodeReference.childElementCount; \n</code></pre>The ParentNode.childElementCount read-only property returns an unsigned long representing the number of child elements of the given element.	https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/childElementCount
@@ -1900,7 +1909,7 @@ PaymentResponse.payerEmail	A										<pre><code>var payerEmail = PaymentRespons
 PayerResponse.payerPhone	A										<pre><code>var payerPhone = PaymentResponse.payerPhone;</code></pre>The payerPhone read-only property of the PaymentResponse interface returns the phone number supplied by the user. This option is only present when the requestPayerPhone option is set to true in the PaymentOptions object passed to the PaymentRequest constructor.	https://developer.mozilla.org/en-US/docs/Web/API/PaymentResponse/payerPhone
 PaymentRespoonse.shippingAddress	A										<pre><code>var paymentAddress = PaymentRequest.shippingAddress;</code></pre>The shippingAddress read-only property of the PaymentRequest interface returns a PaymentAddress object containing the shipping address provided by the user.	https://developer.mozilla.org/en-US/docs/Web/API/PaymentResponse/shippingAddress
 PaymentResponse.shippingOption	A										<pre><code>var shippingOption = PaymentRequest.shippingOption</code></pre>The shippingOption read-only property of the PaymentRequest interface returns the ID attribute of the shipping option selected by the user. This option is only present when the requestShipping option is set to true in the PaymentOptions object passed to the PaymentRequest constructor.	https://developer.mozilla.org/en-US/docs/Web/API/PaymentResponse/shippingOption
-Payment Request API	A										[TBD]	https://developer.mozilla.org/en-US/docs/Web/API/Payment_Request_API
+Payment Request API	A										Most problems related to online purchase abandonment can be traced to checkout forms, which are user-intensive, difficult to use, slow to load and refresh, and require multiple steps to complete. The Payment Request API is a system that is meant to eliminate checkout forms. It vastly improves user workflow during the purchase process, providing a more consistent user experience and enabling web merchants to easily leverage disparate payment methods.	https://developer.mozilla.org/en-US/docs/Web/API/Payment_Request_API
 Performance	A										The Performance interface represents timing-related performance information for the given page.	https://developer.mozilla.org/en-US/docs/Web/API/Performance
 Performance.clearMarks()	A										<pre><code>performance.clearMarks();\nperformance.clearMarks(name);\n</code></pre>The clearMarks() method removes the named mark from the browser's performance entry buffer. If the method is called with no arguments, all performance entries with an entry type of " mark " will be removed from the performance entry buffer.	https://developer.mozilla.org/en-US/docs/Web/API/Performance/clearMarks
 Performance.clearMeasures()	A										<pre><code>performance.clearMeasures();\nperformance.clearMeasures(name);\n</code></pre>The clearMeasures() method removes the named measure from the browser's performance entry buffer. If the method is called with no arguments, all performance entries with an entry type of " measure " will be removed from the performance entry buffer.	https://developer.mozilla.org/en-US/docs/Web/API/Performance/clearMeasures
@@ -3104,7 +3113,7 @@ Window.close()	A										<pre><code>window.close();</code></pre>The Window.clos
 Window.closed	A										<pre><code>isClosed = windowRef.closed;\n</code></pre>This read-only property indicates whether the referenced window is closed or not.	https://developer.mozilla.org/en-US/docs/Web/API/Window/closed
 Window.confirm()	A										<pre><code>result = window.confirm(message);\n</code></pre>The Window.confirm() method displays a modal dialog with an optional message and two buttons, OK and Cancel.	https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm
 Window.console	A										<pre><code>var consoleObj = window.console;\n</code></pre>The Window.console read-only property returns a reference to the Console object, which provides methods for logging information to the browser's console. These methods are intended for debugging purposes only and should not be relied on for presenting information to end users.	https://developer.mozilla.org/en-US/docs/Web/API/Window/console
-Window.content	A										<pre><code>\n Working with windows in chrome code\n When accessing content documents from privileged code, be aware of XPCNativeWrappers.\n</code></pre>Returns a Window object for the primary content window. This is useful in XUL windows that have a browser (or tabbrowser or iframe) with type="content-primary" attribute on it - the most famous example is Firefox main window, browser.xul. In such cases, content returns a reference to the Window object for the document currently displayed in the browser. It is a shortcut for browserRef.contentWindow.	https://developer.mozilla.org/en-US/docs/Web/API/Window/content
+Window.content	A										<pre><code>Working with windows in chrome code\n When accessing content documents from privileged code, be aware of XPCNativeWrappers.\n</code></pre>Returns a Window object for the primary content window. This is useful in XUL windows that have a browser (or tabbrowser or iframe) with type="content-primary" attribute on it - the most famous example is Firefox main window, browser.xul. In such cases, content returns a reference to the Window object for the document currently displayed in the browser. It is a shortcut for browserRef.contentWindow.	https://developer.mozilla.org/en-US/docs/Web/API/Window/content
 Window.controllers	A										<pre><code>controllers = window.controllers\n</code></pre>Returns the XUL controllers of the chrome window.	https://developer.mozilla.org/en-US/docs/Web/API/Window/controllers
 Window.convertPointFromNodeToPage()	A										The Window.convertPointFromNodeToPage() method converts a Point object from coordinates based on the given CSS node to coordinates based on the page.	https://developer.mozilla.org/en-US/docs/Web/API/Window/convertPointFromNodeToPage
 Window.convertPointFromPageToNode	A										Converts a Point object from coordinates based on the page to coordinates based on the given CSS node.	https://developer.mozilla.org/en-US/docs/Web/API/Window/convertPointFromPageToNode
@@ -3143,7 +3152,6 @@ Window.mozInnerScreenY	A										<pre><code>screenY = window.mozInnerScreenY;</
 Window.mozPaintCount	A										<pre><code>var paintCount = window.mozPaintCount;</code></pre>Returns the number of times the current document has been painted to the screen in this window.	https://developer.mozilla.org/en-US/docs/Web/API/Window/mozPaintCount
 Window.name	A										<pre><code>string = window.name;\nwindow.name = string;\n</code></pre>Gets/sets the name of the window.	https://developer.mozilla.org/en-US/docs/Web/API/Window/name
 Window.navigator	A										The Window.navigator read-only property returns a reference to the Navigator object, which can be queried for information about the application running the script.	https://developer.mozilla.org/en-US/docs/Web/API/Window/navigator
-Navigator.connection	A										<pre><code>connectionInfo = navigator.connection</code></pre>The Navigator.connection read-only property represents a NetworkInformation containing information about the system's connection, such as the current bandwidth of the user's device or whether the connection is metered. This could be used to select high definition content or low definition content based on the user's connection.	https://developer.mozilla.org/en-US/docs/Web/API/Window/navigator/connection
 mozNetworkStats	A										The MozNetworkStatsManager interface provides methods and properties to monitor data usage.	https://developer.mozilla.org/en-US/docs/Web/API/Window/navigator/mozNetworkStats
 Window.onbeforeinstallprompt	A										<pre><code>window.addEventListener("beforeinstallprompt", function(event) { ... });\nwindow.onbeforeinstallprompt = function(event) { ...};</code></pre>The Window.onbeforeinstallprompt property is an event handler for processing a beforeinstallprompt, which is dispatched on mobile when a web manifest exists, but before a user is prompted to save a web site to a home screen.	https://developer.mozilla.org/en-US/docs/Web/API/Window/onbeforeinstallprompt
 Window.ondevicelight	A										<pre><code>window.ondevicelight = funcRef</code></pre>Specifies an event listener to receive devicelight events. These events occur when the device's light level sensor detects a change in the intensity of the ambient light level.	https://developer.mozilla.org/en-US/docs/Web/API/Window/ondevicelight
@@ -3319,6 +3327,7 @@ TypeError: property "x" is non-configurable and can't be deleted	A										It w
 ReferenceError: deprecated caller or arguments usage	A										In strict mode, the Function.caller or Function.arguments properties are used and shouldn't be. They are deprecated, because they leak the function caller, are non-standard, hard to optimize and potentially a performance-harmful feature.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Deprecated_caller_or_arguments_usage
 SyntaxError: Using //@ to indicate sourceURL pragmas is deprecated. Use //# instead	A										There is a deprecated source map syntax in a JavaScript source.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Deprecated_source_map_pragma
 SyntaxError: test for equality (==) mistyped as assignment (=)?	A										There was an assignment (=) when you would normally expect a test for equality (==). To help debugging, JavaScript (with strict warnings enabled) warns about this pattern.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Equal_as_assign
+Warning: JavaScript 1.6's for-each-in loops are deprecated	A										JavaScript 1.6's for each (variable in obj) statement is deprecated, and will be removed in the near future.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/For-each-in_loops_are_deprecated
 RangeError: invalid array length	A										<pre><code>Invalid Cases:\nValid Cases:\n[ Math.pow(2, 40) ]                     // [ 1099511627776 ]\n[ -1 ]                                  // [ -1 ]\nnew ArrayBuffer(Math.pow(2, 32) - 1)\nnew ArrayBuffer(0)\n\nlet a = [];\na.length = Math.max(0, a.length - 1);\n\nlet b = new Array(Math.pow(2, 32) - 1);\nb.length = Math.min(0xffffffff, b.length + 1);   \n\n// 0xffffffff is the hexadecimal notation for 2^32 - 1\n// which can also be written as (-1 >>> 0)\n\nValid Cases:\n[ Math.pow(2, 40) ]                     // [ 1099511627776 ]\n[ -1 ]                                  // [ -1 ]\nnew ArrayBuffer(Math.pow(2, 32) - 1)\nnew ArrayBuffer(0)\n\nlet a = [];\na.length = Math.max(0, a.length - 1);\n\nlet b = new Array(Math.pow(2, 32) - 1);\nb.length = Math.min(0xffffffff, b.length + 1);   \n\n// 0xffffffff is the hexadecimal notation for 2^32 - 1\n// which can also be written as (-1 >>> 0)\n</code></pre>An invalid array length might appear in these situations:	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_array_length
 ReferenceError: invalid assignment left-hand side	A										There was an unexpected assignment somewhere. This might be due to a mismatch of a assignment operator and a comparison operator, for example. While a single "=" sign assigns a value to a variable, the "==" or "===" operators compare a value.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Invalid_assignment_left-hand_side
 SyntaxError: JSON.parse: bad parsing	A										JSON.parse() parses a string as JSON. This string has to be valid JSON and will throw this error if incorrect syntax was encountered.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/JSON_bad_parse
@@ -3347,6 +3356,18 @@ SyntaxError: Unexpected token	A										A specific language construct was expec
 TypeError: "x" is (not) "y"	A										<pre><code>Invalid Cases:\n\n</code></pre>There was an unexpected type. This occurs oftentimes with undefined or null values.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Unexpected_type
 SyntaxError: unterminated string literal	A										There is an unterminated String somewhere. String literals must be enclosed by single (') or double (") quotes. JavaScript makes no distinction between single-quoted strings and double-quoted strings. Escape sequences work in strings created with either single or double quotes. To fix this error, check if:	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Unterminated_string_literal
 TypeError: variable "x" redeclares argument	A										<pre><code>Invalid Cases:\nValid Cases:\n"use strict";\n\nfunction f(arg) {\n  arg = "foo";\n}\n\nValid Cases:\n"use strict";\n\nfunction f(arg) {\n  arg = "foo";\n}\n</code></pre>The same variable name occurs as a function parameter and is then redeclared using a var assignment in a function body again. This might be a naming conflict and thus JavaScript warns about it.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Var_hides_argument
+Functions	A										Generally speaking, a function is a "subprogram" that can be called by code external (or internal in the case of recursion) to the function. Like the program itself, a function is composed of a sequence of statements called the function body. Values can be passed to a function, and the function will return a value.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions
+Arguments object	A										<pre><code>arguments</code></pre>The arguments object is an Array -like object corresponding to the arguments passed to a function.\nThe arguments object is a local variable available within all functions. You can refer to a function's arguments within the function by using the arguments object. This object contains an entry for each argument passed to the function, the first entry's index starting at 0. For example, if a function is passed three arguments, you can refer to them as follows:\n<pre><code>arguments[0]\narguments[1]\narguments[2]\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments
+arguments[@@iterator]()	A										<pre><code>arguments[Symbol.iterator]()</code></pre>The initial value of the @@iterator property is the same function object as the initial value of the Array.prototype.values property.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments/@@iterator
+arguments.callee	A										The arguments.callee property contains the currently executing function.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments/callee
+arguments.caller	A										The obsolete arguments.caller property used to provide the function that invoked the currently executing function. This property has been removed and no longer works.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments/caller
+arguments.length	A										<pre><code>arguments.length</code></pre>The arguments.length property contains the number of arguments passed to the function.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments/length
+Arrow functions	A										<pre><code>(param1, param2, &#8230;, paramN) =&gt; { statements }\n(param1, param2, &#8230;, paramN) =&gt; expression\n         // equivalent to:&#160; =&gt; { return expression; }\n\n// Parentheses are optional when there's only one parameter:\n(singleParam) =&gt; { statements }\nsingleParam =&gt; { statements }\n\n// A function with no parameters requires parentheses:\n() =&gt; { statements }</code></pre>An arrow function expression has a shorter syntax compared to function expressions and lexically binds the this value (does not bind its own this, arguments, super, or new.target). Arrow functions are always anonymous. These function expressions are best suited for non-method functions and they can not be used as constructors.\nSee also "ES6 In Depth: Arrow functions" on hacks.mozilla.org.\n<pre><code>var a = [\n  "Hydrogen",\n  "Helium",\n  "Lithium",\n  "Beryl&#173;lium"\n];\n\nvar a2 = a.map(function(s){ return s.length });\n\nvar a3 = a.map( s =&gt; s.length );</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+Default parameters	A										<pre><code>function [name]([param1[ = defaultValue1 ][, ..., paramN[ = defaultValueN ]]]) {\n   statements\n}\n</code></pre>Default function parameters allow formal parameters to be initialized with default values if no value or undefined is passed.\nIn JavaScript, parameters of functions default to undefined. However, in some situations it might be useful to set a different default value. This is where default parameters can help.\n<pre><code>function multiply(a, b) {\n  var b = (typeof b !== 'undefined') ?  b : 1;\n\n  return a*b;\n}\n\nmultiply(5); // 5\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters
+getter	A										<pre><code>{get prop() { ... } }\n{get [expression]() { ... } }</code></pre>The get syntax binds an object property to a function that will be called when that property is looked up.\nSometimes it is desirable to allow access to a property that returns a dynamically computed value, or you may want to reflect the status of an internal variable without requiring the use of explicit method calls. In JavaScript, this can be accomplished with the use of a getter. It is not possible to simultaneously have a getter bound to a property and have that property actually hold a value, although it is possible to use a getter and a setter in conjunction to create a type of pseudo-property.\n<pre><code>var log = ['test'];\nvar obj = {\n  get latest () {\n    if (log.length == 0) return undefined;\n    return log[log.length - 1]\n  }\n}\nconsole.log (obj.latest); // Will return "test".\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get
+Method definitions	A										<pre><code>var obj = {\n  property( parameters&#8230; ) {},\n  *generator( parameters&#8230; ) {},\n// also with computed keys:\n  [property]( parameters&#8230; ) {},\n  *[generator]( parameters&#8230; ) {},\n// compare ES5 getter/setter syntax:\n  get property() {},\n  set property(value) {}\n};\n</code></pre>Starting with ECMAScript 2015 (ES6), a shorter syntax for method definitions on objects initializers is introduced. It is a shorthand for a function assigned to the method's name.\nThe shorthand syntax is similar to the getter and setter syntax introduced in ECMAScript 2015.\n<pre><code>var obj = {\n  foo: function() {},\n  bar: function() {}\n};</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions
+Rest parameters	A										<pre><code>function(a, b, ...theArgs) {\n  // ...\n}\n</code></pre>The rest parameter syntax allows us to represent an indefinite number of arguments as an array.\nIf the last named argument of a function is prefixed with ..., it becomes an array whose elements from 0 (inclusive) to theArgs.length&#160;(exclusive) are supplied by the actual arguments passed to the function.\n<pre><code>// Before rest parameters, the following could be found:\nfunction f(a, b){\n  var args = Array.prototype.slice.call(arguments, f.length);\n\n  // &#8230;\n}\n\n// to be equivalent of\n\nfunction f(a, b, ...args) {\n  \n}\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters
+setter	A										<pre><code>{set prop(val) { . . . }}\n{set [expression](val) { . . . }}</code></pre>The set syntax binds an object property to a function to be called when there is an attempt to set that property.\nIn JavaScript, a setter can be used to execute a function whenever a specified property is attempted to be changed. Setters are most often used in conjunction with getters to create a type of pseudo-property. It is not possible to simultaneously have a setter on a property that holds an actual value.\n<pre><code>var o = {\n  set current (str) {\n    this.log[this.log.length] = str;\n  },\n  log: []\n}\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set
 Array	A										<pre><code>[element0, element1, ..., elementN]\nnew Array(element0, element1[, ...[, elementN]])\nnew Array(arrayLength)</code></pre>The JavaScript Array object is a global object that is used in the construction of arrays; which are high-level, list-like objects.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
 Array.prototype[@@iterator]()	A										<pre><code>arr[Symbol.iterator]()</code></pre>The initial value of the @@iterator property is the same function object as the initial value of the values() property.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/@@iterator
 get Array[@@species]	A										<pre><code>Array[Symbol.species]\n</code></pre>The Array[@@species] accessor property returns the Array constructor.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/@@species
@@ -3718,7 +3739,7 @@ uneval()	A										<pre><code>uneval(object)</code></pre>The uneval() function 
 URIError	A										<pre><code>new URIError([message[, fileName[, lineNumber]]])</code></pre>The URIError object represents an error when a global URI handling function was used in a wrong way.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError
 WeakMap	A										<pre><code>new WeakMap([iterable])\n</code></pre>The WeakMap object is a collection of key/value pairs in which the keys are weakly referenced.  The keys must be objects and the values can be arbitrary values.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
 WeakSet	A										<pre><code> new WeakSet([iterable]);</code></pre>The WeakSet object lets you store weakly held objects in a collection.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet
-length	D								*[[AudioBuffer.length]] A float.\n*[[CSSValueList.length]] The length read-only property of the CSSValueList interface represents the number of CSSValue s in the list.\n*[[DataTransferItemList.length]] The DataTransferItemList.\n*[[History.length]] The History.\n*[[HTMLFormElement.length]] The HTMLFormElement.\n*[[NodeList.length]] length returns the number of items in a NodeList.\n*[[OfflineAudoContext.length]] The length property of the OfflineAudioContext interface returns an integer representing the size of the buffer in sample-frames.\n*[[SourceBufferList.length]] The length read-only property of the SourceBufferList interface returns the number of SourceBuffer objects in the list.\n*[[SpeechGrammarList.length]] The length read-only property of the SpeechGrammarList interface returns the number of SpeechGrammar objects contained in the SpeechGrammarList.\n*[[SpeechRecognitionResult.length]] The length read-only property of the SpeechRecognitionResult interface returns the length of the "array" — the number of SpeechRecognitionAlternative objects contained in the result (also referred to as "n-best alternatives".\n*[[SpeechRecognitionResultList.length]] The length read-only property of the SpeechRecognitionResultList interface returns the length of the "array" — the number of SpeechRecognitionResult objects in the list.\n*[[Storage.length]] The length read-only property of the Storage interface returns an integer representing the number of data items stored in the Storage object.\n*[[TimeRanges.length]] The TimeRanges.\n*[[TouchList.length]] This read-only property indicates the number of items (touch points) in a TouchList.\n*[[TrackDefaultList.length]] The length read-only property of the TrackDefaultList interface returns the number of TrackDefault objects in the list.\n*[[Window.length]] Returns the number of frames (either &lt;frame&gt; or &lt;iframe&gt; elements) in the window.\n*[[array.length]] The length property represents an unsigned, 32-bit integer that is always numerically greater than the highest index in the array.\n*[[Function.length]] The length property specifies the number of arguments expected by the function.\n*[[String.prototype.length]] The length property represents the length of a string.			
+length	D								*[[AudioBuffer.length]] A float.\n*[[CSSValueList.length]] The length read-only property of the CSSValueList interface represents the number of CSSValue s in the list.\n*[[DataTransferItemList.length]] The DataTransferItemList.\n*[[History.length]] The History.\n*[[HTMLFormElement.length]] The HTMLFormElement.\n*[[NodeList.length]] length returns the number of items in a NodeList.\n*[[OfflineAudoContext.length]] The length property of the OfflineAudioContext interface returns an integer representing the size of the buffer in sample-frames.\n*[[SourceBufferList.length]] The length read-only property of the SourceBufferList interface returns the number of SourceBuffer objects in the list.\n*[[SpeechGrammarList.length]] The length read-only property of the SpeechGrammarList interface returns the number of SpeechGrammar objects contained in the SpeechGrammarList.\n*[[SpeechRecognitionResult.length]] The length read-only property of the SpeechRecognitionResult interface returns the length of the "array" — the number of SpeechRecognitionAlternative objects contained in the result (also referred to as "n-best alternatives".\n*[[SpeechRecognitionResultList.length]] The length read-only property of the SpeechRecognitionResultList interface returns the length of the "array" — the number of SpeechRecognitionResult objects in the list.\n*[[Storage.length]] The length read-only property of the Storage interface returns an integer representing the number of data items stored in the Storage object.\n*[[TimeRanges.length]] The TimeRanges.\n*[[TouchList.length]] This read-only property indicates the number of items (touch points) in a TouchList.\n*[[TrackDefaultList.length]] The length read-only property of the TrackDefaultList interface returns the number of TrackDefault objects in the list.\n*[[Window.length]] Returns the number of frames (either &lt;frame&gt; or &lt;iframe&gt; elements) in the window.\n*[[arguments.length]] The arguments.\n*[[array.length]] The length property represents an unsigned, 32-bit integer that is always numerically greater than the highest index in the array.\n*[[Function.length]] The length property specifies the number of arguments expected by the function.\n*[[String.prototype.length]] The length property represents the length of a string.			
 audiobuffer length	R	AudioBuffer.length										
 cssvaluelist length	R	CSSValueList.length										
 datatransferitemlist length	R	DataTransferItemList.length										
@@ -3735,6 +3756,7 @@ timeranges length	R	TimeRanges.length
 touchlist length	R	TouchList.length										
 trackdefaultlist length	R	TrackDefaultList.length										
 window length	R	Window.length										
+arguments length	R	arguments.length										
 array length	R	array.length										
 function length	R	Function.length										
 string length	R	String.prototype.length										
@@ -3840,6 +3862,20 @@ offscreencanvas width	R	OffscreenCanvas.width
 pointerevent width	R	PointerEvent.width										
 screen width	R	Screen.width										
 textmetrics width	R	TextMetrics.width										
+get	D								*[[Clients.get()]] The get () method of the Clients interface gets a service worker client matching a given id and returns it in a Promise.\n*[[CredentialsContainer.get()]] The get() method of the CredentialsContainer interface returns a Promise to a Credential instance that matches the provided parameters.\n*[[FormData.get()]] The get() method of the FormData interface returns the first value associated with a given key from within a FormData object.\n*[[Headers.get()]] The get() method of the Headers interface returns the first value of a given header from within a Headers object.\n*[[IDBIndex.get()]] If a value is successfully found, then a structured clone of it is created and set as the result of the request object: this returns the record the key is associated with.\n*[[IDBObjectStore.get()]] If a value is successfully found, then a structured clone of it is created and set as the result of the request object.\n*[[IdentityManager.get()]] This function enables a web site to use BrowserID to authenticate its users.\n*[[URLSearchParams.get()]] The get() method of the URLSearchParams interface returns the first value associated to the given search parameter.\n*[[getter]] The get syntax binds an object property to a function that will be called when that property is looked up.			
+clients get	R	Clients.get()										
+credentialscontainer get	R	CredentialsContainer.get()										
+formdata get	R	FormData.get()										
+headers get	R	Headers.get()										
+idbindex get	R	IDBIndex.get()										
+idbobjectstore get	R	IDBObjectStore.get()										
+identitymanager get	R	IdentityManager.get()										
+urlsearchparams get	R	URLSearchParams.get()										
+functions get syntax	R	getter										
+functions get example	R	getter										
+functions syntax	R	getter										
+functions example	R	getter										
+functions get	R	getter										
 prototype	D								*[[Array.prototype]] The Array.\n*[[Boolean.prototype]] The Boolean.\n*[[Date.prototype]] The Date.\n*[[Error.prototype]] The Error.\n*[[Function.prototype]] The Function.\n*[[Number.prototype]] The Number.\n*[[Object.prototype]] The Object.\n*[[RegExp.prototype]] The RegExp.\n*[[String.prototype]] The String.			
 array prototype	R	Array.prototype										
 boolean prototype	R	Boolean.prototype										
@@ -3887,15 +3923,6 @@ speechgrammarlist item	R	SpeechGrammarList.item()
 speechrecognitionresult item	R	SpeechRecognitionResult.item()										
 speechrecognitionresultlist item	R	SpeechRecognitionResultList.item()										
 touchlist item	R	TouchList.item()										
-get	D								*[[Clients.get()]] The get () method of the Clients interface gets a service worker client matching a given id and returns it in a Promise.\n*[[CredentialsContainer.get()]] The get() method of the CredentialsContainer interface returns a Promise to a Credential instance that matches the provided parameters.\n*[[FormData.get()]] The get() method of the FormData interface returns the first value associated with a given key from within a FormData object.\n*[[Headers.get()]] The get() method of the Headers interface returns the first value of a given header from within a Headers object.\n*[[IDBIndex.get()]] If a value is successfully found, then a structured clone of it is created and set as the result of the request object: this returns the record the key is associated with.\n*[[IDBObjectStore.get()]] If a value is successfully found, then a structured clone of it is created and set as the result of the request object.\n*[[IdentityManager.get()]] This function enables a web site to use BrowserID to authenticate its users.\n*[[URLSearchParams.get()]] The get() method of the URLSearchParams interface returns the first value associated to the given search parameter.			
-clients get	R	Clients.get()										
-credentialscontainer get	R	CredentialsContainer.get()										
-formdata get	R	FormData.get()										
-headers get	R	Headers.get()										
-idbindex get	R	IDBIndex.get()										
-idbobjectstore get	R	IDBObjectStore.get()										
-identitymanager get	R	IdentityManager.get()										
-urlsearchparams get	R	URLSearchParams.get()										
 readystate	D								*[[Document.readyState]] The Document.\n*[[FileReader.readyState]] Provides the current state of the reading operation.\n*[[HTMLMediaElement.readyState]] The HTMLMediaElement.\n*[[IDBRequest.readyState]] The IDBRequestReadyState of the request, which takes one of the following two values:\n*[[MediaSource.readyState]] The readyState read-only property of the MediaSource interface returns an enum representing the state of the current MediaSource.\n*[[MediaStreamTrack.readyState]] The read-only property MediaStreamTrack.\n*[[RTCDataChannel.readyState]] The read-only RTCDataChannel property readyState returns an enum of type RTCDataChannelState which indicates the state of the data channel's underlying data connection.\n*[[XMLHttpRequest.readyState]] The XMLHttpRequest.			
 document readystate	R	Document.readyState										
 filereader readystate	R	FileReader.readyState										
@@ -4088,6 +4115,15 @@ datatransferitemlist remove	R	DataTransferItemList.remove()
 htmlselectelement remove	R	HTMLSelectElement.remove()										
 mediakeysession remove	R	remove()										
 sourcebuffer remove	R	SourceBuffer.remove()										
+formdata set	R	FormData.set()										
+headers set	R	Headers.set()										
+urlsearchparams set	R	URLSearchParams.set()										
+functions set syntax	R	setter										
+functions set example	R	setter										
+functions syntax	R	setter										
+functions example	R	setter										
+functions set	R	setter										
+global set	R	Set										
 lang	D								*[[HTMLElement.lang]] The HTMLElement.\n*[[Notification.lang]] The lang read-only property of the Notification interface indicates the text direction of the notification, as specified in the lang option of the Notification() constructor.\n*[[SpeechRecognition.lang]] The lang property of the SpeechRecognition interface returns and sets the language of the current SpeechRecognition.\n*[[SpeechSynthesisUtterance.lang]] The lang property of the SpeechSynthesisUtterance interface gets and sets the language of the utterance.\n*[[SpeechSynthesisVoice.lang]] The lang read-only property of the SpeechSynthesisVoice interface returns a BCP 47 language tag indicating the language of the voice.			
 htmlelement lang	R	HTMLElement.lang										
 notification lang	R	Notification.lang										
@@ -4182,10 +4218,6 @@ deviceacceleration x	R	DeviceAcceleration.x
 dompointreadonly x	R	DOMPoint.x										
 domrectreadonly x	R	DOMRectReadOnly.x										
 mouseevent x	R	MouseEvent.x										
-formdata set	R	FormData.set()										
-headers set	R	Headers.set()										
-urlsearchparams set	R	URLSearchParams.set()										
-global set	R	Set										
 y	D								*[[DeviceAcceleration.y]] This read-only property indicates the amount of acceleration that occurred along the Y axis in a DeviceAcceleration object.\n*[[DOMPoint.y]] The y read-only property of the DOMPointReadOnly interface represents the y coordinate of a point.\n*[[DOMRectReadOnly.y]] The y read-only property of the DOMRectReadOnly interface represents the y coordinate of the DOMRect 's origin.\n*[[MouseEvent.y]] The MouseEvent.			
 deviceacceleration y	R	DeviceAcceleration.y										
 dompointreadonly y	R	DOMPoint.y										
@@ -4240,6 +4272,10 @@ playbackrate	D								*[[Animation.playbackRate]] The Animation.\n*[[AudioBuffer
 animation playbackrate	R	Animation.playbackRate										
 audiobuffersourcenode playbackrate	R	AudioBufferSourceNode.playbackRate										
 htmlmediaelement playbackrate	R	HTMLMediaElement.playbackRate										
+onended	D								*[[AudioBufferSourceNode.onended]] The onended event handler of the AudioBufferSourceNode contains the callback associated with the ended event: this allows you to run code in response to the audio track finishing playback.\n*[[MediaStreamTrack.onended]] The MediaStreamTrack.\n*[[OscillatorNode.onended]] The onended property of the OscillatorNode interface is used to set the event handler for the ended event, which fires when the tone has stopped playing.			
+audiobuffersourcenode onended	R	AudioBufferSourceNode.onended										
+mediastreamtrack onended	R	MediaStreamTrack.onended										
+oscillatornode onended	R	OscillatorNode.onended										
 onload	D								*[[FileReader.onload]] The FileReader.\n*[[GlobalEventHandlers.onload]] An event handler for the load event of a window.\n*[[XMLHttpRequestEventTarget.onload]] The XMLHttpRequestEventTarget.			
 filereader onload	R	FileReader.onload										
 global onload	R	GlobalEventHandlers.onload										
@@ -4271,7 +4307,7 @@ normalize	D								*[[ConvolverNode.normalize]] A boolean.\n*[[Node.normalize()]
 convolvernode normalize	R	ConvolverNode.normalize										
 node normalize	R	Node.normalize()										
 string normalize	R	String.prototype.normalize()										
-clone	D								*[[MediaStreamTrack.clone()]] The clone method of the MediaStreamTrack interface returns a duplicate of the MediaStreamTrack.\n*[[Request.clone()]] The clone() method of the Request interface creates a copy of the current Request object.\n*[[Response.clone()]] The clone() method of the Response interface creates a clone of a response object, identical in every way, but stored in a different variable.			
+clone	D								*[[MediaStreamTrack.clone()]] The clone() method of the MediaStreamTrack interface creates a duplicate of the MediaStreamTrack.\n*[[Request.clone()]] The clone() method of the Request interface creates a copy of the current Request object.\n*[[Response.clone()]] The clone() method of the Response interface creates a clone of a response object, identical in every way, but stored in a different variable.			
 mediastreamtrack clone	R	MediaStreamTrack.clone()										
 request clone	R	Request.clone()										
 response clone	R	Response.clone()										
@@ -4317,6 +4353,10 @@ slice	D								*[[Blob.slice()]] The slice is used to create a new Blob object c
 blob slice	R	Blob.slice()										
 array slice	R	Array.prototype.slice										
 string slice	R	String.prototype.slice										
+src	D								*[[HTMLMediaElement.src]] The HTMLMediaElement.\n*[[HTMLTrackElement.src]] The HTMLTrackElement.\n*[[SpeechGrammar.src]] The src property of the SpeechGrammar interface sets and returns a string containing the grammar from within in the SpeechGrammar object.			
+htmlmediaelement src	R	HTMLMediaElement.src										
+htmltrackelement src	R	HTMLTrackElement.src										
+speechgrammar src	R	SpeechGrammar.src										
 api trackdefault	R	TrackDefault										
 trackdefault trackdefault	R	TrackDefault.TrackDefault()										
 trackdefaultlist trackdefault	R	TrackDefaultList.TrackDefault()										
@@ -4384,9 +4424,6 @@ elapsedtime	D								*[[AnimationEvent.elapsedTime]] The AnimationEvent.\n*[[Spe
 animationevent elapsedtime	R	AnimationEvent.elapsedTime										
 speechsynthesisevent elapsedtime	R	SpeechSynthesisEvent.elapsedTime										
 transitionevent elapsedtime	R	TransitionEvent.elapsedTime										
-navigator connection	R	Navigator.connection										
-presentationconnectionavailableevent connection	R	connection										
-navigator connection	R	Navigator.connection										
 load	D								*[[FontFaceSet.load()]] A Promise of an Array of FontFace loaded.\n*[[load()]] The MediaKeySession.\n*[[XMLDocument.load()]] document.			
 fontfaceset load	R	FontFaceSet.load()										
 mediakeysession load	R	load()										
@@ -4398,6 +4435,10 @@ serviceworkercontainer ready	R	ServiceWorkerContainer.ready
 api navigator	R	Navigator										
 window navigator	R	Window.navigator										
 global navigator	R	WorkerGlobalScope.navigator										
+@@iterator	D								*[[arguments[@@iterator]()]] The initial value of the @@iterator property is the same function object as the initial value of the Array.\n*[[Array.prototype[@@iterator]()]] The initial value of the @@iterator property is the same function object as the initial value of the values() property.\n*[[String.prototype[@@iterator]()]] The [@@iterator]() method returns a new Iterator object that iterates over the code points of a String value, returning each code point as a String value.			
+arguments @@iterator	R	arguments[@@iterator]()										
+array @@iterator	R	Array.prototype[@@iterator]()										
+string @@iterator	R	String.prototype[@@iterator]()										
 altkey	D								*[[KeyboardEvent.altKey]] The KeyboardEvent.\n*[[MouseEvent.altKey]] The MouseEvent.\n*[[TouchEvent.altKey]] A Boolean value indicating whether or not the alt (Alternate) key is enabled when the touch event is created.			
 keyboardevent altkey	R	KeyboardEvent.altKey										
 mouseevent altkey	R	MouseEvent.altKey										
@@ -4601,9 +4642,6 @@ api document	R	Document
 window document	R	Window.document										
 api sourcebuffer	R	SourceBuffer										
 sourcebufferlist sourcebuffer	R	SourceBufferList.SourceBuffer()										
-onended	D								*[[AudioBufferSourceNode.onended]] The onended event handler of the AudioBufferSourceNode contains the callback associated with the ended event: this allows you to run code in response to the audio track finishing playback.\n*[[OscillatorNode.onended]] The onended property of the OscillatorNode interface is used to set the event handler for the ended event, which fires when the tone has stopped playing.			
-audiobuffersourcenode onended	R	AudioBufferSourceNode.onended										
-oscillatornode onended	R	OscillatorNode.onended										
 left	D								*[[DOMRectReadOnly.left]] The left read-only property of the DOMRectReadOnly interface returns the left coordinate value of the DOMRect.\n*[[Screen.left]] Returns the distance in pixels from the left side of the main screen to the left side of the current screen.			
 domrectreadonly left	R	DOMRectReadOnly.left										
 screen left	R	Screen.left										
@@ -4751,6 +4789,9 @@ performancetiming requeststart	R	PerformanceTiming.requestStart
 getconfiguration	D								*[[getConfiguration()]] The MediaKeySystemAccess.\n*[[RTCPeerConnection.getConfiguration()]] The RTCPeerConnection.			
 mediakeysystemaccess getconfiguration	R	getConfiguration()										
 rtcpeerconnection getconfiguration	R	RTCPeerConnection.getConfiguration()										
+caller	D								*[[arguments.caller]] The obsolete arguments.\n*[[Function.caller]] The function.			
+arguments caller	R	arguments.caller										
+function caller	R	Function.caller										
 searchparams	D								*[[URLUtils.searchParams]] The URLUtils.\n*[[URL.searchParams]] The searchParams property of the URL interface returns a URLSearchParams object allowing to access the GET query arguments contained in the URL.			
 htmlhyperlinkelementutils searchparams	R	URLUtils.searchParams										
 url searchparams	R	URL.searchParams										
@@ -4786,6 +4827,13 @@ stylesheet media	R	StyleSheet.media
 hostname	D								*[[HTMLHyperlinkElementUtils.hostname]] The HTMLHyperlinkElementUtils.\n*[[URLUtilsReadOnly.hostname]] The URLUtilsReadOnly.			
 htmlhyperlinkelementutils hostname	R	HTMLHyperlinkElementUtils.hostname										
 urlutilsreadonly hostname	R	URLUtilsReadOnly.hostname										
+arguments	D								*[[Arguments object]] The arguments object is an Array -like object corresponding to the arguments passed to a function.\n*[[Function.arguments]] The function.			
+functions arguments syntax	R	Arguments object										
+functions arguments example	R	Arguments object										
+functions syntax	R	Arguments object										
+functions example	R	Arguments object										
+functions arguments	R	Arguments object										
+function arguments	R	Function.arguments										
 finish	D								*[[Animation.finish()]] None.\n*[[WebGLRenderingContext.finish()]] The WebGLRenderingContext.			
 animation finish	R	Animation.finish()										
 webglrenderingcontext finish	R	WebGLRenderingContext.finish()										
@@ -4802,6 +4850,9 @@ function displayname	R	Function.displayName
 @@species	D								*[[get Array[@@species]]] The Array[@@species] accessor property returns the Array constructor.\n*[[get RegExp[@@species]]] The RegExp[@@species] accessor property returns the RegExp constructor.			
 array @@species	R	get Array[@@species]										
 regexp @@species	R	get RegExp[@@species]										
+addtrack	D								*[[MediaStream.addTrack()]] The MediaStream.\n*[[RTCPeerConnection.addTrack()]] The RTCPeerConnection method addTrack() adds a new media track to the connection.			
+mediastream addtrack	R	MediaStream.addTrack()										
+rtcpeerconnection addtrack	R	RTCPeerConnection.addTrack()										
 api extendableevent	R	ExtendableEvent										
 extendableevent extendableevent	R	ExtendableEvent.ExtendableEvent()										
 previoussibling	D								*[[Node.previousSibling]] The Node.\n*[[TreeWalker.previousSibling()]] The TreeWalker.			
@@ -5008,6 +5059,8 @@ mediastreamtrack muted	R	muted
 reverse	D								*[[Animation.reverse()]] None.\n*[[Array.prototype.reverse]] The reverse() method reverses an array in place.			
 animation reverse	R	Animation.reverse()										
 array reverse	R	Array.prototype.reverse										
+navigator connection	R	Navigator.connection										
+presentationconnectionavailableevent connection	R	connection										
 context	D								*[[AudioNode.context]] An AudioContext object.\n*[[Request.context]] The context read-only property of the Request interface contains the context of the Request (e.			
 audionode context	R	AudioNode.context										
 request context	R	Request.context										
@@ -5062,9 +5115,6 @@ fetchevent fetchevent	R	FetchEvent.FetchEvent()
 z	D								*[[DeviceAcceleration.z]] This read-only property indicates the amount of acceleration that occurred along the Z axis in a DeviceAcceleration object.\n*[[DOMPoint.z]] The z read-only property of the DOMPointReadOnly interface represents the z coordinate of a point.			
 deviceacceleration z	R	DeviceAcceleration.z										
 dompointreadonly z	R	DOMPoint.z										
-@@iterator	D								*[[Array.prototype[@@iterator]()]] The initial value of the @@iterator property is the same function object as the initial value of the values() property.\n*[[String.prototype[@@iterator]()]] The [@@iterator]() method returns a new Iterator object that iterates over the code points of a String value, returning each code point as a String value.			
-array @@iterator	R	Array.prototype[@@iterator]()										
-string @@iterator	R	String.prototype[@@iterator]()										
 unloadeventend	D								*[[PerformanceNavigationTiming.unloadEventEnd]] The unloadEventEnd property returns a timestamp representing the time value equal to the time immediately after the user agent finishes the unload event of the previous document.\n*[[PerformanceTiming.unloadEventEnd]] The PerformanceTiming.			
 performancenavigationtiming unloadeventend	R	PerformanceNavigationTiming.unloadEventEnd										
 performancetiming unloadeventend	R	PerformanceTiming.unloadEventEnd										
@@ -5307,7 +5357,6 @@ string tolocaleuppercase	R	String.prototype.toLocaleUpperCase
 tolocaleuppercase	R	String.prototype.toLocaleUpperCase										
 window requestidlecallback	R	requestIdleCallback										
 webgl api webgl model view projection	R	WebGL model view projection										
-webgl model view projection	R	WebGL model view projection										
 api idbversionchangerequest	R	IDBVersionChangeRequest										
 initProgressEvent	R	ProgressEvent.initProgressEvent()										
 progressevent initprogressevent	R	ProgressEvent.initProgressEvent()										
@@ -5383,8 +5432,6 @@ createtransformfeedback	R	WebGL2RenderingContext.createTransformFeedback()
 setPeriodicWave	R	OscillatorNode.setPeriodicWave()										
 oscillatornode setperiodicwave	R	OscillatorNode.setPeriodicWave()										
 setperiodicwave	R	OscillatorNode.setPeriodicWave()										
-document createtreewalker	R	Document.createTreeWalker()										
-createtreewalker	R	Document.createTreeWalker()										
 api stylesheetlist	R	StyleSheetList										
 trackdefault bytestreamtrackid	R	TrackDefault.byteStreamTrackID										
 bytestreamtrackid	R	TrackDefault.byteStreamTrackID										
@@ -5416,9 +5463,7 @@ total	R	ProgressEvent.total
 progressevent total	R	ProgressEvent.total										
 total	R	ProgressEvent.total										
 api performance timeline	R	Performance Timeline										
-performance timeline	R	Performance Timeline										
 webrtc api signaling and video calling	R	Signaling and video calling										
-signaling and video calling	R	Signaling and video calling										
 canvasrenderingcontext2d ispointinpath	R	CanvasRenderingContext2D.isPointInPath()										
 ispointinpath	R	CanvasRenderingContext2D.isPointInPath()										
 defaultMuted	R	HTMLMediaElement.defaultMuted										
@@ -5438,7 +5483,6 @@ api channelsplitternode	R	ChannelSplitterNode
 mediarecorder canrecordmimetype	R	Media.Recorder.isMimeTypeSupported										
 canrecordmimetype	R	Media.Recorder.isMimeTypeSupported										
 web crypto api checking authenticity with password	R	Checking authenticity with password										
-checking authenticity with password	R	Checking authenticity with password										
 vrdisplay depthfar	R	VRDisplay.depthFar										
 depthfar	R	VRDisplay.depthFar										
 api svganimatedstring	R	SVGAnimatedString										
@@ -5496,12 +5540,10 @@ onnomatch	R	SpeechRecognition.onnomatch
 performance clearresourcetimings	R	Performance.clearResourceTimings()										
 clearresourcetimings	R	Performance.clearResourceTimings()										
 api webvr api	R	WebVR API										
-webvr api	R	WebVR API										
 api bluetoothremotegattcharacteristic	R	BluetoothRemoteGATTCharacteristic										
 sourcebuffer trackdefaults	R	SourceBuffer.trackDefaults										
 trackdefaults	R	SourceBuffer.trackDefaults										
 tutorial pixel manipulation with canvas	R	Pixel manipulation with canvas										
-pixel manipulation with canvas	R	Pixel manipulation with canvas										
 webgl2renderingcontext samplerparameter	R	WebGL2RenderingContext.samplerParameter[if]()										
 samplerparameter	R	WebGL2RenderingContext.samplerParameter[if]()										
 webgl2renderingcontext deletetransformfeedback	R	WebGL2RenderingContext.deleteTransformFeedback()										
@@ -5559,7 +5601,6 @@ webkitforce	R	MouseEvent.webkitForce
 array every	R	Array.prototype.every										
 every	R	Array.prototype.every										
 frame timing api using the frame timing api	R	Using the Frame Timing API										
-using the frame timing api	R	Using the Frame Timing API										
 api idbcursorsync	R	IDBCursorSync										
 speechgrammarlist addfromstring	R	SpeechGrammarList.addFromString()										
 addfromstring	R	SpeechGrammarList.addFromString()										
@@ -5622,7 +5663,6 @@ apps mgmt	R	Apps.mgmt
 mgmt	R	Apps.mgmt										
 api windoweventhandlers	R	WindowEventHandlers										
 api pointer events	R	Pointer events										
-pointer events	R	Pointer events										
 drawWindow	R	CanvasRenderingContext2D.drawWindow()										
 canvasrenderingcontext2d drawwindow	R	CanvasRenderingContext2D.drawWindow()										
 drawwindow	R	CanvasRenderingContext2D.drawWindow()										
@@ -5649,7 +5689,6 @@ onpointerover	R	GlobalEventHandlers.onpointerover
 errors var hides argument	R	TypeError: variable "x" redeclares argument										
 var hides argument	R	TypeError: variable "x" redeclares argument										
 api web bluetooth api	R	Web Bluetooth API										
-web bluetooth api	R	Web Bluetooth API										
 api svgaltglyphelement	R	SVGAltGlyphElement										
 onhashchange	R	WindowEventHandlers.onhashchange										
 windoweventhandlers onhashchange	R	WindowEventHandlers.onhashchange										
@@ -5714,7 +5753,6 @@ idbversionchangeevent oldversion	R	IDBVersionChangeEvent.oldVersion
 oldversion	R	IDBVersionChangeEvent.oldVersion										
 global urierror	R	URIError										
 api web storage api	R	Web Storage API										
-web storage api	R	Web Storage API										
 datatransferitem getasstring	R	DataTransferItem.getAsString()										
 getasstring	R	DataTransferItem.getAsString()										
 api mediaquerylist	R	MediaQueryList										
@@ -5737,13 +5775,11 @@ onaudioprocess	R	ScriptProcessorNode.onaudioprocess
 scriptprocessornode onaudioprocess	R	ScriptProcessorNode.onaudioprocess										
 onaudioprocess	R	ScriptProcessorNode.onaudioprocess										
 channel messaging api using channel messaging	R	Using channel messaging										
-using channel messaging	R	Using channel messaging										
 detachEvent	R	EventTarget.detachEvent()										
 eventtarget detachevent	R	EventTarget.detachEvent()										
 detachevent	R	EventTarget.detachEvent()										
 mediakeysystemconfiguration audiocapabilities	R	audioCapabilities										
 performance api using the performance api	R	Using the Performance API										
-using the performance api	R	Using the Performance API										
 date settime	R	Date.prototype.setTime										
 settime	R	Date.prototype.setTime										
 webglrenderingcontext blendfunc	R	WebGLRenderingContext.blendFunc()										
@@ -5766,10 +5802,8 @@ rtcdatachannel ordered	R	RTCDataChannel.ordered
 ordered	R	RTCDataChannel.ordered										
 api errorevent	R	ErrorEvent										
 web animations api keyframe formats	R	Keyframe Formats										
-keyframe formats	R	Keyframe Formats										
 api htmlmetaelement	R	HTMLMetaElement										
 gamepad api using the gamepad api	R	Using the Gamepad API										
-using the gamepad api	R	Using the Gamepad API										
 range deletecontents	R	Range.deleteContents()										
 deletecontents	R	Range.deleteContents()										
 global bool64x2	R	SIMD.Bool64x2										
@@ -5848,7 +5882,6 @@ mozSetFileNameArray	R	HTMLInputElement.mozSetFileNameArray()
 htmlinputelement mozsetfilenamearray	R	HTMLInputElement.mozSetFileNameArray()										
 mozsetfilenamearray	R	HTMLInputElement.mozSetFileNameArray()										
 web animations api using the web animations api	R	Using the Web Animations API										
-using the web animations api	R	Using the Web Animations API										
 hardwareConcurrency	R	NavigatorConcurrentHardware.hardwareConcurrency										
 navigatorconcurrenthardware hardwareconcurrency	R	NavigatorConcurrentHardware.hardwareConcurrency										
 hardwareconcurrency	R	NavigatorConcurrentHardware.hardwareConcurrency										
@@ -5942,7 +5975,6 @@ getactiveuniformblockname	R	WebGL2RenderingContext.getActiveUniformBlockName()
 api domhighrestimestamp	R	DOMHighResTimeStamp										
 api webgl draw buffers	R	WEBGL_draw_buffers										
 web audio api visualizations with web audio api	R	Visualizations with Web Audio API										
-visualizations with web audio api	R	Visualizations with Web Audio API										
 document alinkcolor	R	Document.alinkColor										
 alinkcolor	R	Document.alinkColor										
 idbindex multientry	R	IDBIndex.multiEntry										
@@ -5954,7 +5986,6 @@ focusoffset	R	Selection.focusOffset
 global bool16x8	R	SIMD.Bool16x8										
 bool16x8	R	SIMD.Bool16x8										
 xmlhttprequest sending and receiving binary data	R	Sending and Receiving Binary Data										
-sending and receiving binary data	R	Sending and Receiving Binary Data										
 webrtc api architecture	R	WebRTC architecture overview										
 architecture	R	WebRTC architecture overview										
 replaceChild	R	Node.replaceChild()										
@@ -6025,9 +6056,7 @@ document querycommandsupported	R	Document.queryCommandSupported()
 querycommandsupported	R	Document.queryCommandSupported()										
 api channelmergernode	R	ChannelMergerNode										
 api detecting device orientation	R	Detecting device orientation										
-detecting device orientation	R	Detecting device orientation										
 api html drag and drop api	R	HTML Drag and Drop API										
-html drag and drop api	R	HTML Drag and Drop API										
 api performanceentry	R	PerformanceEntry										
 speechrecognition onaudioend	R	SpeechRecognition.onaudioend										
 onaudioend	R	SpeechRecognition.onaudioend										
@@ -6086,7 +6115,6 @@ putimagedata	R	CanvasRenderingContext2D.putImageData()
 audiolistener speedofsound	R	AudioListener.speedOfSound										
 speedofsound	R	AudioListener.speedOfSound										
 xsltprocessor xsl transformations in mozilla faq	R	XSL Transformations in Mozilla FAQ										
-xsl transformations in mozilla faq	R	XSL Transformations in Mozilla FAQ										
 mediastreamtrack onmute	R	MediaStreamTrack.onmute										
 onmute	R	MediaStreamTrack.onmute										
 onvrdisplaydisconnected	R	Window.onvrdisplaydisconnected										
@@ -6110,7 +6138,6 @@ api svgradialgradientelement	R	SVGRadialGradientElement
 audiocontext createpanner	R	AudioContext.createPanner()										
 createpanner	R	AudioContext.createPanner()										
 api indexeddb api	R	IndexedDB API										
-indexeddb api	R	IndexedDB API										
 math tanh	R	Math.tanh()										
 tanh	R	Math.tanh()										
 vrdisplay depthnear	R	VRDisplay.depthNear										
@@ -6200,7 +6227,6 @@ unexpected type	R	TypeError: "x" is (not) "y"
 xmlhttprequest mozresponsearraybuffer	R	XMLHttpRequest.mozResponseArrayBuffer										
 mozresponsearraybuffer	R	XMLHttpRequest.mozResponseArrayBuffer										
 api force touch events	R	Force Touch events										
-force touch events	R	Force Touch events										
 onemptied	R	GlobalEventHandlers.onemptied										
 global globaleventhandlers.onemptied	R	GlobalEventHandlers.onemptied										
 array reduceright	R	Array.prototype.reduceRight										
@@ -6255,7 +6281,6 @@ api presentationconnectioncloseevent	R	PresentationConnectionCloseEvent
 rtcpeerconnection pendingremotedescription	R	RTCPeerConnection.pendingRemoteDescription										
 pendingremotedescription	R	RTCPeerConnection.pendingRemoteDescription										
 webvr api webvr concepts	R	WebVR concepts										
-webvr concepts	R	WebVR concepts										
 api idbtransaction	R	IDBTransaction										
 panningModel	R	PannerNode.panningModel										
 pannernode panningmodel	R	PannerNode.panningModel										
@@ -6263,7 +6288,6 @@ panningmodel	R	PannerNode.panningModel
 document querycommandstate	R	Document.queryCommandState()										
 querycommandstate	R	Document.queryCommandState()										
 api udp socket api	R	UDP Socket API										
-udp socket api	R	UDP Socket API										
 api htmlobjectelement	R	HTMLObjectElement										
 global sharedarraybuffer	R	SharedArrayBuffer										
 paymentresponse methodname	R	PaymentResponse.methodName										
@@ -6287,7 +6311,6 @@ javaenabled	R	NavigatorPlugins.javaEnabled()
 domrectreadonly right	R	DOMRectReadOnly.right										
 right	R	DOMRectReadOnly.right										
 websockets api writing a websocket server in java	R	Writing a WebSocket server in Java										
-writing a websocket server in java	R	Writing a WebSocket server in Java										
 documentElement	R	Document.documentElement										
 document documentelement	R	Document.documentElement										
 documentelement	R	Document.documentElement										
@@ -6334,12 +6357,10 @@ bluetoothremotegattcharacteristic properties	R	BluetoothRemoteGATTCharacteristic
 properties	R	BluetoothRemoteGATTCharacteristic.properties										
 api idbcursorwithvalue	R	IDBCursorWithValue										
 api broadcast channel api	R	Broadcast Channel API										
-broadcast channel api	R	Broadcast Channel API										
 currentTarget	R	Event.currentTarget										
 event currenttarget	R	Event.currentTarget										
 currenttarget	R	Event.currentTarget										
 tutorial using images	R	Using images										
-using images	R	Using images										
 clipboardData	R	ClipboardEvent.clipboardData										
 clipboardevent clipboarddata	R	ClipboardEvent.clipboardData										
 clipboarddata	R	ClipboardEvent.clipboardData										
@@ -6363,7 +6384,6 @@ uniformblockbinding	R	WebGL2RenderingContext.uniformBlockBinding()
 idbkeyrange bound	R	IDBKeyRange.bound()										
 bound	R	IDBKeyRange.bound()										
 api battery status api	R	Battery Status API										
-battery status api	R	Battery Status API										
 date getyear	R	Date.prototype.getYear										
 getyear	R	Date.prototype.getYear										
 api svgpolylineelement	R	SVGPolylineElement										
@@ -6402,7 +6422,6 @@ api svgfilterelement	R	SVGFilterElement
 string strike	R	String.prototype.strike()										
 strike	R	String.prototype.strike()										
 key key values	R	Key Values										
-key values	R	Key Values										
 document fgcolor	R	Document.fgColor										
 fgcolor	R	Document.fgColor										
 ontouchmove	R	GlobalEventHandlers.ontouchmove										
@@ -6432,7 +6451,6 @@ setnfcfocus	R	HTMLIFrameElement.setNfcFocus()
 string trim	R	String.prototype.trim										
 trim	R	String.prototype.trim										
 web storage api using the web storage api	R	Using the Web Storage API										
-using the web storage api	R	Using the Web Storage API										
 api offlineaudiocompletionevent	R	OfflineAudioCompletionEvent										
 api nondocumenttypechildnode	R	NonDocumentTypeChildNode										
 webgl2renderingcontext blitframebuffer	R	WebGL2RenderingContext.blitFramebuffer()										
@@ -6447,7 +6465,6 @@ onmousedown	R	GlobalEventHandlers.onmousedown
 global onmousedown	R	GlobalEventHandlers.onmousedown										
 onmousedown	R	GlobalEventHandlers.onmousedown										
 api web animations api	R	Web Animations API										
-web animations api	R	Web Animations API										
 api svgrect	R	SVGRect										
 global int16x8	R	SIMD.Int16x8										
 int16x8	R	SIMD.Int16x8										
@@ -6465,6 +6482,15 @@ ondragover	R	GlobalEventHandlers.ondragover
 math floor	R	Math.floor										
 floor	R	Math.floor										
 api svganimateelement	R	SVGAnimateElement										
+functions arrow functions syntax	R	Arrow functions										
+functions arrow functions example	R	Arrow functions										
+functions syntax	R	Arrow functions										
+functions example	R	Arrow functions										
+functions arrow functions	R	Arrow functions										
+arrow functions syntax	R	Arrow functions										
+arrow functions example	R	Arrow functions										
+arrow syntax	R	Arrow functions										
+arrow example	R	Arrow functions										
 canvasrenderingcontext2d fillstyle	R	CanvasRenderingContext2D.fillStyle										
 fillstyle	R	CanvasRenderingContext2D.fillStyle										
 datatransfer setdragimage	R	DataTransfer.setDragImage()										
@@ -6538,7 +6564,6 @@ global	R	RegExp.prototype.global
 webgl2renderingcontext bindbufferbase	R	WebGL2RenderingContext.bindBufferBase()										
 bindbufferbase	R	WebGL2RenderingContext.bindBufferBase()										
 api network information api	R	Network Information API										
-network information api	R	Network Information API										
 isTrusted	R	Event.isTrusted										
 event istrusted	R	Event.isTrusted										
 istrusted	R	Event.isTrusted										
@@ -6553,7 +6578,6 @@ menubar	R	Window.menubar
 window menubar	R	Window.menubar										
 menubar	R	Window.menubar										
 api fullscreen api	R	Fullscreen API										
-fullscreen api	R	Fullscreen API										
 domimplementation createdocument	R	DOMImplementation.createDocument()										
 createdocument	R	DOMImplementation.createDocument()										
 layerY	R	UIEvent.layerY										
@@ -6598,6 +6622,9 @@ responseurl	R	XMLHttpRequest.responseURL
 webgl2renderingcontext getuniformblockindex	R	WebGL2RenderingContext.getUniformBlockIndex()										
 getuniformblockindex	R	WebGL2RenderingContext.getUniformBlockIndex()										
 api beforeunloadevent	R	BeforeUnloadEvent										
+orientationZ	R	PannerNode.orientationZ										
+pannernode orientationz	R	PannerNode.orientationZ										
+orientationz	R	PannerNode.orientationZ										
 orientationX	R	PannerNode.orientationX										
 pannernode orientationx	R	PannerNode.orientationX										
 orientationx	R	PannerNode.orientationX										
@@ -6631,7 +6658,6 @@ api biquadfilternode	R	BiquadFilterNode
 global decodeuri	R	Global.decodeURI										
 decodeuri	R	Global.decodeURI										
 api mediarecorder api	R	MediaRecorder API										
-mediarecorder api	R	MediaRecorder API										
 xmlhttprequest getallresponseheaders	R	XMLHttpRequest.getAllResponseHeaders()										
 getallresponseheaders	R	XMLHttpRequest.getAllResponseHeaders()										
 date getutcdate	R	Date.prototype.getUTCDate										
@@ -6670,7 +6696,6 @@ api urlutilsreadonly	R	URLUtilsReadOnly
 webglrenderingcontext readpixels	R	WebGLRenderingContext.readPixels()										
 readpixels	R	WebGLRenderingContext.readPixels()										
 api pointer lock api	R	Pointer Lock API										
-pointer lock api	R	Pointer Lock API										
 regexp leftcontext	R	RegExp.leftContext ($`)										
 leftcontext	R	RegExp.leftContext ($`)										
 screen unlockorientation	R	Screen.unlockOrientation()										
@@ -6681,6 +6706,15 @@ address	R	BluetoothStatusChangedEvent.address
 bluetoothstatuschangedevent address	R	BluetoothStatusChangedEvent.address										
 address	R	BluetoothStatusChangedEvent.address										
 api rtciceserver	R	RTCIceServer										
+functions method definitions syntax	R	Method definitions										
+functions method definitions example	R	Method definitions										
+functions syntax	R	Method definitions										
+functions example	R	Method definitions										
+functions method definitions	R	Method definitions										
+method definitions syntax	R	Method definitions										
+method definitions example	R	Method definitions										
+method syntax	R	Method definitions										
+method example	R	Method definitions										
 toolbar	R	Window.toolbar										
 window toolbar	R	Window.toolbar										
 toolbar	R	Window.toolbar										
@@ -6689,7 +6723,6 @@ getNamedItem	R	NamedNodeMap.getNamedItem()
 namednodemap getnameditem	R	NamedNodeMap.getNamedItem()										
 getnameditem	R	NamedNodeMap.getNamedItem()										
 api webrtc api	R	WebRTC API										
-webrtc api	R	WebRTC API										
 canvasrenderingcontext2d clearhitregions	R	CanvasRenderingContext2D.clearHitRegions()										
 clearhitregions	R	CanvasRenderingContext2D.clearHitRegions()										
 global float64array	R	Float64Array										
@@ -6759,7 +6792,6 @@ readasbinarystring	R	FileReader.readAsBinaryString()
 range clonerange	R	Range.cloneRange()										
 clonerange	R	Range.cloneRange()										
 touch events using touch events	R	Using Touch Events										
-using touch events	R	Using Touch Events										
 api rtcdatachannel	R	RTCDataChannel										
 clients claim	R	Clients.claim()										
 claim	R	Clients.claim()										
@@ -6819,13 +6851,10 @@ initCustomEvent	R	CustomEvent.initCustomEvent()
 customevent initcustomevent	R	CustomEvent.initCustomEvent()										
 initcustomevent	R	CustomEvent.initCustomEvent()										
 tutorial basic animations	R	Basic animations										
-basic animations	R	Basic animations										
 xsltprocessor browser differences	R	Browser Differences										
-browser differences	R	Browser Differences										
 api animationeffecttimingproperties	R	Animation Effect Timing Properties										
 animationeffecttimingproperties	R	Animation Effect Timing Properties										
 geolocation using geolocation	R	Using geolocation										
-using geolocation	R	Using geolocation										
 webglrenderingcontext iscontextlost	R	WebGLRenderingContext.isContextLost()										
 iscontextlost	R	WebGLRenderingContext.isContextLost()										
 Q	R	BiquadFilterNode.Q										
@@ -6927,7 +6956,6 @@ cellSpacing	R	HTMLTableElement.cellSpacing
 htmltableelement cellspacing	R	HTMLTableElement.cellSpacing										
 cellspacing	R	HTMLTableElement.cellSpacing										
 api channel messaging api	R	Channel Messaging API										
-channel messaging api	R	Channel Messaging API										
 storage getitem	R	Storage.getItem()										
 getitem	R	Storage.getItem()										
 string trimleft	R	String.prototype.trimLeft()										
@@ -7038,7 +7066,6 @@ api dommatrixreadonly	R	DOMMatrixReadOnly
 inputdevicecapabilities firetouchevents	R	firesTouchEvents										
 firetouchevents	R	firesTouchEvents										
 pointer events using pointer events	R	Using Pointer Events										
-using pointer events	R	Using Pointer Events										
 audiocontext createmediastreamsource	R	AudioContext.createMediaStreamSource()										
 createmediastreamsource	R	AudioContext.createMediaStreamSource()										
 speechsynthesis speaking	R	SpeechSynthesis.speaking										
@@ -7049,11 +7076,8 @@ setprototypeof	R	Object.setPrototypeOf()
 document createcdatasection	R	Document.createCDATASection()										
 createcdatasection	R	Document.createCDATASection()										
 navigation timing api using navigation timing	R	Using Navigation Timing										
-using navigation timing	R	Using Navigation Timing										
 tutorial hit regions and accessibility	R	Hit regions and accessibility										
-hit regions and accessibility	R	Hit regions and accessibility										
 api payment request api	R	Payment Request API										
-payment request api	R	Payment Request API										
 idbkeyrange upperbound	R	IDBKeyRange.upperBound()										
 upperbound	R	IDBKeyRange.upperBound()										
 api web video text tracks format	R	WebVTT										
@@ -7061,15 +7085,12 @@ web video text tracks format	R	WebVTT
 notification renotify	R	Notification.renotify										
 renotify	R	Notification.renotify										
 api vibration api	R	Vibration API										
-vibration api	R	Vibration API										
 object   lookupsetter  	R	Object.prototype.__lookupSetter__()										
   lookupsetter  	R	Object.prototype.__lookupSetter__()										
 subtlecrypto exportkey	R	SubtleCrypto.exportKey()										
 exportkey	R	SubtleCrypto.exportKey()										
 document object model whitespace in the dom	R	Whitespace in the DOM										
-whitespace in the dom	R	Whitespace in the DOM										
 api canvas api	R	Canvas API										
-canvas api	R	Canvas API										
 scrollTo	R	Window.scrollTo()										
 window scrollto	R	Window.scrollTo()										
 scrollto	R	Window.scrollTo()										
@@ -7134,7 +7155,6 @@ knee	R	DynamicsCompressorNode.knee
 dynamicscompressornode knee	R	DynamicsCompressorNode.knee										
 knee	R	DynamicsCompressorNode.knee										
 api encoding api	R	Encoding API										
-encoding api	R	Encoding API										
 api paymentaddress	R	PaymentAddress										
 date getmonth	R	Date.prototype.getMonth										
 getmonth	R	Date.prototype.getMonth										
@@ -7145,7 +7165,6 @@ api processinginstruction	R	ProcessingInstruction
 errors property access denied	R	Error: Permission denied to access property "x"										
 property access denied	R	Error: Permission denied to access property "x"										
 api proximity events	R	Proximity Events										
-proximity events	R	Proximity Events										
 rtcpeerconnection createdatachannel	R	RTCPeerConnection.createDataChannel()										
 createdatachannel	R	RTCPeerConnection.createDataChannel()										
 api ext shader texture lod	R	EXT_shader_texture_lod										
@@ -7233,17 +7252,13 @@ installtrigger getversion	R	getVersion
 vrdisplay ispresenting	R	VRDisplay.isPresenting										
 ispresenting	R	VRDisplay.isPresenting										
 websockets api writing websocket client applications	R	Writing WebSocket client applications										
-writing websocket client applications	R	Writing WebSocket client applications										
 canvasrenderingcontext2d strokestyle	R	CanvasRenderingContext2D.strokeStyle										
 strokestyle	R	CanvasRenderingContext2D.strokeStyle										
-function caller	R	Function.caller										
-caller	R	Function.caller										
 api svgclippathelement	R	SVGClipPathElement										
 global atomics	R	Atomics										
 cssstylesheet deleterule	R	CSSStyleSheet.deleteRule()										
 deleterule	R	CSSStyleSheet.deleteRule()										
 websockets api websocket server vb.net	R	WebSocket Server Vb.NET										
-websocket server vb.net	R	WebSocket Server Vb.NET										
 object seal	R	Object.seal										
 seal	R	Object.seal										
 mediakeysystemconfiguration initdatatypes	R	initDataTypes										
@@ -7252,7 +7267,6 @@ element setpointercapture	R	Element.setPointerCapture()
 setpointercapture	R	Element.setPointerCapture()										
 api pushsubscription	R	PushSubscription										
 api media source extensions api	R	Media Source Extensions API										
-media source extensions api	R	Media Source Extensions API										
 string charat	R	String.prototype.charAt										
 charat	R	String.prototype.charAt										
 api oes vertex array object	R	OES_vertex_array_object										
@@ -7280,7 +7294,6 @@ rtcdatachannel bufferedamount	R	RTCDataChannel.bufferedAmount
 bufferedamount	R	RTCDataChannel.bufferedAmount										
 api svgpatternelement	R	SVGPatternElement										
 api push api	R	Push API										
-push api	R	Push API										
 selectNodeContents	R	Range.selectNodeContents()										
 range selectnodecontents	R	Range.selectNodeContents()										
 selectnodecontents	R	Range.selectNodeContents()										
@@ -7317,22 +7330,18 @@ speechsynthesisevent utterance	R	SpeechSynthesisEvent.utterance
 utterance	R	SpeechSynthesisEvent.utterance										
 cssvalue cssvaluetype	R	CSSValue.cssValueType										
 cssvaluetype	R	CSSValue.cssValueType										
-webrtc api overview	R	WebRTC API overview										
 overview	R	WebRTC API overview										
 onunhandledrejection	R	WindowEventHandlers.onunhandledrejection										
 windoweventhandlers onunhandledrejection	R	WindowEventHandlers.onunhandledrejection										
 onunhandledrejection	R	WindowEventHandlers.onunhandledrejection										
 api css object model	R	CSS Object Model										
-css object model	R	CSS Object Model										
 rtcpeerconnection defaulticeservers	R	RTCPeerConnection.defaultIceServers										
 defaulticeservers	R	RTCPeerConnection.defaultIceServers										
 api batterymanager	R	BatteryManager										
 url createobjecturl	R	URL.createObjectURL()										
 createobjecturl	R	URL.createObjectURL()										
 api fetch api	R	Fetch API										
-fetch api	R	Fetch API										
 tutorial getting started with webgl	R	Getting started with WebGL										
-getting started with webgl	R	Getting started with WebGL										
 api idbobjectstoresync	R	IDBObjectStoreSync										
 date getseconds	R	Date.prototype.getSeconds										
 getseconds	R	Date.prototype.getSeconds										
@@ -7358,7 +7367,6 @@ onmouseout	R	GlobalEventHandlers.onmouseout
 global onmouseout	R	GlobalEventHandlers.onmouseout										
 onmouseout	R	GlobalEventHandlers.onmouseout										
 webvr api webvr environment setup	R	WebVR environment setup										
-webvr environment setup	R	WebVR environment setup										
 api bluetoothadvertisingdata	R	BluetoothAdvertisingData										
 performanceobserver observe	R	PerformanceObserver.observe()										
 observe	R	PerformanceObserver.observe()										
@@ -7383,9 +7391,7 @@ regexp compile	R	RegExp.prototype.compile()
 compile	R	RegExp.prototype.compile()										
 api webglbuffer	R	WebGLBuffer										
 push api using the push api	R	Using the Push API										
-using the push api	R	Using the Push API										
 api web speech api	R	Web Speech API										
-web speech api	R	Web Speech API										
 range endcontainer	R	Range.endContainer										
 endcontainer	R	Range.endContainer										
 regexp lastmatch	R	RegExp.lastMatch ($&)										
@@ -7393,7 +7399,6 @@ lastmatch	R	RegExp.lastMatch ($&)
 document documenturiobject	R	Document.documentURIObject										
 documenturiobject	R	Document.documentURIObject										
 api web audio api	R	Web Audio API										
-web audio api	R	Web Audio API										
 forceSpellCheck	R	HTMLElement.forceSpellCheck()										
 htmlelement forcespellcheck	R	HTMLElement.forceSpellCheck()										
 forcespellcheck	R	HTMLElement.forceSpellCheck()										
@@ -7406,8 +7411,16 @@ movementY	R	MouseEvent.movementY
 mouseevent movementy	R	MouseEvent.movementY										
 movementy	R	MouseEvent.movementY										
 api l10n.formatvalue	R	L10n.formatValue										
+functions rest parameters syntax	R	Rest parameters										
+functions rest parameters example	R	Rest parameters										
+functions syntax	R	Rest parameters										
+functions example	R	Rest parameters										
+functions rest parameters	R	Rest parameters										
+rest parameters syntax	R	Rest parameters										
+rest parameters example	R	Rest parameters										
+rest syntax	R	Rest parameters										
+rest example	R	Rest parameters										
 tutorial animating textures in webgl	R	Animating textures in WebGL										
-animating textures in webgl	R	Animating textures in WebGL										
 onloadstart	R	XMLHttpRequestEventTarget.onloadstart										
 xmlhttprequesteventtarget onloadstart	R	XMLHttpRequestEventTarget.onloadstart										
 onloadstart	R	XMLHttpRequestEventTarget.onloadstart										
@@ -7429,8 +7442,6 @@ stageparameters	R	VRDisplay.stageParameters
 object proto	R	Object.prototype.__proto__										
 proto	R	Object.prototype.__proto__										
 api svgstyleelement	R	SVGStyleElement										
-function arguments	R	Function.arguments										
-arguments	R	Function.arguments										
 ongotpointercapture	R	Element.ongotpointercapture										
 element ongotpointercapture	R	Element.ongotpointercapture										
 ongotpointercapture	R	Element.ongotpointercapture										
@@ -7490,7 +7501,6 @@ onselectstart	R	GlobalEventHandlers.onselectstart
 errors undefined prop	R	ReferenceError: reference to undefined property "x"										
 undefined prop	R	ReferenceError: reference to undefined property "x"										
 tutorial animating objects with webgl	R	Animating objects with WebGL										
-animating objects with webgl	R	Animating objects with WebGL										
 canvasrenderingcontext2d quadraticcurveto	R	CanvasRenderingContext2D.quadraticCurveTo()										
 quadraticcurveto	R	CanvasRenderingContext2D.quadraticCurveTo()										
 api nodelist	R	NodeList										
@@ -7549,7 +7559,6 @@ isContentEditable	R	HTMLElement.isContentEditable
 htmlelement iscontenteditable	R	HTMLElement.isContentEditable										
 iscontenteditable	R	HTMLElement.isContentEditable										
 api credential management api	R	Credential Management API										
-credential management api	R	Credential Management API										
 rules	R	HTMLTableElement.rules										
 htmltableelement rules	R	HTMLTableElement.rules										
 rules	R	HTMLTableElement.rules										
@@ -7621,8 +7630,6 @@ dirxml	R	Console.dirxml()
 disableRemotePlayback	R	HTMLMediaElement.disableRemotePlayback										
 htmlmediaelement disableremoteplayback	R	HTMLMediaElement.disableRemotePlayback										
 disableremoteplayback	R	HTMLMediaElement.disableRemotePlayback										
-rtcpeerconnection addtrack	R	RTCPeerConnection.addTrack()										
-addtrack	R	RTCPeerConnection.addTrack()										
 federatedcredential provider	R	provider										
 originalTarget	R	Event.originalTarget										
 event originaltarget	R	Event.originalTarget										
@@ -7636,13 +7643,10 @@ getActive	R	HTMLIFrameElement.getActive()
 htmliframeelement getactive	R	HTMLIFrameElement.getActive()										
 getactive	R	HTMLIFrameElement.getActive()										
 xmlhttprequest using xmlhttprequest in ie6	R	Using XMLHttpRequest in IE6										
-using xmlhttprequest in ie6	R	Using XMLHttpRequest in IE6										
 createShadowRoot	R	Element.createShadowRoot()										
 element createshadowroot	R	Element.createShadowRoot()										
 createshadowroot	R	Element.createShadowRoot()										
 global regexp	R	RegExp										
-speechgrammar src	R	SpeechGrammar.src										
-src	R	SpeechGrammar.src										
 response ok	R	Response.ok										
 ok	R	Response.ok										
 executeScript	R	HTMLIFrameElement.executeScript()										
@@ -7651,7 +7655,6 @@ executescript	R	HTMLIFrameElement.executeScript()
 performance clearmeasures	R	Performance.clearMeasures()										
 clearmeasures	R	Performance.clearMeasures()										
 document object model how to create a dom tree	R	How to create a DOM tree										
-how to create a dom tree	R	How to create a DOM tree										
 date gettimezoneoffset	R	Date.prototype.getTimezoneOffset										
 gettimezoneoffset	R	Date.prototype.getTimezoneOffset										
 getByteFrequencyData	R	AnalyserNode.getByteFrequencyData()										
@@ -7686,7 +7689,6 @@ performance mark	R	Performance.mark()
 mark	R	Performance.mark()										
 api webglprogram	R	WebGLProgram										
 api permissions api	R	Permissions API										
-permissions api	R	Permissions API										
 api htmltablesectionelement	R	HTMLTableSectionElement										
 channelCount	R	AudioNode.channelCount										
 audionode channelcount	R	AudioNode.channelCount										
@@ -7813,7 +7815,6 @@ webglrenderingcontext drawingbufferwidth	R	WebGLRenderingContext.drawingBufferWi
 drawingbufferwidth	R	WebGLRenderingContext.drawingBufferWidth										
 bluetoothadvertisingdata manufacturerdata	R	manufacturerData										
 api page visibility api	R	Page Visibility API										
-page visibility api	R	Page Visibility API										
 document elementfrompoint	R	Document.elementFromPoint()										
 elementfrompoint	R	Document.elementFromPoint()										
 api subtlecrypto	R	SubtleCrypto										
@@ -7875,6 +7876,8 @@ mediakeysession keystatuses	R	keyStatuses
 firstElementChild	R	ParentNode.firstElementChild										
 parentnode firstelementchild	R	ParentNode.firstElementChild										
 firstelementchild	R	ParentNode.firstElementChild										
+mediastream onremovetrack	R	MediaStream.onremovetrack										
+onremovetrack	R	MediaStream.onremovetrack										
 webgl2renderingcontext createvertexarray	R	WebGL2RenderingContext.createVertexArray()										
 createvertexarray	R	WebGL2RenderingContext.createVertexArray()										
 date getday	R	Date.prototype.getDay										
@@ -7915,7 +7918,6 @@ droppedvideoframes	R	VideoPlaybackQuality.droppedVideoFrames
 object isextensible	R	Object.isExtensible										
 isextensible	R	Object.isExtensible										
 web speech api using the web speech api	R	Using the Web Speech API										
-using the web speech api	R	Using the Web Speech API										
 canvasrenderingcontext2d currenttransform	R	CanvasRenderingContext2D.currentTransform										
 currenttransform	R	CanvasRenderingContext2D.currentTransform										
 api audionode	R	AudioNode										
@@ -7940,7 +7942,6 @@ uuids	R	BluetoothDevice.uuids
 math trunc	R	Math.trunc()										
 trunc	R	Math.trunc()										
 document object model traversing an html table with javascript and dom interfaces	R	Traversing an HTML table with JavaScript and DOM Interfaces										
-traversing an html table with javascript and dom interfaces	R	Traversing an HTML table with JavaScript and DOM Interfaces										
 webglrenderingcontext pixelstorei	R	WebGLRenderingContext.pixelStorei()										
 pixelstorei	R	WebGLRenderingContext.pixelStorei()										
 api svgcursorelement	R	SVGCursorElement										
@@ -7988,7 +7989,6 @@ rollofffactor	R	PannerNode.rolloffFactor
 canvasrenderingcontext2d textalign	R	CanvasRenderingContext2D.textAlign										
 textalign	R	CanvasRenderingContext2D.textAlign										
 devicelightevent using light sensors	R	Using light sensors										
-using light sensors	R	Using light sensors										
 vrdisplay resetpose	R	VRDevice.resetPose()										
 resetpose	R	VRDevice.resetPose()										
 scrollBy	R	Window.scrollBy()										
@@ -8028,11 +8028,8 @@ oncopy	R	HTMLElement.oncopy
 htmlelement oncopy	R	HTMLElement.oncopy										
 oncopy	R	HTMLElement.oncopy										
 service worker api using service workers	R	Using Service Workers										
-using service workers	R	Using Service Workers										
 tutorial creating 3d objects using webgl	R	Creating 3D objects using WebGL										
-creating 3d objects using webgl	R	Creating 3D objects using WebGL										
 api resource timing api	R	Resource Timing API										
-resource timing api	R	Resource Timing API										
 api svganimatedrect	R	SVGAnimatedRect										
 webgl2renderingcontext fencesync	R	WebGL2RenderingContext.fenceSync()										
 fencesync	R	WebGL2RenderingContext.fenceSync()										
@@ -8065,6 +8062,7 @@ webglrenderingcontext disable	R	WebGLRenderingContext.disable()
 disable	R	WebGLRenderingContext.disable()										
 errors missing parenthesis after argument list	R	SyntaxError: missing ) after argument list										
 missing parenthesis after argument list	R	SyntaxError: missing ) after argument list										
+api bluetoothcharacteristicproperties	R	BluetoothCharacteristicProperties										
 api speechsynthesisevent	R	SpeechSynthesisEvent										
 object preventextensions	R	Object.preventExtensions										
 preventextensions	R	Object.preventExtensions										
@@ -8105,7 +8103,6 @@ mozGetAsFile	R	HTMLCanvasElement.mozGetAsFile()
 htmlcanvaselement mozgetasfile	R	HTMLCanvasElement.mozGetAsFile()										
 mozgetasfile	R	HTMLCanvasElement.mozGetAsFile()										
 api ambient light events	R	Ambient Light Events										
-ambient light events	R	Ambient Light Events										
 api svgtextpositioningelement	R	SVGTextPositioningElement										
 api midiinput	R	MIDIInput										
 insertCell	R	HTMLTableRowElement.insertCell()										
@@ -8115,6 +8112,9 @@ api rtcicecandidate	R	RTCIceCandidate
 api windowtimers	R	WindowTimers										
 array of	R	Array.of()										
 of	R	Array.of()										
+orientationY	R	PannerNode.orientationY										
+pannernode orientationy	R	PannerNode.orientationY										
+orientationy	R	PannerNode.orientationY										
 messagechannel port2	R	MessageChannel.port2										
 port2	R	MessageChannel.port2										
 isChar	R	UIEvent.isChar										
@@ -8176,7 +8176,6 @@ node nodename	R	Node.nodeName
 nodename	R	Node.nodeName										
 api domstring	R	DOMString										
 formdata using formdata objects	R	Using FormData Objects										
-using formdata objects	R	Using FormData Objects										
 global float64x2	R	SIMD.Float64x2										
 float64x2	R	SIMD.Float64x2										
 webgl2renderingcontext compressedtexsubimage3d	R	WebGL2RenderingContext.compressedTexSubImage3D()										
@@ -8313,7 +8312,6 @@ vrfieldofview leftdegrees	R	VRFieldOfView.leftDegrees
 leftdegrees	R	VRFieldOfView.leftDegrees										
 api audiobuffersourcenode	R	AudioBufferSourceNode										
 websockets api writing websocket servers	R	Writing WebSocket servers										
-writing websocket servers	R	Writing WebSocket servers										
 scrollLeft	R	Element.scrollLeft										
 element scrollleft	R	Element.scrollLeft										
 scrollleft	R	Element.scrollLeft										
@@ -8322,7 +8320,6 @@ missing semicolon before statement	R	SyntaxError: missing ; before statement
 pushmanager permissionstate	R	PushManager.permissionState()										
 permissionstate	R	PushManager.permissionState()										
 tutorial lighting in webgl	R	Lighting in WebGL										
-lighting in webgl	R	Lighting in WebGL										
 getGamepads	R	Navigator.getGamepads()										
 navigator getgamepads	R	Navigator.getGamepads()										
 getgamepads	R	Navigator.getGamepads()										
@@ -8341,9 +8338,7 @@ glyphRef	R	SVGAltGlyphElement.glyphRef
 svgaltglyphelement glyphref	R	SVGAltGlyphElement.glyphRef										
 glyphref	R	SVGAltGlyphElement.glyphRef										
 webrtc api webrtc basics	R	WebRTC basics										
-webrtc basics	R	WebRTC basics										
 webgl api matrix math for the web	R	Matrix math for the web										
-matrix math for the web	R	Matrix math for the web										
 initCloseEvent	R	CloseEvent.initCloseEvent()										
 closeevent initcloseevent	R	CloseEvent.initCloseEvent()										
 initcloseevent	R	CloseEvent.initCloseEvent()										
@@ -8356,7 +8351,6 @@ createTextNode	R	Document.createTextNode()
 document createtextnode	R	Document.createTextNode()										
 createtextnode	R	Document.createTextNode()										
 user timing api using the user timing api	R	Using the User Timing API										
-using the user timing api	R	Using the User Timing API										
 api svgstopelement	R	SVGStopElement										
 personalbar	R	Window.personalbar										
 window personalbar	R	Window.personalbar										
@@ -8389,11 +8383,8 @@ webgl2renderingcontext createquery	R	WebGL2RenderingContext.createQuery()
 createquery	R	WebGL2RenderingContext.createQuery()										
 api svgscriptelement	R	SVGScriptElement										
 css object model managing screen orientation	R	Managing screen orientation										
-managing screen orientation	R	Managing screen orientation										
 server-sent events using server-sent events	R	Using server-sent events										
-using server-sent events	R	Using server-sent events										
 api intersection observer api	R	Intersection Observer API										
-intersection observer api	R	Intersection Observer API										
 assertion	R	RTCIdentityEvent.assertion										
 rtcidentityevent assertion	R	RTCIdentityEvent.assertion										
 assertion	R	RTCIdentityEvent.assertion										
@@ -8424,7 +8415,6 @@ isvertexarray	R	WebGL2RenderingContext.isVertexArray()
 global importscripts	R	WorkerGlobalScope.importScripts()										
 importscripts	R	WorkerGlobalScope.importScripts()										
 indexeddb api browser storage limits and eviction criteria	R	Browser storage limits and eviction criteria										
-browser storage limits and eviction criteria	R	Browser storage limits and eviction criteria										
 date setdate	R	Date.prototype.setDate										
 setdate	R	Date.prototype.setDate										
 statusMessage	R	WebGLContextEvent.statusMessage										
@@ -8461,7 +8451,6 @@ api permissionstatus	R	PermissionStatus
 object   definegetter  	R	Object.prototype.__defineGetter__()										
   definegetter  	R	Object.prototype.__defineGetter__()										
 api inputdevicecapabilities api	R	InputDeviceCapabilities API										
-inputdevicecapabilities api	R	InputDeviceCapabilities API										
 range comparepoint	R	Range.comparePoint										
 comparepoint	R	Range.comparePoint										
 json stringify	R	JSON.stringify										
@@ -8472,14 +8461,12 @@ sessionstorage	R	Window.sessionStorage
 number negative infinity	R	Number.NEGATIVE_INFINITY										
 negative infinity	R	Number.NEGATIVE_INFINITY										
 web workers api using web workers	R	Using Web Workers										
-using web workers	R	Using Web Workers										
 filereader readasdataurl	R	FileReader.readAsDataURL()										
 readasdataurl	R	FileReader.readAsDataURL()										
 api htmloutputelement	R	HTMLOutputElement										
 imagebitmaprenderingcontext transferimagebitmap	R	ImageBitmapRenderingContext.transferImageBitmap()										
 transferimagebitmap	R	ImageBitmapRenderingContext.transferImageBitmap()										
 permissions api using the permissions api	R	Using the Permissions API										
-using the permissions api	R	Using the Permissions API										
 api animationeffecttiming	R	AnimationEffectTiming										
 webglrenderingcontext activetexture	R	WebGLRenderingContext.activeTexture()										
 activetexture	R	WebGLRenderingContext.activeTexture()										
@@ -8494,13 +8481,11 @@ api bluetoothgattdescriptor	R	BluetoothGATTDescriptor
 canvasrenderingcontext2d strokerect	R	CanvasRenderingContext2D.strokeRect()										
 strokerect	R	CanvasRenderingContext2D.strokeRect()										
 api service worker api	R	Service Worker API										
-service worker api	R	Service Worker API										
 document laststylesheetset	R	Document.lastStyleSheetSet										
 laststylesheetset	R	Document.lastStyleSheetSet										
 api svganimatedpreserveaspectratio	R	SVGAnimatedPreserveAspectRatio										
 api htmltablerowelement	R	HTMLTableRowElement										
 tutorial applying styles and colors	R	Applying styles and colors										
-applying styles and colors	R	Applying styles and colors										
 api mediakeystatusmap	R	MediaKeyStatusMap										
 audiocontext creategain	R	AudioContext.createGain()										
 creategain	R	AudioContext.createGain()										
@@ -8527,6 +8512,8 @@ window messagemanager	R	Window.messageManager
 messagemanager	R	Window.messageManager										
 speechsynthesisvoice localservice	R	SpeechSynthesisVoice.localService										
 localservice	R	SpeechSynthesisVoice.localService										
+errors for-each-in loops are deprecated	R	Warning: JavaScript 1.6's for-each-in loops are deprecated										
+for-each-in loops are deprecated	R	Warning: JavaScript 1.6's for-each-in loops are deprecated										
 api performancemeasure	R	PerformanceMeasure										
 removeAttributeNode	R	Element.removeAttributeNode()										
 element removeattributenode	R	Element.removeAttributeNode()										
@@ -8537,7 +8524,6 @@ isautolocale	R	IDBIndex.isAutoLocale
 object create	R	Object.create										
 create	R	Object.create										
 beacon api using the beacon api	R	Using the Beacon API										
-using the beacon api	R	Using the Beacon API										
 reduction	R	DynamicsCompressorNode.reduction										
 dynamicscompressornode reduction	R	DynamicsCompressorNode.reduction										
 reduction	R	DynamicsCompressorNode.reduction										
@@ -8600,7 +8586,6 @@ global globaleventhandlers.oninvalid	R	GlobalEventHandlers.oninvalid
 api gamepadbutton	R	GamepadButton										
 api midiconnectionevent	R	MIDIConnectionEvent										
 web audio api web audio spatialization basics	R	Web audio spatialization basics										
-web audio spatialization basics	R	Web audio spatialization basics										
 api mediaelementaudiosourcenode	R	MediaElementAudioSourceNode										
 fireEvent	R	EventTarget.fireEvent()										
 eventtarget fireevent	R	EventTarget.fireEvent()										
@@ -8626,10 +8611,18 @@ stack	R	Error.prototype.stack
 isEqualNode	R	Node.isEqualNode()										
 node isequalnode	R	Node.isEqualNode()										
 isequalnode	R	Node.isEqualNode()										
+functions default parameters syntax	R	Default parameters										
+functions default parameters example	R	Default parameters										
+functions syntax	R	Default parameters										
+functions example	R	Default parameters										
+functions default parameters	R	Default parameters										
+default parameters syntax	R	Default parameters										
+default parameters example	R	Default parameters										
+default syntax	R	Default parameters										
+default example	R	Default parameters										
 idbkeyrange lower	R	IDBKeyRange.lower										
 lower	R	IDBKeyRange.lower										
 document object model locating dom elements using selectors	R	Locating DOM elements using selectors										
-locating dom elements using selectors	R	Locating DOM elements using selectors										
 document hasfocus	R	Document.hasFocus()										
 hasfocus	R	Document.hasFocus()										
 array copywithin	R	Array.prototype.copyWithin()										
@@ -8644,14 +8637,12 @@ flags	R	RegExp.prototype.flags
 global uint16array	R	Uint16Array										
 api entry	R	Entry										
 css object model using dynamic styling information	R	Using dynamic styling information										
-using dynamic styling information	R	Using dynamic styling information										
 syncmanager gettags	R	SyncManager.getTags()										
 gettags	R	SyncManager.getTags()										
 getManifest	R	HTMLIFrameElement.getManifest()										
 htmliframeelement getmanifest	R	HTMLIFrameElement.getManifest()										
 getmanifest	R	HTMLIFrameElement.getManifest()										
 xsltprocessor generating html	R	Generating HTML										
-generating html	R	Generating HTML										
 idbtransaction db	R	IDBTransaction.db										
 db	R	IDBTransaction.db										
 api cssprimitivevalue	R	CSSPrimitiveValue										
@@ -8690,12 +8681,9 @@ document evaluate	R	Document.evaluate()
 evaluate	R	Document.evaluate()										
 api webglshaderprecisionformat	R	WebGLShaderPrecisionFormat										
 indexeddb api using indexeddb in chrome	R	Using IndexedDB in chrome										
-using indexeddb in chrome	R	Using IndexedDB in chrome										
 api cssmatrix	R	CSSMatrix										
 indexeddb api using indexeddb	R	Using IndexedDB										
-using indexeddb	R	Using IndexedDB										
 api websocket api	R	WebSocket API										
-websocket api	R	WebSocket API										
 webgl2renderingcontext gettransformfeedbackvarying	R	WebGL2RenderingContext.getTransformFeedbackVarying()										
 gettransformfeedbackvarying	R	WebGL2RenderingContext.getTransformFeedbackVarying()										
 rtcpeerconnection getremotestreams	R	RTCPeerConnection.getRemoteStreams()										
@@ -8721,11 +8709,9 @@ getDefaultComputedStyle	R	Window.getDefaultComputedStyle()
 window getdefaultcomputedstyle	R	Window.getDefaultComputedStyle()										
 getdefaultcomputedstyle	R	Window.getDefaultComputedStyle()										
 canvas api manipulating video using canvas	R	Manipulating video using canvas										
-manipulating video using canvas	R	Manipulating video using canvas										
 array some	R	Array.prototype.some										
 some	R	Array.prototype.some										
 fetch api using fetch	R	Using Fetch										
-using fetch	R	Using Fetch										
 svganimatedstring baseval	R	SVGAnimatedString.baseVal										
 baseval	R	SVGAnimatedString.baseVal										
 document object model examples	R	Examples of web and XML development using the DOM										
@@ -8737,7 +8723,6 @@ pageXOffset	R	Window.pageXOffset
 window pagexoffset	R	Window.pageXOffset										
 pagexoffset	R	Window.pageXOffset										
 tutorial optimizing canvas	R	Optimizing canvas										
-optimizing canvas	R	Optimizing canvas										
 selectAllChildren	R	Selection.selectAllChildren()										
 selection selectallchildren	R	Selection.selectAllChildren()										
 selectallchildren	R	Selection.selectAllChildren()										
@@ -8763,7 +8748,6 @@ api svgaelement	R	SVGAElement
 performanceresourcetiming initiatortype	R	PerformanceResourceTiming.initiatorType										
 initiatortype	R	PerformanceResourceTiming.initiatorType										
 api gamepad api	R	Gamepad API										
-gamepad api	R	Gamepad API										
 webglrenderingcontext frontface	R	WebGLRenderingContext.frontFace()										
 frontface	R	WebGLRenderingContext.frontFace()										
 webgl2renderingcontext drawbuffers	R	WebGL2RenderingContext.drawBuffers()										
@@ -8782,7 +8766,6 @@ api idbdatabaseexception	R	IDBDatabaseException
 api htmldataelement	R	HTMLDataElement										
 api webgl compressed texture atc	R	WEBGL_compressed_texture_atc										
 xmlhttprequest using xmlhttprequest	R	Using XMLHttpRequest										
-using xmlhttprequest	R	Using XMLHttpRequest										
 keyCode	R	KeyboardEvent.keyCode										
 keyboardevent keycode	R	KeyboardEvent.keyCode										
 keycode	R	KeyboardEvent.keyCode										
@@ -8900,6 +8883,8 @@ createlineargradient	R	CanvasRenderingContext2D.createLinearGradient()
 api paymentresponse	R	PaymentResponse										
 rtcpeerconnection cantrickleicecandidates	R	RTCPeerConnection.canTrickleIceCandidates										
 cantrickleicecandidates	R	RTCPeerConnection.canTrickleIceCandidates										
+arguments callee	R	arguments.callee										
+callee	R	arguments.callee										
 errors missing bracket after list	R	SyntaxError: missing ] after element list										
 missing bracket after list	R	SyntaxError: missing ] after element list										
 api cdatasection	R	CDATASection										
@@ -8921,7 +8906,6 @@ api media streams api	R	MediaStream API
 media streams api	R	MediaStream API										
 api htmllielement	R	HTMLLIElement										
 tutorial advanced animations	R	Advanced animations										
-advanced animations	R	Advanced animations										
 sourcebuffer timestampoffset	R	SourceBuffer.timestampOffset										
 timestampoffset	R	SourceBuffer.timestampOffset										
 api l10n.language.code	R	L10n.language.code										
@@ -8929,12 +8913,10 @@ api localfilesystem	R	LocalFileSystem
 performanceentry entrytype	R	PerformanceEntry.entryType										
 entrytype	R	PerformanceEntry.entryType										
 api navigation timing api	R	Navigation Timing API										
-navigation timing api	R	Navigation Timing API										
 elements	R	HTMLFormElement.elements										
 htmlformelement elements	R	HTMLFormElement.elements										
 elements	R	HTMLFormElement.elements										
 api presentation api	R	Presentation API										
-presentation api	R	Presentation API										
 clientLeft	R	Element.clientLeft										
 element clientleft	R	Element.clientLeft										
 clientleft	R	Element.clientLeft										
@@ -8948,12 +8930,10 @@ findNext	R	HTMLIFrameElement.findNext()
 htmliframeelement findnext	R	HTMLIFrameElement.findNext()										
 findnext	R	HTMLIFrameElement.findNext()										
 tutorial using shaders to apply color in webgl	R	Using shaders to apply color in WebGL										
-using shaders to apply color in webgl	R	Using shaders to apply color in WebGL										
 identitymanager getverifiedemail	R	IdentityManager.getVerifiedEmail()										
 getverifiedemail	R	IdentityManager.getVerifiedEmail()										
 global globaleventhandlers.onpause	R	GlobalEventHandlers.onpause										
 canvas api drawing dom objects into a canvas	R	Drawing DOM objects into a canvas										
-drawing dom objects into a canvas	R	Drawing DOM objects into a canvas										
 collapseToStart	R	Selection.collapseToStart()										
 selection collapsetostart	R	Selection.collapseToStart()										
 collapsetostart	R	Selection.collapseToStart()										
@@ -9031,10 +9011,18 @@ api bluetoothgattservice	R	BluetoothGATTService
 console profileend	R	Console.profileEnd()										
 profileend	R	Console.profileEnd()										
 api server-sent events	R	Server-sent events										
-server-sent events	R	Server-sent events										
 api svganimatedboolean	R	SVGAnimatedBoolean										
+positionZ	R	PannerNode.positionZ										
+pannernode positionz	R	PannerNode.positionZ										
+positionz	R	PannerNode.positionZ										
 videoplaybackquality totalvideoframes	R	VideoPlaybackQuality.totalVideoFrames										
 totalvideoframes	R	VideoPlaybackQuality.totalVideoFrames										
+positionX	R	PannerNode.positionX										
+pannernode positionx	R	PannerNode.positionX										
+positionx	R	PannerNode.positionX										
+positionY	R	PannerNode.positionY										
+pannernode positiony	R	PannerNode.positionY										
+positiony	R	PannerNode.positionY										
 contentEditable	R	HTMLElement.contentEditable										
 htmlelement contenteditable	R	HTMLElement.contentEditable										
 contenteditable	R	HTMLElement.contentEditable										
@@ -9057,7 +9045,6 @@ scrollingElement	R	Document.scrollingElement
 document scrollingelement	R	Document.scrollingElement										
 scrollingelement	R	Document.scrollingElement										
 xmlhttprequest html in xmlhttprequest	R	HTML in XMLHttpRequest										
-html in xmlhttprequest	R	HTML in XMLHttpRequest										
 webgl2renderingcontext renderbufferstoragemultisample	R	WebGL2RenderingContext.renderbufferStorageMultisample()										
 renderbufferstoragemultisample	R	WebGL2RenderingContext.renderbufferStorageMultisample()										
 api webglvertexarrayobjectoes	R	WebGLVertexArrayObjectOES										
@@ -9197,8 +9184,9 @@ global fetch	R	GlobalFetch.fetch()
 fetch	R	GlobalFetch.fetch()										
 regexp lastparen	R	RegExp.lastParen ($+)										
 lastparen	R	RegExp.lastParen ($+)										
-api mediastream.addtrack	R	MediaStream.addTrack()										
-mediastream.addtrack	R	MediaStream.addTrack()										
+control	R	HTMLLabelElement.control										
+htmllabelelement control	R	HTMLLabelElement.control										
+control	R	HTMLLabelElement.control										
 error columnnumber	R	Error.prototype.columnNumber										
 columnnumber	R	Error.prototype.columnNumber										
 document links	R	Document.links										
@@ -9222,7 +9210,6 @@ audiocontext createperiodicwave	R	AudioContext.createPeriodicWave()
 createperiodicwave	R	AudioContext.createPeriodicWave()										
 api xpathresult	R	XPathResult										
 api performance api	R	Performance API										
-performance api	R	Performance API										
 math sin	R	Math.sin										
 sin	R	Math.sin										
 web audio api using web audio api	R	Using the Web Audio API										
@@ -9266,7 +9253,6 @@ api element	R	Element
 vrdisplaycapabilities canpresent	R	VRDisplayCapabilities.canPresent										
 canpresent	R	VRDisplayCapabilities.canPresent										
 api web crypto api	R	Web Crypto API										
-web crypto api	R	Web Crypto API										
 childNodes	R	Node.childNodes										
 node childnodes	R	Node.childNodes										
 childnodes	R	Node.childNodes										
@@ -9310,15 +9296,12 @@ errors missing curly after property list	R	SyntaxError: missing } after property
 missing curly after property list	R	SyntaxError: missing } after property list										
 id cebutaxidriver	R	cebutaxidriver										
 api microdata dom api	R	Microdata DOM API										
-microdata dom api	R	Microdata DOM API										
 audioparam defaultvalue	R	AudioParam.defaultValue										
 defaultvalue	R	AudioParam.defaultValue										
 math sqrt2	R	Math.SQRT2										
 sqrt2	R	Math.SQRT2										
 api user timing api	R	User Timing API										
-user timing api	R	User Timing API										
 web audio api basic concepts behind web audio api	R	Basic concepts behind Web Audio API										
-basic concepts behind web audio api	R	Basic concepts behind Web Audio API										
 audioparam setvaluecurveattime	R	AudioParam.setValueCurveAtTime()										
 setvaluecurveattime	R	AudioParam.setValueCurveAtTime()										
 webgl2renderingcontext getquery	R	WebGL2RenderingContext.getQuery()										
@@ -9336,7 +9319,6 @@ api domtimestamp	R	DOMTimeStamp
 touch identifier	R	Touch.identifier										
 identifier	R	Touch.identifier										
 pointer events pinch zoom gestures	R	Pinch zoom gestures										
-pinch zoom gestures	R	Pinch zoom gestures										
 pageYOffset	R	Window.pageYOffset										
 window pageyoffset	R	Window.pageYOffset										
 pageyoffset	R	Window.pageYOffset										
@@ -9347,7 +9329,6 @@ keyframeeffect setkeyframes	R	KeyframeEffect.setKeyframes()
 setkeyframes	R	KeyframeEffect.setKeyframes()										
 api bluetooth	R	Bluetooth										
 api file system api	R	File System API										
-file system api	R	File System API										
 webgl2renderingcontext getbuffersubdata	R	WebGL2RenderingContext.getBufferSubData()										
 getbuffersubdata	R	WebGL2RenderingContext.getBufferSubData()										
 mediaGroup	R	HTMLMediaElement.mediaGroup										
@@ -9364,7 +9345,6 @@ paymentrequest onshippingoptionchange	R	onshippingoptionchange
 screen availwidth	R	Screen.availWidth										
 availwidth	R	Screen.availWidth										
 indexeddb api using javascript generators in firefox	R	Using JavaScript Generators in Firefox										
-using javascript generators in firefox	R	Using JavaScript Generators in Firefox										
 math fround	R	Math.fround()										
 fround	R	Math.fround()										
 ext disjoint timer query endqueryext	R	EXT_disjoint_timer_query.endQueryEXT()										
@@ -9379,9 +9359,8 @@ global math	R	Math
 api webgl color buffer float	R	WEBGL_color_buffer_float										
 api eventlistener	R	EventListener										
 api animationeffecttimingreadonly	R	AnimationEffectTimingReadOnly										
-control	R	HTMLLabelElement.control										
-htmllabelelement control	R	HTMLLabelElement.control										
-control	R	HTMLLabelElement.control										
+document createtreewalker	R	Document.createTreeWalker()										
+createtreewalker	R	Document.createTreeWalker()										
 api speechsynthesiserrorevent	R	SpeechSynthesisErrorEvent										
 api oscillatornode	R	OscillatorNode										
 initialTime	R	HTMLMediaElement.initialTime										
@@ -9392,7 +9371,6 @@ unescape	R	Global.unescape
 rtcpeerconnection setidentityprovider	R	RTCPeerConnection.setIdentityProvider()										
 setidentityprovider	R	RTCPeerConnection.setIdentityProvider()										
 api notifications api	R	Notifications API										
-notifications api	R	Notifications API										
 api transferable	R	Transferable										
 getComputedStyle	R	Window.getComputedStyle()										
 window getcomputedstyle	R	Window.getComputedStyle()										
@@ -9453,7 +9431,6 @@ sourcebuffer updating	R	SourceBuffer.updating
 updating	R	SourceBuffer.updating										
 api webglvertexarrayobject	R	WebGLVertexArrayObject										
 tutorial drawing text	R	Drawing text										
-drawing text	R	Drawing text										
 notification onshow	R	Notification.onshow										
 onshow	R	Notification.onshow										
 webglrenderingcontext getsupportedextensions	R	WebGLRenderingContext.getSupportedExtensions()										
@@ -9468,7 +9445,6 @@ mozfullpath	R	File.mozFullPath
 xmlhttprequest overridemimetype	R	XMLHttpRequest.overrideMimeType()										
 overridemimetype	R	XMLHttpRequest.overrideMimeType()										
 xmlhttprequest synchronous and asynchronous requests	R	Synchronous and asynchronous requests										
-synchronous and asynchronous requests	R	Synchronous and asynchronous requests										
 file getasdataurl	R	File.getAsDataURL()										
 getasdataurl	R	File.getAsDataURL()										
 canvasrenderingcontext2d clip	R	CanvasRenderingContext2D.clip()										
@@ -9525,7 +9501,6 @@ linenumber	R	Error.prototype.lineNumber
 webglrenderingcontext deleteprogram	R	WebGLRenderingContext.deleteProgram()										
 deleteprogram	R	WebGLRenderingContext.deleteProgram()										
 notifications api using the notifications api	R	Using the Notifications API										
-using the notifications api	R	Using the Notifications API										
 audiocontext createanalyser	R	AudioContext.createAnalyser()										
 createanalyser	R	AudioContext.createAnalyser()										
 speechrecognitionalternative transcript	R	SpeechRecognitionAlternative.transcript										
@@ -9580,7 +9555,6 @@ getimagedata	R	CanvasRenderingContext2D.getImageData()
 webglrenderingcontext getcontextattributes	R	WebGLRenderingContext.getContextAttributes()										
 getcontextattributes	R	WebGLRenderingContext.getContextAttributes()										
 web audio api porting webkitaudiocontext code to standards based audiocontext	R	Porting webkitAudioContext code to standards based AudioContext										
-porting webkitaudiocontext code to standards based audiocontext	R	Porting webkitAudioContext code to standards based AudioContext										
 api idbdatabasesync	R	IDBDatabaseSync										
 element attachshadow	R	attachShadow										
 idbkeyrange loweropen	R	IDBKeyRange.lowerOpen										
@@ -9590,7 +9564,6 @@ getdate	R	Date.prototype.getDate
 string tolocalelowercase	R	String.prototype.toLocaleLowerCase										
 tolocalelowercase	R	String.prototype.toLocaleLowerCase										
 resource timing api using the resource timing api	R	Using the Resource Timing API										
-using the resource timing api	R	Using the Resource Timing API										
 installtrigger installchrome	R	installChrome										
 numberOfInputs	R	AudioNode.numberOfInputs										
 audionode numberofinputs	R	AudioNode.numberOfInputs										
@@ -9598,7 +9571,6 @@ numberofinputs	R	AudioNode.numberOfInputs
 offlineaudiocontext startrendering(promise)	R	OfflineAudioContext.startRendering (promise)										
 startrendering(promise)	R	OfflineAudioContext.startRendering (promise)										
 api web workers api	R	Web Workers API										
-web workers api	R	Web Workers API										
 audiocontext listener	R	AudioContext.listener										
 listener	R	AudioContext.listener										
 webglrenderingcontext getextension	R	WebGLRenderingContext.getExtension()										
@@ -9647,17 +9619,14 @@ deletetexture	R	WebGLRenderingContext.deleteTexture()
 webglrenderingcontext depthmask	R	WebGLRenderingContext.depthMask()										
 depthmask	R	WebGLRenderingContext.depthMask()										
 api frame timing api	R	Frame Timing API										
-frame timing api	R	Frame Timing API										
 getVisible	R	HTMLIFrameElement.getVisible()										
 htmliframeelement getvisible	R	HTMLIFrameElement.getVisible()										
 getvisible	R	HTMLIFrameElement.getVisible()										
 api oes texture float	R	OES_texture_float										
 windowbase64 base64 encoding and decoding	R	Base64 encoding and decoding										
-base64 encoding and decoding	R	Base64 encoding and decoding										
 date setutcseconds	R	Date.prototype.setUTCSeconds										
 setutcseconds	R	Date.prototype.setUTCSeconds										
 mediarecorder api using the mediarecorder api	R	Using the MediaRecorder API										
-using the mediarecorder api	R	Using the MediaRecorder API										
 scrollX	R	Window.scrollX										
 window scrollx	R	Window.scrollX										
 scrollx	R	Window.scrollX										
@@ -9678,7 +9647,6 @@ requestMediaKeySystemAccess	R	Navigator.requestMediaKeySystemAccess()
 navigator requestmediakeysystemaccess	R	Navigator.requestMediaKeySystemAccess()										
 requestmediakeysystemaccess	R	Navigator.requestMediaKeySystemAccess()										
 api encrypted media extensions api	R	Encrypted Media Extensions API										
-encrypted media extensions api	R	Encrypted Media Extensions API										
 setVolume	R	HTMLIFrameElement.setVolume()										
 htmliframeelement setvolume	R	HTMLIFrameElement.setVolume()										
 setvolume	R	HTMLIFrameElement.setVolume()										
@@ -9709,7 +9677,6 @@ webglrenderingcontext compileshader	R	WebGLRenderingContext.compileShader()
 compileshader	R	WebGLRenderingContext.compileShader()										
 api canvascapturemediastream	R	CanvasCaptureMediaStream										
 webgl api webgl best practices	R	WebGL best practices										
-webgl best practices	R	WebGL best practices										
 canvasrenderingcontext2d globalcompositeoperation	R	CanvasRenderingContext2D.globalCompositeOperation										
 globalcompositeoperation	R	CanvasRenderingContext2D.globalCompositeOperation										
 pushmanager subscribe	R	PushManager.subscribe()										
@@ -9725,12 +9692,10 @@ console table	R	Console.table()
 table	R	Console.table()										
 api dommatrix	R	DOMMatrix										
 api touch events	R	Touch events										
-touch events	R	Touch events										
 deleteTFoot	R	HTMLTableElement.deleteTFoot()										
 htmltableelement deletetfoot	R	HTMLTableElement.deleteTFoot()										
 deletetfoot	R	HTMLTableElement.deleteTFoot()										
 document object model using the w3c dom level 1 core	R	Using the W3C DOM Level 1 Core										
-using the w3c dom level 1 core	R	Using the W3C DOM Level 1 Core										
 range endoffset	R	Range.endOffset										
 endoffset	R	Range.endOffset										
 body bodyused	R	Body.bodyUsed										
@@ -9744,9 +9709,7 @@ clientwidth	R	Element.clientWidth
 webgl2renderingcontext copytexsubimage3d	R	WebGL2RenderingContext.copyTexSubImage3D()										
 copytexsubimage3d	R	WebGL2RenderingContext.copyTexSubImage3D()										
 webvr api using the webvr api	R	Using the WebVR API										
-using the webvr api	R	Using the WebVR API										
 tutorial adding 2d content to a webgl context	R	Adding 2D content to a WebGL context										
-adding 2d content to a webgl context	R	Adding 2D content to a WebGL context										
 object   lookupgetter  	R	Object.prototype.__lookupGetter__()										
   lookupgetter  	R	Object.prototype.__lookupGetter__()										
 mediadevices enumeratedevices	R	MediaDevices.enumerateDevices()										
@@ -9793,12 +9756,8 @@ range selectnode	R	Range.selectNode()
 selectnode	R	Range.selectNode()										
 mediastream onaddtrack	R	MediaStream.onaddtrack										
 onaddtrack	R	MediaStream.onaddtrack										
-setVelocity	R	PannerNode.setVelocity()										
-pannernode setvelocity	R	PannerNode.setVelocity()										
-setvelocity	R	PannerNode.setVelocity()										
 api navigatorconcurrenthardware	R	NavigatorConcurrentHardware										
 event comparison of event targets	R	Comparison of Event Targets										
-comparison of event targets	R	Comparison of Event Targets										
 string fontsize	R	String.prototype.fontsize()										
 fontsize	R	String.prototype.fontsize()										
 math log10e	R	Math.LOG10E										
@@ -9807,22 +9766,17 @@ stopImmediatePropagation	R	Event.stopImmediatePropagation()
 event stopimmediatepropagation	R	Event.stopImmediatePropagation()										
 stopimmediatepropagation	R	Event.stopImmediatePropagation()										
 web crypto api supported algorithms	R	Supported algorithms										
-supported algorithms	R	Supported algorithms										
 api navigatorlanguage	R	NavigatorLanguage										
 acceptCharset	R	HTMLFormElement.acceptCharset										
 htmlformelement acceptcharset	R	HTMLFormElement.acceptCharset										
 acceptcharset	R	HTMLFormElement.acceptCharset										
 api beacon api	R	Beacon API										
-beacon api	R	Beacon API										
 webglrenderingcontext getshadersource	R	WebGLRenderingContext.getShaderSource()										
 getshadersource	R	WebGLRenderingContext.getShaderSource()										
 touch events supporting both touchevent and mouseevent	R	Supporting both TouchEvent and MouseEvent										
-supporting both touchevent and mouseevent	R	Supporting both TouchEvent and MouseEvent										
 html drag and drop api file drag and drop	R	File drag and drop										
-file drag and drop	R	File drag and drop										
 global dataview	R	DataView										
 api using the browser api	R	Using the Browser API										
-using the browser api	R	Using the Browser API										
 math sqrt	R	Math.sqrt										
 sqrt	R	Math.sqrt										
 paymentresponse payeremail	R	PaymentResponse.payerEmail										
@@ -9905,7 +9859,6 @@ bluetoothremotegattserver getprimaryservice	R	BluetoothRemoteGATTServer.getPrima
 getprimaryservice	R	BluetoothRemoteGATTServer.getPrimaryService()										
 api point	R	Point										
 canvas api a basic ray-caster	R	A basic ray-caster										
-a basic ray-caster	R	A basic ray-caster										
 vrdisplay capabilities	R	VRDisplay.capabilities										
 capabilities	R	VRDisplay.capabilities										
 maxDecibels	R	AnalyserNode.maxDecibels										
@@ -9985,13 +9938,11 @@ max value	R	Number.MAX_VALUE
 vrdisplaycapabilities hasorientation	R	VRDisplayCapabilities.hasOrientation										
 hasorientation	R	VRDisplayCapabilities.hasOrientation										
 performance timeline using performance timeline	R	Using Performance Timeline										
-using performance timeline	R	Using Performance Timeline										
 ondrag	R	GlobalEventHandlers.ondrag										
 global ondrag	R	GlobalEventHandlers.ondrag										
 ondrag	R	GlobalEventHandlers.ondrag										
 api webglcontextevent	R	WebGLContextEvent										
 css object model determining the dimensions of elements	R	Determining the dimensions of elements										
-determining the dimensions of elements	R	Determining the dimensions of elements										
 idbdatabase createobjectstore	R	IDBDatabase.createObjectStore()										
 createobjectstore	R	IDBDatabase.createObjectStore()										
 math cosh	R	Math.cosh()										
@@ -10018,7 +9969,6 @@ api navigatorid	R	NavigatorID
 object unwatch	R	Object.prototype.unwatch()										
 unwatch	R	Object.prototype.unwatch()										
 api css font loading api	R	CSS Font Loading API										
-css font loading api	R	CSS Font Loading API										
 cloneNode	R	Node.cloneNode()										
 node clonenode	R	Node.cloneNode()										
 clonenode	R	Node.cloneNode()										
@@ -10043,7 +9993,6 @@ bluetoothremotegattserver getprimaryservices	R	BluetoothRemoteGATTServer.getPrim
 getprimaryservices	R	BluetoothRemoteGATTServer.getPrimaryServices()										
 bluetoothadvertisingdata servicedata	R	serviceData										
 tutorial using textures in webgl	R	Using textures in WebGL										
-using textures in webgl	R	Using textures in WebGL										
 screen colordepth	R	Screen.colorDepth										
 colordepth	R	Screen.colorDepth										
 paymentresponse payerphone	R	PayerResponse.payerPhone										
@@ -10130,6 +10079,7 @@ getuniformlocation	R	WebGLRenderingContext.getUniformLocation()
 global int8array	R	Int8Array										
 webglrenderingcontext getprogramparameter	R	WebGLRenderingContext.getProgramParameter()										
 getprogramparameter	R	WebGLRenderingContext.getProgramParameter()										
+reference functions	R	Functions										
 getVolume	R	HTMLIFrameElement.getVolume()										
 htmliframeelement getvolume	R	HTMLIFrameElement.getVolume()										
 getvolume	R	HTMLIFrameElement.getVolume()										
