@@ -25,11 +25,24 @@ my $ua = Mojo::UserAgent->new()->max_redirects(4);
 
 my %urls;    #hash used to remove duplicate urls
 
+#downloaded file names will be named 1.html, 2.html ....
 my $file_number = 1,
    $current_active_connections = 0,
    $maximum_active_connections = 4;
 
 my @keyword_urls;
+
+=begin
+    save the urls with fragments to a text file called
+    fragments.txt so that parse.pl can use this information
+    to extract extra information about the fragments
+    used later on in download()
+=cut
+
+open(
+        my $fragments_fh,   '>:encoding(UTF-8)',
+        catfile 'download', 'fragments.txt'
+    ) or die $!;
 
 
 for my $url (@urls_to_fetch) {
@@ -84,10 +97,6 @@ sub fetch {
 }
 
 sub download {
-    open(
-        my $fragments_fh,   '>:encoding(UTF-8)',
-        catfile 'download', 'fragments.txt'
-    ) or die $!;
 
     for my $url ( keys %urls ) {
         $url = Mojo::URL->new($url);
