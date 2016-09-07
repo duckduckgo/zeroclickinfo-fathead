@@ -32,7 +32,7 @@ Parentheses    Y    None    None
 Functions    Y    None    None 
 Keyword Arguments    Y    None    None 
 Interpolation: #{}    Y    Interpolation    None   
-& in SassScript    Y    parent selector    ampersad
+& in SassScript    Y    parent selector    ampersand
 Variable Defaults: !default    Y    variable defaults    default
 @-Rules and Directives    Y    @-rules    directives
 @import    Y    None    import   

@@ -9,11 +9,11 @@ DOWNLOADED_HTML_PATH = 'download/Functions.html'
 
 class Data(object):
     """
-    Object responsible for loading raw HTML data from Python docs:
+    Object responsible for loading raw HTML data from Sass docs:
     """
     def __init__(self, file):
         """
-        Initialize PythonData object. Load data from HTML.
+        Initialize Data object. Load data from HTML.
 
         """
         self.HTML = ""
@@ -64,11 +64,6 @@ class DataParser(object):
             function_descriptions = section.find_all('dd')
             for i in range(len(function_names)):
                 self.function_sections.append([function_names[i], function_descriptions[i]])
-        """
-            functions = section.find_all('dl', {'class': 'function'})
-            if functions:
-                self.function_sections.extend(functions)
-        """
 
     def parse_for_module_name(self, section):
         """
@@ -147,6 +142,7 @@ class DataParser(object):
             #return the function name with paramaters
             return '<pre><code>'+method_sig.text+'</code></pre>'
         return ''
+    
     def parse_for_section_div(self, section):
         """
         Return a div containing more information about the section function
@@ -160,6 +156,14 @@ class DataParser(object):
         return heading.parent
 
     def parse_for_example(self, section):
+        """
+        Return example code for section function
+        Args:
+        section: A section of parsed HTML that represents a function definition
+        Returns:
+            A string or None if there are no examples
+        
+        """
         info = self.parse_for_section_div(section)
         example = info.find('div', {'class': 'examples'})
         if example:
@@ -170,6 +174,14 @@ class DataParser(object):
         return None
     
     def parse_for_parameters(self, section):
+        """
+        Return parameter information for section function
+        Args:
+        section: A section of parsed HTML that represents a function definition
+        Returns:
+            A string or None if there are no parameters
+        
+        """
         info = self.parse_for_section_div(section)
         parameters = info.find('ul', {'class': 'param'})
         if parameters:
@@ -196,6 +208,14 @@ class DataParser(object):
         return None
         
     def fix_parameter_links(self, parameters):
+        """
+        Return corrected links for parameter information
+        Args:
+        parameters - html code repersenting parameters
+        
+        Return: 
+        HMTL code repersenting parameter with correct links
+        """
         for a in parameters.findAll('a'):
             path = a['href']
             a['href'] = a['href'].replace(a['href'],'http://sass-lang.com/documentation/Sass/Script/'+path)

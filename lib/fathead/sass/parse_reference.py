@@ -6,11 +6,11 @@ DOWNLOADED_HTML_PATH = 'download/file.SASS_REFERENCE.html'
 
 class Data(object):
     """
-    Object responsible for loading raw HTML data from Python docs:
+    Object responsible for loading raw HTML data from Sass Reference
     """
     def __init__(self, file):
         """
-        Initialize PythonData object. Load data from HTML.
+        Initialize Data object. Load data from HTML.
 
         """
         self.HTML = ""
@@ -42,7 +42,7 @@ class Data(object):
 
 class DataParser(object):
     """
-    Object responsible for parsing the raw HTML that contains Python data
+    Object responsible for parsing the raw HTML that contains data
     """
     def __init__(self, data_object, titles):
         """
@@ -52,7 +52,7 @@ class DataParser(object):
         """
         self.titles = titles
         self.parsed_data = None
-        self.function_sections = []
+        self.topic_sections = []
         self.file_being_used = data_object.get_file()
 
         self.soup_data = BeautifulSoup(data_object.get_raw_data(), 'html.parser')
@@ -62,17 +62,17 @@ class DataParser(object):
                 section_id = section.find('a')
                 section_id = section_id['href']
                 heading = self.soup_data.find(id=section_id[1:])
-                self.function_sections.append(heading)
+                self.topic_sections.append(heading)
 
                                           
     def parse_for_name(self, section):
         """
         Returns the section name
         Args:
-            section: A section of parsed HTML that represents a function definition
+            section: A section of parsed HTML that represents a topic
 
         Returns:
-            Name of section
+            Name of topic
 
         """
         name = section.text
@@ -86,9 +86,9 @@ class DataParser(object):
             return None
     def parse_for_redirects(self, section):
         """
-        Returns any redirects for function
+        Returns any redirects for article 
         Args:
-            section: A section of parsed HTML that represents a function definition
+            section: A section of parsed HTML that represents a topic
 
         Returns:
             list of redirects
@@ -105,9 +105,9 @@ class DataParser(object):
             return []
     def parse_for_id(self, section):
         """
-        Returns the section id
+        Returns the section id for topic
         Args:
-            section: A section of parsed HTML that represents a function definition
+            section: A section of parsed HTML that represents a topic
 
         Returns:
             id of section
@@ -117,13 +117,13 @@ class DataParser(object):
 
     def parse_for_description(self, section):
         """
-        Returns the function description
+        Returns the topic description
         Fixes up some weird double spacing and newlines.
         Args:
-            section: A section of parsed HTML that represents a function description
+            section: A section of parsed HTML that represents a topic
 
         Returns:
-            Function description
+            topic description
 
         """
         next_para = section.find_next('p')
@@ -142,7 +142,7 @@ class DataParser(object):
             anchor: #anchor
 
         Returns:
-            Full URL to function on the python doc
+            Full URL to function on the sass doc
 
         """
         return SASS_DOC_BASE_URL + id
@@ -153,13 +153,13 @@ class DataParser(object):
         """
         data = []
         names = []
-        for function_section in self.function_sections:
-            name = self.parse_for_name(function_section)
+        for topic_section in self.topic_sections:
+            name = self.parse_for_name(topic_section)
             if name:
-                description = self.parse_for_description(function_section)
-                id = self.parse_for_id(function_section)
+                description = self.parse_for_description(topic_section)
+                id = self.parse_for_id(topic_section)
                 url = self.create_url(id)
-                redirect = self.parse_for_redirects(function_section)
+                redirect = self.parse_for_redirects(topic_section)
                 
                 if name in names:
                     index = names.index(name)
@@ -194,23 +194,6 @@ class DataOutput(object):
     """
     def __init__(self, data):
         self.data = data
-
-    def create_names_from_data(self, data_element):
-        """
-        Figure out the name of the function. Will contain the module name if one exists.
-        Args:
-            data_element: Incoming data dict
-
-        Returns:
-            Name, with whitespace stripped out
-
-        """
-        function = data_element.get('function')
-
-        dotted_name = '{}{}{}'.format(function, '.' if function  else '', function)
-        spaced_name = '{} {}'.format(function, function)
-
-        return dotted_name.strip(), spaced_name.strip()
 
     def create_file(self):
         """
