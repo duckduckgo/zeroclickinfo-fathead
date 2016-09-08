@@ -120,6 +120,9 @@ class Entry(object):
     def get_key(self):
         return self.key
 
+    def set_entry_type(self, new_type):
+        self.entry_type = new_type
+
     def get_type(self):
         return self.entry_type
 
@@ -139,6 +142,9 @@ class Entry(object):
 
     def get_alternatives(self):
         return self.alternative_keys
+
+    def get_reference(self):
+        return self.reference
 
     def get_entry(self):
         return '\t'.join([
@@ -193,9 +199,17 @@ def generate_redirects(f):
                     built_in_key = '"' + redirect.get_key() + '"'
                     if key not in output and built_in_key not in built_in:
                         output[key] = str(redirect.get_entry())
-                    else:                    
-                        del output[key]
+                    else:
+                        if redirect.entry_type == 'D':
+                            # Concatenate disambiguation entry if key already exists
+                            output[key] += '[['+str(redirect.get_key())+']] ' + str(redirect.get_reference()) + '.'
+                        else:
+                            # New entry of disambiguation type
+                            redirect.set_entry_type('D')
+                            output[key] = str(redirect.get_key())
+
                         duplicate_count += 1
+
         except BadEntryException as e:
             pass  # Continue execution entry data is invalid.
 
