@@ -506,7 +506,7 @@ sub parse_faq {
         my $description = build_description($faq_title) or next;
         next unless $link;
         my $faq_section = $faq_title->root->at('a[name="NAME"]')
-            ->following('p')->first->text =~ s/^perlfaq\d* - //gr;
+            ->following('p')->first->text =~ s/^perl(uni)?faq\d* - //gr;
         push @articles, {
             anchor => $link,
             title  => $title,
