@@ -507,6 +507,7 @@ sub parse_faq {
             anchor => $link,
             title  => $title,
             text => $description,
+            categories => ['Perl FAQs'],
         };
     }
     return {
@@ -550,10 +551,13 @@ sub parse_functions {
 
     my $title = "$fname (function)";
 
+    my $article = {
+        title => $title,
+        text  => $description,
+        categories => ['Perl Functions'],
+    };
     return {
-        articles => [
-            { title => $title, text => $description }
-        ],
+        articles => [ $article ],
         aliases => [
             make_aliases($title,
                 $fname, "$fname function", "$fname func", "$fname sub",
@@ -589,6 +593,7 @@ sub parse_glossary_definitions {
                 "$term",
             );
         },
+        categories => sub { ['Perl Glossary'] },
         uls   => sub { $_[0]->find('h2 ~ ul')->each },
         force_redirect => sub {
             return undef unless $_[1]->{text} =~ qr{^<p>See <b>([^<]+)</b>\.</p>$};
@@ -645,6 +650,7 @@ sub aliases_regex_modifiers {
 sub parse_regex_modifiers {
     ul_list_parser(
         selector_main => 'a[name="Modifiers"]',
+        categories => sub { ['Perl Regular Expression Modifiers'] },
         link => sub {
             my $name = $_[0]->find('a')->first->{name};
             return "*$name*";
@@ -683,6 +689,7 @@ sub parse_pod_formatting_codes {
         title => sub {
             $_[0]->at('code')->all_text =~ s/\s</</r
         },
+        categories => sub { ['Perl POD Formatting Codes'] },
         aliases => sub {
             my ($code) = $_[1] =~ /^(\w+)/;
             my $descr = $_[0]->find('b')->first->text =~ s/-- //r;
@@ -709,6 +716,7 @@ sub parse_pod_commands {
     ul_list_parser(
         selector_main => 'a[name="Pod-Commands"]',
         title => sub { $_[0]->at('b')->text =~ s/"//gr =~ s/\s.+$//r },
+        categories => sub { ['Perl POD Commands'] },
         aliases => sub { aliases_pod_commands($_[1]) },
     )->(@_);
 }
@@ -735,6 +743,7 @@ sub parse_cli_switches {
     ul_list_parser(
         selector_main => 'a[name="Command-Switches"]',
         title => sub { $_[0]->find('b')->first->all_text },
+        categories => sub { ['Perl Command-Line Switches'] },
         aliases => sub { aliases_cli_switches($_[1]) },
     )->(@_);
 }
@@ -753,6 +762,7 @@ sub parse_diag_messages {
     ul_list_parser(
         selector_main => 'a[name="DESCRIPTION"]',
         title => sub { $_[0]->find('b')->first->text },
+        categories => sub { ['Perl Diagnostics'] },
         aliases => sub { aliasas_diag_messages($_[1]) },
     )->(@_);
 }
@@ -792,6 +802,7 @@ sub parse_operators {
             anchor => $link,
             text   => $text,
             title  => $title,
+            categories => ['Perl Operators'],
         };
     }
     return {
@@ -810,7 +821,7 @@ sub parse_variables {
         uls => \@mod_sections,
         title => sub { $_[0]->find('b')->first->text . ' (variable)' },
         aliases => sub { $_[1] =~ s/ \(variable\)//r },
-        categories => sub { ['Variables'] },
+        categories => sub { ['Perl Variables'] },
     )->(@_);
 }
 
@@ -864,6 +875,7 @@ sub parse_package {
         text  => "$short_desc$synopsis",
         title => "$package_name (module)",
         related => \@related,
+        categories => ['Perl Standard Modules'],
     };
     return {
         articles => [$article],
