@@ -45,6 +45,7 @@ sub _build_indices {
        index-language
        index-overview
        index-functions
+       index-functions-by-cat
        index-pragmas
        index-utilities
        index-internals
@@ -182,6 +183,7 @@ sub get_parsers {
 
 my %link_parser_for_index = (
     'functions' => 'parse_index_functions_links',
+    'functions-by-cat' => 'parse_functions_categories',
     'default'   => 'parse_index_links',
 );
 
@@ -523,6 +525,8 @@ sub parse_faq {
 # Fallback descriptions for when the page is empty.
 my %functions_fallback;
 
+my %function_categories;
+
 sub build_description_functions {
     my ($fname, $syntaxes, $description) = @_;
     my @syntaxes = @$syntaxes;
@@ -554,7 +558,7 @@ sub parse_functions {
     my $article = {
         title => $title,
         text  => $description,
-        categories => ['Perl Functions'],
+        categories => ['Perl Functions', @{$function_categories{$fname} || []}],
     };
     return {
         articles => [ $article ],
@@ -576,6 +580,19 @@ sub parse_index_functions_links {
         $functions_fallback{$fn->text} = $descr;
     }
     return @fns;
+}
+
+sub parse_functions_categories {
+    my ($self, $dom) = @_;
+    my @fns = $dom->find('a[href^=functions]')->each;
+    foreach my $fn (@fns) {
+        my $name = $fn->text;
+        my $cat = $fn->parent->parent->preceding('h2')->last->text;
+        my @cats = @{$function_categories{$name} || []};
+        push @cats, "Perl $cat";
+        $function_categories{$name} = \@cats;
+    }
+    return;
 }
 
 #######################################################################
