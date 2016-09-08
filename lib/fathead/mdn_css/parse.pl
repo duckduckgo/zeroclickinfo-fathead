@@ -23,6 +23,40 @@ This script extracts data from html files under the downloads folder
 # Keep track of unique keys
 my %SEEN;
 
+# Inverse css_categories.yml
+#  - The per-category structure is easier read/edit
+#  - The inverse mapping is used to lookup titles as we create articles
+my ($categories, $extra_categories, $units) = LoadFile('css_categories.yml');
+my %titles;
+my %units;
+
+# Map titles to categories
+while(my($category, $array) = each %{$categories}) {
+    foreach my $title (@{$array}) {
+        $titles{$title}{categories} = [];
+        push $titles{$title}{categories}, $category;
+    }
+}
+
+# Map titles to extra categories
+while(my($category, $array) = each %{$extra_categories}) {
+    foreach my $title (@{$array}) {
+        $titles{$title}{extra_categories} = [];
+        push $titles{$title}{extra_categories}, $category;
+    }
+}
+
+# Map titles to units
+while(my($unit, $array) = each %{$units}) {
+    foreach my $title (@{$array}) {
+        $units{$title} = $unit;
+    }
+}
+
+# p(%titles);
+# p(%units);
+
+
 =begin
 Process fragment data like matrix3d() in
 https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function#matrix3d()
@@ -146,7 +180,9 @@ foreach my $html_file ( glob 'download/*.html' ) {
     next unless $title && $link && $description;
 
     create_article( $title, $description, $link );
-    create_redirects( $title ) if $title =~ m/[():<>@]/;
+    if ($title =~ m/[():<>@]/ || exists $titles{$title}) {
+        create_redirects( $title );
+    }
 }
 
 
@@ -154,6 +190,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
 ####################
 # HELPER FUNCTIONS
 ####################
+
 
 # Build HTML string containing Initial Value data
 sub create_abstract {
@@ -169,6 +206,7 @@ sub create_abstract {
     $out .= "<pre><code>$code</code></pre>" if $code;
     return $out;
 }
+
 
 sub parse_initial_value {
     my ($table_properties) = @_;
@@ -228,16 +266,14 @@ sub create_redirects {
         say "Has parens!";
         my $outer = $1;
         my $inner = $2;
-        say "INNER: $inner";
         say "OUTER: $outer";
-
-        push @data, _build_redirect($inner, $title);
-        push @data, _build_redirect($outer, $title);
-
+        say "INNER: $inner";
         my $inner_clean = _clean_string($inner);
+        push @data, _build_redirect($outer, $title);
+        push @data, _build_redirect($inner, $title);
         push @data, _build_redirect($inner_clean, $title);
     }
-    else {
+    elsif ($title_clean ne $title) {
         push @data, _build_redirect($title_clean, $title);
     }
     _write_to_file(@data);
