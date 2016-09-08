@@ -815,11 +815,15 @@ sub parse_operators {
             ->last->preceding('a[name]')->last->{name};
         map { push @aliases, { new => $_, orig => $title } }
             (aliases_operators($title));
+        # NOTE: The headings in Perl op are a bit inconsistent as categories,
+        # perhaps we should make a hard-list (or minimal regex) to match the
+        # appropriate headings.
+        my $add_cat = $op->preceding('h2')->last->text;
         push @articles, {
             anchor => $link,
             text   => $text,
             title  => $title,
-            categories => ['Perl Operators'],
+            categories => ['Perl Operators', "Perl $add_cat"],
         };
     }
     return {
