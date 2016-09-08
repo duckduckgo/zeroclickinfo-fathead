@@ -821,7 +821,11 @@ sub parse_variables {
         uls => \@mod_sections,
         title => sub { $_[0]->find('b')->first->text . ' (variable)' },
         aliases => sub { $_[1] =~ s/ \(variable\)//r },
-        categories => sub { ['Perl Variables'] },
+        categories => sub {
+            my ($item) = @_;
+            my $subc = $item->parent->preceding('h2')->last->text;
+            return ['Perl Variables', "Perl $subc"]
+        },
     )->(@_);
 }
 
