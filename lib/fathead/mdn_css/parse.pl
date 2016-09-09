@@ -12,7 +12,7 @@ use Mojo::URL;
 use Mojo::Util 'slurp';
 use Text::Trim;
 use HTML::Strip;
-use HTML::Entities;    # Used by HTML::Strip
+use HTML::Entities; # Used by HTML::Strip
 use Data::Printer return_value => 'dump';
 use YAML::XS 'LoadFile';
 
@@ -65,6 +65,7 @@ while(my($unit, $array) = each %{$units}) {
     }
 }
 
+# p(%redirect_map);
 # p(%titles);
 # p(%units);
 
@@ -177,8 +178,8 @@ foreach my $html_file ( glob 'download/*.html' ) {
         }
 
         $code = trim($code);
-        say '';
-        say $code;
+        # say '';
+        # say $code;
     }
     my $initial_value;
 
