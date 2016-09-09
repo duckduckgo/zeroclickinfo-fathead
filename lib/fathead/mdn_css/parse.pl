@@ -23,6 +23,17 @@ This script extracts data from html files under the downloads folder
 # Keep track of unique keys
 my %SEEN;
 
+# Map categories to redirect keywords
+# These are used to create additional redirects
+my %redirect_map = (
+    'css pseudo elements' => 'pseudo element',
+    'css pseudo classes' => 'pseudo class',
+    'css properties' => 'property',
+    'css functions' => 'function',
+    'css data types' => 'data type',
+    'css at rules' => 'at rule',
+);
+
 # Inverse css_categories.yml
 #  - The per-category structure is easier read/edit
 #  - The inverse mapping is used to lookup titles as we create articles
