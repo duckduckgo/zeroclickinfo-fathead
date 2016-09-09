@@ -2,62 +2,65 @@
 # CSS Categorization
 # Source: http://www.htmldog.com/references/css/
 # Source: http://tympanus.net/codrops/css_reference/
-pseudo elements:
-  - after
-  - before
-  - first-letter
-  - first-line
-  - placeholder
-  - selection
-pseudo classes:
-  - after
-  - before
-  - first-letter
-  - first-line
-  - placeholder
-  - selection
-  - active
-  - blank
-  - checked
-  - default
-  - dir
-  - disabled
-  - empty
-  - enabled
-  - first
-  - first-child
-  - first-of-type
-  - focus
-  - fullscreen
-  - hover
-  - in-range
-  - indeterminate
-  - invalid
-  - lang
-  - last-child
-  - last-of-type
-  - left
-  - link
-  - not
-  - nth-child
-  - nth-last-childs
-  - nth-last-of-type
-  - nth-of-type
-  - only-child
-  - only-of-type
-  - optional
-  - out-of-range
-  - read-only
-  - read-write
-  - required
-  - right
-  - root
-  - scope
-  - target
-  - valid
-  - visited
-  - content
-properties:
+css pseudo elements:
+  - ::after
+  - ::backdrop
+  - ::before
+  - ::first-letter
+  - ::first-line
+  - ::grammar-error
+  - ::marker
+  - ::placeholder
+  - ::selection
+  - ::spelling-error
+css pseudo classes:
+  - ::after
+  - ::before
+  - ::first-letter
+  - ::first-line
+  - ::placeholder
+  - ::selection
+  - :active
+  - :any
+  - :checked
+  - :default
+  - :dir
+  - :disabled
+  - :empty
+  - :enabled
+  - :first
+  - :first-child
+  - :first-of-type
+  - :focus
+  - :fullscreen
+  - :hover
+  - :in-range
+  - :indeterminate
+  - :invalid
+  - :lang
+  - :last-child
+  - :last-of-type
+  - :left
+  - :link
+  - :not
+  - :nth-child
+  - :nth-last-child
+  - :nth-last-of-type
+  - :nth-of-type
+  - :only-child
+  - :only-of-type
+  - :optional
+  - :out-of-range
+  - :read-only
+  - :read-write
+  - :required
+  - :right
+  - :root
+  - :scope
+  - :target
+  - :valid
+  - :visited
+css properties:
   - all
   - animation
   - animation-delay
@@ -133,6 +136,7 @@ properties:
   - column-span
   - column-width
   - columns
+  - content
   - counter-increment
   - counter-reset
   - cursor
@@ -252,7 +256,7 @@ properties:
   - word-spacing
   - word-wrap
   - z-index
-functions:
+css functions:
   - attr
   - calc
   - circle
@@ -287,29 +291,29 @@ functions:
   - translateX
   - translateY
   - translateZ
-data types:
-  - angle
-  - basic-shape
-  - blend-mode
-  - color
-  - frequency
-  - gradient
-  - image
-  - integer
-  - length
-  - number
-  - percentage
-  - position
-  - ratio
-  - resolution
-  - string
-  - time
-  - timing-function
-  - url
-  - user-ident
-  - inherit
-  - initial
-at rules:
+css data types:
+  - <angle>
+  - <basic-shape>
+  - <blend-mode>
+  - <color>
+  - <custom-ident>
+  - <frequency>
+  - <gradient>
+  - <image>
+  - <inherit>
+  - <initial>
+  - <integer>
+  - <length>
+  - <number>
+  - <percentage>
+  - <position>
+  - <ratio>
+  - <resolution>
+  - <string>
+  - <time>
+  - <timing-function>
+  - <url>
+css at rules:
   - charset
   - document
   - font-face
@@ -319,183 +323,180 @@ at rules:
   - namespace
   - page
   - supports
-
 ---
 # Additional CSS Categories
 text and fonts:
   - font
   - font-family
   - font-size
-  - font-weight
-  - font-style
-  - font-variant
-  - font-stretch
   - font-size-adjust
+  - font-stretch
+  - font-style
   - font-synthesis
-  - line-height
+  - font-variant
+  - font-weight
   - letter-spacing
-  - word-spacing
+  - line-height
   - text-align
   - text-decoration
   - text-indent
   - text-transform
   - vertical-align
   - white-space
+  - word-spacing
 colors and backgrounds:
-  - color
-  - opacity
-  - background-color
   - background
-  - background-image
-  - background-repeat
-  - background-position
   - background-attachment
   - background-clip
+  - background-color
+  - background-image
   - background-origin
+  - background-position
+  - background-repeat
   - background-size
+  - border-bottom-left-radius
+  - border-bottom-right-radius
+  - border-image
+  - border-image-outset
+  - border-image-repeat
+  - border-image-slice
+  - border-image-source
+  - border-image-width
   - border-radius
   - border-top-left-radius
   - border-top-right-radius
-  - border-bottom-right-radius
-  - border-bottom-left-radius
-  - border-image
-  - border-image-source
-  - border-image-slice
-  - border-image-width
-  - border-image-outset
-  - border-image-repeat
   - box-shadow
+  - color
+  - opacity
 box model:
+  - border
+  - border-bottom
+  - border-bottom-color
+  - border-bottom-style
+  - border-bottom-width
+  - border-color
+  - border-left
+  - border-left-color
+  - border-left-style
+  - border-left-width
+  - border-right
+  - border-right-color
+  - border-right-style
+  - border-right-width
+  - border-style
+  - border-top
+  - border-top-color
+  - border-top-style
+  - border-top-width
+  - border-width
   - margin
-  - margin-top
-  - margin-right
   - margin-bottom
   - margin-left
+  - margin-right
+  - margin-top
   - padding
-  - padding-top
-  - padding-right
   - padding-bottom
   - padding-left
-  - border
-  - border-top
-  - border-right
-  - border-bottom
-  - border-left
-  - border-width
-  - border-top-width
-  - border-right-width
-  - border-bottom-width
-  - border-left-width
-  - border-style
-  - border-top-style
-  - border-right-style
-  - border-bottom-style
-  - border-left-style
-  - border-color
-  - border-top-color
-  - border-right-color
-  - border-bottom-color
-  - border-left-color
+  - padding-right
+  - padding-top
 visual formatting:
-  - width
+  - bottom
+  - clear
+  - clip
+  - display
+  - float
   - height
-  - min-width
+  - left
+  - max-height
   - max-width
   - min-height
-  - max-height
-  - position
-  - top
-  - right
-  - bottom
-  - left
-  - clip
+  - min-width
   - overflow
-  - z-index
-  - float
-  - clear
-  - display
+  - position
+  - right
+  - top
   - visibility
+  - width
+  - z-index
 generated content and lists:
   - content
-  - quotes
   - counter-increment
   - counter-reset
   - list-style
-  - list-style-type
   - list-style-image
   - list-style-position
+  - list-style-type
+  - quotes
 tables:
-  - table-layout
   - border-collapse
   - border-spacing
-  - empty-cells
   - caption-side
+  - empty-cells
+  - table-layout
 paged media:
-  - page-break-before
-  - page-break-after
-  - page-break-inside
   - orphans
+  - page-break-after
+  - page-break-before
+  - page-break-inside
   - widows
 transitions:
   - transition
-  - transition-property
-  - transition-duration
-  - transition-timing-function
   - transition-delay
+  - transition-duration
+  - transition-property
+  - transition-timing-function
 transformations:
   - transform
   - transform-origin
 miscellaneous:
-  - outline
-  - outline-style
-  - outline-color
-  - outline-width
+  - all
   - cursor
   - direction
+  - outline
+  - outline-color
+  - outline-style
+  - outline-width
   - unicode-bidi
-  - all
-
 ---
 # CSS Units
-- absolute length units:
-  - px
+absolute length units:
+  - cm
   - in
+  - mm
   - pc
   - pt
-  - cm
-  - mm
+  - px
   - q
 relative length units:
+  - ch
   - em
   - ex
-  - ch
   - rem
-  - vw
   - vh
-  - vmin
   - vmax
+  - vmin
+  - vw
 numeric units:
-  - Percentage (%)
-  - Number
-  - Integer
-  - Ratio
+  - integer
+  - number
+  - percentage
+  - ratio
 textual units:
-  - string
-  - url
   - inherit
   - initial
+  - string
   - unset
+  - url
 color units:
-  - #
-  - rgb
-  - rgba
+  - "#"
   - hsl
   - hsla
+  - rgb
+  - rgba
   - transparent
-  - other keywords
 resolution units:
-  - dpi
   - dpcm
+  - dpi
   - dppx
 angle units:
   - deg
@@ -503,8 +504,8 @@ angle units:
   - rad
   - turn
 units of time:
-  - s
   - ms
+  - s
 units of frequency:
   - hz
   - khz
