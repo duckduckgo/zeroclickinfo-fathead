@@ -382,7 +382,7 @@ sub _build_article {
     say "CATEGORIES: $categories";
     # say "DESCRIPTION: $description" if $description;
     return join "\t",
-    ( $title, 'A', '', '', '', $categories, '', '', '', '', '', $description, $link );
+    ( $title, 'A', '', '', $categories, '', '', '', '', '', '', $description, $link );
 }
 
 
