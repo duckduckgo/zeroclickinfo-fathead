@@ -41,6 +41,7 @@ my ($categories, $extra_categories, $units) = LoadFile('css_categories.yml');
 my %titles;
 my %units;
 
+
 # Map titles to categories
 while(my($category, $array) = each %{$categories}) {
     foreach my $title (@{$array}) {
@@ -252,7 +253,19 @@ sub parse_initial_value {
 sub create_article {
     my ( $title, $description, $link ) = @_;
     my @data;
-    push @data, _build_article($title, $description, $link);
+
+    my $categories = '';
+    my $lookup = _category_title($title);
+
+    if (exists $titles{$lookup}) {
+        say "CATEGORY MATCH: ";
+        p($titles{$lookup});
+        my @cats = @{$titles{$lookup}->{categories}};
+        p(@cats);
+        $categories = join '\\n', @cats;
+    }
+
+    push @data, _build_article($title, $categories, $description, $link);
     _write_to_file(@data);
 }
 
@@ -268,8 +281,17 @@ sub create_redirects {
 
     my $title = shift;
     my $title_clean = _clean_string($title);
+    my $lookup = _category_title($title);
     my @data;
+    my $postfix;
     my $outputline;
+
+    if (exists $titles{$lookup}) {
+        #TODO If multiple categories per article exist, improve redirect creation
+        my $category = @{$titles{$lookup}->{categories}}[0];
+        $postfix = $redirect_map{$category};
+        say "POSTFIX: $postfix";
+    }
 
     # Capture content inside parentheses
     # E.g. "::before (:before)"
@@ -283,9 +305,19 @@ sub create_redirects {
         push @data, _build_redirect($outer, $title);
         push @data, _build_redirect($inner, $title);
         push @data, _build_redirect($inner_clean, $title);
+
+        if ($postfix){
+            push @data, _build_redirect("$inner $postfix", $title);
+            push @data, _build_redirect("$outer $postfix", $title);
+            push @data, _build_redirect("$inner_clean $postfix", $title);
+        }
     }
     elsif ($title_clean ne $title) {
         push @data, _build_redirect($title_clean, $title);
+        push @data, _build_redirect("$title_clean $postfix", $title) if $postfix;
+    }
+    elsif ($postfix){
+        push @data, _build_redirect("$title $postfix", $title);
     }
     _write_to_file(@data);
 }
@@ -319,6 +351,16 @@ sub _clean_code {
 }
 
 
+# Clean up title for lookup in Categories hash
+sub _category_title {
+    my $title = shift;
+    $title = $1 if $title =~ m/(::.+) \((:.+)\)/;
+    $title =~ s/\(\)$//;
+    say "CATEGORY TITLE: $title";
+    return $title;
+}
+
+
 # Remove certain non-alphanumeric characters
 sub _clean_string {
     my $input = shift;
@@ -332,13 +374,14 @@ sub _clean_string {
 
 # Build Article string for given title, description, and link
 sub _build_article {
-    my ($title, $description, $link) = @_;
+    my ($title, $categories, $description, $link) = @_;
     say '';
     say "ARTICLE: $title";
     say "LINK: $link";
+    say "CATEGORIES: $categories";
     # say "DESCRIPTION: $description" if $description;
     return join "\t",
-    ( $title, 'A', '', '', '', '', '', '', '', '', '', $description, $link );
+    ( $title, 'A', '', '', '', $categories, '', '', '', '', '', $description, $link );
 }
 
 
