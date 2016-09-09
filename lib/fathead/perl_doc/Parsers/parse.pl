@@ -156,9 +156,6 @@ sub doc_fullurl {
 # Parsers for other keys (basenames) will only run on the matching file.
 my %parser_map = (
     'index-faq'       => ['parse_faq'],
-    # TODO: Add explicit parser for language syntax, or generalize the FAQ
-    # parser.
-    'index-language'  => ['parse_faq'],
     'index-functions' => ['parse_functions'],
     'perldiag'        => ['parse_diag_messages'],
     'perlglossary'    => ['parse_glossary_definitions'],
@@ -169,6 +166,9 @@ my %parser_map = (
         'parse_regex_modifiers',
     ],
     'perlrun'         => ['parse_cli_switches'],
+    # TODO: Add explicit parser for language syntax, or generalize the FAQ
+    # parser.
+    'perlsyn'         => ['parse_faq'],
     'perlvar'         => ['parse_variables'],
 );
 
