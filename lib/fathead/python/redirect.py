@@ -206,7 +206,7 @@ def generate_redirects(f):
                         else:
                             # New entry of disambiguation type
                             redirect.set_entry_type('D')
-                            output[key] = str(redirect.get_key())
+                            output[key] = str(redirect.get_key()) + '\t' + 'D'
 
                         duplicate_count += 1
 
