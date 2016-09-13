@@ -186,7 +186,14 @@ def generate_redirects(f):
             if key not in output or '3.5/library/functions.html' in str(entry):
                 output[key] = str(entry)
             else:
-                del output[key]
+                if key in output and output[key].startswith(key + '\t' + 'D'):
+                    output[entry.get_key()] += '[['+str(entry.get_key())+']]' + str(entry.get_reference()) + '.'
+                    continue
+                
+                # New entry of disambiguation type
+                entry.set_entry_type('D')
+                output[entry.get_key()] = str(entry.get_key()) + '\t' + entry.get_type() + '\t' + '[['+str(entry.get_key())+']]' + str(entry.get_reference()) + '.'
+
                 duplicate_count += 1
 
             # Get all possible redirect entries
@@ -200,13 +207,13 @@ def generate_redirects(f):
                     if key not in output and built_in_key not in built_in:
                         output[key] = str(redirect.get_entry())
                     else:
-                        if redirect.entry_type == 'D':
-                            # Concatenate disambiguation entry if key already exists
-                            output[key] += '[['+str(redirect.get_key())+']] ' + str(redirect.get_reference()) + '.'
-                        else:
-                            # New entry of disambiguation type
-                            redirect.set_entry_type('D')
-                            output[key] = str(redirect.get_key()) + '\t' + 'D' + '\t' + '[['+str(redirect.get_key())+']]' + str(redirect.get_reference()) + '.'
+                        if key in output and output[key].startswith(key + '\t' + 'D'):
+                            output[redirect.get_key()] += '[['+str(redirect.get_key())+']]' + str(redirect.get_reference()) + '.'
+                            continue
+
+                        # New entry of disambiguation type
+                        redirect.set_entry_type('D')
+                        output[redirect.get_key()] = str(redirect.get_key()) + '\t' + redirect.get_type() + '\t' + '[['+str(redirect.get_key())+']]' + str(redirect.get_reference()) + '.'
 
                         duplicate_count += 1
 
