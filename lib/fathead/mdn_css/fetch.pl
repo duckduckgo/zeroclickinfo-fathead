@@ -30,41 +30,31 @@ my @fetch_links =
 my @txs = map { $ua->get($_) } @fetch_links;
 my %urls;    #hash used to remove duplicate urls
 
-if ( $tx->success ) {
-
-=begin
-  We extract the collection of links to keywords from the DOM. The links wanted
-  are found from this part of the DOM:
-  <div class="index">
-    <span>A</span>
-    <ul>
-      <li>
-        <a href="/en-US/docs/Web/CSS/:active"><code>:active</code></a>
-      </li>
-    </ul>
-    ...
-  </div>
-=cut
-
-    my $divs = $tx->res->dom->find('div.index, div.column-half');
-    for my $div ( $divs->each ) {
-        for my $ul ( $div->find('ul')->each ) {
-            $ul->find('li')->map(
-                sub {
-                    my $li = shift;
-                    my $relative_url =
-                      Mojo::URL->new( $li->at('a')->attr('href') );
-                    my $absolute_url = $relative_url->to_abs( $tx->req->url );
-                    $urls{$absolute_url} = 1;
-                }
-            );
+for my $tx (@txs) {
+    if ( $tx->success ) {
+        my $divs = $tx->res->dom->find('div.index, div.column-half');
+        for my $div ( $divs->each ) {
+            for my $ul ( $div->find('ul')->each ) {
+                $ul->find('li')->map(
+                    sub {
+                        my $a = $_->at('a');
+                        if ($a){
+                          my $relative_url =
+                            Mojo::URL->new( $a->attr('href') );
+                          my $absolute_url =
+                            $relative_url->to_abs( $tx->req->url );
+                          $urls{$absolute_url} = 1;
+                        }
+                    }
+                );
+            }
         }
     }
-}
-elsif ( my $error = $tx->error ) {
-    croak sprintf "Error: %d %s while fetching %s", $error->{code} || 0,
-      $error->{message},
-      $tx->req->url;
+    elsif ( my $error = $tx->error ) {
+        croak sprintf "Error: %d %s while fetching %s", $error->{code} || 0,
+          $error->{message},
+          $tx->req->url;
+    }
 }
 
 #downloaded file names will be named 1.html, 2.html ....
