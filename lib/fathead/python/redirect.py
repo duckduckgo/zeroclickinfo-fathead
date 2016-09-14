@@ -187,12 +187,12 @@ def generate_redirects(f):
                 output[key] = str(entry)
             else:
                 if key in output and output[key].startswith(key + '\t' + 'D'):
-                    output[entry.get_key()] += '*' + '[['+str(entry.get_key())+']]' + str(entry.get_reference()) + '.' + '\\n'
+                    output[entry.get_key()] += '*' + '[['+str(entry.get_key())+']] ' + str(entry.get_reference()) + '.' + '\\n'
                     continue
                 
                 # New entry of disambiguation type
                 entry.set_entry_type('D')
-                output[entry.get_key()] = str(entry.get_key()) + '\t' + entry.get_type() + '\t\t\t\t\t\t\t\t' + '*' + '[['+str(entry.get_key())+']]' + str(entry.get_reference()) + '.' + '\\n'
+                output[entry.get_key()] = str(entry.get_key()) + '\t' + entry.get_type() + '\t\t\t\t\t\t\t\t' + '*' + '[['+str(entry.get_key())+']] ' + str(entry.get_reference()) + '.' + '\\n'
 
                 duplicate_count += 1
 
@@ -208,12 +208,12 @@ def generate_redirects(f):
                         output[key] = str(redirect.get_entry())
                     else:
                         if key in output and output[key].startswith(key + '\t' + 'D'):
-                            output[redirect.get_key()] += '*' + '[['+str(redirect.get_key())+']]' + str(redirect.get_reference()) + '.' + '\\n'
+                            output[redirect.get_key()] += '*' + '[['+str(redirect.get_key())+']] ' + str(redirect.get_reference()) + '.' + '\\n'
                             continue
 
                         # New entry of disambiguation type
                         redirect.set_entry_type('D')
-                        output[redirect.get_key()] = str(redirect.get_key()) + '\t' + redirect.get_type() + '\t\t\t\t\t\t\t\t' + '*' + '[['+str(redirect.get_key())+']]' + str(redirect.get_reference()) + '.' + '\\n'
+                        output[redirect.get_key()] = str(redirect.get_key()) + '\t' + redirect.get_type() + '\t\t\t\t\t\t\t\t' + '*' + '[['+str(redirect.get_key())+']] ' + str(redirect.get_reference()) + '.' + '\\n'
 
                         duplicate_count += 1
 
@@ -225,6 +225,7 @@ def generate_redirects(f):
     with open('output2.txt', 'w') as output_file:
         for key, line in output.items():
             if line.startswith(key+'\t'+'D'):
+                line = line[:-2]
                 line += '\t\t\t'
             tsv = '{}\n'.format(line)
             output_file.write(tsv)
