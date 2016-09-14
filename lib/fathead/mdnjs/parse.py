@@ -258,9 +258,9 @@ class MDNParser(object):
             
             articletype = htmlfile.name.split('.')[0].split('/')[1]
             desc_header = tree.xpath("//h2[contains(@id,'Description')]")
-            
-            if desc_header and not any(wiki in htmlfile.name for wiki in ["Statements"]):
-                
+
+            if desc_header:
+
                 elements = tree.xpath("//h2[contains(@id,'Description')]/following-sibling::p[1]")
                 
                 for element in elements:
@@ -314,6 +314,7 @@ class MDNIndexer(object):
         self.ERROR_SYNONYMS = [ ["bad", "not legal", "invalid", "not a valid"] ]
         # for syntax, example redirections
         self.SYTAX_EXAMPLE_REDIR = ["Functions", "Classes", "Statements"]
+        self.EXCEPTIONS = ["if", "else", "each", "method"]
 
     def add(self, mdn):
         keyword = mdn.prop.lower()
@@ -335,6 +336,8 @@ class MDNIndexer(object):
 
     def writeredirect(self, title, mdn):
         title = title.replace('_', ' ')
+        title = title.split('...')
+        title = ' '.join(title)
         # write redirects with synomyms for error pages
         if mdn.articletype == "Error":
             for synonyms_list in self.ERROR_SYNONYMS:
@@ -364,6 +367,12 @@ class MDNIndexer(object):
             if any(split_title[0].lower() == wiki.lower() for wiki in self.SYTAX_EXAMPLE_REDIR) and len(split_title) > 1:
                 new_title = split_title[1:]
                 new_title = ' '.join(new_title).lower()
+                if new_title != mdn.title.lower():
+                    self._writer.writerow({
+                        'title': new_title,
+                        'type': 'R',
+                        'redirect': mdn.title
+                    })
                 self._writer.writerow({
                     'title': new_title + " syntax",
                     'type': 'R',
@@ -374,6 +383,24 @@ class MDNIndexer(object):
                     'type': 'R',
                     'redirect': mdn.title
                 })
+                new_title = new_title.split(' ')
+                for split_title in new_title:
+                    if any(exceptions == split_title for exceptions in self.EXCEPTIONS):
+                        self._writer.writerow({
+                            'title': split_title,
+                            'type': 'R',
+                            'redirect': mdn.title
+                        })
+                        self._writer.writerow({
+                            'title': split_title + " syntax",
+                            'type': 'R',
+                            'redirect': mdn.title
+                        })
+                        self._writer.writerow({
+                            'title': split_title + " example",
+                            'type': 'R',
+                            'redirect': mdn.title
+                        })
             
         # To avoid redirections like "default parameters" -> "Default Parameters"
         if title.lower() != mdn.title.lower():
