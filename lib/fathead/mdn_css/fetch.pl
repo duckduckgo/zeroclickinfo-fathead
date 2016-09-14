@@ -24,8 +24,10 @@ my $webkit_extensions_url = Mojo::URL->new(
     'https://developer.mozilla.org/en-US/docs/Web/CSS/Webkit_Extensions');
 my $mozilla_css_extensions_url = Mojo::URL->new(
     'https://developer.mozilla.org/en-US/docs/Web/CSS/Mozilla_Extensions');
-my $tx = $ua->get($reference_url);
 
+my @fetch_links =
+  ( $reference_url, $webkit_extensions_url, $mozilla_css_extensions_url );
+my @txs = map { $ua->get($_) } @fetch_links;
 my %urls;    #hash used to remove duplicate urls
 
 if ( $tx->success ) {
