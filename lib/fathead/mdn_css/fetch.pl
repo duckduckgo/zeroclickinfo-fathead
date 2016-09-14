@@ -20,6 +20,10 @@ something other than BASH to ease development and maintenance in the future.
 my $ua = Mojo::UserAgent->new()->max_redirects(4);
 my $reference_url =
   Mojo::URL->new('https://developer.mozilla.org/en-US/docs/Web/CSS/Reference');
+my $webkit_extensions_url = Mojo::URL->new(
+    'https://developer.mozilla.org/en-US/docs/Web/CSS/Webkit_Extensions');
+my $mozilla_css_extensions_url = Mojo::URL->new(
+    'https://developer.mozilla.org/en-US/docs/Web/CSS/Mozilla_Extensions');
 my $tx = $ua->get($reference_url);
 
 my %urls;    #hash used to remove duplicate urls
