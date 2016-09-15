@@ -11,10 +11,10 @@ use Mojo::Util 'spurt';
 use Mojo::URL;
 
 =begin
-This script extracts data from Mozilla CSS Reference
-https://developer.mozilla.org/en-US/docs/Web/CSS/Reference and is called by the
-fetch.sh script since it is more efficient to fetch and parse the DOM using
-something other than BASH to ease development and maintenance in the future.
+    This script extracts data from Mozilla CSS Reference
+    https://developer.mozilla.org/en-US/docs/Web/CSS/Reference and is called by the
+    fetch.sh script since it is more efficient to fetch and parse the DOM using
+    something other than BASH to ease development and maintenance in the future.
 =cut
 
 my @urls_to_fetch = ('https://developer.mozilla.org/en-US/docs/Web/CSS/Reference', 
@@ -38,21 +38,20 @@ my @keyword_urls;
     to extract extra information about the fragments
     used later on in download()
 =cut
-
 open(
         my $fragments_fh,   '>:encoding(UTF-8)',
         catfile 'download', 'fragments.txt'
     ) or die $!;
 
 
+#fetch links to keywords from each of the URLs
 for my $url (@urls_to_fetch) {
     my $reference_url = Mojo::URL->new($url);
     my $tx = $ua->get($reference_url);
-    print "fetching url $url\n";
     fetch($tx);
-    print "downloading $url\n";    
 }
 
+#download the pages from links collected in fetch
 download();
 
 =begin
@@ -79,7 +78,6 @@ sub fetch {
                 $ul->find('li')->map(
                     sub {
                         my $li = shift;
-                        print "\n value of li $li";
                         if($li->at('a')) {
                             my $relative_url = Mojo::URL->new( $li->at('a')->attr('href') );
                             my $absolute_url = $relative_url->to_abs( $tx->req->url );
