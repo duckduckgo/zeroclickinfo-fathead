@@ -188,22 +188,23 @@ class MDNParser(object):
               for tag in summary_el.xpath('//*[@class]'):
                   tag.attrib.pop('class')
               summary += re.sub('<[^<]+?>', '', etree.tostring(summary_el).strip())
-
+        
+        # if there's no summary, getting description section
         if not summary:
             summary_el = tree.xpath("//meta[@property='og:description']/@content")
             if summary_el:
               summary = summary_el[0]
 
-        # if there's no summary or description, getting tags
+        # if there's no summary or description, getting see also section title
         if not summary:
-            summary_el = tree.xpath("//ul[contains(@class,'tag')]")
-            if summary_el:
-              elements = tree.xpath("//ul[contains(@class,'tag')]/li/..")
-              for element in elements:
-                  for tag in element.xpath('//*[@class]'):
-                      tag.attrib.pop('class')
-                  summary += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
-              summary = "Tags: " + summary.strip()
+            see_also_el = tree.xpath("//h3[contains(@id,'See_also')]")
+            if see_also_el:
+                elements = tree.xpath("//h3[contains(@id,'See_also')]/following-sibling::ul[1]")
+                for element in elements:
+                    for tag in element.xpath('//*[@class]'):
+                        tag.attrib.pop('class')
+                    summary = re.findall('title="([^"]*)"', etree.tostring(element).strip())
+                summary = summary[0].strip()
 
         codesnippet = ""
         syntax_header = tree.xpath("//h2[contains(@id,'Syntax')]")
@@ -214,20 +215,6 @@ class MDNParser(object):
                     tag.attrib.pop('class')
                 codesnippet += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
 
-        # if there's no codesnippet, getting see also
-        see_also_title = ""
-        if not codesnippet:
-            see_also_header = tree.xpath("//h3[contains(@id,'See_also')]")
-            if see_also_header:
-                elements = tree.xpath("//h3[contains(@id,'See_also')]/following-sibling::ul[1]")
-                for element in elements:
-                    for tag in element.xpath('//*[@class]'):
-                        tag.attrib.pop('class')
-                    see_also_title = re.findall('title="([^"]*)"', etree.tostring(element).strip())
-                    codesnippet += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
-                if see_also_title and codesnippet:
-                    codesnippet = "See also:\n  " + codesnippet.strip() + "\n  " + see_also_title[0].strip()
-
         articletype = ""
         exampledesc = ""
         example = ""
@@ -235,6 +222,7 @@ class MDNParser(object):
         if "Error" in htmlfile.name:
 
           articletype = "Error"
+
           # What went wrong?
           whatWentWrong_summary = ""
           whatWentWrong = tree.xpath("//h2[contains(@id,'What_went_wrong')]/following-sibling::p[1]")
@@ -261,8 +249,7 @@ class MDNParser(object):
           if exampleBad or exampleGood:
             codesnippet = exampleBad + "\n" + exampleGood
             
-        if "Functions." in htmlfile.name:
-            
+        if "Functions." in htmlfile.name:   
             articletype = "Functions"
             desc_header = tree.xpath("//h2[contains(@id,'Description')]")
             if desc_header:
@@ -277,7 +264,7 @@ class MDNParser(object):
                     for tag in element.xpath('//*[@class]'):
                         tag.attrib.pop('class')
                     example += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
-                        
+       
         print title + (' ' * 30) + '\r',
 
         mdn = MDN()
@@ -307,6 +294,17 @@ class MDNIndexer(object):
         if keyword not in self.inverted_index:
             self.inverted_index[keyword] = []
         self.inverted_index[keyword].append(mdn)
+
+    def writestrippedredirect(self, mdn):
+        #lowercase title and strip quotation marks ("), color(:) and period(.) between two words
+        strippedRedirect = re.sub('(?<=[a-z])([.])(?!\d)', ' ', mdn.title.replace(',', ' ').replace(':',' ').replace('"', ' ').lower())
+        strippedRedirect = re.sub( '\s+', ' ',strippedRedirect ).strip()
+        if (strippedRedirect != mdn.title.lower()):
+            self._writer.writerow({
+              'title': strippedRedirect,
+              'type': 'R',
+              'redirect': mdn.title
+            })
 
     def writeredirect(self, title, mdn):
         title = title.replace('_', ' ')
@@ -447,6 +445,10 @@ def run(cachedir, cachejournal, langdefs, outfname):
             if mdn.summary or mdn.codesnippet:
                 writer.writemdn(mdn)
                 indexer.add(mdn)
+                # For the error articles, we write a redirect
+                # with a stripped version of the article
+                if mdn.articletype == "Error":            
+                    indexer.writestrippedredirect(mdn)
         indexer.writerows()
 
 if __name__ == '__main__':
