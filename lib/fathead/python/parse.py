@@ -402,6 +402,7 @@ if __name__ == "__main__":
         for dir_path, dir_name, file_names in os.walk(info['download_path']):
             for file_name in file_names:
                 if '.html' in file_name:
+                    print(file_name)
                     file_path = '/'.join((dir_path, file_name))
                     data = PythonData(file_path)
                     parser = PythonDataParser(data, info)
