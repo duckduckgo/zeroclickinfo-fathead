@@ -143,8 +143,8 @@ class Entry(object):
     def get_alternatives(self):
         return self.alternative_keys
 
-    def get_reference(self):
-        return self.reference
+    def get_abstract(self):
+        return self.abstract
 
     def get_entry(self):
         return '\t'.join([
@@ -171,7 +171,7 @@ def generate_redirects(f):
 
     # For debugging purposes
     duplicate_count = 0
-
+    disambiguations = 0
     for line in f.readlines():
         try:
             # Parse entry
@@ -185,16 +185,20 @@ def generate_redirects(f):
             # Do we have the entry yet?
             if key not in output or '3.5/library/functions.html' in str(entry):
                 output[key] = str(entry)
-            else:
-                if key in output and output[key].startswith(key + '\t' + 'D'):
-                    output[entry.get_key()] += '*' + '[['+str(entry.get_key())+']] ' + str(entry.get_reference()) + '.' + '\\n'
-                    continue
-                
-                # New entry of disambiguation type
-                entry.set_entry_type('D')
-                output[entry.get_key()] = str(entry.get_key()) + '\t' + entry.get_type() + '\t\t\t\t\t\t\t\t' + '*' + '[['+str(entry.get_key())+']] ' + str(entry.get_reference()) + '.' + '\\n'
 
-                duplicate_count += 1
+            disambiguation_key = entry.get_key()
+            splitted_key = disambiguation_key.split('.')
+            package_name = '.'.join(splitted_key[0:len(splitted_key)-1])
+            temp = "'" + package_name + "'"
+
+            if len(splitted_key) >= 2:
+                if temp in output and output[temp].startswith(package_name + '\t' + 'A'):
+                    output[temp] = str(package_name) + '\t' + 'D' +'\t\t\t\t\t\t\t\t' + '*' + '[['+str(disambiguation_key)+']] ' + str(entry.get_abstract()) + '\\n'
+                    if output[temp].startswith(package_name + '\t' + 'A'):
+                        del output[temp]
+                    disambiguations += 1
+                elif temp in output and disambiguation_key not in output[temp] and output[temp].startswith(package_name + '\t' + 'D'):
+                    output[temp] += '*' + '[['+str(disambiguation_key)+']] ' + str(entry.get_abstract()) + '\\n'
 
             # Get all possible redirect entries
             key = entry.get_key() 
@@ -207,24 +211,18 @@ def generate_redirects(f):
                     if key not in output and built_in_key not in built_in:
                         output[key] = str(redirect.get_entry())
                     else:
-                        if key in output and output[key].startswith(key + '\t' + 'D'):
-                            output[redirect.get_key()] += '*' + '[['+str(redirect.get_key())+']] ' + str(redirect.get_reference()) + '.' + '\\n'
-                            continue
-
-                        # New entry of disambiguation type
-                        redirect.set_entry_type('D')
-                        output[redirect.get_key()] = str(redirect.get_key()) + '\t' + redirect.get_type() + '\t\t\t\t\t\t\t\t' + '*' + '[['+str(redirect.get_key())+']] ' + str(redirect.get_reference()) + '.' + '\\n'
-
+                        del output[key]
                         duplicate_count += 1
 
         except BadEntryException as e:
             pass  # Continue execution entry data is invalid.
 
-    print(duplicate_count)
+    print("Duplicates: %s" % duplicate_count)
+    print("Disambiguations: %s" % disambiguations)
 
     with open('output2.txt', 'w') as output_file:
         for key, line in output.items():
-            if line.startswith(key+'\t'+'D'):
+            if line.endswith('\\n'):
                 line = line[:-2]
                 line += '\t\t\t'
             tsv = '{}\n'.format(line)
