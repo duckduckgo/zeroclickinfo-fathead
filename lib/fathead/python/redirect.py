@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 import itertools
 import re
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 built_in = ['abs','dict','help','min','setattr','all','dir','hex','next',
 'slice','any','divmod','id','object','sorted','ascii','enumerate','input',
@@ -225,9 +229,8 @@ def generate_redirects(f):
             if line.endswith('\\n'):
                 line = line[:-2]
                 line += '\t\t\t'
-            line = line.replace('\\x', '\\\\x')
-            line = line.replace('\\u', '\\\\u')
-            line = line.replace('\\U', '\\\\U')
+            line = line.encode('unicode_escape')
+            line = line.replace('\\t', '\t')
             tsv = '{}\n'.format(line)
             output_file.write(tsv)
 
