@@ -89,7 +89,7 @@ class FatWriter(object):
         for field in FatWriter.FIELDS:
             col = outdict.get(field, '')
             col = col.replace('\t', '    ')
-            col = col.replace('\n', '\\n')
+            col = col.replace('\n', '\\\\n')
             row.append(col)
         self.outfile.write('\t'.join(row) + '\n')
 
@@ -425,7 +425,7 @@ class MDNIndexer(object):
                 disambig = ''
                 for mdn in self.inverted_index[keyword]:
                     if disambig:
-                        disambig += '\\n'
+                        disambig += '\\\\n'
                     if '.' in mdn.summary:
                         summary = mdn.summary[:mdn.summary.find('.') + 1]
                     else:
