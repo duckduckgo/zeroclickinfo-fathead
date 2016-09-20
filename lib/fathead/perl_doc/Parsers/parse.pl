@@ -117,6 +117,7 @@ sub _build_tsv {
         csv_class        => "Text::CSV_XS",
         csv_quote_char   => '',
         csv_escape_char  => '',
+        csv_eol          => "\n",
     });
 
     $dbh->do ( sprintf ( "CREATE TABLE output.txt (%s)",
