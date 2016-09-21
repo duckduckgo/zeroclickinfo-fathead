@@ -77,6 +77,11 @@ sub _build_titles {
     return $titles;
 }
 
+has valid_types => ( is => 'lazy' );
+sub _build_valid_types {
+    [qw/ A D R /]
+}
+
 has categories => ( is => 'lazy' );
 
 sub _a_not_in_b {
@@ -107,6 +112,14 @@ sub coverage {
     my @missing = $self->_a_not_in_b( $self->cover_titles, $titles );
     warn sprintf "Titles missing coverage in output : %s", join( ', ', @missing ) if @missing;
     return @missing ? 0 : 1;
+}
+
+sub types {
+    my ( $self ) = @_;
+    my @output_types = uniq map { ( split /\t/ )[1] } @{ $self->content };
+    my @invalid_types = $self->_a_not_in_b( \@output_types, $self->valid_types );
+    warn sprintf "Output contains invalid type fields : %s", join( ', ', @invalid_types ) if @invalid_types;
+    return @invalid_types ? 1 : 0;
 }
 
 1;

@@ -8,9 +8,10 @@ plan skip_all => 'Set DDG_TEST_FATHEAD to a fathead id to run these tests' unles
 my $utils = t::lib::TestUtils->new( fathead => $ENV{DDG_TEST_FATHEAD} );
 
 ok( $utils->duplicates, "Checking for duplicate titles" );
+ok( $utils->types, "Validating types" );
 
 SKIP_COVERAGE: {
-    skip "COVERAGE DATA NOT FOUND", 1 unless ( $utils->cover_dir );
+    skip "COVERAGE DATA NOT FOUND", 1 unless $utils->cover_dir;
     ok( $utils->coverage, "Testing language feature coverage" );
 }
 
