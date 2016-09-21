@@ -48,6 +48,7 @@ patterns=(
     "en-US/docs/Web/JavaScript/Reference/Functions"
     "en-US/docs/Web/JavaScript/Reference/Classes"
     "en-US/docs/Web/JavaScript/Reference/Statements"
+    "/en-US/docs/Web/JavaScript/Reference/Operators"
 )
 
 downloadSiteMap
