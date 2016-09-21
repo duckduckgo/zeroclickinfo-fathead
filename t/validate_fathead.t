@@ -10,6 +10,7 @@ my $utils = t::lib::TestUtils->new( fathead => $ENV{DDG_TEST_FATHEAD} );
 ok( $utils->duplicates, "Checking for duplicate titles" );
 ok( $utils->types, "Validating types" );
 ok( $utils->field_count, "Validating correct number of fields" );
+ok( $utils->escapes, "Checking for unescaped chars" );
 
 SKIP_COVERAGE: {
     skip "COVERAGE DATA NOT FOUND", 1 unless $utils->cover_dir;

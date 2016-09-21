@@ -135,4 +135,19 @@ sub field_count {
     return $r;
 }
 
+sub escapes {
+    my ( $self ) = @_;
+    my $r = 1;
+    while ( my ( $number, $line ) = each @{ $self->content } ) {
+        my $abstract = ( split /\t/, $line )[11];
+        next unless $abstract;
+        if ( my @matches = $abstract =~ /([^\\]\\[0-9nrtx])/g ) {
+            warn sprintf "Line %d appears to contain unescaped characters : %s",
+                $number + 1, join( ', ', @matches );
+            $r = 0;
+        }
+    }
+    return $r;
+}
+
 1;
