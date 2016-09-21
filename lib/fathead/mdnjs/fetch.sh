@@ -48,7 +48,7 @@ patterns=(
     "en-US/docs/Web/JavaScript/Reference/Functions"
     "en-US/docs/Web/JavaScript/Reference/Classes"
     "en-US/docs/Web/JavaScript/Reference/Statements"
-    "/en-US/docs/Web/JavaScript/Reference/Operators"
+    "en-US/docs/Web/JavaScript/Reference/Operators"
 )
 
 downloadSiteMap
@@ -59,5 +59,5 @@ echo "$SECONDS seconds"
 echo -e "Check wget.log for errors, re-run fetch to fix parse incomplete file failures."
 
 # @mbad0la SEPT 2016
-# Test run : Read 15483 : 4166 pages to download
-#            227 seconds
+# Test run : Read 15483 : 4232 pages to download
+#            344 seconds
