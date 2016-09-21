@@ -122,4 +122,17 @@ sub types {
     return @invalid_types ? 1 : 0;
 }
 
+sub field_count {
+    my ( $self ) = @_;
+    my $r = 1;
+    while ( my ( $number, $line ) = each @{ $self->content } ) {
+        my $fields = scalar split /\t/, $line;
+        if ( $fields > 13 ) {
+            warn sprintf "Line %d appears to have %d fields", $number + 1, $fields;
+            $r = 0;
+        }
+    }
+    return $r;
+}
+
 1;
