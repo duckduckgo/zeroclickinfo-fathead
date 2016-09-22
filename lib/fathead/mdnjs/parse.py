@@ -89,7 +89,7 @@ class FatWriter(object):
         for field in FatWriter.FIELDS:
             col = outdict.get(field, '')
             col = col.replace('\t', '    ')
-            col = col.replace('\n', '\\\\n')
+            col = col.replace('\n', '\\n')
             row.append(col)
         self.outfile.write('\t'.join(row) + '\n')
 
@@ -254,7 +254,7 @@ class MDNParser(object):
           if exampleBad or exampleGood:
             codesnippet = exampleBad + "\n" + exampleGood
             
-        if any(wiki in htmlfile.name for wiki in ["Functions.", "Classes.", "Statements."]):
+        if any(wiki in htmlfile.name for wiki in ["Functions.", "Classes.", "Statements.", "Operators."]):
             
             articletype = htmlfile.name.split('.')[0].split('/')[1]
             desc_header = tree.xpath("//h2[contains(@id,'Description')]")
@@ -313,7 +313,7 @@ class MDNIndexer(object):
         # for Error pages
         self.ERROR_SYNONYMS = [ ["bad", "not legal", "invalid", "not a valid"] ]
         # for syntax, example redirections
-        self.SYTAX_EXAMPLE_REDIR = ["Functions", "Classes", "Statements"]
+        self.SYTAX_EXAMPLE_REDIR = ["Functions", "Classes", "Statements", "Operators"]
         self.EXCEPTIONS = ["if", "else", "each", "method"]
 
     def add(self, mdn):
@@ -338,7 +338,7 @@ class MDNIndexer(object):
         title = title.replace('_', ' ')
         title = title.split('...')
         title = ' '.join(title)
-        # write redirects with synomyms for error pages
+        # write redirects with synonyms for error pages
         if mdn.articletype == "Error":
             for synonyms_list in self.ERROR_SYNONYMS:
                 if any(word in title.lower() for word in synonyms_list): 
@@ -425,7 +425,7 @@ class MDNIndexer(object):
                 disambig = ''
                 for mdn in self.inverted_index[keyword]:
                     if disambig:
-                        disambig += '\\\\n'
+                        disambig += '\\n'
                     if '.' in mdn.summary:
                         summary = mdn.summary[:mdn.summary.find('.') + 1]
                     else:
