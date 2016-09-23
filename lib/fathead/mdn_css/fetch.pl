@@ -20,45 +20,41 @@ something other than BASH to ease development and maintenance in the future.
 my $ua = Mojo::UserAgent->new()->max_redirects(4);
 my $reference_url =
   Mojo::URL->new('https://developer.mozilla.org/en-US/docs/Web/CSS/Reference');
-my $tx = $ua->get($reference_url);
+my $webkit_extensions_url = Mojo::URL->new(
+    'https://developer.mozilla.org/en-US/docs/Web/CSS/Webkit_Extensions');
+my $mozilla_css_extensions_url = Mojo::URL->new(
+    'https://developer.mozilla.org/en-US/docs/Web/CSS/Mozilla_Extensions');
 
+my @fetch_links =
+  ( $reference_url, $webkit_extensions_url, $mozilla_css_extensions_url );
+my @txs = map { $ua->get($_) } @fetch_links;
 my %urls;    #hash used to remove duplicate urls
 
-if ( $tx->success ) {
-
-=begin
-  We extract the collection of links to keywords from the DOM. The links wanted
-  are found from this part of the DOM:
-  <div class="index">
-    <span>A</span>
-    <ul>
-      <li>
-        <a href="/en-US/docs/Web/CSS/:active"><code>:active</code></a>
-      </li>
-    </ul>
-    ...
-  </div>
-=cut
-
-    my $divs = $tx->res->dom->find('div.index, div.column-half');
-    for my $div ( $divs->each ) {
-        for my $ul ( $div->find('ul')->each ) {
-            $ul->find('li')->map(
-                sub {
-                    my $li = shift;
-                    my $relative_url =
-                      Mojo::URL->new( $li->at('a')->attr('href') );
-                    my $absolute_url = $relative_url->to_abs( $tx->req->url );
-                    $urls{$absolute_url} = 1;
-                }
-            );
+for my $tx (@txs) {
+    if ( $tx->success ) {
+        my $divs = $tx->res->dom->find('div.index, div.column-half');
+        for my $div ( $divs->each ) {
+            for my $ul ( $div->find('ul')->each ) {
+                $ul->find('li')->map(
+                    sub {
+                        my $a = $_->at('a');
+                        if ($a){
+                          my $relative_url =
+                            Mojo::URL->new( $a->attr('href') );
+                          my $absolute_url =
+                            $relative_url->to_abs( $tx->req->url );
+                          $urls{$absolute_url} = 1;
+                        }
+                    }
+                );
+            }
         }
     }
-}
-elsif ( my $error = $tx->error ) {
-    croak sprintf "Error: %d %s while fetching %s", $error->{code} || 0,
-      $error->{message},
-      $tx->req->url;
+    elsif ( my $error = $tx->error ) {
+        croak sprintf "Error: %d %s while fetching %s", $error->{code} || 0,
+          $error->{message},
+          $tx->req->url;
+    }
 }
 
 #downloaded file names will be named 1.html, 2.html ....
