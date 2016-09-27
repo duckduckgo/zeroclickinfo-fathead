@@ -8,7 +8,7 @@ def build_article(h2_parent):
     '''Builds fathead article entry.
 
     Accepts h2_parent and extracts title, url, description and code snippets.
-    Returns a dict
+    Returns a dict with keys corresponding to output.txt field names
     '''
     title = h2_parent.find('h2').text.replace('¶', '')
     print("Title %s " % title)
