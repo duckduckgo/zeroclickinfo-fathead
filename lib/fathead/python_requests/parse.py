@@ -27,10 +27,10 @@ def build_article(h2_parent, page_url):
         elif next_sibling.name == 'div':
             pre = next_sibling.find('pre')
             if pre:
-                pre_text = pre.text.replace('\n', '\\n')
-                description += "<pre>{0}</pre>".format(pre_text)
+                description += "<pre>{0}</pre>".format(pre.text)
         next_sibling = next_sibling.find_next_sibling(text=None)
     description = description.strip('\n')
+    description = description.replace('\n', '\\n')
     description = "<p>{0}</p>".format(description)
     print("Title %s " % title)
     print("URL %s" % url)
