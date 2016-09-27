@@ -27,8 +27,9 @@ def build_article(h2_parent, page_url):
         elif next_sibling.name == 'div':
             pre = next_sibling.find('pre')
             if pre:
-                description += pre.text
+                description += "<pre>{0}</pre>".format(pre.text)
         next_sibling = next_sibling.find_next_sibling(text=None)
+    description = "<p>{0}</p>".format(description)
     print("Title %s " % title)
     print("URL %s" % url)
     print("Description %s" % description)
