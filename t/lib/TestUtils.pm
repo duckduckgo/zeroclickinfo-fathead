@@ -105,6 +105,17 @@ sub _build_categories {
     ];
 }
 
+has disambiguations => ( is => 'lazy' );
+sub _build_disambiguations {
+    my ( $self ) = @_;
+    [
+        map { split /\s*\\n\s*/ }
+        map { ( split /\t/ )[9] }
+        grep { /\tD\t/ }
+        @{ $self->content }
+    ]
+}
+
 sub _a_in_b {
     my ( $self, $list_a, $list_b ) = @_;
     my @present;
@@ -183,6 +194,34 @@ sub escapes {
         }
     }
     return $r;
+}
+
+sub disambiguations_format {
+    my ( $self ) = @_;
+    # (*[\w+]\s?\w+\n)+
+    my @invalid;
+    for my $d ( @{ $self->disambiguations } ) {
+        push @invalid, $d unless $d =~ /^\*\[\[[^\]]*\]\],/;
+    }
+    warn sprintf "The following disambiguation entries appear to be invalid:\n%s\n",
+        join( "\n", @invalid )
+        if @invalid;
+
+    return @invalid ? 0 : 1;
+}
+
+sub disambiguations_missing {
+    my ( $self ) = @_;
+    my @disambiguation_titles =
+        map { lc }
+        map { /^\*\[\[([^\]]*)/ }
+        @{ $self->disambiguations };
+    my @titles = uniq map { lc } keys %{ $self->titles };
+
+    my @missing = $self->_a_not_in_b( \@disambiguation_titles, \@titles );
+
+    warn sprintf "Disambiguation titles missing from articles : %s", join( ', ', @missing ) if @missing;
+    return @missing ? 0 : 1;
 }
 
 sub category_clash {
