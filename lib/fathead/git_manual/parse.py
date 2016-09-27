@@ -20,20 +20,23 @@ class Command(object):
         self.filename = filename
         self.usage = ''
 
-    def __str__(self):
+    def basic_usage(self):
         '''
         Output the git command information in the proper format required for
         DuckDuckGo Fatheads
         '''
-
         # Clean up the usage statement which can have newline characters and
         # tab characters, which mess up how it renders
         usage_cleaned = self.usage.replace('\n', '\\n').replace('\t', '    ')
 
-        # Make the abstract have the description as well as a code block
-        # for the usage of the command
-        abstract = '{}\n<pre><code>{}</pre></code>'.format(self.description,
-                                                           usage_cleaned)
+        if usage_cleaned:
+            # Make the abstract have the description as well as a code block
+            # for the usage of the command
+            abstract = '{}\n<pre><code>{}</pre></code>'.format(self.description,
+                                                               usage_cleaned)
+        else:
+            abstract = self.description
+
         return '\t'.join([
             self.name,  # Full article title
             'A',  # Type of article
@@ -47,7 +50,7 @@ class Command(object):
             '',  # For disambiguation pages only
             '',  # Image
             abstract,  # Abstract
-            '{}/{}'.format(git_docs_base_url,
+            '{}{}'.format(git_docs_base_url,
                            self.filename),  # URL
         ])
 
@@ -99,6 +102,28 @@ class Parser(object):
                     # Add the usage to the Command instance
                     command.usage = usage
 
+            # Find the h2 that starts the Options part of the file. The ID on
+            # this h2 element is inconsistent but the text inside ("OPTIONS")
+            # is consistent so we'll use that to identify
+            options_h2s = soup.find_all('h2')
+            for options_h2 in options_h2s:
+                if options_h2.getText() != 'OPTIONS':
+                    continue
+
+                options = []
+                for option_h2_child in options_h2.parent.find_all():
+                    if option_h2_child.name == 'dt':
+                        options.append(option_h2_child.getText())
+                    elif option_h2_child.name == 'p':
+                        description = option_h2_child.getText()
+                        for option in options:
+                            command_name_with_option = '{} {}'.format(command_name, option)
+                            command_with_option = Command(command_name_with_option,
+                                                          description,
+                                                          file.replace('download/', ''))
+                            self.commands.append(command_with_option)
+                        options = []
+
             # Add the command to the list of commands
             self.commands.append(command)
 
@@ -112,4 +137,4 @@ if __name__ == '__main__':
     # Write the output for each command into the output.txt file
     with open('output.txt', 'wb') as output:
         for command in parser.commands:
-            output.write((command.__str__() + '\n').encode('utf-8'))
+            output.write((command.basic_usage() + '\n').encode('utf-8'))
