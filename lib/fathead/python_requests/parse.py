@@ -10,7 +10,7 @@ def build_article(h2_parent):
     Accepts h2_parent and extracts title, url, description and code snippets.
     Returns a dict
     '''
-    title = h2_parent.find('h2').text
+    title = h2_parent.find('h2').text.replace('¶', '')
     print("Title %s " % title)
 
 for html_file in glob('download/*.html'):
