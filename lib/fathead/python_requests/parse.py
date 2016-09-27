@@ -14,7 +14,8 @@ def build_article(h2_parent, page_url):
     Accepts h2_parent and extracts title, url, description and code snippets.
     Returns a dict with keys corresponding to output.txt field names
     '''
-    title = h2_parent.find('h2').text.replace('¶', '')
+    h2 = h2_parent.find('h2')
+    title = h2.text.replace('¶', '')
     url = h2_parent.find('a').get('href')
     url = urljoin(page_url, url)
     print("Title %s " % title)
