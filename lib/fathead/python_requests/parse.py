@@ -2,6 +2,7 @@
 
 from bs4 import BeautifulSoup
 from glob import glob
+import re
 try:
     from urlparse import urljoin
 except ImportError:
@@ -18,6 +19,11 @@ def build_article(h2_parent, page_url):
     title = h2.text.replace('¶', '')
     url = h2_parent.find('a').get('href')
     url = urljoin(page_url, url)
+    description = ''
+    next_sibling = h2.find_next_sibling(text=None)
+    while next_sibling:
+        print("Sibling %s" % next_sibling)
+        next_sibling = next_sibling.find_next_sibling(text=None)
     print("Title %s " % title)
     print("URL %s" % url)
 
