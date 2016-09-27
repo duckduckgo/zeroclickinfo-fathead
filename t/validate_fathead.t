@@ -17,4 +17,9 @@ SKIP_COVERAGE: {
     ok( $utils->coverage, "Testing language feature coverage" );
 }
 
+SKIP_CATEGORIES: {
+    skip "Trigger words not found", 1 unless $utils->trigger_words;
+    ok( $utils->category_clash, "Testing category / title clashes" );
+}
+
 done_testing;

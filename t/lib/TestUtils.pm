@@ -49,6 +49,17 @@ sub _build_output_txt {
     return $otxt;
 }
 
+has trigger_words => ( is => 'lazy' );
+sub _build_trigger_words {
+    my ( $self ) = @_;
+    my $ttxt = f->catfile( $self->fathead_dir, q'trigger_words.txt' );
+    if ( ! -f $ttxt ) {
+        warn "$ttxt does not exist - will not be able to validate categories";
+        return;
+    }
+    [ grep { $_ } io( $ttxt )->utf8->chomp->getlines ];
+}
+
 has cover_titles => ( is => 'lazy' );
 sub _build_cover_titles {
     [
@@ -83,6 +94,30 @@ sub _build_valid_types {
 }
 
 has categories => ( is => 'lazy' );
+sub _build_categories {
+    my ( $self ) = @_;
+    [
+        uniq map { lc }
+        map { split /\s*\\n\s*/ }
+        grep { $_ }
+        map { ( split /\t/ )[4] }
+        @{ $self->content }
+    ];
+}
+
+sub _a_in_b {
+    my ( $self, $list_a, $list_b ) = @_;
+    my @present;
+    my %presence_of =
+        map { $_ => 1 }
+        @{ $list_b };
+
+    for my $entry ( @{ $list_a } ) {
+        push @present, $entry if $presence_of{ $entry };
+    }
+
+    return wantarray ? @present : \@present;
+}
 
 sub _a_not_in_b {
     my ( $self, $list_a, $list_b ) = @_;
@@ -148,6 +183,21 @@ sub escapes {
         }
     }
     return $r;
+}
+
+sub category_clash {
+    my ( $self ) = @_;
+    my $re = join '|', @{ $self->trigger_words };
+    my @filtered_categories =
+        map { s/^\s+|\s+$//r }
+        map { s/\b$re\b//gr }
+        @{ $self->categories };
+
+    my @titles = uniq map { lc } keys %{ $self->titles };
+    my @clash = $self->_a_in_b( \@filtered_categories, \@titles );
+
+    warn sprintf "Categories matching existing titles : %s", join( ', ', @clash ) if @clash;
+    return @clash ? 0 : 1;
 }
 
 1;
