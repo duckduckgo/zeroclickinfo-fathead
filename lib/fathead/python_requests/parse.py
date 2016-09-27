@@ -59,4 +59,6 @@ with open('output.txt', 'w') as fp:
         print("Page url %s" % page_url)
         h2s = soup.findAll('h2')
         for h2 in h2s:
-            output = build_article(h2.parent, page_url)
+            data = build_article(h2.parent, page_url)
+            data = '\t'.join(data)
+            fp.write("{}\n".format(data))
