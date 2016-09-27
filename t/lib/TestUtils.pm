@@ -204,7 +204,7 @@ sub disambiguations_format {
         push @invalid, $d unless $d =~ /^\*\[\[[^\]]*\]\],/;
     }
     warn sprintf "The following disambiguation entries appear to be invalid:\n%s\n",
-        join( "\n", @invalid )
+        join( "\n\n", @invalid )
         if @invalid;
 
     return @invalid ? 0 : 1;
