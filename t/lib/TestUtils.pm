@@ -235,7 +235,7 @@ sub category_clash {
     my @titles = uniq map { lc } keys %{ $self->titles };
     my @clash = $self->_a_in_b( \@filtered_categories, \@titles );
 
-    warn sprintf "Categories matching existing titles : %s", join( ', ', @clash ) if @clash;
+    warn sprintf "Categories matching article titles : %s", join( ', ', @clash ) if @clash;
     return @clash ? 0 : 1;
 }
 
