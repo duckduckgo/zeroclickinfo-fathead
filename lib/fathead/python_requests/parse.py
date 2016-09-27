@@ -13,7 +13,7 @@ def build_article(h2_parent, page_url):
     '''Builds fathead article entry.
 
     Accepts h2_parent and extracts title, url, description and code snippets.
-    Returns a dict with keys corresponding to output.txt field names
+    Returns a list
     '''
     h2 = h2_parent.find('h2')
     title = h2.text.replace('¶', '')
@@ -35,12 +35,21 @@ def build_article(h2_parent, page_url):
     print("Title %s " % title)
     print("URL %s" % url)
     print("Description %s" % description)
-    outputline = {
-        'title': title,
-        'url': url,
-        'description': description
-    }
-    return outputline
+    return [
+            title,           # title
+            'A',             # type is article
+            '',              # no redirect data
+            '',              # ignore
+            '',              # no categories
+            '',              # ignore
+            '',              # no related topics
+            '',              # ignore
+            '',              # add an external link back to Dive Into Python
+            '',              # no disambiguation
+            '',              # images
+            description,     # abstract
+            url              # anchor to specific section
+        ]
 
 with open('output.txt', 'w') as fp:
     for html_file in glob('download/*.html'):
