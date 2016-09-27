@@ -35,6 +35,12 @@ def build_article(h2_parent, page_url):
     print("Title %s " % title)
     print("URL %s" % url)
     print("Description %s" % description)
+    outputline = {
+        'title': title,
+        'url': url,
+        'description': description
+    }
+    return outputline
 
 for html_file in glob('download/*.html'):
     print("Processing %s" % html_file)
