@@ -8,3 +8,4 @@ for html_file in glob('download/*.html'):
     soup = BeautifulSoup(open(html_file), "html.parser")
     page_url = soup.find('link', attrs={'rel': 'canonical'}).get('href')
     print("Page url %s" % page_url)
+    h2s = soup.findAll('h2')
