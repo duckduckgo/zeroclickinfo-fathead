@@ -2,16 +2,23 @@
 
 from bs4 import BeautifulSoup
 from glob import glob
+try:
+    from urlparse import urljoin
+except ImportError:
+    from urllib.parse import urljoin
 
 
-def build_article(h2_parent):
+def build_article(h2_parent, page_url):
     '''Builds fathead article entry.
 
     Accepts h2_parent and extracts title, url, description and code snippets.
     Returns a dict with keys corresponding to output.txt field names
     '''
     title = h2_parent.find('h2').text.replace('¶', '')
+    url = h2_parent.find('a').get('href')
+    url = urljoin(page_url, url)
     print("Title %s " % title)
+    print("URL %s" % url)
 
 for html_file in glob('download/*.html'):
     print("Processing %s" % html_file)
@@ -20,4 +27,4 @@ for html_file in glob('download/*.html'):
     print("Page url %s" % page_url)
     h2s = soup.findAll('h2')
     for h2 in h2s:
-        build_article(h2.parent)
+        build_article(h2.parent, page_url)
