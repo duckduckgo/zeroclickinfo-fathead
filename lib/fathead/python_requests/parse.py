@@ -17,8 +17,8 @@ def build_article(h2_parent, page_url):
     '''
     h2 = h2_parent.find('h2')
     title = h2.text.replace('¶', '')
-    url = h2_parent.find('a').get('href')
-    url = urljoin(page_url, url)
+    fragment = h2_parent.find('a').get('href')
+    url = urljoin(page_url, fragment)
     description = ''
     next_sibling = h2.find_next_sibling(text=None)
     while next_sibling:
