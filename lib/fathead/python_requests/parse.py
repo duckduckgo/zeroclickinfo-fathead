@@ -45,7 +45,7 @@ def build_article(h2_parent, page_url):
             '',              # ignore
             '',              # no related topics
             '',              # ignore
-            '',              # add an external link back to Dive Into Python
+            '',              # external link
             '',              # no disambiguation
             '',              # images
             description,     # abstract
