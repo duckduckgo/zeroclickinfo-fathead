@@ -23,15 +23,16 @@ def build_article(h2_parent, page_url):
     next_sibling = h2.find_next_sibling(text=None)
     while next_sibling:
         if next_sibling.name == 'p':
-            description += " {}".format(next_sibling.text)
+            next_sibling_text = next_sibling.text.replace('\n', ' \\n')
+            description += " {}".format(next_sibling_text)
         elif next_sibling.name == 'div':
             pre = next_sibling.find('pre')
             if pre:
-                description += "<pre>{0}</pre>".format(pre.text)
+                pre_text = pre.text.replace('\n', '\\n')
+                description += "<pre>{0}</pre>".format(pre_text)
         next_sibling = next_sibling.find_next_sibling(text=None)
     description = description.lstrip()
     description = description.strip('\n')
-    description = description.replace('\n', ' \\n')
     description = "<p>{0}</p>".format(description)
     print("Title %s " % title)
     print("URL %s" % url)
