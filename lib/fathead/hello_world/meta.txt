@@ -16,5 +16,5 @@ Type: Github
 MediaWiki: 0
 
 # Keywords uses to trigger (or prefer) the source over others.
-# Can seperate multiple keywords with,
-Keywords: hello world,source
+# Can seperate multiple keywords with a comma - ','
+Keywords: hello world, source
