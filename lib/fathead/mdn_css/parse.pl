@@ -296,7 +296,7 @@ sub create_redirects {
 
     # Capture content inside parentheses
     # E.g. "::before (:before)"
-    if ( $title =~ m/(::.+) \((:.+)\)/ ) {
+    if ( $title =~ m/(.+) \((:.+|-webkit.+)\)/ ) {
         say "Has parens!";
         my $outer = $1;
         my $inner = $2;
