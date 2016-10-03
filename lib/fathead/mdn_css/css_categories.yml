@@ -3,6 +3,37 @@
 # Source: http://www.htmldog.com/references/css/
 # Source: http://tympanus.net/codrops/css_reference/
 css pseudo elements:
+  - ::-moz-anonymous-block
+  - ::-moz-anonymous-positioned-block
+  - ::-moz-canvas
+  - ::-moz-cell-content
+  - ::-moz-focus-inner
+  - ::-moz-focus-outer
+  - ::-moz-inline-table
+  - ::-moz-page
+  - ::-moz-page-sequence
+  - ::-moz-pagebreak
+  - ::-moz-pagecontent
+  - ::-moz-placeholder
+  - ::-moz-progress-bar
+  - ::-moz-range-progress
+  - ::-moz-range-thumb
+  - ::-moz-range-track
+  - ::-moz-scrolled-canvas
+  - ::-moz-scrolled-content
+  - ::-moz-scrolled-page-sequence
+  - ::-moz-selection
+  - ::-moz-svg-foreign-content
+  - ::-moz-table
+  - ::-moz-table-cell
+  - ::-moz-table-column
+  - ::-moz-table-column-group
+  - ::-moz-table-outer
+  - ::-moz-table-row
+  - ::-moz-table-row-group
+  - ::-moz-viewport
+  - ::-moz-viewport-scroll
+  - ::-moz-xul-anonymous-block
   - ::after
   - ::backdrop
   - ::before
@@ -14,12 +45,61 @@ css pseudo elements:
   - ::selection
   - ::spelling-error
 css pseudo classes:
-  - ::after
-  - ::before
-  - ::first-letter
-  - ::first-line
-  - ::placeholder
-  - ::selection
+  - :-moz-any
+  - :-moz-any-link
+  - :-moz-bound-element
+  - :-moz-broken
+  - :-moz-drag-over
+  - :-moz-first-node
+  - :-moz-focusring
+  - :-moz-full-screen
+  - :-moz-full-screen-ancestor
+  - :-moz-handler-blocked
+  - :-moz-handler-crashed
+  - :-moz-handler-disabled
+  - :-moz-last-node
+  - :-moz-list-bullet
+  - :-moz-list-number
+  - :-moz-loading
+  - :-moz-locale-dir(ltr)
+  - :-moz-locale-dir(rtl)
+  - :-moz-lwtheme
+  - :-moz-lwtheme-brighttext
+  - :-moz-lwtheme-darktext
+  - :-moz-native-anonymous
+  - :-moz-only-whitespace
+  - :-moz-placeholder
+  - :-moz-read-only
+  - :-moz-read-write
+  - :-moz-submit-invalid
+  - :-moz-suppressed
+  - :-moz-system-metric(images-in-menus)
+  - :-moz-system-metric(mac-graphite-theme)
+  - :-moz-system-metric(scrollbar-end-backward)
+  - :-moz-system-metric(scrollbar-end-forward)
+  - :-moz-system-metric(scrollbar-start-backward)
+  - :-moz-system-metric(scrollbar-start-forward)
+  - :-moz-system-metric(scrollbar-thumb-proportional)
+  - :-moz-system-metric(touch-enabled)
+  - :-moz-system-metric(windows-default-theme)
+  - :-moz-tree-cell
+  - :-moz-tree-cell-text
+  - :-moz-tree-cell-text(hover)
+  - :-moz-tree-checkbox
+  - :-moz-tree-column
+  - :-moz-tree-drop-feedback
+  - :-moz-tree-image
+  - :-moz-tree-indentation
+  - :-moz-tree-line
+  - :-moz-tree-progressmeter
+  - :-moz-tree-row
+  - :-moz-tree-row(hover)
+  - :-moz-tree-separator
+  - :-moz-tree-twisty
+  - :-moz-ui-invalid
+  - :-moz-ui-valid
+  - :-moz-user-disabled
+  - :-moz-window-inactive
   - :active
   - :any
   - :checked
