@@ -59,6 +59,9 @@ sub _build_indices {
     for ( @index_pages ) {
         $indices->{$_} = $self->links_from_index( $_ );
     }
+    # Temporarily remove perlglossary since it's overtriggering
+    delete $indices->{'index-language'}->{perlglossary};
+
     return $indices;
 }
 
