@@ -141,16 +141,26 @@ foreach my $html_file ( glob 'download/*.html' ) {
         parse_fragment_data( $link, $dom );
     }
 
-    # Get article title and description
-    for my $meta ( $dom->find('meta')->each ) {
-        next unless $meta->attr('property');
-        if ( $meta->attr('property') =~ /og\:title/ ) {
-            $title = lc $meta->attr('content');
+    # Get article title
+    my $meta_with_title = $dom->find('meta')->first(
+        sub {
+            my $meta     = $_;
+            my $property = $meta->attr('property');
+            $property && $property =~ /og\:title/;
         }
-        elsif ( $meta->attr('property') =~ /og\:description/ ) {
-            $description = $meta->attr('content');
+    );
+    $title = lc $meta_with_title->attr('content') if $meta_with_title;
+
+    my $h2 = $dom->at('h2#Summary');
+    if ($h2) {
+        my $p = $h2->next;
+        if ($p) {
+            $description = $p->all_text;
+            my $next = $p->next;
+            if ( $next && $next->tag eq 'ul' ) {
+                $description .= $next->find('li')->map('all_text')->join(', ');
+            }
         }
-        last if $title and $description;
     }
 
     # Check if article already processed
@@ -208,9 +218,13 @@ foreach my $html_file ( glob 'download/*.html' ) {
 # Build HTML string containing Initial Value data
 sub create_abstract {
     my ( $description, $code, $initial_value ) = @_;
-    say "NO DESCRIPTION!" if $description eq "";
-    $description = trim($description);
-    $description =~ s/\r?\n+/\\n/g;
+    if ($description) {
+        $description = trim($description);
+        $description =~ s/\r?\n+/\\n/g;
+    }
+    else {
+        say "NO DESCRIPTION!";
+    }
     $initial_value =~ s/\r?\n+/\\n/g if $initial_value;
     $code = _clean_code($code) if $code;
     my $out;
