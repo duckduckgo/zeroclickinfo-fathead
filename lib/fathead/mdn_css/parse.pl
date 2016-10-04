@@ -380,7 +380,7 @@ sub _category_title {
 sub _clean_string {
     my $input = shift;
     say "Input: '$input'";
-    $input =~ s/[:<>@()]//g;
+    $input =~ s/[:<>@()]/ /g;
     trim($input);
     say "Cleaned: '$input'";
     return $input;
