@@ -14,12 +14,12 @@ ok( $utils->escapes, "Checking for unescaped chars" );
 ok( $utils->disambiguations_format, "Checking disambiguation format" );
 ok( $utils->disambiguations_missing, "Checking for disambiguations with missing titles" );
 
-SKIP_COVERAGE: {
+SKIP: {
     skip "COVERAGE DATA NOT FOUND", 1 unless $utils->cover_dir;
     ok( $utils->coverage, "Testing language feature coverage" );
 }
 
-SKIP_CATEGORIES: {
+SKIP: {
     skip "Trigger words not found", 1 unless $utils->trigger_words;
     ok( $utils->category_clash, "Testing category / title clashes" );
 }
