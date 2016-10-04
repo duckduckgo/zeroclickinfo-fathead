@@ -36,8 +36,10 @@ has cover_dir => ( is => 'lazy' );
 sub _build_cover_dir {
     my ( $self ) = @_;
     my $cdir = f->catdir( $self->fathead_dir, qw/ cover / );
-    warn sprintf( "Coverage files for %s not found in %s", $self->fathead, $cdir )
-        unless -d $cdir;
+    if ( -d $cdir ) {
+        warn sprintf( "Coverage files for %s not found in %s", $self->fathead, $cdir );
+        return;
+    }
     return $cdir;
 }
 
