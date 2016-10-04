@@ -28,9 +28,17 @@ def build_article(h2_parent, page_url):
         elif next_sibling.name == 'div':
             pre = next_sibling.find('pre')
             if pre:
-                pre_text = pre.text.replace('\n', '\\n')
-                pre_text = pre_text.encode('unicode-escape')
-                description += "<pre>{0}</pre>".format(pre_text)
+                pre_text = pre.text
+                if title.startswith('Raw Response'):
+                    last_span = pre.findAll('span')[-1]
+                    original_span_text = last_span.text
+                    escaped_span_text = last_span.text
+                    escaped_span_text = bytes(escaped_span_text,
+                                              encoding='UTF-8')
+                    pre_text = pre.text.replace(original_span_text,
+                                                "{}".format(escaped_span_text))
+                description += "<pre>{0}</pre>".format(pre_text.replace('\n',
+                                                                        '\\n'))
         next_sibling = next_sibling.find_next_sibling(text=None)
     description = description.lstrip()
     description = description.strip('\n')
