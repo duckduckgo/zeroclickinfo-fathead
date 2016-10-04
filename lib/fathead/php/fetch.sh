@@ -4,10 +4,12 @@ URL=$(cat data.url)
 DOWNLOAD_DIR="download"
 DOC_FILE="documentation.tar.gz"
 
-if [ ! -d $DOWNLOAD_DIR ]
+if [ -d $DOWNLOAD_DIR ]
 then
-    mkdir -p $DOWNLOAD_DIR
+  rm -rf $DOWNLOAD_DIR
 fi
+
+mkdir -p $DOWNLOAD_DIR
 
 # downloading
 wget -O "$DOWNLOAD_DIR/$DOC_FILE" $URL

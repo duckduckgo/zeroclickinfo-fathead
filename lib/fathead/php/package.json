@@ -5,6 +5,7 @@
   "description": "Dependencies   - npm install",
   "main": "parse.js",
   "dependencies": {
+    "graceful-fs": "^4.1.9",
     "jsdom": "^9.6.0"
   },
   "scripts": {
