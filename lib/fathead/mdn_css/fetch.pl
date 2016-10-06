@@ -10,13 +10,6 @@ use Mojo::UserAgent;
 use Mojo::Util 'spurt';
 use Mojo::URL;
 
-=begin
-    This script extracts data from Mozilla CSS Reference
-    https://developer.mozilla.org/en-US/docs/Web/CSS/Reference and is called by the
-    fetch.sh script since it is more efficient to fetch and parse the DOM using
-    something other than BASH to ease development and maintenance in the future.
-=cut
-
 my @urls_to_fetch = (
     'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference',
     'https://developer.mozilla.org/en-US/docs/Web/CSS/Mozilla_Extensions',
@@ -55,20 +48,6 @@ for my $url (@urls_to_fetch) {
 
 #download the pages from links collected in fetch
 download();
-
-=begin
-      We extract the collection of links to keywords from the DOM. The links wanted
-      are found from this part of the DOM:
-      <div class="index">
-        <span>A</span>
-        <ul>
-          <li>
-            <a href="/en-US/docs/Web/CSS/:active"><code>:active</code></a>
-          </li>
-        </ul>
-        ...
-      </div>
-=cut
 
 sub fetch {
     my $tx = shift;
