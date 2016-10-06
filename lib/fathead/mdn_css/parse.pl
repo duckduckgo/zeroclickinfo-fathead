@@ -120,7 +120,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
     ref="https://developer.mozilla.org/en-US/docs/Web/CSS/:right" >
 =cut
 
-    my ( $title, $link, $description, @entries );
+    my ( $title, $link, $description, $initial_value, @entries );
 
     # Get canonical link to article
     $link = $dom->find('link')->first(
@@ -155,7 +155,17 @@ foreach my $html_file ( glob 'download/*.html' ) {
             $description = $p->all_text;
             my $next = $p->next;
             if ( $next && $next->tag eq 'ul' ) {
-                $description .= $next->find('li')->map('all_text')->join(', ');
+                my $li = $next->at('li');
+                my $a = $li->at('a') if $li;
+                if ( $a && $a->text =~ /Initial value/ ) {
+                    $initial_value = $li->text;
+                    $initial_value =~ s/://;
+                    $initial_value = _build_initial_value($initial_value);
+                }
+                else {
+                    $description .=
+                      $next->find('li')->map('all_text')->join(', ');
+                }
             }
         }
     }
@@ -201,7 +211,6 @@ foreach my $html_file ( glob 'download/*.html' ) {
         # say '';
         # say $code;
     }
-    my $initial_value;
 
     #initial value is found in the table properties
     my $table_properties = $dom->at('table.properties');
