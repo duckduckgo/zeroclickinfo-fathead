@@ -12,8 +12,6 @@ use Mojo::URL;
 
 my $ua = Mojo::UserAgent->new()->max_redirects(4);
 
-my %urls;    #hash used to remove duplicate urls
-
 #downloaded file names will be named 1.html, 2.html ....
 my $file_number                = 1;
 my $current_active_connections = 0;
@@ -38,6 +36,7 @@ my @transactions = map { $ua->get($_) } (
     'https://developer.mozilla.org/en-US/docs/Web/CSS/Mozilla_Extensions',
     'https://developer.mozilla.org/en-US/docs/Web/CSS/Webkit_Extensions'
 );
+my %urls;    #hash used to remove duplicate urls
 for my $transaction (@transactions) {
     process_transaction($transaction);
 }
