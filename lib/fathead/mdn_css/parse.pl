@@ -45,7 +45,7 @@ my %units;
 while ( my ( $category, $array ) = each %{$categories} ) {
     foreach my $title ( @{$array} ) {
         $titles{$title}{categories} = [];
-        push $titles{$title}{categories}, $category;
+        push @{ $titles{$title}{categories} }, $category;
     }
 }
 
@@ -53,7 +53,7 @@ while ( my ( $category, $array ) = each %{$categories} ) {
 while ( my ( $category, $array ) = each %{$extra_categories} ) {
     foreach my $title ( @{$array} ) {
         $titles{$title}{extra_categories} = [];
-        push $titles{$title}{extra_categories}, $category;
+        push @{ $titles{$title}{extra_categories} }, $category;
     }
 }
 
