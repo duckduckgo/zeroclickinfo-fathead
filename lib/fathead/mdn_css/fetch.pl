@@ -39,13 +39,13 @@ my @transactions = map { $ua->get($_) } (
     'https://developer.mozilla.org/en-US/docs/Web/CSS/Webkit_Extensions'
 );
 for my $transaction (@transactions) {
-    fetch($transaction);
+    process_transaction($transaction);
 }
 
-#download the pages from links collected in fetch
+#download the pages from links collected in process_transaction
 download();
 
-sub fetch {
+sub process_transaction {
     my $tx = shift;
 
     if ( $tx->success ) {
