@@ -10,12 +10,6 @@ use Mojo::UserAgent;
 use Mojo::Util 'spurt';
 use Mojo::URL;
 
-my @urls_to_fetch = (
-    'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference',
-    'https://developer.mozilla.org/en-US/docs/Web/CSS/Mozilla_Extensions',
-    'https://developer.mozilla.org/en-US/docs/Web/CSS/Webkit_Extensions'
-);
-
 my $ua = Mojo::UserAgent->new()->max_redirects(4);
 
 my %urls;    #hash used to remove duplicate urls
@@ -39,11 +33,13 @@ open(
     catfile 'download', 'fragments.txt'
 ) or die $!;
 
-#fetch links to keywords from each of the URLs
-for my $url (@urls_to_fetch) {
-    my $reference_url = Mojo::URL->new($url);
-    my $tx            = $ua->get($reference_url);
-    fetch($tx);
+my @transactions = map { $ua->get($_) } (
+    'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference',
+    'https://developer.mozilla.org/en-US/docs/Web/CSS/Mozilla_Extensions',
+    'https://developer.mozilla.org/en-US/docs/Web/CSS/Webkit_Extensions'
+);
+for my $transaction (@transactions) {
+    fetch($transaction);
 }
 
 #download the pages from links collected in fetch
