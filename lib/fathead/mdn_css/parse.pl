@@ -231,7 +231,6 @@ foreach my $html_file ( glob 'download/*.html' ) {
 # HELPER FUNCTIONS
 ####################
 
-# Build HTML string containing Initial Value data
 sub create_abstract {
     my ( $description, $code, $initial_value ) = @_;
     if ($description) {
@@ -250,6 +249,7 @@ sub create_abstract {
     return $out;
 }
 
+# Build HTML string containing Initial Value data
 sub parse_initial_value {
     my ($table_properties) = @_;
 
