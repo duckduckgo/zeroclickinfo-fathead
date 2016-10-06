@@ -28,10 +28,10 @@
 -moz-last-node pseudo class	R	:-moz-last-node										
 -moz-list-bullet	R	::-moz-list-bullet										
 -moz-list-number	R	::-moz-list-number										
--moz-locale-dir ltr	R	:-moz-locale-dir(ltr)										
--moz-locale-dir ltr pseudo class	R	:-moz-locale-dir(ltr)										
--moz-locale-dir rtl	R	:-moz-locale-dir(rtl)										
--moz-locale-dir rtl pseudo class	R	:-moz-locale-dir(rtl)										
+-moz-locale-di ltr	R	:-moz-locale-di (ltr)										
+-moz-locale-di ltr pseudo class	R	:-moz-locale-di (ltr)										
+-moz-locale-di rtl	R	:-moz-locale-di (rtl)										
+-moz-locale-di rtl pseudo class	R	:-moz-locale-di (rtl)										
 -moz-lwtheme	R	:-moz-lwtheme										
 -moz-lwtheme pseudo class	R	:-moz-lwtheme										
 -moz-lwtheme-brighttext	R	:-moz-lwtheme-brighttext										
@@ -65,29 +65,29 @@
 -moz-scrolled-page-sequence	R	::-moz-scrolled-page-sequence										
 -moz-scrolled-page-sequence pseudo element	R	::-moz-scrolled-page-sequence										
 -moz-stack-sizing	A										<p>-moz-stack-sizing is an extended CSS property. Normally, a stack will change its size so that all of its child elements are completely visible. For example, moving a child of the stack far to the right will widen the stack so the child remains visible.</p><p><b>Initial Value: </b><em>stretch-to-fit</em></p><pre><code>/* Keyword values */\n-moz-stack-sizing: stretch-to-fit;\n-moz-stack-sizing: ignore;\n\n/* Global values */\n-moz-stack-sizing: inherit;\n-moz-stack-sizing: initial;\n-moz-stack-sizing: unset;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/-moz-stack-sizing
--moz-system-metric images-in-menus	R	:-moz-system-metric(images-in-menus)										
--moz-system-metric images-in-menus pseudo class	R	:-moz-system-metric(images-in-menus)										
--moz-system-metric mac-graphite-theme	R	:-moz-system-metric(mac-graphite-theme)										
--moz-system-metric mac-graphite-theme pseudo class	R	:-moz-system-metric(mac-graphite-theme)										
--moz-system-metric scrollbar-end-backward	R	:-moz-system-metric(scrollbar-end-backward)										
--moz-system-metric scrollbar-end-backward pseudo class	R	:-moz-system-metric(scrollbar-end-backward)										
--moz-system-metric scrollbar-end-forward	R	:-moz-system-metric(scrollbar-end-forward)										
--moz-system-metric scrollbar-end-forward pseudo class	R	:-moz-system-metric(scrollbar-end-forward)										
--moz-system-metric scrollbar-start-backward	R	:-moz-system-metric(scrollbar-start-backward)										
--moz-system-metric scrollbar-start-backward pseudo class	R	:-moz-system-metric(scrollbar-start-backward)										
--moz-system-metric scrollbar-start-forward	R	:-moz-system-metric(scrollbar-start-forward)										
--moz-system-metric scrollbar-start-forward pseudo class	R	:-moz-system-metric(scrollbar-start-forward)										
--moz-system-metric scrollbar-thumb-proportional	R	:-moz-system-metric(scrollbar-thumb-proportional)										
--moz-system-metric scrollbar-thumb-proportional pseudo class	R	:-moz-system-metric(scrollbar-thumb-proportional)										
--moz-system-metric touch-enabled	R	:-moz-system-metric(touch-enabled)										
--moz-system-metric touch-enabled pseudo class	R	:-moz-system-metric(touch-enabled)										
--moz-system-metric windows-default-theme	R	:-moz-system-metric(windows-default-theme)										
--moz-system-metric windows-default-theme pseudo class	R	:-moz-system-metric(windows-default-theme)										
--moz-tree-cell-text hover	R	:-moz-tree-cell-text(hover)										
--moz-tree-cell-text hover pseudo class	R	:-moz-tree-cell-text(hover)										
+-moz-system-metri images-in-menus	R	:-moz-system-metri (images-in-menus)										
+-moz-system-metri images-in-menus pseudo class	R	:-moz-system-metri (images-in-menus)										
+-moz-system-metri mac-graphite-theme	R	:-moz-system-metri (mac-graphite-theme)										
+-moz-system-metri mac-graphite-theme pseudo class	R	:-moz-system-metri (mac-graphite-theme)										
+-moz-system-metri scrollbar-end-backward	R	:-moz-system-metri (scrollbar-end-backward)										
+-moz-system-metri scrollbar-end-backward pseudo class	R	:-moz-system-metri (scrollbar-end-backward)										
+-moz-system-metri scrollbar-end-forward	R	:-moz-system-metri (scrollbar-end-forward)										
+-moz-system-metri scrollbar-end-forward pseudo class	R	:-moz-system-metri (scrollbar-end-forward)										
+-moz-system-metri scrollbar-start-backward	R	:-moz-system-metri (scrollbar-start-backward)										
+-moz-system-metri scrollbar-start-backward pseudo class	R	:-moz-system-metri (scrollbar-start-backward)										
+-moz-system-metri scrollbar-start-forward	R	:-moz-system-metri (scrollbar-start-forward)										
+-moz-system-metri scrollbar-start-forward pseudo class	R	:-moz-system-metri (scrollbar-start-forward)										
+-moz-system-metri scrollbar-thumb-proportional	R	:-moz-system-metri (scrollbar-thumb-proportional)										
+-moz-system-metri scrollbar-thumb-proportional pseudo class	R	:-moz-system-metri (scrollbar-thumb-proportional)										
+-moz-system-metri touch-enabled	R	:-moz-system-metri (touch-enabled)										
+-moz-system-metri touch-enabled pseudo class	R	:-moz-system-metri (touch-enabled)										
+-moz-system-metri windows-default-theme	R	:-moz-system-metri (windows-default-theme)										
+-moz-system-metri windows-default-theme pseudo class	R	:-moz-system-metri (windows-default-theme)										
+-moz-tree-cell-tex hover	R	:-moz-tree-cell-tex (hover)										
+-moz-tree-cell-tex hover pseudo class	R	:-moz-tree-cell-tex (hover)										
+-moz-tree-ro hover	R	:-moz-tree-ro (hover)										
+-moz-tree-ro hover pseudo class	R	:-moz-tree-ro (hover)										
 -moz-tree-row	R	:-moz-tree-row										
--moz-tree-row hover	R	:-moz-tree-row(hover)										
--moz-tree-row hover pseudo class	R	:-moz-tree-row(hover)										
 -moz-tree-row pseudo class	R	:-moz-tree-row										
 -moz-ui-invalid	R	:-moz-ui-invalid										
 -moz-ui-invalid pseudo class	R	:-moz-ui-invalid										
@@ -488,8 +488,8 @@ cssstylesheet.insertrule	R	cssstylesheet.insertrule()
 cssstylesheet.insertrule()	A										<pre><code>stylesheet.insertRule(rule, index)</code></pre>	https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/insertRule
 cursor	A			css properties							<p>The cursor CSS property specifies the mouse cursor displayed when the mouse pointer is over an element.</p><p><b>Initial Value: </b><em>auto</em></p><pre><code>/* Keyword value only */\ncursor: pointer;\ncursor: auto;\n\n/* Using URL and coordinates */\ncursor: url(cursor1.png) 4 12, auto;\ncursor: url(cursor2.png) 2 2, pointer;\n\n/* Global values */\ncursor: inherit;\ncursor: initial;\ncursor: unset;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
 cursor property	R	cursor										
-custom properties  --*	R	custom properties (--*)										
 custom properties (--*)	A										<p><b>Initial Value: </b><em>see prose</em></p><pre><code>--somekeyword: left;\n--somecolor: #0000ff;\n--somecomplexvalue: 3px 6px rgb(20, 32, 54);\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/--*
+custom properties --*	R	custom properties (--*)										
 custom-ident	R	<custom-ident>										
 custom-ident data type	R	<custom-ident>										
 default	R	:default										
@@ -708,7 +708,7 @@ matrix3d	R	matrix3d()
 matrix3d function	R	matrix3d()										
 matrix3d()	A			css functions							<pre><code>matrix3d(a1, b1, c1, d1, a2, b2, c2, d2, a3, b3, c3, d3, a4, b4, c4, d4)</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix3d
 max-block-size	A										<p>The max-block-size CSS property defines the horizontal or vertical maximal size of an element's block depending on its writing mode. It corresponds to the max-width or the max-height property, depending on the value defined for writing-mode. If the writing mode is vertically oriented, the value of max-block-size relates to the maximal width of the element, otherwise it relates to the maximal height of the element. It relates to max-inline-size, which defines the other dimension of the element.</p><p><b>Initial Value: </b><em>0</em></p><pre><code>/* <length> values */\nmax-block-size: 300px;\nmax-block-size: 25em;\n\n/* <percentage> values */\nmax-block-size: 75%;\n\n/* Keyword values */\nmax-block-size: none;\nmax-block-size: max-content;\nmax-block-size: min-content;\nmax-block-size: fit-content;\nmax-block-size: fill-available;\n\n/* Global values */\nmax-block-size: inherit;\nmax-block-size: initial;\nmax-block-size: unset;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/max-block-size
-max-height	A			css properties							<p>The max-height CSS descriptor specifies the maximum height of the viewport of a document defined via the @viewport at-rule.</p><pre><code>/* Keyword value */\nmax-height: auto;\n\n/* <length> values */\nmax-height: 400px;\nmax-height: 50em;\nmax-height: 20cm;\n\n/* <percentage> value */\nmax-height: 75%;</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/@viewport/max-height
+max-height	A			css properties							<p>The max-height property is used to set the maximum height of an element. It prevents the used value of the height property from becoming larger than the value specified for max-height.</p><p><b>Initial Value: </b><em>none</em></p><pre><code>/* <length> value */\nmax-height: 3.5em;\n\n/* <percentage> value */\nmax-height: 75%;\n\n/* Keyword values */\nmax-height: none;\nmax-height: max-content;\nmax-height: min-content;\nmax-height: fit-content;\nmax-height: fill-available;\n\n/* Global values */\nmax-height: inherit;\nmax-height: initial;\nmax-height: unset;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/max-height
 max-height property	R	max-height										
 max-inline-size	A										<p>The max-inline-size CSS property defines the horizontal or vertical maximal size of an element's block depending on its writing mode. It corresponds to the max-width or the max-height property depending on the value defined for writing-mode. If the writing mode is vertically oriented, the value of max-inline-size relates to the maximal height of the element, otherwise it relates to the maximal width of the element. It relates to max-block-size, which defines the other dimension of the element.</p><p><b>Initial Value: </b><em>0</em></p><pre><code>/* <length> values */\nmax-inline-size: 300px;\nmax-inline-size: 25em;\n\n/* <percentage> values */\nmax-inline-size: 75%;\n\n/* Keyword values */\nmax-inline-size: none;\nmax-inline-size: max-content;\nmax-inline-size: min-content;\nmax-inline-size: fit-content;\nmax-inline-size: fill-available;\n\n/* Global values */\nmax-inline-size: inherit;\nmax-inline-size: initial;\nmax-inline-size: unset;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/max-inline-size
 max-width	A			css properties							<p>The max-width property is used to set the maximum width of a given element. It prevents the used value of the width property from becoming larger than the value specified for max-width.</p><p><b>Initial Value: </b><em>none</em></p><pre><code>/* <length> value */\nmax-width: 3.5em;\n\n/* <percentage> value */\nmax-width: 75%;\n\n/* Keyword values */\nmax-width: none;\nmax-width: max-content;\nmax-width: min-content;\nmax-width: fit-content;\nmax-width: fill-available;\n\n/* Global values */\nmax-width: inherit;\nmax-width: initial;\nmax-width: unset;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/max-width
@@ -719,7 +719,7 @@ min-block-size	A										<p>The min-block-size CSS property defines the horizon
 min-height	A			css properties							<p>The min-height CSS descriptor specifies the minimum height of the viewport of a document defined via the @viewport at-rule.</p><pre><code>/* Keyword value */\nmin-height: auto;\n\n/* <length> values */\nmin-height: 120px;\nmin-height: 20em;\nmin-height: 10cm;\n\n/* <percentage> value */\nmin-height: 25%;</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/@viewport/min-height
 min-height property	R	min-height										
 min-inline-size	A										<p>The min-inline-size CSS property defines the horizontal or vertical minimal size of an element's block depending on its writing mode. It corresponds to the min-width or the min-height property, depending on the value defined for writing-mode. If the writing mode is vertically oriented, the value of min-inline-size relates to the minimal height of the element, otherwise it relates to the minimal width of the element. It relates to min-block-size, which defines the other dimension of the element.</p><p><b>Initial Value: </b><em>0</em></p><pre><code>/* <length> values */\nmin-inline-size: 100px;\nmin-inline-size: 5em;\n\n/* <percentage> values */\nmin-inline-size: 10%;\n\n/* Keyword values */\nmin-inline-size: max-content;\nmin-inline-size: min-content;\nmin-inline-size: fit-content;\nmin-inline-size: fill-available;\n\n/* Global values */\nmin-inline-size: inherit;\nmin-inline-size: initial;\nmin-inline-size: unset;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/min-inline-size
-min-width	A			css properties							<p>The min-width property is used to set the minimum width of a given element. It prevents the used value of the width property from becoming smaller than the value specified for min-width.</p><p><b>Initial Value: </b><em>0</em></p><pre><code>/* <length> value */\nmin-width: 3.5em;\n\n/* <percentage> value */\nmin-width: 10%;\n\n/* Keyword values */\nmin-width: max-content;\nmin-width: min-content;\nmin-width: fit-content;\nmin-width: fill-available;\n\n/* Global values */\nmin-width: inherit;\nmin-width: initial;\nmin-width: unset;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/min-width
+min-width	A			css properties							<p>The min-width CSS descriptor specifies the minimum width of the viewport of a document defined via @viewport.</p><pre><code>/* Keyword value */\nmin-width auto;\n\n/* <length> values */\nmin-width: 320px;\nmin-width: 40em;\nmin-width: 5cm;\n\n/* <percentage> value */\nmin-width: 25%;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/@viewport/min-width
 min-width property	R	min-width										
 min-zoom	A										<p>The min-zoom CSS descriptor sets the minimum zoom factor of a document defined via @viewport. The browser will not zoom out any further than this, whether automatically or at the user's request.</p><pre><code>auto | <number> | <percentage></code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/@viewport/min-zoom
 mix-blend-mode	A			css properties							<p>The mix-blend-mode CSS property describes how an element's content should blend with the content of the element's direct parent and the element's background.</p><p><b>Initial Value: </b><em>normal</em></p><pre><code>/* Keyword values */\nmix-blend-mode: normal;\nmix-blend-mode: multiply;\nmix-blend-mode: screen;\nmix-blend-mode: overlay;\nmix-blend-mode: darken;\nmix-blend-mode: lighten;\nmix-blend-mode: color-dodge;\nmix-blend-mode: color-burn;\nmix-blend-mode: hard-light;\nmix-blend-mode: soft-light;\nmix-blend-mode: difference;\nmix-blend-mode: exclusion;\nmix-blend-mode: hue;\nmix-blend-mode: saturation;\nmix-blend-mode: color;\nmix-blend-mode: luminosity;\n\n/* Global values */\nmix-blend-mode: initial;\nmix-blend-mode: inherit;\nmix-blend-mode: unset;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode
@@ -1020,7 +1020,7 @@ white-space	A			css properties							<p>The white-space property is used to desc
 white-space property	R	white-space										
 widows	A			css properties							<p>When a paragraph is split over two pages in paged media, the widows CSS property defines the minimum number of lines that must be left at the top of the second page. In typography, a widow is the last line of a paragraph appearing alone at the top of a new page. Setting the widows property allows the prevention of single-line widows.</p><p><b>Initial Value: </b><em>2</em></p><pre><code>/* <integer> values */\nwidows: 2;\nwidows: 3;\n\n/* Global values */\nwidows: inherit;\nwidows: initial;\nwidows: unset;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/widows
 widows property	R	widows										
-width	A			css properties							<p>The width CSS descriptor is shorthand for setting both the min-width and the max-width of the viewport. By providing one viewport length value, that value will determine both the min-width and the max-width to the value provided.</p><pre><code>/* An example with one viewport value: */\n@viewport {\n width: 320px;\n}\n\n/* An example with two viewport values: */\n@viewport {\n width: 320px, 120px;\n}\n\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/@viewport/width
+width	A			css properties							<p>The width CSS property specifies the width of the content area of an element. The content area is inside the padding, border, and margin of the element.</p><p><b>Initial Value: </b><em>auto</em></p><pre><code>/* <length> values */\nwidth: 300px;\nwidth: 25em;\n\n/* <percentage> value */\nwidth: 75%;\n\n/* Keyword values */\nwidth: 25em border-box;\nwidth: 75% content-box;\nwidth: max-content;\nwidth: min-content;\nwidth: available;\nwidth: fit-content;\nwidth: auto;\n\n/* Global values */\nwidth: inherit;\nwidth: initial;\nwidth: unset;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/width
 width property	R	width										
 will-change	A			css properties							<p>The will-change CSS property provides a way for authors to hint browsers about the kind of changes to be expected on an element, so that the browser can set up appropriate optimizations ahead of time before the element is actually changed. These kind of optimizations can increase the responsiveness of a page by doing potentially expensive work ahead of time before they are actually required.</p><p><b>Initial Value: </b><em>auto</em></p><pre><code>/* Keyword values */\nwill-change: auto;\nwill-change: scroll-position;\nwill-change: contents;\nwill-change: transform; /* Example of <custom-ident> */\nwill-change: opacity; /* Example of <custom-ident> */\nwill-change: left, top; /* Example of two <animateable-feature> */\n\n/* Global values */\nwill-change: inherit;\nwill-change: initial;\nwill-change: unset;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/CSS/will-change
 will-change property	R	will-change										
