@@ -17,16 +17,18 @@ use Mojo::URL;
     something other than BASH to ease development and maintenance in the future.
 =cut
 
-my @urls_to_fetch = ('https://developer.mozilla.org/en-US/docs/Web/CSS/Reference', 
-                     'https://developer.mozilla.org/en-US/docs/Web/CSS/Mozilla_Extensions',
-                     'https://developer.mozilla.org/en-US/docs/Web/CSS/Webkit_Extensions');
+my @urls_to_fetch = (
+    'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference',
+    'https://developer.mozilla.org/en-US/docs/Web/CSS/Mozilla_Extensions',
+    'https://developer.mozilla.org/en-US/docs/Web/CSS/Webkit_Extensions'
+);
 
 my $ua = Mojo::UserAgent->new()->max_redirects(4);
 
 my %urls;    #hash used to remove duplicate urls
 
 #downloaded file names will be named 1.html, 2.html ....
-my $file_number = 1;
+my $file_number                = 1;
 my $current_active_connections = 0;
 my $maximum_active_connections = 4;
 
@@ -38,16 +40,16 @@ my @keyword_urls;
     to extract extra information about the fragments
     used later on in download()
 =cut
-open(
-        my $fragments_fh,   '>:encoding(UTF-8)',
-        catfile 'download', 'fragments.txt'
-    ) or die $!;
 
+open(
+    my $fragments_fh,   '>:encoding(UTF-8)',
+    catfile 'download', 'fragments.txt'
+) or die $!;
 
 #fetch links to keywords from each of the URLs
 for my $url (@urls_to_fetch) {
     my $reference_url = Mojo::URL->new($url);
-    my $tx = $ua->get($reference_url);
+    my $tx            = $ua->get($reference_url);
     fetch($tx);
 }
 
@@ -72,15 +74,17 @@ sub fetch {
     my $tx = shift;
 
     if ( $tx->success ) {
-      my $divs = $tx->res->dom->find('div.index, div.column-half');
+        my $divs = $tx->res->dom->find('div.index, div.column-half');
         for my $div ( $divs->each ) {
             for my $ul ( $div->find('ul')->each ) {
                 $ul->find('li')->map(
                     sub {
                         my $li = shift;
-                        if($li->at('a')) {
-                            my $relative_url = Mojo::URL->new( $li->at('a')->attr('href') );
-                            my $absolute_url = $relative_url->to_abs( $tx->req->url );
+                        if ( $li->at('a') ) {
+                            my $relative_url =
+                              Mojo::URL->new( $li->at('a')->attr('href') );
+                            my $absolute_url =
+                              $relative_url->to_abs( $tx->req->url );
                             $urls{$absolute_url} = 1;
                         }
                     }
@@ -109,8 +113,8 @@ sub download {
 #     https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix
 
             if ( $url =~ qr/transform-function/ ) {
-                my $clone =
-                  Mojo::URL->new( sprintf "%s://%s", $url->protocol, $url->host );
+                my $clone = Mojo::URL->new( sprintf "%s://%s",
+                    $url->protocol, $url->host );
 
                 #trailing / needed at the end so that when we add a
                 #fragment at the end it does not replace the former last
@@ -127,8 +131,8 @@ sub download {
                 #/url#The_url()_functional_notation
                 #We get rid of the fragment part so that it can be downloaded
                 #and parsed by parse.pl because its format is like the others
-                my $clone =
-                  Mojo::URL->new( sprintf "%s://%s", $url->protocol, $url->host );
+                my $clone = Mojo::URL->new( sprintf "%s://%s",
+                    $url->protocol, $url->host );
                 $clone->path( $url->path );
                 push @keyword_urls, $clone;
             }
