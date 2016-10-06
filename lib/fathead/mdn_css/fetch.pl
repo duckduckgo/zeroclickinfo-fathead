@@ -110,15 +110,15 @@ sub queue_urls_for_download {
     for my $url ( keys %urls ) {
         $url = Mojo::URL->new($url);
         if ( $url->fragment ) {
-
-#     For fragment in urls past this path /transform-function/ we can get
-#     the link for the actual fragment in the following way.
-#     Take for example this fragment #matrix()
-#     In order to get the actual link, take the fragment, matrix(), remove
-#     the brackets, and append it to the original path so that we get the link
-#     https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix
-
             if ( $url =~ qr/transform-function/ ) {
+
+=begin
+    For fragment in urls past this path /transform-function/ we can get the
+    actual link by taking the fragment, say #matrix(), removing the brackets,
+    and append it to the original path so that we get the link
+    https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix
+=cut
+
                 my $clone = Mojo::URL->new( sprintf "%s://%s",
                     $url->protocol, $url->host );
 
