@@ -12,13 +12,6 @@ use Mojo::URL;
 
 my $ua = Mojo::UserAgent->new()->max_redirects(4);
 
-=begin
-    save the urls with fragments to a text file called
-    fragments.txt so that parse.pl can use this information
-    to extract extra information about the fragments
-    used later on in download()
-=cut
-
 open(
     my $fragments_fh,   '>:encoding(UTF-8)',
     catfile 'download', 'fragments.txt'
@@ -143,7 +136,13 @@ sub queue_urls_for_download {
                 push @keyword_urls, $clone;
             }
             else {
-                #we will deal with other types of urls later in parse.pl
+
+=begin
+    save the urls with fragments that cannot be reconciled to actual links
+    to fragments.txt so that parse.pl can use this information
+    to extract extra information about the fragments
+=cut
+
                 say $fragments_fh $url;
             }
         }
