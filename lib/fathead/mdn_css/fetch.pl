@@ -12,13 +12,6 @@ use Mojo::URL;
 
 my $ua = Mojo::UserAgent->new()->max_redirects(4);
 
-#downloaded file names will be named 1.html, 2.html ....
-my $file_number                = 1;
-my $current_active_connections = 0;
-my $maximum_active_connections = 4;
-
-my @keyword_urls;
-
 =begin
     save the urls with fragments to a text file called
     fragments.txt so that parse.pl can use this information
@@ -41,7 +34,11 @@ for my $transaction (@transactions) {
     process_transaction($transaction);
 }
 
-#download the pages from links collected in process_transaction
+#downloaded file names will be named 1.html, 2.html ....
+my $file_number                = 1;
+my $current_active_connections = 0;
+my $maximum_active_connections = 4;
+my @keyword_urls;
 queue_urls_for_download();
 
 sub process_transaction {
