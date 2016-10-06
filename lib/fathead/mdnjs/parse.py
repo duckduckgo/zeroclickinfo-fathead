@@ -146,6 +146,10 @@ class MDN(object):
       should be delimited with \n.
       obj: The calling object.
       prop: The calling object's property.
+      articletype: Article categories (eg. Functions, Error)
+      exampledesc: Example Description
+      example: Example Code
+      redirected: To control the addition of repeatitive redirections from the same object to output.txt
     """
     def __init__(self, title=None, url=None, summary=None, codesnippet=None,
                  obj=None, prop=None, articletype=None):
@@ -158,6 +162,7 @@ class MDN(object):
         self.articletype = articletype
         self.exampledesc = None
         self.example = None
+        self.redirected = False
 
 class MDNParser(object):
     """ A parser that takes an MDN wiki page and returns an MDN object. If
@@ -249,22 +254,42 @@ class MDNParser(object):
           if exampleBad or exampleGood:
             codesnippet = exampleBad + "\n" + exampleGood
             
-        if "Functions." in htmlfile.name:   
-            articletype = "Functions"
+        if any(wiki in htmlfile.name for wiki in ["Functions.", "Classes.", "Statements.", "Operators."]):
+            
+            articletype = htmlfile.name.split('.')[0].split('/')[1]
             desc_header = tree.xpath("//h2[contains(@id,'Description')]")
+
             if desc_header:
+
                 elements = tree.xpath("//h2[contains(@id,'Description')]/following-sibling::p[1]")
+                
                 for element in elements:
                     for tag in element.xpath('//*[@class]'):
                         tag.attrib.pop('class')
                     exampledesc += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
                         
                 elements = tree.xpath("//h2[contains(@id,'Description')]/following-sibling::pre[1]")
+                
                 for element in elements:
                     for tag in element.xpath('//*[@class]'):
                         tag.attrib.pop('class')
                     example += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
-       
+            else:
+                
+                elements = tree.xpath("//h2[contains(@id,'Examples')]/following-sibling::p[1]")
+                
+                for element in elements:
+                    for tag in element.xpath('//*[@class]'):
+                        tag.attrib.pop('class')
+                    exampledesc += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+                        
+                elements = tree.xpath("//h2[contains(@id,'Examples')]/following-sibling::pre[1]")
+                
+                for element in elements:
+                    for tag in element.xpath('//*[@class]'):
+                        tag.attrib.pop('class')
+                    example += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+                        
         print title + (' ' * 30) + '\r',
 
         mdn = MDN()
@@ -287,6 +312,9 @@ class MDNIndexer(object):
                             'Node', 'Event', 'Selection']
         # for Error pages
         self.ERROR_SYNONYMS = [ ["bad", "not legal", "invalid", "not a valid"] ]
+        # for syntax, example redirections
+        self.SYTAX_EXAMPLE_REDIR = ["Functions", "Classes", "Statements", "Operators"]
+        self.EXCEPTIONS = ["if", "else", "each", "method"]
 
     def add(self, mdn):
         keyword = mdn.prop.lower()
@@ -308,7 +336,9 @@ class MDNIndexer(object):
 
     def writeredirect(self, title, mdn):
         title = title.replace('_', ' ')
-        # write redirects with synomyms for error pages
+        title = title.split('...')
+        title = ' '.join(title)
+        # write redirects with synonyms for error pages
         if mdn.articletype == "Error":
             for synonyms_list in self.ERROR_SYNONYMS:
                 if any(word in title.lower() for word in synonyms_list): 
@@ -321,7 +351,8 @@ class MDNIndexer(object):
                         })
                     return;
         # write redirects with `syntax` and `example` for functions pages
-        if mdn.articletype == "Functions":
+        if any(wiki == mdn.articletype for wiki in self.SYTAX_EXAMPLE_REDIR) and not mdn.redirected:
+            mdn.redirected = True
             self._writer.writerow({
                 'title': title + " syntax",
                 'type': 'R',
@@ -332,18 +363,44 @@ class MDNIndexer(object):
                 'type': 'R',
                 'redirect': mdn.title
             })
-            first_word = title.split(' ')[0].lower()
-            if first_word != title.lower():
+            split_title = title.split(' ')
+            if any(split_title[0].lower() == wiki.lower() for wiki in self.SYTAX_EXAMPLE_REDIR) and len(split_title) > 1:
+                new_title = split_title[1:]
+                new_title = ' '.join(new_title).lower()
+                if new_title != mdn.title.lower():
+                    self._writer.writerow({
+                        'title': new_title,
+                        'type': 'R',
+                        'redirect': mdn.title
+                    })
                 self._writer.writerow({
-                    'title': first_word + " syntax",
+                    'title': new_title + " syntax",
                     'type': 'R',
                     'redirect': mdn.title
                 })
                 self._writer.writerow({
-                    'title': first_word + " example",
+                    'title': new_title + " example",
                     'type': 'R',
                     'redirect': mdn.title
                 })
+                new_title = new_title.split(' ')
+                for split_title in new_title:
+                    if any(exceptions == split_title for exceptions in self.EXCEPTIONS):
+                        self._writer.writerow({
+                            'title': split_title,
+                            'type': 'R',
+                            'redirect': mdn.title
+                        })
+                        self._writer.writerow({
+                            'title': split_title + " syntax",
+                            'type': 'R',
+                            'redirect': mdn.title
+                        })
+                        self._writer.writerow({
+                            'title': split_title + " example",
+                            'type': 'R',
+                            'redirect': mdn.title
+                        })
             
         # To avoid redirections like "default parameters" -> "Default Parameters"
         if title.lower() != mdn.title.lower():
@@ -363,6 +420,7 @@ class MDNIndexer(object):
 
     def writerows(self):
         for keyword, count in self.counter.most_common():
+            
             if count > 1:
                 disambig = ''
                 for mdn in self.inverted_index[keyword]:

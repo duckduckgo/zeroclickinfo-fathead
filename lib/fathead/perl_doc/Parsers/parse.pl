@@ -45,6 +45,7 @@ sub _build_indices {
        index-language
        index-overview
        index-functions
+       index-functions-by-cat
        index-pragmas
        index-utilities
        index-internals
@@ -117,6 +118,7 @@ sub _build_tsv {
         csv_class        => "Text::CSV_XS",
         csv_quote_char   => '',
         csv_escape_char  => '',
+        csv_eol          => "\n",
     });
 
     $dbh->do ( sprintf ( "CREATE TABLE output.txt (%s)",
@@ -155,9 +157,6 @@ sub doc_fullurl {
 # Parsers for other keys (basenames) will only run on the matching file.
 my %parser_map = (
     'index-faq'       => ['parse_faq'],
-    # TODO: Add explicit parser for language syntax, or generalize the FAQ
-    # parser.
-    'index-language'  => ['parse_faq'],
     'index-functions' => ['parse_functions'],
     'perldiag'        => ['parse_diag_messages'],
     'perlglossary'    => ['parse_glossary_definitions'],
@@ -168,6 +167,9 @@ my %parser_map = (
         'parse_regex_modifiers',
     ],
     'perlrun'         => ['parse_cli_switches'],
+    # TODO: Add explicit parser for language syntax, or generalize the FAQ
+    # parser.
+    'perlsyn'         => ['parse_faq'],
     'perlvar'         => ['parse_variables'],
 );
 
@@ -182,6 +184,7 @@ sub get_parsers {
 
 my %link_parser_for_index = (
     'functions' => 'parse_index_functions_links',
+    'functions-by-cat' => 'parse_functions_categories',
     'default'   => 'parse_index_links',
 );
 
@@ -503,10 +506,13 @@ sub parse_faq {
         );
         my $description = build_description($faq_title) or next;
         next unless $link;
+        my $faq_section = $faq_title->root->at('a[name="NAME"]')
+            ->following('p')->first->text =~ s/^perl(uni)?faq\d* - //gr;
         push @articles, {
             anchor => $link,
             title  => $title,
             text => $description,
+            categories => ['Perl FAQs', "Perl $faq_section"],
         };
     }
     return {
@@ -521,6 +527,8 @@ sub parse_faq {
 
 # Fallback descriptions for when the page is empty.
 my %functions_fallback;
+
+my %function_categories;
 
 sub build_description_functions {
     my ($fname, $syntaxes, $description) = @_;
@@ -550,10 +558,13 @@ sub parse_functions {
 
     my $title = "$fname (function)";
 
+    my $article = {
+        title => $title,
+        text  => $description,
+        categories => ['Perl Functions', @{$function_categories{$fname} || []}],
+    };
     return {
-        articles => [
-            { title => $title, text => $description }
-        ],
+        articles => [ $article ],
         aliases => [
             make_aliases($title,
                 $fname, "$fname function", "$fname func", "$fname sub",
@@ -574,6 +585,19 @@ sub parse_index_functions_links {
     return @fns;
 }
 
+sub parse_functions_categories {
+    my ($self, $dom) = @_;
+    my @fns = $dom->find('a[href^=functions]')->each;
+    foreach my $fn (@fns) {
+        my $name = $fn->text;
+        my $cat = $fn->parent->parent->preceding('h2')->last->text;
+        my @cats = @{$function_categories{$name} || []};
+        push @cats, "Perl $cat";
+        $function_categories{$name} = \@cats;
+    }
+    return;
+}
+
 #######################################################################
 #                              Glossary                               #
 #######################################################################
@@ -589,6 +613,7 @@ sub parse_glossary_definitions {
                 "$term",
             );
         },
+        categories => sub { ['Perl Glossary'] },
         uls   => sub { $_[0]->find('h2 ~ ul')->each },
         force_redirect => sub {
             return undef unless $_[1]->{text} =~ qr{^<p>See <b>([^<]+)</b>\.</p>$};
@@ -645,6 +670,7 @@ sub aliases_regex_modifiers {
 sub parse_regex_modifiers {
     ul_list_parser(
         selector_main => 'a[name="Modifiers"]',
+        categories => sub { ['Perl Regular Expression Modifiers'] },
         link => sub {
             my $name = $_[0]->find('a')->first->{name};
             return "*$name*";
@@ -683,6 +709,7 @@ sub parse_pod_formatting_codes {
         title => sub {
             $_[0]->at('code')->all_text =~ s/\s</</r
         },
+        categories => sub { ['Perl POD Formatting Codes'] },
         aliases => sub {
             my ($code) = $_[1] =~ /^(\w+)/;
             my $descr = $_[0]->find('b')->first->text =~ s/-- //r;
@@ -709,6 +736,7 @@ sub parse_pod_commands {
     ul_list_parser(
         selector_main => 'a[name="Pod-Commands"]',
         title => sub { $_[0]->at('b')->text =~ s/"//gr =~ s/\s.+$//r },
+        categories => sub { ['Perl POD Commands'] },
         aliases => sub { aliases_pod_commands($_[1]) },
     )->(@_);
 }
@@ -735,6 +763,7 @@ sub parse_cli_switches {
     ul_list_parser(
         selector_main => 'a[name="Command-Switches"]',
         title => sub { $_[0]->find('b')->first->all_text },
+        categories => sub { ['Perl Command-Line Switches'] },
         aliases => sub { aliases_cli_switches($_[1]) },
     )->(@_);
 }
@@ -753,6 +782,7 @@ sub parse_diag_messages {
     ul_list_parser(
         selector_main => 'a[name="DESCRIPTION"]',
         title => sub { $_[0]->find('b')->first->text },
+        categories => sub { ['Perl Diagnostics'] },
         aliases => sub { aliasas_diag_messages($_[1]) },
     )->(@_);
 }
@@ -788,10 +818,15 @@ sub parse_operators {
             ->last->preceding('a[name]')->last->{name};
         map { push @aliases, { new => $_, orig => $title } }
             (aliases_operators($title));
+        # NOTE: The headings in Perl op are a bit inconsistent as categories,
+        # perhaps we should make a hard-list (or minimal regex) to match the
+        # appropriate headings.
+        my $add_cat = $op->preceding('h2')->last->text;
         push @articles, {
             anchor => $link,
             text   => $text,
             title  => $title,
+            categories => ['Perl Operators', "Perl $add_cat"],
         };
     }
     return {
@@ -810,7 +845,11 @@ sub parse_variables {
         uls => \@mod_sections,
         title => sub { $_[0]->find('b')->first->text . ' (variable)' },
         aliases => sub { $_[1] =~ s/ \(variable\)//r },
-        categories => sub { ['Variables'] },
+        categories => sub {
+            my ($item) = @_;
+            my $subc = $item->parent->preceding('h2')->last->text;
+            return ['Perl Variables', "Perl $subc"]
+        },
     )->(@_);
 }
 
@@ -864,6 +903,7 @@ sub parse_package {
         text  => "$short_desc$synopsis",
         title => "$package_name (module)",
         related => \@related,
+        categories => ['Perl Standard Modules'],
     };
     return {
         articles => [$article],

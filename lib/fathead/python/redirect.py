@@ -16,6 +16,8 @@ built_in = ['abs','dict','help','min','setattr','all','dir','hex','next',
 'zip','compile','globals','map','reversed','import','complex','hasattr',
 'max','round','delattr','hash','memoryview','set']
 
+ignore_keys = ['The Python Tutorial']
+
 class BadEntryException(Exception):
     """
     Thrown when entry data is invalid
@@ -181,7 +183,7 @@ def generate_redirects(f):
             # Parse entry
             entry = Entry(line)
 
-            if entry.get_type() == 'R':
+            if entry.get_type() == 'R' or entry.get_key() in ignore_keys:
                 continue
 
             key = "'" + entry.get_key() + "'"

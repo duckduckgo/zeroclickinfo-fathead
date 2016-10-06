@@ -24,11 +24,11 @@ getUrlsFromPattern() {
                 if [[ ${url} =~ ^${patt} ]]; then
                     # download files
                     basename="${url%/*}"; filename="${basename##*/}/${url##*/}"
-                    wget -bc -O downloads/${filename////.} ${VALUE} -nv -o wget.log > /dev/null 2>&1
+                    wget -bc -O "downloads/${filename////.}" ${VALUE} -nv -o wget.log > /dev/null 2>&1
                     # write filename,url to cachejournal
                     echo "downloads/${filename////.},${VALUE}" >> .cachejournal
                     PAGES=$((PAGES + 1))
-                    # pause every 75 pages
+                    # pause every 50 pages
                     if [ $(( $PAGES % 50 )) -eq 0 ] ; then
                         wait; sleep 2
                     fi
@@ -46,6 +46,9 @@ patterns=(
     "en-US/docs/Web/JavaScript/Reference/Global_Objects"
     "en-US/docs/Web/JavaScript/Reference/Errors"
     "en-US/docs/Web/JavaScript/Reference/Functions"
+    "en-US/docs/Web/JavaScript/Reference/Classes"
+    "en-US/docs/Web/JavaScript/Reference/Statements"
+    "en-US/docs/Web/JavaScript/Reference/Operators"
 )
 
 downloadSiteMap
@@ -55,6 +58,6 @@ echo " $(ls downloads | wc -l) files downloaded"
 echo "$SECONDS seconds"
 echo -e "Check wget.log for errors, re-run fetch to fix parse incomplete file failures."
 
-# @bfmags AUG 2016
-# Test run : Read 15340 : 4038 pages to download
-#            190 seconds
+# @mbad0la SEPT 2016
+# Test run : Read 15483 : 4232 pages to download
+#            344 seconds

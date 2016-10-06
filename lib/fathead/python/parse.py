@@ -307,6 +307,11 @@ class PythonDataOutput(object):
                     first_paragraph = data_element.get('first_paragraph')
                     name, redirect = self.create_names_from_data(data_element)
 
+                    if first_paragraph.startswith('Source code:'):
+                        temp = first_paragraph.split('.py',1)
+                        if len(temp) > 1:
+                            first_paragraph = temp[0] + '.py<br>' + temp[1]
+
                     abstract = '{}{}{}'.format(method_signature, '<br>' if method_signature and first_paragraph else '', first_paragraph)
                     url = data_element.get('url')
                     list_of_data = [

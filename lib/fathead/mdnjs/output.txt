@@ -510,10 +510,10 @@ DataTransfer.setData()	A										<pre><code>void dataTransfer.setData(format, d
 DataTransfer.setDragImage()	A										<pre><code>void dataTransfer.setDragImage(img, xOffset, yOffset);\n</code></pre>When a drag occurs, a translucent image is generated from the drag target (the element the dragstart event is fired at), and follows the mouse pointer during the drag. This image is created automatically, so you do not need to create it yourself. However, if a custom image is desired, the DataTransfer.setDragImage() method can be used to set the custom image to be used.	https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/setDragImage
 DataTransfer.types	A										<pre><code>dataTransfer.types;\n</code></pre>The DataTransfer.types read-only property is an array of the drag data formats (as strings) that were set in the dragstart event. The order of the formats is the same order as the data included in the drag operation.	https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/types
 DataTransferItem	A										The DataTransferItem object represents one drag data item. During a drag operation, each drag event has a dataTransfer property which contains a list of drag data items. Each item in the list is a DataTransferItem object.	https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem
-DataTransferItem.getAsFile()	A										<pre><code>File = DataTransferItem.getAsFile();\n</code></pre>The DataTransferItem.getAsFile() method returns the drag data item's File object if the item is a file. If the item is not a file, this method returns null.	https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/getAsFile
+DataTransferItem.getAsFile()	A										<pre><code>File = DataTransferItem.getAsFile();\n</code></pre>If the item is a file, the DataTransferItem.getAsFile() method returns the drag data item's File object. If the item is not a file, this method returns null.	https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/getAsFile
 DataTransferItem.getAsString()	A										<pre><code>dataTransferItem.getAsString(callback);\n</code></pre>The DataTransferItem.getAsString() method invokes the given callback with the drag data item's string data as the argument if the item's kind is a Plain unicode string (i.e. kind is string).	https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/getAsString
-DataTransferItem.kind	A										<pre><code>var itemKind = DataTransferItem.kind;\n</code></pre>The read-only DataTransferItem.kind property returns the drag data item kind.	https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/kind
-DataTransferItem.type	A										<pre><code>dataItem.type;\n</code></pre>The read-only DataTransferItem.type property returns the type (format) of the drag data item. The type is a Unicode string generally given by a MIME type, although a MIME type is not required.	https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/type
+DataTransferItem.kind	A										<pre><code>var itemKind = DataTransferItem.kind;\n</code></pre>The read-only DataTransferItem.kind property returns a DataTransferItem representing the drag data item kind: some text or some file.	https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/kind
+DataTransferItem.type	A										<pre><code>dataItem.type;\n</code></pre>The read-only DataTransferItem.type property returns the type (format) of the DataTransferItem object representing the drag data item. The type is a Unicode string generally given by a MIME type, although a MIME type is not required.	https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/type
 DataTransferItemList	A										The DataTransferItemList object is a list of DataTransferItem objects representing items being dragged. During a drag operation, each DragEvent has a dataTransfer property and that property is a DataTransferItemList.	https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItemList
 DataTransferItemList.add()	A										<pre><code>DataTransferItem = DataTransferItemList.add(data, type);\nDataTransferItem = DataTransferItemList.add(file);\n</code></pre>The DataTransferItemList.add() method creates a new DataTransferItem using the specified data and adds it to the drag data list. The item may be a File or a string of a given type. If the item is successfully added to the list, the newly-created DataTransferItem object is returned.	https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItemList/add
 DataTransferItemList.clear()	A										<pre><code>DataTransferItemList.clear();\n</code></pre>The DataTransferItemList.clear() method removes all DataTransferItem objects from the drag data items list, leaving the list empty.	https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItemList/clear
@@ -550,9 +550,7 @@ DeviceRotationRate	A										A DeviceRotationRate object provides information a
 DeviceRotationRate.alpha	A										<pre><code>var alpha = deviceRotationRate.alpha;\n</code></pre>This property indicates the rate of rotation around the Z axis -- in degrees per second -- in a DeviceRotationRate object.	https://developer.mozilla.org/en-US/docs/Web/API/DeviceRotationRate/alpha
 DeviceRotationRate.beta	A										<pre><code>var beta = deviceRotationRate.beta;\n</code></pre>This property indicates the rate of rotation around the X axis -- in degrees per second -- in a DeviceRotationRate object.	https://developer.mozilla.org/en-US/docs/Web/API/DeviceRotationRate/beta
 DeviceRotationRate.gamma	A										<pre><code>var gamma = deviceRotationRate.gamma;\n</code></pre>This property indicates the rate of rotation around the Y axis -- in degrees per second -- in a DeviceRotationRate object.	https://developer.mozilla.org/en-US/docs/Web/API/DeviceRotationRate/gamma
-DirectoryEntry	A										The DirectoryEntry interface of the FileSystem API represents a directory in a file system. It includes methods for creating, reading, looking up, and recursively removing files in a directory.	https://developer.mozilla.org/en-US/docs/Web/API/DirectoryEntry
 DirectoryEntrySync	A										The DirectoryEntrySync interface of the File System API represents a directory in a file system. It includes methods for creating, reading, looking up, and recursively removing files in a directory.	https://developer.mozilla.org/en-US/docs/Web/API/DirectoryEntrySync
-DirectoryReader	A										The DirectoryReader interface of the File System API lets you read the entries in a directory.	https://developer.mozilla.org/en-US/docs/Web/API/DirectoryReader
 DirectoryReaderSync	A										The DirectoryReaderSync interface of the File System API lets you read the entries in a directory.	https://developer.mozilla.org/en-US/docs/Web/API/DirectoryReaderSync
 Document	A										The Document interface represents any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree. The DOM tree includes elements such as body and table, among many others. It provides functionality global to the document, like how to obtain the page's URL and create new elements in the document.	https://developer.mozilla.org/en-US/docs/Web/API/Document
 Document.activeElement	A										<pre><code>var curElement = document.activeElement;\n</code></pre>Returns the currently focused element, that is, the element that will get keystroke events if the user types any. This attribute is read only.	https://developer.mozilla.org/en-US/docs/Web/API/Document/activeElement
@@ -669,6 +667,13 @@ DocumentFragment	A										The DocumentFragment interface represents a minimal 
 DocumentFragment()	A										<pre><code>fragment = new DocumentFragment()</code></pre>The DocumentFragment() constructor returns an empty newly created DocumentFragment object.	https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment/DocumentFragment
 DocumentFragment.querySelector()	A										<pre><code>element = documentfragment.querySelector(selectors);</code></pre>The DocumentFragment.querySelector() method returns the first element, or null if no matches are found, within the DocumentFragment (using depth-first pre-order traversal of the document's nodes) that matches the specified group of selectors.	https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment/querySelector
 DocumentFragment.querySelectorAll()	A										<pre><code>elementList = documentframgment.querySelectorAll(selectors);</code></pre>The DocumentFragment.querySelectorAll() method returns a NodeList of elements within the DocumentFragment (using depth-first pre-order traversal of the document's nodes) that matches the specified group of selectors.	https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment/querySelectorAll
+DocumentOrShadowRoot	A										The DocumentOrShadowRoot interface of the the Shadow DOM API provides contains APIs that are shared between documents and shadow roots.	https://developer.mozilla.org/en-US/docs/Web/API/DocumentOrShadowRoot
+DocumentOrShadowRoot.activeElement	A										<pre><code>var element = DocumentOrShadowRoot.activeElement</code></pre>The activeElement property of the DocumentOrShadowRoot interface returns the element within the shadow tree that has focus.	https://developer.mozilla.org/en-US/docs/Web/API/DocumentOrShadowRoot/activeElement
+DocumentOrShadowRoot.caretPositionFromPoint()	A										<pre><code>var caretPosition = document.caretPositionFromPoint(float x, float y);</code></pre>The caretPositionFromPoint() property of the DocumentOrShadowRoot interface returns a CaretPosition object containing the DOM node containing the caret and caret's character offset within that node.	https://developer.mozilla.org/en-US/docs/Web/API/DocumentOrShadowRoot/caretPositionFromPoint
+DocumentOrShadowRoot.elementFromPoint()	A										<pre><code>var element = document.elementFromPoint(x, y);</code></pre>The elementFromPoint() property of the DocumentOrShadowRoot interface returns the topmost element at the specified coordinates.	https://developer.mozilla.org/en-US/docs/Web/API/DocumentOrShadowRoot/elementFromPoint
+elementsFromPoint	A										<pre><code>var element[] = document.elementFromPoints(x, y);</code></pre>The elementsFromPoint() property of the DocumentOrShadowRoot interface returns an array of all elements at the specified coordinates.	https://developer.mozilla.org/en-US/docs/Web/API/DocumentOrShadowRoot/elementsFromPoint
+DocumentOrShadowRoot.getSelection()	A										<pre><code>var selection = window.getSelection()</code></pre>The getSelection() property of the DocumentOrShadowRoot interface returns a Selection object representing the range of text selected by the user or the current position of the caret.	https://developer.mozilla.org/en-US/docs/Web/API/DocumentOrShadowRoot/getSelection
+DocumentOrShadowRoot.styleSheets	A										<pre><code>var styleSheets = DocumentOrShadowRoot.styleSheets</code></pre>The styleSheets property of the DocumentOrShadowRoot interface returns a StyleSheetList of CSSStyleSheet objects for stylesheets explicitly linked into or embedded in a document.	https://developer.mozilla.org/en-US/docs/Web/API/DocumentOrShadowRoot/styleSheets
 DocumentTimeline	A										The DocumentTimeline interface of the the Web Animations API represents animation timelines, including the default document timeline (accessed via Document.timeline).	https://developer.mozilla.org/en-US/docs/Web/API/DocumentTimeline
 DocumentTimeline.DocumentTimeline()	A										<pre><code>var cats = document.querySelectorAll('.sharedTimelineCat');\ncats = Array.prototype.slice.call(cats);\n\nvar sharedTimeline = new DocumentTimeline(500);\n\ncats.forEach(function(cat) {\n&#160; var catKeyframes = new KeyframeEffect(cat, keyframes, timing);\n&#160; var catAnimation = new Animation(catKeyframes, sharedTimeline);\n&#160; catAnimation.play();\n});\n</code></pre>The DocumentTimeline() constructor of the Web Animations API creates a new instance of the DocumentTimeline object associated with the active document of the current browsing context.	https://developer.mozilla.org/en-US/docs/Web/API/DocumentTimeline/DocumentTimeline
 DocumentType	A										The DocumentType interface represents a Node containing a doctype.	https://developer.mozilla.org/en-US/docs/Web/API/DocumentType
@@ -791,13 +796,12 @@ Element.setAttributeNodeNS()	A										<pre><code>replacedAttr = element.setAtt
 Element.setAttributeNS()	A										<pre><code>element.setAttributeNS(\nnamespace,\nname,\nvalue)\n</code></pre>setAttributeNS adds a new attribute or changes the value of an attribute with the given namespace and name.	https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttributeNS
 Element.setCapture()	A										<pre><code>element.setCapture(retargetToElement);\n</code></pre>Call this method during the handling of a mousedown event to retarget all mouse events to this element until the mouse button is released or document.releaseCapture() is called.	https://developer.mozilla.org/en-US/docs/Web/API/Element/setCapture
 Element.setPointerCapture()	A										<pre><code>targetElement.setPointerCapture(pointerId);\n</code></pre>Pointer capture allows events for a particular pointer event (PointerEvent) to be re-targeted to a particular element instead of the normal target (or hit test) at a pointer's location. This can be used to ensure that an element continues to receive pointer events even if the pointer device's contact moves off the element (for example by scrolling).	https://developer.mozilla.org/en-US/docs/Web/API/Element/setPointerCapture
-Element.shadowRoot	A										<pre><code>var shadowroot = element.shadowRoot; \n</code></pre>The Element.shadowRoot read-only property represents the youngest shadow root that is hosted on the element.	https://developer.mozilla.org/en-US/docs/Web/API/Element/shadowRoot
+Element.shadowRoot	A										<pre><code>var shadowroot = element.shadowRoot; \n</code></pre>The Element.shadowRoot read-only property represents the shadow root hosted by the element. Use Element.attachShadow to add a shadow root to an existing element.	https://developer.mozilla.org/en-US/docs/Web/API/Element/shadowRoot
 Element.slot	A										<pre><code>var aString = element.slot\nelement.slot = aString\n</code></pre>The slot property of the Element interface returns the name of the shadow DOM slot attatched to the element. A slot is a placeholder inside a web component that users can fill with their own markup.	https://developer.mozilla.org/en-US/docs/Web/API/Element/slot
 Element.tabStop	A										<pre><code>var isTabStop = element.tabStop;\nelement.tabStop = (true|false);\n</code></pre>The tabStop property of the Element interface returns a Boolean indicating if the element can receive input focus via the tab key. If the specified element is a shadow host tab navigation is delegated to its children.	https://developer.mozilla.org/en-US/docs/Web/API/Element/tabStop
 Element.tagName	A										<pre><code>elementName = element.tagName;\n</code></pre>Returns the name of the element.	https://developer.mozilla.org/en-US/docs/Web/API/Element/tagName
 Encoding API	A										The Encoding API defines allows to deal with text encoded with different methods. It mainly allows to handle legacy content, encrypted with old methods, as it requires new content to be encoded using UTF-8.	https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API
 Encrypted Media Extensions API	A										The EncryptedMediaExtenstions API provides interfaces for controlling the playback of content which is subject to a digital restrictions management scheme.	https://developer.mozilla.org/en-US/docs/Web/API/Encrypted_Media_Extensions_API
-Entry	A										The Entry interface of the File and Directory Entries API represents a single in a file system. The entry can be a file or a directory (directories are represented by the DirectoryEntry interface. It includes methods for working with files—including copying, moving, removing, and reading files—as well as information about a file it points to—including the file name and its path from the root to the entry.	https://developer.mozilla.org/en-US/docs/Web/API/Entry
 EntrySync	A										The EntrySync interface of the FileSystem API represents an entry in a file system. The entry can be a FileEntrySync or a DirectoryEntry. It includes methods for working with files—including copying, moving, removing, and reading files—as well as information about the file it points to—including the file name and its path from the root to the entry.	https://developer.mozilla.org/en-US/docs/Web/API/EntrySync
 ErrorEvent	A										The ErrorEvent interface represents events providing information related to errors in scripts or in files.	https://developer.mozilla.org/en-US/docs/Web/API/ErrorEvent
 Event	A										The Event interface represents any event of the DOM. It contains common properties and methods to any event.	https://developer.mozilla.org/en-US/docs/Web/API/Event
@@ -807,6 +811,7 @@ Event.cancelBubble	A										<pre><code>event.cancelBubble = bool;\nvar bool = 
 Comparison of Event Targets	A										It's easy to get confused about which target to examine when writing an event handler. This article should clarify the use of the target properties.	https://developer.mozilla.org/en-US/docs/Web/API/Event/Comparison_of_Event_Targets
 Event.createEvent()	A										Creates a new event, which must then be initialized by calling its init() method.	https://developer.mozilla.org/en-US/docs/Web/API/Event/createEvent
 Event.currentTarget	A										Identifies the current target for the event, as the event traverses the DOM. It always refers to the element the event handler has been attached to as opposed to event.target which identifies the element on which the event occurred.	https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget
+Event.deepPath	A										<pre><code>var nodes[] = Event.deepPath</code></pre>The deepPath property of the Event interface returns an Array of nodes through which the event bubbled.	https://developer.mozilla.org/en-US/docs/Web/API/Event/deepPath
 Event.defaultPrevented	A										<pre><code>bool = event.defaultPrevented </code></pre>Returns a boolean indicating whether or not event.preventDefault() was called on the event.	https://developer.mozilla.org/en-US/docs/Web/API/Event/defaultPrevented
 Event()	A										<pre><code> event = new Event(typeArg, eventInit);</code></pre>The Event() constructor creates a new Event.	https://developer.mozilla.org/en-US/docs/Web/API/Event/Event
 Event.eventPhase	A										<pre><code>var phase = event.eventPhase;\n</code></pre>Indicates which phase of the event flow is currently being evaluated.	https://developer.mozilla.org/en-US/docs/Web/API/Event/eventPhase
@@ -816,6 +821,7 @@ Event.isTrusted	A										<pre><code>var bool = event.isTrusted;\n</code></pre>
 Event.originalTarget	A										The original target of the event before any retargetings. (Mozilla-specific)	https://developer.mozilla.org/en-US/docs/Web/API/Event/originalTarget
 Event.preventDefault()	A										<pre><code>event.preventDefault();</code></pre>Cancels the event if it is cancelable, without stopping further propagation of the event.	https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
 Event.returnValue	A										<pre><code>event.returnValue = bool;\nvar bool = event.returnValue;\n</code></pre>The Event.returnValue property indicates if the default action for this event has been prevented or not. It is set to true by default, allowing the default action to occur. Setting this property to false prevents the default action.	https://developer.mozilla.org/en-US/docs/Web/API/Event/returnValue
+Event.scoped	A										<pre><code>var scoped = Event.scoped</code></pre>The scoped property of the Event interface returns a Boolean indicating whether the given event bubbles. If this value is true, deepPath will only contain a target node.	https://developer.mozilla.org/en-US/docs/Web/API/Event/scoped
 Event.srcElement	A										Event.srcElement is a proprietary alias for the standard Event.target property. It is specific to old versions of Microsoft Internet Explorer.	https://developer.mozilla.org/en-US/docs/Web/API/Event/srcElement
 Event.stopImmediatePropagation()	A										<pre><code>event.stopImmediatePropagation(); \n</code></pre>Prevents other listeners of the same event from being called.	https://developer.mozilla.org/en-US/docs/Web/API/Event/stopImmediatePropagation
 Event.stopPropagation()	A										<pre><code>event.stopPropagation();</code></pre>Prevents further propagation of the current event in the capturing and bubbling phases.	https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation
@@ -880,7 +886,6 @@ File.getAsText()	A										<pre><code>var str = instanceOfFile.getAsText(encodi
 File.lastModifiedDate	A										<pre><code>var time = instanceOfFile.lastModifiedDate</code></pre>The File.lastModifiedDate read-only property returns the last modified date of the file. Files without a known last modified date returns the current date.	https://developer.mozilla.org/en-US/docs/Web/API/File/lastModifiedDate
 File.name	A										<pre><code>var name = file.name;</code></pre>Returns the name of the file represented by a File object. For security reasons, the path is excluded from this property.	https://developer.mozilla.org/en-US/docs/Web/API/File/name
 File.webkitRelativePath	A										<pre><code>&#160;str = fileObj.webkitRelativePath</code></pre>The File.webkitRelativePath is a read-only property that contains a DOMString with the path relative to the directory selected when the webkitdirectory has been set on the input element.	https://developer.mozilla.org/en-US/docs/Web/API/File/webkitRelativePath
-FileEntry	A										The FileEntry interface of the File System API represents a file in a file system. It lets you write content to a file.	https://developer.mozilla.org/en-US/docs/Web/API/FileEntry
 FileEntrySync	A										The FileEntrySync interface of the File System API represents a file in a file system. It lets you write content to a file.	https://developer.mozilla.org/en-US/docs/Web/API/FileEntrySync
 FileException	A										In the File System API, a FileException object represents error conditions that you might encounter while accessing the file system using the synchronous API. It extends the FileException interface described in File Writer and adds several new error codes.	https://developer.mozilla.org/en-US/docs/Web/API/FileException
 FileList	A										An object of this type is returned by the files property of the HTML input element; this lets you access the list of files selected with the input type="file" element. It's also used for a list of files dropped into web content when using the drag and drop API; see the DataTransfer object for details on this usage.	https://developer.mozilla.org/en-US/docs/Web/API/FileList
@@ -898,7 +903,21 @@ FileReaderSync	A										The FileReaderSync interface allows to read File or Bl
 FileRequest	A										The FileRequest interface extends the DOMRequest interface to provide some extra properties necessary for the LockedFile objects.	https://developer.mozilla.org/en-US/docs/Web/API/FileRequest
 FileRequest.lockedFile	A										<pre><code>var lockedFile = instanceOfFileRequest.lockedFile\n</code></pre>The lockedFile property represents the LockedFile object from which the request was started.	https://developer.mozilla.org/en-US/docs/Web/API/FileRequest/lockedFile
 FileRequest.onprogress	A										<pre><code>instanceOfFileRequest.onprogress = function;\n</code></pre>This property specifies a callback function to be run repeatedly while the operation represented by a FileRequest object is in progress.	https://developer.mozilla.org/en-US/docs/Web/API/FileRequest/onprogress
-FileSystem	A										In the File System API, a FileSystem object represents a file system. The object is the argument of a successful callback of requestFileSystem(). The FileSystem object has two properties.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystem
+FileSystem	A										The File and Directory Entries API interface FileSystem is used to represent a file system. Each object is passed to the success callback when requestFileSystem() is called.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystem
+FileSystem.name	A										<pre><code>var fsName = FileSystem.name;</code></pre>The read-only name property of the FileSystem interface indicates the file system's name. This DOMString is unique among all file systems currently exposed by the File and Directory Entries API.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystem/name
+FileSystem.root	A										<pre><code>var rootDirEnt = FileSystem.root;</code></pre>The read-only root property of the FileSystem interface specifies a FileSystemDirectoryEntry object representing the root directory of the file system, for use with the File and Directory Entries API.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystem/root
+FileSystemDirectoryEntry	A										The FileSystemDirectoryEntry interface of the File and Directory Entries API represents a directory in a file system. It provides methods which make it possible to access and manipulate the files in a directory, as well as to access the entries within the directory.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry
+FileSystemDirectoryEntry.createReader()	A										<pre><code>directoryReader = FileSystemDirectoryEntry.createReader();</code></pre>The FileSystemDirectoryEntry interface's method createReader () returns a FileSystemDirectoryReader object which can be used to read the entries in the directory.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry/createReader
+FileSystemDirectoryEntry.getDirectory()	A										<pre><code>FileSystemDirectoryEntry.getDirectory([path][, options][, successCallback][, errorCallback]);</code></pre>The FileSystemDirectoryEntry interface's method getDirectory () returns a FileSystemDirectoryEntry object corresponding to a directory contained somewhere within the directory subtree rooted at the directory on which it's called.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry/getDirectory
+FileSystemDirectoryEntry.getFile()	A										<pre><code>FileSystemDirectoryEntry.getFile([path][, options][, successCallback][, errorCallback]);</code></pre>The FileSystemDirectoryEntry interface's method getFile () returns a FileSystemFileEntry object corresponding to a file contained somewhere within the directory subtree rooted at the directory on which it's called.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry/getFile
+FileSystemDirectoryEntry.removeRecursively()	A										<pre><code>FileSystemDirectoryEntry.removeRecursively(successCallback[, errorCallback]);</code></pre>The FileSystemDirectoryEntry interface's method removeRecursively () removes the directory as well as all of its content, hierarchically iterating over its entire subtree of descendant files and directories.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry/removeRecursively
+FileSystemDirectoryReader	A										The FileSystemDirectoryReader interface of the File and Directory Entries API lets you access the FileEntry -based objects (generally FileSystemFileEntry or FileSystemDirectoryEntry) representing each entry in a directory.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryReader
+FileSystemDirectoryReader.readEntries()	A										<pre><code>readEntries(successCallback[, errorCallback]);\n</code></pre>The FileSystemDirectoryReader interface's readEntries() method retrieves the directory entries within the directory being read. Each time the method is called, an array containing some number of the directory's entries is passed to the success callback. When the end of the directory is reached, the success callback receives an empty array.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryReader/readEntries
+FileSystemEntry	A										The FileSystemEntry interface of the File and Directory Entries API represents a single in a file system. The entry can be a file or a directory (directories are represented by the DirectoryEntry interface. It includes methods for working with files—including copying, moving, removing, and reading files—as well as information about a file it points to—including the file name and its path from the root to the entry.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry
+FileSystemFileEntry	A										The FileSystemFileEntry interface of the File System API represents a file in a file system. It offers properties describing the file's attributes, as well as methods for creating a FileWriter object to write to the file or a File object to read the file.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileEntry
+FileSystemFileEntry.createWriter()	A										<pre><code>FileSystemFileEntry.createWriter(successCallback[, errorCallback]);</code></pre>The FileSystemFileEntry interface's method createWriter() returns a FileWriter object which can be used to write data into the file represented by the directory entry.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileEntry/createWriter
+FileSystemFileEntry.file()	A										<pre><code>FileSystemFileEntry.file(successCallback[, errorCallback]);</code></pre>The FileSystemFileEntry interface's method file () returns a File object which can be used to read data from the file represented by the directory entry.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileEntry/file
+FileSystemFlags	A										The FileSystemFlags dictionary defines a set of values which are used when specifying option flags when calling certain methods in the File and Directory Entries API. Methods which accept an options parameter of this type may specify zero or more of these flags as fields in an object, like this:	https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFlags
 FileSystemSync	A										In the File System API, a FileSystemSync object represents a file system. It has two properties.	https://developer.mozilla.org/en-US/docs/Web/API/FileSystemSync
 File and Directory Entries API	A										The File and Directory Entries API simulates a local file system that web apps can navigate within. You can develop apps which read, write, and create files and/or directories in a virtual, sandboxed file system.	https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API
 Introduction to the File and Directory Entries API	A										The File and Directory Entries API simulates a local file system that web apps can navigate around. You can develop apps that can read, write, and create files and directories in a sandboxed, virtual file system.	https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API/Introduction
@@ -1184,6 +1203,7 @@ HTMLMediaElement.audioTracks	A										<pre><code>xxxxxx</code></pre>The HTMLMe
 HTMLMediaElement.autoplay	A										<pre><code>...</code></pre>The HTMLMediaElement.autoplay property reflects the autoplay HTML attribute, indicating whether playback should automatically begin as soon as enough media is available to do so without interruption.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/autoplay
 HTMLMediaElement.buffered	A										<pre><code>var timeRange = audioObject.buffered</code></pre>The HTMLMediaElement.buffered read-only property returns a new TimeRanges object that indicates the ranges of the media source that the browser has buffered (if any) at the moment the buffered property is accessed.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/buffered
 HTMLMediaElement.canPlayType()	A										<pre><code>str = audioOrVideo.canPlayType(mediaType);\n</code></pre>The HTMLMediaElement.canPlayType() method determines whether the specified media type can be played back.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canPlayType
+HTMLMediaElement.captureStream()	A										<pre><code>var mediaStream = mediaElement.captureStream()</code></pre>The captureStream() property of the HTMLMediaElement interface returns in a MediaStream object a real-time capture of the media that is rendered to the media element.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/captureStream
 HTMLMediaElement.controller	A										<pre><code>...</code></pre>The HTMLMediaElement.controller property represents the media controller assigned to the element.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/controller
 HTMLMediaElement.controls	A										<pre><code>var ctrls = video.controls;\naudio.controls = true;</code></pre>The HTMLMediaElement.controls property reflects the controls HTML attribute, which controls whether user interface controls for playing the media item will be displayed.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/controls
 HTMLMediaElement.crossOrigin	A										The HTMLMediaElement.crossOrigin property is the CORS setting for this image element. See CORS settings attributes for details.	https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/crossOrigin
@@ -2400,7 +2420,7 @@ ServiceWorkerState	A										The ServiceWorkerState is associated with its Serv
 Service Worker API	A										A service worker is an event-driven worker registered against an origin and a path. It takes the form of a JavaScript file that can control the web page/site it is associated with, intercepting and modifying navigation and resource requests, and caching resources in a very granular fashion to give you complete control over how your app behaves in certain situations (the most obvious one being when the network is not available.)	https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
 Using Service Workers	A										One overriding problem that web users have suffered with for years is loss of connectivity. The best web app in the world will provide a terrible user experience if you can’t download it. There have been various attempts to create technologies to solve this problem, as our Offline page shows, and some of the issues have been solved. But the overriding problem is that there still isn’t a good overall control mechanism for asset caching and custom network requests. The previous attempt — AppCache — seemed to be a good idea because it allowed you to specify assets to cache really easily. However, it made many assumptions about what you were trying to do and then broke horribly when your app didn’t follow those assumptions exactly. Read Jake Archibald's Application Cache is a Douchebag for more details.	https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
 ShadowRoot	A										The ShadowRoot interface of the Shadow DOM API is the root node of a DOM subtree that is rendered separately from a document's main DOM tree.	https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot
-ShadowRoot.host	A										<pre><code>var element = shadowRoot.host</code></pre>The host read-only property of the ShadowRoot returens the DOM element to which the ShadowRoot is attatched.	https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/host
+ShadowRoot.host	A										<pre><code>var element = shadowRoot.host</code></pre>The host read-only property of the ShadowRoot returns the DOM element to which the ShadowRoot is attatched.	https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/host
 ShadowRoot.innerHTML	A										<pre><code>var domString = shadowRoot.innerHTML\nshadowRoot.innerHTML = domString\n</code></pre>The innerHTML property of the ShadowRoot interface sets or returns the DOM tree inside the ShadowRoot.	https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/innerHTML
 SharedKeyframeList	A										The SharedKeyframeList interface of the Web Animations API represents a sequence of keyframes that can be shared between KeyframeEffect objects.	https://developer.mozilla.org/en-US/docs/Web/API/SharedKeyframeList
 SharedKeyframeList.SharedKeyframeList()	A										The SharedKeyframeList() constructor of the SharedKeyframeList interface creates a new SharedKeyframeList object that can be shared across multiple KeyframeEffect objects.	https://developer.mozilla.org/en-US/docs/Web/API/SharedKeyframeList/SharedKeyframeList
@@ -2654,6 +2674,7 @@ id	A										<pre><code>&#8203;tbd</code></pre>tbd	https://developer.mozilla.or
 SyncRegistration.tag	A										<pre><code>&#8203;var myRegistrationID = SyncRegistration.tag;\n</code></pre>The tag read-only property of the SyncRegistration interface provides the unique identifier of the specified SyncRegistration object.	https://developer.mozilla.org/en-US/docs/Web/API/SyncRegistration/tag
 unregister	A										<pre><code>&#160;SyncRegistration.unregister().then(function(Boolean) { ... }):</code></pre>The unregister() method of the SyncRegistration interface returns a Promise that resolves to a  Boolean indicating whether the SyncRegistration object was unregistered.	https://developer.mozilla.org/en-US/docs/Web/API/SyncRegistration/unregister
 Text	A										The Text interface represents the textual content of Element or Attr.  If an element has no markup within its content, it has a single child implementing Text that contains the element's text.  However, if the element contains markup, it is parsed into information items and Text nodes that form its children.	https://developer.mozilla.org/en-US/docs/Web/API/Text
+HTMLSlotElement.assignedSlot	A										<pre><code>var htmlSlotElement = Text.assignedSlot</code></pre>The assignedSlot property of the Text interface returns the HTMLSlotElement object associated with the element.	https://developer.mozilla.org/en-US/docs/Web/API/Text/assignedSlot
 Text.splitText()	A										<pre><code>replacementNode = textnode.splitText(offset) \n</code></pre>The Text.splitText() method breaks the Text node into two nodes at the specified offset, keeping both nodes in the tree as siblings.	https://developer.mozilla.org/en-US/docs/Web/API/Text/splitText
 Text()	A										<pre><code>text1 = new Text(); // Create an empty text node\ntext2 = new Text("This is a text node");\n</code></pre>The Text() constructor returns a newly created Text object with the optional DOMString given in parameter as its textual content.	https://developer.mozilla.org/en-US/docs/Web/API/Text/Text
 Text.wholeText	A										<pre><code>str = textnode.wholeText;</code></pre>The Text.wholeText read-only property returns all text of all Text nodes logically adjacent to the node. The text is concatenated in document order.  This allows to specify any text node and obtain all adjacent text as a single string.	https://developer.mozilla.org/en-US/docs/Web/API/Text/wholeText
@@ -2661,7 +2682,7 @@ TextDecoder	A										The TextDecoder interface represents a decoder for a spec
 TextDecoder.decode()	A										<pre><code>b1 = decoder.decode(buffer, options);\nb2 = decoder.decode(buffer);\nb3 = decoder.decode();\n</code></pre>The TextDecoder.decode method returns a DOMString containing the text, given in parameters, decoded with the specific method for that TextDecoder object.	https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder/decode
 TextDecoder.encoding	A										<pre><code>b = decoder.decoding;</code></pre>The TextDecoder.encoding read-only property returns a DOMString containing the name of the decoding algorithm used by the specific decoder.	https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder/encoding
 TextDecoder()	A										<pre><code>decoder = new TextDecoder(utfLabel, options); \n</code></pre>The TextDecoder() constructor returns a newly created TextDecoder object for the encoding specified in parameter.	https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder/TextDecoder
-TextEncoder	A										The TextEncoder interface represents an encoder for a specific method, that is a specific character encoding, like utf-8, iso-8859-2, koi8, cp1261, gbk,... An encoder takes a stream of code points as input and emits a stream of bytes. For a more scalable, non-native library, see StringView – a C-like representation of strings based on typed arrays.	https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder
+TextEncoder	A										TextEncoder takes a stream of code points as input and emits a stream of bytes. For a more scalable, non-native library, see StringView – a C-like representation of strings based on typed arrays.	https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder
 TextEncoder.encode()	A										<pre><code>b1 = encoder.encode(buffer, options);\nb2 = encoder.encode(buffer);\n</code></pre>The TextEncoder.encode method returns a Uint8Array containing the text given in parameters encoded with the specific method for that TextEncoder object.	https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder/encode
 TextEncoder.encoding	A										<pre><code>b = encoder.encoding;</code></pre>The TextEncoder.encoding read-only property returns a DOMString containing the name of the encoding algorithm used by the specific encoder.	https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder/encoding
 TextEncoder()	A										<pre><code>encoder = new TextEncoder(utfLabel); \n</code></pre>The TextEncoder() constructor returns a newly created TextEncoder object for the encoding specified in parameter.	https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder/TextEncoder
@@ -3357,6 +3378,10 @@ Browser Differences	A										Netscape 7.x (all platforms) and Internet Explore
 Generating HTML	A										One common application of XSLT in the browser is to transform XML into HTML on the client. The second example will transform the input document (example2.xml), which again contains information about an article, into an HTML document.	https://developer.mozilla.org/en-US/docs/Web/API/XSLTProcessor/Generating_HTML
 Introduction	A										One noticeable trend in W3C standards has been the effort to separate content from style. This would allow the same style to be reused for multiple content, as well as simplify maintenance and allow a quick (only modify one file) way to change the look of content.	https://developer.mozilla.org/en-US/docs/Web/API/XSLTProcessor/Introduction
 XSL Transformations in Mozilla FAQ	A										Make sure the mime type for both source and stylesheet are set to an XML mimetype, namely text/xml or application/xml. The XSLT namespace is http://www.w3.org/1999/XSL/Transform. Use the ?xml-stylesheet ? processing instruction instead of the non-standard xml:stylesheet. The most common cause is the MIME type handling. To find out which MIME type your server sends, look at Page Info, use extensions like LiveHTTPHeaders or a download manager like wget. Mozilla won't load XSLT stylesheets from a different domain for security reasons.	https://developer.mozilla.org/en-US/docs/Web/API/XSLTProcessor/XSL_Transformations_in_Mozilla_FAQ
+Classes	A										JavaScript classes are introduced in ECMAScript 6 are syntactical sugar over JavaScript's existing prototype-based inheritance. The class syntax is not introducing a new object-oriented inheritance model to JavaScript. JavaScript classes provide a much simpler and clearer syntax to create objects and deal with inheritance.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+constructor	A										<pre><code>constructor([arguments]) { ... }</code></pre>The constructor method is a special method for creating and initializing an object created with a class.\nThere can only be one special method with the name "constructor" in a class. A SyntaxError will be thrown, if the class contains more than one occurrence of a constructor method.\n<pre><code>class Square extends Polygon {\n  constructor(length) {\n    // Here, it calls the parent class' constructor with lengths\n    // provided for the Polygon's width and height\n    super(length, length);\n    // Note: In derived classes, super() must be called before you\n    // can use 'this'. Leaving this out will cause a reference error.\n    this.name = 'Square';\n  }\n\n  get area() {\n    return this.height * this.width;\n  }\n\n  set area(value) {\n    this.area = value;\n  } \n}</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor
+extends	A										<pre><code>class ChildClass extends ParentClass { ... }</code></pre>The extends keyword is used in a class declarations or class expressions to create a class with a child of another class.\nThe extends keyword can be used to subclass custom classes as well as built-in objects.\n<pre><code>class Square extends Polygon {\n  constructor(length) {\n    // Here, it calls the parent class' constructor with lengths\n    // provided for the Polygon's width and height\n    super(length, length);\n    // Note: In derived classes, super() must be called before you\n    // can use 'this'. Leaving this out will cause a reference error.\n    this.name = 'Square';\n  }\n\n  get area() {\n    return this.height * this.width;\n  }\n\n  set area(value) {\n&#160;   this.height = this.width = Math.sqrt(value);\n    this.area = value;\n  } \n}</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends
+static	A										<pre><code>static methodName() { ... }</code></pre>The static keyword defines a static method for a class.\nStatic methods are called without instantiating their class and&#160;are also not&#160;callable when the class is instantiated. Static methods are often used to create utility functions for an application.\n<pre><code>class StaticMethodCall {\n    static staticMethod() {\n        return 'Static method has been called';\n    }\n    static anotherStaticMethod() {\n        return this.staticMethod() + ' from another static method';\n    }\n}\nStaticMethodCall.staticMethod(); \n// 'Static method has been called'\n\nStaticMethodCall.anotherStaticMethod(); \n// 'Static method has been called from another static method'</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static
 JavaScript error reference	A										Errors, errors everywhere.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors
 Warning: -file- is being assigned a //# sourceMappingURL, but already has one	A										A source map has been specified more than once for a given JavaScript source.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Already_has_pragma
 warning -file- is being assigned a //# sourcemappingurl but already has one	R	Warning: -file- is being assigned a //# sourceMappingURL, but already has one										
@@ -3809,7 +3834,7 @@ String.prototype.trim	A										<pre><code>String.prototype.trim ( )</code></pr
 String.prototype.trimLeft()	A										<pre><code>str.trimLeft()</code></pre>The trimLeft() method removes whitespace from the left end of a string.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/TrimLeft
 String.prototype.trimRight()	A										<pre><code>str.trimRight()</code></pre>The trimRight() method removes whitespace from the right end of a string.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/TrimRight
 String.prototype.valueOf	A										<pre><code>String.prototype.valueOf ( )</code></pre>The valueOf() method returns the primitive value of a String object.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/valueOf
-Symbol	A										<pre><code>Symbol([description])</code></pre>A symbol is a unique and immutable data type and may be used as an identifier for object properties. The Symbol object is an implicit object wrapper for the symbol primitive data type.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
+Symbol	A										<pre><code>Symbol([description])</code></pre>A symbol is a unique and immutable data type. It may be used as an identifier for object properties. The Symbol object is an implicit object wrapper for the symbol primitive data type.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol
 SyntaxError	A										<pre><code>new SyntaxError([message[, fileName[, lineNumber]]])try {\n  eval('hoo bar');\n} catch (e) {\n  console.log(e instanceof SyntaxError); // true\n  console.log(e.message);                // "missing ; before statement"\n  console.log(e.name);                   // "SyntaxError"\n  console.log(e.fileName);               // "Scratchpad/1"\n  console.log(e.lineNumber);             // 1\n  console.log(e.columnNumber);           // 4\n  console.log(e.stack);                  // "@Scratchpad/1:2:3\n"\n}\n</code></pre>The SyntaxError object represents an error when trying to interpret syntactically invalid code.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError
 TypedArray	A										<pre><code>new TypedArray(length);\nnew TypedArray(typedArray);\nnew TypedArray(object);\nnew TypedArray(buffer [, byteOffset [, length]]);\n\nwhere TypedArray() is one of:\n\nInt8Array();\nUint8Array();\nUint8ClampedArray();\nInt16Array();\nUint16Array();\nInt32Array();\nUint32Array();\nFloat32Array();\nFloat64Array();\n</code></pre>A TypedArray object describes an array-like view of an underlying binary data buffer. There is no global property named TypedArray, nor is there a directly visible TypedArray constructor.  Instead, there are a number of different global properties, whose values are typed array constructors for specific element types, listed below. On the following pages you will find common properties and methods that can be used with any typed array containing elements of any type.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 TypeError	A										<pre><code>new TypeError([message[, fileName[, lineNumber]]])</code></pre>The TypeError object represents an error when a value is not of the expected type.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError
@@ -3826,6 +3851,87 @@ uneval()	A										<pre><code>uneval(object)</code></pre>The uneval() function 
 URIError	A										<pre><code>new URIError([message[, fileName[, lineNumber]]])</code></pre>The URIError object represents an error when a global URI handling function was used in a wrong way.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError
 WeakMap	A										<pre><code>new WeakMap([iterable])\n</code></pre>The WeakMap object is a collection of key/value pairs in which the keys are weakly referenced.  The keys must be objects and the values can be arbitrary values.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
 WeakSet	A										<pre><code> new WeakSet([iterable]);</code></pre>The WeakSet object lets you store weakly held objects in a collection.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet
+Expressions and operators	A										This chapter documents all the JavaScript language operators, expressions and keywords.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators
+Arithmetic operators	A										Arithmetic operators take numerical values (either literals or variables) as their operands and return a single numerical value. The standard arithmetic operators are addition (+), subtraction (-), multiplication (*), and division (/).	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators
+Array comprehensions	A										<pre><code>[for (x of iterable) x]\n[for (x of iterable) if (condition) x]\n[for (x of iterable) for (y of iterable) x + y]\n</code></pre>The array comprehension syntax is a JavaScript expression which allows you to quickly assemble a new array based on an existing one. Comprehensions exist in many programming languages.\nInside array comprehensions, these two kinds of components are allowed:\n<pre><code>var numbers = [1, 2, 3, 4];\nvar doubled = [for (i of numbers) i * 2];\nconsole.log(doubled); // logs 2,4,6,8\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Array_comprehensions
+Assignment operators	A										An assignment operator assigns a value to its left operand based on the value of its right operand.\nIn unusual situations, the assignment operator (e.g. x += y) is not identical to the meaning expression (here x = x + y). When the left operand of an assignment operator itself contains an assignment operator, the left operand is evaluated only once. For example:\n<pre><code>a[i++] += 5         // i is evaluated only once\na[i++] = a[i++] + 5 // i is evaluated twice\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators
+Bitwise operators	A										Bitwise operators treat their operands as a sequence of 32 bits (zeroes and ones), rather than as decimal, hexadecimal, or octal numbers. For example, the decimal number nine has a binary representation of 1001. Bitwise operators perform their operations on such binary representations, but they return standard JavaScript numerical values.\nThe bitwise logical operators are often used to create, manipulate, and read sequences of flags, which are like binary variables. Variables could be used instead of these sequences, but binary flags take much less memory (by a factor of 32).\n<pre><code>var flags = 5;   // binary 0101\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators
+class expression	A										<pre><code>var MyClass = class [className] [extends] {\n&#160; // class body\n};</code></pre>The class expression is one way to define a class in ECMAScript 2015 (ES6). Similar to function expressions, class expressions can be named or unnamed. If named, the name of the class is local to the class body only. JavaScript classes are using prototype-based inheritance.\nA class expression has a similar syntax to a class statement (declaration). However, with class expressions, you are able to omit the class name ("binding identifier"), which you can't with class statements. Additionally, class expressions allow you to redefine/re-declare classes and don't throw any type errors like class declaration. The constructor property is optional. And, typeof&#160;the classes generated using this keyword will always be "functions".\n<pre><code>'use strict';\nvar Foo = class {}; // constructor property is optional\nvar Foo = class {}; // Re-declaration is allowed\n\ntypeof Foo; //returns "function"\ntypeof class {}; //returns "function"\n\nFoo instanceof Object; // true\nFoo instanceof Function; // true\nclass Foo {}; // Throws TypeError, doesn't allow re-declaration\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/class
+Comma operator	A										<pre><code>expr1, expr2, expr3...</code></pre>The comma operator evaluates each of its operands (from left to right) and returns the value of the last operand.\nYou can use the comma operator when you want to include multiple expressions in a location that requires a single expression. The most common usage of this operator is to supply multiple parameters in a for loop.\n<pre><code>for (var i = 0, j = 9; i &lt;= 9; i++, j--)\n  console.log("a[" + i + "][" + j + "] = " + a[i][j]);</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comma_Operator
+Comparison operators	A										JavaScript has both strict and type–converting comparisons. A strict comparison (e.g., ===) is only true if the operands are of the same type and the contents match. The more commonly-used abstract comparison (e.g. ==) converts the operands to the same type before making the comparison. For relational abstract comparisons (e.g., =), the operands are first converted to primitives, then to the same type, before comparison.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators
+Conditional (ternary) Operator	A										<pre><code>condition ? expr1 : expr2 </code></pre>The conditional (ternary) operator is the only JavaScript operator that takes three operands. This operator is frequently used as a shortcut for the if statement.\nIf condition is true, the operator returns the value of expr1; otherwise, it returns the value of expr2. For example, to display a different message based on the value of the isMember variable, you could use this statement:\n<pre><code>"The fee is " + (isMember ? "$2.00" : "$10.00")\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
+delete operator	A										<pre><code>delete expression </code></pre>The delete operator removes a property from an object.\nUnlike what common belief suggests, the delete operator has nothing to do with directly freeing memory (it only does indirectly via breaking references. See the memory management page for more details).\n<pre><code>function foo() { \n  delete x;\n  let x;\n}\n\nfunction bar() { \n  delete y; \n  const y; \n}</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete
+Destructuring assignment	A										<pre><code>var a, b, rest;\n[a, b] = [1, 2];\nconsole.log(a); // 1\nconsole.log(b); // 2\n\n[a, b, ...rest] = [1, 2, 3, 4, 5];\nconsole.log(a); // 1\nconsole.log(b); // 2\nconsole.log(rest); // [3, 4, 5]\n\n({a, b} = {a:1, b:2});\nconsole.log(a); // 1\nconsole.log(b); // 2\n\n({a, b, ...rest} = {a:1, b:2, c:3, d:4}); \n// ES7 - not implemented in Firefox 47a01\n</code></pre>The destructuring assignment syntax is a JavaScript expression that makes it possible to extract data from arrays or objects into distinct variables.\nThe object and array literal expressions provide an easy way to create ad&#160;hoc packages of data.\n<pre><code>var x = [1, 2, 3, 4, 5];</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+Expression closures	A										<pre><code>function [name]([param1[, param2[, ..., paramN]]])\n   expression\n</code></pre>Expression closures are a shorthand function syntax for writing simple functions.\nThis addition is nothing more than a shorthand for writing simple functions, giving the language something similar to a typical Lambda notation.\n<pre><code>function(x) { return x * x; }</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Expression_closures
+function expression	A										<pre><code>function [name]([param1[, param2[, ..., paramN]]]) {\n   statements\n}</code></pre>The function keyword can be used to define a function inside an expression.\nA function expression is very similar to and has almost the same syntax as a function statement (see function statement for details). The main difference between a function expression and a function statement is the function name, which can be omitted in function expressions to create anonymous functions. A function expression can be used as a IIFE&#160;(Immediately Invoked Function Expression) which&#160;runs as soon as it is defined. See also the chapter about functions for more information.\n<pre><code>var x = function(y) {\n   return y * y;\n};\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function
+function* expression	A										<pre><code>function* [name]([param1[, param2[, ..., paramN]]]) {\n   statements\n}</code></pre>The function* keyword can be used to define a generator function inside an expression.\nA function* expression is very similar to and has almost the same syntax as a function* statement. The main difference between a function* expression and a function* statement is the function name, which can be omitted in function* expressions to create anonymous functions. See also the chapter about functions for more information.\n<pre><code>var x = function*(y) {\n   yield y * y;\n};\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function*
+Generator comprehensions	A										<pre><code>(for (x of iterable) x)\n(for (x of iterable) if (condition) x)\n(for (x of iterable) for (y of iterable) x + y)\n</code></pre>The generator comprehension syntax is a JavaScript expression which allows you to quickly assemble a new generator function based on an existing iterable object. Comprehensions exist in many programming languages.\nInside generator comprehensions, these two kinds of components are allowed:\n<pre><code>var doubles = [for (i in it) i * 2];\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Generator_comprehensions
+Grouping operator	A										<pre><code> ( )</code></pre>The grouping operator () controls the precedence of evaluation in expressions.\nThe grouping operator consists of a pair of parentheses around an expression or sub-expression to override the normal operator precedence so that expressions with lower precedence can be evaluated before an expression with higher priority.\n<pre><code>var a = 1;\nvar b = 2;\nvar c = 3;\n\n// default precedence\na + b * c     // 7\n// evaluated by default like this\na + (b * c)   // 7\n\n// now overriding precedence \n// addition before multiplication   \n(a + b) * c   // 9\n\n// which is equivalent to\na * c + b * c // 9\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Grouping
+in operator	A										<pre><code>prop in objectName</code></pre>The in operator returns true if the specified property is in the specified object.\nThe following examples show some uses of the in operator.\n<pre><code>// Arrays\nvar trees = ["redwood", "bay", "cedar", "oak", "maple"];\n0 in trees        // returns true\n3 in trees        // returns true\n6 in trees        // returns false\n"bay" in trees    // returns false (you must specify the \n                  // index number, not the value at that index)\n"length" in trees // returns true (length is an Array property)\nSymbol.iterator in trees // returns true (arrays are iterable, works only in ES6+)\n\n// Predefined objects\n"PI" in Math          // returns true\n\n// Custom objects\nvar mycar = {make: "Honda", model: "Accord", year: 1998};\n"make" in mycar  // returns true\n"model" in mycar // returns true\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in
+instanceof	A										<pre><code>object instanceof constructor</code></pre>The instanceof operator tests whether an object has in its prototype chain the prototype property of a constructor.\nThe instanceof operator tests presence of constructor.prototype in object's prototype chain.\n<pre><code>// defining constructors\nfunction C(){}\nfunction D(){}\n\nvar o = new C();\n\n// true, because: Object.getPrototypeOf(o) === C.prototype\no instanceof C;\n\n// false, because D.prototype is nowhere in o's prototype chain\no instanceof D;\n\no instanceof Object; // true, because:\nC.prototype instanceof Object // true\n\nC.prototype = {};\nvar o2 = new C();\n\no2 instanceof C; // true\n\n// false, because C.prototype is nowhere in\n// o's prototype chain anymore\no instanceof C; \n\nD.prototype = new C(); // use inheritance\nvar o3 = new D();\no3 instanceof D; // true\no3 instanceof C; // true\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof
+Legacy generator function expression	A										<pre><code>function [name]([param1[, param2[, ..., paramN]]]) {\n   statements\n}</code></pre>The function keyword can be used to define a legacy generator function inside an expression. To make the function a legacy generator, the function body should contain at least one yield expression.\nAn overview of the usage is available on the Iterators and Generators page.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Legacy_generator_function
+Logical Operators	A										Logical operators are typically used with Boolean (logical) values. When they are, they return a Boolean value. However, the && and || operators actually return the value of one of the specified operands, so if these operators are used with non-Boolean values, they may return a non-Boolean value.\nThe logical operators are described in the following table:\n<pre><code>function shortCircuitEvaluation() {\n&#160;&#160;doSomething() || doSomethingElse()\n}\n\nfunction equivalentEvaluation() {\n&#160; var flag = doSomething();\n&#160; if (!flag) {\n&#160; &#160; doSomethingElse();\n&#160; }\n}\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators
+new operator	A										<pre><code>new constructor[([arguments])]</code></pre>The new operator creates an instance of a user-defined object type or of one of the built-in object types that has a constructor function.\nCreating a user-defined object requires two steps:\n<pre><code>function Car() {}\ncar1 = new Car();\n \nconsole.log(car1.color);    // undefined\n \nCar.prototype.color = null;\nconsole.log(car1.color);    // null\n \ncar1.color = "black";\nconsole.log(car1.color);   // black\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new
+new.target	A										<pre><code>new.target</code></pre>The new.target property lets you detect whether a function or constructor was called using the new operator. In constructors and functions instantiated with the new operator, new.target returns a reference to the constructor or function. In normal function calls, new.target is undefined.\nThe new.target syntax consists of the keyword "new", a dot, and a property name "target". Normally "new." serves as the context for a property access, but here "new." is not really an object. In constructor calls, however, new.target refers the constructor invoked by new and so "new." becomes a virtual context.\n<pre><code>function Foo() {\n  if (!new.target) throw "Foo() must be called with new";\n  console.log("Foo instantiated with new");\n}\n\nFoo(); // throws "Foo() must be called with new"\nnew Foo(); // logs "Foo instantiated with new"\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new.target
+Object initializer	A										<pre><code>var o = {};\nvar o = { a: "foo", b: 42, c: {} };\n\nvar a = "foo", b = 42, c = {};\nvar o = { a: a, b: b, c: c };\n\nvar o = {\n  property: function ([parameters]) {},\n  get property() {},\n  set property(value) {},\n};\n</code></pre>Objects can be initialized using new Object(), Object.create(), or using the literal notation (initializer notation). An object initializer is a list of zero or more pairs of property names and associated values of an object, enclosed in curly braces ({}).\nAn object initializer is an expression that describes the initialization of an Object. Objects consist of properties, which are used to describe an object. Values of object properties can either contain primitive data types or other objects.\n<pre><code>var object = {};</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer
+Operator precedence	A										Operator precedence determines the order in which operators are evaluated. Operators with higher precedence are evaluated first.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+Property accessors	A										<pre><code>object.property\nobject["property"]\n</code></pre>Property accessors provide access to an object's properties by using the dot notation or the bracket notation.\nOne can think of an object as an associative array (a.k.a. map, dictionary, hash, lookup table). The keys in this array are the names of the object's properties. It's typical when speaking of an object's properties to make a distinction between properties and methods. However, the property/method distinction is little more than a convention. A method is simply a property that can be called, for example if it has a reference to a Function instance as its value.\n<pre><code>get = object.property;\nobject.property = set;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_Accessors
+Spread syntax	A										<pre><code>myFunction(...iterableObj);\n</code></pre>The spread syntax allows an expression to be expanded in places where multiple arguments (for function calls) or multiple elements (for array literals) or multiple variables  (for destructuring assignment) are expected.\nExample: it is common to use Function.prototype.apply in cases where you want to use an array as arguments to a function.\n<pre><code>function myFunction(x, y, z) { }\nvar args = [0, 1, 2];\nmyFunction.apply(null, args);</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator
+super	A										<pre><code>super([arguments]); // calls the parent constructor.\nsuper.functionOnParent([arguments]);\n</code></pre>The super keyword is used to call functions on an object's parent.\nWhen used in a constructor, the super keyword appears alone and must be used before the this keyword can be used. This keyword can also be used to call functions on a parent object.\n<pre><code>class Polygon {\n  constructor(height, width) {\n    this.name = 'Polygon';\n    this.height = height;\n    this.width = width;\n  }\n  sayName() {\n    console.log('Hi, I am a ', this.name + '.');\n  }\n}\n\nclass Square extends Polygon {\n  constructor(length) {\n    this.height; // ReferenceError, super needs to be called first!\n    \n    // Here, it calls the parent class' constructor with lengths\n    // provided for the Polygon's width and height\n    super(length, length);\n    \n    // Note: In derived classes, super() must be called before you\n    // can use 'this'. Leaving this out will cause a reference error.\n    this.name = 'Square';\n  }\n\n  get area() {\n    return this.height * this.width;\n  }\n\n  set area(value) {\n    this.area = value;\n  } \n}</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super
+this	A										<pre><code>this</code></pre>A function's this keyword behaves a little differently in JavaScript compared to other languages. It also has some differences between strict mode and non-strict mode.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
+typeof	A										<pre><code>typeof operand</code></pre>The typeof operator returns a string indicating the type of the unevaluated operand.\nThe following table summarizes the possible return values of typeof. For more information about types and primitives, see also the JavaScript data structure page.\n<pre><code>// Numbers\ntypeof 37 === 'number';\ntypeof 3.14 === 'number';\ntypeof(42) === 'number';\ntypeof Math.LN2 === 'number';\ntypeof Infinity === 'number';\ntypeof NaN === 'number'; // Despite being "Not-A-Number"\ntypeof Number(1) === 'number'; // but never use this form!\n\n\n// Strings\ntypeof "" === 'string';\ntypeof "bla" === 'string';\ntypeof (typeof 1) === 'string'; // typeof always returns a string\ntypeof String("abc") === 'string'; // but never use this form!\n\n\n// Booleans\ntypeof true === 'boolean';\ntypeof false === 'boolean';\ntypeof Boolean(true) === 'boolean'; // but never use this form!\n\n\n// Symbols\ntypeof Symbol() === 'symbol'\ntypeof Symbol('foo') === 'symbol'\ntypeof Symbol.iterator === 'symbol'\n\n\n// Undefined\ntypeof undefined === 'undefined';\ntypeof declaredButUndefinedVariable === 'undefined';\ntypeof undeclaredVariable === 'undefined'; \n\n\n// Objects\ntypeof {a:1} === 'object';\n\n// use Array.isArray or Object.prototype.toString.call\n// to differentiate regular objects from arrays\ntypeof [1, 2, 4] === 'object';\n\ntypeof new Date() === 'object';\n\n\n// The following is confusing. Don't use!\ntypeof new Boolean(true) === 'object'; \ntypeof new Number(1) === 'object'; \ntypeof new String("abc") === 'object';\n\n\n// Functions\ntypeof function(){} === 'function';\ntypeof class C {} === 'function';\ntypeof Math.sin === 'function';\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
+void operator	A										<pre><code>void expression</code></pre>The void operator evaluates the given expression and then returns undefined.\nThis operator allows inserting expressions that produce side effects into places where an expression that evaluates to undefined is desired.\n<pre><code>void function iife() {\n    var bar = function () {};\n    var baz = function () {};\n    var foo = function () {\n        bar();\n        baz();\n     };\n    var biz = function () {};\n\n    foo();\n    biz();\n}();\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/void
+yield	A										<pre><code>[rv] = yield [expression];</code></pre>The yield keyword is used to pause and resume a generator function (function* or legacy generator function).\nThe yield keyword causes generator function execution to pause and the value of the expression following the yield keyword is returned to the generator's caller. It can be thought of as a generator-based version of the return keyword.\n<pre><code>function* foo(){\n  var index = 0;\n  while (index &lt;= 2)\n    yield index++;\n}</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield
+yield*	A										<pre><code> yield* [[expression]];</code></pre>The yield* expression is used to delegate to another generator or iterable object.\nThe yield* expression iterates over the operand and yields each value returned by it.\n<pre><code>function* g1() {\n  yield 2;\n  yield 3;\n  yield 4;\n}\n\nfunction* g2() {\n  yield 1;\n  yield* g1();\n  yield 5;\n}\n\nvar iterator = g2();\n\nconsole.log(iterator.next()); // { value: 1, done: false }\nconsole.log(iterator.next()); // { value: 2, done: false }\nconsole.log(iterator.next()); // { value: 3, done: false }\nconsole.log(iterator.next()); // { value: 4, done: false }\nconsole.log(iterator.next()); // { value: 5, done: false }\nconsole.log(iterator.next()); // { value: undefined, done: true }\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield*
+Statements and declarations	A										JavaScript applications consist of statements with an appropriate syntax. A single statement may span multiple lines. Multiple statements may occur on a single line if each statement is separated by a semicolon. This isn't a keyword, but a group of keywords.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements
+block	A										<pre><code>{\n  statement_1;\n  statement_2;\n  ...\n  statement_n;\n}\n</code></pre>A block statement (or compound statement in other languages) is used to group zero or more statements. The block is delimited by a pair of curly brackets.\nThis statement is commonly used with control flow statements (e.g. if...else, for, while). For example:\n<pre><code>while (x &lt; 10) {\n  x++;\n}\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block
+break	A										<pre><code>break [label];</code></pre>The break statement terminates the current loop, switch, or label statement and transfers program control to the statement following the terminated statement.\nThe break statement includes an optional label that allows the program to break out of a labeled statement. The break statement needs to be nested within the referenced label. The labeled statement can be any block statement; it does not have to be preceded by a loop statement.\n<pre><code>function testBreak(x) {\n  var i = 0;\n\n  while (i &lt; 6) {\n    if (i == 3) {\n      break;\n    }\n    i += 1;\n  }\n\n  return i * x;\n}</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/break
+class	A										<pre><code>class name [extends] {\n  // class body\n}\n</code></pre>The class declaration creates a new class with a given name using prototype-based inheritance.\nJust like with class expressions, the class body of a class declaration&#160;is executed in strict mode. The constructor property is optional.\n<pre><code>class Polygon {\n  constructor(height, width) {\n    this.name = 'Polygon';\n    this.height = height;\n    this.width = width;\n  }\n}\n\nclass Square extends Polygon {\n  constructor(length) {\n    super(length, length);\n&#160;   this.name = 'Square';\n  }\n}</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class
+const	A										<pre><code>const name1 = value1 [, name2 = value2 [, ... [, nameN = valueN]]];</code></pre>The const declaration creates a read-only reference to a value. It does not mean the value it holds is immutable, just that the variable identifier cannot be reassigned.\nThis declaration creates a constant that can be either global or local to the function in which it is declared. An initializer for a constant is required; that is, you must specify its value in the same statement in which it's declared (which makes sense, given that it can't be changed later).\n<pre><code>// NOTE: Constants can be declared with uppercase or lowercase, but a common\n// convention is to use all-uppercase letters.\n\n// define MY_FAV as a constant and give it the value 7\nconst MY_FAV = 7;\n\n// this will throw an error in Firefox and Chrome (but does not fail in Safari)\nMY_FAV = 20;\n\n// will print 7\nconsole.log("my favorite number is: " + MY_FAV);\n\n// trying to redeclare a constant throws an error\nconst MY_FAV = 20;\n\n// the name MY_FAV is reserved for constant above, so this will also fail\nvar MY_FAV = 20;\n\n// this throws an error also\nlet MY_FAV = 20;\n\n// it's important to note the nature of block scoping\nif (MY_FAV === 7) { \n    // this is fine and creates a block scoped MY_FAV variable \n    // (works equally well with let to declare a block scoped non const variable)\n    const MY_FAV = 20;\n\n    // MY_FAV is now 20\n    console.log("my favorite number is " + MY_FAV);\n\n    // this gets hoisted into the global context and throws an error\n    var MY_FAV = 20;\n}\n\n// MY_FAV is still 7\nconsole.log("my favorite number is " + MY_FAV);\n\n// Assigning to A const variable is a syntax error\nconst A = 1; A = 2;\n\n// throws an error, missing initializer in const declaration\nconst FOO; \n\n// const also works on objects\nconst MY_OBJECT = {"key": "value"};\n\n// Overwriting the object behaves as above (throws an error in Firefox and Chrome but does not fail in Safari)\nMY_OBJECT = {"OTHER_KEY": "value"};\n\n// However, object keys are not protected,\n// so the following statement is executed without problem\nMY_OBJECT.key = "otherValue"; // Use&#160;Object.freeze() to make object immutable\n\n// The same applies to arrays\nconst MY_ARRAY = [];\n// It's possible to push items into the array\nMY_ARRAY.push("A"); // ["A"]\n// However, assigning a new array to the variable throws an error in Firefox and Chrome but does not fail in Safari\nMY_ARRAY = ["B"]\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
+continue	A										<pre><code>continue [label];</code></pre>The continue statement terminates execution of the statements in the current iteration of the current or labeled loop, and continues execution of the loop with the next iteration.\nIn contrast to the break statement, continue does not terminate the execution of the loop entirely: instead,\n<pre><code>var i = 0;\nvar n = 0;\n\nwhile (i &lt; 5) {\n  i++;\n\n  if (i === 3) {\n    continue;\n  }\n\n  n += i;\n}\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/continue
+debugger	A										<pre><code>debugger;</code></pre>The debugger statement invokes any available debugging functionality, such as setting a breakpoint. If no debugging functionality is available, this statement has no effect.\nThe following example shows code where a debugger statement has been inserted, to invoke a debugger (if one exists) when the function is called.\n<pre><code>function potentiallyBuggyCode() {\n    debugger;\n    // do potentially buggy stuff to examine, step through, etc.\n}</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger
+default	A										<pre><code>switch (expression) {\n  case value1:\n    //Statements executed when the result of expression matches value1\n    [break;]\n  default:\n    //Statements executed when none of the values match the value of the expression\n    [break;]\n}</code></pre>The default keyword can be used in two situations in JavaScript: within a switch statement, or with an export statement.\nFor more details see the\n<pre><code>switch (expr) {\n  case "Oranges":\n    console.log("Oranges are $0.59 a pound.");\n    break;\n  case "Apples":\n    console.log("Apples are $0.32 a pound.");\n    break;\n  default:\n    console.log("Sorry, we are out of " + expr + ".");\n}</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/default
+do...while	A										<pre><code>do\n   statement\nwhile (condition);\n</code></pre>The do...while statement creates a loop that executes a specified statement until the test condition evaluates to false. The condition is evaluated after executing the statement, resulting in the specified statement executing at least once.\nIn the following example, the do...while loop iterates at least once and reiterates until i is no longer less than 5.\n<pre><code>var i = 0;\ndo {\n   i += 1;\n   console.log(i);\n} while (i &lt; 5);\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while
+empty	A										<pre><code>;\n</code></pre>An empty statement is used to provide no statement, although the JavaScript syntax would expect one.\nThe empty statement is a semicolon (;) indicating that no statement will be executed, even if JavaScript syntax requires one. The opposite behavior, where you want multiple statements, but JavaScript only allows a single one, is possible using a block statement; it combines several statements into a single one.\n<pre><code>var arr = [1, 2, 3];\n\n// Assign all array values to 0\nfor (i = 0; i &lt; arr.length; arr[i++] = 0) /* empty statement */ ;\n\nconsole.log(arr)\n// [0, 0, 0]\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/Empty
+export	A										<pre><code>export { name1, name2, &#8230;, nameN };\nexport { variable1 as name1, variable2 as name2, &#8230;, nameN };\nexport let name1, name2, &#8230;, nameN; // also var\nexport let name1 = &#8230;, name2 = &#8230;, &#8230;, nameN; // also var, const\n\nexport default expression;\nexport default function (&#8230;) { &#8230; } // also class, function*\nexport default function name1(&#8230;) { &#8230; } // also class, function*\nexport { name1 as default, &#8230; };\n\nexport * from &#8230;;\nexport { name1, name2, &#8230;, nameN } from &#8230;;\nexport { import1 as name1, import2 as name2, &#8230;, nameN } from &#8230;;</code></pre>The export statement is used to export functions, objects or primitives from a given file (or module).\nThere are two different types of export, each type corresponds to one of the above syntax:\n<pre><code>// module "my-module.js"\nfunction cube(x) {\n  return x * x * x;\n}\nconst foo = Math.PI + Math.SQRT2;\nexport { cube, foo };\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
+for	A										<pre><code>for ([initialization]; [condition]; [final-expression])\n   statement\n</code></pre>The for statement creates a loop that consists of three optional expressions, enclosed in parentheses and separated by semicolons, followed by a statement (usually a block statement) to be executed in the loop.\nThe following for statement starts by declaring the variable i and initializing it to 0. It checks that i is less than nine, performs the two succeeding statements, and increments i by 1 after each pass through the loop.\n<pre><code>for (var i = 0; i &lt; 9; i++) {\n   console.log(i);\n   // more statements\n}\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for
+for...in	A										<pre><code>for (variable in object) {...\n}</code></pre>The for...in statement iterates over the enumerable properties of an object, in arbitrary order. For each distinct property, statements can be executed.\nA for...in loop only&#160;iterates over enumerable properties. Objects created from built&#8211;in constructors like Array and Object have inherited non&#8211;enumerable properties from Object.prototype and String.prototype, such as&#160;String's indexOf() method or Object's toString() method. The loop will iterate over all enumerable properties of the object itself and those the object inherits from its constructor's prototype (properties closer to the object in the prototype chain override prototypes' properties).\n<pre><code>var obj = {a:1, b:2, c:3};\n    \nfor (var prop in obj) {\n  console.log("obj." + prop + " = " + obj[prop]);\n}\n\n// Output:\n// "obj.a = 1"\n// "obj.b = 2"\n// "obj.c = 3"</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
+for...of	A										<pre><code>for (variable of iterable) {\n  statement\n}\n</code></pre>The for...of statement creates a loop iterating over iterable objects (including Array, Map, Set, String, TypedArray, arguments object and so on), invoking a custom iteration hook with statements to be executed for the value of each distinct property.\nYou can use const instead of let too, if you don't modify the variable inside the block.\n<pre><code>let iterable = [10, 20, 30];\n\nfor (let value of iterable) {\n  console.log(value);\n}\n// 10\n// 20\n// 30\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
+for each...in	A										<pre><code>for each (variable in object) {\n  statement\n}</code></pre>The for each...in statement iterates a specified variable over all values of object's properties. For each distinct property, a specified statement is executed.\nSome built-in properties are not iterated over. These include all built-in methods of objects, e.g. String's indexOf method. However, all user-defined properties are iterated over.\n<pre><code>var sum = 0;\nvar obj = {prop1: 5, prop2: 13, prop3: 8};\n\nfor each (var item in obj) {\n  sum += item;\n}\n\nconsole.log(sum); // logs "26", which is 5+13+8</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for_each...in
+function	A										<pre><code>function name([param,[, param,[..., param]]]) {\n   [statements]\n}\n</code></pre>The function declaration defines a function with the specified parameters.\nA function created with a function declaration is a Function object and has all the properties, methods and behavior of Function objects. See Function for detailed information on functions.\n<pre><code>hoisted(); // logs "foo"\n\nfunction hoisted() {\n  console.log("foo");\n}\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function
+function*	A										<pre><code>function* name([param[, param[, ... param]]]) {\n   statements\n}\n</code></pre>The function* declaration (function keyword followed by an asterisk) defines a generator function, which returns a Generator object.\nGenerators are functions which can be exited and later re-entered. Their context (variable bindings) will be saved across re-entrances.\n<pre><code>function* idMaker(){\n  var index = 0;\n  while(index &lt; 3)\n    yield index++;\n}\n\nvar gen = idMaker();\n\nconsole.log(gen.next().value); // 0\nconsole.log(gen.next().value); // 1\nconsole.log(gen.next().value); // 2\nconsole.log(gen.next().value); // undefined\n// ...</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
+if...else	A										<pre><code>if (condition)\n   statement1\n[else\n   statement2]\n</code></pre>The if statement executes a statement if a specified condition is true. If the condition is false, another statement can be executed.\nMultiple if...else statements can be nested to create an else if clause. Note that there is no elseif (in one word) keyword in JavaScript.\n<pre><code>if (condition1)\n   statement1\nelse if (condition2)\n   statement2\nelse if (condition3)\n   statement3\n...\nelse\n   statementN\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else
+import	A										<pre><code>import defaultMember from "module-name";\nimport * as name from "module-name";\nimport { member } from "module-name";\nimport { member as alias } from "module-name";\nimport { member1 , member2 } from "module-name";\nimport { member1 , member2 as alias2 , [...] } from "module-name";\nimport defaultMember, { member [ , [...] ] } from "module-name";\nimport defaultMember, * as name from "module-name";\nimport "module-name";</code></pre>The import statement is used to import functions, objects or primitives that have been exported from an external module, another script, etc.\nThe&#160;name&#160;parameter is the name of the object that will receive the exported members. The&#160;member parameters specify individual members, while the&#160;name parameter imports all of them. name may also be a function if the module exports a single default parameter rather than a series of members. Below are examples to clarify the syntax.\n<pre><code>import * as myModule from "my-module";\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+label	A										<pre><code>label :\n   statement\n</code></pre>The labeled statement can be used with break or continue statements. It is prefixing a statement with an identifier which you can refer to.\nYou can use a label to identify a loop, and then use the break or continue statements to indicate whether a program should interrupt the loop or continue its execution.\n<pre><code>var i, j;\n\nloop1:\nfor (i = 0; i &lt; 3; i++) {      //The first for statement is labeled "loop1"\n   loop2:\n   for (j = 0; j &lt; 3; j++) {   //The second for statement is labeled "loop2"\n      if (i === 1 &amp;&amp; j === 1) {\n         continue loop1;\n      }\n      console.log("i = " + i + ", j = " + j);\n   }\n}\n\n// Output is:\n//   "i = 0, j = 0"\n//   "i = 0, j = 1"\n//   "i = 0, j = 2"\n//   "i = 1, j = 0"\n//   "i = 2, j = 0"\n//   "i = 2, j = 1"\n//   "i = 2, j = 2"\n// Notice how it skips both "i = 1, j = 1" and "i = 1, j = 2"\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label
+Legacy generator function	A										<pre><code>function name([param,[, param,[..., param]]]) {\n   [statements]\n}\n</code></pre>The legacy generator function statement declares legacy generator functions with the specified parameters.\nAn overview of the usage is available on the Iterators and Generators page.	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/Legacy_generator_function
+let	A										<pre><code>let var1 [= value1] [, var2 [= value2]] [, ..., varN [= valueN]];</code></pre>The let statement declares a block scope local variable, optionally initializing it to a value.\nlet allows you to declare variables that are limited in scope to the block, statement, or expression on which it is used. This is unlike the var keyword, which defines a variable globally, or locally to an entire function regardless of block scope.\n<pre><code>function varTest() {\n  var x = 1;\n  if (true) {\n    var x = 2;  // same variable!\n    console.log(x);  // 2\n  }\n  console.log(x);  // 2\n}\n\nfunction letTest() {\n  let x = 1;\n  if (true) {\n    let x = 2;  // different variable\n    console.log(x);  // 2\n  }\n  console.log(x);  // 1\n}\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
+return	A										<pre><code>return [[expression]]; </code></pre>The return statement ends function execution and specifies a value to be returned to the function caller.\nWhen a return statement is called in a function, the execution of this function is stopped. If specified, a given value is returned to the function caller. If the expression is omitted, undefined is returned instead. The following return statements all break the function execution:\n<pre><code>return;\nreturn true;\nreturn false;\nreturn x;\nreturn x + y / 3;\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return
+switch	A										<pre><code>switch (expression) {\n  case value1:\n    //Statements executed when the result of expression matches value1\n    [break;]\n  case value2:\n    //Statements executed when the result of expression matches value2\n    [break;]\n  ...\n  case valueN:\n    //Statements executed when the result of expression matches valueN\n    [break;]\n  default:\n    //Statements executed when none of the values match the value of the expression\n    [break;]\n}</code></pre>The switch statement evaluates an expression, matching the expression's value to a case clause, and executes statements associated with that case.\nA switch statement first evaluates its expression. It then looks for the first case clause whose expression evaluates to the same value as the result of the input expression (using strict comparison, ===) and transfers control to that clause, executing the associated statements. (If multiple cases match the provided value, the first case that matches is selected, even if the cases are not equal to each other.) If no matching case clause is found, the program looks for the optional default clause, and if found, transfers control to that clause, executing the associated statements. If no default clause is found, the program continues execution at the statement following the end of switch. By convention, the default clause is the last clause, but it does not need to be so.\n<pre><code>switch (expr) {\n  case "Oranges":\n    console.log("Oranges are $0.59 a pound.");\n    break;\n  case "Apples":\n    console.log("Apples are $0.32 a pound.");\n    break;\n  case "Bananas":\n    console.log("Bananas are $0.48 a pound.");\n    break;\n  case "Cherries":\n    console.log("Cherries are $3.00 a pound.");\n    break;\n  case "Mangoes":\n  case "Papayas":\n    console.log("Mangoes and papayas are $2.79 a pound.");\n    break;\n  default:\n    console.log("Sorry, we are out of " + expr + ".");\n}\n\nconsole.log("Is there anything else you'd like?");\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch
+throw	A										<pre><code>throw expression; </code></pre>The throw statement throws a user-defined exception. Execution of the current function will stop (the statements after throw won't be executed), and control will be passed to the first catch block in the call stack. If no catch block exists among caller functions, the program will terminate.\nUse the throw statement to throw an exception. When you throw an exception, expression specifies the value of the exception. Each of the following throws an exception:\n<pre><code>throw "Error2"; // generates an exception with a string value\nthrow 42;       // generates an exception with the value 42\nthrow true;     // generates an exception with the value true</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw
+try...catch	A										<pre><code>try {\n   try_statements\n}\n[catch (exception_var_1 if condition_1) { // non-standard\n   catch_statements_1\n}]\n...\n[catch (exception_var_2) {\n   catch_statements_2\n}]\n[finally {\n   finally_statements\n}]\n</code></pre>The try...catch statement marks a block of statements to try, and specifies a response, should an exception be thrown.\nThe try statement consists of a try block, which contains one or more statements ({} must always be used, also for single statements), and at least one catch clause or a finally clause, or both. That is, there are three forms of the try statement:\n<pre><code>try {\n   throw "myException"; // generates an exception\n}\ncatch (e) {\n   // statements to handle any exceptions\n   logMyErrors(e); // pass exception object to error handler\n}\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
+var	A										<pre><code>var varname1 [= value1] [, varname2 [= value2] ... [, varnameN [= valueN]]]];</code></pre>The variable statement declares a variable, optionally initializing it to a value.\nVariable declarations, wherever they occur, are processed before any code is executed. The scope of a variable declared with var is its current execution context, which is either the enclosing function or, for variables declared outside any function, global.\n<pre><code>function x() {\n  y = 1;   // Throws a ReferenceError in strict mode\n  var z = 2;\n}\n\nx();\n\nconsole.log(y); // logs "1" \nconsole.log(z); // Throws a ReferenceError: z is not defined outside x\n</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var
+while	A										<pre><code>while (condition) {\n  statement\n}</code></pre>The while statement creates a loop that executes a specified statement as long as the test condition evaluates to true. The condition is evaluated before executing the statement.\nThe following while loop iterates as long as n is less than three.\n<pre><code>var n = 0;\nvar x = 0;\n\nwhile (n &lt; 3) {\n  n++;\n  x += n;\n}</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while
+with	A										<pre><code>with (expression)\n  statement\n</code></pre>The with statement extends the scope chain for a statement.\nJavaScript looks up an unqualified name by searching a scope chain associated with the execution context of the script or function containing that unqualified name. The 'with' statement adds the given object to the head of this scope chain during the evaluation of its statement body. If an unqualified name used in the body matches a property in the scope chain, then the name is bound to the property and the object containing the property. Otherwise a ReferenceError is thrown.\n<pre><code>function f(x, o) {\n  with (o) {\n    console.log(x);\n  }\n}</code></pre>	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with
+bluetoothdevice name	R	BluetoothDevice.name										
+broadcastchannel name	R	BroadcastChannel.name										
+credential name	R	name										
+element name	R	Element.name										
+file name	R	File.name										
+filesystem name	R	FileSystem.name										
+htmlformelement name	R	HTMLFormElement.name										
+htmlslotelement name	R	HTMLSlotElement.name										
+idbdatabase name	R	IDBDatabase.name										
+idbindex name	R	IDBIndex.name										
+idbmutablefile name	R	FileHandle.name										
+idbobjectstore name	R	IDBObjectStore.name										
+performanceentry name	R	PerformanceEntry.name										
+global name	R	SharedWorkerGlobalScope.name										
+speechsynthesisevent name	R	SpeechSynthesisEvent.name										
+speechsynthesisvoice name	R	SpeechSynthesisVoice.name										
+webglactiveinfo name	R	WebGLActiveInfo.name										
+window name	R	Window.name										
+error name	R	Error.prototype.name										
+function name	R	Function.name										
 length	D								*[[AudioBuffer.length]] A float.\n*[[CSSValueList.length]] The length read-only property of the CSSValueList interface represents the number of CSSValue s in the list.\n*[[DataTransferItemList.length]] The read-only DataTransferItemList.\n*[[History.length]] The History.\n*[[HTMLFormElement.length]] The HTMLFormElement.\n*[[NodeList.length]] length returns the number of items in a NodeList.\n*[[OfflineAudoContext.length]] The length property of the OfflineAudioContext interface returns an integer representing the size of the buffer in sample-frames.\n*[[SourceBufferList.length]] The length read-only property of the SourceBufferList interface returns the number of SourceBuffer objects in the list.\n*[[SpeechGrammarList.length]] The length read-only property of the SpeechGrammarList interface returns the number of SpeechGrammar objects contained in the SpeechGrammarList.\n*[[SpeechRecognitionResult.length]] The length read-only property of the SpeechRecognitionResult interface returns the length of the "array" — the number of SpeechRecognitionAlternative objects contained in the result (also referred to as "n-best alternatives".\n*[[SpeechRecognitionResultList.length]] The length read-only property of the SpeechRecognitionResultList interface returns the length of the "array" — the number of SpeechRecognitionResult objects in the list.\n*[[Storage.length]] The length read-only property of the Storage interface returns an integer representing the number of data items stored in the Storage object.\n*[[TimeRanges.length]] The TimeRanges.\n*[[TouchList.length]] This read-only property indicates the number of items (touch points) in a TouchList.\n*[[TrackDefaultList.length]] The length read-only property of the TrackDefaultList interface returns the number of TrackDefault objects in the list.\n*[[Window.length]] Returns the number of frames (either &lt;frame&gt; or &lt;iframe&gt; elements) in the window.\n*[[arguments.length]] The arguments.\n*[[array.length]] The length property represents an unsigned, 32-bit integer that is always numerically greater than the highest index in the array.\n*[[Function.length]] The length property specifies the number of arguments expected by the function.\n*[[String.prototype.length]] The length property represents the length of a string.			
 audiobuffer length	R	AudioBuffer.length										
 cssvaluelist length	R	CSSValueList.length										
@@ -3847,25 +3953,6 @@ arguments length	R	arguments.length
 array length	R	array.length										
 function length	R	Function.length										
 string length	R	String.prototype.length										
-bluetoothdevice name	R	BluetoothDevice.name										
-broadcastchannel name	R	BroadcastChannel.name										
-credential name	R	name										
-element name	R	Element.name										
-file name	R	File.name										
-htmlformelement name	R	HTMLFormElement.name										
-htmlslotelement name	R	HTMLSlotElement.name										
-idbdatabase name	R	IDBDatabase.name										
-idbindex name	R	IDBIndex.name										
-idbmutablefile name	R	FileHandle.name										
-idbobjectstore name	R	IDBObjectStore.name										
-performanceentry name	R	PerformanceEntry.name										
-global name	R	SharedWorkerGlobalScope.name										
-speechsynthesisevent name	R	SpeechSynthesisEvent.name										
-speechsynthesisvoice name	R	SpeechSynthesisVoice.name										
-webglactiveinfo name	R	WebGLActiveInfo.name										
-window name	R	Window.name										
-error name	R	Error.prototype.name										
-function name	R	Function.name										
 biquadfilternode type	R	BiquadFilterNode.type										
 blob type	R	Blob.type										
 credential type	R	type										
@@ -3952,8 +4039,9 @@ mediakeystatusmap get	R	MediaKeyStatusMap.get()
 urlsearchparams get	R	URLSearchParams.get()										
 functions get syntax	R	getter										
 functions get example	R	getter										
-functions syntax	R	getter										
-functions example	R	getter										
+get	R	getter										
+get syntax	R	getter										
+get example	R	getter										
 functions get	R	getter										
 width	D								*[[DOMRectReadOnly.width]] The width read-only property of the DOMRectReadOnly interface represents the width of the DOMRect.\n*[[HTMLCanvasElement.width]] The HTMLCanvasElement.\n*[[HTMLTableElement.width]] Where width is a string representing the width in number of pixels or as a percentage value.\n*[[ImageBitmap.width]] The read-only ImageBitmap.\n*[[ImageData.width]] The readonly ImageData.\n*[[OffscreenCanvas.width]] The width property returns and sets the width of an OffscreenCanvas object.\n*[[PointerEvent.width]] The width of the pointer's contact geometry&#160;along the x-axis, measured in CSS pixels.\n*[[Screen.width]] Returns the width of the screen.\n*[[TextMetrics.width]] The readonly TextMetrics.			
 domrectreadonly width	R	DOMRectReadOnly.width										
@@ -4003,6 +4091,20 @@ number tosource	R	Number.prototype.toSource()
 object tosource	R	Object.prototype.toSource()										
 regexp tosource	R	RegExp.prototype.toSource()										
 string tosource	R	String.prototype.toSource()										
+delete	D								*[[Cache.delete()]] The delete() method of the Cache interface finds the Cache entry whose key is the request, and if found, deletes the Cache entry and returns a Promise that resolves to true.\n*[[CacheStorage.delete()]] The delete () method of the CacheStorage interface finds the Cache object matching the cacheName, and if found, deletes the Cache object and returns a Promise that resolves to true.\n*[[FormData.delete()]] The delete() method of the FormData interface deletes a key and its value(s) from a FormData object.\n*[[Headers.delete()]] The delete() method of the Headers interface deletes a header from the current Headers object.\n*[[IDBCursor.delete()]] An IDBRequest object on which subsequent events related to this operation are fired.\n*[[IDBObjectStore.delete()]] An IDBRequest object on which subsequent events related to this operation are fired.\n*[[URLSearchParams.delete()]] The delete() method of the URLSearchParams interface deletes the given search parameter and its associated value, from the list of all search parameters.\n*[[delete operator]] The delete operator removes a property from an object.			
+cache delete	R	Cache.delete()										
+cachestorage delete	R	CacheStorage.delete()										
+formdata delete	R	FormData.delete()										
+headers delete	R	Headers.delete()										
+idbcursor delete	R	IDBCursor.delete()										
+idbobjectstore delete	R	IDBObjectStore.delete()										
+urlsearchparams delete	R	URLSearchParams.delete()										
+operators delete syntax	R	delete operator										
+operators delete example	R	delete operator										
+delete	R	delete operator										
+delete syntax	R	delete operator										
+delete example	R	delete operator										
+operators delete	R	delete operator										
 item	D								*[[CSSValueList.item()]] The item() method of the CSSValueList interface is used to retrieve a CSSValue by ordinal index.\n*[[HTMLCollection.item]] HTMLCollection.\n*[[HTMLSelectElement.item()]] The HTMLSelectElement.\n*[[NodeList.item()]] Returns a node from a NodeList by index.\n*[[SpeechGrammarList.item()]] The item getter of the SpeechGrammarList interface is a standard getter — it allows individual SpeechGrammar objects to be retrieved from the SpeechGrammarList using array syntax.\n*[[SpeechRecognitionResult.item()]] The item getter of the SpeechRecognitionResult interface is a standard getter that allows SpeechRecognitionAlternative objects within the result to be accessed via array syntax.\n*[[SpeechRecognitionResultList.item()]] The item getter of the SpeechRecognitionResultList interface is a standard getter — it allows SpeechRecognitionResult objects in the list to be accessed via array syntax.\n*[[TouchList.item()]] Returns the Touch object at the specified index in the TouchList.			
 cssvaluelist item	R	CSSValueList.item()										
 htmlcollection item	R	HTMLCollection.item										
@@ -4038,14 +4140,6 @@ imagedata height	R	ImageData.height
 offscreencanvas height	R	OffscreenCanvas.height										
 pointerevent height	R	PointerEvent.height										
 screen height	R	Screen.height										
-delete	D								*[[Cache.delete()]] The delete() method of the Cache interface finds the Cache entry whose key is the request, and if found, deletes the Cache entry and returns a Promise that resolves to true.\n*[[CacheStorage.delete()]] The delete () method of the CacheStorage interface finds the Cache object matching the cacheName, and if found, deletes the Cache object and returns a Promise that resolves to true.\n*[[FormData.delete()]] The delete() method of the FormData interface deletes a key and its value(s) from a FormData object.\n*[[Headers.delete()]] The delete() method of the Headers interface deletes a header from the current Headers object.\n*[[IDBCursor.delete()]] An IDBRequest object on which subsequent events related to this operation are fired.\n*[[IDBObjectStore.delete()]] An IDBRequest object on which subsequent events related to this operation are fired.\n*[[URLSearchParams.delete()]] The delete() method of the URLSearchParams interface deletes the given search parameter and its associated value, from the list of all search parameters.			
-cache delete	R	Cache.delete()										
-cachestorage delete	R	CacheStorage.delete()										
-formdata delete	R	FormData.delete()										
-headers delete	R	Headers.delete()										
-idbcursor delete	R	IDBCursor.delete()										
-idbobjectstore delete	R	IDBObjectStore.delete()										
-urlsearchparams delete	R	URLSearchParams.delete()										
 filereader abort	R	FileReader.abort()										
 idbtransaction abort	R	IDBTransaction.abort()										
 lockedfile abort	R	LockedFile.abort()										
@@ -4218,8 +4312,9 @@ headers set	R	Headers.set()
 urlsearchparams set	R	URLSearchParams.set()										
 functions set syntax	R	setter										
 functions set example	R	setter										
-functions syntax	R	setter										
-functions example	R	setter										
+set	R	setter										
+set syntax	R	setter										
+set example	R	setter										
 functions set	R	setter										
 global set	R	Set										
 lang	D								*[[HTMLElement.lang]] The HTMLElement.\n*[[Notification.lang]] The lang read-only property of the Notification interface indicates the text direction of the notification, as specified in the lang option of the Notification() constructor.\n*[[SpeechRecognition.lang]] The lang property of the SpeechRecognition interface returns and sets the language of the current SpeechRecognition.\n*[[SpeechSynthesisUtterance.lang]] The lang property of the SpeechSynthesisUtterance interface gets and sets the language of the utterance.\n*[[SpeechSynthesisVoice.lang]] The lang read-only property of the SpeechSynthesisVoice interface returns a BCP 47 language tag indicating the language of the voice.			
@@ -4285,6 +4380,14 @@ document title	R	Document.title
 htmlelement title	R	HTMLElement.title										
 notification title	R	Notification.title										
 stylesheet title	R	StyleSheet.title										
+mediastreamtrack label	R	MediaStreamTrack.label										
+rtcdatachannel label	R	RTCDataChannel.label										
+trackdefault label	R	TrackDefault.label										
+statements label syntax	R	label										
+statements label example	R	label										
+label syntax	R	label										
+label example	R	label										
+statements label	R	label										
 animationeffecttimingproperties direction	R	Direction										
 animationeffecttimingreadonly direction	R	AnimationEffectTimingReadOnly.direction										
 canvasrenderingcontext2d direction	R	CanvasRenderingContext2D.direction										
@@ -4350,6 +4453,10 @@ replace	D								*[[DOMTokenList.replace()]] The replace () method of the DOMTok
 domtokenlist replace	R	DOMTokenList.replace()										
 location replace	R	Location.replace()										
 string replace	R	String.prototype.replace										
+root	D								*[[FileSystem.root]] The read-only root property of the FileSystem interface specifies a FileSystemDirectoryEntry object representing the root directory of the file system, for use with the File and Directory Entries API.\n*[[NodeIterator.root]] The NodeIterator.\n*[[TreeWalker.root]] The TreeWalker.			
+filesystem root	R	FileSystem.root										
+nodeiterator root	R	NodeIterator.root										
+treewalker root	R	TreeWalker.root										
 bluetoothgattdescriptor uuid	R	uuid										
 bluetoothgattservice uuid	R	uuid										
 bluetoothremotegattcharacteristic uuid	R	BluetoothRemoteGATTCharacteristic.uuid										
@@ -4360,6 +4467,10 @@ offlineaudiocontext oncomplete	R	OfflineAudioContext.oncomplete
 pushmanager unregister	R	PushManager.unregister()										
 serviceworkerregistration unregister	R	ServiceWorkerRegistration.unregister()										
 syncregistration unregister	R	unregister										
+getselection	D								*[[Document.getSelection()]] This method functions identically to the Window.\n*[[DocumentOrShadowRoot.getSelection()]] The getSelection() property of the DocumentOrShadowRoot interface returns a Selection object representing the range of text selected by the user or the current position of the caret.\n*[[Window.getSelection()]] Returns a Selection object representing the range of text selected by the user or the current position of the caret.			
+document getselection	R	Document.getSelection()										
+documentorshadowroot getselection	R	DocumentOrShadowRoot.getSelection()										
+window getselection	R	Window.getSelection()										
 top	D								*[[DOMRectReadOnly.top]] The top read-only property of the DOMRectReadOnly interface returns the top coordinate value of the DOMRect.\n*[[Screen.top]] Returns the distance in pixels from the top side of the current screen.\n*[[Window.top]] Returns a reference to the topmost window in the window hierarchy.			
 domrectreadonly top	R	DOMRectReadOnly.top										
 screen top	R	Screen.top										
@@ -4433,10 +4544,6 @@ pagey	D								*[[MouseEvent.pageY]] The MouseEvent.\n*[[Touch.pageY]] The Touch
 mouseevent pagey	R	MouseEvent.pageY										
 touch pagey	R	Touch.pageY										
 uievent pagey	R	UIEvent.pageY										
-label	D								*[[MediaStreamTrack.label]] The read-only property MediaStreamTrack.\n*[[RTCDataChannel.label]] The read-only RTCDataChannel property label returns a DOMString containing a name describing the data channel.\n*[[TrackDefault.label]] The label read-only property of the TrackDefault interface returns the default label for an associated SourceBuffer to use when an initialization segment does not contain label information for a new track.			
-mediastreamtrack label	R	MediaStreamTrack.label										
-rtcdatachannel label	R	RTCDataChannel.label										
-trackdefault label	R	TrackDefault.label										
 rellist	D								*[[HTMLAnchorElement.relList]] The HTMLAnchorElement.\n*[[HTMLAreaElement.relList]] The HTMLAreaElement.\n*[[HTMLLinkElement.relList]] The HTMLLinkElement.			
 htmlanchorelement rellist	R	HTMLAnchorElement.relList										
 htmlareaelement rellist	R	HTMLAreaElement.relList										
@@ -4602,13 +4709,25 @@ string match	R	String.prototype.match
 node parentnode	R	Node.parentNode										
 api parentnode	R	ParentNode										
 treewalker parentnode	R	TreeWalker.parentNode()										
-host	D								*[[HTMLHyperlinkElementUtils.host]] The HTMLHyperlinkElementUtils.\n*[[ShadowRoot.host]] The host read-only property of the ShadowRoot returens the DOM element to which the ShadowRoot is attatched.\n*[[URLUtilsReadOnly.host]] The URLUtilsReadOnly.			
+host	D								*[[HTMLHyperlinkElementUtils.host]] The HTMLHyperlinkElementUtils.\n*[[ShadowRoot.host]] The host read-only property of the ShadowRoot returns the DOM element to which the ShadowRoot is attatched.\n*[[URLUtilsReadOnly.host]] The URLUtilsReadOnly.			
 htmlhyperlinkelementutils host	R	HTMLHyperlinkElementUtils.host										
 shadowroot host	R	ShadowRoot.host										
 urlutilsreadonly host	R	URLUtilsReadOnly.host										
 promiserejection promise	R	promise										
 promiserejectionevent promise	R	PromiseRejectionEvent.promise										
 global promise	R	Promise										
+global function	R	Function										
+operators function syntax	R	function expression										
+operators function example	R	function expression										
+function	R	function expression										
+function syntax	R	function expression										
+function example	R	function expression										
+operators function	R	function expression										
+statements function syntax	R	function										
+statements function example	R	function										
+function syntax	R	function										
+function example	R	function										
+statements function	R	function										
 count	D								*[[Console.count()]] Logs the number of times that this particular call to count() has been called.\n*[[IDBIndex.count()]] A IDBRequest object on which subsequent events related to this operation are fired.\n*[[IDBObjectStore.count()]] An IDBRequest object on which subsequent events related to this operation are fired.			
 console count	R	Console.count()										
 idbindex count	R	IDBIndex.count()										
@@ -4652,9 +4771,6 @@ bluetoothremotegattcharacteristic readvalue	R	BluetoothRemoteGATTCharacteristic.
 displayid	D								*[[Gamepad.displayId]] The displayId read-only property of the Gamepad interface returns the VRDisplay.\n*[[VRDisplay.displayId]] The displayId read-only property of the VRDisplay interface returns an identifier for this particular VRDisplay, which is also used as an association point in the Gamepad API (see Gamepad.			
 gamepad displayid	R	Gamepad.displayId										
 vrdisplay displayid	R	VRDisplay.displayId										
-root	D								*[[NodeIterator.root]] The NodeIterator.\n*[[TreeWalker.root]] The TreeWalker.			
-nodeiterator root	R	NodeIterator.root										
-treewalker root	R	TreeWalker.root										
 example	D								*[[Compositing example]] This sample program demonstrates a number of compositing operations.\n*[[Ajax navigation example]] This is an example of an AJAX web site composed only of three pages (first_page.			
 history api example	R	Ajax navigation example										
 api extendablemessageevent	R	ExtendableMessageEvent										
@@ -4684,9 +4800,9 @@ pointerevent pointerevent	R	PointerEvent()
 getelementsbytagname	D								*[[Document.getElementsByTagName()]] Returns an HTMLCollection of elements with the given tag name.\n*[[Element.getElementsByTagName()]] The Element.			
 document getelementsbytagname	R	Document.getElementsByTagName()										
 element getelementsbytagname	R	Element.getElementsByTagName()										
-getselection	D								*[[Document.getSelection()]] This method functions identically to the Window.\n*[[Window.getSelection()]] Returns a Selection object representing the range of text selected by the user or the current position of the caret.			
-document getselection	R	Document.getSelection()										
-window getselection	R	Window.getSelection()										
+scoped	D								*[[Event.scoped]] The scoped property of the Event interface returns a Boolean indicating whether the given event bubbles.\n*[[HTMLStyleElement.scoped]] The HTMLStyleElement.			
+event scoped	R	Event.scoped										
+htmlstyleelement scoped	R	HTMLStyleElement.scoped										
 api wheelevent	R	WheelEvent										
 wheelevent wheelevent	R	WheelEvent()										
 api pushmanager	R	PushManager										
@@ -4786,6 +4902,9 @@ performancetiming domcomplete	R	PerformanceTiming.domComplete
 moveto	D								*[[CanvasRenderingContext2D.moveTo()]] The CanvasRenderingContext2D.\n*[[Window.moveTo()]] Moves the window to the specified coordinates.			
 canvasrenderingcontext2d moveto	R	CanvasRenderingContext2D.moveTo()										
 window moveto	R	Window.moveTo()										
+caretpositionfrompoint	D								*[[Document.caretPositionFromPoint()]] This method is used to retrieve the caret position in a document based on two coordinates.\n*[[DocumentOrShadowRoot.caretPositionFromPoint()]] The caretPositionFromPoint() property of the DocumentOrShadowRoot interface returns a CaretPosition object containing the DOM node containing the caret and caret's character offset within that node.			
+document caretpositionfrompoint	R	Document.caretPositionFromPoint()										
+documentorshadowroot caretpositionfrompoint	R	DocumentOrShadowRoot.caretPositionFromPoint()										
 api speechsynthesis	R	SpeechSynthesis										
 window speechsynthesis	R	Window.speechSynthesis										
 dominteractive	D								*[[PerformanceNavigationTiming.domInteractive]] The domInteractive property returns a timestamp representing the time value equal to the time immediately before the user agent sets the current document readiness of the current document to interactive.\n*[[PerformanceTiming.domInteractive]] The PerformanceTiming.			
@@ -4797,6 +4916,8 @@ xmlhttprequest statustext	R	XMLHttpRequest.statusText
 push	D								*[[Navigator.push]] The Navigator.\n*[[Array.prototype.push]] The push() method adds one or more elements to the end of an array and returns the new length of the array.			
 navigator push	R	Navigator.push										
 array push	R	Array.prototype.push										
+document elementsfrompoint	R	Document.elementsFromPoint()										
+documentorshadowroot elementsfrompoint	R	elementsFromPoint										
 getfrequencyresponse	D								*[[BiquadFilterNode.getFrequencyResponse()]] undefined\n*[[IIRFilterNode.getFrequencyResponse()]] undefined			
 biquadfilternode getfrequencyresponse	R	BiquadFilterNode.getFrequencyResponse()										
 iirfilternode getfrequencyresponse	R	IIRFilterNode.getFrequencyResponse()										
@@ -4944,8 +5065,9 @@ urlutilsreadonly hostname	R	URLUtilsReadOnly.hostname
 arguments	D								*[[Arguments object]] The arguments object is an Array -like object corresponding to the arguments passed to a function.\n*[[Function.arguments]] The function.			
 functions arguments syntax	R	Arguments object										
 functions arguments example	R	Arguments object										
-functions syntax	R	Arguments object										
-functions example	R	Arguments object										
+arguments	R	Arguments object										
+arguments syntax	R	Arguments object										
+arguments example	R	Arguments object										
 functions arguments	R	Arguments object										
 function arguments	R	Function.arguments										
 finish	D								*[[Animation.finish()]] None.\n*[[WebGLRenderingContext.finish()]] The WebGLRenderingContext.			
@@ -4961,6 +5083,9 @@ touch touch	R	Touch()
 displayname	D								*[[VRDisplay.displayName]] The displayName read-only property of the VRDisplay interface returns a human-readable name to identify the VRDisplay.\n*[[Function.displayName]] The function.			
 vrdisplay displayname	R	VRDisplay.displayName										
 function displayname	R	Function.displayName										
+capturestream	D								*[[HTMLCanvasElement.captureStream()]] The HTMLCanvasElement.\n*[[HTMLMediaElement.captureStream()]] The captureStream() property of the HTMLMediaElement interface returns in a MediaStream object a real-time capture of the media that is rendered to the media element.			
+htmlcanvaselement capturestream	R	HTMLCanvasElement.captureStream()										
+htmlmediaelement capturestream	R	HTMLMediaElement.captureStream()										
 @@species	D								*[[get Array[@@species]]] The Array[@@species] accessor property returns the Array constructor.\n*[[get RegExp[@@species]]] The RegExp[@@species] accessor property returns the RegExp constructor.			
 array @@species	R	get Array[@@species]										
 regexp @@species	R	get RegExp[@@species]										
@@ -4984,14 +5109,25 @@ math log	R	Math.log
 visibilitystate	D								*[[Document.visibilityState]] The Document.\n*[[WindowClient.visibilityState]] The visibilityState read-only property of the WindowClient interface indicates the visibility of the current client.			
 document visibilitystate	R	Document.visibilityState										
 windowclient visibilitystate	R	WindowClient.visibilityState										
+speechsynthesisvoice default	R	SpeechSynthesisVoice.default										
+statements default syntax	R	default										
+statements default example	R	default										
+default syntax	R	default										
+default example	R	default										
+statements default	R	default										
 responsestart	D								*[[PerformanceResourceTiming.responseStart]] The responseStart property returns a timestamp immediately after the browser receives the first byte of the response from the server, cache, or local resource.\n*[[PerformanceTiming.responseStart]] The PerformanceTiming.			
 performanceresourcetiming responsestart	R	PerformanceResourceTiming.responseStart										
 performancetiming responsestart	R	PerformanceTiming.responseStart										
+api file	R	File										
+filesystemfileentry file	R	FileSystemFileEntry.file()										
 api intersectionobserver	R	IntersectionObserver										
 intersectionobserver intersectionobserver	R	IntersectionObserver.IntersectionObserver()										
 concat	D								*[[Array.prototype.concat]] The concat() method returns a new array comprised of the array on which it is called joined with the array(s) and/or value(s) provided as arguments.\n*[[String.prototype.concat]] The concat() method combines the text of one or more strings and returns a new string.			
 array concat	R	Array.prototype.concat										
 string concat	R	String.prototype.concat										
+elementfrompoint	D								*[[Document.elementFromPoint()]] The elementFromPoint() method of the Document interface returns the topmost element at the specified coordinates.\n*[[DocumentOrShadowRoot.elementFromPoint()]] The elementFromPoint() property of the DocumentOrShadowRoot interface returns the topmost element at the specified coordinates.			
+document elementfrompoint	R	Document.elementFromPoint()										
+documentorshadowroot elementfrompoint	R	DocumentOrShadowRoot.elementFromPoint()										
 api offscreencanvas	R	OffscreenCanvas										
 offscreencanvas offscreencanvas	R	OffscreenCanvas()										
 api sharedkeyframelist	R	SharedKeyframeList										
@@ -5165,6 +5301,9 @@ performancetiming responseend	R	PerformanceTiming.responseEnd
 getusermedia	D								*[[MediaDevices.getUserMedia()]] The MediaDevices.\n*[[Navigator.getUserMedia()]] The Navigator.			
 mediadevices getusermedia	R	MediaDevices.getUserMedia()										
 navigator getusermedia	R	Navigator.getUserMedia()										
+activeelement	D								*[[Document.activeElement]] Returns the currently focused element, that is, the element that will get keystroke events if the user types any.\n*[[DocumentOrShadowRoot.activeElement]] The activeElement property of the DocumentOrShadowRoot interface returns the element within the shadow tree that has focus.			
+document activeelement	R	Document.activeElement										
+documentorshadowroot activeelement	R	DocumentOrShadowRoot.activeElement										
 dump	D								*[[Window.dump()]] Prints messages to the (native) console.\n*[[WorkerGlobalScope.dump()]] The dump() method of the WorkerGlobalScope interface allows you to write a message to stdout — i.			
 window dump	R	Window.dump()										
 global dump	R	WorkerGlobalScope.dump()										
@@ -5178,6 +5317,18 @@ audionode context	R	AudioNode.context
 request context	R	Request.context										
 api geolocation	R	Geolocation										
 navigator geolocation	R	Navigator.geolocation										
+legacy_generator_function	D								*[[Legacy generator function expression]] The function keyword can be used to define a legacy generator function inside an expression.\n*[[Legacy generator function]] The legacy generator function statement declares legacy generator functions with the specified parameters.			
+operators legacy generator function syntax	R	Legacy generator function expression										
+operators legacy generator function example	R	Legacy generator function expression										
+legacy generator function	R	Legacy generator function expression										
+legacy generator function syntax	R	Legacy generator function expression										
+legacy generator function example	R	Legacy generator function expression										
+operators legacy generator function	R	Legacy generator function expression										
+statements legacy generator function syntax	R	Legacy generator function										
+statements legacy generator function example	R	Legacy generator function										
+legacy generator function syntax	R	Legacy generator function										
+legacy generator function example	R	Legacy generator function										
+statements legacy generator function	R	Legacy generator function										
 oninstall	D								*[[ServiceWorkerGlobalScope.oninstall]] The oninstall property of the ServiceWorkerGlobalScope interface is an event handler fired whenever an install event occurs (when the service worker installs).\n*[[Window.oninstall]] The oninstall property of the Window interface represent the event handler for the install event, which is thrown each time the page is successfully installed as a web app.			
 global oninstall	R	ServiceWorkerGlobalScope.oninstall										
 window oninstall	R	Window.oninstall										
@@ -5207,6 +5358,12 @@ array indexof	R	Array.prototype.indexOf
 string indexof	R	String.prototype.indexOf										
 api passwordcredential	R	PasswordCredential										
 passwordcredential passwordcredential	R	PasswordCredential										
+idbcursor continue	R	IDBCursor.continue()										
+statements continue syntax	R	continue										
+statements continue example	R	continue										
+continue syntax	R	continue										
+continue example	R	continue										
+statements continue	R	continue										
 presentationconnection binarytype	R	binaryType										
 rtcdatachannel binarytype	R	RTCDataChannel.binaryType										
 api range	R	Range										
@@ -5243,12 +5400,18 @@ animationplaybackevent animationplaybackevent	R	AnimationPlaybackEvent.Animation
 onstatechange	D								*[[AudioContext.onstatechange]] The following snippet is taken from our AudioContext states demo (see it running live.\n*[[ServiceWorker.onstatechange]] An EventListener property called whenever an event of type statechange is fired; it is basically fired anytime the ServiceWorker.			
 audiocontext onstatechange	R	AudioContext.onstatechange										
 serviceworker onstatechange	R	ServiceWorker.onstatechange										
+getfile	D								*[[FileSystemDirectoryEntry.getFile()]] The FileSystemDirectoryEntry interface's method getFile () returns a FileSystemFileEntry object corresponding to a file contained somewhere within the directory subtree rooted at the directory on which it's called.\n*[[FileHandle.getFile()]] The getFile method allows to retrieve a read-only snapshot of the handled file in the form of a File object.			
+filesystemdirectoryentry getfile	R	FileSystemDirectoryEntry.getFile()										
+idbmutablefile getfile	R	FileHandle.getFile()										
 clienty	D								*[[MouseEvent.clientY]] The MouseEvent.\n*[[Touch.clientY]] The Touch.			
 mouseevent clienty	R	MouseEvent.clientY										
 touch clienty	R	Touch.clientY										
 animationname	D								*[[AnimationEvent.animationName]] The AnimationEvent.\n*[[TransitionEvent.animationName]] The TransitionEvent.			
 animationevent animationname	R	AnimationEvent.animationName										
 transitionevent animationname	R	TransitionEvent.animationName										
+assignedslot	D								*[[Element.assignedSlot]] The assignedSlot property of the Element interface returns the HTMLSlotElement interface associated with the element.\n*[[HTMLSlotElement.assignedSlot]] The assignedSlot property of the Text interface returns the HTMLSlotElement object associated with the element.			
+element assignedslot	R	Element.assignedSlot										
+text assignedslot	R	HTMLSlotElement.assignedSlot										
 api textencoder	R	TextEncoder										
 textencoder textencoder	R	TextEncoder()										
 domcontentloadedeventend	D								*[[PerformanceNavigationTiming.domContentLoadedEventEnd]] The domContentLoadedEventEnd property returns a timestamp representing the time value equal to the time immediately after the current document's DOMContentLoaded event completes.\n*[[PerformanceTiming.domContentLoadedEventEnd]] The PerformanceTiming.			
@@ -5273,6 +5436,9 @@ api performanceobserver	R	PerformanceObserver
 performanceobserver performanceobserver	R	PerformanceObserver()										
 animationeffecttimingproperties delay	R	Delay										
 animationeffecttimingreadonly delay	R	AnimationEffectTimingReadOnly.delay										
+stylesheets	D								*[[Document.styleSheets]] The Document.\n*[[DocumentOrShadowRoot.styleSheets]] The styleSheets property of the DocumentOrShadowRoot interface returns a StyleSheetList of CSSStyleSheet objects for stylesheets explicitly linked into or embedded in a document.			
+document stylesheets	R	Document.styleSheets										
+documentorshadowroot stylesheets	R	DocumentOrShadowRoot.styleSheets										
 applicationcache	D								*[[SharedWorkerGlobalScope.applicationCache]] The applicationCache read-only property of the SharedWorkerGlobalScope interface returns the ApplicationCache object for the worker (see Using the application cache).\n*[[Window.applicationCache]] Returns a reference to the application cache object for the window.			
 global applicationcache	R	SharedWorkerGlobalScope.applicationCache										
 window applicationcache	R	Window.applicationCache										
@@ -5317,6 +5483,17 @@ bluetoothremotegattserver connected	R	BluetoothRemoteGATTServer.connected
 gamepad connected	R	Gamepad.connected										
 bluetoothgattservice device	R	device										
 bluetoothremotegattserver device	R	BluetoothRemoteGATTServer.device										
+operators class syntax	R	class expression										
+operators class example	R	class expression										
+class	R	class expression										
+class syntax	R	class expression										
+class example	R	class expression										
+operators class	R	class expression										
+statements class syntax	R	class										
+statements class example	R	class										
+class syntax	R	class										
+class example	R	class										
+statements class	R	class										
 api domrect	R	DOMRect										
 domrect domrect	R	DOMRect.DOMRect()										
 getclientrects	D								*[[Element.getClientRects()]] The Element.\n*[[Range.getClientRects()]] The Range.			
@@ -5392,6 +5569,12 @@ string repeat	R	String.prototype.repeat()
 flush	D								*[[LockedFile.flush()]] The flush method is used to ensure any change made to a file is properly written on disk.\n*[[WebGLRenderingContext.flush()]] The WebGLRenderingContext.			
 lockedfile flush	R	LockedFile.flush()										
 webglrenderingcontext flush	R	WebGLRenderingContext.flush()										
+classes constructor syntax	R	constructor										
+classes constructor example	R	constructor										
+constructor syntax	R	constructor										
+constructor example	R	constructor										
+classes constructor	R	constructor										
+object constructor	R	Object.prototype.constructor										
 global registration	R	ServiceWorkerGlobalScope.registration										
 syncevent registration	R	registration										
 api rtcdatachannelevent	R	RTCDataChannelEvent										
@@ -5409,6 +5592,17 @@ touchevent touchevent	R	TouchEvent()
 objectstorenames	D								*[[IDBDatabase.objectStoreNames]] A DOMStringList containing a list of the names of the object stores currently in the connected database.\n*[[IDBTransaction.objectStoreNames]] The objectStoreNames property of the IDBTransaction interface returns a DOMStringList of names of IDBObjectStore objects.			
 idbdatabase objectstorenames	R	IDBDatabase.objectStoreNames										
 idbtransaction objectstorenames	R	IDBTransaction.objectStoreNames										
+operators function* syntax	R	function* expression										
+operators function* example	R	function* expression										
+function*	R	function* expression										
+function* syntax	R	function* expression										
+function* example	R	function* expression										
+operators function*	R	function* expression										
+statements function* syntax	R	function*										
+statements function* example	R	function*										
+function* syntax	R	function*										
+function* example	R	function*										
+statements function*	R	function*										
 api svgnumber	R	SVGNumber										
 object propertyisenumerable	R	Object.prototype.propertyIsEnumerable										
 propertyisenumerable	R	Object.prototype.propertyIsEnumerable										
@@ -5424,6 +5618,8 @@ numberofchannels	R	AudioBuffer.numberOfChannels
 api htmlfieldsetelement	R	HTMLFieldSetElement										
 webgl api constants	R	WebGL constants										
 constants	R	WebGL constants										
+filesystemdirectoryentry createreader	R	FileSystemDirectoryEntry.createReader()										
+createreader	R	FileSystemDirectoryEntry.createReader()										
 idbobjectstore createindex	R	IDBObjectStore.createIndex()										
 createindex	R	IDBObjectStore.createIndex()										
 findAll	R	HTMLIFrameElement.findAll()										
@@ -5433,6 +5629,11 @@ global typeerror	R	TypeError
 scrollMaxY	R	Window.scrollMaxY										
 window scrollmaxy	R	Window.scrollMaxY										
 scrollmaxy	R	Window.scrollMaxY										
+statements const syntax	R	const										
+statements const example	R	const										
+const syntax	R	const										
+const example	R	const										
+statements const	R	const										
 fullscreenElement	R	Document.fullscreenElement										
 document fullscreenelement	R	Document.fullscreenElement										
 fullscreenelement	R	Document.fullscreenElement										
@@ -5459,6 +5660,13 @@ vertexattribipointer	R	WebGL2RenderingContext.vertexAttribIPointer()
 rowIndex	R	HTMLTableRowElement.rowIndex										
 htmltablerowelement rowindex	R	HTMLTableRowElement.rowIndex										
 rowindex	R	HTMLTableRowElement.rowIndex										
+operators void syntax	R	void operator										
+operators void example	R	void operator										
+void	R	void operator										
+void syntax	R	void operator										
+void example	R	void operator										
+operators void	R	void operator										
+void	R	void operator										
 api mediatrackconstraints	R	MediaTrackConstraints										
 api vrpose	R	VRPose										
 string tolocaleuppercase	R	String.prototype.toLocaleUpperCase										
@@ -5500,6 +5708,7 @@ math asin	R	Math.asin
 asin	R	Math.asin										
 reference errors	R	JavaScript error reference										
 errors	R	JavaScript error reference										
+api filesystementry	R	FileSystemEntry										
 global numberformat	R	Intl.NumberFormat										
 numberformat	R	Intl.NumberFormat										
 date gettime	R	Date.prototype.getTime										
@@ -5572,6 +5781,13 @@ progressevent total	R	ProgressEvent.total
 total	R	ProgressEvent.total										
 api performance timeline	R	Performance Timeline										
 webrtc api signaling and video calling	R	Signaling and video calling										
+operators spread operator syntax	R	Spread syntax										
+operators spread operator example	R	Spread syntax										
+spread operator	R	Spread syntax										
+spread operator syntax	R	Spread syntax										
+spread operator example	R	Spread syntax										
+operators spread operator	R	Spread syntax										
+spread operator	R	Spread syntax										
 canvasrenderingcontext2d ispointinpath	R	CanvasRenderingContext2D.isPointInPath()										
 ispointinpath	R	CanvasRenderingContext2D.isPointInPath()										
 defaultMuted	R	HTMLMediaElement.defaultMuted										
@@ -5651,6 +5867,13 @@ onnomatch	R	SpeechRecognition.onnomatch
 performance clearresourcetimings	R	Performance.clearResourceTimings()										
 clearresourcetimings	R	Performance.clearResourceTimings()										
 api webvr api	R	WebVR API										
+operators in syntax	R	in operator										
+operators in example	R	in operator										
+in	R	in operator										
+in syntax	R	in operator										
+in example	R	in operator										
+operators in	R	in operator										
+in	R	in operator										
 api bluetoothremotegattcharacteristic	R	BluetoothRemoteGATTCharacteristic										
 sourcebuffer trackdefaults	R	SourceBuffer.trackDefaults										
 trackdefaults	R	SourceBuffer.trackDefaults										
@@ -5770,6 +5993,11 @@ cssstylesheet insertrule	R	CSSStyleSheet.insertRule()
 insertrule	R	CSSStyleSheet.insertRule()										
 keyframeeffectreadonly getkeyframes	R	KeyframeEffectReadOnly.getKeyframes()										
 getkeyframes	R	KeyframeEffectReadOnly.getKeyframes()										
+statements break syntax	R	break										
+statements break example	R	break										
+break syntax	R	break										
+break example	R	break										
+statements break	R	break										
 document getanimations	R	Document.getAnimations()										
 getanimations	R	Document.getAnimations()										
 apps mgmt	R	Apps.mgmt										
@@ -5848,9 +6076,6 @@ bluetoothremotegattcharacteristic getdescriptors	R	BluetoothRemoteGATTCharacteri
 getdescriptors	R	BluetoothRemoteGATTCharacteristic.getDescriptors()										
 audioparam linearramptovalueattime	R	AudioParam.linearRampToValueAtTime()										
 linearramptovalueattime	R	AudioParam.linearRampToValueAtTime()										
-scoped	R	HTMLStyleElement.scoped										
-htmlstyleelement scoped	R	HTMLStyleElement.scoped										
-scoped	R	HTMLStyleElement.scoped										
 date getutcseconds	R	Date.prototype.getUTCSeconds										
 getutcseconds	R	Date.prototype.getUTCSeconds										
 api svganimatedlengthlist	R	SVGAnimatedLengthList										
@@ -5883,6 +6108,11 @@ xmlhttprequest responsetype	R	XMLHttpRequest.responseType
 responsetype	R	XMLHttpRequest.responseType										
 oncanplay	R	GlobalEventHandlers.oncanplay										
 global globaleventhandlers.oncanplay	R	GlobalEventHandlers.oncanplay										
+operators logical operators syntax	R	Logical Operators										
+operators logical operators example	R	Logical Operators										
+logical operators syntax	R	Logical Operators										
+logical operators example	R	Logical Operators										
+operators logical operators	R	Logical Operators										
 api dynamicscompressornode	R	DynamicsCompressorNode										
 onaudioprocess	R	ScriptProcessorNode.onaudioprocess										
 scriptprocessornode onaudioprocess	R	ScriptProcessorNode.onaudioprocess										
@@ -5940,6 +6170,12 @@ webglrenderingcontext framebuffertexture2d	R	WebGLRenderingContext.framebufferTe
 framebuffertexture2d	R	WebGLRenderingContext.framebufferTexture2D()										
 performancetiming domloading	R	PerformanceTiming.domLoading										
 domloading	R	PerformanceTiming.domLoading										
+reference classes	R	Classes										
+operators expression closures syntax	R	Expression closures										
+operators expression closures example	R	Expression closures										
+expression closures syntax	R	Expression closures										
+expression closures example	R	Expression closures										
+operators expression closures	R	Expression closures										
 api chromeworker	R	ChromeWorker										
 regexp @@replace	R	RegExp.prototype[@@replace]()										
 @@replace	R	RegExp.prototype[@@replace]()										
@@ -5959,6 +6195,11 @@ colormask	R	WebGLRenderingContext.colorMask()
 navigate	R	WindowClient.navigate()										
 windowclient navigate	R	WindowClient.navigate()										
 navigate	R	WindowClient.navigate()										
+statements return syntax	R	return										
+statements return example	R	return										
+return syntax	R	return										
+return example	R	return										
+statements return	R	return										
 string raw	R	String.raw()										
 raw	R	String.raw()										
 getVideoPlaybackQuality	R	HTMLVideoElement.getVideoPlaybackQuality()										
@@ -6089,6 +6330,13 @@ getactiveuniformblockname	R	WebGL2RenderingContext.getActiveUniformBlockName()
 api domhighrestimestamp	R	DOMHighResTimeStamp										
 api webgl draw buffers	R	WEBGL_draw_buffers										
 web audio api visualizations with web audio api	R	Visualizations with Web Audio API										
+operators new syntax	R	new operator										
+operators new example	R	new operator										
+new	R	new operator										
+new syntax	R	new operator										
+new example	R	new operator										
+operators new	R	new operator										
+new	R	new operator										
 document alinkcolor	R	Document.alinkColor										
 alinkcolor	R	Document.alinkColor										
 idbindex multientry	R	IDBIndex.multiEntry										
@@ -6238,8 +6486,6 @@ vreyeparameters fieldofview	R	VREyeParameters.fieldOfView
 fieldofview	R	VREyeParameters.fieldOfView										
 document anchors	R	Document.anchors										
 anchors	R	Document.anchors										
-canvasrenderingcontext2d createimagedata	R	CanvasRenderingContext2D.createImageData()										
-createimagedata	R	CanvasRenderingContext2D.createImageData()										
 removeChild	R	Node.removeChild()										
 node removechild	R	Node.removeChild()										
 removechild	R	Node.removeChild()										
@@ -6261,6 +6507,11 @@ n	R	RegExp.$1-$9
 near	R	UserProximityEvent.near										
 userproximityevent near	R	UserProximityEvent.near										
 near	R	UserProximityEvent.near										
+operators typeof syntax	R	typeof										
+operators typeof example	R	typeof										
+typeof syntax	R	typeof										
+typeof example	R	typeof										
+operators typeof	R	typeof										
 mozPaintCount	R	Window.mozPaintCount										
 window mozpaintcount	R	Window.mozPaintCount										
 mozpaintcount	R	Window.mozPaintCount										
@@ -6299,6 +6550,7 @@ api performancenavigation	R	PerformanceNavigation
 onkeypress	R	GlobalEventHandlers.onkeypress										
 global onkeypress	R	GlobalEventHandlers.onkeypress										
 onkeypress	R	GlobalEventHandlers.onkeypress										
+api filesystemfileentry	R	FileSystemFileEntry										
 file getastext	R	File.getAsText()										
 getastext	R	File.getAsText()										
 coneOuterAngle	R	PannerNode.coneOuterAngle										
@@ -6366,6 +6618,12 @@ file lastmodifieddate	R	File.lastModifiedDate
 lastmodifieddate	R	File.lastModifiedDate										
 webgl2renderingcontext bindsampler	R	WebGL2RenderingContext.bindSampler()										
 bindsampler	R	WebGL2RenderingContext.bindSampler()										
+statements for in syntax	R	for...in										
+statements for in example	R	for...in										
+for in	R	for...in										
+for in syntax	R	for...in										
+for in example	R	for...in										
+statements for in	R	for...in										
 connection bandwidth	R	Connection.bandwidth										
 bandwidth	R	Connection.bandwidth										
 batterymanager onchargingtimechange	R	BatteryManager.onchargingtimechange										
@@ -6398,6 +6656,11 @@ panningmodel	R	PannerNode.panningModel
 document querycommandstate	R	Document.queryCommandState()										
 querycommandstate	R	Document.queryCommandState()										
 api udp socket api	R	UDP Socket API										
+operators assignment operators syntax	R	Assignment operators										
+operators assignment operators example	R	Assignment operators										
+assignment operators syntax	R	Assignment operators										
+assignment operators example	R	Assignment operators										
+operators assignment operators	R	Assignment operators										
 api htmlobjectelement	R	HTMLObjectElement										
 global sharedarraybuffer	R	SharedArrayBuffer										
 paymentresponse methodname	R	PaymentResponse.methodName										
@@ -6446,6 +6709,11 @@ beginquery	R	WebGL2RenderingContext.beginQuery()
 api mutationrecord	R	MutationRecord										
 webglrenderingcontext getuniform	R	WebGLRenderingContext.getUniform()										
 getuniform	R	WebGLRenderingContext.getUniform()										
+statements for syntax	R	for										
+statements for example	R	for										
+for syntax	R	for										
+for example	R	for										
+statements for	R	for										
 domrectreadonly bottom	R	DOMRectReadOnly.bottom										
 bottom	R	DOMRectReadOnly.bottom										
 productSub	R	Navigator.productSub										
@@ -6490,6 +6758,8 @@ api htmltableelement	R	HTMLTableElement
 contains	R	Node.contains()										
 node contains	R	Node.contains()										
 contains	R	Node.contains()										
+reference statements	R	Statements and declarations										
+statements	R	Statements and declarations										
 onmouseleave	R	GlobalEventHandlers.onmouseleave										
 global globaleventhandlers.onmouseleave	R	GlobalEventHandlers.onmouseleave										
 webgl2renderingcontext uniformblockbinding	R	WebGL2RenderingContext.uniformBlockBinding()										
@@ -6535,6 +6805,13 @@ api svgfilterelement	R	SVGFilterElement
 string strike	R	String.prototype.strike()										
 strike	R	String.prototype.strike()										
 key key values	R	Key Values										
+operators grouping syntax	R	Grouping operator										
+operators grouping example	R	Grouping operator										
+grouping	R	Grouping operator										
+grouping syntax	R	Grouping operator										
+grouping example	R	Grouping operator										
+operators grouping	R	Grouping operator										
+grouping	R	Grouping operator										
 document fgcolor	R	Document.fgColor										
 fgcolor	R	Document.fgColor										
 ontouchmove	R	GlobalEventHandlers.ontouchmove										
@@ -6548,14 +6825,13 @@ onaddstream	R	RTCPeerConnection.onaddstream
 oes vertex array object createvertexarrayoes	R	OES_vertex_array_object.createVertexArrayOES()										
 createvertexarrayoes	R	OES_vertex_array_object.createVertexArrayOES()										
 api attr	R	Attr										
-document caretpositionfrompoint	R	Document.caretPositionFromPoint()										
-caretpositionfrompoint	R	Document.caretPositionFromPoint()										
 speechsynthesis getvoices	R	SpeechSynthesis.getVoices()										
 getvoices	R	SpeechSynthesis.getVoices()										
 credentialscontainer requireusermediation	R	CredentialsContainer.requireUserMediation()										
 requireusermediation	R	CredentialsContainer.requireUserMediation()										
 api nodeiterator	R	NodeIterator										
-api svgangle	R	SVGAngle										
+filesystemfileentry createwriter	R	FileSystemFileEntry.createWriter()										
+createwriter	R	FileSystemFileEntry.createWriter()										
 range ispointinrange	R	Range.isPointInRange()										
 ispointinrange	R	Range.isPointInRange()										
 setNfcFocus	R	HTMLIFrameElement.setNfcFocus()										
@@ -6597,13 +6873,9 @@ floor	R	Math.floor
 api svganimateelement	R	SVGAnimateElement										
 functions arrow functions syntax	R	Arrow functions										
 functions arrow functions example	R	Arrow functions										
-functions syntax	R	Arrow functions										
-functions example	R	Arrow functions										
-functions arrow functions	R	Arrow functions										
 arrow functions syntax	R	Arrow functions										
 arrow functions example	R	Arrow functions										
-arrow syntax	R	Arrow functions										
-arrow example	R	Arrow functions										
+functions arrow functions	R	Arrow functions										
 canvasrenderingcontext2d fillstyle	R	CanvasRenderingContext2D.fillStyle										
 fillstyle	R	CanvasRenderingContext2D.fillStyle										
 datatransfer setdragimage	R	DataTransfer.setDragImage()										
@@ -6721,8 +6993,6 @@ audionode channelinterpretation	R	AudioNode.channelInterpretation
 channelinterpretation	R	AudioNode.channelInterpretation										
 api htmlselectelement	R	HTMLSelectElement										
 global string	R	String										
-document elementsfrompoint	R	Document.elementsFromPoint()										
-elementsfrompoint	R	Document.elementsFromPoint()										
 mediakeymessageevent messagetype	R	messageType										
 insertRow	R	HTMLTableElement.insertRow()										
 htmltableelement insertrow	R	HTMLTableElement.insertRow()										
@@ -6821,13 +7091,12 @@ address	R	BluetoothStatusChangedEvent.address
 api rtciceserver	R	RTCIceServer										
 functions method definitions syntax	R	Method definitions										
 functions method definitions example	R	Method definitions										
-functions syntax	R	Method definitions										
-functions example	R	Method definitions										
-functions method definitions	R	Method definitions										
 method definitions syntax	R	Method definitions										
 method definitions example	R	Method definitions										
+method	R	Method definitions										
 method syntax	R	Method definitions										
 method example	R	Method definitions										
+functions method definitions	R	Method definitions										
 toolbar	R	Window.toolbar										
 window toolbar	R	Window.toolbar										
 toolbar	R	Window.toolbar										
@@ -6968,12 +7237,24 @@ xsltprocessor browser differences	R	Browser Differences
 api animationeffecttimingproperties	R	Animation Effect Timing Properties										
 animationeffecttimingproperties	R	Animation Effect Timing Properties										
 geolocation using geolocation	R	Using geolocation										
+operators new.target syntax	R	new.target										
+operators new.target example	R	new.target										
+new.target syntax	R	new.target										
+new.target example	R	new.target										
+operators new.target	R	new.target										
 webglrenderingcontext iscontextlost	R	WebGLRenderingContext.isContextLost()										
 iscontextlost	R	WebGLRenderingContext.isContextLost()										
 Q	R	BiquadFilterNode.Q										
 biquadfilternode q	R	BiquadFilterNode.Q										
 q	R	BiquadFilterNode.Q										
-api textmetrics	R	TextMetrics										
+statements switch syntax	R	switch										
+statements switch example	R	switch										
+switch syntax	R	switch										
+switch example	R	switch										
+statements switch	R	switch										
+drawRangeElements	R	WebGL2RenderingContext.drawRangeElements()										
+webgl2renderingcontext drawrangeelements	R	WebGL2RenderingContext.drawRangeElements()										
+drawrangeelements	R	WebGL2RenderingContext.drawRangeElements()										
 api oes standard derivatives	R	OES_standard_derivatives										
 webgl2renderingcontext begintransformfeedback	R	WebGL2RenderingContext.beginTransformFeedback()										
 begintransformfeedback	R	WebGL2RenderingContext.beginTransformFeedback()										
@@ -7070,6 +7351,18 @@ cellspacing	R	HTMLTableElement.cellSpacing
 api channel messaging api	R	Channel Messaging API										
 storage getitem	R	Storage.getItem()										
 getitem	R	Storage.getItem()										
+statements if else syntax	R	if...else										
+statements if else example	R	if...else										
+if else	R	if...else										
+if else syntax	R	if...else										
+if else example	R	if...else										
+if	R	if...else										
+if syntax	R	if...else										
+if example	R	if...else										
+else	R	if...else										
+else syntax	R	if...else										
+else example	R	if...else										
+statements if else	R	if...else										
 string trimleft	R	String.prototype.trimLeft()										
 trimleft	R	String.prototype.trimLeft()										
 document domain	R	Document.domain										
@@ -7082,6 +7375,12 @@ nextelementsibling	R	NonDocumentTypeChildNode.nextElementSibling
 rtcpeerconnection ondatachannel	R	RTCPeerConnection.ondatachannel										
 ondatachannel	R	RTCPeerConnection.ondatachannel										
 api angle instanced arrays	R	ANGLE_instanced_arrays										
+statements for of syntax	R	for...of										
+statements for of example	R	for...of										
+for of	R	for...of										
+for of syntax	R	for...of										
+for of example	R	for...of										
+statements for of	R	for...of										
 dialogArguments	R	Window.dialogArguments										
 window dialogarguments	R	Window.dialogArguments										
 dialogarguments	R	Window.dialogArguments										
@@ -7184,6 +7483,16 @@ audiocontext createmediastreamsource	R	AudioContext.createMediaStreamSource()
 createmediastreamsource	R	AudioContext.createMediaStreamSource()										
 speechsynthesis speaking	R	SpeechSynthesis.speaking										
 speaking	R	SpeechSynthesis.speaking										
+statements for each in syntax	R	for each...in										
+statements for each in example	R	for each...in										
+for each in	R	for each...in										
+for each in syntax	R	for each...in										
+for each in example	R	for each...in										
+each	R	for each...in										
+each syntax	R	for each...in										
+each example	R	for each...in										
+statements for each in	R	for each...in										
+for each in	R	for each...in										
 api readablebytestream	R	ReadableByteStream										
 api speechsynthesisevent	R	SpeechSynthesisEvent										
 object setprototypeof	R	Object.setPrototypeOf()										
@@ -7347,7 +7656,7 @@ api htmlspanelement	R	HTMLSpanElement
 mozNotification	R	Navigator.mozNotification										
 navigator moznotification	R	Navigator.mozNotification										
 moznotification	R	Navigator.mozNotification										
-api fileentry	R	FileEntry										
+api textmetrics	R	TextMetrics										
 xmlhttprequest mozsystem	R	XMLHttpRequest.mozSystem										
 mozsystem	R	XMLHttpRequest.mozSystem										
 api promiseresolver	R	PromiseResolver										
@@ -7357,6 +7666,11 @@ webglrenderingcontext texsubimage2d	R	WebGLRenderingContext.texSubImage2D()
 texsubimage2d	R	WebGLRenderingContext.texSubImage2D()										
 array isarray	R	Array.isArray										
 isarray	R	Array.isArray										
+operators yield syntax	R	yield										
+operators yield example	R	yield										
+yield syntax	R	yield										
+yield example	R	yield										
+operators yield	R	yield										
 summary	R	HTMLTableElement.summary										
 htmltableelement summary	R	HTMLTableElement.summary										
 summary	R	HTMLTableElement.summary										
@@ -7376,6 +7690,12 @@ deleterule	R	CSSStyleSheet.deleteRule()
 websockets api websocket server vb.net	R	WebSocket Server Vb.NET										
 object seal	R	Object.seal										
 seal	R	Object.seal										
+operators object initializer syntax	R	Object initializer										
+operators object initializer example	R	Object initializer										
+object initializer syntax	R	Object initializer										
+object initializer example	R	Object initializer										
+operators object initializer	R	Object initializer										
+api svgangle	R	SVGAngle										
 mediakeysystemconfiguration initdatatypes	R	initDataTypes										
 setPointerCapture	R	Element.setPointerCapture()										
 element setpointercapture	R	Element.setPointerCapture()										
@@ -7396,11 +7716,17 @@ digest	R	SubtleCrypto.digest()
 smoothingTimeConstant	R	AnalyserNode.smoothingTimeConstant										
 analysernode smoothingtimeconstant	R	AnalyserNode.smoothingTimeConstant										
 smoothingtimeconstant	R	AnalyserNode.smoothingTimeConstant										
+statements import syntax	R	import										
+statements import example	R	import										
+import syntax	R	import										
+import example	R	import										
+statements import	R	import										
 ext disjoint timer query deletequeryext	R	EXT_disjoint_timer_query.deleteQueryEXT()										
 deletequeryext	R	EXT_disjoint_timer_query.deleteQueryEXT()										
 api windowclient	R	WindowClient										
 validitystate toolong	R	ValidityState.tooLong										
 toolong	R	ValidityState.tooLong										
+api filesystemflags	R	FileSystemFlags										
 parent	R	Window.parent										
 window parent	R	Window.parent										
 parent	R	Window.parent										
@@ -7525,13 +7851,9 @@ movementy	R	MouseEvent.movementY
 api l10n.formatvalue	R	L10n.formatValue										
 functions rest parameters syntax	R	Rest parameters										
 functions rest parameters example	R	Rest parameters										
-functions syntax	R	Rest parameters										
-functions example	R	Rest parameters										
-functions rest parameters	R	Rest parameters										
 rest parameters syntax	R	Rest parameters										
 rest parameters example	R	Rest parameters										
-rest syntax	R	Rest parameters										
-rest example	R	Rest parameters										
+functions rest parameters	R	Rest parameters										
 tutorial animating textures in webgl	R	Animating textures in WebGL										
 onloadstart	R	XMLHttpRequestEventTarget.onloadstart										
 xmlhttprequesteventtarget onloadstart	R	XMLHttpRequestEventTarget.onloadstart										
@@ -7579,6 +7901,7 @@ rtcpeerconnection getlocalstreams	R	RTCPeerConnection.getLocalStreams()
 getlocalstreams	R	RTCPeerConnection.getLocalStreams()										
 datatransfer dropeffect	R	DataTransfer.dropEffect										
 dropeffect	R	DataTransfer.dropEffect										
+api webglframebuffer	R	WebGLFramebuffer										
 range setstartbefore	R	Range.setStartBefore()										
 setstartbefore	R	Range.setStartBefore()										
 eventPhase	R	Event.eventPhase										
@@ -7684,9 +8007,6 @@ offscreencanvas transfertoimagebitmap	R	OffscreenCanvas.transferToImageBitmap()
 transfertoimagebitmap	R	OffscreenCanvas.transferToImageBitmap()										
 api webgluniformlocation	R	WebGLUniformLocation										
 api oes element index uint	R	OES_element_index_uint										
-captureStream	R	HTMLCanvasElement.captureStream()										
-htmlcanvaselement capturestream	R	HTMLCanvasElement.captureStream()										
-capturestream	R	HTMLCanvasElement.captureStream()										
 setAttributeNode	R	Element.setAttributeNode()										
 element setattributenode	R	Element.setAttributeNode()										
 setattributenode	R	Element.setAttributeNode()										
@@ -7763,6 +8083,11 @@ createShadowRoot	R	Element.createShadowRoot()
 element createshadowroot	R	Element.createShadowRoot()										
 createshadowroot	R	Element.createShadowRoot()										
 global regexp	R	RegExp										
+statements throw syntax	R	throw										
+statements throw example	R	throw										
+throw syntax	R	throw										
+throw example	R	throw										
+statements throw	R	throw										
 response ok	R	Response.ok										
 ok	R	Response.ok										
 executeScript	R	HTMLIFrameElement.executeScript()										
@@ -7843,8 +8168,6 @@ windoweventhandlers onunload	R	WindowEventHandlers.onunload
 onunload	R	WindowEventHandlers.onunload										
 cryptokey algorithm	R	CryptoKey.algorithm										
 algorithm	R	CryptoKey.algorithm										
-speechsynthesisvoice default	R	SpeechSynthesisVoice.default										
-default	R	SpeechSynthesisVoice.default										
 datatransfer mozgetdataat	R	DataTransfer.mozGetDataAt()										
 mozgetdataat	R	DataTransfer.mozGetDataAt()										
 api directoryentrysync	R	DirectoryEntrySync										
@@ -7870,7 +8193,6 @@ navigator moztime	R	Navigator.mozTime
 moztime	R	Navigator.mozTime										
 text splittext	R	Text.splitText()										
 splittext	R	Text.splitText()										
-api file	R	File										
 global onpushsubscriptionchange	R	ServiceWorkerGlobalScope.onpushsubscriptionchange										
 onpushsubscriptionchange	R	ServiceWorkerGlobalScope.onpushsubscriptionchange										
 api svgswitchelement	R	SVGSwitchElement										
@@ -7906,7 +8228,7 @@ canvasrenderingcontext2d drawimage	R	CanvasRenderingContext2D.drawImage()
 drawimage	R	CanvasRenderingContext2D.drawImage()										
 document lastmodified	R	Document.lastModified										
 lastmodified	R	Document.lastModified										
-global symbol	R	Symbol										
+api filesystemdirectoryentry	R	FileSystemDirectoryEntry										
 tutorial finale	R	Finale										
 api arraybufferview	R	ArrayBufferView										
 minDecibels	R	AnalyserNode.minDecibels										
@@ -7931,8 +8253,6 @@ webglrenderingcontext drawingbufferwidth	R	WebGLRenderingContext.drawingBufferWi
 drawingbufferwidth	R	WebGLRenderingContext.drawingBufferWidth										
 bluetoothadvertisingdata manufacturerdata	R	manufacturerData										
 api page visibility api	R	Page Visibility API										
-document elementfrompoint	R	Document.elementFromPoint()										
-elementfrompoint	R	Document.elementFromPoint()										
 api subtlecrypto	R	SubtleCrypto										
 api domparser	R	DOMParser										
 charIndex	R	SpeechSynthesisEvent.charIndex										
@@ -8083,6 +8403,11 @@ navigator mozl10n	R	Navigator.mozL10n
 mozl10n	R	Navigator.mozL10n										
 vrfieldofview rightdegrees	R	VRFieldOfView.rightDegrees										
 rightdegrees	R	VRFieldOfView.rightDegrees										
+statements debugger syntax	R	debugger										
+statements debugger example	R	debugger										
+debugger syntax	R	debugger										
+debugger example	R	debugger										
+statements debugger	R	debugger										
 global stopiteration	R	StopIteration										
 api directoryreadersync	R	DirectoryReaderSync										
 audiobuffer copytochannel	R	AudioBuffer.copyToChannel()										
@@ -8114,7 +8439,14 @@ window scrollby	R	Window.scrollBy()
 scrollby	R	Window.scrollBy()										
 rtcpeerconnection generatecertificate	R	RTCPeerConnection.generateCertificate()										
 generatecertificate	R	RTCPeerConnection.generateCertificate()										
+reference operators	R	Expressions and operators										
+operators	R	Expressions and operators										
 api webglactiveinfo	R	WebGLActiveInfo										
+operators instanceof syntax	R	instanceof										
+operators instanceof example	R	instanceof										
+instanceof syntax	R	instanceof										
+instanceof example	R	instanceof										
+operators instanceof	R	instanceof										
 api oes texture half float linear	R	OES_texture_half_float_linear										
 mediasource istypesupported	R	MediaSource.isTypeSupported()										
 istypesupported	R	MediaSource.isTypeSupported()										
@@ -8213,6 +8545,11 @@ delaytime	R	DelayNode.delayTime
 audiocontext createmediastreamdestination	R	AudioContext.createMediaStreamDestination()										
 createmediastreamdestination	R	AudioContext.createMediaStreamDestination()										
 presentationrequest reconnect	R	reconnect										
+operators array comprehensions syntax	R	Array comprehensions										
+operators array comprehensions example	R	Array comprehensions										
+array comprehensions syntax	R	Array comprehensions										
+array comprehensions example	R	Array comprehensions										
+operators array comprehensions	R	Array comprehensions										
 api svgcircleelement	R	SVGCircleElement										
 rtcpeerconnection onpeeridentity	R	RTCPeerConnection.onpeeridentity										
 onpeeridentity	R	RTCPeerConnection.onpeeridentity										
@@ -8261,6 +8598,11 @@ document getelementbyid	R	document.getElementById()
 getelementbyid	R	document.getElementById()										
 math sqrt1 2	R	Math.SQRT1_2										
 sqrt1 2	R	Math.SQRT1_2										
+operators operator precedence syntax	R	Operator precedence										
+operators operator precedence example	R	Operator precedence										
+operator precedence syntax	R	Operator precedence										
+operator precedence example	R	Operator precedence										
+operators operator precedence	R	Operator precedence										
 range detach	R	Range.detach()										
 detach	R	Range.detach()										
 api presentationconnectionlist	R	PresentationConnectionList										
@@ -8324,6 +8666,11 @@ checkvalidity	R	HTMLSelectElement.checkValidity()
 document cookie	R	Document.cookie										
 cookie	R	Document.cookie										
 global proxy	R	Proxy										
+operators arithmetic operators syntax	R	Arithmetic operators										
+operators arithmetic operators example	R	Arithmetic operators										
+arithmetic operators syntax	R	Arithmetic operators										
+arithmetic operators example	R	Arithmetic operators										
+operators arithmetic operators	R	Arithmetic operators										
 frameElement	R	Window.frameElement										
 window frameelement	R	Window.frameElement										
 frameelement	R	Window.frameElement										
@@ -8552,9 +8899,6 @@ api canvasrenderingcontext2d	R	CanvasRenderingContext2D
 webglrenderingcontext getrenderbufferparameter	R	WebGLRenderingContext.getRenderbufferParameter()										
 getrenderbufferparameter	R	WebGLRenderingContext.getRenderbufferParameter()										
 api svgmpathelement	R	SVGMPathElement										
-activeElement	R	Document.activeElement										
-document activeelement	R	Document.activeElement										
-activeelement	R	Document.activeElement										
 webglrenderingcontext getprograminfolog	R	WebGLRenderingContext.getProgramInfoLog()										
 getprograminfolog	R	WebGLRenderingContext.getProgramInfoLog()										
 document onfullscreenerror	R	Document.onfullscreenerror										
@@ -8609,6 +8953,11 @@ api htmltablerowelement	R	HTMLTableRowElement
 api presentationconnectionclosedevent	R	PresentationConnectionClosedEvent										
 tutorial applying styles and colors	R	Applying styles and colors										
 api mediakeystatusmap	R	MediaKeyStatusMap										
+operators destructuring assignment syntax	R	Destructuring assignment										
+operators destructuring assignment example	R	Destructuring assignment										
+destructuring assignment syntax	R	Destructuring assignment										
+destructuring assignment example	R	Destructuring assignment										
+operators destructuring assignment	R	Destructuring assignment										
 audiocontext creategain	R	AudioContext.createGain()										
 creategain	R	AudioContext.createGain()										
 focused	R	WindowClient.focused										
@@ -8675,6 +9024,11 @@ analysernode getbytetimedomaindata	R	AnalyserNode.getByteTimeDomainData()
 getbytetimedomaindata	R	AnalyserNode.getByteTimeDomainData()										
 idbopendbrequest onupgradeneeded	R	IDBOpenDBRequest.onupgradeneeded										
 onupgradeneeded	R	IDBOpenDBRequest.onupgradeneeded										
+statements while syntax	R	while										
+statements while example	R	while										
+while syntax	R	while										
+while example	R	while										
+statements while	R	while										
 gamepadbutton pressed	R	GamepadButton.pressed										
 pressed	R	GamepadButton.pressed										
 api idbkeyrange	R	IDBKeyRange										
@@ -8709,6 +9063,13 @@ api gamepadbutton	R	GamepadButton
 api midiconnectionevent	R	MIDIConnectionEvent										
 web audio api web audio spatialization basics	R	Web audio spatialization basics										
 api mediaelementaudiosourcenode	R	MediaElementAudioSourceNode										
+operators conditional operator syntax	R	Conditional (ternary) Operator										
+operators conditional operator example	R	Conditional (ternary) Operator										
+conditional operator	R	Conditional (ternary) Operator										
+conditional operator syntax	R	Conditional (ternary) Operator										
+conditional operator example	R	Conditional (ternary) Operator										
+operators conditional operator	R	Conditional (ternary) Operator										
+conditional operator	R	Conditional (ternary) Operator										
 fireEvent	R	EventTarget.fireEvent()										
 eventtarget fireevent	R	EventTarget.fireEvent()										
 fireevent	R	EventTarget.fireEvent()										
@@ -8735,13 +9096,9 @@ node isequalnode	R	Node.isEqualNode()
 isequalnode	R	Node.isEqualNode()										
 functions default parameters syntax	R	Default parameters										
 functions default parameters example	R	Default parameters										
-functions syntax	R	Default parameters										
-functions example	R	Default parameters										
-functions default parameters	R	Default parameters										
 default parameters syntax	R	Default parameters										
 default parameters example	R	Default parameters										
-default syntax	R	Default parameters										
-default example	R	Default parameters										
+functions default parameters	R	Default parameters										
 idbkeyrange lower	R	IDBKeyRange.lower										
 lower	R	IDBKeyRange.lower										
 document object model locating dom elements using selectors	R	Locating DOM elements using selectors										
@@ -8757,7 +9114,8 @@ rotationrate	R	DeviceMotionEvent.rotationRate
 regexp flags	R	RegExp.prototype.flags										
 flags	R	RegExp.prototype.flags										
 global uint16array	R	Uint16Array										
-api entry	R	Entry										
+canvasrenderingcontext2d createimagedata	R	CanvasRenderingContext2D.createImageData()										
+createimagedata	R	CanvasRenderingContext2D.createImageData()										
 css object model using dynamic styling information	R	Using dynamic styling information										
 syncmanager gettags	R	SyncManager.getTags()										
 gettags	R	SyncManager.getTags()										
@@ -8782,6 +9140,11 @@ api htmlhyperlinkelementutils	R	HTMLHyperlinkElementUtils
 performance onresourcetimingbufferfull	R	Performance.onresourcetimingbufferfull										
 onresourcetimingbufferfull	R	Performance.onresourcetimingbufferfull										
 api htmldocument	R	HTMLDocument										
+operators yield* syntax	R	yield*										
+operators yield* example	R	yield*										
+yield* syntax	R	yield*										
+yield* example	R	yield*										
+operators yield*	R	yield*										
 ext disjoint timer query createqueryext	R	EXT_disjoint_timer_query.createQueryEXT()										
 createqueryext	R	EXT_disjoint_timer_query.createQueryEXT()										
 pointerLockElement	R	Document.pointerLockElement										
@@ -8822,11 +9185,20 @@ drawbufferswebgl	R	WEBGL_draw_buffers.drawBuffersWEBGL()
 webgl2renderingcontext getsyncparameter	R	WebGL2RenderingContext.getSyncParameter()										
 getsyncparameter	R	WebGL2RenderingContext.getSyncParameter()										
 api webgltransformfeedback	R	WebGLTransformFeedback										
-idbcursor continue	R	IDBCursor.continue()										
-continue	R	IDBCursor.continue()										
 resizeBy	R	Window.resizeBy()										
 window resizeby	R	Window.resizeBy()										
 resizeby	R	Window.resizeBy()										
+statements try catch syntax	R	try...catch										
+statements try catch example	R	try...catch										
+try catch	R	try...catch										
+try catch syntax	R	try...catch										
+try catch example	R	try...catch										
+statements try catch	R	try...catch										
+operators property accessors syntax	R	Property accessors										
+operators property accessors example	R	Property accessors										
+property accessors syntax	R	Property accessors										
+property accessors example	R	Property accessors										
+operators property accessors	R	Property accessors										
 xmlhttprequest onreadystatechange	R	XMLHttpRequest.onreadystatechange										
 onreadystatechange	R	XMLHttpRequest.onreadystatechange										
 getDefaultComputedStyle	R	Window.getDefaultComputedStyle()										
@@ -8902,6 +9274,8 @@ releasecapture	R	Document.releaseCapture()
 idp	R	RTCIdentityErrorEvent.idp										
 rtcidentityerrorevent idp	R	RTCIdentityErrorEvent.idp										
 idp	R	RTCIdentityErrorEvent.idp										
+filesystemdirectoryreader readentries	R	FileSystemDirectoryReader.readEntries()										
+readentries	R	FileSystemDirectoryReader.readEntries()										
 document querycommandenabled	R	Document.queryCommandEnabled()										
 querycommandenabled	R	Document.queryCommandEnabled()										
 api credentialscontainer	R	CredentialsContainer										
@@ -9085,6 +9459,12 @@ scroll	R	Window.scroll()
 window scroll	R	Window.scroll()										
 scroll	R	Window.scroll()										
 api mediakeysession	R	MediaKeySession										
+statements do while syntax	R	do...while										
+statements do while example	R	do...while										
+do while	R	do...while										
+do while syntax	R	do...while										
+do while example	R	do...while										
+statements do while	R	do...while										
 onreset	R	GlobalEventHandlers.onreset										
 global onreset	R	GlobalEventHandlers.onreset										
 onreset	R	GlobalEventHandlers.onreset										
@@ -9096,8 +9476,6 @@ element insertadjacentelement	R	Element.insertAdjacentElement()
 insertadjacentelement	R	Element.insertAdjacentElement()										
 regexp ignorecase	R	RegExp.prototype.ignoreCase										
 ignorecase	R	RegExp.prototype.ignoreCase										
-idbmutablefile getfile	R	FileHandle.getFile()										
-getfile	R	FileHandle.getFile()										
 newVersion	R	IDBVersionChangeEvent.newVersion										
 idbversionchangeevent newversion	R	IDBVersionChangeEvent.newVersion										
 newversion	R	IDBVersionChangeEvent.newVersion										
@@ -9182,9 +9560,6 @@ pannernode distancemodel	R	PannerNode.distanceModel
 distancemodel	R	PannerNode.distanceModel										
 api gamepadevent	R	GamepadEvent										
 api svgvkernelement	R	SVGVKernElement										
-assignedSlot	R	Element.assignedSlot										
-element assignedslot	R	Element.assignedSlot										
-assignedslot	R	Element.assignedSlot										
 onplay	R	GlobalEventHandlers.onplay										
 global globaleventhandlers.onplay	R	GlobalEventHandlers.onplay										
 download	R	HTMLIFrameElement.download()										
@@ -9302,6 +9677,11 @@ api csskeyframesrule	R	CSSKeyframesRule
 api svgfontfaceurielement	R	SVGFontFaceUriElement										
 tutorial drawing shapes	R	Drawing shapes with canvas										
 drawing shapes	R	Drawing shapes with canvas										
+operators this syntax	R	this										
+operators this example	R	this										
+this syntax	R	this										
+this example	R	this										
+operators this	R	this										
 createElementNS	R	Document.createElementNS()										
 document createelementns	R	Document.createElementNS()										
 createelementns	R	Document.createElementNS()										
@@ -9357,8 +9737,6 @@ storage removeitem	R	Storage.removeItem()
 removeitem	R	Storage.removeItem()										
 cssprimitivevalue primitivetype	R	CSSPrimitiveValue.primitiveType										
 primitivetype	R	CSSPrimitiveValue.primitiveType										
-document stylesheets	R	Document.styleSheets										
-stylesheets	R	Document.styleSheets										
 rtcpeerconnection onicecandidateerror	R	RTCPeerConnection.onicecandidateerror										
 onicecandidateerror	R	RTCPeerConnection.onicecandidateerror										
 api svganimatetransformelement	R	SVGAnimateTransformElement										
@@ -9441,6 +9819,11 @@ webgl2renderingcontext getquery	R	WebGL2RenderingContext.getQuery()
 getquery	R	WebGL2RenderingContext.getQuery()										
 speechsynthesisutterance onboundary	R	SpeechSynthesisUtterance.onboundary										
 onboundary	R	SpeechSynthesisUtterance.onboundary										
+classes static syntax	R	static										
+classes static example	R	static										
+static syntax	R	static										
+static example	R	static										
+classes static	R	static										
 audiocontext createdelay	R	AudioContext.createDelay()										
 createdelay	R	AudioContext.createDelay()										
 api cssvalue	R	CSSValue										
@@ -9490,6 +9873,11 @@ rtcdatachannel onbufferedamountlow	R	RTCDataChannel.onbufferedamountlow
 onbufferedamountlow	R	RTCDataChannel.onbufferedamountlow										
 global math	R	Math										
 api webgl color buffer float	R	WEBGL_color_buffer_float										
+operators comparison operators syntax	R	Comparison operators										
+operators comparison operators example	R	Comparison operators										
+comparison operators syntax	R	Comparison operators										
+comparison operators example	R	Comparison operators										
+operators comparison operators	R	Comparison operators										
 api eventlistener	R	EventListener										
 api animationeffecttimingreadonly	R	AnimationEffectTimingReadOnly										
 document createtreewalker	R	Document.createTreeWalker()										
@@ -9596,6 +9984,11 @@ offsettop	R	HTMLElement.offsetTop
 border	R	HTMLTableElement.border										
 htmltableelement border	R	HTMLTableElement.border										
 border	R	HTMLTableElement.border										
+operators bitwise operators syntax	R	Bitwise operators										
+operators bitwise operators example	R	Bitwise operators										
+bitwise operators syntax	R	Bitwise operators										
+bitwise operators example	R	Bitwise operators										
+operators bitwise operators	R	Bitwise operators										
 xmlhttprequest mozbackgroundrequest	R	XMLHttpRequest.mozBackgroundRequest										
 mozbackgroundrequest	R	XMLHttpRequest.mozBackgroundRequest										
 acceleration	R	DeviceMotionEvent.acceleration										
@@ -9612,9 +10005,7 @@ rtcpeerconnection createoffer	R	RTCPeerConnection.createOffer()
 createoffer	R	RTCPeerConnection.createOffer()										
 batterymanager onchargingchange	R	BatteryManager.onchargingchange										
 onchargingchange	R	BatteryManager.onchargingchange										
-drawRangeElements	R	WebGL2RenderingContext.drawRangeElements()										
-webgl2renderingcontext drawrangeelements	R	WebGL2RenderingContext.drawRangeElements()										
-drawrangeelements	R	WebGL2RenderingContext.drawRangeElements()										
+api filesystemdirectoryreader	R	FileSystemDirectoryReader										
 api htmlslotelement	R	HTMLSlotElement										
 registerElement	R	Document.registerElement()										
 document registerelement	R	Document.registerElement()										
@@ -9639,6 +10030,8 @@ createanalyser	R	AudioContext.createAnalyser()
 speechrecognitionalternative transcript	R	SpeechRecognitionAlternative.transcript										
 transcript	R	SpeechRecognitionAlternative.transcript										
 api htmlcanvaselement	R	HTMLCanvasElement										
+filesystemdirectoryentry getdirectory	R	FileSystemDirectoryEntry.getDirectory()										
+getdirectory	R	FileSystemDirectoryEntry.getDirectory()										
 errors not defined	R	ReferenceError: "x" is not defined										
 not defined	R	ReferenceError: "x" is not defined										
 webglrenderingcontext bindattriblocation	R	WebGLRenderingContext.bindAttribLocation()										
@@ -9657,6 +10050,11 @@ setCustomValidity	R	HTMLSelectElement.setCustomValidity()
 htmlselectelement setcustomvalidity	R	HTMLSelectElement.setCustomValidity()										
 setcustomvalidity	R	HTMLSelectElement.setCustomValidity()										
 api selection	R	Selection										
+operators super syntax	R	super										
+operators super example	R	super										
+super syntax	R	super										
+super example	R	super										
+operators super	R	super										
 vreyeparameters renderheight	R	VREyeParameters.renderHeight										
 renderheight	R	VREyeParameters.renderHeight										
 tiltX	R	PointerEvent.tiltX										
@@ -9680,6 +10078,11 @@ htmlformelement reportvalidity	R	HTMLFormElement.reportValidity()
 reportvalidity	R	HTMLFormElement.reportValidity()										
 webglrenderingcontext buffersubdata	R	WebGLRenderingContext.bufferSubData()										
 buffersubdata	R	WebGLRenderingContext.bufferSubData()										
+statements with syntax	R	with										
+statements with example	R	with										
+with syntax	R	with										
+with example	R	with										
+statements with	R	with										
 controls	R	HTMLMediaElement.controls										
 htmlmediaelement controls	R	HTMLMediaElement.controls										
 controls	R	HTMLMediaElement.controls										
@@ -9803,7 +10206,7 @@ api csskeyframerule	R	CSSKeyframeRule
 api l10n.ready	R	L10n.ready										
 webglrenderingcontext gettexparameter	R	WebGLRenderingContext.getTexParameter()										
 gettexparameter	R	WebGLRenderingContext.getTexParameter()										
-api webglframebuffer	R	WebGLFramebuffer										
+api documentorshadowroot	R	DocumentOrShadowRoot										
 attributes	R	Element.attributes										
 element attributes	R	Element.attributes										
 attributes	R	Element.attributes										
@@ -9908,6 +10311,11 @@ acceptcharset	R	HTMLFormElement.acceptCharset
 api beacon api	R	Beacon API										
 webglrenderingcontext getshadersource	R	WebGLRenderingContext.getShaderSource()										
 getshadersource	R	WebGLRenderingContext.getShaderSource()										
+statements let syntax	R	let										
+statements let example	R	let										
+let syntax	R	let										
+let example	R	let										
+statements let	R	let										
 touch events supporting both touchevent and mouseevent	R	Supporting both TouchEvent and MouseEvent										
 html drag and drop api file drag and drop	R	File drag and drop										
 global dataview	R	DataView										
@@ -9995,6 +10403,14 @@ api point	R	Point
 canvas api a basic ray-caster	R	A basic ray-caster										
 vrdisplay capabilities	R	VRDisplay.capabilities										
 capabilities	R	VRDisplay.capabilities										
+classes extends syntax	R	extends										
+classes extends example	R	extends										
+extends syntax	R	extends										
+extends example	R	extends										
+classes extends	R	extends										
+deepPath	R	Event.deepPath										
+event deeppath	R	Event.deepPath										
+deeppath	R	Event.deepPath										
 maxDecibels	R	AnalyserNode.maxDecibels										
 analysernode maxdecibels	R	AnalyserNode.maxDecibels										
 maxdecibels	R	AnalyserNode.maxDecibels										
@@ -10043,6 +10459,11 @@ rtcpeerconnection currentlocaldescription	R	RTCPeerConnection.currentLocalDescri
 currentlocaldescription	R	RTCPeerConnection.currentLocalDescription										
 api audioparam	R	AudioParam										
 api htmlformelement	R	HTMLFormElement										
+statements export syntax	R	export										
+statements export example	R	export										
+export syntax	R	export										
+export example	R	export										
+statements export	R	export										
 api htmlanchorelement	R	HTMLAnchorElement										
 api abstractworker	R	AbstractWorker										
 xmlhttprequest openrequest	R	XMLHttpRequest.openRequest()										
@@ -10075,6 +10496,7 @@ performance timeline using performance timeline	R	Using Performance Timeline
 ondrag	R	GlobalEventHandlers.ondrag										
 global ondrag	R	GlobalEventHandlers.ondrag										
 ondrag	R	GlobalEventHandlers.ondrag										
+global symbol	R	Symbol										
 api webglcontextevent	R	WebGLContextEvent										
 css object model determining the dimensions of elements	R	Determining the dimensions of elements										
 idbdatabase createobjectstore	R	IDBDatabase.createObjectStore()										
@@ -10106,10 +10528,7 @@ api css font loading api	R	CSS Font Loading API
 cloneNode	R	Node.cloneNode()										
 node clonenode	R	Node.cloneNode()										
 clonenode	R	Node.cloneNode()										
-api directoryentry	R	DirectoryEntry										
 api svgfontelement	R	SVGFontElement										
-object constructor	R	Object.prototype.constructor										
-constructor	R	Object.prototype.constructor										
 bluetoothdevice connectgatt	R	connectGATT()										
 connectgatt	R	connectGATT()										
 api rtccertificate	R	RTCCertificate										
@@ -10144,12 +10563,16 @@ file filesize	R	File.fileSize
 filesize	R	File.fileSize										
 serviceworkerregistration shownotification	R	ServiceWorkerRegistration.showNotification()										
 shownotification	R	ServiceWorkerRegistration.showNotification()										
+statements var syntax	R	var										
+statements var example	R	var										
+var syntax	R	var										
+var example	R	var										
+statements var	R	var										
 lockedfile filehandle	R	LockedFile.fileHandle										
 filehandle	R	LockedFile.fileHandle										
 math log10	R	Math.log10()										
 log10	R	Math.log10()										
 rtcpeerconnection removetrack	R	removeTrack										
-global function	R	Function										
 webglrenderingcontext enablevertexattribarray	R	WebGLRenderingContext.enableVertexAttribArray()										
 enablevertexattribarray	R	WebGLRenderingContext.enableVertexAttribArray()										
 ondrop	R	GlobalEventHandlers.ondrop										
@@ -10158,6 +10581,11 @@ ondrop	R	GlobalEventHandlers.ondrop
 baseURI	R	Node.baseURI										
 node baseuri	R	Node.baseURI										
 baseuri	R	Node.baseURI										
+operators comma operator syntax	R	Comma operator										
+operators comma operator example	R	Comma operator										
+comma operator syntax	R	Comma operator										
+comma operator example	R	Comma operator										
+operators comma operator	R	Comma operator										
 speechrecognition interimresults	R	SpeechRecognition.interimResults										
 interimresults	R	SpeechRecognition.interimResults										
 tBodies	R	HTMLTableElement.tBodies										
@@ -10187,6 +10615,11 @@ webkit force at mouse down	R	MouseEvent.WEBKIT_FORCE_AT_MOUSE_DOWN
 onvrdisplaypresentchange	R	Window.onvrdisplaypresentchange										
 window onvrdisplaypresentchange	R	Window.onvrdisplaypresentchange										
 onvrdisplaypresentchange	R	Window.onvrdisplaypresentchange										
+statements empty syntax	R	empty										
+statements empty example	R	empty										
+empty syntax	R	empty										
+empty example	R	empty										
+statements empty	R	empty										
 api file handle api	R	FileHandle API										
 file handle api	R	FileHandle API										
 cookie simple document.cookie framework	R	Simple cookie framework										
@@ -10195,6 +10628,11 @@ screen onorientationchange	R	Screen.onorientationchange
 onorientationchange	R	Screen.onorientationchange										
 webgl2renderingcontext vertexattribi	R	WebGL2RenderingContext.vertexAttribI4[u]i[v]()										
 vertexattribi	R	WebGL2RenderingContext.vertexAttribI4[u]i[v]()										
+statements block syntax	R	block										
+statements block example	R	block										
+block syntax	R	block										
+block example	R	block										
+statements block	R	block										
 webgl2renderingcontext teximage3d	R	WebGL2RenderingContext.texImage3D()										
 teximage3d	R	WebGL2RenderingContext.texImage3D()										
 oversample	R	WaveShaperNode.oversample										
@@ -10210,9 +10648,16 @@ window ondeviceproximity	R	Window.ondeviceproximity
 ondeviceproximity	R	Window.ondeviceproximity										
 webglrenderingcontext getuniformlocation	R	WebGLRenderingContext.getUniformLocation()										
 getuniformlocation	R	WebGLRenderingContext.getUniformLocation()										
+filesystemdirectoryentry removerecursively	R	FileSystemDirectoryEntry.removeRecursively()										
+removerecursively	R	FileSystemDirectoryEntry.removeRecursively()										
 global int8array	R	Int8Array										
 webglrenderingcontext getprogramparameter	R	WebGLRenderingContext.getProgramParameter()										
 getprogramparameter	R	WebGLRenderingContext.getProgramParameter()										
+operators generator comprehensions syntax	R	Generator comprehensions										
+operators generator comprehensions example	R	Generator comprehensions										
+generator comprehensions syntax	R	Generator comprehensions										
+generator comprehensions example	R	Generator comprehensions										
+operators generator comprehensions	R	Generator comprehensions										
 reference functions	R	Functions										
 getVolume	R	HTMLIFrameElement.getVolume()										
 htmliframeelement getvolume	R	HTMLIFrameElement.getVolume()										
@@ -10231,7 +10676,6 @@ groupcollapsed	R	Console.groupCollapsed()
 paymentresponse details	R	PaymentResponse.details										
 details	R	PaymentResponse.details										
 api waveshapernode	R	WaveShaperNode										
-api directoryreader	R	DirectoryReader										
 webgl2renderingcontext invalidateframebuffer	R	WebGL2RenderingContext.invalidateFramebuffer()										
 invalidateframebuffer	R	WebGL2RenderingContext.invalidateFramebuffer()										
 api htmltablecellelement	R	HTMLTableCellElement										
