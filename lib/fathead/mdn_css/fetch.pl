@@ -44,8 +44,6 @@ queue_urls_for_download();
 #see http://mojolicious.org/perldoc/Mojo/IOLoop#recurring
 Mojo::IOLoop->recurring(
     0 => sub {
-
-        #fetch 4 at a time
         for ( $current_active_connections + 1 .. $maximum_active_connections ) {
             return ( $current_active_connections or Mojo::IOLoop->stop )
               unless my $url = shift @keyword_urls;
