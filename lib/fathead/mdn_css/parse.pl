@@ -159,6 +159,18 @@ foreach my $html_file ( glob 'download/*.html' ) {
             }
         }
     }
+    else {
+        my $wiki_article = $dom->at('article#wikiArticle');
+        if ($wiki_article) {
+            my $div = $wiki_article->at('div');
+            if ($div) {
+                my $next_element = $div->next;
+                if ( $next_element && $next_element->tag eq 'p' ) {
+                    $description = $next_element->all_text;
+                }
+            }
+        }
+    }
 
     # Check if article already processed
     if ( exists $SEEN{$title} ) {
