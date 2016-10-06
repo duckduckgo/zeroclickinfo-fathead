@@ -41,6 +41,43 @@ my $maximum_active_connections = 4;
 my @keyword_urls;
 queue_urls_for_download();
 
+#see http://mojolicious.org/perldoc/Mojo/IOLoop#recurring
+Mojo::IOLoop->recurring(
+    0 => sub {
+
+        #fetch 4 at a time
+        for ( $current_active_connections + 1 .. $maximum_active_connections ) {
+            return ( $current_active_connections or Mojo::IOLoop->stop )
+              unless my $url = shift @keyword_urls;
+
+            ++$current_active_connections;
+            $ua->get(
+                $url => sub {
+                    my ( undef, $tx ) = @_;
+
+                    --$current_active_connections;
+                    if ( $tx->success ) {
+                        say sprintf "%s %s", $tx->res->message, $tx->req->url;
+                        spurt $tx->res->body, catfile 'download',
+                          "$file_number.html";
+                        ++$file_number;
+                    }
+                    elsif ( my $error = $tx->error ) {
+
+                        #TODO: Should we push this url into
+                        #@keyword_urls so that it is
+                        #retried or we just warn or we croak?
+                        #warn for now
+                        warn sprintf "Error: %s %s", $error->{message},
+                          $tx->req->url;
+                    }
+                }
+            );
+        }
+    }
+);
+Mojo::IOLoop->start unless Mojo::IOLoop->is_running;
+
 sub process_transaction {
     my $tx = shift;
 
@@ -117,40 +154,3 @@ sub queue_urls_for_download {
         }
     }
 }
-
-#see http://mojolicious.org/perldoc/Mojo/IOLoop#recurring
-Mojo::IOLoop->recurring(
-    0 => sub {
-
-        #fetch 4 at a time
-        for ( $current_active_connections + 1 .. $maximum_active_connections ) {
-            return ( $current_active_connections or Mojo::IOLoop->stop )
-              unless my $url = shift @keyword_urls;
-
-            ++$current_active_connections;
-            $ua->get(
-                $url => sub {
-                    my ( undef, $tx ) = @_;
-
-                    --$current_active_connections;
-                    if ( $tx->success ) {
-                        say sprintf "%s %s", $tx->res->message, $tx->req->url;
-                        spurt $tx->res->body, catfile 'download',
-                          "$file_number.html";
-                        ++$file_number;
-                    }
-                    elsif ( my $error = $tx->error ) {
-
-                        #TODO: Should we push this url into
-                        #@keyword_urls so that it is
-                        #retried or we just warn or we croak?
-                        #warn for now
-                        warn sprintf "Error: %s %s", $error->{message},
-                          $tx->req->url;
-                    }
-                }
-            );
-        }
-    }
-);
-Mojo::IOLoop->start unless Mojo::IOLoop->is_running;
