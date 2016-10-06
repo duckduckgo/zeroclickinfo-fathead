@@ -42,7 +42,7 @@ for my $transaction (@transactions) {
 }
 
 #download the pages from links collected in process_transaction
-download();
+queue_urls_for_download();
 
 sub process_transaction {
     my $tx = shift;
@@ -73,7 +73,7 @@ sub process_transaction {
     }
 }
 
-sub download {
+sub queue_urls_for_download {
 
     for my $url ( keys %urls ) {
         $url = Mojo::URL->new($url);
