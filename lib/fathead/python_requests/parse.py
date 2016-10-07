@@ -3,10 +3,7 @@
 from bs4 import BeautifulSoup
 from glob import glob
 import re
-try:
-    from urlparse import urljoin
-except ImportError:
-    from urllib.parse import urljoin
+from urllib.parse import urljoin
 
 
 def build_article(h2_parent, page_url):
