@@ -42,7 +42,7 @@ def build_article(h2_parent, page_url):
         next_sibling = next_sibling.find_next_sibling(text=None)
     abstract = abstract.lstrip()
     abstract = abstract.strip('\n')
-    abstract = "<p>{0}</p>".format(abstract)
+    abstract = '<div class="prog__container">{0}</div>'.format(abstract)
     print("Title %s " % title)
     print("URL %s" % url)
     print("Description %s" % abstract)
