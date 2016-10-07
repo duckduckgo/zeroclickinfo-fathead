@@ -64,23 +64,6 @@ class DataParser(object):
             function_descriptions = section.find_all('dd')
             for i in range(len(function_names)):
                 self.function_sections.append([function_names[i], function_descriptions[i]])
-
-    def parse_for_module_name(self, section):
-        """
-        Returns the module name
-        Args:
-            section: A section of parsed HTML that represents a function definition
-
-        Returns:
-            Name of the module
-
-        """
-        module_name = section.find('a')
-        if module_name:
-            #return the module name without paramaters
-            return module_name.text.split('(')[0] 
-            
-        return ''
                                           
     def parse_for_function_name(self, section):
         """
@@ -168,7 +151,7 @@ class DataParser(object):
         example = info.find('div', {'class': 'examples'})
         if example:
             code = example.find('pre')
-            text = '<h5>Examples</h5>'+ str(code)
+            text = '<span class="prog__sub">Example</span>'+ str(code)
             text = '\\n'.join(text.split('\n'))
             return text
         return None
@@ -186,7 +169,7 @@ class DataParser(object):
         parameters = info.find('ul', {'class': 'param'})
         if parameters:
             code = self.fix_parameter_links(parameters)
-            text = '<h5>Parameters</h5><ul>'
+            text = '<span class="prog__sub">Parameters</span><ul>'
             code = code.find_all('li')
             for parameter in code:
                 text = text + '<li>'
@@ -251,8 +234,8 @@ class DataParser(object):
                 if example:
                     abstract =  abstract + example
                 if parameter:
-                     abstract = "%s<br>%s"%(abstract, parameter)
-
+                     abstract = "%s%s"%(abstract, parameter)
+                abstract = '<div class="prog__container">' + abstract + "</div>"
                 url = self.create_url(anchor)
                 if function in functions:
                     index = functions.index(function)

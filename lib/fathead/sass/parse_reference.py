@@ -127,7 +127,7 @@ class DataParser(object):
 
         """
         next_para = section.find_next('p')
-        description = str(next_para.text.encode('utf-8'))
+        description = "<p>" + str(next_para.text.encode('utf-8')) + "</p>"
         next_tag  = next_para.find_next_sibling()
         if next_tag.name=="pre" or next_tag.name=="code":
             text = str(next_tag.encode('utf-8'))
@@ -203,7 +203,7 @@ class DataOutput(object):
         with open('output.txt', 'a') as output_file:
             for data_element in self.data:
                 if data_element.get('name'):
-                    description = data_element.get('description')
+                    description = '<div class="prog__container">' + data_element.get('description') + '</div>'
                     url = data_element.get('url').encode('utf-8')
                     name = data_element.get('name').encode('utf-8')
                     redirect = data_element.get('redirects')
@@ -219,7 +219,7 @@ class DataOutput(object):
                         '',                         # external link 
                         '',                         # no disambiguation
                         '',                         # images
-                        description,                   # abstract
+                        description,                # abstract
                         url                         # url to doc
                     ]
                     line = '\t'.join(list_of_data)
