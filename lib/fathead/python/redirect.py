@@ -231,9 +231,7 @@ def generate_redirects(f):
             if line.endswith('\\n'):
                 line = line[:-2]
                 line += '\t\t\t'
-            line = line.encode('unicode_escape')
-            line = line.replace('\\t', '\t')
-            line = line.replace('\\\\n', '\\n')
+            line = line.replace('\\x', '\\\\x')
             tsv = '{}\n'.format(line)
             output_file.write(tsv)
 
