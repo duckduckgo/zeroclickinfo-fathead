@@ -23,7 +23,7 @@ def build_article(h2_parent, page_url):
     next_sibling = h2.find_next_sibling(text=None)
     while next_sibling:
         if next_sibling.name == 'p':
-            next_sibling_text = next_sibling.text.replace('\n', ' \\n')
+            next_sibling_text = next_sibling.text.replace('\n', '')
             abstract += " {}".format(next_sibling_text)
         elif next_sibling.name == 'div':
             pre = next_sibling.find('pre')
