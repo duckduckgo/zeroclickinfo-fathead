@@ -38,7 +38,7 @@ def build_article(h2_parent, page_url):
                     pre_text = pre.text.replace(original_span_text,
                                                 "{}".format(escaped_span_text))
                 pre_text = pre_text.replace('\n', '\\n')
-                description += "<pre>{0}</pre>".format(pre_text)
+                description += "<pre><code>{0}</code></pre>".format(pre_text)
         next_sibling = next_sibling.find_next_sibling(text=None)
     description = description.lstrip()
     description = description.strip('\n')
