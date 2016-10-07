@@ -12,19 +12,19 @@ except ImportError:
 def build_article(h2_parent, page_url):
     '''Builds fathead article entry.
 
-    Accepts h2_parent and extracts title, url, description and code snippets.
+    Accepts h2_parent and extracts title, url, abstract and code snippets.
     Returns a list
     '''
     h2 = h2_parent.find('h2')
     title = h2.text.replace('¶', '')
     fragment = h2_parent.find('a').get('href')
     url = urljoin(page_url, fragment)
-    description = ''
+    abstract = ''
     next_sibling = h2.find_next_sibling(text=None)
     while next_sibling:
         if next_sibling.name == 'p':
             next_sibling_text = next_sibling.text.replace('\n', ' \\n')
-            description += " {}".format(next_sibling_text)
+            abstract += " {}".format(next_sibling_text)
         elif next_sibling.name == 'div':
             pre = next_sibling.find('pre')
             if pre:
@@ -38,14 +38,14 @@ def build_article(h2_parent, page_url):
                     pre_text = pre.text.replace(original_span_text,
                                                 "{}".format(escaped_span_text))
                 pre_text = pre_text.replace('\n', '\\n')
-                description += "<pre><code>{0}</code></pre>".format(pre_text)
+                abstract += "<pre><code>{0}</code></pre>".format(pre_text)
         next_sibling = next_sibling.find_next_sibling(text=None)
-    description = description.lstrip()
-    description = description.strip('\n')
-    description = "<p>{0}</p>".format(description)
+    abstract = abstract.lstrip()
+    abstract = abstract.strip('\n')
+    abstract = "<p>{0}</p>".format(abstract)
     print("Title %s " % title)
     print("URL %s" % url)
-    print("Description %s" % description)
+    print("Description %s" % abstract)
     return [
             title,           # title
             'A',             # type is article
@@ -58,7 +58,7 @@ def build_article(h2_parent, page_url):
             '',              # external link
             '',              # no disambiguation
             '',              # images
-            description,     # abstract
+            abstract,        # abstract
             url              # anchor to specific section
         ]
 
