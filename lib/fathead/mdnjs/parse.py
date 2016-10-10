@@ -103,20 +103,19 @@ class MDNWriter(FatWriter):
         if mdn.codesnippet:
             code = '<pre><code>%s</code></pre>' % mdn.codesnippet
         if mdn.summary:
-            if abstract:
-                abstract += ': '
-            abstract += mdn.summary
-        abstract = code + abstract
+            abstract += '<p>' + mdn.summary + '</p>'
         if mdn.exampledesc:
-            abstract += '\n' + mdn.exampledesc
+            abstract += '<p>' + mdn.exampledesc + '</p>'
         if mdn.example:
-            code = '<pre><code>%s</code></pre>' % mdn.example
-            abstract += '\n' + code
+            code = '<pre><code>%s</code></pre>' % mdn.example    
+        
+        fatheadTemplate = '<section class="prog__container">' + abstract + code + "</section>"
+        
         d = {
           'title': mdn.title,
           'type': 'A',
           'source_url': mdn.url,
-          'abstract': abstract
+          'abstract': fatheadTemplate
         }
         self.writerow(d)
         self.articles_index.append(mdn.title.lower())
