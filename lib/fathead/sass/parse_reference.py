@@ -203,7 +203,7 @@ class DataOutput(object):
         with open('output.txt', 'a') as output_file:
             for data_element in self.data:
                 if data_element.get('name'):
-                    description = '<div class="prog__container">' + data_element.get('description') + '</div>'
+                    description = '<section class="prog__container">' + data_element.get('description') + '</section>'
                     url = data_element.get('url').encode('utf-8')
                     name = data_element.get('name').encode('utf-8')
                     redirect = data_element.get('redirects')

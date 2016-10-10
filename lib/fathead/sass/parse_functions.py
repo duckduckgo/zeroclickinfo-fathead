@@ -235,7 +235,7 @@ class DataParser(object):
                     abstract =  abstract + example
                 if parameter:
                      abstract = "%s%s"%(abstract, parameter)
-                abstract = '<div class="prog__container">' + abstract + "</div>"
+                abstract = '<section class="prog__container">' + abstract + "</section>"
                 url = self.create_url(anchor)
                 if function in functions:
                     index = functions.index(function)
