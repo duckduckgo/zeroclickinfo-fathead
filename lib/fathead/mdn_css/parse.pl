@@ -242,12 +242,12 @@ sub create_abstract {
     }
     $initial_value =~ s/\r?\n+/\\n/g if $initial_value;
     $code = _clean_code($code) if $code;
-    my $out = Mojo::DOM->new('<selection class="prog__container"></selection>');
-    $out->at('selection')->append_content("<p>$description</p>")
+    my $out = Mojo::DOM->new('<section class="prog__container"></section>');
+    $out->at('section')->append_content("<p>$description</p>")
       if $description;
-    $out->at('selection')->append_content("<p>$initial_value</p>")
+    $out->at('section')->append_content("<p>$initial_value</p>")
       if $initial_value;
-    $out->at('selection')->append_content("<pre><code>$code</code></pre>")
+    $out->at('section')->append_content("<pre><code>$code</code></pre>")
       if $code;
     return "$out";
 }
