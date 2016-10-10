@@ -10,4 +10,4 @@ output=${dir}/output.txt
 archive_name=${url##*/}
 index=${download_dir}/${archive_name%_rdocs.tgz}/index.html
 
-ruby -w "${script}" "${index}" > "${output}"
+ruby -w "${script}" "${index}" | sort > "${output}"
