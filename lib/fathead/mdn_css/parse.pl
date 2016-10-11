@@ -207,6 +207,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
         }
 
         $code = trim($code);
+        $code =~ s!\\0!\\\\0!;
 
         # say '';
         # say $code;
