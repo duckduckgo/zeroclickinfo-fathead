@@ -35,14 +35,19 @@ class Tag(object):
 
     def __str__(self):
         fields = [
-                self.name,              # $page
-                '',                     # $namespace
-                self.reference,         # $url
-                self.info,              # $description
-                self.example,  # $synopsis (code)
-                '',                     # $details
-                'A',                     # $type
-                ''                      # $lang
+                self.name,                                                       # unique name
+                'A',                                                             # type is article
+                '',                                                              # no redirect data
+                '',                                                              # ignore
+                '',                                                              # no categories
+                '',                                                              # ignore
+                '',                                                              # no related topics
+                '',                                                              # ignore
+                'http://html5doctor.com/element-index',                          # add an external link back to html home
+                '',                                                              # no disambiguation
+                '',                                                              # images
+                '<pre><code>' + self.example + '</code></pre><br>' + self.info,  # abstract
+                self.reference                                                   # url to doc
                 ]
 
         output = '%s' % ('\t'.join(fields))
@@ -80,8 +85,16 @@ class Parser(object):
                 reference = a_tags[0]['href']  # url for W3C
 
             reference = 'http://html5doctor.com/element-index/#' + name
-            new_tag = Tag(name, info, reference, example)
-            self.tags.append(new_tag)
+
+            # H1 - H6
+            if name == 'h1-h6':
+                for n in range(1, 7):
+                    new_tag = Tag('h' + str(n), info, reference, example)
+                    self.tags.append(new_tag)
+            else:
+                new_tag = Tag(name, info, reference, example)
+                self.tags.append(new_tag)
+
             logger.info('Tag parsed: %s' % new_tag.name)
 
 
