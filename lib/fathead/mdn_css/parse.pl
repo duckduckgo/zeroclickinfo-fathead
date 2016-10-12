@@ -373,11 +373,10 @@ sub _build_initial_value {
 # - escape newlines
 sub _clean_code {
     my ($code) = @_;
-    my $hs = HTML::Strip->new( emit_spaces => 0 );
+    my $hs = HTML::Strip->new( emit_spaces => 0, auto_reset => 1 );
     $code = $hs->parse($code);
     $code =~ tr/ / /s;
     $code =~ s/\r?\n/\\n/g;
-    $hs->eof;
     return $code;
 }
 
