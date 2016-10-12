@@ -200,7 +200,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
     if ( my $pre = $dom->at('#Syntax ~ pre') ) {
 
         if ( $pre->child_nodes->first->matches('code') ) {
-            $code = $pre->child_nodes->first->text;
+            $code = $pre->child_nodes->first->all_text;
         }
         else {
             $code = $pre->to_string;
