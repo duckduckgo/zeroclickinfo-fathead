@@ -243,14 +243,11 @@ sub create_abstract {
     }
     $initial_value =~ s/\r?\n+/\\n/g if $initial_value;
     $code = _clean_code($code) if $code;
-    my $out = Mojo::DOM->new('<section class="prog__container"></section>');
-    $out->at('section')->append_content("<p>$description</p>")
-      if $description;
-    $out->at('section')->append_content("<p>$initial_value</p>")
-      if $initial_value;
-    $out->at('section')->append_content("<pre><code>$code</code></pre>")
-      if $code;
-    return "$out";
+    my $out = "<p>$description</p>" if $description;
+    $out .= "<p>$initial_value</p>"         if $initial_value;
+    $out .= "<pre><code>$code</code></pre>" if $code;
+    $out = sprintf '<section class="prog__container">%s</section>', $out;
+    return $out;
 }
 
 # Build HTML string containing Initial Value data
