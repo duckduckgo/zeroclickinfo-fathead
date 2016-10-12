@@ -9,13 +9,11 @@ SOUP_HOME = 'https://www.crummy.com/software/BeautifulSoup/bs4/doc/'
 class SoupData(object):
     """
     Object responsible for loading raw HTML data from BeautifulSoup doc:
-
     """
 
     def __init__(self):
         """
         Initialize SoupData object. Load data from HTML.
-
         """
         self.SOUP_HTML = ""
         self.load_data()
@@ -23,7 +21,6 @@ class SoupData(object):
     def load_data(self):
         """
         Open the HTML file and load it into the object.
-
         """
         with open('download/index.html', 'r') as data_file:
             self.SOUP_HTML = data_file.read()
@@ -31,14 +28,12 @@ class SoupData(object):
     def get_raw_data(self):
         """
         Returns: The raw HTML that was loaded.
-
         """
         return self.SOUP_HTML
 
 class SoupDataParser(object):
     """
     Object responsible for parsing the raw HTML that contains the beautifulsoup data
-
     """
 
     def __init__(self, raw_data):
@@ -61,7 +56,6 @@ class SoupDataParser(object):
         Find the name and anchor for a given section
         Args:
             section: A section of parsed HTML
-
         Returns:
             name: Name of the section
             anchor: Anchor tag to use when linking back to the docs (ie #tags)
@@ -78,13 +72,20 @@ class SoupDataParser(object):
         Get the first paragraph for display
         Args:
             section: A section of parsed HTML
-
         Returns:
             First paragraph in the HTML
         """
-        data = section.find('p')
+        data = section.find_all('p')
         if data:
-            return data.text.replace('\n', ' ').replace('  ', ' ')
+            arg = ''
+            for index,d in enumerate(data):
+                data[index] = d.text.replace('\n', ' ').replace('  ', ' ')
+                if data[index].startswith('Signature'):
+                    arg += '<pre><code>{}</pre></code><br>'.format(data[index])
+                else:
+                    arg += '<p>{}</p>'.format(data[index])
+                    break
+            return arg
         return None
 
     def parse_code_from_data(self, section):
@@ -92,7 +93,6 @@ class SoupDataParser(object):
         Look for example code block to output
         Args:
             section: A section of parsed HTML
-
         Returns:
             Formatted code string
         """
@@ -151,10 +151,10 @@ class SoupDataOutput(object):
 
         with open('output.txt', 'w+') as output_file:
             for data_element in self.data:
-                name = data_element.get('name')
+                name = data_element.get('name').lower()
                 code = data_element.get('code')
                 first_paragraph = data_element.get('first_paragraph')
-                abstract = '{}{}{}'.format(code, '<br>' if code else '', first_paragraph)
+                abstract = '<div class="prog__container">{}{}{}</div>'.format(code, '<br>' if code else '', first_paragraph)
                 url = '{}{}'.format(SOUP_HOME, data_element.get('anchor'))
                 list_of_data = [
                     name,        #unique name
