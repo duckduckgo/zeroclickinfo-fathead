@@ -21,7 +21,7 @@ def build_article(h2_parent, page_url):
     while next_sibling:
         if next_sibling.name == 'p':
             next_sibling_text = next_sibling.text.replace('\n', ' ')
-            abstract += ' {}'.format(next_sibling_text)
+            abstract += '<p>{}</p>'.format(next_sibling_text)
         elif next_sibling.name == 'div':
             pre = next_sibling.find('pre')
             if pre:
