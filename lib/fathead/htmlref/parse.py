@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from bs4 import BeautifulSoup
+from os import listdir
 import logging
-import cgi
 import re
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
-
 
 def replace_all(text, terms):
     """ Replaces all terms contained
@@ -20,29 +19,51 @@ def replace_all(text, terms):
 class Tag(object):
     """ Contains informations about
     a HTML tag """
-    def __init__(self, name, info, reference, example):
+    def __init__(self, name, info, reference, example, see_also):
         self.name = name
         self.info = info
         self.reference = reference
-        
-        # Remove excess padding around synopsis
+        self.see_also = see_also
+
+        # Remove excess padding around code snippet
         self.example = re.sub('^\\n', '', example)
         self.example = re.sub('\\n$', '', self.example)
 
-        self.example = replace_all(self.example, {'\n': '\\n',
-                                             '\t': '\\t',
-                                             '\r': ''})
+        # replace all newline and horizontal tab characters
+        terms = {'\n': '\\n', '\t': '\\t', '\r': ''}
+        self.info = replace_all(self.info, terms)
+        self.example = replace_all(self.example, terms)
+
+    def make_abstract(self):
+        """ Creates the abstract using
+        the new fathead template elements """
+        abstract = ''
+
+        if self.example:
+            abstract += '<pre><code>' + self.example + '</pre></code>'
+
+        if self.info:
+            abstract += '<p>' + self.info + '</p>'
+
+        abstract = '<div class="prog__container">' + abstract + '</div>'
+
+        return abstract
 
     def __str__(self):
         fields = [
-                self.name,              # $page
-                '',                     # $namespace
-                self.reference,         # $url
-                self.info,              # $description
-                self.example,  # $synopsis (code)
-                '',                     # $details
-                'A',                     # $type
-                ''                      # $lang
+                self.name,                  # Title
+                'A',                        # Article Type
+                '',                         # No Redirect
+                '',                         # Ignore
+                '',                         # Categories
+                '',                         # Ignore
+                '\\\\n'.join(self.see_also),# Related Topics
+                '',                         # Ignore
+                '',                         # External Links
+                '',                         # For Disambiguation Pages only
+                '',                         # Image
+                self.make_abstract(),       # Abstract
+                self.reference              # URL
                 ]
 
         output = '%s' % ('\t'.join(fields))
@@ -53,34 +74,51 @@ class Tag(object):
 class Parser(object):
     """ Parses a HTML file to get
     all tag informations inside it """
-    def __init__(self, input='download/index.html'):
-        self.soup = BeautifulSoup(open(input), from_encoding='utf-8')
+    def __init__(self, input='download/'):
+        self.base_dir = input
+        self.files = listdir(input)
 
     def get_tags(self):
         """ Gets all tags defined in 'dl' tags """
         self.tags = []
-        for tag in self.soup.find_all('dl'):
-            name = tag.dt.contents[0]
+        for file in self.files:
+            name = file
+            file_contents = open(self.base_dir + name).read()
+            soup = BeautifulSoup(file_contents, 'html5lib')
+            article = soup.article
 
             # getting info about tag
             info = ''
-            for p in tag.dd.find_all('p'):
-                info += p.getText() + ' '
+            for p in article.find_all('p', recursive = False):
+                text = p.getText()
+                if text:
+                    info = text
+                    break
 
-            # getting reference link and code snippet
-            a_tags = tag.dd.find_all('a')
-            example_id = a_tags[1]['href'].replace('#', '')  # code snippet
-            example = self.soup.find('div', {'id': example_id}).getText()
+            if not info:
+                info = soup.find('meta', {'property' : 'og:description'}).get('content')
 
-            # url reference (from HTML5Doctor if exists)
-            reference = ''
-            try:
-                reference = tag.dt.span.a['href']  # url for HTML5Doctor
-            except:
-                reference = a_tags[0]['href']  # url for W3C
+            # getting code snippet
+            example = ''
+            pre_tag = article.pre
+            if pre_tag:
+                example = pre_tag.getText()
 
-            reference = 'http://html5doctor.com/element-index/#' + name
-            new_tag = Tag(name, info, reference, example)
+            # getting the see also tags.
+            see_also = []
+            see_also_heading = article.find('h2', {'id' : 'See_also'})
+            if see_also_heading and see_also_heading.find_next('ul'):
+                for li in see_also_heading.find_next('ul').find_all('li'):
+                    for a_tag in li.find_all('a'):
+                        href = a_tag['href']
+                        lang = href.split('/')[-3]
+                        if lang == "HTML":
+                            elem_name = href.split('/')[-1]
+                            see_also.append("[[" + elem_name + "]]")
+
+            # getting reference link for the tag
+            reference = 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/' + name
+            new_tag = Tag(name, info, reference, example, see_also)
             self.tags.append(new_tag)
             logger.info('Tag parsed: %s' % new_tag.name)
 
