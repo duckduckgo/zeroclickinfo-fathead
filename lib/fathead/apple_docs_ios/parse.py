@@ -39,7 +39,7 @@ url = "https://developer.apple.com/library/ios/"
 
 # Format the output as specified in https://duck.co/duckduckhack/fathead_overview
 def generate_output(result):
-    abstract_format = "{name}\tA\t\t\t\t\t\t\t\t\t\t{abstract}\t{path}\n"
+    abstract_format = '{name}\tA\t\t\t\t\t\t\t\t\t\t<section class="prog__container">{abstract}</section>\t{path}\n'
     redirect_format = "{alt_name}\tR\t{name}\t\t\t\t\t\t\t\t\t\t\n"
 
     f = open('output.txt', 'a')
@@ -84,7 +84,7 @@ def create_fathead(database):
         # This is the meta data that we're going to attach later.
         pack = {
             "name": name,
-            "abstract": abstract or "",
+            "abstract": '<p>' + abstract + '</p>' or "",
             "path": url + path + "#" + anchor,
             "original": abstract or "",
             "platform": "iOS",
@@ -98,7 +98,7 @@ def create_fathead(database):
         # Process the abstract
         # Classes have irrelevant snippets so we're not adding that in
         if tokentype != 12:
-            pack['abstract'] = pack['abstract'] + " " + pack['snippet']
+            pack['abstract'] = pack['abstract'] + pack['snippet']
         pack['abstract'] = pack['abstract'].replace("\n", "\\n")
 
         # Remove function parenthesis
