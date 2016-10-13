@@ -70,7 +70,7 @@ def create_fathead(database):
         # Process the abstract
         # Classes have irrelevant snippets so we're not adding that in
         if tokentype != 12:
-            pack['abstract'] = pack['abstract'] + " " + pack['snippet']
+            pack['abstract'] = pack['abstract'] + pack['snippet']
         pack['abstract'] = pack['abstract'].replace("\n", "\\n")
 
         # Remove function parenthesis
