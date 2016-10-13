@@ -11,7 +11,7 @@ data = "download/watchOS.docset/Contents/Resources/docSet.dsidx"
 url = "https://developer.apple.com/library/content/"
 
 def generate_output(result):
-    abstract_format = "{name}\tA\t\t\t\t\t\t\t\t\t\t{abstract}\t{path}\n"
+    abstract_format = '{name}\tA\t\t\t\t\t\t\t\t\t\t<section class="prog__container">{abstract}</section>\t{path}\n'
     redirect_format = "{alt_name}\tR\t{name}\t\t\t\t\t\t\t\t\t\t\n"
 
     f = open('output.txt', 'a')
@@ -56,7 +56,7 @@ def create_fathead(database):
         # This is the meta data that we're going to attach later.
         pack = {
             "name": name,
-            "abstract": abstract or "",
+            "abstract": '<p>' + abstract + '</p>' or "",
             "path": url + path + "#" + anchor,
             "original": abstract or "",
             "platform": "watchOS",
