@@ -21,7 +21,7 @@ def getClass(directory, fname):
 
 def getDocs(filename):
   if filename.endswith('.html') and 'package-' not in filename and 'doc-files' not in filename:
-    content = BeautifulSoup(getcontent(filename))
+    content = BeautifulSoup(getcontent(filename), 'html.parser')
     classname = content.find_all('h2')[0].string
     block = content.find_all('div', 'block', limit=1)
     description = ""
@@ -68,7 +68,7 @@ def concat(clazz, description, url):
   image = ''
   abstract = description.replace("\n", "\\n").replace("\t", "\\t") or "No abstract found"
   url = url or "No URL found"
-  
+
   data = [title, typez, redirect, four, categories, six, related_topics, eight, external_links, ten, image, abstract, url]
   line = "\t".join(data) + "\n"
   return line
