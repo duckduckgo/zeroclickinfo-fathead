@@ -1,0 +1,393 @@
+redis.redis	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nclass redis.Redis(host='localhost', port=6379, db=0, password=None, socket_timeout=None, socket_connect_timeout=None, socket_keepalive=None, socket_keepalive_options=None, connection_pool=None, unix_socket_path=None, encoding='utf-8', encoding_errors='strict', charset=None, errors=None, decode_responses=False, retry_on_timeout=False, ssl=False, ssl_keyfile=None, ssl_certfile=None, ssl_cert_reqs=None, ssl_ca_certs=None, max_connections=None)</code></pre><br><p>Provides backwards compatibility with older versions of redis-py that
+changed arguments to some commands to be more Pythonic, sane, or by
+accident.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Redis
+redis.redis.lrem	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nlrem(name, value, num=0)</code></pre><br><p>Remove the first num occurrences of elements equal to value
+from the list stored at name.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Redis.lrem
+redis.redis.pipeline	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npipeline(transaction=True, shard_hint=None)</code></pre><br><p>Return a new pipeline object that can queue multiple commands for
+later execution. transaction indicates whether all commands
+should be executed atomically. Apart from making a group of operations
+atomic, pipelines are useful for reducing the back-and-forth overhead
+between the client and server.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Redis.pipeline
+redis.redis.setex	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsetex(name, value, time)</code></pre><br><p>Set the value of key name to value that expires in time
+seconds. time can be represented by an integer or a Python
+timedelta object.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Redis.setex
+redis.redis.zadd	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzadd(name, *args, **kwargs)</code></pre><br><p>NOTE: The order of arguments differs from that of the official ZADD
+command. For backwards compatability, this method accepts arguments
+in the form of name1, score1, name2, score2, while the official Redis
+documents expects score1, name1, score2, name2.</p><br><p>If you’re looking to use the standard syntax, consider using the
+StrictRedis class. See the API Reference section of the docs for more
+information.</p><br><p>Set any number of element-name, score pairs to the key name. Pairs
+can be specified in two ways:</p><br><p>As *args, in the form of: name1, score1, name2, score2, ...
+or as **kwargs, in the form of: name1=score1, name2=score2, ...</p><br><p>The following example would add four values to the ‘my-key’ key:
+redis.zadd(‘my-key’, ‘name1’, 1.1, ‘name2’, 2.2, name3=3.3, name4=4.4)</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Redis.zadd
+redis.strictredis	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nclass redis.StrictRedis(host='localhost', port=6379, db=0, password=None, socket_timeout=None, socket_connect_timeout=None, socket_keepalive=None, socket_keepalive_options=None, connection_pool=None, unix_socket_path=None, encoding='utf-8', encoding_errors='strict', charset=None, errors=None, decode_responses=False, retry_on_timeout=False, ssl=False, ssl_keyfile=None, ssl_certfile=None, ssl_cert_reqs=None, ssl_ca_certs=None, max_connections=None)</code></pre><br><p>Implementation of the Redis protocol.</p><br><p>This abstract class provides a Python interface to all Redis commands
+and an implementation of the Redis protocol.</p><br><p>Connection and Pipeline derive from this, implementing how
+the commands are sent and received to the Redis server</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis
+redis.strictredis.append	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nappend(key, value)</code></pre><br><p>Appends the string value to the value at key. If key
+doesn’t already exist, create it with a value of value.
+Returns the new length of the value at key.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.append
+redis.strictredis.bgrewriteaof	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nbgrewriteaof()</code></pre><br><p>Tell the Redis server to rewrite the AOF file from data in memory.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.bgrewriteaof
+redis.strictredis.bgsave	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nbgsave()</code></pre><br><p>Tell the Redis server to save its data to disk.  Unlike save(),
+this method is asynchronous and returns immediately.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.bgsave
+redis.strictredis.bitcount	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nbitcount(key, start=None, end=None)</code></pre><br><p>Returns the count of set bits in the value of key.  Optional
+start and end paramaters indicate which bytes to consider</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.bitcount
+redis.strictredis.bitop	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nbitop(operation, dest, *keys)</code></pre><br><p>Perform a bitwise operation using operation between keys and
+store the result in dest.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.bitop
+redis.strictredis.bitpos	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nbitpos(key, bit, start=None, end=None)</code></pre><br><p>Return the position of the first bit set to 1 or 0 in a string.
+start and end difines search range. The range is interpreted
+as a range of bytes and not a range of bits, so start=0 and end=2
+means to look at the first three bytes.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.bitpos
+redis.strictredis.blpop	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nblpop(keys, timeout=0)</code></pre><br><p>LPOP a value off of the first non-empty list
+named in the keys list.</p><br><p>If none of the lists in keys has a value to LPOP, then block
+for timeout seconds, or until a value gets pushed on to one
+of the lists.</p><br><p>If timeout is 0, then block indefinitely.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.blpop
+redis.strictredis.brpop	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nbrpop(keys, timeout=0)</code></pre><br><p>RPOP a value off of the first non-empty list
+named in the keys list.</p><br><p>If none of the lists in keys has a value to LPOP, then block
+for timeout seconds, or until a value gets pushed on to one
+of the lists.</p><br><p>If timeout is 0, then block indefinitely.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.brpop
+redis.strictredis.brpoplpush	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nbrpoplpush(src, dst, timeout=0)</code></pre><br><p>Pop a value off the tail of src, push it on the head of dst
+and then return it.</p><br><p>This command blocks until a value is in src or until timeout
+seconds elapse, whichever is first. A timeout value of 0 blocks
+forever.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.brpoplpush
+redis.strictredis.client_getname	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nclient_getname()</code></pre><br><p>Returns the current connection name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.client_getname
+redis.strictredis.client_kill	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nclient_kill(address)</code></pre><br><p>Disconnects the client at address (ip:port)</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.client_kill
+redis.strictredis.client_list	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nclient_list()</code></pre><br><p>Returns a list of currently connected clients</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.client_list
+redis.strictredis.client_setname	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nclient_setname(name)</code></pre><br><p>Sets the current connection name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.client_setname
+redis.strictredis.config_get	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nconfig_get(pattern='*')</code></pre><br><p>Return a dictionary of configuration based on the pattern</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.config_get
+redis.strictredis.config_resetstat	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nconfig_resetstat()</code></pre><br><p>Reset runtime statistics</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.config_resetstat
+redis.strictredis.config_rewrite	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nconfig_rewrite()</code></pre><br><p>Rewrite config file with the minimal change to reflect running config</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.config_rewrite
+redis.strictredis.config_set	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nconfig_set(name, value)</code></pre><br><p>Set config item name with value</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.config_set
+redis.strictredis.dbsize	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ndbsize()</code></pre><br><p>Returns the number of keys in the current database</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.dbsize
+redis.strictredis.debug_object	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ndebug_object(key)</code></pre><br><p>Returns version specific meta information about a given key</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.debug_object
+redis.strictredis.decr	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ndecr(name, amount=1)</code></pre><br><p>Decrements the value of key by amount.  If no key exists,
+the value will be initialized as 0 - amount</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.decr
+redis.strictredis.delete	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ndelete(*names)</code></pre><br><p>Delete one or more keys specified by names</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.delete
+redis.strictredis.dump	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ndump(name)</code></pre><br><p>Return a serialized version of the value stored at the specified key.
+If key does not exist a nil bulk reply is returned.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.dump
+redis.strictredis.echo	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\necho(value)</code></pre><br><p>Echo the string back from the server</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.echo
+redis.strictredis.eval	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\neval(script, numkeys, *keys_and_args)</code></pre><br><p>Execute the Lua script, specifying the numkeys the script
+will touch and the key names and argument values in keys_and_args.
+Returns the result of the script.</p><br><p>In practice, use the object returned by register_script. This
+function exists purely for Redis API completion.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.eval
+redis.strictredis.evalsha	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nevalsha(sha, numkeys, *keys_and_args)</code></pre><br><p>Use the sha to execute a Lua script already registered via EVAL
+or SCRIPT LOAD. Specify the numkeys the script will touch and the
+key names and argument values in keys_and_args. Returns the result
+of the script.</p><br><p>In practice, use the object returned by register_script. This
+function exists purely for Redis API completion.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.evalsha
+redis.strictredis.execute_command	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nexecute_command(*args, **options)</code></pre><br><p>Execute a command and return a parsed response</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.execute_command
+redis.strictredis.exists	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nexists(name)</code></pre><br><p>Returns a boolean indicating whether key name exists</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.exists
+redis.strictredis.expire	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nexpire(name, time)</code></pre><br><p>Set an expire flag on key name for time seconds. time
+can be represented by an integer or a Python timedelta object.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.expire
+redis.strictredis.expireat	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nexpireat(name, when)</code></pre><br><p>Set an expire flag on key name. when can be represented
+as an integer indicating unix time or a Python datetime object.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.expireat
+redis.strictredis.flushall	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nflushall()</code></pre><br><p>Delete all keys in all databases on the current host</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.flushall
+redis.strictredis.flushdb	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nflushdb()</code></pre><br><p>Delete all keys in the current database</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.flushdb
+redis.strictredis.geoadd	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ngeoadd(name, *values)</code></pre><br><p>Add the specified geospatial items to the specified key identified
+by the name argument. The Geospatial items are given as ordered
+members of the values argument, each item or place is formed by
+the triad latitude, longitude and name.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.geoadd
+redis.strictredis.geodist	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ngeodist(name, place1, place2, unit=None)</code></pre><br><p>Return the distance between place1 and place2 members of the
+name key.
+The units must be one of the following : m, km mi, ft. By default
+meters are used.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.geodist
+redis.strictredis.geohash	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ngeohash(name, *values)</code></pre><br><p>Return the geo hash string for each item of values members of
+the specified key identified by the ``name``argument.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.geohash
+redis.strictredis.geopos	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ngeopos(name, *values)</code></pre><br><p>Return the positions of each item of values as members of
+the specified key identified by the ``name``argument. Each position
+is represented by the pairs lat and lon.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.geopos
+redis.strictredis.georadius	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ngeoradius(name, longitude, latitude, radius, unit=None, withdist=False, withcoord=False, withhash=False, count=None, sort=None, store=None, store_dist=None)</code></pre><br><p>Return the members of the specified key identified by the
+name``argument which are within the borders of the area specified
+with the ``latitude and longitude location and the maximum
+distance from the center specified by the radius value.</p><br><p>The units must be one of the following : m, km mi, ft. By default</p><br><p>withdist indicates to return the distances of each place.</p><br><p>withcoord indicates to return the latitude and longitude of
+each place.</p><br><p>withhash indicates to return the geohash string of each place.</p><br><p>count indicates to return the number of elements up to N.</p><br><p>sort indicates to return the places in a sorted way, ASC for
+nearest to fairest and DESC for fairest to nearest.</p><br><p>store indicates to save the places names in a sorted set named
+with a specific key, each element of the destination sorted set is
+populated with the score got from the original geo sorted set.</p><br><p>store_dist indicates to save the places names in a sorted set
+named with a specific key, instead of store the sorted set
+destination score is set with the distance.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.georadius
+redis.strictredis.georadiusbymember	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ngeoradiusbymember(name, member, radius, unit=None, withdist=False, withcoord=False, withhash=False, count=None, sort=None, store=None, store_dist=None)</code></pre><br><p>This command is exactly like georadius with the sole difference
+that instead of taking, as the center of the area to query, a longitude
+and latitude value, it takes the name of a member already existing
+inside the geospatial index represented by the sorted set.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.georadiusbymember
+redis.strictredis.get	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nget(name)</code></pre><br><p>Return the value at key name, or None if the key doesn’t exist</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.get
+redis.strictredis.getbit	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ngetbit(name, offset)</code></pre><br><p>Returns a boolean indicating the value of offset in name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.getbit
+redis.strictredis.getrange	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ngetrange(key, start, end)</code></pre><br><p>Returns the substring of the string value stored at key,
+determined by the offsets start and end (both are inclusive)</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.getrange
+redis.strictredis.getset	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ngetset(name, value)</code></pre><br><p>Sets the value at key name to value
+and returns the old value at key name atomically.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.getset
+redis.strictredis.hdel	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhdel(name, *keys)</code></pre><br><p>Delete keys from hash name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hdel
+redis.strictredis.hexists	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhexists(name, key)</code></pre><br><p>Returns a boolean indicating if key exists within hash name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hexists
+redis.strictredis.hget	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhget(name, key)</code></pre><br><p>Return the value of key within the hash name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hget
+redis.strictredis.hgetall	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhgetall(name)</code></pre><br><p>Return a Python dict of the hash’s name/value pairs</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hgetall
+redis.strictredis.hincrby	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhincrby(name, key, amount=1)</code></pre><br><p>Increment the value of key in hash name by amount</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hincrby
+redis.strictredis.hincrbyfloat	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhincrbyfloat(name, key, amount=1.0)</code></pre><br><p>Increment the value of key in hash name by floating amount</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hincrbyfloat
+redis.strictredis.hkeys	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhkeys(name)</code></pre><br><p>Return the list of keys within hash name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hkeys
+redis.strictredis.hlen	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhlen(name)</code></pre><br><p>Return the number of elements in hash name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hlen
+redis.strictredis.hmget	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhmget(name, keys, *args)</code></pre><br><p>Returns a list of values ordered identically to keys</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hmget
+redis.strictredis.hmset	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhmset(name, mapping)</code></pre><br><p>Set key to value within hash name for each corresponding
+key and value from the mapping dict.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hmset
+redis.strictredis.hscan	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhscan(name, cursor=0, match=None, count=None)</code></pre><br><p>Incrementally return key/value slices in a hash. Also return a cursor
+indicating the scan position.</p><br><p>match allows for filtering the keys by pattern</p><br><p>count allows for hint the minimum number of returns</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hscan
+redis.strictredis.hscan_iter	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhscan_iter(name, match=None, count=None)</code></pre><br><p>Make an iterator using the HSCAN command so that the client doesn’t
+need to remember the cursor position.</p><br><p>match allows for filtering the keys by pattern</p><br><p>count allows for hint the minimum number of returns</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hscan_iter
+redis.strictredis.hset	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhset(name, key, value)</code></pre><br><p>Set key to value within hash name
+Returns 1 if HSET created a new field, otherwise 0</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hset
+redis.strictredis.hsetnx	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhsetnx(name, key, value)</code></pre><br><p>Set key to value within hash name if key does not
+exist.  Returns 1 if HSETNX created a field, otherwise 0.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hsetnx
+redis.strictredis.hvals	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nhvals(name)</code></pre><br><p>Return the list of values within hash name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.hvals
+redis.strictredis.incr	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nincr(name, amount=1)</code></pre><br><p>Increments the value of key by amount.  If no key exists,
+the value will be initialized as amount</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.incr
+redis.strictredis.incrby	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nincrby(name, amount=1)</code></pre><br><p>Increments the value of key by amount.  If no key exists,
+the value will be initialized as amount</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.incrby
+redis.strictredis.incrbyfloat	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nincrbyfloat(name, amount=1.0)</code></pre><br><p>Increments the value at key name by floating amount.
+If no key exists, the value will be initialized as amount</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.incrbyfloat
+redis.strictredis.info	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ninfo(section=None)</code></pre><br><p>Returns a dictionary containing information about the Redis server</p><br><p>The section option can be used to select a specific section
+of information</p><br><p>The section option is not supported by older versions of Redis Server,
+and will generate ResponseError</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.info
+redis.strictredis.keys	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nkeys(pattern='*')</code></pre><br><p>Returns a list of keys matching pattern</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.keys
+redis.strictredis.lastsave	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nlastsave()</code></pre><br><p>Return a Python datetime object representing the last time the
+Redis database was saved to disk</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.lastsave
+redis.strictredis.lindex	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nlindex(name, index)</code></pre><br><p>Return the item from list name at position index</p><br><p>Negative indexes are supported and will return an item at the
+end of the list</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.lindex
+redis.strictredis.linsert	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nlinsert(name, where, refvalue, value)</code></pre><br><p>Insert value in list name either immediately before or after
+[where] refvalue</p><br><p>Returns the new length of the list on success or -1 if refvalue
+is not in the list.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.linsert
+redis.strictredis.llen	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nllen(name)</code></pre><br><p>Return the length of the list name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.llen
+redis.strictredis.lock	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nlock(name, timeout=None, sleep=0.1, blocking_timeout=None, lock_class=None, thread_local=True)</code></pre><br><p>Return a new Lock object using key name that mimics
+the behavior of threading.Lock.</p><br><p>If specified, timeout indicates a maximum life for the lock.
+By default, it will remain locked until release() is called.</p><br><p>sleep indicates the amount of time to sleep per loop iteration
+when the lock is in blocking mode and another client is currently
+holding the lock.</p><br><p>blocking_timeout indicates the maximum amount of time in seconds to
+spend trying to acquire the lock. A value of None indicates
+continue trying forever. blocking_timeout can be specified as a
+float or integer, both representing the number of seconds to wait.</p><br><p>lock_class forces the specified lock implementation.</p><br><p>thread_local indicates whether the lock token is placed in
+thread-local storage. By default, the token is placed in thread local
+storage so that a thread only sees its token, not a token set by
+another thread. Consider the following timeline:</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.lock
+redis.strictredis.lpop	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nlpop(name)</code></pre><br><p>Remove and return the first item of the list name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.lpop
+redis.strictredis.lpush	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nlpush(name, *values)</code></pre><br><p>Push values onto the head of the list name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.lpush
+redis.strictredis.lpushx	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nlpushx(name, value)</code></pre><br><p>Push value onto the head of the list name if name exists</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.lpushx
+redis.strictredis.lrange	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nlrange(name, start, end)</code></pre><br><p>Return a slice of the list name between
+position start and end</p><br><p>start and end can be negative numbers just like
+Python slicing notation</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.lrange
+redis.strictredis.lrem	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nlrem(name, count, value)</code></pre><br><p>Remove the first count occurrences of elements equal to value
+from the list stored at name.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.lrem
+redis.strictredis.lset	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nlset(name, index, value)</code></pre><br><p>Set position of list name to value</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.lset
+redis.strictredis.ltrim	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nltrim(name, start, end)</code></pre><br><p>Trim the list name, removing all values not within the slice
+between start and end</p><br><p>start and end can be negative numbers just like
+Python slicing notation</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.ltrim
+redis.strictredis.mget	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nmget(keys, *args)</code></pre><br><p>Returns a list of values ordered identically to keys</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.mget
+redis.strictredis.move	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nmove(name, db)</code></pre><br><p>Moves the key name to a different Redis database db</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.move
+redis.strictredis.mset	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nmset(*args, **kwargs)</code></pre><br><p>Sets key/values based on a mapping. Mapping can be supplied as a single
+dictionary argument or as kwargs.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.mset
+redis.strictredis.msetnx	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nmsetnx(*args, **kwargs)</code></pre><br><p>Sets key/values based on a mapping if none of the keys are already set.
+Mapping can be supplied as a single dictionary argument or as kwargs.
+Returns a boolean indicating if the operation was successful.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.msetnx
+redis.strictredis.object	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nobject(infotype, key)</code></pre><br><p>Return the encoding, idletime, or refcount about the key</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.object
+redis.strictredis.parse_response	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nparse_response(connection, command_name, **options)</code></pre><br><p>Parses a response from the Redis server</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.parse_response
+redis.strictredis.persist	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npersist(name)</code></pre><br><p>Removes an expiration on name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.persist
+redis.strictredis.pexpire	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npexpire(name, time)</code></pre><br><p>Set an expire flag on key name for time milliseconds.
+time can be represented by an integer or a Python timedelta
+object.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.pexpire
+redis.strictredis.pexpireat	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npexpireat(name, when)</code></pre><br><p>Set an expire flag on key name. when can be represented
+as an integer representing unix time in milliseconds (unix time * 1000)
+or a Python datetime object.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.pexpireat
+redis.strictredis.pfadd	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npfadd(name, *values)</code></pre><br><p>Adds the specified elements to the specified HyperLogLog.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.pfadd
+redis.strictredis.pfcount	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npfcount(*sources)</code></pre><br><p>Return the approximated cardinality of
+the set observed by the HyperLogLog at key(s).</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.pfcount
+redis.strictredis.pfmerge	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npfmerge(dest, *sources)</code></pre><br><p>Merge N different HyperLogLogs into a single one.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.pfmerge
+redis.strictredis.ping	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nping()</code></pre><br><p>Ping the Redis server</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.ping
+redis.strictredis.pipeline	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npipeline(transaction=True, shard_hint=None)</code></pre><br><p>Return a new pipeline object that can queue multiple commands for
+later execution. transaction indicates whether all commands
+should be executed atomically. Apart from making a group of operations
+atomic, pipelines are useful for reducing the back-and-forth overhead
+between the client and server.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.pipeline
+redis.strictredis.psetex	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npsetex(name, time_ms, value)</code></pre><br><p>Set the value of key name to value that expires in time_ms
+milliseconds. time_ms can be represented by an integer or a Python
+timedelta object</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.psetex
+redis.strictredis.pttl	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npttl(name)</code></pre><br><p>Returns the number of milliseconds until the key name will expire</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.pttl
+redis.strictredis.publish	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npublish(channel, message)</code></pre><br><p>Publish message on channel.
+Returns the number of subscribers the message was delivered to.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.publish
+redis.strictredis.pubsub	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npubsub(**kwargs)</code></pre><br><p>Return a Publish/Subscribe object. With this object, you can
+subscribe to channels and listen for messages that get published to
+them.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.pubsub
+redis.strictredis.randomkey	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nrandomkey()</code></pre><br><p>Returns the name of a random key</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.randomkey
+redis.strictredis.register_script	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nregister_script(script)</code></pre><br><p>Register a Lua script specifying the keys it will touch.
+Returns a Script object that is callable and hides the complexity of
+deal with scripts, keys, and shas. This is the preferred way to work
+with Lua scripts.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.register_script
+redis.strictredis.rename	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nrename(src, dst)</code></pre><br><p>Rename key src to dst</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.rename
+redis.strictredis.renamenx	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nrenamenx(src, dst)</code></pre><br><p>Rename key src to dst if dst doesn’t already exist</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.renamenx
+redis.strictredis.restore	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nrestore(name, ttl, value, replace=False)</code></pre><br><p>Create a key using the provided serialized value, previously obtained
+using DUMP.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.restore
+redis.strictredis.rpop	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nrpop(name)</code></pre><br><p>Remove and return the last item of the list name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.rpop
+redis.strictredis.rpoplpush	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nrpoplpush(src, dst)</code></pre><br><p>RPOP a value off of the src list and atomically LPUSH it
+on to the dst list.  Returns the value.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.rpoplpush
+redis.strictredis.rpush	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nrpush(name, *values)</code></pre><br><p>Push values onto the tail of the list name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.rpush
+redis.strictredis.rpushx	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nrpushx(name, value)</code></pre><br><p>Push value onto the tail of the list name if name exists</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.rpushx
+redis.strictredis.sadd	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsadd(name, *values)</code></pre><br><p>Add value(s) to set name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sadd
+redis.strictredis.save	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsave()</code></pre><br><p>Tell the Redis server to save its data to disk,
+blocking until the save is complete</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.save
+redis.strictredis.scan	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nscan(cursor=0, match=None, count=None)</code></pre><br><p>Incrementally return lists of key names. Also return a cursor
+indicating the scan position.</p><br><p>match allows for filtering the keys by pattern</p><br><p>count allows for hint the minimum number of returns</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.scan
+redis.strictredis.scan_iter	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nscan_iter(match=None, count=None)</code></pre><br><p>Make an iterator using the SCAN command so that the client doesn’t
+need to remember the cursor position.</p><br><p>match allows for filtering the keys by pattern</p><br><p>count allows for hint the minimum number of returns</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.scan_iter
+redis.strictredis.scard	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nscard(name)</code></pre><br><p>Return the number of elements in set name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.scard
+redis.strictredis.script_exists	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nscript_exists(*args)</code></pre><br><p>Check if a script exists in the script cache by specifying the SHAs of
+each script as args. Returns a list of boolean values indicating if
+if each already script exists in the cache.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.script_exists
+redis.strictredis.script_flush	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nscript_flush()</code></pre><br><p>Flush all scripts from the script cache</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.script_flush
+redis.strictredis.script_kill	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nscript_kill()</code></pre><br><p>Kill the currently executing Lua script</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.script_kill
+redis.strictredis.script_load	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nscript_load(script)</code></pre><br><p>Load a Lua script into the script cache. Returns the SHA.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.script_load
+redis.strictredis.sdiff	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsdiff(keys, *args)</code></pre><br><p>Return the difference of sets specified by keys</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sdiff
+redis.strictredis.sdiffstore	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsdiffstore(dest, keys, *args)</code></pre><br><p>Store the difference of sets specified by keys into a new
+set named dest.  Returns the number of keys in the new set.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sdiffstore
+redis.strictredis.sentinel	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsentinel(*args)</code></pre><br><p>Redis Sentinel’s SENTINEL command.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sentinel
+redis.strictredis.sentinel_get_master_addr_by_name	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsentinel_get_master_addr_by_name(service_name)</code></pre><br><p>Returns a (host, port) pair for the given service_name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sentinel_get_master_addr_by_name
+redis.strictredis.sentinel_master	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsentinel_master(service_name)</code></pre><br><p>Returns a dictionary containing the specified masters state.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sentinel_master
+redis.strictredis.sentinel_masters	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsentinel_masters()</code></pre><br><p>Returns a list of dictionaries containing each master’s state.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sentinel_masters
+redis.strictredis.sentinel_monitor	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsentinel_monitor(name, ip, port, quorum)</code></pre><br><p>Add a new master to Sentinel to be monitored</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sentinel_monitor
+redis.strictredis.sentinel_remove	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsentinel_remove(name)</code></pre><br><p>Remove a master from Sentinel’s monitoring</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sentinel_remove
+redis.strictredis.sentinel_sentinels	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsentinel_sentinels(service_name)</code></pre><br><p>Returns a list of sentinels for service_name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sentinel_sentinels
+redis.strictredis.sentinel_set	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsentinel_set(name, option, value)</code></pre><br><p>Set Sentinel monitoring parameters for a given master</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sentinel_set
+redis.strictredis.sentinel_slaves	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsentinel_slaves(service_name)</code></pre><br><p>Returns a list of slaves for service_name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sentinel_slaves
+redis.strictredis.set	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nset(name, value, ex=None, px=None, nx=False, xx=False)</code></pre><br><p>Set the value at key name to value</p><br><p>ex sets an expire flag on key name for ex seconds.</p><br><p>px sets an expire flag on key name for px milliseconds.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.set
+redis.strictredis.set_response_callback	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nset_response_callback(command, callback)</code></pre><br><p>Set a custom Response Callback</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.set_response_callback
+redis.strictredis.setbit	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsetbit(name, offset, value)</code></pre><br><p>Flag the offset in name as value. Returns a boolean
+indicating the previous value of offset.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.setbit
+redis.strictredis.setex	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsetex(name, time, value)</code></pre><br><p>Set the value of key name to value that expires in time
+seconds. time can be represented by an integer or a Python
+timedelta object.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.setex
+redis.strictredis.setnx	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsetnx(name, value)</code></pre><br><p>Set the value of key name to value if key doesn’t exist</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.setnx
+redis.strictredis.setrange	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsetrange(name, offset, value)</code></pre><br><p>Overwrite bytes in the value of name starting at offset with
+value. If offset plus the length of value exceeds the
+length of the original value, the new value will be larger than before.
+If offset exceeds the length of the original value, null bytes
+will be used to pad between the end of the previous value and the start
+of what’s being injected.</p><br><p>Returns the length of the new string.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.setrange
+redis.strictredis.shutdown	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nshutdown()</code></pre><br><p>Shutdown the server</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.shutdown
+redis.strictredis.sinter	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsinter(keys, *args)</code></pre><br><p>Return the intersection of sets specified by keys</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sinter
+redis.strictredis.sinterstore	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsinterstore(dest, keys, *args)</code></pre><br><p>Store the intersection of sets specified by keys into a new
+set named dest.  Returns the number of keys in the new set.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sinterstore
+redis.strictredis.sismember	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsismember(name, value)</code></pre><br><p>Return a boolean indicating if value is a member of set name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sismember
+redis.strictredis.slaveof	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nslaveof(host=None, port=None)</code></pre><br><p>Set the server to be a replicated slave of the instance identified
+by the host and port. If called without arguments, the
+instance is promoted to a master instead.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.slaveof
+redis.strictredis.slowlog_get	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nslowlog_get(num=None)</code></pre><br><p>Get the entries from the slowlog. If num is specified, get the
+most recent num items.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.slowlog_get
+redis.strictredis.slowlog_len	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nslowlog_len()</code></pre><br><p>Get the number of items in the slowlog</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.slowlog_len
+redis.strictredis.slowlog_reset	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nslowlog_reset()</code></pre><br><p>Remove all items in the slowlog</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.slowlog_reset
+redis.strictredis.smembers	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsmembers(name)</code></pre><br><p>Return all members of the set name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.smembers
+redis.strictredis.smove	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsmove(src, dst, value)</code></pre><br><p>Move value from set src to set dst atomically</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.smove
+redis.strictredis.sort	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsort(name, start=None, num=None, by=None, get=None, desc=False, alpha=False, store=None, groups=False)</code></pre><br><p>Sort and return the list, set or sorted set at name.</p><br><p>start and num allow for paging through the sorted data</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sort
+redis.strictredis.spop	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nspop(name)</code></pre><br><p>Remove and return a random member of set name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.spop
+redis.strictredis.srandmember	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsrandmember(name, number=None)</code></pre><br><p>If number is None, returns a random member of set name.</p><br><p>If number is supplied, returns a list of number random
+memebers of set name. Note this is only available when running
+Redis 2.6+.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.srandmember
+redis.strictredis.srem	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsrem(name, *values)</code></pre><br><p>Remove values from set name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.srem
+redis.strictredis.sscan	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsscan(name, cursor=0, match=None, count=None)</code></pre><br><p>Incrementally return lists of elements in a set. Also return a cursor
+indicating the scan position.</p><br><p>match allows for filtering the keys by pattern</p><br><p>count allows for hint the minimum number of returns</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sscan
+redis.strictredis.sscan_iter	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsscan_iter(name, match=None, count=None)</code></pre><br><p>Make an iterator using the SSCAN command so that the client doesn’t
+need to remember the cursor position.</p><br><p>match allows for filtering the keys by pattern</p><br><p>count allows for hint the minimum number of returns</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sscan_iter
+redis.strictredis.strlen	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nstrlen(name)</code></pre><br><p>Return the number of bytes stored in the value of name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.strlen
+redis.strictredis.substr	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsubstr(name, start, end=-1)</code></pre><br><p>Return a substring of the string at key name. start and end
+are 0-based integers specifying the portion of the string to return.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.substr
+redis.strictredis.sunion	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsunion(keys, *args)</code></pre><br><p>Return the union of sets specified by keys</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sunion
+redis.strictredis.sunionstore	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsunionstore(dest, keys, *args)</code></pre><br><p>Store the union of sets specified by keys into a new
+set named dest.  Returns the number of keys in the new set.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.sunionstore
+redis.strictredis.time	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ntime()</code></pre><br><p>Returns the server time as a 2-item tuple of ints:
+(seconds since epoch, microseconds into this second).</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.time
+redis.strictredis.transaction	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ntransaction(func, *watches, **kwargs)</code></pre><br><p>Convenience method for executing the callable func as a transaction
+while watching all keys specified in watches. The ‘func’ callable
+should expect a single argument which is a Pipeline object.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.transaction
+redis.strictredis.ttl	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nttl(name)</code></pre><br><p>Returns the number of seconds until the key name will expire</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.ttl
+redis.strictredis.type	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ntype(name)</code></pre><br><p>Returns the type of key name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.type
+redis.strictredis.unwatch	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nunwatch()</code></pre><br><p>Unwatches the value at key name, or None of the key doesn’t exist</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.unwatch
+redis.strictredis.wait	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nwait(num_replicas, timeout)</code></pre><br><p>Redis synchronous replication
+That returns the number of replicas that processed the query when
+we finally have at least num_replicas, or when the timeout was
+reached.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.wait
+redis.strictredis.watch	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nwatch(*names)</code></pre><br><p>Watches the values at keys names, or None if the key doesn’t exist</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.watch
+redis.strictredis.zadd	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzadd(name, *args, **kwargs)</code></pre><br><p>Set any number of score, element-name pairs to the key name. Pairs
+can be specified in two ways:</p><br><p>As *args, in the form of: score1, name1, score2, name2, ...
+or as **kwargs, in the form of: name1=score1, name2=score2, ...</p><br><p>The following example would add four values to the ‘my-key’ key:
+redis.zadd(‘my-key’, 1.1, ‘name1’, 2.2, ‘name2’, name3=3.3, name4=4.4)</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zadd
+redis.strictredis.zcard	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzcard(name)</code></pre><br><p>Return the number of elements in the sorted set name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zcard
+redis.strictredis.zcount	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzcount(name, min, max)</code></pre><br><p>Returns the number of elements in the sorted set at key name with
+a score between min and max.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zcount
+redis.strictredis.zincrby	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzincrby(name, value, amount=1)</code></pre><br><p>Increment the score of value in sorted set name by amount</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zincrby
+redis.strictredis.zinterstore	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzinterstore(dest, keys, aggregate=None)</code></pre><br><p>Intersect multiple sorted sets specified by keys into
+a new sorted set, dest. Scores in the destination will be
+aggregated based on the aggregate, or SUM if none is provided.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zinterstore
+redis.strictredis.zlexcount	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzlexcount(name, min, max)</code></pre><br><p>Return the number of items in the sorted set name between the
+lexicographical range min and max.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zlexcount
+redis.strictredis.zrange	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzrange(name, start, end, desc=False, withscores=False, score_cast_func=<type 'float'>)</code></pre><br><p>Return a range of values from sorted set name between
+start and end sorted in ascending order.</p><br><p>start and end can be negative, indicating the end of the range.</p><br><p>desc a boolean indicating whether to sort the results descendingly</p><br><p>withscores indicates to return the scores along with the values.
+The return type is a list of (value, score) pairs</p><br><p>score_cast_func a callable used to cast the score return value</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zrange
+redis.strictredis.zrangebylex	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzrangebylex(name, min, max, start=None, num=None)</code></pre><br><p>Return the lexicographical range of values from sorted set name
+between min and max.</p><br><p>If start and num are specified, then return a slice of the
+range.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zrangebylex
+redis.strictredis.zrangebyscore	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzrangebyscore(name, min, max, start=None, num=None, withscores=False, score_cast_func=<type 'float'>)</code></pre><br><p>Return a range of values from the sorted set name with scores
+between min and max.</p><br><p>If start and num are specified, then return a slice
+of the range.</p><br><p>withscores indicates to return the scores along with the values.
+The return type is a list of (value, score) pairs</p><br><p>score_cast_func` a callable used to cast the score return value</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zrangebyscore
+redis.strictredis.zrank	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzrank(name, value)</code></pre><br><p>Returns a 0-based value indicating the rank of value in sorted set
+name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zrank
+redis.strictredis.zrem	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzrem(name, *values)</code></pre><br><p>Remove member values from sorted set name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zrem
+redis.strictredis.zremrangebylex	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzremrangebylex(name, min, max)</code></pre><br><p>Remove all elements in the sorted set name between the
+lexicographical range specified by min and max.</p><br><p>Returns the number of elements removed.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zremrangebylex
+redis.strictredis.zremrangebyrank	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzremrangebyrank(name, min, max)</code></pre><br><p>Remove all elements in the sorted set name with ranks between
+min and max. Values are 0-based, ordered from smallest score
+to largest. Values can be negative indicating the highest scores.
+Returns the number of elements removed</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zremrangebyrank
+redis.strictredis.zremrangebyscore	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzremrangebyscore(name, min, max)</code></pre><br><p>Remove all elements in the sorted set name with scores
+between min and max. Returns the number of elements removed.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zremrangebyscore
+redis.strictredis.zrevrange	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzrevrange(name, start, end, withscores=False, score_cast_func=<type 'float'>)</code></pre><br><p>Return a range of values from sorted set name between
+start and end sorted in descending order.</p><br><p>start and end can be negative, indicating the end of the range.</p><br><p>withscores indicates to return the scores along with the values
+The return type is a list of (value, score) pairs</p><br><p>score_cast_func a callable used to cast the score return value</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zrevrange
+redis.strictredis.zrevrangebylex	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzrevrangebylex(name, max, min, start=None, num=None)</code></pre><br><p>Return the reversed lexicographical range of values from sorted set
+name between max and min.</p><br><p>If start and num are specified, then return a slice of the
+range.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zrevrangebylex
+redis.strictredis.zrevrangebyscore	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzrevrangebyscore(name, max, min, start=None, num=None, withscores=False, score_cast_func=<type 'float'>)</code></pre><br><p>Return a range of values from the sorted set name with scores
+between min and max in descending order.</p><br><p>If start and num are specified, then return a slice
+of the range.</p><br><p>withscores indicates to return the scores along with the values.
+The return type is a list of (value, score) pairs</p><br><p>score_cast_func a callable used to cast the score return value</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zrevrangebyscore
+redis.strictredis.zrevrank	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzrevrank(name, value)</code></pre><br><p>Returns a 0-based value indicating the descending rank of
+value in sorted set name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zrevrank
+redis.strictredis.zscan	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzscan(name, cursor=0, match=None, count=None, score_cast_func=<type 'float'>)</code></pre><br><p>Incrementally return lists of elements in a sorted set. Also return a
+cursor indicating the scan position.</p><br><p>match allows for filtering the keys by pattern</p><br><p>count allows for hint the minimum number of returns</p><br><p>score_cast_func a callable used to cast the score return value</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zscan
+redis.strictredis.zscan_iter	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzscan_iter(name, match=None, count=None, score_cast_func=<type 'float'>)</code></pre><br><p>Make an iterator using the ZSCAN command so that the client doesn’t
+need to remember the cursor position.</p><br><p>match allows for filtering the keys by pattern</p><br><p>count allows for hint the minimum number of returns</p><br><p>score_cast_func a callable used to cast the score return value</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zscan_iter
+redis.strictredis.zscore	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzscore(name, value)</code></pre><br><p>Return the score of element value in sorted set name</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zscore
+redis.strictredis.zunionstore	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nzunionstore(dest, keys, aggregate=None)</code></pre><br><p>Union multiple sorted sets specified by keys into
+a new sorted set, dest. Scores in the destination will be
+aggregated based on the aggregate, or SUM if none is provided.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.StrictRedis.zunionstore
+redis.connectionpool	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nclass redis.ConnectionPool(connection_class=<class 'redis.connection.Connection'>, max_connections=None, **connection_kwargs)</code></pre><br><p>Generic connection pool</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.ConnectionPool
+redis.connectionpool.disconnect	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ndisconnect()</code></pre><br><p>Disconnects all connections in the pool</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.ConnectionPool.disconnect
+redis.connectionpool.get_connection	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nget_connection(command_name, *keys, **options)</code></pre><br><p>Get a connection from the pool</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.ConnectionPool.get_connection
+redis.connectionpool.make_connection	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nmake_connection()</code></pre><br><p>Create a new connection</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.ConnectionPool.make_connection
+redis.connectionpool.release	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nrelease(connection)</code></pre><br><p>Releases the connection back to the pool</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.ConnectionPool.release
+redis.blockingconnectionpool	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nclass redis.BlockingConnectionPool(max_connections=50, timeout=20, connection_class=<class 'redis.connection.Connection'>, queue_class=<class Queue.LifoQueue>, **connection_kwargs)</code></pre><br><p>Thread-safe blocking connection pool:</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.BlockingConnectionPool
+redis.blockingconnectionpool.disconnect	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ndisconnect()</code></pre><br><p>Disconnects all connections in the pool.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.BlockingConnectionPool.disconnect
+redis.blockingconnectionpool.get_connection	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nget_connection(command_name, *keys, **options)</code></pre><br><p>Get a connection, blocking for self.timeout until a connection
+is available from the pool.</p><br><p>If the connection returned is None then creates a new connection.
+Because we use a last-in first-out queue, the existing connections
+(having been returned to the pool after the initial None values
+were added) will be returned before None values. This means we only
+create new connections when we need to, i.e.: the actual number of
+connections will only increase in response to demand.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.BlockingConnectionPool.get_connection
+redis.blockingconnectionpool.make_connection	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nmake_connection()</code></pre><br><p>Make a fresh connection.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.BlockingConnectionPool.make_connection
+redis.blockingconnectionpool.release	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nrelease(connection)</code></pre><br><p>Releases the connection back to the pool.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.BlockingConnectionPool.release
+redis.connection	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nclass redis.Connection(host='localhost', port=6379, db=0, password=None, socket_timeout=None, socket_connect_timeout=None, socket_keepalive=False, socket_keepalive_options=None, retry_on_timeout=False, encoding='utf-8', encoding_errors='strict', decode_responses=False, parser_class=<class 'redis.connection.PythonParser'>, socket_read_size=65536)</code></pre><br><p>Manages TCP communication to and from a Redis server</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Connection
+redis.connection.can_read	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ncan_read(timeout=0)</code></pre><br><p>Poll the socket to see if there’s data that can be read.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Connection.can_read
+redis.connection.connect	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nconnect()</code></pre><br><p>Connects to the Redis server if not already connected</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Connection.connect
+redis.connection.disconnect	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\ndisconnect()</code></pre><br><p>Disconnects from the Redis server</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Connection.disconnect
+redis.connection.encode	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nencode(value)</code></pre><br><p>Return a bytestring representation of the value</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Connection.encode
+redis.connection.on_connect	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\non_connect()</code></pre><br><p>Initialize the connection, authenticate and select a database</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Connection.on_connect
+redis.connection.pack_command	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npack_command(*args)</code></pre><br><p>Pack a series of arguments into the Redis protocol</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Connection.pack_command
+redis.connection.pack_commands	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\npack_commands(commands)</code></pre><br><p>Pack multiple commands into the Redis protocol</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Connection.pack_commands
+redis.connection.read_response	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nread_response()</code></pre><br><p>Read the response from a previously sent command</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Connection.read_response
+redis.connection.send_command	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsend_command(*args)</code></pre><br><p>Pack and send a command to the Redis server</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Connection.send_command
+redis.connection.send_packed_command	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nsend_packed_command(command)</code></pre><br><p>Send an already packed command to the Redis server</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.Connection.send_packed_command
+redis.from_url	A							https://redis-py.readthedocs.io/en/latest/			<div class="prog__container"><pre><code>\nredis.from_url(url, db=None, **kwargs)</code></pre><br><p>Returns an active Redis client generated from the given database URL.</p><br><p>Will attempt to extract the database id from the path url fragment, if
+none is provided.</p><br></div>	https://redis-py.readthedocs.io/en/latest/#redis.from_url
