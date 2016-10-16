@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import os
 import sys
 import string
+import re
 
 BASE_JAVADOC_URL = "https://docs.oracle.com/javase/8/docs/api/index.html?"
 BASE_LOCAL_JAVADOC_DIR = "./docs/api/"
@@ -38,6 +39,7 @@ def cutlength(description):
 
 def remove_keywords(line):
   if isinstance(line, basestring):
+    line = re.sub(r'<\w,?\w?>', '', line)
     return line.replace('Class ', '').replace('Enum ', '').replace('Interface ', '').replace('Annotation Type ', '')
   else:
     return ''
