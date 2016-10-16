@@ -1,0 +1,1 @@
+pip	A							https://pip.pypa.io/en/stable/reference/			<br><pre><code>pip <command> [options]</code></pre>	https://pip.pypa.io/en/stable/reference/pip.html
