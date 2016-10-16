@@ -16,7 +16,7 @@ class Command(object):
     def __init__(self, name, description, filename):
         '''Instantiate the information about the command'''
         self.name = name
-        self.description = description
+        self.description = description.replace('\n', '\\n').replace('\t', '    ')
         self.filename = filename
         self.usage = ''
 
