@@ -10,7 +10,7 @@
 <!-- {Tests/Docs/Other}: {Short Description} -->
 
 
-###### Type of Change
+## Type of Change
 
 <!-- Place and 'X' in the correct box (E.g `[X] Improvement`) -->
 
@@ -21,19 +21,19 @@
 - [ ] Non–Instant Answer
     - [ ] Other (Role, Template, Test, Documentation, etc.)
 
-###### Description of new Instant Answer, or changes
+## Description of new Instant Answer, or changes
 
 <!-- What does this new Instant Answer do? -->
 <!-- OR -->
 <!-- What changes does this PR introduce? -->
 
-###### Related Issues and Discussions
+## Related Issues and Discussions
 
 <!--- If fixing a bug with a related issue -->
 <!--- Please link to the issue here: -->
 <!-- E.g. "Fixes #1234" -->
 
-###### People to notify
+## People to notify
 
 <!-- Please @mention any relevant people/organizations here:-->
 
@@ -50,4 +50,4 @@ IA Page: https://duck.co/ia/view/{ID}
 
 <!-- 	More Info: https://forum.duckduckhack.com/t/duckduckhack-programming-mission-overview/53 -->
 
-Forum Topic: 
+Forum Topic:

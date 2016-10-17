@@ -10,7 +10,7 @@
 <!-- {IA Name}: {Short description} -->
 
 
-###### Type of Issue
+## Type of Issue
 
 <!-- Place and 'X' in the correct box (E.g `[X] Triggering`) -->
 
@@ -22,15 +22,15 @@
     - [ ] Triggers (new triggers)
     - [ ] Design Change
 
-###### Description
+## Description
 
 <!-- Describe the bug, or suggestion in detail -->
 
-###### Steps to recreate
+## Steps to recreate
 
 <!-- Describe the steps, or provide a link to an example search -->
 
-###### People to notify
+## People to notify
 
 <!-- Please @mention any relevant people/organizations here:-->
 
