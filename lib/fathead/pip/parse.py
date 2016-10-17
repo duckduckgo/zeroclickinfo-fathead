@@ -1,6 +1,3 @@
-__author__ = 'kchahal'
-#To change this template use Tools | Templates.
-
 from bs4 import BeautifulSoup
 
 baseUrl = 'https://pip.pypa.io/en/stable/reference/'
@@ -14,34 +11,88 @@ from os import path
 pages = [f for f in os.listdir('./download/')]
 
 out = {}
-print pages
-for page_links in pages:
-    with open('./download/' + page_links, 'r') as content_file:
+
+for page in pages:
+
+    finaltext = ''
+    hashtable = {}
+    with open('./download/' + page, 'r') as content_file:
         page_source = content_file.read()
-
         soup = BeautifulSoup(page_source)
-        mydivs = soup.findAll("div", { "class" : "highlight-python" })
-        #print mydivs[0].text
+        namestr = ''
+        name = page[:-5].split('_')
+        for n in name:
+            namestr += n + "-"
 
-        value = {}
-        value['usage'] = str(mydivs[0].text).strip()
+        namestr = namestr[:-1]
 
-        descrip = soup.find("div",{ "id" : "description" })
-        #print descrip.text
-        value['command_url'] =  baseUrl + page_links
-        value['description'] = descrip.text.strip()
+        pip_show = soup.find("div",{"id":namestr})
 
-        out[page_links] = value
-#print out
+        sections = pip_show.findAll("div",{"class":"section"})
 
-for value in out.iteritems():
-    print('Item is {} \n'.format(str(value[0])))
 
-    print('Usage is {} \n'.format(str(value[1]['usage'])))
-    #print('Usage is %s \n',value[1][1])
-    usage = unicode('<br><pre><code>{}</code></pre>'.format(value[1]['usage'])).encode("utf-8")
-    command = unicode(value[0][:-5]).encode("utf-8")
-    command_url = unicode(value[1]['command_url']).encode("utf-8")
+
+
+
+
+        for section in sections:
+
+            #check if any more section in this if not then continue with this one
+
+            if(len(section.findAll("div",{"class":"section"})) != 0):
+                continue;
+
+            for child in section:
+                try:
+
+                    text = child.text.strip()
+                    if(text not in hashtable):
+                        hashtable[text] = 1
+                    else:
+                        continue
+                    if(child.find('div','highlight')):
+
+                        fin = ''
+
+                        for t in text.split('...'):
+                            fin += t.strip() + '<br>'
+
+                        fini = ''
+
+                        for t in fin.split('\n'):
+                            fini += t.strip() + '<br>'
+
+                        text = '<pre><code>' + fini +'</pre></code>'
+
+                    elif(child.find('a',{"class":"toc-backref"})):
+
+                        text = '<h4>'+text[:-1]+'</h4>'
+
+
+
+                    for t in text.split('\n'):
+                        finaltext += t.strip() + '<br>'
+
+                except:
+                    pass
+
+        finaltext = '<div class="prog__container">' + finaltext + '</div>'
+
+        finaltext = ' '.join(finaltext.split())
+
+
+
+
+
+    usage = unicode(finaltext).encode("utf-8")
+    command = ''
+
+    for p in page[:-5].split('_'):
+        command += p + ' '
+
+
+    command = unicode(command).encode("utf-8")
+    command_url = unicode(baseUrl + page).encode("utf-8")
 
     list_of_data = [
                 command,                      # unique name
