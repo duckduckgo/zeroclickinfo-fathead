@@ -154,7 +154,7 @@ class SoupDataOutput(object):
                 name = data_element.get('name').lower()
                 code = data_element.get('code')
                 first_paragraph = data_element.get('first_paragraph')
-                abstract = '<div class="prog__container">{}{}{}</div>'.format(code, '<br>' if code else '', first_paragraph)
+                abstract = '<section class="prog__container">{}{}{}</section>'.format(code, '<br>' if code else '', first_paragraph)
                 url = '{}{}'.format(SOUP_HOME, data_element.get('anchor'))
                 list_of_data = [
                     name,        #unique name
