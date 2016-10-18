@@ -178,7 +178,7 @@ class SoupDataOutput(object):
                 name = data_element.get('name').lower()
                 code = data_element.get('code')
                 paragraph = data_element.get('paragraph')
-                abstract = '<div class="prog__container">{}{}{}</div>'.format(
+                abstract = '<section class="prog__container">{}{}{}</section>'.format(
                     code, '<br>' if code else '', paragraph)
                 url = '{}{}'.format(REDIS_PY_HOME, data_element.get('anchor'))
                 list_of_data = [
