@@ -295,11 +295,20 @@ sub create_redirects {
 =cut
 
     my $title = shift;
-    my $title_clean = _clean_string($title);
+    my $title_clean;
+    my $title_with_space;
     my $lookup = _category_title($title);
     my @data;
     my $postfix;
     my $outputline;
+
+    # Add a space between the pseudo class and parentheses, when it is not present
+    if($title =~ /(:?:?-moz[^\s\(]+)\((.+)\)/) {
+        $title_with_space = "$1 ($2)";
+        $title_clean = _clean_string($title_with_space);
+    } else {
+        $title_clean = _clean_string($title);
+    }
 
     if (exists $titles{$lookup}) {
         #TODO If multiple categories per article exist, improve redirect creation
