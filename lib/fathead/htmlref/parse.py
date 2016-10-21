@@ -30,7 +30,7 @@ class Tag(object):
         self.example = re.sub('\\n$', '', self.example)
 
         # replace all newline and horizontal tab characters
-        terms = {'\n': '\\n', '\t': '\\t', '\r': ''}
+        terms = {'\n': '\\\\n', '\t': '\\\\t', '\r': ''}
         self.info = replace_all(self.info, terms)
         self.example = replace_all(self.example, terms)
 
