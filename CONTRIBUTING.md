@@ -4,8 +4,7 @@
 
 ## How to Contribute to the Programming Mission
 
-Before sending a pull request, please read these guidelines for contributing:
-[**How to contribute**](https://forum.duckduckhack.com/t/how-to-contribute-to-the-programming-mission/881)
+Before sending a pull request, please read the [**contribution guidelines**](https://forum.duckduckhack.com/t/how-to-contribute-to-the-programming-mission/881).
 
 ## Formatting Your Pull Request
 
