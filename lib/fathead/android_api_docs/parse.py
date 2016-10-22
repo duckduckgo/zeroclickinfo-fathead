@@ -3,47 +3,29 @@
 from bs4 import BeautifulSoup
 from glob import glob
 import re
-from urllib.parse import urljoin
 
-
-def build_article(h2_parent, page_url):
+def build_article(tr):
     '''Builds fathead article entry.
 
-    Accepts h2_parent and extracts title, url, abstract and code snippets.
-    Returns a list
     '''
-    h2 = h2_parent.find('h2')
-    title = h2.text.replace('¶', '')
-    fragment = h2_parent.find('a').get('href')
-    url = urljoin(page_url, fragment)
-    abstract = ''
-    next_sibling = h2.find_next_sibling(text=None)
-    while next_sibling:
-        if next_sibling.name == 'p':
-            next_sibling_text = next_sibling.text.replace('\n', ' ')
-            abstract += '<p>{}</p>'.format(next_sibling_text)
-        elif next_sibling.name == 'div':
-            pre = next_sibling.find('pre')
-            if pre:
-                pre_text = pre.text
-                if title.startswith('Raw Response'):
-                    last_span = pre.findAll('span')[-1]
-                    original_span_text = last_span.text
-                    escaped_span_text = last_span.text
-                    escaped_span_text = bytes(escaped_span_text,
-                                              encoding='UTF-8')
-                    pre_text = pre.text.replace(original_span_text,
-                                                '{}'.format(escaped_span_text))
-                pre_text = pre_text.replace('\n', '\\n')
-                abstract += '<pre><code>{0}</code></pre>'.format(pre_text)
-        next_sibling = next_sibling.find_next_sibling(text=None)
-    abstract = abstract.lstrip()
-    abstract = abstract.strip('\n')
-    abstract = '<section class="prog__container">%s</section>' % abstract
+
+    title = tr.td.a.contents[0]
+    url = (tr.find('a')['href'])
+    #Some packages don't have a description, but simply a page listing classes and interfaces (possibly enums)
+    try:
+        abstract = tr.find('p').contents[0]
+    except:
+        abstract = "More information about interfaces and classes at " + url
+    title = '<span class="prog__sub">%s</span>' % title
+    #Replace newline characters with a space
+    abstract = re.sub('\n', ' ', abstract)
+    
+    abstract = '<p>%s</p>' % abstract
     print('Title %s ' % title)
     print('URL %s' % url)
     print('Description %s' % abstract)
-    return [
+    return  [  
+            '<section class="prog__container">',  # Section wrapper start
             title,           # title
             'A',             # type is article
             '',              # no redirect data
@@ -56,7 +38,8 @@ def build_article(h2_parent, page_url):
             '',              # no disambiguation
             '',              # images
             abstract,        # abstract
-            url              # anchor to specific section
+            url,             # anchor to specific section
+            '</section>'     # Section wrapper end
         ]
 
 with open('output.txt', 'w') as fp:
@@ -65,8 +48,9 @@ with open('output.txt', 'w') as fp:
         soup = BeautifulSoup(open(html_file), 'html.parser')
         page_url = soup.find('link', attrs={'rel': 'canonical'}).get('href')
         print('Page url %s' % page_url)
-        h2s = soup.findAll('h2')
-        for h2 in h2s:
-            data = build_article(h2.parent, page_url)
+        trs = soup.findAll("tr")
+        for tr in trs:
+            data = build_article(tr)
+            print(data)
             data = '\t'.join(data)
             fp.write('{}\n'.format(data))
