@@ -17,6 +17,7 @@ class Command(object):
         '''Instantiate the information about the command'''
         self.name = name
         self.description = description.replace('\n', '\\n').replace('\t', '    ')
+        self.description = '<p>{}</p>'.format(self.description)
         self.filename = filename
         self.usage = ''
 
@@ -32,10 +33,12 @@ class Command(object):
         if usage_cleaned:
             # Make the abstract have the description as well as a code block
             # for the usage of the command
-            abstract = '{}\n<pre><code>{}</pre></code>'.format(self.description,
-                                                               usage_cleaned)
+            abstract = '{}\\n<pre><code>{}</pre></code>'.format(self.description,
+                                                                usage_cleaned)
         else:
             abstract = self.description
+
+        abstract = '<section class="prog__container">{}</section>'.format(abstract)
 
         return '\t'.join([
             self.name,  # Full article title
