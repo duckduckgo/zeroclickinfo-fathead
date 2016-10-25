@@ -538,6 +538,8 @@ sub build_description_functions {
     my $syntax = Mojo::DOM->new("<pre>$syntaxes[0]</pre>");
     map { $syntax->at('pre')->append_content("<br />$_") }
         @syntaxes[1..$#syntaxes];
+    # Remove empty <p> tags that are sometimes included
+    $description =~ s{<p>\s*</p>}{}g;
     $description = $syntax->to_string . $description;
     return $description;
 }
