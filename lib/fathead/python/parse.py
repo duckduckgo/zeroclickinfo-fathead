@@ -304,7 +304,7 @@ class PythonDataOutput(object):
             for data_element in self.data:
                 if data_element.get('module') or data_element.get('function'):
                     method_signature = data_element.get('method_signature')
-                    first_paragraph = data_element.get('first_paragraph')
+                    first_paragraph = '<p>' + data_element.get('first_paragraph') + '</p>'
                     name, redirect = self.create_names_from_data(data_element)
 
                     if first_paragraph.startswith('Source code:'):
@@ -312,7 +312,7 @@ class PythonDataOutput(object):
                         if len(temp) > 1:
                             first_paragraph = temp[0] + '.py<br>' + temp[1]
 
-                    abstract = '{}{}{}'.format(method_signature, '<br>' if method_signature and first_paragraph else '', first_paragraph)
+                    abstract = '<section class="prog__container">' + '{}{}{}'.format(first_paragraph, '' , method_signature) + '</section>'
                     url = data_element.get('url')
                     list_of_data = [
                         name,                       # unique name
