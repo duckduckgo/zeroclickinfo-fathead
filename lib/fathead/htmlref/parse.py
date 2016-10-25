@@ -45,7 +45,7 @@ class Tag(object):
         if self.info:
             abstract += '<p>' + self.info + '</p>'
 
-        abstract = '<div class="prog__container">' + abstract + '</div>'
+        abstract = '<section class="prog__container">' + abstract + '</section>'
 
         return abstract
 
