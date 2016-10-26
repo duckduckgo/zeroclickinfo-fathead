@@ -95,8 +95,15 @@ class APIDocsParser(object):
             if tag.name == 'div':
                 code = str(tag.find('pre'))
                 if code != 'None':
-                    example_code = code
-        return example_code.strip('\n')
+                    example_code = tag.text.strip()
+        example_code+='\n'      
+        return example_code.replace('\n','\\n')
+
+    def remove_anchor(self, code):
+        soup = BeautifulSoup(code, 'html.parser')
+        for a in soup.findAll('a'):
+            a.replaceWith(a.text if a.text!='#' else "")
+        return str(soup)
 
     def parse_content(self, api):
         """
@@ -110,7 +117,10 @@ class APIDocsParser(object):
                 continue
             else:
                 abstract+=(str(tag))
-        return abstract.strip('\n')
+        abstract = self.remove_anchor(abstract)
+        abstract+='\n'
+        abstract = abstract.replace('\n\n', '\n')
+        return abstract.replace('\n', '\\n')
 
     def parse_link(self,data,api):
         """
@@ -148,7 +158,8 @@ class OutputFileData(object):
             example = data_element['example']
             content = data_element['content']
             if example:
-                abstract = '<section class="prog__container">{}<br>{}</section>'.format(content, example)
+                example = '<pre><code>%s</code></pre>' % example
+                abstract = '<section class="prog__container">{}{}</section>'.format(content, example)
 
             list_of_data = [
                 title,                      # api title
