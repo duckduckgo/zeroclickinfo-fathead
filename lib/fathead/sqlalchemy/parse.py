@@ -35,13 +35,6 @@ class TutorialParser(object):
 
 		parent_section =soup.find('div',{'class':'section'}) 
 		sections = parent_section.find_all('div',{'class':'section'})
-		
-		# Loop to append sub-sections onto the sections list
-		for k in sections:
-			l = k.find_all('div',{'class':'section'})
-			if l!=[]:
-				for l1 in l:
-					sections.append(l1)
 
 		# Main loop
 		for section in sections:
