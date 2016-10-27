@@ -26,7 +26,8 @@ Here are some Fathead examples:
     - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/ruby) | [Example Query](https://duckduckgo.com/?q=array+bsearch&ia=about) | [IA Page](https://duck.co/ia/view/ruby)
 - MDN CSS
     - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/mdn_css) | [Example Query](https://duckduckgo.com/?q=css+background-position&ia=about) | [IA Page](https://duck.co/ia/view/mdn_css)
-    ![css background-position search](https://cloud.githubusercontent.com/assets/873785/19787980/cdf51566-9c73-11e6-9ef2-ac44dede62c7.png)
+
+  ![css background-position search](https://cloud.githubusercontent.com/assets/873785/19787980/cdf51566-9c73-11e6-9ef2-ac44dede62c7.png)
 
 
 [See more related Instant Answers](https://duck.co/ia?repo=fathead)
@@ -35,7 +36,7 @@ Here are some Fathead examples:
 ## Get Started
 - [ ] 1) Claim this issue (Comment Below)
 - [ ] 2) Review our [Contributing Guide](https://github.com/duckduckgo/zeroclickinfo-fathead/blob/master/CONTRIBUTING.md)
-- [ ] 3) [Set up your development environment](https://docs.duckduckhack.com/welcome/setup-dev-environment.html)), then fork this repository
+- [ ] 3) [Set up your development environment](https://docs.duckduckhack.com/welcome/setup-dev-environment.html), then fork this repository
 - [ ] 4) Create the Fathead
 - [ ] 5) Create a Pull Request
 - [ ] 6) Ping @{Language Leader Handle} for a review
@@ -44,5 +45,5 @@ Here are some Fathead examples:
 ## Questions?
 - Join [DuckDuckHack Slack](https://quackslack.herokuapp.com/) and ask questions
 - Ping one of the [Community Leaders](https://duck.co/help/community/community-leaders)
-- Join the [DuckDuckHack Forum](https://forum.duckduckhack.com/c/programming/{language})
+- Join the [DuckDuckHack Forum](https://forum.duckduckhack.com/)
 - Read the [DuckDuckHack Documentation](https://docs.duckduckhack.com/) for technical help
