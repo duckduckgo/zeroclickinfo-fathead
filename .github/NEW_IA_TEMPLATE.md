@@ -33,7 +33,7 @@ You can learn more about Fathead, and the `output.txt` syntax [**here**](https:/
     - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/mdn_css) | [Example Query](https://duckduckgo.com/?q=css+background-position&ia=about) | [IA Page](https://duck.co/ia/view/mdn_css)
 
 **Here's how it looks!**
-![css_background-position on DuckDuckGo](https://cloud.githubusercontent.com/assets/873785/19787197/7da67c5c-9c6f-11e6-85f5-c79c505c7875.png)
+![css background-position search](https://cloud.githubusercontent.com/assets/873785/19787980/cdf51566-9c73-11e6-9ef2-ac44dede62c7.png)
 
 
 [See more related Instant Answers](https://duck.co/ia?repo=fathead)
