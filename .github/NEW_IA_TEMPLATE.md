@@ -3,13 +3,13 @@ Help DuckDuckGo become the best Search Engine for {Language} developers!
 
 
 ### What do I need to know?
-In order to complete this task, you'll need to know how to code in **Python**, **Ruby**, **Perl**, or **JavaScript**. 
+Fathead developers need to know how to code in **Python**, **Ruby**, **Perl**, or **JavaScript**. 
 
 
 ### What am I doing?
-Your task is to write a script that scrapes or downloads the {Name of Documentation Source} docs, and generates an **output.txt** file containing the parsed documentation.
+Write a script that scrapes or downloads the {Name of Documentation Source} docs, parses it, and generates an **output.txt** file containing the parsed documentation.
 
-Learn more about Fatheads, and the `output.txt` syntax [**here**](https://docs.duckduckhack.com/resources/fathead-overview.html)!
+You can learn more about Fathead Instant Answers, and the `output.txt` syntax [**here**](https://docs.duckduckhack.com/resources/fathead-overview.html)!
 
 
 ### The data source :rocket:
@@ -20,17 +20,15 @@ Learn more about Fatheads, and the `output.txt` syntax [**here**](https://docs.d
 Help *improve {Language Name} language search results* on DuckDuckGo as part of our Programming Mission! We're trying to reach 100% Instant Answer (IA) coverage for {Language Name}-related searches by creating new Instant Answers, and improving existing ones.
 
 
-#### Some relevant examples:
+#### Example Instant Answer:
 <!-- Visit https://duck.co/ia?repo=fathead and filter by Topic to find examples -->
 
-- Instant Answer Number One
-    - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/{ID})
-    - [Example Query](https://duckduckgo.com?q=example+query)
-    - [IA Page](https://duck.co/ia/view/{ID})
-- Instant Answer Number Two
-    - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/{ID})
-    - [Example Query](https://duckduckgo.com?q=example+query)
-    - [IA Page](https://duck.co/ia/view/{ID})
+{Instant Answer Name}
+- [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/{ID})
+- [Example Query](https://duckduckgo.com?q=example+query)
+- [IA Page](https://duck.co/ia/view/{ID})
+
+[See more related Instant Answers](https://duck.co/ia?repo=fathead)
 
 
 ## Get Started
