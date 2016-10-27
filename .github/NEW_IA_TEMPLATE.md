@@ -2,10 +2,6 @@
 Help DuckDuckGo become the best Search Engine for {Language} developers!
 
 
-### What is the Goal?
-As part of our Programming Mission, we're aiming to reach 100% Instant Answer (IA) coverage for searches related to programmiing languages by creating new Instant Answers, and improving existing ones.
-
-
 ### What do I need to know?
 You'll need to know how to code in **Perl**, **Python**, **Ruby**, or **JavaScript**.
 ![fathead languages](https://cloud.githubusercontent.com/assets/873785/19787916/57b4c31a-9c73-11e6-9bd9-f85c8893ec93.jpg)
@@ -21,15 +17,16 @@ You can learn more about Fathead, and the `output.txt` syntax [**here**](https:/
 {URL to Data Source}
 
 
-### Example Instant Answers:
+### What is the Goal?
+As part of our Programming Mission, we're aiming to reach 100% Instant Answer (IA) coverage for searches related to programmiing languages by creating new Instant Answers, and improving existing ones.
 
-- Ruby Docs Fathead
+Here are some Fathead examples:
+
+- Ruby Docs
     - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/ruby) | [Example Query](https://duckduckgo.com/?q=array+bsearch&ia=about) | [IA Page](https://duck.co/ia/view/ruby)
-- CSS Fathead
+- MDN CSS
     - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/mdn_css) | [Example Query](https://duckduckgo.com/?q=css+background-position&ia=about) | [IA Page](https://duck.co/ia/view/mdn_css)
-
-**Here's how it looks!**
-![css background-position search](https://cloud.githubusercontent.com/assets/873785/19787980/cdf51566-9c73-11e6-9ef2-ac44dede62c7.png)
+    ![css background-position search](https://cloud.githubusercontent.com/assets/873785/19787980/cdf51566-9c73-11e6-9ef2-ac44dede62c7.png)
 
 
 [See more related Instant Answers](https://duck.co/ia?repo=fathead)
