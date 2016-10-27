@@ -8,6 +8,7 @@ As part of our Programming Mission, we're aiming to reach 100% Instant Answer (I
 
 ### What do I need to know?
 You'll need to know how to code in **Perl**, **Python**, **Ruby**, or **JavaScript**.
+![fathead languages](https://cloud.githubusercontent.com/assets/873785/19787916/57b4c31a-9c73-11e6-9bd9-f85c8893ec93.jpg)
 
 
 ### What am I doing?
@@ -22,7 +23,7 @@ You can learn more about Fathead, and the `output.txt` syntax [**here**](https:/
 
 ### Example Instant Answers:
 
-- - Ruby Docs Fathead
+- Ruby Docs Fathead
     - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/ruby) | [Example Query](https://duckduckgo.com/?q=array+bsearch&ia=about) | [IA Page](https://duck.co/ia/view/ruby)
 - Perl Docs Fathead
     - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/perl_doc) | [Example Query](https://duckduckgo.com/?q=perl+foreach&t=vivaldi&ia=about) | [IA Page](https://duck.co/ia/view/perl_doc)
