@@ -25,10 +25,6 @@ You can learn more about Fathead, and the `output.txt` syntax [**here**](https:/
 
 - Ruby Docs Fathead
     - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/ruby) | [Example Query](https://duckduckgo.com/?q=array+bsearch&ia=about) | [IA Page](https://duck.co/ia/view/ruby)
-- Perl Docs Fathead
-    - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/perl_doc) | [Example Query](https://duckduckgo.com/?q=perl+foreach&t=vivaldi&ia=about) | [IA Page](https://duck.co/ia/view/perl_doc)
-- Python Docs Fathead
-    - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/python) | [Example Query](https://duckduckgo.com/?q=python+print&ia=about) | [IA Page](https://duck.co/ia/view/python)
 - CSS Fathead
     - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/mdn_css) | [Example Query](https://duckduckgo.com/?q=css+background-position&ia=about) | [IA Page](https://duck.co/ia/view/mdn_css)
 
@@ -50,6 +46,6 @@ You can learn more about Fathead, and the `output.txt` syntax [**here**](https:/
 
 ## Questions?
 - Join [DuckDuckHack Slack](https://quackslack.herokuapp.com/) and ask questions
-- Ping one of the [Community Leaders](https://duck.co/help/community/community-leaders) or @{Language Leader Handle}
+- Ping one of the [Community Leaders](https://duck.co/help/community/community-leaders)
 - Join the [DuckDuckHack Forum](https://forum.duckduckhack.com/c/programming/{language})
 - Read the [DuckDuckHack Documentation](https://docs.duckduckhack.com/) for technical help
