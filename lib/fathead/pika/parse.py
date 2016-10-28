@@ -54,15 +54,15 @@ def build_abstract(info, example=None, detailed_info={}):
     """
     abstract = ''
     if info:
-        abstract += '<p>%s</p' % info.replace('\n', ' ')
+        abstract += '<p>%s</p' % info.replace('\n', '\\n')
 
     if example:
-        abstract += '<pre><code>%s</code></pre>' % example.replace('\n', '\\\\n')
+        abstract += '<pre><code>%s</code></pre>' % example.replace('\n', '\\n')
 
     for key, value in detailed_info.items():
         abstract += '<span class="prog__sub">%s</span><p>%s</p>' % (key, value)
 
-    abstract = '<section class="prog__container">%s</section>' % abstract.replace('\n', '\\\\n')
+    abstract = '<section class="prog__container">%s</section>' % abstract.replace('\n', '\\n')
     return abstract
 
 
