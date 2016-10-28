@@ -45,10 +45,10 @@ class Parser(object):
             section = self.parse_section(header)
             section['example'] = self.clean_formatting(self.get_example(header))
             if section['paragraph'] and section['example']:
-                section['abstract'] = '{}<br><pre><code>{}</code></pre>'.format(section['paragraph'], section['example'])
+                section['abstract'] = '<section class="prog__container><p>{}</p><pre><code>{}</code></pre></section>'.format(section['paragraph'], section['example'])
                 self.sections.append(section)
             elif section['paragraph'] and not section['example']:
-                section['abstract'] = '{}'.format(section['paragraph'])
+                section['abstract'] = '<section class="prog__container><p>{}</p></section>'.format(section['paragraph'])
                 self.sections.append(section)
 
         self.parsed_data = self.sections
