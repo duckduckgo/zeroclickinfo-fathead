@@ -1,14 +1,14 @@
-__author__ = 'kchahal'
-#To change this template use Tools | Templates.
+#!/usr/bin/env python3
 
 baseUrl = 'https://pip.pypa.io/en/stable/reference/'
-import urllib2
+import urllib
 from bs4 import BeautifulSoup
-response = urllib2.urlopen(baseUrl)
+
+response = urllib.request.urlopen(baseUrl)
 page_source = response.read()
-main = "main.html"
+
 download = "download/"
-f = open(main, "w");
+
 
 
 soup = BeautifulSoup(page_source)
@@ -24,10 +24,10 @@ for a in mains.find('ul').find_all('a', href=True):
 out  = {}
 for url in urls:
 
-    response = urllib2.urlopen(baseUrl + url)
+    response = urllib.request.urlopen(baseUrl + url)
     page_source = response.read()
     filename = download + url[:-1] + '.html'
     temp = open(filename,"w")
 
-    temp.write(page_source)
+    temp.write(page_source.decode('utf-8'))
     temp.close()

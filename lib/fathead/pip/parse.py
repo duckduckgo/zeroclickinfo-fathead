@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from bs4 import BeautifulSoup
 
 baseUrl = 'https://pip.pypa.io/en/stable/reference/'
@@ -55,17 +57,16 @@ for page in pages:
                         fin = ''
 
                         for t in text.split('...'):
-                            fin += t.strip() + '<br>'
+                            fin += t.strip() + '\n'
 
                         fini = ''
 
                         for t in fin.split('\n'):
-                            fini += t.strip() + '<br>'
+                            fini += t.strip() + '\n'
 
                         text = '<pre><code>' + fini +'</pre></code>'
 
                     elif(child.find('a',{"class":"toc-backref"})):
-
                         text = '<h4>'+text[:-1]+'</h4>'
 
 
@@ -76,23 +77,23 @@ for page in pages:
                 except:
                     pass
 
-        finaltext = '<div class="prog__container">' + finaltext + '</div>'
+        finaltext = '<section class="prog__container">' + finaltext + '</section>'
 
         finaltext = ' '.join(finaltext.split())
+        finaltext = finaltext.replace('<br>','\\n')
 
 
 
 
-
-    usage = unicode(finaltext).encode("utf-8")
+    usage = finaltext
     command = ''
 
     for p in page[:-5].split('_'):
         command += p + ' '
 
 
-    command = unicode(command).encode("utf-8")
-    command_url = unicode(baseUrl + page).encode("utf-8")
+
+    command_url = baseUrl + page
 
     list_of_data = [
                 command,                      # unique name
@@ -110,7 +111,13 @@ for page in pages:
                 command_url                      # url to doc
             ]
 
-    outyo.write('{}\n'.format('\t'.join(list_of_data)))
+    final = ''
+    for l in list_of_data:
+        final = final + l + '\t'
+
+    final = final + '\n'
+
+    outyo.write(final)
 
 
 outyo.close()

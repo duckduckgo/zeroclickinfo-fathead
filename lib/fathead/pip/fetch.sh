@@ -1,4 +1,4 @@
 #!/bin/bash
 
 mkdir -p download
-python fetch.py
+python3 fetch.py
