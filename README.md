@@ -23,7 +23,7 @@ A set of key-value pairs, stored in a database. Fatheads provide unique answers 
 
 **Here's how it looks!**
 
-![css_background-position at_duckduckgo](https://cloud.githubusercontent.com/assets/873785/19786324/695fd2ec-9c6b-11e6-8bd9-0ba34165bf20.png)
+![css background-position search](https://cloud.githubusercontent.com/assets/873785/19787980/cdf51566-9c73-11e6-9ef2-ac44dede62c7.png)
 
 
 ## Learn More
