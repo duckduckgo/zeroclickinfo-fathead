@@ -32,5 +32,5 @@ A set of key-value pairs, stored in a database. Fatheads provide unique answers 
 
 ## Other Resources
 
-- [Fathead documentation](https://docs.duckduckhack.com/resources/fathead-overview.html)
+- [Fathead technical documentation](https://docs.duckduckhack.com/resources/fathead-overview.html)
 - [DuckDuckHack Slack](https://quackslack.herokuapp.com/)
