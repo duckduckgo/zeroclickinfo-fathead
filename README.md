@@ -8,9 +8,13 @@ The current focus of DuckDuckHack is to create the best search engine for progra
 
 
 ## Get Started
-Your help and expertise can have a huge impact on improving the search experience for millions of DuckDuckGo users around the world!
+Your help and expertise can improve the search experience for millions of DuckDuckGo users around the world!
 
-The quickest way to get started, is to [**create new Fatheads, and improve existing ones**](https://github.com/duckduckgo/zeroclickinfo-fathead/issues?q=is%3Aopen+is%3Aissue+label%3A"Mission%3A+Programming").
+There are two ways you can get involved:
+
+1. [**Create new Fatheads, and improve existing ones**](https://github.com/duckduckgo/zeroclickinfo-fathead/issues?q=is%3Aopen+is%3Aissue+label%3A"Mission%3A+Programming")
+    - **Note**: This will require knowledge of Perl, Python, Ruby, or JavaScript (Node.js)
+2. [**Visit DuckDuckHack.com**](https://duckduckhack.com) to learn more about the Programming Mission, and how you can help us **analyze Instant Answer performance data** to determine new projects
 
 
 ### What are Fathead Instant Answers?
@@ -26,12 +30,7 @@ A set of key-value pairs, stored in a database. Fatheads provide unique answers 
 ![css background-position search](https://cloud.githubusercontent.com/assets/873785/19787980/cdf51566-9c73-11e6-9ef2-ac44dede62c7.png)
 
 
-## Learn More
-
-If you'd like to learn more about DuckDuckHack, or you interested in helping us **analyze Instant Answer performance data** to creating projects, please visit [DuckDuckHack.com](https://duckduckhack.com)
-
-
-#### Resources
+## Other Resources
 
 - [Fathead documentation](https://docs.duckduckhack.com/resources/fathead-overview.html)
 - [DuckDuckHack Slack](https://quackslack.herokuapp.com/)
