@@ -1,7 +1,5 @@
 # Welcome to DuckDuckHack!
 
-![hack your search engine](http://docs.duckduckhack.com/assets/hack search engine.png)
-
 We're a community dedicated to improving search results with open source, "Instant Answers", that solve searches in few or zero clicks.
 
 
