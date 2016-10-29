@@ -19,13 +19,14 @@ def build_article(tr):
     title = '<span class="prog__sub">%s</span>' % title
     #Replace newline characters with a space
     abstract = re.sub('\n', ' ', abstract)
+    abstract = abstract.strip()
     
     abstract = '<p>%s</p>' % abstract
+    abstract = '<section class="prog__container">%s</section>' % abstract
     print('Title %s ' % title)
     print('URL %s' % url)
     print('Description %s' % abstract)
     return  [  
-            '<section class="prog__container">',  # Section wrapper start
             title,           # title
             'A',             # type is article
             '',              # no redirect data
@@ -39,7 +40,6 @@ def build_article(tr):
             '',              # images
             abstract,        # abstract
             url,             # anchor to specific section
-            '</section>'     # Section wrapper end
         ]
 
 with open('output.txt', 'w') as fp:
