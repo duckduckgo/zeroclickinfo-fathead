@@ -69,6 +69,7 @@ def concat(clazz, description, url):
   ten = ''
   image = ''
   abstract = description.replace("\n", "\\n").replace("\t", "\\t") or "No abstract found"
+  abstract = '<section class="prog__container">' + abstract + '</section>'
   url = url or "No URL found"
 
   data = [title, typez, redirect, four, categories, six, related_topics, eight, external_links, ten, image, abstract, url]
