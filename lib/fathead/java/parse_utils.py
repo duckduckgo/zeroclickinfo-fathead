@@ -34,7 +34,7 @@ def getDocs(filename):
 
 def cutlength(description):
 #  if len(description) > 100:
-  description = description[0:description.rfind('.', 0, 100) + 1]
+  description = description[0:description.rfind('.', 0, 300) + 1]
   return description.replace("\n", "")
 
 def remove_keywords(line):
