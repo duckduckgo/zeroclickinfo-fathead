@@ -41,7 +41,7 @@ class Tag(object):
         abstract = ''
 
         if self.example:
-            abstract += '<pre><code>' + self.example + '</pre></code>'
+            abstract += '<pre><code>' + self.example + '</code></pre>'
 
         if self.info:
             abstract += '<p>' + self.info + '</p>'
