@@ -10,6 +10,6 @@ topics.each do |topic|
   doc = Nokogiri::HTML(open(url))
   abstract = doc.css("##{topic}").css("p").to_s
   abstract = abstract.gsub("\n", " ").gsub(/class\=\S{1,2}[a-z]*(\s[a-z]*)?\S{1,2}/, "")
-  output_row = [topic, 'A', '', '', '', '', '', '', NOSE_HOME, '', '', abstract, url].join("\t")
+  output_row = [topic.gsub("-", " "), 'A', '', '', '', '', '', '', NOSE_HOME, '', '', abstract, url].join("\t")
   File.open('output.txt', 'a') { |f| f.write(output_row + "\n") }
 end
