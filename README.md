@@ -1,20 +1,17 @@
 # Welcome to DuckDuckHack!
-
-We're a community dedicated to improving search results with open source, "Instant Answers", that solve searches in few or zero clicks.
+We're a community of open source developers from around the world, contributing code to improve the DuckDuckGo search engine.
 
 
 ### The Programming Mission
-The current focus of DuckDuckHack is to create the best search engine for programmers. For now, we are **only accepting Pull Requests and Issues related to the Programming Mission**.
+We want every programming search to have great results, providing the information you need instantly. The Programming Mission empowers the community to create Instant Answers for reference, libraries, help, and tools. For now, we are **only accepting Pull Requests and Issues related to the Programming Mission**.
 
 
-## Get Started
+## How to contribute
 Your help and expertise can improve the search experience for millions of DuckDuckGo users around the world!
 
-There are two ways you can get involved:
-
-1. [**Create new Fatheads, and improve existing ones**](https://github.com/duckduckgo/zeroclickinfo-fathead/issues?q=is%3Aopen+is%3Aissue+label%3A"Mission%3A+Programming")
-    - **Note**: This will require knowledge of Perl, Python, Ruby, or JavaScript (Node.js)
-2. [**Visit DuckDuckHack.com**](https://duckduckhack.com) to learn more about the Programming Mission, and how you can help us **analyze Instant Answer performance data** to determine new projects
+- [**Create new Fatheads, and improve existing ones**](https://github.com/duckduckgo/zeroclickinfo-fathead/issues?q=is%3Aopen+is%3Aissue+label%3A"Mission%3A+Programming")
+    - **Note**: Fatheads are written in Perl, Python, Ruby, or JavaScript (Node.js)
+- [**Visit DuckDuckHack.com**](https://duckduckhack.com) to learn more about the Programming Mission, and how you can help us **analyze Instant Answer performance data** to determine new projects
 
 
 ### What are Fathead Instant Answers?
@@ -30,7 +27,9 @@ A set of key-value pairs, stored in a database. Fatheads provide unique answers 
 ![css background-position search](https://cloud.githubusercontent.com/assets/873785/19787980/cdf51566-9c73-11e6-9ef2-ac44dede62c7.png)
 
 
-## Other Resources
+## Resources
 
-- [Fathead technical documentation](https://docs.duckduckhack.com/resources/fathead-overview.html)
-- [DuckDuckHack Slack](https://quackslack.herokuapp.com/)
+- Join the [DuckDuckHack Slack channel](https://quackslack.herokuapp.com/) to ask questions
+- Join the [DuckDuckHack Forum](https://forum.duckduckhack.com/) to discuss project planning and Instant Answer metrics
+- Read the [Fathead documentation](https://docs.duckduckhack.com/resources/fathead-overview.html) for technical help
+- View the list of [all live Fathead Instant Answers](https://duck.co/ia?repo=fathead&topic=programming) to see more examples
