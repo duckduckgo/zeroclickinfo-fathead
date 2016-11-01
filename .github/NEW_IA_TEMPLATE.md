@@ -10,7 +10,7 @@ You'll need to know how to code in **Perl**, **Python**, **Ruby**, or **JavaScri
 ### What am I doing?
 You will write a script that scrapes or downloads the data source below, and generates an **output.txt** file containing the parsed documentation.
 
-You can learn more about Fathead, and the `output.txt` syntax [**here**](https://docs.duckduckhack.com/resources/fathead-overview.html)!
+You can learn more about Fatheads and the `output.txt` syntax [**here**](https://docs.duckduckhack.com/resources/fathead-overview.html).
 
 
 ### The data source :rocket:
