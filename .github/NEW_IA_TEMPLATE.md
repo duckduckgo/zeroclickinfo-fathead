@@ -1,5 +1,5 @@
 # New {IA Name} Fathead Instant Answer
-Help DuckDuckGo become the best Search Engine for {Language} developers!
+Help us make DuckDuckGo the best search engine for programmers!
 
 
 ### What do I need to know?
@@ -15,10 +15,10 @@ You can learn more about Fathead, and the `output.txt` syntax [**here**](https:/
 
 ### The data source :rocket:
 {URL to Data Source}
-
+<!-- ^^^ FILL THIS IN ^^^ -->
 
 ### What is the Goal?
-As part of our Programming Mission, we're aiming to reach 100% Instant Answer (IA) coverage for searches related to programmiing languages by creating new Instant Answers, and improving existing ones.
+As part of our [Programming Mission](https://forum.duckduckhack.com/t/duckduckhack-programming-mission-overview/53), we're aiming to reach 100% Instant Answer (IA) coverage for searches related to programming languages by creating new Instant Answers, and improving existing ones.
 
 Here are some Fathead examples:
 
@@ -34,16 +34,16 @@ Here are some Fathead examples:
 
 
 ## Get Started
-- [ ] 1) Claim this issue (Comment Below)
+- [ ] 1) Claim this issue by commenting below
 - [ ] 2) Review our [Contributing Guide](https://github.com/duckduckgo/zeroclickinfo-fathead/blob/master/CONTRIBUTING.md)
-- [ ] 3) [Set up your development environment](https://docs.duckduckhack.com/welcome/setup-dev-environment.html), then fork this repository
-- [ ] 4) Create the Fathead
-- [ ] 5) Create a Pull Request
-- [ ] 6) Ping @{Language Leader Handle} for a review
+- [ ] 3) [Set up your development environment](https://docs.duckduckhack.com/welcome/setup-dev-environment.html), and fork this repository
+- [ ] 4) Create a new Instant Answer Page: https://duck.co/ia/new_ia
+- [ ] 5) Create the Fathead
+- [ ] 6) Create a Pull Request
+- [ ] 7) Ping @{Language Leader Handle} for a review
+<!-- ^^^ FILL THIS IN ^^^ -->
 
-
-## Questions?
-- Join [DuckDuckHack Slack](https://quackslack.herokuapp.com/) and ask questions
-- Ping one of the [Community Leaders](https://duck.co/help/community/community-leaders)
-- Join the [DuckDuckHack Forum](https://forum.duckduckhack.com/)
+## Resources
+- Join [DuckDuckHack Slack](https://quackslack.herokuapp.com/) to ask questions
+- Join the [DuckDuckHack Forum](https://forum.duckduckhack.com/) to discuss project planning and Instant Answer metrics
 - Read the [DuckDuckHack Documentation](https://docs.duckduckhack.com/) for technical help
