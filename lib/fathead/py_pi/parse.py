@@ -31,8 +31,10 @@ with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
         abstract_lines.append("</section>")
 
         official_site = ''
-        # check for real links. We can get stuff like 'unknown', '404' in here
-        if package_info['home_page'] and re.search(r'www.', package_info['home_page']):
+        # Check for real links. We can get stuff like 'UNKNOWN', 'N/A' etc. here
+        # The regex-es look for the beginning starting with either 'www.', 'http://' or 'https://'
+        if package_info['home_page'] and (re.search(r'^www.', package_info['home_page']) or \
+                                          re.search(r'^http[s]?://', package_info['home_page'])):
             official_site = '[' + package_info['home_page'] + ' Official site]\\\\n'
 
         out_file.write('\t'.join([
