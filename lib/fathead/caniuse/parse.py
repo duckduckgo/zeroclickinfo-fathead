@@ -60,7 +60,7 @@ def generate_answers(data):
                 a.replaceWithChildren()
             abstract += '<p><b>Notes:</b> {}</p>'.format(bs.renderContents())
 
-        abstract = abstract.replace('\n', '').replace('\r', '')
+        abstract = '<section class="prog__container">' + abstract.replace('\n', '').replace('\r', '') + '</section>'
         print abstract
         print '------------------------------------------'
 
