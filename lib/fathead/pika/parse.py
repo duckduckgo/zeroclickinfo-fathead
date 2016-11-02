@@ -54,7 +54,7 @@ def build_abstract(info, example=None, detailed_info={}):
     """
     abstract = ''
     if info:
-        abstract += '<p>%s</p' % info.replace('\n', '\\n')
+        abstract += '<p>%s</p>' % info.replace('\n', '\\n')
 
     if example:
         abstract += '<pre><code>%s</code></pre>' % example.replace('\n', '\\n')
