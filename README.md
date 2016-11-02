@@ -9,7 +9,6 @@ For now, we are **only accepting Pull Requests and Issues related to the Program
 
 
 ## How to contribute
-Your help and expertise can improve the search experience for millions of DuckDuckGo users around the world!
 
 - [**Create new Fatheads, and improve existing ones**](https://github.com/duckduckgo/zeroclickinfo-fathead/issues?q=is%3Aopen+is%3Aissue+label%3A"Mission%3A+Programming")
     - **Note**: Fatheads are written in Perl, Python, Ruby, or JavaScript (Node.js)
