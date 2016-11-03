@@ -13,9 +13,11 @@ You will write a script that scrapes or downloads the data source below, and gen
 You can learn more about Fatheads and the `output.txt` syntax [**here**](https://docs.duckduckhack.com/resources/fathead-overview.html).
 
 
-### The data source :rocket:
-{URL to Data Source}
+**Data source**: {URL to Data Source}
 <!-- ^^^ FILL THIS IN ^^^ -->
+
+Instant Answer Page: *to be created by developer*
+<!-- ^^^ FILL THIS IN, AFTER ISSUE IS CLAIMED ^^^ -->
 
 ### What is the Goal?
 As part of our [Programming Mission](https://forum.duckduckhack.com/t/duckduckhack-programming-mission-overview/53), we're aiming to reach 100% Instant Answer (IA) coverage for searches related to programming languages by creating new Instant Answers, and improving existing ones.
