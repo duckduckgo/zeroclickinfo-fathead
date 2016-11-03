@@ -23,9 +23,9 @@ As part of our [Programming Mission](https://forum.duckduckhack.com/t/duckduckha
 Here are some Fathead examples:
 
 - Ruby Docs
-    - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/ruby) | [Example Query](https://duckduckgo.com/?q=array+bsearch&ia=about) | [IA Page](https://duck.co/ia/view/ruby)
+    - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/ruby) | [Example Query](https://duckduckgo.com/?q=array+bsearch&ia=about)
 - MDN CSS
-    - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/mdn_css) | [Example Query](https://duckduckgo.com/?q=css+background-position&ia=about) | [IA Page](https://duck.co/ia/view/mdn_css)
+    - [Code](https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/lib/fathead/mdn_css) | [Example Query](https://duckduckgo.com/?q=css+background-position&ia=about)
 
   ![css background-position search](https://cloud.githubusercontent.com/assets/873785/19787980/cdf51566-9c73-11e6-9ef2-ac44dede62c7.png)
 
