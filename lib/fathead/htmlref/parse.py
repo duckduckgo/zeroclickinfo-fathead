@@ -83,8 +83,8 @@ class Parser(object):
         """ Gets all tags defined in 'dl' tags """
         self.tags = []
         for file in self.files:
-            name = file
-            file_contents = open(self.base_dir + name).read()
+            name = file.replace("_", " ")
+            file_contents = open(self.base_dir + file).read()
             soup = BeautifulSoup(file_contents, 'html5lib')
             article = soup.article
 
@@ -112,13 +112,16 @@ class Parser(object):
                 for li in see_also_heading.find_next('ul').find_all('li'):
                     for a_tag in li.find_all('a'):
                         href = a_tag['href']
-                        lang = href.split('/')[-3]
-                        if lang == "HTML":
+                        if "HTML/Element" in href:
                             elem_name = href.split('/')[-1]
                             see_also.append("[[" + elem_name + "]]")
 
             # getting reference link for the tag
-            reference = 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/' + name
+            if soup.find('meta', {'property' : 'og:url'}):
+                reference = soup.find('meta', {'property' : 'og:url'}).get('content')
+            else:
+                reference = 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/' + name
+            
             new_tag = Tag(name, info, reference, example, see_also)
             self.tags.append(new_tag)
             logger.info('Tag parsed: %s' % new_tag.name)
