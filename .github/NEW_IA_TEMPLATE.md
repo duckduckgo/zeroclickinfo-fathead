@@ -8,9 +8,7 @@ You'll need to know how to code in **Perl**, **Python**, **Ruby**, or **JavaScri
 
 
 ### What am I doing?
-You will write a script that scrapes or downloads the data source below, and generates an **output.txt** file containing the parsed documentation.
-
-You can learn more about Fatheads and the `output.txt` syntax [**here**](https://docs.duckduckhack.com/resources/fathead-overview.html).
+You will write a script that scrapes or downloads the data source below, and generates an **output.txt** file containing the parsed documentation. You can learn more about Fatheads and the `output.txt` syntax [**here**](https://docs.duckduckhack.com/resources/fathead-overview.html).
 
 
 **Data source**: {URL to Data Source}
@@ -39,7 +37,7 @@ Here are some Fathead examples:
 - [ ] 1) Claim this issue by commenting below
 - [ ] 2) Review our [Contributing Guide](https://github.com/duckduckgo/zeroclickinfo-fathead/blob/master/CONTRIBUTING.md)
 - [ ] 3) [Set up your development environment](https://docs.duckduckhack.com/welcome/setup-dev-environment.html), and fork this repository
-- [ ] 4) Create a new Instant Answer Page: https://duck.co/ia/new_ia
+- [ ] 4) Create a new Instant Answer Page: https://duck.co/ia/new_ia (then let us know, here!)
 - [ ] 5) Create the Fathead
 - [ ] 6) Create a Pull Request
 - [ ] 7) Ping @{Language Leader Handle} for a review
