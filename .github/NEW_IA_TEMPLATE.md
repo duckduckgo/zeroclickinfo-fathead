@@ -16,7 +16,7 @@ You can learn more about Fatheads and the `output.txt` syntax [**here**](https:/
 **Data source**: {URL to Data Source}
 <!-- ^^^ FILL THIS IN ^^^ -->
 
-Instant Answer Page: *to be created by developer*
+**Instant Answer Page**: *to be created by developer*
 <!-- ^^^ FILL THIS IN, AFTER ISSUE IS CLAIMED ^^^ -->
 
 ### What is the Goal?
