@@ -75,8 +75,9 @@ class TutorialParser(object):
 				description=''
 			else:
 				description=description.format(txt)
-			description = description.replace('\n','\\\\n')
+			description = description.replace('\n','\\n')
 			code = code.replace('\n','\\n')
+			code = code.replace('\\\\n','\\n')
 			prog_container = prog_container.format(description+code)
 			
 
