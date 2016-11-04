@@ -34,7 +34,7 @@ def getDocs(filename):
 
 def cutlength(description):
 #  if len(description) > 100:
-  description = description[0:description.rfind('.', 0, 100) + 1]
+  description = description[0:description.rfind('.', 0, 300) + 1]
   return description.replace("\n", "")
 
 def remove_keywords(line):
@@ -69,6 +69,7 @@ def concat(clazz, description, url):
   ten = ''
   image = ''
   abstract = description.replace("\n", "\\n").replace("\t", "\\t") or "No abstract found"
+  abstract = '<section class="prog__container">' + abstract + '</section>'
   url = url or "No URL found"
 
   data = [title, typez, redirect, four, categories, six, related_topics, eight, external_links, ten, image, abstract, url]
