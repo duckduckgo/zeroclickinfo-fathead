@@ -25,7 +25,7 @@ def parse_dl(dl):
     description = re.sub(r'\s', ' ', description, flags=flags).strip()
     description = '<p>{}</p>'.format(description)
 
-    abstract = '<div class="prog__container">{}{}</div>'.format(signature,
+    abstract = '<section class="prog__container">{}{}</section>'.format(signature,
                                                                 description)
 
     return (abstract, link)
