@@ -159,13 +159,13 @@ for my $type ( sort keys %types ) {
                 . ( $function{method} ? ".$function{method}" : q[] );
             $line[1]  = 'A';
             $line[4]  = "Perl 6 " . duck_escape $function{class};
-            $line[11] = (
+            $line[11] = '<section class="prog__container">' . (
                 $function{prototype}
                 ? '<pre><code>'
                     . duck_escape( $function{prototype} )
                     . '</code></pre>'
                 : q[]
-            ) . duck_escape $function{description};
+            ) . '<p>' . duck_escape $function{description} . '</p></section>';
             $line[12]
                 = 'http://doc.perl6.org/type/'
                 . uri_escape_utf8($type)
