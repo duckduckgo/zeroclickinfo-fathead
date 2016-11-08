@@ -1,8 +1,8 @@
 <!-- ISSUE TITLE FORMAT
 
-     {{Search Space Language}}: New {{IA Name}} Fathead Instant Answer
+     {{Search Space Language}}: Create New {{IA Name}} Fathead
      
-     E.g. Python: New Pip Fathead Instant Answer -->
+     E.g. Python: Create New Pip Fathead -->
 
 # Create a new {IA Name} Fathead Instant Answer
 Help us make DuckDuckGo the best search engine for programmers!
