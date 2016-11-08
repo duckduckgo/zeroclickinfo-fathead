@@ -17,19 +17,24 @@ with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
         summary = package_info['summary']
         if not summary or summary == 'UNKNOWN':
             continue
+        
+        abstract_lines.append('<section class="prog__container"><p>')
         abstract_lines.append(re.sub(r'\s', ' ', summary, flags=re.MULTILINE | re.UNICODE))
-        #abstract_lines.append('Downloads in the last month: %s' % package_info['downloads']['last_month'])
+        abstract_lines.append('</p>')
 
         for classifier in package_info['classifiers']:
             if classifier.startswith('Development Status'):
-                abstract_lines.append('Development status: %s' % classifier.split(' - ')[-1])
+                abstract_lines.append('<p>Development status: %s</p>' % classifier.split(' - ')[-1])
                 break
 
         abstract_lines.append("<pre><code>pip install " + package_info['name'] + "</code></pre>")
+        abstract_lines.append("</section>")
 
         official_site = ''
-        # check for real links. We can get stuff like 'unknown', '404' in here
-        if package_info['home_page'] and re.search(r'www.', package_info['home_page']):
+        # Check for real links. We can get stuff like 'UNKNOWN', 'N/A' etc. here
+        # The regex-es look for the beginning starting with either 'www.', 'http://' or 'https://'
+        if package_info['home_page'] and (re.search(r'^www.', package_info['home_page']) or \
+                                          re.search(r'^http[s]?://', package_info['home_page'])):
             official_site = '[' + package_info['home_page'] + ' Official site]\\\\n'
 
         out_file.write('\t'.join([
@@ -44,7 +49,7 @@ with codecs.open('download/package-jsons', encoding='utf-8') as in_file, \
             official_site,  # External links (ignored)
             '',  # Disambiguation (ignored)
             '',  # No images
-            '<br>'.join(abstract_lines),
+            ''.join(abstract_lines),
             urllib.quote(package_info['package_url'], safe='/:'),  # Source url
         ]))
         out_file.write('\n')

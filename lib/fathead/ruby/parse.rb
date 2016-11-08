@@ -47,13 +47,7 @@ class Documentation
   end
 
   def abstract
-    intro.chunk(&:name).map do |name, elements|
-      if name == 'pre'
-        elements.map { |e| code_block e.text }.join
-      else
-        elements.map { |e| body_text e.text }.join('<br>')
-      end
-    end.unshift(usage).join
+    prog_container intro.map { |elt| element_to_s elt }.unshift(usage).join
   end
 
   def to_s
@@ -91,12 +85,24 @@ class Documentation
     description.css('p,pre.ruby,h2').take_while { |e| e.name != 'h2' }.first(3)
   end
 
+  def prog_container(string)
+    %(<section class="prog__container">#{string}</section>)
+  end
+
+  def element_to_s(element)
+    if element.name == 'pre'
+      code_block element.text
+    else
+      paragraph element.text
+    end
+  end
+
   def code_block(string)
     "<pre><code>#{escape string}</code></pre>" unless string.empty?
   end
 
-  def body_text(string)
-    escape string.gsub(/[[:space:]]+/, ' ').strip
+  def paragraph(string)
+    "<p>#{escape string.gsub(/[[:space:]]+/, ' ').strip}</p>"
   end
 
   def escape(string)

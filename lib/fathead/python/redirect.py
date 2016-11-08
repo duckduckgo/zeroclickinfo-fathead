@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 import itertools
 import re
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 built_in = ['abs','dict','help','min','setattr','all','dir','hex','next',
 'slice','any','divmod','id','object','sorted','ascii','enumerate','input',
@@ -13,6 +17,8 @@ built_in = ['abs','dict','help','min','setattr','all','dir','hex','next',
 'max','round','delattr','hash','memoryview','set']
 
 ignore_keys = ['The Python Tutorial']
+
+bad_strings = ['\\000', '\\xe0']
 
 class BadEntryException(Exception):
     """
@@ -227,8 +233,16 @@ def generate_redirects(f):
             if line.endswith('\\n'):
                 line = line[:-2]
                 line += '\t\t\t'
+            line = bad_string_check(line)
             tsv = '{}\n'.format(line)
             output_file.write(tsv)
+
+def bad_string_check(line):
+    for string in bad_strings:
+        if string in line:
+            replacement = '\\' + string
+            line = line.replace(string, replacement)
+    return line
 
 if __name__ == "__main__":
     # Open output file for reading and writing.

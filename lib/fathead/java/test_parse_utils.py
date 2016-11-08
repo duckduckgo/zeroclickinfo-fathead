@@ -12,6 +12,9 @@ class TestParse(unittest.TestCase):
     self.assertEqual("StandardCopyOption", parse_utils.remove_keywords("Enum StandardCopyOption"))
     self.assertEqual("DriverAction", parse_utils.remove_keywords("Interface DriverAction"))
     self.assertEqual("Native", parse_utils.remove_keywords("Annotation Type Native"))
+    self.assertEqual("ArrayList", parse_utils.remove_keywords("ArrayList<E>"))
+    self.assertEqual("DefaultRowSorter", parse_utils.remove_keywords("DefaultRowSorter<M,I>"))
+    self.assertEqual("ThreadLocal", parse_utils.remove_keywords("ThreadLocal<T>"))
 
     self.assertEqual('', parse_utils.remove_keywords([]))
 

@@ -1,28 +1,4 @@
-# Introduction:
-# -------------
-# This is used to open an SQLite database that's installed on your computer to create a Fathead output
-# that's specified in http://docs.duckduckhack.com/resources/fathead-overview.html
-#
-# Page Structure:
-# ---------------
-# There is no page structure here because we're essentially scraping a database. The only requirement is that you have XCode.
-#
-# Pipeline:
-# ---------
-# Read DB -> Scrape / Process -> Output
-#
-# How do I test this?
-# ------------------
-# You'll need to have XCode installed on your computer. It comes bundled with the documentation that we need.
-#
-# TODO:
-# - Get disambiguations working
-#
-# Updates:
-#
-# August 30, 2016
-# - Now works with DocSets included in XCode 7.3.1
-
+# -*- coding: utf-8 -*-
 import sqlite3
 import re
 import sys
@@ -30,14 +6,10 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-# These contains all of the API documentation
-# It only has classes and methods--it doesn't have actual tutorials.
-osx = "/Applications/Xcode.app/Contents/Developer/Documentation/DocSets/com.apple.adc.documentation.OSX.docset/Contents/Resources/docSet.dsidx"
+data = "download/watchOS.docset/Contents/Resources/docSet.dsidx"
 
-# This is the link to the docs.
-url = "https://developer.apple.com/library/mac/"
+url = "https://developer.apple.com/library/content/"
 
-# Format the output as specified in https://duck.co/duckduckhack/fathead_overview
 def generate_output(result):
     abstract_format = '{name}\tA\t\t\t\t\t\t\t\t\t\t<section class="prog__container">{abstract}</section>\t{path}\n'
     redirect_format = "{alt_name}\tR\t{name}\t\t\t\t\t\t\t\t\t\t\n"
@@ -64,20 +36,20 @@ def create_fathead(database):
     seen_list = {}
 
     # This long SQL query just gets the details about each class and method.
-    # ZLANGUAGE = 2 means Swift
+    # ZLANGUAGE = 3 means Swift
     # Note: The SQL query is different between different docsets.
     for row in c.execute('''SELECT ZTOKENNAME, ZABSTRACT, ZTOKENMETAINFORMATION.ZANCHOR, ZDECLARATION, ZNODEURL.ZPATH, ZTOKENUSR, ZTOKEN.ZTOKENTYPE 
                             FROM ZTOKEN, ZTOKENMETAINFORMATION, ZNODEURL 
-                            WHERE ZLANGUAGE=2 
-                            AND ZTOKENTYPE IN (2, 3, 7, 8, 15, 16, 17, 19) 
+                            WHERE ZLANGUAGE=3 
+                            AND ZTOKENTYPE IN (1, 4, 5, 7, 8, 12, 14, 17) 
                             AND ZTOKENMETAINFORMATION.ZTOKEN=ZTOKEN.Z_PK 
                             AND ZTOKENNAME IS NOT NULL 
                             AND ZABSTRACT IS NOT NULL 
                             AND ZTOKENMETAINFORMATION.ZANCHOR IS NOT NULL 
                             AND ZDECLARATION IS NOT NULL 
                             AND ZTOKENUSR IS NOT NULL 
-                            AND ZNODEURL.ZNODE=ZTOKEN.ZPARENTNODE 
-                            AND ZNODEURL.ZPATH IS NOT NULL 
+                            AND ZNODEURL.ZPATH IS NOT NULL
+                            AND ZNODEURL.ZNODE=ZTOKEN.ZPARENTNODE
                             ORDER BY ZTOKENNAME'''):
         name, abstract, anchor, snippet, path, usr, tokentype = row
 
@@ -87,7 +59,7 @@ def create_fathead(database):
             "abstract": '<p>' + abstract + '</p>' or "",
             "path": url + path + "#" + anchor,
             "original": abstract or "",
-            "platform": "Mac",
+            "platform": "watchOS",
             "snippet": snippet or "",
         }
         
@@ -97,7 +69,7 @@ def create_fathead(database):
 
         # Process the abstract
         # Classes have irrelevant snippets so we're not adding that in
-        if tokentype != 2:
+        if tokentype != 12:
             pack['abstract'] = pack['abstract'] + pack['snippet']
         pack['abstract'] = pack['abstract'].replace("\n", "\\n")
 
@@ -112,7 +84,7 @@ def create_fathead(database):
             continue
 
         # ----------------
-        # Create redirects
+        # Create Redirects
         # ----------------
         # 
         # This is where the variable `usr` will come in handy. It has information on whether a certain 
@@ -130,15 +102,12 @@ def create_fathead(database):
         else:
             pack['redirect'] = None
 
-        # Log
         print pack['name']
 
-        # This variable gets an array.
-        # First element is the class, and the second one is the method.
         result.append(pack)
 
     conn.close()
     generate_output(result)
 
-# Only create Fathead for macOS
-create_fathead(osx)
+if __name__ == '__main__':
+    create_fathead(data)
