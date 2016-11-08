@@ -197,6 +197,7 @@ def generate_redirects(f):
             disambiguation_key = entry.get_key()
             splitted_key = disambiguation_key.split('.')
             package_name = '.'.join(splitted_key[0:len(splitted_key)-1])
+            #temp doesn't sound like a good variable name
             temp = "'" + package_name + "'"
 
             if len(splitted_key) >= 2:
