@@ -2,7 +2,6 @@
 
 from bs4 import BeautifulSoup
 from os import listdir
-import cgi
 import logging
 import re
 
@@ -32,8 +31,8 @@ class Tag(object):
 
         # replace all newline and horizontal tab characters
         terms = {'\n': '\\n', '\t': '\\t', '\r': ''}
-        self.info = cgi.escape(replace_all(self.info, terms))
-        self.example = cgi.escape(replace_all(self.example, terms))
+        self.info = replace_all(self.info, terms)
+        self.example = replace_all(self.example, terms)
 
     def make_abstract(self):
         """ Creates the abstract using
