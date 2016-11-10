@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import codecs
 import json
 import re
+import tqdm
 import urllib
 from urllib2 import urlopen
 
@@ -15,15 +16,13 @@ def get_popular_packages():
     package = 1
     seed = 'http://pypi-ranking.info/alltime?page='
     print("Getting Popular Packages ...")
-    while package <= limit:
-        data = urlopen(seed + str(package)).read()
-        package = package + 1
+    for i in tqdm.tqdm(range(1, limit+1)):
+        data = urlopen(seed + str(i)).read()
         soup = BeautifulSoup(data, "html.parser")
         spans = soup.find_all('span', {'class' : 'list_title'})
         packages = [span.get_text() for span in spans]
         for element in packages:
             if element not in popular_packages:
-                print(element.encode('utf-8'))
                 popular_packages.append(element.encode('utf-8'))
     main()
 
