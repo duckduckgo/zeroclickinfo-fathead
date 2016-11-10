@@ -12,7 +12,7 @@ For now, we are **only accepting Pull Requests and Issues related to the Program
 
 - [**Create new Fatheads, and improve existing ones**](https://github.com/duckduckgo/zeroclickinfo-fathead/issues?q=is%3Aopen+is%3Aissue+label%3A"Mission%3A+Programming")
     - **Note**: Fatheads are written in Perl, Python, Ruby, or JavaScript (Node.js)
-- [**Visit DuckDuckHack.com**](https://duckduckhack.com) to learn more about the Programming Mission, and how you can help us **analyze Instant Answer performance data** to determine new projects
+- [**Visit our Forum**](https://forum.duckduckhack.com/t/duckduckhack-getting-started/53) to learn more about the Programming Mission, and how you can help us **analyze Instant Answer performance data** to determine new projects
 
 
 ### What are Fathead Instant Answers?
