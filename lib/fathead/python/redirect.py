@@ -203,7 +203,7 @@ def generate_redirects(f):
             if len(splitted_key) >= 2:
                 if temp in output and output[temp].startswith(package_name + '\t' + 'A'):
                     output[temp] = str(package_name) + '\t' + 'D' +'\t\t\t\t\t\t\t\t' + '*' + '[['+str(disambiguation_key)+']] ' + str(entry.get_abstract()) + '\\n'
-                    if output[temp].startswith(package_name + '\t' + 'A'):
+                    if output[temp].startswith(package_name + '\t' + 'A'): #didn't we just replace the output[temp] with a disambiguation?
                         del output[temp]
                     disambiguations += 1
                 elif temp in output and disambiguation_key not in output[temp] and output[temp].startswith(package_name + '\t' + 'D'):
@@ -220,7 +220,7 @@ def generate_redirects(f):
                     if key not in output and built_in_key not in built_in:
                         output[key] = str(redirect.get_entry())
                     else:
-                        del output[key]
+                        del output[key] #This looks strange to me, if we have exactly two redirects with the same content, won't we remove that key on the second run?
                         duplicate_count += 1
 
         except BadEntryException as e:
