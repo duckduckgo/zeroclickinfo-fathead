@@ -228,7 +228,7 @@ def generate_redirects(f):
     print("Duplicates: %s" % duplicate_count)
     print("Disambiguations: %s" % disambiguations)
 
-    # Adds subtitles for different python versions.
+    # Adds python versions as subtitle.
     for line in output:
         try:
             entry = Entry(output[line])
