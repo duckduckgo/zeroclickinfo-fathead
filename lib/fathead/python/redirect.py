@@ -228,6 +228,18 @@ def generate_redirects(f):
     print("Duplicates: %s" % duplicate_count)
     print("Disambiguations: %s" % disambiguations)
 
+    # Adds subtitles for different python versions.
+    for line in output:
+        try:
+            entry = Entry(output[line])
+            if entry.get_type() == 'A':
+                if output[line].startswith('python2'):
+                    output[line] = output[line][:output[line].index('\t')] + ' (python2)' + output[line][output[line].index('\t'):]
+                else:
+                    output[line] = output[line][:output[line].index('\t')] + ' (python3)' + output[line][output[line].index('\t'):]
+        except:
+            pass
+
     with open('output2.txt', 'w') as output_file:
         for key, line in output.items():
             if line.endswith('\\n'):
