@@ -25,17 +25,15 @@ class SixModule(object):
         '''
 
         # Clean up the usage statement which can have newline characters and
-        # tab characters, which mess up how it renders
-#        print self.usage
+        # tab characters, which mess up how it renders 
 
-        usage_cleaned = self.usage.replace("’","").replace("\t", "    ").replace("\n","\\n")
-        
-#        print usage_cleaned
-
+        code =  '<pre><code>{}</code></pre>'.format(self.usage.replace('\n','\\\\n'))
+       
         # Make the abstract have the description as well as a code block
-        
-        abstract = '{}\n<pre><code>{}</pre></code>'.format(self.description,
-                                                           usage_cleaned)
+        descrip = '<p>'+self.description+'</p>'
+        abstract = '{}{}{}'.format(descrip, '', code)
+        abstract = '<section class="prog__container">' + abstract + '</section>' 
+ 
         return '\t'.join([
             self.name,  # Full article title
             'A',  # Type of article
