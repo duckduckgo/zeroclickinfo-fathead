@@ -1,0 +1,17 @@
+{
+  "name": "zeroclickinfo-fathead-angularjs",
+  "private": true,
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+  },
+  "dependencies": {
+    "async": "^2.1.2",
+    "cheerio": "^0.22.0",
+    "file": "^0.2.2",
+    "htmlclean": "^2.7.7",
+    "request": "^2.76.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.1.2"
+  }
+}
