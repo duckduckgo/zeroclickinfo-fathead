@@ -1,62 +1,89 @@
-forEach	A			function in module ng							<section class="prog__container"><p>Invokes the <code>iterator</code> function once for each item in <code>obj</code> collection, which can be either an object or an array. The <code>iterator</code> function is invoked with <code>iterator(value, key, obj)</code>, where <code>value</code> is the value of an object property or an array element, <code>key</code> is the object property key or array element index and obj is the <code>obj</code> itself. Specifying a <code>context</code> for the function is optional.</p><pre><code>angular.forEach(obj, iterator, [context]);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.forEach
-for each	R	forEach										
-merge	A			function in module ng							<section class="prog__container"><p>Deeply extends the destination object <code>dst</code> by copying own enumerable properties from the <code>src</code> object(s) to <code>dst</code>. You can specify multiple <code>src</code> objects. If you want to preserve original objects, you can do so by passing an empty object as the target: <code>var object = angular.merge({}, object1, object2)</code>.</p><pre><code>angular.merge(dst, src);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.merge
-identity	A			function in module ng							<section class="prog__container"><p>A function that returns its first argument. This function is useful when writing code in the functional style.</p><pre><code>angular.identity(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.identity
-isUndefined	A			function in module ng							<section class="prog__container"><p>Determines if a reference is undefined.</p><pre><code>angular.isUndefined(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isUndefined
-is undefined	R	isUndefined										
-noop	A			function in module ng							<section class="prog__container"><p>A function that performs no operations. This function can be useful when writing code in the functional style.</p><pre><code>angular.noop();</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.noop
-isDefined	A			function in module ng							<section class="prog__container"><p>Determines if a reference is defined.</p><pre><code>angular.isDefined(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isDefined
-is defined	R	isDefined										
-isObject	A			function in module ng							<section class="prog__container"><p>Determines if a reference is an <code>Object</code>. Unlike <code>typeof</code> in JavaScript, <code>null</code>s are not considered to be objects. Note that JavaScript arrays are objects.</p><pre><code>angular.isObject(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isObject
-is object	R	isObject										
-isNumber	A			function in module ng							<section class="prog__container"><p>Determines if a reference is a <code>Number</code>.</p><pre><code>angular.isNumber(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isNumber
-is number	R	isNumber										
-isDate	A			function in module ng							<section class="prog__container"><p>Determines if a value is a date.</p><pre><code>angular.isDate(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isDate
-is date	R	isDate										
-isString	A			function in module ng							<section class="prog__container"><p>Determines if a reference is a <code>String</code>.</p><pre><code>angular.isString(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isString
-is string	R	isString										
-isArray	A			function in module ng							<section class="prog__container"><p>Determines if a reference is an <code>Array</code>. Alias of Array.isArray.</p><pre><code>angular.isArray(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isArray
-is array	R	isArray										
-isFunction	A			function in module ng							<section class="prog__container"><p>Determines if a reference is a <code>Function</code>.</p><pre><code>angular.isFunction(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isFunction
-is function	R	isFunction										
-isElement	A			function in module ng							<section class="prog__container"><p>Determines if a reference is a DOM element (or wrapped jQuery element).</p><pre><code>angular.isElement(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isElement
-is element	R	isElement										
-copy	A			function in module ng							<section class="prog__container"><p>Creates a deep copy of <code>source</code>, which should be an object or an array.</p><pre><code>angular.copy(source, [destination]);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.copy
-equals	A			function in module ng							<section class="prog__container"><p>Determines if two objects or two values are equivalent. Supports value types, regular expressions, arrays and objects.</p><pre><code>angular.equals(o1, o2);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.equals
-ngJq	A			directive in module ng							<section class="prog__container"><p>Use this directive to force the angular.element library. This should be used to force either jqLite by leaving ng-jq blank or setting the name of the jquery variable under window (eg. jQuery).</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-jq\n  [ng-jq=&quot;string&quot;]&gt;\n...\n&lt;/ng-jq&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  [ng-jq=&quot;string&quot;]&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngJq
-ng jq	R	ngJq										
-ng-jq	R	ngJq										
-toJson	A			function in module ng							<section class="prog__container"><p>Serializes input into a JSON-formatted string. Properties with leading $$ characters will be stripped since angular uses this notation internally.</p><pre><code>angular.toJson(obj, pretty);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.toJson
-to json	R	toJson										
-bind	A			function in module ng							<section class="prog__container"><p>Returns a function which calls function <code>fn</code> bound to <code>self</code> (<code>self</code> becomes the <code>this</code> for <code>fn</code>). You can supply optional <code>args</code> that are prebound to the function. This feature is also known as <a href="http://en.wikipedia.org/wiki/Partial_application">partial application</a>, as distinguished from <a href="http://en.wikipedia.org/wiki/Currying#Contrast_with_partial_function_application">function currying</a>.</p><pre><code>angular.bind(self, fn, args);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.bind
-fromJson	A			function in module ng							<section class="prog__container"><p>Deserializes a JSON string.</p><pre><code>angular.fromJson(json);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.fromJson
-from json	R	fromJson										
+angular.forEach	A			function in module ng							<section class="prog__container"><p>Invokes the <code>iterator</code> function once for each item in <code>obj</code> collection, which can be either an object or an array. The <code>iterator</code> function is invoked with <code>iterator(value, key, obj)</code>, where <code>value</code> is the value of an object property or an array element, <code>key</code> is the object property key or array element index and obj is the <code>obj</code> itself. Specifying a <code>context</code> for the function is optional.</p><pre><code>angular.forEach(obj, iterator, [context]);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.forEach
+forEach	R	angular.forEach										
+for each	R	angular.forEach										
+angular.extend	A			function in module ng							<section class="prog__container"><p>Extends the destination object <code>dst</code> by copying own enumerable properties from the <code>src</code> object(s) to <code>dst</code>. You can specify multiple <code>src</code> objects. If you want to preserve original objects, you can do so by passing an empty object as the target: <code>var object = angular.extend({}, object1, object2)</code>.</p><pre><code>angular.extend(dst, src);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.extend
+extend	R	angular.extend										
+angular.merge	A			function in module ng							<section class="prog__container"><p>Deeply extends the destination object <code>dst</code> by copying own enumerable properties from the <code>src</code> object(s) to <code>dst</code>. You can specify multiple <code>src</code> objects. If you want to preserve original objects, you can do so by passing an empty object as the target: <code>var object = angular.merge({}, object1, object2)</code>.</p><pre><code>angular.merge(dst, src);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.merge
+merge	R	angular.merge										
+angular.noop	A			function in module ng							<section class="prog__container"><p>A function that performs no operations. This function can be useful when writing code in the functional style.</p><pre><code>angular.noop();</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.noop
+noop	R	angular.noop										
+angular.identity	A			function in module ng							<section class="prog__container"><p>A function that returns its first argument. This function is useful when writing code in the functional style.</p><pre><code>angular.identity(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.identity
+identity	R	angular.identity										
+angular.isDefined	A			function in module ng							<section class="prog__container"><p>Determines if a reference is defined.</p><pre><code>angular.isDefined(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isDefined
+isDefined	R	angular.isDefined										
+is defined	R	angular.isDefined										
+angular.isUndefined	A			function in module ng							<section class="prog__container"><p>Determines if a reference is undefined.</p><pre><code>angular.isUndefined(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isUndefined
+isUndefined	R	angular.isUndefined										
+is undefined	R	angular.isUndefined										
+angular.isObject	A			function in module ng							<section class="prog__container"><p>Determines if a reference is an <code>Object</code>. Unlike <code>typeof</code> in JavaScript, <code>null</code>s are not considered to be objects. Note that JavaScript arrays are objects.</p><pre><code>angular.isObject(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isObject
+isObject	R	angular.isObject										
+is object	R	angular.isObject										
+angular.isString	A			function in module ng							<section class="prog__container"><p>Determines if a reference is a <code>String</code>.</p><pre><code>angular.isString(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isString
+isString	R	angular.isString										
+is string	R	angular.isString										
+angular.isDate	A			function in module ng							<section class="prog__container"><p>Determines if a value is a date.</p><pre><code>angular.isDate(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isDate
+isDate	R	angular.isDate										
+is date	R	angular.isDate										
+angular.isNumber	A			function in module ng							<section class="prog__container"><p>Determines if a reference is a <code>Number</code>.</p><pre><code>angular.isNumber(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isNumber
+isNumber	R	angular.isNumber										
+is number	R	angular.isNumber										
+angular.isArray	A			function in module ng							<section class="prog__container"><p>Determines if a reference is an <code>Array</code>. Alias of Array.isArray.</p><pre><code>angular.isArray(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isArray
+isArray	R	angular.isArray										
+is array	R	angular.isArray										
+angular.isFunction	A			function in module ng							<section class="prog__container"><p>Determines if a reference is a <code>Function</code>.</p><pre><code>angular.isFunction(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isFunction
+isFunction	R	angular.isFunction										
+is function	R	angular.isFunction										
+angular.isElement	A			function in module ng							<section class="prog__container"><p>Determines if a reference is a DOM element (or wrapped jQuery element).</p><pre><code>angular.isElement(value);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.isElement
+isElement	R	angular.isElement										
+is element	R	angular.isElement										
+angular.copy	A			function in module ng							<section class="prog__container"><p>Creates a deep copy of <code>source</code>, which should be an object or an array.</p><pre><code>angular.copy(source, [destination]);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.copy
+copy	R	angular.copy										
+angular.equals	A			function in module ng							<section class="prog__container"><p>Determines if two objects or two values are equivalent. Supports value types, regular expressions, arrays and objects.</p><pre><code>angular.equals(o1, o2);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.equals
+equals	R	angular.equals										
+angular.bind	A			function in module ng							<section class="prog__container"><p>Returns a function which calls function <code>fn</code> bound to <code>self</code> (<code>self</code> becomes the <code>this</code> for <code>fn</code>). You can supply optional <code>args</code> that are prebound to the function. This feature is also known as <a href="http://en.wikipedia.org/wiki/Partial_application">partial application</a>, as distinguished from <a href="http://en.wikipedia.org/wiki/Currying#Contrast_with_partial_function_application">function currying</a>.</p><pre><code>angular.bind(self, fn, args);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.bind
+bind	R	angular.bind										
+angular.toJson	A			function in module ng							<section class="prog__container"><p>Serializes input into a JSON-formatted string. Properties with leading $$ characters will be stripped since angular uses this notation internally.</p><pre><code>angular.toJson(obj, pretty);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.toJson
+toJson	R	angular.toJson										
+to json	R	angular.toJson										
+angular.fromJson	A			function in module ng							<section class="prog__container"><p>Deserializes a JSON string.</p><pre><code>angular.fromJson(json);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.fromJson
+fromJson	R	angular.fromJson										
+from json	R	angular.fromJson										
 ngApp	A			directive in module ng							<section class="prog__container"><p>Use this directive to <strong>auto-bootstrap</strong> an AngularJS application. The <code>ngApp</code> directive designates the <strong>root element</strong> of the application and is typically placed near the root element of the page - e.g. on the <code>&lt;body&gt;</code> or <code>&lt;html&gt;</code> tags.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-app\n  ng-app=&quot;angular.Module&quot;\n  [ng-strict-di=&quot;boolean&quot;]&gt;\n...\n&lt;/ng-app&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-app=&quot;angular.Module&quot;\n  [ng-strict-di=&quot;boolean&quot;]&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngApp
 ng app	R	ngApp										
 ng-app	R	ngApp										
-bootstrap	A			function in module ng							<section class="prog__container"><p>Use this function to manually start up angular application.</p><pre><code>angular.bootstrap(element, [modules], [config]);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.bootstrap
-reloadWithDebugInfo	A			function in module ng							<section class="prog__container"><p>Use this function to reload the current application with debug information turned on. This takes precedence over a call to <code>$compileProvider.debugInfoEnabled(false)</code>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.reloadWithDebugInfo
-reload with debug info	R	reloadWithDebugInfo										
-version	A			object in module ng							<section class="prog__container"><p>An object that contains information about the current AngularJS version.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/object/angular.version
-injector	A			function in module ng							<section class="prog__container"><p>Creates an injector object that can be used for retrieving services as well as for dependency injection (see <a href="guide/di">dependency injection</a>).</p><pre><code>angular.injector(modules, [strictDi]);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.injector
+ngJq	A			directive in module ng							<section class="prog__container"><p>Use this directive to force the angular.element library. This should be used to force either jqLite by leaving ng-jq blank or setting the name of the jquery variable under window (eg. jQuery).</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-jq\n  [ng-jq=&quot;string&quot;]&gt;\n...\n&lt;/ng-jq&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  [ng-jq=&quot;string&quot;]&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngJq
+ng jq	R	ngJq										
+ng-jq	R	ngJq										
+angular.bootstrap	A			function in module ng							<section class="prog__container"><p>Use this function to manually start up angular application.</p><pre><code>angular.bootstrap(element, [modules], [config]);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.bootstrap
+bootstrap	R	angular.bootstrap										
+angular.reloadWithDebugInfo	A			function in module ng							<section class="prog__container"><p>Use this function to reload the current application with debug information turned on. This takes precedence over a call to <code>$compileProvider.debugInfoEnabled(false)</code>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.reloadWithDebugInfo
+reloadWithDebugInfo	R	angular.reloadWithDebugInfo										
+reload with debug info	R	angular.reloadWithDebugInfo										
+angular.version	A			object in module ng							<section class="prog__container"><p>An object that contains information about the current AngularJS version.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/object/angular.version
+version	R	angular.version										
+angular.injector	A			function in module ng							<section class="prog__container"><p>Creates an injector object that can be used for retrieving services as well as for dependency injection (see <a href="guide/di">dependency injection</a>).</p><pre><code>angular.injector(modules, [strictDi]);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.injector
+injector	R	angular.injector										
 $injector	A			service in module auto							<section class="prog__container"><p><code>$injector</code> is used to retrieve object instances as defined by <a href="api/auto/service/$provide">provider</a>, instantiate types, invoke methods, and load modules.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/auto/service/$injector
 $provide	A			service in module auto							<section class="prog__container"><p>The <a href="api/auto/service/$provide">$provide</a> service has a number of methods for registering components with the <a href="api/auto/service/$injector">$injector</a>. Many of these functions are also exposed on <a href="api/ng/type/angular.Module"><code>angular.Module</code></a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/auto/service/$provide
 provide	R	$provide										
-Module	A			type in module ng							<section class="prog__container"><p>Interface for configuring angular <a href="api/ng/function/angular.module">modules</a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/type/angular.Module
-module	A			function in module ng							<section class="prog__container"><p>The <code>angular.module</code> is a global place for creating, registering and retrieving Angular modules. All modules (angular core or 3rd party) that should be available to an application must be registered using this mechanism.</p><pre><code>angular.module(name, [requires], [configFn]);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.module
-element	A			function in module ng							<section class="prog__container"><p>Wraps a raw DOM element or HTML string as a <a href="http://jquery.com">jQuery</a> element.</p><pre><code>angular.element(element);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.element
+angular.element	A			function in module ng							<section class="prog__container"><p>Wraps a raw DOM element or HTML string as a <a href="http://jquery.com">jQuery</a> element.</p><pre><code>angular.element(element);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.element
+element	R	angular.element										
+angular.Module	A			type in module ng							<section class="prog__container"><p>Interface for configuring angular <a href="api/ng/function/angular.module">modules</a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/type/angular.Module
+Module	R	angular.Module										
+angular.module	A			function in module ng							<section class="prog__container"><p>The <code>angular.module</code> is a global place for creating, registering and retrieving Angular modules. All modules (angular core or 3rd party) that should be available to an application must be registered using this mechanism.</p><pre><code>angular.module(name, [requires], [configFn]);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.module
+module	R	angular.module										
 $anchorScrollProvider	A			provider in module ng							<section class="prog__container"><p>Use <code>$anchorScrollProvider</code> to disable automatic scrolling whenever <a href="api/ng/service/$location#hash">$location.hash()</a> changes.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/provider/$anchorScrollProvider
 anchorScrollProvider	R	$anchorScrollProvider										
 $anchor scroll provider	R	$anchorScrollProvider										
 anchor scroll provider	R	$anchorScrollProvider										
-$animateProvider	A			provider in module ng							<section class="prog__container"><p>Default implementation of $animate that doesn&apos;t perform any animations, instead just synchronously performs DOM updates and resolves the returned runner promise.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/provider/$animateProvider
-animateProvider	R	$animateProvider										
-$animate provider	R	$animateProvider										
-animate provider	R	$animateProvider										
 $anchorScroll	A			service in module ng							<section class="prog__container"><p>When called, it scrolls to the element related to the specified <code>hash</code> or (if omitted) to the current value of <a href="api/ng/service/$location#hash">$location.hash()</a>, according to the rules specified in the <a href="http://www.w3.org/html/wg/drafts/html/master/browsers.html#an-indicated-part-of-the-document">HTML5 spec</a>.</p><pre><code>$anchorScroll([hash]);</pre></code></section>	https://docs.angularjs.org/api/ng/service/$anchorScroll
 anchorScroll	R	$anchorScroll										
 $anchor scroll	R	$anchorScroll										
 anchor scroll	R	$anchorScroll										
+$animateProvider	A			provider in module ng							<section class="prog__container"><p>Default implementation of $animate that doesn&apos;t perform any animations, instead just synchronously performs DOM updates and resolves the returned runner promise.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/provider/$animateProvider
+animateProvider	R	$animateProvider										
+$animate provider	R	$animateProvider										
+animate provider	R	$animateProvider										
 $animate	A			service in module ng							<section class="prog__container"><p>The $animate service exposes a series of DOM utility methods that provide support for animation hooks. The default behavior is the application of DOM operations, however, when an animation is detected (and animations are enabled), $animate will do the heavy lifting to ensure that animation runs with the triggered DOM operation.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/service/$animate
 animate	R	$animate										
 $animateCss	A			service in module ng							<section class="prog__container"><p>This is the core version of <code>$animateCss</code>. By default, only when the <code>ngAnimate</code> is included, then the <code>$animateCss</code> service will actually perform animations.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/service/$animateCss
@@ -81,17 +108,16 @@ compile	R	$compile
 compileProvider	R	$compileProvider										
 $compile provider	R	$compileProvider										
 compile provider	R	$compileProvider										
+$controllerProvider	A			provider in module ng							<section class="prog__container"><p>The <a href="api/ng/service/$controller">$controller service</a> is used by Angular to create new controllers.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/provider/$controllerProvider
+controllerProvider	R	$controllerProvider										
+$controller provider	R	$controllerProvider										
+controller provider	R	$controllerProvider										
 $compile.directive.Attributes	A			type in module ng							<section class="prog__container"><p>A shared object between directive compile / linking functions which contains normalized DOM element attributes. The values reflect current binding state <code>{{ }}</code>. The normalization is needed since all of these are treated as equivalent in Angular:</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/type/$compile.directive.Attributes
 $compile directive Attributes	R	$compile.directive.Attributes										
 compile.directive.Attributes	R	$compile.directive.Attributes										
 compile directive Attributes	R	$compile.directive.Attributes										
 $controller	A			service in module ng							<section class="prog__container"><p><code>$controller</code> service is responsible for instantiating controllers.</p><pre><code>$controller(constructor, locals);</pre></code></section>	https://docs.angularjs.org/api/ng/service/$controller
 controller	R	$controller										
-$controllerProvider	A			provider in module ng							<section class="prog__container"><p>The <a href="api/ng/service/$controller">$controller service</a> is used by Angular to create new controllers.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/provider/$controllerProvider
-controllerProvider	R	$controllerProvider										
-$controller provider	R	$controllerProvider										
-controller provider	R	$controllerProvider										
-extend	A			function in module ng							<section class="prog__container"><p>Extends the destination object <code>dst</code> by copying own enumerable properties from the <code>src</code> object(s) to <code>dst</code>. You can specify multiple <code>src</code> objects. If you want to preserve original objects, you can do so by passing an empty object as the target: <code>var object = angular.extend({}, object1, object2)</code>.</p><pre><code>angular.extend(dst, src);</pre></code></section>	https://docs.angularjs.org/api/ng/function/angular.extend
 a	A			directive in module ng							<section class="prog__container"><p>Modifies the default behavior of the html a tag so that the default action is prevented when the href attribute is empty.</p><p>Usage</p><ul><li>as element:<pre><code>&lt;a&gt;\n...\n&lt;/a&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/a
 ngHref	A			directive in module ng							<section class="prog__container"><p>Using Angular markup like <code>{{hash}}</code> in an href attribute will make the link go to the wrong URL if the user clicks it before Angular has a chance to replace the <code>{{hash}}</code> markup with its value. Until Angular replaces the markup the link will be broken and will most likely return a 404 error. The <code>ngHref</code> directive solves this problem.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;A\n  ng-href=&quot;template&quot;&gt;\n...\n&lt;/A&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngHref
 ng href	R	ngHref										
@@ -99,12 +125,12 @@ ng-href	R	ngHref
 ngSrc	A			directive in module ng							<section class="prog__container"><p>Using Angular markup like <code>{{hash}}</code> in a <code>src</code> attribute doesn&apos;t work right: The browser will fetch from the URL with the literal text <code>{{hash}}</code> until Angular replaces the expression inside <code>{{hash}}</code>. The <code>ngSrc</code> directive solves this problem.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;IMG\n  ng-src=&quot;template&quot;&gt;\n...\n&lt;/IMG&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngSrc
 ng src	R	ngSrc										
 ng-src	R	ngSrc										
-ngDisabled	A			directive in module ng							<section class="prog__container"><p>This directive sets the <code>disabled</code> attribute on the element if the <a href="guide/expression">expression</a> inside <code>ngDisabled</code> evaluates to truthy.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;INPUT\n  ng-disabled=&quot;expression&quot;&gt;\n...\n&lt;/INPUT&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngDisabled
-ng disabled	R	ngDisabled										
-ng-disabled	R	ngDisabled										
 ngSrcset	A			directive in module ng							<section class="prog__container"><p>Using Angular markup like <code>{{hash}}</code> in a <code>srcset</code> attribute doesn&apos;t work right: The browser will fetch from the URL with the literal text <code>{{hash}}</code> until Angular replaces the expression inside <code>{{hash}}</code>. The <code>ngSrcset</code> directive solves this problem.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;IMG\n  ng-srcset=&quot;template&quot;&gt;\n...\n&lt;/IMG&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngSrcset
 ng srcset	R	ngSrcset										
 ng-srcset	R	ngSrcset										
+ngDisabled	A			directive in module ng							<section class="prog__container"><p>This directive sets the <code>disabled</code> attribute on the element if the <a href="guide/expression">expression</a> inside <code>ngDisabled</code> evaluates to truthy.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;INPUT\n  ng-disabled=&quot;expression&quot;&gt;\n...\n&lt;/INPUT&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngDisabled
+ng disabled	R	ngDisabled										
+ng-disabled	R	ngDisabled										
 ngChecked	A			directive in module ng							<section class="prog__container"><p>Sets the <code>checked</code> attribute on the element, if the expression inside <code>ngChecked</code> is truthy.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;INPUT\n  ng-checked=&quot;expression&quot;&gt;\n...\n&lt;/INPUT&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngChecked
 ng checked	R	ngChecked										
 ng-checked	R	ngChecked										
@@ -129,21 +155,24 @@ input	A			directive in module ng							<section class="prog__container"><p>HTML 
 ngValue	A			directive in module ng							<section class="prog__container"><p>Binds the given expression to the value of the element.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-value\n  [ng-value=&quot;string&quot;]&gt;\n...\n&lt;/ng-value&gt;</code></pre></li><li>as attribute:<pre><code>&lt;input\n  [ng-value=&quot;string&quot;]&gt;\n...\n&lt;/input&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngValue
 ng value	R	ngValue										
 ng-value	R	ngValue										
-ngBind	A			directive in module ng							<section class="prog__container"><p>The <code>ngBind</code> attribute tells Angular to replace the text content of the specified HTML element with the value of a given expression, and to update the text content when the value of that expression changes.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;ANY\n  ng-bind=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li><li>as CSS class:<pre><code>&lt;ANY class=&quot;ng-bind: expression;&quot;&gt; ... &lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngBind
-ng bind	R	ngBind										
-ng-bind	R	ngBind										
 ngBindTemplate	A			directive in module ng							<section class="prog__container"><p>The <code>ngBindTemplate</code> directive specifies that the element text content should be replaced with the interpolation of the template in the <code>ngBindTemplate</code> attribute. Unlike <code>ngBind</code>, the <code>ngBindTemplate</code> can contain multiple <code>{{</code> <code>}}</code> expressions. This directive is needed since some HTML elements (such as TITLE and OPTION) cannot contain SPAN elements.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-bind-template\n  ng-bind-template=&quot;string&quot;&gt;\n...\n&lt;/ng-bind-template&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-bind-template=&quot;string&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngBindTemplate
 ng bind template	R	ngBindTemplate										
 ng-bind-template	R	ngBindTemplate										
-ngBindHtml	A			directive in module ng							<section class="prog__container"><p>Evaluates the expression and inserts the resulting HTML into the element in a secure way. By default, the resulting HTML content will be sanitized using the <a href="api/ngSanitize/service/$sanitize">$sanitize</a> service. To utilize this functionality, ensure that <code>$sanitize</code> is available, for example, by including <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&apos;s dependencies (not in core Angular). In order to use <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&apos;s dependencies, you need to include &quot;angular-sanitize.js&quot; in your application.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-bind-html\n  ng-bind-html=&quot;expression&quot;&gt;\n...\n&lt;/ng-bind-html&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-bind-html=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngBindHtml
-ng bind html	R	ngBindHtml										
-ng-bind-html	R	ngBindHtml										
 ngChange	A			directive in module ng							<section class="prog__container"><p>Evaluate the given expression when the user changes the input. The expression is evaluated immediately, unlike the JavaScript onchange event which only triggers at the end of a change (usually, when the user leaves the form element or presses the return key).</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-change\n  ng-change=&quot;expression&quot;&gt;\n...\n&lt;/ng-change&gt;</code></pre></li><li>as attribute:<pre><code>&lt;input\n  ng-change=&quot;expression&quot;&gt;\n...\n&lt;/input&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngChange
 ng change	R	ngChange										
 ng-change	R	ngChange										
+ngBindHtml	A			directive in module ng							<section class="prog__container"><p>Evaluates the expression and inserts the resulting HTML into the element in a secure way. By default, the resulting HTML content will be sanitized using the <a href="api/ngSanitize/service/$sanitize">$sanitize</a> service. To utilize this functionality, ensure that <code>$sanitize</code> is available, for example, by including <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&apos;s dependencies (not in core Angular). In order to use <a href="api/ngSanitize"><code>ngSanitize</code></a> in your module&apos;s dependencies, you need to include &quot;angular-sanitize.js&quot; in your application.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-bind-html\n  ng-bind-html=&quot;expression&quot;&gt;\n...\n&lt;/ng-bind-html&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-bind-html=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngBindHtml
+ng bind html	R	ngBindHtml										
+ng-bind-html	R	ngBindHtml										
+ngBind	A			directive in module ng							<section class="prog__container"><p>The <code>ngBind</code> attribute tells Angular to replace the text content of the specified HTML element with the value of a given expression, and to update the text content when the value of that expression changes.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;ANY\n  ng-bind=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li><li>as CSS class:<pre><code>&lt;ANY class=&quot;ng-bind: expression;&quot;&gt; ... &lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngBind
+ng bind	R	ngBind										
+ng-bind	R	ngBind										
 ngClass	A			directive in module ng							<section class="prog__container"><p>The <code>ngClass</code> directive allows you to dynamically set CSS classes on an HTML element by databinding an expression that represents all classes to be added.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;ANY\n  ng-class=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li><li>as CSS class:<pre><code>&lt;ANY class=&quot;ng-class: expression;&quot;&gt; ... &lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngClass
 ng class	R	ngClass										
 ng-class	R	ngClass										
+ngClassOdd	A			directive in module ng							<section class="prog__container"><p>The <code>ngClassOdd</code> and <code>ngClassEven</code> directives work exactly as <a href="api/ng/directive/ngClass">ngClass</a>, except they work in conjunction with <code>ngRepeat</code> and take effect only on odd (even) rows.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;ANY\n  ng-class-odd=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li><li>as CSS class:<pre><code>&lt;ANY class=&quot;ng-class-odd: expression;&quot;&gt; ... &lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngClassOdd
+ng class odd	R	ngClassOdd										
+ng-class-odd	R	ngClassOdd										
 ngClassEven	A			directive in module ng							<section class="prog__container"><p>The <code>ngClassOdd</code> and <code>ngClassEven</code> directives work exactly as <a href="api/ng/directive/ngClass">ngClass</a>, except they work in conjunction with <code>ngRepeat</code> and take effect only on odd (even) rows.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;ANY\n  ng-class-even=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li><li>as CSS class:<pre><code>&lt;ANY class=&quot;ng-class-even: expression;&quot;&gt; ... &lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngClassEven
 ng class even	R	ngClassEven										
 ng-class-even	R	ngClassEven										
@@ -153,9 +182,6 @@ ng-cloak	R	ngCloak
 ngController	A			directive in module ng							<section class="prog__container"><p>The <code>ngController</code> directive attaches a controller class to the view. This is a key aspect of how angular supports the principles behind the Model-View-Controller design pattern.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-controller\n  ng-controller=&quot;expression&quot;&gt;\n...\n&lt;/ng-controller&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-controller=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngController
 ng controller	R	ngController										
 ng-controller	R	ngController										
-ngClassOdd	A			directive in module ng							<section class="prog__container"><p>The <code>ngClassOdd</code> and <code>ngClassEven</code> directives work exactly as <a href="api/ng/directive/ngClass">ngClass</a>, except they work in conjunction with <code>ngRepeat</code> and take effect only on odd (even) rows.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;ANY\n  ng-class-odd=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li><li>as CSS class:<pre><code>&lt;ANY class=&quot;ng-class-odd: expression;&quot;&gt; ... &lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngClassOdd
-ng class odd	R	ngClassOdd										
-ng-class-odd	R	ngClassOdd										
 ngCsp	A			directive in module ng							<section class="prog__container"><p>Angular has some features that can conflict with certain restrictions that are applied when using <a href="https://developer.mozilla.org/en/Security/CSP">CSP (Content Security Policy)</a> rules.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;ANY&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngCsp
 ng csp	R	ngCsp										
 ng-csp	R	ngCsp										
@@ -171,33 +197,33 @@ ng-mousedown	R	ngMousedown
 ngMouseup	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on mouseup event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-mouseup\n  ng-mouseup=&quot;expression&quot;&gt;\n...\n&lt;/ng-mouseup&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-mouseup=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngMouseup
 ng mouseup	R	ngMouseup										
 ng-mouseup	R	ngMouseup										
-ngMouseover	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on mouseover event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-mouseover\n  ng-mouseover=&quot;expression&quot;&gt;\n...\n&lt;/ng-mouseover&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-mouseover=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngMouseover
-ng mouseover	R	ngMouseover										
-ng-mouseover	R	ngMouseover										
 ngMouseenter	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on mouseenter event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-mouseenter\n  ng-mouseenter=&quot;expression&quot;&gt;\n...\n&lt;/ng-mouseenter&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-mouseenter=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngMouseenter
 ng mouseenter	R	ngMouseenter										
 ng-mouseenter	R	ngMouseenter										
+ngMouseover	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on mouseover event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-mouseover\n  ng-mouseover=&quot;expression&quot;&gt;\n...\n&lt;/ng-mouseover&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-mouseover=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngMouseover
+ng mouseover	R	ngMouseover										
+ng-mouseover	R	ngMouseover										
 ngMouseleave	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on mouseleave event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-mouseleave\n  ng-mouseleave=&quot;expression&quot;&gt;\n...\n&lt;/ng-mouseleave&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-mouseleave=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngMouseleave
 ng mouseleave	R	ngMouseleave										
 ng-mouseleave	R	ngMouseleave										
 ngMousemove	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on mousemove event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-mousemove\n  ng-mousemove=&quot;expression&quot;&gt;\n...\n&lt;/ng-mousemove&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-mousemove=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngMousemove
 ng mousemove	R	ngMousemove										
 ng-mousemove	R	ngMousemove										
-ngKeydown	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on keydown event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-keydown\n  ng-keydown=&quot;expression&quot;&gt;\n...\n&lt;/ng-keydown&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-keydown=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngKeydown
-ng keydown	R	ngKeydown										
-ng-keydown	R	ngKeydown										
-ngKeyup	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on keyup event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-keyup\n  ng-keyup=&quot;expression&quot;&gt;\n...\n&lt;/ng-keyup&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-keyup=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngKeyup
-ng keyup	R	ngKeyup										
-ng-keyup	R	ngKeyup										
 ngKeypress	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on keypress event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-keypress\n  ng-keypress=&quot;expression&quot;&gt;\n...\n&lt;/ng-keypress&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-keypress=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngKeypress
 ng keypress	R	ngKeypress										
 ng-keypress	R	ngKeypress										
 ngSubmit	A			directive in module ng							<section class="prog__container"><p>Enables binding angular expressions to onsubmit events.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-submit\n  ng-submit=&quot;expression&quot;&gt;\n...\n&lt;/ng-submit&gt;</code></pre></li><li>as attribute:<pre><code>&lt;form\n  ng-submit=&quot;expression&quot;&gt;\n...\n&lt;/form&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngSubmit
 ng submit	R	ngSubmit										
 ng-submit	R	ngSubmit										
+ngKeydown	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on keydown event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-keydown\n  ng-keydown=&quot;expression&quot;&gt;\n...\n&lt;/ng-keydown&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-keydown=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngKeydown
+ng keydown	R	ngKeydown										
+ng-keydown	R	ngKeydown										
 ngFocus	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on focus event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-focus\n  ng-focus=&quot;expression&quot;&gt;\n...\n&lt;/ng-focus&gt;</code></pre></li><li>as attribute:<pre><code>&lt;window, input, select, textarea, a\n  ng-focus=&quot;expression&quot;&gt;\n...\n&lt;/window, input, select, textarea, a&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngFocus
 ng focus	R	ngFocus										
 ng-focus	R	ngFocus										
+ngKeyup	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on keyup event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-keyup\n  ng-keyup=&quot;expression&quot;&gt;\n...\n&lt;/ng-keyup&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-keyup=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngKeyup
+ng keyup	R	ngKeyup										
+ng-keyup	R	ngKeyup										
 ngBlur	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on blur event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-blur\n  ng-blur=&quot;expression&quot;&gt;\n...\n&lt;/ng-blur&gt;</code></pre></li><li>as attribute:<pre><code>&lt;window, input, select, textarea, a\n  ng-blur=&quot;expression&quot;&gt;\n...\n&lt;/window, input, select, textarea, a&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngBlur
 ng blur	R	ngBlur										
 ng-blur	R	ngBlur										
@@ -207,12 +233,12 @@ ng-copy	R	ngCopy
 ngCut	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on cut event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-cut\n  ng-cut=&quot;expression&quot;&gt;\n...\n&lt;/ng-cut&gt;</code></pre></li><li>as attribute:<pre><code>&lt;window, input, select, textarea, a\n  ng-cut=&quot;expression&quot;&gt;\n...\n&lt;/window, input, select, textarea, a&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngCut
 ng cut	R	ngCut										
 ng-cut	R	ngCut										
-ngIf	A			directive in module ng							<section class="prog__container"><p>The <code>ngIf</code> directive removes or recreates a portion of the DOM tree based on an {expression}. If the expression assigned to <code>ngIf</code> evaluates to a false value then the element is removed from the DOM, otherwise a clone of the element is reinserted into the DOM.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;ANY\n  ng-if=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngIf
-ng if	R	ngIf										
-ng-if	R	ngIf										
 ngPaste	A			directive in module ng							<section class="prog__container"><p>Specify custom behavior on paste event.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-paste\n  ng-paste=&quot;expression&quot;&gt;\n...\n&lt;/ng-paste&gt;</code></pre></li><li>as attribute:<pre><code>&lt;window, input, select, textarea, a\n  ng-paste=&quot;expression&quot;&gt;\n...\n&lt;/window, input, select, textarea, a&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngPaste
 ng paste	R	ngPaste										
 ng-paste	R	ngPaste										
+ngIf	A			directive in module ng							<section class="prog__container"><p>The <code>ngIf</code> directive removes or recreates a portion of the DOM tree based on an {expression}. If the expression assigned to <code>ngIf</code> evaluates to a false value then the element is removed from the DOM, otherwise a clone of the element is reinserted into the DOM.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;ANY\n  ng-if=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngIf
+ng if	R	ngIf										
+ng-if	R	ngIf										
 ngInclude	A			directive in module ng							<section class="prog__container"><p>Fetches, compiles and includes an external HTML fragment.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-include\n  src=&quot;string&quot;\n  [onload=&quot;string&quot;]\n  [autoscroll=&quot;string&quot;]&gt;\n...\n&lt;/ng-include&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-include=&quot;string&quot;\n  [onload=&quot;string&quot;]\n  [autoscroll=&quot;string&quot;]&gt;\n...\n&lt;/ANY&gt;</code></pre></li><li>as CSS class:<pre><code>&lt;ANY class=&quot;ng-include: string; [onload: string;] [autoscroll: string;]&quot;&gt; ... &lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngInclude
 ng include	R	ngInclude										
 ng-include	R	ngInclude										
@@ -225,20 +251,20 @@ ng-list	R	ngList
 ngModel.NgModelController	A			type in module ng							<section class="prog__container"><p><code>NgModelController</code> provides API for the <a href="api/ng/directive/ngModel"><code>ngModel</code></a> directive. The controller contains services for data-binding, validation, CSS updates, and value formatting and parsing. It purposefully does not contain any logic which deals with DOM rendering or listening to DOM events. Such DOM related logic should be provided by other directives which make use of <code>NgModelController</code> for data-binding to control elements. Angular provides this DOM logic for most <a href="api/ng/directive/input"><code>input</code></a> elements. At the end of this page you can find a <a href="api/ng/type/ngModel.NgModelController#custom-control-example">custom control example</a> that uses <code>ngModelController</code> to bind to <code>contenteditable</code> elements.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/type/ngModel.NgModelController
 ngModel NgModelController	R	ngModel.NgModelController										
 ng model Ng model controller	R	ngModel.NgModelController										
-ngModel	A			directive in module ng							<section class="prog__container"><p>The <code>ngModel</code> directive binds an <code>input</code>,<code>select</code>, <code>textarea</code> (or custom form control) to a property on the scope using <a href="api/ng/type/ngModel.NgModelController">NgModelController</a>, which is created and exposed by this directive.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-model&gt;\n...\n&lt;/ng-model&gt;</code></pre></li><li>as attribute:<pre><code>&lt;input&gt;\n...\n&lt;/input&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngModel
-ng model	R	ngModel										
-ng-model	R	ngModel										
 ngModelOptions	A			directive in module ng							<section class="prog__container"><p>This directive allows you to modify the behaviour of ngModel and input directives within your application. You can specify an ngModelOptions directive on any element and the settings affect the ngModel and input directives on all descendent elements.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-model-options\n  ng-model-options=&quot;Object&quot;&gt;\n...\n&lt;/ng-model-options&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-model-options=&quot;Object&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngModelOptions
 ng model options	R	ngModelOptions										
 ng-model-options	R	ngModelOptions										
-$modelOptions	A			service in module ng							<section class="prog__container"><p>This service provides the application wide default <a href="api/ng/type/ModelOptions"><code>ModelOptions</code></a> options that will be used by <a href="api/ng/directive/ngModel"><code>ngModel</code></a> directives if no <a href="api/ng/directive/ngModelOptions"><code>ngModelOptions</code></a> directive is specified.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/service/$modelOptions
-modelOptions	R	$modelOptions										
-$model options	R	$modelOptions										
-model options	R	$modelOptions										
+ngModel	A			directive in module ng							<section class="prog__container"><p>The <code>ngModel</code> directive binds an <code>input</code>,<code>select</code>, <code>textarea</code> (or custom form control) to a property on the scope using <a href="api/ng/type/ngModel.NgModelController">NgModelController</a>, which is created and exposed by this directive.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-model&gt;\n...\n&lt;/ng-model&gt;</code></pre></li><li>as attribute:<pre><code>&lt;input&gt;\n...\n&lt;/input&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngModel
+ng model	R	ngModel										
+ng-model	R	ngModel										
 $modelOptionsProvider	A			provider in module ng							<section class="prog__container"><p>Here, you can change the default settings from which <a href="api/ng/directive/ngModelOptions"><code>ngModelOptions</code></a> directives inherit.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/provider/$modelOptionsProvider
 modelOptionsProvider	R	$modelOptionsProvider										
 $model options provider	R	$modelOptionsProvider										
 model options provider	R	$modelOptionsProvider										
+$modelOptions	A			service in module ng							<section class="prog__container"><p>This service provides the application wide default <a href="api/ng/type/ModelOptions"><code>ModelOptions</code></a> options that will be used by <a href="api/ng/directive/ngModel"><code>ngModel</code></a> directives if no <a href="api/ng/directive/ngModelOptions"><code>ngModelOptions</code></a> directive is specified.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/service/$modelOptions
+modelOptions	R	$modelOptions										
+$model options	R	$modelOptions										
+model options	R	$modelOptions										
 ModelOptions	A			type in module ng							<section class="prog__container"><p>A container for the options set by the <a href="api/ng/directive/ngModelOptions"><code>ngModelOptions</code></a> directive and the <a href="api/ng/service/$modelOptions"><code>$modelOptions</code></a> service.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/type/ModelOptions
 Model options	R	ModelOptions										
 ngNonBindable	A			directive in module ng							<section class="prog__container"><p>The <code>ngNonBindable</code> directive tells Angular not to compile or bind the contents of the current DOM element. This is useful if the element contains what appears to be Angular directives and bindings but which should be ignored by Angular. This could be the case if you have a site that displays snippets of code, for instance.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;ANY&gt;\n...\n&lt;/ANY&gt;</code></pre></li><li>as CSS class:<pre><code>&lt;ANY class=&quot;&quot;&gt; ... &lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngNonBindable
@@ -247,9 +273,6 @@ ng-non-bindable	R	ngNonBindable
 ngOptions	A			directive in module ng							<section class="prog__container"><p>The <code>ngOptions</code> attribute can be used to dynamically generate a list of <code>&lt;option&gt;</code> elements for the <code>&lt;select&gt;</code> element using the array or object obtained by evaluating the <code>ngOptions</code> comprehension expression.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;ANY\n  ng-model=&quot;string&quot;\n  [name=&quot;string&quot;]\n  [required=&quot;string&quot;]\n  [ng-required=&quot;string&quot;]\n  [ng-options=&quot;comprehension_expression&quot;]&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngOptions
 ng options	R	ngOptions										
 ng-options	R	ngOptions										
-ngPluralize	A			directive in module ng							<section class="prog__container"><p><code>ngPluralize</code> is a directive that displays messages according to en-US localization rules. These rules are bundled with angular.js, but can be overridden (see <a href="guide/i18n">Angular i18n</a> dev guide). You configure ngPluralize directive by specifying the mappings between <a href="http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html">plural categories</a> and the strings to be displayed.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-pluralize\n  count=&quot;&quot;\n  when=&quot;string&quot;\n  [offset=&quot;number&quot;]&gt;\n...\n&lt;/ng-pluralize&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  count=&quot;&quot;\n  when=&quot;string&quot;\n  [offset=&quot;number&quot;]&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngPluralize
-ng pluralize	R	ngPluralize										
-ng-pluralize	R	ngPluralize										
 ngRepeat	A			directive in module ng							<section class="prog__container"><p>The <code>ngRepeat</code> directive instantiates a template once per item from a collection. Each template instance gets its own scope, where the given loop variable is set to the current collection item, and <code>$index</code> is set to the item index or key.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-repeat\n  ng-repeat=&quot;repeat_expression&quot;&gt;\n...\n&lt;/ng-repeat&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-repeat=&quot;repeat_expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngRepeat
 ng repeat	R	ngRepeat										
 ng-repeat	R	ngRepeat										
@@ -259,6 +282,9 @@ ng-show	R	ngShow
 ngHide	A			directive in module ng							<section class="prog__container"><p>The <code>ngHide</code> directive shows or hides the given HTML element based on the expression provided to the <code>ngHide</code> attribute. The element is shown or hidden by removing or adding the <code>ng-hide</code> CSS class onto the element. The <code>.ng-hide</code> CSS class is predefined in AngularJS and sets the display style to none (using an !important flag). For CSP mode please add <code>angular-csp.css</code> to your html file (see <a href="api/ng/directive/ngCsp">ngCsp</a>).</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-hide\n  ng-hide=&quot;expression&quot;&gt;\n...\n&lt;/ng-hide&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-hide=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngHide
 ng hide	R	ngHide										
 ng-hide	R	ngHide										
+ngPluralize	A			directive in module ng							<section class="prog__container"><p><code>ngPluralize</code> is a directive that displays messages according to en-US localization rules. These rules are bundled with angular.js, but can be overridden (see <a href="guide/i18n">Angular i18n</a> dev guide). You configure ngPluralize directive by specifying the mappings between <a href="http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html">plural categories</a> and the strings to be displayed.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-pluralize\n  count=&quot;&quot;\n  when=&quot;string&quot;\n  [offset=&quot;number&quot;]&gt;\n...\n&lt;/ng-pluralize&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  count=&quot;&quot;\n  when=&quot;string&quot;\n  [offset=&quot;number&quot;]&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngPluralize
+ng pluralize	R	ngPluralize										
+ng-pluralize	R	ngPluralize										
 ngStyle	A			directive in module ng							<section class="prog__container"><p>The <code>ngStyle</code> directive allows you to set CSS style on an HTML element conditionally.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;ANY\n  ng-style=&quot;expression&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li><li>as CSS class:<pre><code>&lt;ANY class=&quot;ng-style: expression;&quot;&gt; ... &lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ng/directive/ngStyle
 ng style	R	ngStyle										
 ng-style	R	ngStyle										
@@ -298,9 +324,9 @@ filter provider	R	$filterProvider
 $filter	A			service in module ng							<section class="prog__container"><p>Filters are used for formatting data displayed to the user.</p><pre><code>$filter(name);</pre></code></section>	https://docs.angularjs.org/api/ng/service/$filter
 filter	R	$filter										
 ng filter	A			filter in module ng							<section class="prog__container"><p>Selects a subset of items from <code>array</code> and returns it as a new array.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/filter/filter
-number	A			filter in module ng							<section class="prog__container"><p>Formats a number as text.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/filter/number
 currency	A			filter in module ng							<section class="prog__container"><p>Formats a number as a currency (ie $1,234.56). When no currency symbol is provided, default symbol for current locale is used.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/filter/currency
 date	A			filter in module ng							<section class="prog__container"><p>Formats <code>date</code> to a string based on the requested <code>format</code>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/filter/date
+number	A			filter in module ng							<section class="prog__container"><p>Formats a number as text.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/filter/number
 json	A			filter in module ng							<section class="prog__container"><p>Allows you to convert a JavaScript object into JSON string.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/filter/json
 lowercase	A			filter in module ng							<section class="prog__container"><p>Converts string to lowercase.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/filter/lowercase
 uppercase	A			filter in module ng							<section class="prog__container"><p>Converts string to uppercase.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/filter/uppercase
@@ -338,12 +364,12 @@ $interpolate	A			service in module ng							<section class="prog__container"><p>
 interpolate	R	$interpolate										
 $interval	A			service in module ng							<section class="prog__container"><p>Angular&apos;s wrapper for <code>window.setInterval</code>. The <code>fn</code> function is executed every <code>delay</code> milliseconds.</p><pre><code>$interval(fn, delay, [count], [invokeApply], [Pass]);</pre></code></section>	https://docs.angularjs.org/api/ng/service/$interval
 interval	R	$interval										
+$locale	A			service in module ng							<section class="prog__container"><p>$locale service provides localization rules for various Angular components. As of right now the only public api is:</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/service/$locale
+locale	R	$locale										
 $jsonpCallbacks	A			service in module ng							<section class="prog__container"><p>This service handles the lifecycle of callbacks to handle JSONP requests. Override this service if you wish to customise where the callbacks are stored and how they vary compared to the requested url.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/service/$jsonpCallbacks
 jsonpCallbacks	R	$jsonpCallbacks										
 $jsonp callbacks	R	$jsonpCallbacks										
 jsonp callbacks	R	$jsonpCallbacks										
-$locale	A			service in module ng							<section class="prog__container"><p>$locale service provides localization rules for various Angular components. As of right now the only public api is:</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/service/$locale
-locale	R	$locale										
 $location	A			service in module ng							<section class="prog__container"><p>The $location service parses the URL in the browser address bar (based on the <a href="https://developer.mozilla.org/en/window.location">window.location</a>) and makes the URL available to your application. Changes to the URL in the address bar are reflected into $location service and changes to $location are reflected into the browser address bar.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/service/$location
 location	R	$location										
 $locationProvider	A			provider in module ng							<section class="prog__container"><p>Use the <code>$locationProvider</code> to configure how the application deep linking paths are stored.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/provider/$locationProvider
@@ -367,14 +393,14 @@ q	R	$q
 qProvider	R	$qProvider										
 $q provider	R	$qProvider										
 q provider	R	$qProvider										
-$rootScopeProvider	A			provider in module ng							<section class="prog__container"><p>Provider for the $rootScope service.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/provider/$rootScopeProvider
-rootScopeProvider	R	$rootScopeProvider										
-$root scope provider	R	$rootScopeProvider										
-root scope provider	R	$rootScopeProvider										
 $rootElement	A			service in module ng							<section class="prog__container"><p>The root element of Angular application. This is either the element where <a href="api/ng/directive/ngApp">ngApp</a> was declared or the element passed into <a href="api/ng/function/angular.bootstrap"><code>angular.bootstrap</code></a>. The element represents the root element of application. It is also the location where the application&apos;s <a href="api/auto/service/$injector">$injector</a> service gets published, and can be retrieved using <code>$rootElement.injector()</code>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/service/$rootElement
 rootElement	R	$rootElement										
 $root element	R	$rootElement										
 root element	R	$rootElement										
+$rootScopeProvider	A			provider in module ng							<section class="prog__container"><p>Provider for the $rootScope service.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/provider/$rootScopeProvider
+rootScopeProvider	R	$rootScopeProvider										
+$root scope provider	R	$rootScopeProvider										
+root scope provider	R	$rootScopeProvider										
 $rootScope	A			service in module ng							<section class="prog__container"><p>Every application has a single root <a href="api/ng/type/$rootScope.Scope">scope</a>. All other scopes are descendant scopes of the root scope. Scopes provide separation between the model and the view, via a mechanism for watching the model for changes. They also provide event emission/broadcast and subscription facility. See the <a href="guide/scope">developer guide on scopes</a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/service/$rootScope
 rootScope	R	$rootScope										
 $root scope	R	$rootScope										
@@ -384,32 +410,32 @@ $rootScope Scope	R	$rootScope.Scope
 rootScope.Scope	R	$rootScope.Scope										
 $root scope Scope	R	$rootScope.Scope										
 root scope Scope	R	$rootScope.Scope										
-$sceDelegate	A			service in module ng							<section class="prog__container"><p><code>$sceDelegate</code> is a service that is used by the <code>$sce</code> service to provide <a href="api/ng/service/$sce">Strict Contextual Escaping (SCE)</a> services to AngularJS.</p><pre><code>$sceDelegate();</pre></code></section>	https://docs.angularjs.org/api/ng/service/$sceDelegate
-sceDelegate	R	$sceDelegate										
-$sce delegate	R	$sceDelegate										
-sce delegate	R	$sceDelegate										
 $sceDelegateProvider	A			provider in module ng							<section class="prog__container"><p>The <code>$sceDelegateProvider</code> provider allows developers to configure the <a href="api/ng/service/$sceDelegate">$sceDelegate</a> service. This allows one to get/set the whitelists and blacklists used to ensure that the URLs used for sourcing Angular templates are safe. Refer <a href="api/ng/provider/$sceDelegateProvider#resourceUrlWhitelist">$sceDelegateProvider.resourceUrlWhitelist</a> and <a href="api/ng/provider/$sceDelegateProvider#resourceUrlBlacklist">$sceDelegateProvider.resourceUrlBlacklist</a></p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/provider/$sceDelegateProvider
 sceDelegateProvider	R	$sceDelegateProvider										
 $sce delegate provider	R	$sceDelegateProvider										
 sce delegate provider	R	$sceDelegateProvider										
+$sceDelegate	A			service in module ng							<section class="prog__container"><p><code>$sceDelegate</code> is a service that is used by the <code>$sce</code> service to provide <a href="api/ng/service/$sce">Strict Contextual Escaping (SCE)</a> services to AngularJS.</p><pre><code>$sceDelegate();</pre></code></section>	https://docs.angularjs.org/api/ng/service/$sceDelegate
+sceDelegate	R	$sceDelegate										
+$sce delegate	R	$sceDelegate										
+sce delegate	R	$sceDelegate										
 $sceProvider	A			provider in module ng							<section class="prog__container"><p>The $sceProvider provider allows developers to configure the <a href="api/ng/service/$sce">$sce</a> service.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/provider/$sceProvider
 sceProvider	R	$sceProvider										
 $sce provider	R	$sceProvider										
 sce provider	R	$sceProvider										
-$sce	A			service in module ng							<section class="prog__container"><p><code>$sce</code> is a service that provides Strict Contextual Escaping services to AngularJS.</p><pre><code>$sce();</pre></code></section>	https://docs.angularjs.org/api/ng/service/$sce
-sce	R	$sce										
 $templateRequestProvider	A			provider in module ng							<section class="prog__container"><p>Used to configure the options passed to the <a href="api/ng/service/$http"><code>$http</code></a> service when making a template request.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/provider/$templateRequestProvider
 templateRequestProvider	R	$templateRequestProvider										
 $template request provider	R	$templateRequestProvider										
 template request provider	R	$templateRequestProvider										
+$sce	A			service in module ng							<section class="prog__container"><p><code>$sce</code> is a service that provides Strict Contextual Escaping services to AngularJS.</p><pre><code>$sce();</pre></code></section>	https://docs.angularjs.org/api/ng/service/$sce
+sce	R	$sce										
 $templateRequest	A			service in module ng							<section class="prog__container"><p>The <code>$templateRequest</code> service runs security checks then downloads the provided template using <code>$http</code> and, upon success, stores the contents inside of <code>$templateCache</code>. If the HTTP request fails or the response data of the HTTP request is empty, a <code>$compile</code> error will be thrown (the exception can be thwarted by setting the 2nd parameter of the function to true). Note that the contents of <code>$templateCache</code> are trusted, so the call to <code>$sce.getTrustedUrl(tpl)</code> is omitted when <code>tpl</code> is of type string and <code>$templateCache</code> has the matching entry.</p><pre><code>$templateRequest(tpl, [ignoreRequestError]);</pre></code></section>	https://docs.angularjs.org/api/ng/service/$templateRequest
 templateRequest	R	$templateRequest										
 $template request	R	$templateRequest										
 template request	R	$templateRequest										
-$window	A			service in module ng							<section class="prog__container"><p>A reference to the browser&apos;s <code>window</code> object. While <code>window</code> is globally available in JavaScript, it causes testability problems, because it is a global variable. In angular we always refer to it through the <code>$window</code> service, so it may be overridden, removed or mocked for testing.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/service/$window
-window	R	$window										
 $timeout	A			service in module ng							<section class="prog__container"><p>Angular&apos;s wrapper for <code>window.setTimeout</code>. The <code>fn</code> function is wrapped into a try/catch block and delegates any exceptions to <a href="api/ng/service/$exceptionHandler">$exceptionHandler</a> service.</p><pre><code>$timeout([fn], [delay], [invokeApply], [Pass]);</pre></code></section>	https://docs.angularjs.org/api/ng/service/$timeout
 timeout	R	$timeout										
+$window	A			service in module ng							<section class="prog__container"><p>A reference to the browser&apos;s <code>window</code> object. While <code>window</code> is globally available in JavaScript, it causes testability problems, because it is a global variable. In angular we always refer to it through the <code>$window</code> service, so it may be overridden, removed or mocked for testing.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ng/service/$window
+window	R	$window										
 ngAnimateChildren	A			directive in module ngAnimate							<section class="prog__container"><p>ngAnimateChildren allows you to specify that children of this element should animate even if any of the children&apos;s parents are currently animating. By default, when an element has an active <code>enter</code>, <code>leave</code>, or <code>move</code> (structural) animation, child elements that also have an active structural animation are not animated.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-animate-children\n  ng-animate-children=&quot;string&quot;&gt;\n...\n&lt;/ng-animate-children&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY\n  ng-animate-children=&quot;string&quot;&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ngAnimate/directive/ngAnimateChildren
 ng animate children	R	ngAnimateChildren										
 ng-animate-children	R	ngAnimateChildren										
@@ -417,67 +443,68 @@ nganimate $animateCss	A			service in module ngAnimate							<section class="prog
 nganimate animateCss	R	nganimate $animateCss										
 nganimate $animate css	R	nganimate $animateCss										
 nganimate animate css	R	nganimate $animateCss										
-ng animate	R	ngAnimate										
 nganimate $animate	A			service in module ngAnimate							<section class="prog__container"><p>The ngAnimate <code>$animate</code> service documentation is the same for the core <code>$animate</code> service.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngAnimate/service/$animate
 nganimate animate	R	nganimate $animate										
+ng animate	R	ngAnimate										
 ngAnimateSwap	A			directive in module ngAnimate							<section class="prog__container"><p>ngAnimateSwap is a animation-oriented directive that allows for the container to be removed and entered in whenever the associated expression changes. A common usecase for this directive is a rotating banner or slider component which contains one image being present at a time. When the active image changes then the old image will perform a <code>leave</code> animation and the new element will be inserted via an <code>enter</code> animation.</p><p>Usage</p><ul><li>as attribute:<pre><code>&lt;ANY&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ngAnimate/directive/ngAnimateSwap
 ng animate swap	R	ngAnimateSwap										
 ng-animate-swap	R	ngAnimateSwap										
-ng aria	R	ngAria										
 $ariaProvider	A			provider in module ngAria							<section class="prog__container"><p>Used for configuring the ARIA attributes injected and managed by ngAria.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngAria/provider/$ariaProvider
 ariaProvider	R	$ariaProvider										
 $aria provider	R	$ariaProvider										
 aria provider	R	$ariaProvider										
+ng aria	R	ngAria										
 aria	R	$aria										
 ng component router	R	ngComponentRouter										
 Router	A			type in module ngComponentRouter							<section class="prog__container"><p>A <code>Router</code> is responsible for mapping URLs to components.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngComponentRouter/type/Router
-RootRouter	A			type in module ngComponentRouter							<section class="prog__container"><p>This type extends the <a href="api/ngComponentRouter/type/Router"><code>Router</code></a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngComponentRouter/type/RootRouter
-Root router	R	RootRouter										
 ChildRouter	A			type in module ngComponentRouter							<section class="prog__container"><p>This type extends the <a href="api/ngComponentRouter/type/Router"><code>Router</code></a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngComponentRouter/type/ChildRouter
 Child router	R	ChildRouter										
 ComponentInstruction	A			type in module ngComponentRouter							<section class="prog__container"><p>A <code>ComponentInstruction</code> represents the route state for a single component. An <code>Instruction</code> is composed of a tree of these <code>ComponentInstruction</code>s.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngComponentRouter/type/ComponentInstruction
 Component instruction	R	ComponentInstruction										
+RootRouter	A			type in module ngComponentRouter							<section class="prog__container"><p>This type extends the <a href="api/ngComponentRouter/type/Router"><code>Router</code></a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngComponentRouter/type/RootRouter
+Root router	R	RootRouter										
 RouteDefinition	A			type in module ngComponentRouter							<section class="prog__container"><p>Each item in the <strong>RouteConfig</strong> for a <strong>Routing Component</strong> is an instance of this type. It can have the following properties:</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngComponentRouter/type/RouteDefinition
 Route definition	R	RouteDefinition										
 RouteParams	A			type in module ngComponentRouter							<section class="prog__container"><p>A map of parameters for a given route, passed as part of the <a href="api/ngComponentRouter/type/ComponentInstruction"><code>ComponentInstruction</code></a> to the Lifecycle Hooks, such as <code>$routerOnActivate</code> and <code>$routerOnDeactivate</code>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngComponentRouter/type/RouteParams
 Route params	R	RouteParams										
-ngOutlet	A			directive in module ngComponentRouter							<section class="prog__container"><p>The directive that identifies where the <a href="api/ngComponentRouter/type/Router"><code>Router</code></a> should render its <strong>Components</strong>.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-outlet&gt;\n...\n&lt;/ng-outlet&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ngComponentRouter/directive/ngOutlet
-ng outlet	R	ngOutlet										
-ng-outlet	R	ngOutlet										
 $rootRouter	A			service in module ngComponentRouter							<section class="prog__container"><p>The singleton instance of the <a href="api/ngComponentRouter/type/RootRouter"><code>RootRouter</code></a> type, which is associated with the top level <a href="api/ngComponentRouter/service/$routerRootComponent"><code>$routerRootComponent</code></a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngComponentRouter/service/$rootRouter
 rootRouter	R	$rootRouter										
 $root router	R	$rootRouter										
 root router	R	$rootRouter										
+ngOutlet	A			directive in module ngComponentRouter							<section class="prog__container"><p>The directive that identifies where the <a href="api/ngComponentRouter/type/Router"><code>Router</code></a> should render its <strong>Components</strong>.</p><p>Usage</p><ul><li>as element: (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).<pre><code>&lt;ng-outlet&gt;\n...\n&lt;/ng-outlet&gt;</code></pre></li><li>as attribute:<pre><code>&lt;ANY&gt;\n...\n&lt;/ANY&gt;</code></pre></li></ul></section>	https://docs.angularjs.org/api/ngComponentRouter/directive/ngOutlet
+ng outlet	R	ngOutlet										
+ng-outlet	R	ngOutlet										
 ng cookies	R	ngCookies										
 $cookiesProvider	A			provider in module ngCookies							<section class="prog__container"><p>Use <code>$cookiesProvider</code> to change the default behavior of the <a href="api/ngCookies/service/$cookies">$cookies</a> service.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngCookies/provider/$cookiesProvider
 cookiesProvider	R	$cookiesProvider										
 $cookies provider	R	$cookiesProvider										
 cookies provider	R	$cookiesProvider										
+$routerRootComponent	A			service in module ngComponentRouter							<section class="prog__container"><p>The top level <strong>Routing Component</strong> associated with the <a href="api/ngComponentRouter/service/$rootRouter"><code>$rootRouter</code></a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngComponentRouter/service/$routerRootComponent
+routerRootComponent	R	$routerRootComponent										
+$router root component	R	$routerRootComponent										
+router root component	R	$routerRootComponent										
 $cookies	A			service in module ngCookies							<section class="prog__container"><p>Provides read/write access to browser&apos;s cookies.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngCookies/service/$cookies
 cookies	R	$cookies										
 $cookieStore	A			service in module ngCookies							<section class="prog__container"><p>Provides a key-value (string-object) storage, that is backed by session cookies. Objects put or retrieved from this storage are automatically serialized or deserialized by angular&apos;s toJson/fromJson.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngCookies/service/$cookieStore
 cookieStore	R	$cookieStore										
 $cookie store	R	$cookieStore										
 cookie store	R	$cookieStore										
-$routerRootComponent	A			service in module ngComponentRouter							<section class="prog__container"><p>The top level <strong>Routing Component</strong> associated with the <a href="api/ngComponentRouter/service/$rootRouter"><code>$rootRouter</code></a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngComponentRouter/service/$routerRootComponent
-routerRootComponent	R	$routerRootComponent										
-$router root component	R	$routerRootComponent										
-router root component	R	$routerRootComponent										
 ng message format	R	ngMessageFormat										
 ng messages	R	ngMessages										
 ngmessages ngMessages	A			directive in module ngMessages							<section class="prog__container"><p><code>ngMessages</code> is a directive that is designed to show and hide messages based on the state of a key/value object that it listens on. The directive itself complements error message reporting with the <code>ngModel</code> $error object (which stores a key/value state of validation errors).</p><p>Usage</p><pre><code class="lang-html">&lt;!-- using attribute directives --&gt;\n&lt;ANY ng-messages=&quot;expression&quot; role=&quot;alert&quot;&gt;\n  &lt;ANY ng-message=&quot;stringValue&quot;&gt;...&lt;/ANY&gt;\n  &lt;ANY ng-message=&quot;stringValue1, stringValue2, ...&quot;&gt;...&lt;/ANY&gt;\n  &lt;ANY ng-message-exp=&quot;expressionValue&quot;&gt;...&lt;/ANY&gt;\n&lt;/ANY&gt;\n&lt;!-- or by using element directives --&gt;\n&lt;ng-messages for=&quot;expression&quot; role=&quot;alert&quot;&gt;\n  &lt;ng-message when=&quot;stringValue&quot;&gt;...&lt;/ng-message&gt;\n  &lt;ng-message when=&quot;stringValue1, stringValue2, ...&quot;&gt;...&lt;/ng-message&gt;\n  &lt;ng-message when-exp=&quot;expressionValue&quot;&gt;...&lt;/ng-message&gt;\n&lt;/ng-messages&gt;\n</code></pre></section>	https://docs.angularjs.org/api/ngMessages/directive/ngMessages
 ngmessages ng messages	R	ngmessages ngMessages										
 ngmessages ng-messages	R	ngmessages ngMessages										
-ngMessagesInclude	A			directive in module ngMessages							<section class="prog__container"><p><code>ngMessagesInclude</code> is a directive with the purpose to import existing ngMessage template code from a remote template and place the downloaded template code into the exact spot that the ngMessagesInclude directive is placed within the ngMessages container. This allows for a series of pre-defined messages to be reused and also allows for the developer to determine what messages are overridden due to the placement of the ngMessagesInclude directive.</p><p>Usage</p><pre><code class="lang-html">&lt;!-- using attribute directives --&gt;\n&lt;ANY ng-messages=&quot;expression&quot; role=&quot;alert&quot;&gt;\n  &lt;ANY ng-messages-include=&quot;remoteTplString&quot;&gt;...&lt;/ANY&gt;\n&lt;/ANY&gt;\n&lt;!-- or by using element directives --&gt;\n&lt;ng-messages for=&quot;expression&quot; role=&quot;alert&quot;&gt;\n  &lt;ng-messages-include src=&quot;expressionValue1&quot;&gt;...&lt;/ng-messages-include&gt;\n&lt;/ng-messages&gt;\n</code></pre><p><a href="api/ngMessages">Click here</a> to learn more about <code>ngMessages</code> and <code>ngMessage</code>.</p></section>	https://docs.angularjs.org/api/ngMessages/directive/ngMessagesInclude
-ng messages include	R	ngMessagesInclude										
-ng-messages-include	R	ngMessagesInclude										
 ngMessage	A			directive in module ngMessages							<section class="prog__container"><p><code>ngMessage</code> is a directive with the purpose to show and hide a particular message. For <code>ngMessage</code> to operate, a parent <code>ngMessages</code> directive on a parent DOM element must be situated since it determines which messages are visible based on the state of the provided key/value map that <code>ngMessages</code> listens on.</p><p>Usage</p><pre><code class="lang-html">&lt;!-- using attribute directives --&gt;\n&lt;ANY ng-messages=&quot;expression&quot; role=&quot;alert&quot;&gt;\n  &lt;ANY ng-message=&quot;stringValue&quot;&gt;...&lt;/ANY&gt;\n  &lt;ANY ng-message=&quot;stringValue1, stringValue2, ...&quot;&gt;...&lt;/ANY&gt;\n&lt;/ANY&gt;\n&lt;!-- or by using element directives --&gt;\n&lt;ng-messages for=&quot;expression&quot; role=&quot;alert&quot;&gt;\n  &lt;ng-message when=&quot;stringValue&quot;&gt;...&lt;/ng-message&gt;\n  &lt;ng-message when=&quot;stringValue1, stringValue2, ...&quot;&gt;...&lt;/ng-message&gt;\n&lt;/ng-messages&gt;\n</code></pre></section>	https://docs.angularjs.org/api/ngMessages/directive/ngMessage
 ng message	R	ngMessage										
 ng-message	R	ngMessage										
+ngMessagesInclude	A			directive in module ngMessages							<section class="prog__container"><p><code>ngMessagesInclude</code> is a directive with the purpose to import existing ngMessage template code from a remote template and place the downloaded template code into the exact spot that the ngMessagesInclude directive is placed within the ngMessages container. This allows for a series of pre-defined messages to be reused and also allows for the developer to determine what messages are overridden due to the placement of the ngMessagesInclude directive.</p><p>Usage</p><pre><code class="lang-html">&lt;!-- using attribute directives --&gt;\n&lt;ANY ng-messages=&quot;expression&quot; role=&quot;alert&quot;&gt;\n  &lt;ANY ng-messages-include=&quot;remoteTplString&quot;&gt;...&lt;/ANY&gt;\n&lt;/ANY&gt;\n&lt;!-- or by using element directives --&gt;\n&lt;ng-messages for=&quot;expression&quot; role=&quot;alert&quot;&gt;\n  &lt;ng-messages-include src=&quot;expressionValue1&quot;&gt;...&lt;/ng-messages-include&gt;\n&lt;/ng-messages&gt;\n</code></pre><p><a href="api/ngMessages">Click here</a> to learn more about <code>ngMessages</code> and <code>ngMessage</code>.</p></section>	https://docs.angularjs.org/api/ngMessages/directive/ngMessagesInclude
+ng messages include	R	ngMessagesInclude										
+ng-messages-include	R	ngMessagesInclude										
 ngMessageExp	A			directive in module ngMessages							<section class="prog__container"><p><code>ngMessageExp</code> is a directive with the purpose to show and hide a particular message. For <code>ngMessageExp</code> to operate, a parent <code>ngMessages</code> directive on a parent DOM element must be situated since it determines which messages are visible based on the state of the provided key/value map that <code>ngMessages</code> listens on.</p><p>Usage</p><pre><code class="lang-html">&lt;!-- using attribute directives --&gt;\n&lt;ANY ng-messages=&quot;expression&quot;&gt;\n  &lt;ANY ng-message-exp=&quot;expressionValue&quot;&gt;...&lt;/ANY&gt;\n&lt;/ANY&gt;\n&lt;!-- or by using element directives --&gt;\n&lt;ng-messages for=&quot;expression&quot;&gt;\n  &lt;ng-message when-exp=&quot;expressionValue&quot;&gt;...&lt;/ng-message&gt;\n&lt;/ng-messages&gt;\n</code></pre><p><a href="api/ngMessages">Click here</a> to learn more about <code>ngMessages</code> and <code>ngMessage</code>.</p></section>	https://docs.angularjs.org/api/ngMessages/directive/ngMessageExp
 ng message exp	R	ngMessageExp										
 ng-message-exp	R	ngMessageExp										
-mock	A			object in module ngMock							<section class="prog__container"><p>Namespace from &apos;angular-mocks.js&apos; which contains testing related code.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngMock/object/angular.mock
+angular.mock	A			object in module ngMock							<section class="prog__container"><p>Namespace from &apos;angular-mocks.js&apos; which contains testing related code.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngMock/object/angular.mock
+mock	R	angular.mock										
 $exceptionHandlerProvider	A			provider in module ngMock							<section class="prog__container"><p>Configures the mock implementation of <a href="api/ng/service/$exceptionHandler"><code>$exceptionHandler</code></a> to rethrow or to log errors passed to the <code>$exceptionHandler</code>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngMock/provider/$exceptionHandlerProvider
 exceptionHandlerProvider	R	$exceptionHandlerProvider										
 $exception handler provider	R	$exceptionHandlerProvider										
@@ -486,49 +513,49 @@ ngmock $exceptionHandler	A			service in module ngMock							<section class="prog
 ngmock exceptionHandler	R	ngmock $exceptionHandler										
 ngmock $exception handler	R	ngmock $exceptionHandler										
 ngmock exception handler	R	ngmock $exceptionHandler										
-ngmock $log	A			service in module ngMock							<section class="prog__container"><p>Mock implementation of <a href="api/ng/service/$log"><code>$log</code></a> that gathers all logged messages in arrays (one array per logging level). These arrays are exposed as <code>logs</code> property of each of the level-specific log function, e.g. for level <code>error</code> the array is exposed as <code>$log.error.logs</code>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngMock/service/$log
-ngmock log	R	ngmock $log										
 ngmock $interval	A			service in module ngMock							<section class="prog__container"><p>Mock implementation of the $interval service.</p><pre><code>$interval(fn, delay, [count], [invokeApply], [Pass]);</pre></code></section>	https://docs.angularjs.org/api/ngMock/service/$interval
 ngmock interval	R	ngmock $interval										
-mock.TzDate	A			type in module ngMock							<section class="prog__container"><p><em>NOTE</em>: this is not an injectable instance, just a globally available mock class of <code>Date</code>.</p><pre><code>angular.mock.TzDate(offset, timestamp);</pre></code></section>	https://docs.angularjs.org/api/ngMock/type/angular.mock.TzDate
-mock TzDate	R	mock.TzDate										
-mock Tz date	R	mock.TzDate										
+angular.mock.TzDate	A			type in module ngMock							<section class="prog__container"><p><em>NOTE</em>: this is not an injectable instance, just a globally available mock class of <code>Date</code>.</p><pre><code>angular.mock.TzDate(offset, timestamp);</pre></code></section>	https://docs.angularjs.org/api/ngMock/type/angular.mock.TzDate
+mock TzDate	R	angular.mock.TzDate										
+mock Tz date	R	angular.mock.TzDate										
 ngmock $animate	A			service in module ngMock							<section class="prog__container"><p>Mock implementation of the <a href="api/ng/service/$animate"><code>$animate</code></a> service. Exposes two additional methods for testing animations.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngMock/service/$animate
 ngmock animate	R	ngmock $animate										
-mock.dump	A			function in module ngMock							<section class="prog__container"><p><em>NOTE</em>: This is not an injectable instance, just a globally available function.</p><pre><code>angular.mock.dump(object);</pre></code></section>	https://docs.angularjs.org/api/ngMock/function/angular.mock.dump
-mock dump	R	mock.dump										
+angular.mock.dump	A			function in module ngMock							<section class="prog__container"><p><em>NOTE</em>: This is not an injectable instance, just a globally available function.</p><pre><code>angular.mock.dump(object);</pre></code></section>	https://docs.angularjs.org/api/ngMock/function/angular.mock.dump
+mock dump	R	angular.mock.dump										
+ngmock $log	A			service in module ngMock							<section class="prog__container"><p>Mock implementation of <a href="api/ng/service/$log"><code>$log</code></a> that gathers all logged messages in arrays (one array per logging level). These arrays are exposed as <code>logs</code> property of each of the level-specific log function, e.g. for level <code>error</code> the array is exposed as <code>$log.error.logs</code>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngMock/service/$log
+ngmock log	R	ngmock $log										
 ngmock $timeout	A			service in module ngMock							<section class="prog__container"><p>This service is just a simple decorator for <a href="api/ng/service/$timeout">$timeout</a> service that adds a &quot;flush&quot; and &quot;verifyNoPendingTasks&quot; methods.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngMock/service/$timeout
 ngmock timeout	R	ngmock $timeout										
+ngmock $controller	A			service in module ngMock							<section class="prog__container"><p>A decorator for <a href="api/ng/service/$controller"><code>$controller</code></a> with additional <code>bindings</code> parameter, useful when testing controllers of directives that use <a href="api/ng/service/$compile#-bindtocontroller-"><code>bindToController</code></a>.</p><pre><code>$controller(constructor, locals, [bindings]);</pre></code></section>	https://docs.angularjs.org/api/ngMock/service/$controller
+ngmock controller	R	ngmock $controller										
 ngmock $httpBackend	A			service in module ngMock							<section class="prog__container"><p>Fake HTTP backend implementation suitable for unit testing applications that use the <a href="api/ng/service/$http">$http service</a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngMock/service/$httpBackend
 ngmock httpBackend	R	ngmock $httpBackend										
 ngmock $http backend	R	ngmock $httpBackend										
 ngmock http backend	R	ngmock $httpBackend										
-ngmock $controller	A			service in module ngMock							<section class="prog__container"><p>A decorator for <a href="api/ng/service/$controller"><code>$controller</code></a> with additional <code>bindings</code> parameter, useful when testing controllers of directives that use <a href="api/ng/service/$compile#-bindtocontroller-"><code>bindToController</code></a>.</p><pre><code>$controller(constructor, locals, [bindings]);</pre></code></section>	https://docs.angularjs.org/api/ngMock/service/$controller
-ngmock controller	R	ngmock $controller										
 $componentController	A			service in module ngMock							<section class="prog__container"><p>A service that can be used to create instances of component controllers. Useful for unit-testing.</p><pre><code>$componentController(componentName, locals, [bindings], [ident]);</pre></code></section>	https://docs.angularjs.org/api/ngMock/service/$componentController
 componentController	R	$componentController										
 $component controller	R	$componentController										
 component controller	R	$componentController										
 ng mock	R	ngMock										
 ng mock e2 e	R	ngMockE2E										
-ngmocke2e $httpBackend	A			service in module ngMockE2E							<section class="prog__container"><p>Fake HTTP backend implementation suitable for end-to-end testing or backend-less development of applications that use the <a href="api/ng/service/$http">$http service</a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngMockE2E/service/$httpBackend
-ngmocke2e httpBackend	R	ngmocke2e $httpBackend										
-ngmocke2e $http backend	R	ngmocke2e $httpBackend										
-ngmocke2e http backend	R	ngmocke2e $httpBackend										
 ngmock $rootScope.Scope	A			type in module ngMock							<section class="prog__container"><p><a href="api/ng/type/$rootScope.Scope">Scope</a> type decorated with helper methods useful for testing. These methods are automatically available on any <a href="api/ng/type/$rootScope.Scope">Scope</a> instance when <code>ngMock</code> module is loaded.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngMock/type/$rootScope.Scope
 ngmock $rootScope Scope	R	ngmock $rootScope.Scope										
 ngmock rootScope.Scope	R	ngmock $rootScope.Scope										
 ngmock $root scope Scope	R	ngmock $rootScope.Scope										
 ngmock root scope Scope	R	ngmock $rootScope.Scope										
-mock.module.sharedInjector	A			function in module ngMock							<section class="prog__container"><p><em>NOTE</em>: This function is declared ONLY WHEN running tests with jasmine or mocha</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngMock/function/angular.mock.module.sharedInjector
-mock module sharedInjector	R	mock.module.sharedInjector										
-mock module shared injector	R	mock.module.sharedInjector										
-mock.module	A			function in module ngMock							<section class="prog__container"><p><em>NOTE</em>: This function is also published on window for easy access.<br> <em>NOTE</em>: This function is declared ONLY WHEN running tests with jasmine or mocha</p><pre><code>angular.mock.module(fns);</pre></code></section>	https://docs.angularjs.org/api/ngMock/function/angular.mock.module
-mock module	R	mock.module										
-ng parse ext	R	ngParseExt										
-mock.inject	A			function in module ngMock							<section class="prog__container"><p><em>NOTE</em>: This function is also published on window for easy access.<br> <em>NOTE</em>: This function is declared ONLY WHEN running tests with jasmine or mocha</p><pre><code>angular.mock.inject(fns);</pre></code></section>	https://docs.angularjs.org/api/ngMock/function/angular.mock.inject
-mock inject	R	mock.inject										
+angular.mock.module	A			function in module ngMock							<section class="prog__container"><p><em>NOTE</em>: This function is also published on window for easy access.<br> <em>NOTE</em>: This function is declared ONLY WHEN running tests with jasmine or mocha</p><pre><code>angular.mock.module(fns);</pre></code></section>	https://docs.angularjs.org/api/ngMock/function/angular.mock.module
+mock module	R	angular.mock.module										
+angular.mock.module.sharedInjector	A			function in module ngMock							<section class="prog__container"><p><em>NOTE</em>: This function is declared ONLY WHEN running tests with jasmine or mocha</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngMock/function/angular.mock.module.sharedInjector
+mock module sharedInjector	R	angular.mock.module.sharedInjector										
+mock module shared injector	R	angular.mock.module.sharedInjector										
+angular.mock.inject	A			function in module ngMock							<section class="prog__container"><p><em>NOTE</em>: This function is also published on window for easy access.<br> <em>NOTE</em>: This function is declared ONLY WHEN running tests with jasmine or mocha</p><pre><code>angular.mock.inject(fns);</pre></code></section>	https://docs.angularjs.org/api/ngMock/function/angular.mock.inject
+mock inject	R	angular.mock.inject										
+ngmocke2e $httpBackend	A			service in module ngMockE2E							<section class="prog__container"><p>Fake HTTP backend implementation suitable for end-to-end testing or backend-less development of applications that use the <a href="api/ng/service/$http">$http service</a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngMockE2E/service/$httpBackend
+ngmocke2e httpBackend	R	ngmocke2e $httpBackend										
+ngmocke2e $http backend	R	ngmocke2e $httpBackend										
+ngmocke2e http backend	R	ngmocke2e $httpBackend										
 ng resource	R	ngResource										
+ng parse ext	R	ngParseExt										
 $resourceProvider	A			provider in module ngResource							<section class="prog__container"><p>Use <code>$resourceProvider</code> to change the default behavior of the <a href="api/ngResource/service/$resource"><code>$resource</code></a> service.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngResource/provider/$resourceProvider
 resourceProvider	R	$resourceProvider										
 $resource provider	R	$resourceProvider										
@@ -543,12 +570,12 @@ $routeProvider	A			provider in module ngRoute							<section class="prog__contai
 routeProvider	R	$routeProvider										
 $route provider	R	$routeProvider										
 route provider	R	$routeProvider										
+$route	A			service in module ngRoute							<section class="prog__container"><p><code>$route</code> is used for deep-linking URLs to controllers and views (HTML partials). It watches <code>$location.url()</code> and tries to map the path to an existing route definition.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngRoute/service/$route
+route	R	$route										
 $routeParams	A			service in module ngRoute							<section class="prog__container"><p>The <code>$routeParams</code> service allows you to retrieve the current set of route parameters.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngRoute/service/$routeParams
 routeParams	R	$routeParams										
 $route params	R	$routeParams										
 route params	R	$routeParams										
-$route	A			service in module ngRoute							<section class="prog__container"><p><code>$route</code> is used for deep-linking URLs to controllers and views (HTML partials). It watches <code>$location.url()</code> and tries to map the path to an existing route definition.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngRoute/service/$route
-route	R	$route										
 linky	A			filter in module ngSanitize							<section class="prog__container"><p>Finds links in text input and turns them into html links. Supports <code>http/https/ftp/mailto</code> and plain email address links.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngSanitize/filter/linky
 ng sanitize	R	ngSanitize										
 $sanitize	A			service in module ngSanitize							<section class="prog__container"><p>Sanitizes an html string by stripping all potentially dangerous tokens.</p><pre><code>$sanitize(html);</pre></code></section>	https://docs.angularjs.org/api/ngSanitize/service/$sanitize
@@ -568,10 +595,10 @@ ng swipe right	R	ngSwipeRight
 ng-swipe-right	R	ngSwipeRight										
 $swipe	A			service in module ngTouch							<section class="prog__container"><p>The <code>$swipe</code> service is a service that abstracts the messier details of hold-and-drag swipe behavior, to make implementing swipe-related directives more convenient.</p><pre><code>$swipe</pre></code></section>	https://docs.angularjs.org/api/ngTouch/service/$swipe
 swipe	R	$swipe										
+ng touch	R	ngTouch										
 $touchProvider	A			provider in module ngTouch							<section class="prog__container"><p>The <code>$touchProvider</code> allows enabling / disabling <a href="api/ngTouch/directive/ngClick">ngTouch&apos;s ngClick directive</a>.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngTouch/provider/$touchProvider
 touchProvider	R	$touchProvider										
 $touch provider	R	$touchProvider										
 touch provider	R	$touchProvider										
-ng touch	R	ngTouch										
 $touch	A			service in module ngTouch							<section class="prog__container"><p>Provides the <a href="api/ngTouch/service/$touch#ngClickOverrideEnabled"><code>ngClickOverrideEnabled</code></a> method.</p><pre><code>null</pre></code></section>	https://docs.angularjs.org/api/ngTouch/service/$touch
 touch	R	$touch										
