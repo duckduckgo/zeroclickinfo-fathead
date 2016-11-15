@@ -130,6 +130,12 @@ class Entry(object):
 
     def set_entry_type(self, new_type):
         self.entry_type = new_type
+        
+    def get_related(self):
+        return self.related
+    
+    def set_related(self, new_related):
+        self.related = new_related
 
     def get_type(self):
         return self.entry_type
@@ -179,7 +185,6 @@ def generate_redirects(f):
 
     # For debugging purposes
     duplicate_count = 0
-    disambiguations = 0
     for line in f.readlines():
         try:
             # Parse entry
@@ -194,18 +199,22 @@ def generate_redirects(f):
             if key not in output or '3.5/library/functions.html' in str(entry):
                 output[key] = str(entry)
 
-            disambiguation_key = entry.get_key()
-            splitted_key = disambiguation_key.split('.')
+            related_key = entry.get_key()
+            splitted_key = related_key.split('.')
             package_name = '.'.join(splitted_key[0:len(splitted_key)-1])
-            #temp doesn't sound like a good variable name
-            temp = "'" + package_name + "'"
+            quoted_package_name = "'" + package_name + "'"
 
             if len(splitted_key) >= 2:
-                if temp in output and output[temp].startswith(package_name + '\t' + 'A'):
-                    output[temp] = str(package_name) + '\t' + 'D' +'\t\t\t\t\t\t\t\t' + '*' + '[['+str(disambiguation_key)+']] ' + str(entry.get_abstract()) + '\\n'
-                    disambiguations += 1
-                elif temp in output and disambiguation_key not in output[temp] and output[temp].startswith(package_name + '\t' + 'D'):
-                    output[temp] += '*' + '[['+str(disambiguation_key)+']] ' + str(entry.get_abstract()) + '\\n'
+                if quoted_package_name in output \
+                    and output[quoted_package_name].startswith(package_name + '\t' + 'A'):
+                    cur_entry=Entry(output[quoted_package_name])
+                    current_related=cur_entry.get_related()
+                    new_related=''
+                    if current_related != '':
+                        new_related=current_related + '\\\\n'
+                    new_related+='[[' + str(related_key) + ']]'
+                    cur_entry.set_related(new_related)
+                    output[quoted_package_name] = cur_entry.get_entry()
 
             # Get all possible redirect entries
             key = entry.get_key() 
@@ -225,7 +234,6 @@ def generate_redirects(f):
             pass  # Continue execution entry data is invalid.
 
     print("Duplicates: %s" % duplicate_count)
-    print("Disambiguations: %s" % disambiguations)
 
     with open('output2.txt', 'w') as output_file:
         for key, line in output.items():
