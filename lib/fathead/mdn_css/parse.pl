@@ -64,6 +64,18 @@ while ( my ( $unit, $array ) = each %{$units} ) {
     }
 }
 
+# Read redirect_urls.yml to get -webkit and -moz properties,
+# which redirect to properties without prefix
+my $redirects = LoadFile('redirect_urls.yml');
+my %redirect_urls;
+
+#while ( my ( $category, $array ) = each %{$redirects} ) {
+my( $redirect, $array) = %{$redirects};
+foreach my $value ( @{$array} ) {
+    my ($lost_redirect, $keyword) = split(':', $value);
+    $redirect_urls{$lost_redirect} = $keyword;
+}
+
 # p(%redirect_map);
 # p(%titles);
 # p(%units);
@@ -224,6 +236,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
 
     create_article( $title, $description, $link );
     if ( $title =~ m/[():<>@]/ || exists $titles{$title} ) {
+        say "title in parse: $title";
         create_redirects($title);
     }
 }
@@ -356,10 +369,19 @@ sub create_redirects {
         push @data, _build_redirect( $title_clean,            $title );
         push @data, _build_redirect( "$title_clean $postfix", $title )
           if $postfix;
+
+        if( exists $redirect_urls{$title_clean}) {
+            push @data, _build_redirect( $redirect_urls{$title_clean}, $title );
+        }
     }
     elsif ($postfix) {
         push @data, _build_redirect( "$title $postfix", $title );
     }
+
+    if( exists $redirect_urls{$title} ) {
+        push @data, _build_redirect( $redirect_urls{$title}, $title );
+    }
+
     _write_to_file(@data);
 }
 
