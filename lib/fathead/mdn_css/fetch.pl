@@ -49,7 +49,7 @@ Mojo::IOLoop->recurring(
             }
 
             ++$current_active_connections;
-            $ua->get(                
+            $ua->get(
                 $url => sub {
                     my ( undef, $tx ) = @_;
                     
@@ -62,7 +62,9 @@ Mojo::IOLoop->recurring(
                         
                         #if the keyword URL redirects to another URL, write it to a file
                         if($url ne $tx->req->url) {                            
-                            push @redirect_urls, $url.":".$tx->req->url;
+                            my $keyword  = substr ($url, rindex($url, "/") + 1);
+                            my $redirect = substr ($tx->req->url, rindex($tx->req->url, "/") + 1);
+                            push @redirect_urls, $redirect.":".$keyword;
                         }
                     }
                     elsif ( my $error = $tx->error ) {
