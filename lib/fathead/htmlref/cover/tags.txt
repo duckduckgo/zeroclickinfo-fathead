@@ -13,9 +13,6 @@ blockquote
 body
 br
 button
-button type=submit
-button type=reset
-button type=button
 canvas
 caption
 cite
@@ -23,9 +20,6 @@ code
 col
 colgroup
 command
-command type=command
-command type=radio
-command type=checkbox
 datalist
 dd
 del
@@ -56,29 +50,6 @@ i
 iframe
 img
 input
-input type=text
-input type=password
-input type=checkbox
-input type=radio
-input type=button
-input type=submit
-input type=reset
-input type=file
-input type=hidden
-input type=image
-input type=datetime
-input type=datetime-local
-input type=date
-input type=month
-input type=time
-input type=week
-input type=number
-input type=range
-input type=email
-input type=url
-input type=search
-input type=tel
-input type=color
 ins
 kbd
 keygen
@@ -90,11 +61,6 @@ map
 mark
 menu
 meta
-meta name
-meta http-equiv=refresh
-meta http-equiv=default-style
-meta charset
-meta http-equiv=content-type
 meter
 nav
 noscript
