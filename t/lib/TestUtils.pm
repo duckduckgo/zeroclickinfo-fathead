@@ -82,7 +82,7 @@ sub _build_titles {
     my $titles;
 
     while ( my ( $number, $line ) = each @{ $self->content } ) {
-        my $title = ( split /\t/, $line )[0];
+        my $title = lc (( split /\t/, $line )[0]);
         $titles->{ $title }->{count}++;
         push @{ $titles->{ $title }->{lines} }, $number + 1;
     }
