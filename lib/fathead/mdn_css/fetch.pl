@@ -60,7 +60,7 @@ Mojo::IOLoop->recurring(
                           "$file_number.html";
                         ++$file_number;
                         
-                        #if the keyword URL redirects to another URL, write it to a file
+                        #if the keyword URL redirects to another URL, write the keywords to a file
                         if($url ne $tx->req->url) {                            
                             my $keyword  = substr ($url, rindex($url, "/") + 1);
                             my $redirect = substr ($tx->req->url, rindex($tx->req->url, "/") + 1);

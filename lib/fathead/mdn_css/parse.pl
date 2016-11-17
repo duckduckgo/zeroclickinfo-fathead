@@ -69,7 +69,6 @@ while ( my ( $unit, $array ) = each %{$units} ) {
 my $redirects = LoadFile('redirect_urls.yml');
 my %redirect_urls;
 
-#while ( my ( $category, $array ) = each %{$redirects} ) {
 my( $redirect, $array) = %{$redirects};
 foreach my $value ( @{$array} ) {
     my ($lost_redirect, $keyword) = split(':', $value);
@@ -370,6 +369,8 @@ sub create_redirects {
         push @data, _build_redirect( "$title_clean $postfix", $title )
           if $postfix;
 
+        #if the cleaned title was different from the title,
+        #and a property redirects to the cleaned title, include it
         if( exists $redirect_urls{$title_clean}) {
             push @data, _build_redirect( $redirect_urls{$title_clean}, $title );
         }
@@ -378,6 +379,7 @@ sub create_redirects {
         push @data, _build_redirect( "$title $postfix", $title );
     }
 
+    #if a -moz or -webkit property redirects to  this title, include it
     if( exists $redirect_urls{$title} ) {
         push @data, _build_redirect( $redirect_urls{$title}, $title );
     }
