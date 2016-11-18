@@ -189,7 +189,7 @@ sub escapes {
     while ( my ( $number, $line ) = each @{ $self->content } ) {
         my $abstract = ( split /\t/, $line )[11];
         next unless $abstract;
-        if ( my @matches = $abstract =~ /([^\\]\\[0-9nrtx])/g ) {
+        if ( my @matches = $abstract =~ /([^\\]\\[0-9x]|[\n\r\t])/g ) {
             warn sprintf "Line %d appears to contain unescaped characters : %s",
                 $number + 1, join( ', ', @matches );
             $r = 0;
