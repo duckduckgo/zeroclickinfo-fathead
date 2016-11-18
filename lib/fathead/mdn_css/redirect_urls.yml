@@ -1,130 +1,112 @@
 ---
 redirects:
-- user-select:-moz-user-select
-- Using_CSS_animations:Using_CSS_animations
-- border-inline-end-style:-moz-border-end-style
-- mask-repeat:-webkit-mask-repeat
-- box-align:-webkit-box-align
-- border-image:-webkit-border-image
-- animation-play-state:-webkit-animation-play-state
-- Using_multi-column_layouts:Using_multi-column_layouts
-- mask-image:-webkit-mask-image
-- perspective-origin:-webkit-perspective-origin
-- column-count:-webkit-column-count
-- filter:-webkit-filter
-- hyphens:-moz-hyphens
-- text-transform:-epub-text-transform
-- column-rule-color:-webkit-column-rule-color
-- box-pack:-moz-box-pack
-- Using_CSS_flexible_boxes:Flexible_boxes
-- background-size:-webkit-background-size
-- background-origin:-webkit-background-origin
-- color_value:currentColor
-- animation-fill-mode:-webkit-animation-fill-mode
-- -moz-appearance:-webkit-appearance
-- box-decoration-break:-moz-background-inline-policy
-- mask-position:-webkit-mask-position
-- animation-direction:-webkit-animation-direction
-- transform-style:-webkit-transform-style
-- hyphens:-webkit-hyphens
-- linear-gradient:-moz-linear-gradient
-- column-rule-color:-moz-column-rule-color
-- Using_CSS_multiple_backgrounds:Using_multiple_backgrounds
-- box-align:-moz-box-align
-- Using_media_queries:Media_queries
-- mask:-webkit-mask
-- animation-delay:-webkit-animation-delay
-- transform:-webkit-transform
-- caption-side:-epub-caption-side
-- box-flex:-moz-box-flex
-- padding-inline-start:-moz-padding-start
-- overflow:-moz-hidden-unscrollable
-- animation:-webkit-animation
-- column-gap:-webkit-column-gap
-- transform-origin:-webkit-transform-origin
-- border-top-left-radius:-webkit-border-top-left-radius
-- column-rule:-webkit-column-rule
-- animation-name:-webkit-animation-name
-- border-inline-start-color:-moz-border-start-color
-- column-width:-webkit-column-width
-- border-image-repeat:-webkit-border-fit
-- column-rule-width:-moz-column-rule-width
-- column-rule-style:-moz-column-rule-style
-- transition-delay:-webkit-transition-delay
-- column-gap:-moz-column-gap
-- text-emphasis:-webkit-text-emphasis
-- font-smooth:-webkit-font-smoothing
-- font-feature-settings:-moz-font-feature-settings
-- box-pack:-webkit-box-pack
-- border-bottom-right-radius:-webkit-border-bottom-right-radius
-- margin-inline-start:-moz-margin-start
-- font-feature-settings:-webkit-font-feature-settings
-- Introduction_to_the_CSS_box_model:box_model
-- column-fill:-moz-column-fill
-- column-width:-moz-column-width
-- overflow:-moz-scrollbars-none
-- font-language-override:-moz-font-language-override
-- column-count:-moz-column-count
-- border-radius:-webkit-border-radius
-- mask-origin:-webkit-mask-origin
-- font-kerning:-webkit-font-kerning
-- tab-size:-moz-tab-size
-- border-inline-start-width:-moz-border-start-width
-- box-orient:-webkit-box-orient
-- overflow-wrap:word-wrap
-- column-rule-width:-webkit-column-rule-width
-- box-shadow:-webkit-box-shadow
-- :any::-moz-any
-- text-align-last:-moz-text-align-last
-- counters:counter
-- animation-duration:-webkit-animation-duration
-- column-rule:-moz-column-rule
-- box-ordinal-group:-webkit-box-ordinal-group
-- mask-size:-webkit-mask-size
-- box-orient:-moz-box-orient
-- padding-inline-end:-moz-padding-end
-- animation-iteration-count:-webkit-animation-iteration-count
-- :any-link::-moz-any-link
-- box-direction:-webkit-box-direction
-- column-rule-style:-webkit-column-rule-style
-- margin-inline-end:-moz-margin-end
-- animation-timing-function:-webkit-animation-timing-function
-- box-direction:-moz-box-direction
-- transition-property:-webkit-transition-property
-- font-variant-ligatures:-webkit-font-variant-ligatures
-- column-span:-webkit-column-span
-- box-flex:-webkit-box-flex
-- backface-visibility:-webkit-backface-visibility
-- single-transition-timing-function:timing-function
-- overflow:-moz-scrollbars-horizontal
-- overflow:-moz-scrollbars-vertical
-- opacity:-webkit-opacity
-- border-inline-end:-moz-border-end
-- Using_CSS_transforms:Using_CSS_transforms
-- text-size-adjust:-webkit-text-size-adjust
-- text-emphasis-color:-webkit-text-emphasis-color
-- transition-duration:-webkit-transition-duration
-- '@document:@-moz-document'
-- mask-clip:-webkit-mask-clip
-- background-clip:-webkit-background-clip
-- border-bottom-left-radius:-webkit-border-bottom-left-radius
-- border-inline-start-style:-moz-border-start-style
-- perspective:-webkit-perspective
-- transition-timing-function:-webkit-transition-timing-function
-- transition:-webkit-transition
-- border-top-right-radius:-webkit-border-top-right-radius
-- radial-gradient:-moz-radial-gradient
-- text-emphasis-style:-webkit-text-emphasis-style
-- element:-moz-element
-- text-size-adjust:-moz-text-size-adjust
-- Using_CSS_gradients:Using_CSS_gradients
-- calc:-moz-calc
-- text-emphasis-position:-webkit-text-emphasis-position
-- border-inline-end-color:-moz-border-end-color
-- :fullscreen::-moz-full-screen
-- box-sizing:-webkit-box-sizing
-- border-inline-end-width:-moz-border-end-width
-- Using_CSS_transitions:Using_CSS_transitions
-- Using_CSS_counters:Counters
-- border-inline-start:-moz-border-start
-- columns:-webkit-columns
+  -moz-appearance: -webkit-appearance
+  :any: :-moz-any
+  :any-link: :-moz-any-link
+  :fullscreen: :-moz-full-screen
+  '@document': '@-moz-document'
+  Introduction_to_the_CSS_box_model: box_model
+  Using_CSS_animations: Using_CSS_animations
+  Using_CSS_counters: Counters
+  Using_CSS_flexible_boxes: Flexible_boxes
+  Using_CSS_gradients: Using_CSS_gradients
+  Using_CSS_multiple_backgrounds: Using_multiple_backgrounds
+  Using_CSS_transforms: Using_CSS_transforms
+  Using_CSS_transitions: Using_CSS_transitions
+  Using_media_queries: Media_queries
+  Using_multi-column_layouts: Using_multi-column_layouts
+  animation: -webkit-animation
+  animation-delay: -webkit-animation-delay
+  animation-direction: -webkit-animation-direction
+  animation-duration: -webkit-animation-duration
+  animation-fill-mode: -webkit-animation-fill-mode
+  animation-iteration-count: -webkit-animation-iteration-count
+  animation-name: -webkit-animation-name
+  animation-play-state: -webkit-animation-play-state
+  animation-timing-function: -webkit-animation-timing-function
+  backface-visibility: -webkit-backface-visibility
+  background-clip: -webkit-background-clip
+  background-origin: -webkit-background-origin
+  background-size: -webkit-background-size
+  border-bottom-left-radius: -webkit-border-bottom-left-radius
+  border-bottom-right-radius: -webkit-border-bottom-right-radius
+  border-image: -webkit-border-image
+  border-image-repeat: -webkit-border-fit
+  border-inline-end: -moz-border-end
+  border-inline-end-color: -moz-border-end-color
+  border-inline-end-style: -moz-border-end-style
+  border-inline-end-width: -moz-border-end-width
+  border-inline-start: -moz-border-start
+  border-inline-start-color: -moz-border-start-color
+  border-inline-start-style: -moz-border-start-style
+  border-inline-start-width: -moz-border-start-width
+  border-radius: -webkit-border-radius
+  border-top-left-radius: -webkit-border-top-left-radius
+  border-top-right-radius: -webkit-border-top-right-radius
+  box-align: -moz-box-align
+  box-decoration-break: -moz-background-inline-policy
+  box-direction: -moz-box-direction
+  box-flex: -webkit-box-flex
+  box-ordinal-group: -webkit-box-ordinal-group
+  box-orient: -moz-box-orient
+  box-pack: -webkit-box-pack
+  box-shadow: -webkit-box-shadow
+  box-sizing: -webkit-box-sizing
+  calc: -moz-calc
+  caption-side: -epub-caption-side
+  color_value: currentColor
+  column-count: -moz-column-count
+  column-fill: -moz-column-fill
+  column-gap: -moz-column-gap
+  column-rule: -moz-column-rule
+  column-rule-color: -moz-column-rule-color
+  column-rule-style: -webkit-column-rule-style
+  column-rule-width: -webkit-column-rule-width
+  column-span: -webkit-column-span
+  column-width: -moz-column-width
+  columns: -webkit-columns
+  counters: counter
+  element: -moz-element
+  filter: -webkit-filter
+  font-feature-settings: -webkit-font-feature-settings
+  font-kerning: -webkit-font-kerning
+  font-language-override: -moz-font-language-override
+  font-smooth: -webkit-font-smoothing
+  font-variant-ligatures: -webkit-font-variant-ligatures
+  hyphens: -webkit-hyphens
+  linear-gradient: -moz-linear-gradient
+  margin-inline-end: -moz-margin-end
+  margin-inline-start: -moz-margin-start
+  mask: -webkit-mask
+  mask-clip: -webkit-mask-clip
+  mask-image: -webkit-mask-image
+  mask-origin: -webkit-mask-origin
+  mask-position: -webkit-mask-position
+  mask-repeat: -webkit-mask-repeat
+  mask-size: -webkit-mask-size
+  opacity: -webkit-opacity
+  overflow: -moz-scrollbars-vertical
+  overflow-wrap: word-wrap
+  padding-inline-end: -moz-padding-end
+  padding-inline-start: -moz-padding-start
+  perspective: -webkit-perspective
+  perspective-origin: -webkit-perspective-origin
+  radial-gradient: -moz-radial-gradient
+  single-transition-timing-function: timing-function
+  tab-size: -moz-tab-size
+  text-align-last: -moz-text-align-last
+  text-emphasis: -webkit-text-emphasis
+  text-emphasis-color: -webkit-text-emphasis-color
+  text-emphasis-position: -webkit-text-emphasis-position
+  text-emphasis-style: -webkit-text-emphasis-style
+  text-size-adjust: -moz-text-size-adjust
+  text-transform: -epub-text-transform
+  transform: -webkit-transform
+  transform-origin: -webkit-transform-origin
+  transform-style: -webkit-transform-style
+  transition: -webkit-transition
+  transition-delay: -webkit-transition-delay
+  transition-duration: -webkit-transition-duration
+  transition-property: -webkit-transition-property
+  transition-timing-function: -webkit-transition-timing-function
+  user-select: -moz-user-select
