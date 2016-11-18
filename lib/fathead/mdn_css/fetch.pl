@@ -9,7 +9,7 @@ use File::Spec::Functions;
 use Mojo::UserAgent;
 use Mojo::Util 'spurt';
 use Mojo::URL;
-use YAML::Any 'DumpFile';
+use YAML::XS 'DumpFile';
 
 my $ua = Mojo::UserAgent->new()->max_redirects(4);
 
@@ -53,7 +53,7 @@ Mojo::IOLoop->recurring(
             $ua->get(
                 $url => sub {
                     my ( undef, $tx ) = @_;
-                    
+
                     --$current_active_connections;
                     if ( $tx->success ) {
                         say sprintf "%s %s", $tx->res->message, $tx->req->url;
