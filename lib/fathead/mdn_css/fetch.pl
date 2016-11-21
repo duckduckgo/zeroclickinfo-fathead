@@ -43,11 +43,8 @@ queue_urls_for_download();
 Mojo::IOLoop->recurring(
     0 => sub {
         for ( $current_active_connections + 1 .. $maximum_active_connections ) {
-            my $url = shift @keyword_urls;
-            if(!$url) {
-                DumpFile('redirect_urls.yml', { redirects => {%redirect_map} } );
-                return ( $current_active_connections or Mojo::IOLoop->stop );
-            }
+            return ( $current_active_connections or Mojo::IOLoop->stop )
+                unless my $url = shift @keyword_urls;
 
             ++$current_active_connections;
             $ua->get(
@@ -83,6 +80,9 @@ Mojo::IOLoop->recurring(
     }
 );
 Mojo::IOLoop->start unless Mojo::IOLoop->is_running;
+
+# write collected redirects to the file
+DumpFile('redirect_urls.yml', { redirects => {%redirect_map} } );
 
 sub process_transaction {
     my $tx = shift;
