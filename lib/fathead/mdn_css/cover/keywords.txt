@@ -561,7 +561,7 @@ opacity
 order
 orient
 orientation
-orientation @?
+orientation
 orphans
 outline
 outline-color
@@ -630,7 +630,7 @@ punctuation-trim
 punctuation-wrap
 px
 quotes
-rad 
+rad
 radial-gradient
 range
 <ratio>
@@ -653,7 +653,7 @@ replace
 resize
 resolution
 <resolution>
-resolution @?
+resolution
 rest
 rest-after
 rest-before
