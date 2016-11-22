@@ -2,26 +2,33 @@ use strict;
 use warnings;
 
 use Test::More;
+use File::Find::Rule;
+use File::Basename;
+use Path::Tiny;
+use Term::ANSIColor qw(:constants);
 use t::lib::TestUtils;
 
+use Data::Printer;
 
-my @files;
+my @folders;
 
 if ($ENV{DDG_TEST_FATHEAD}) {
-    push @files, $ENV{DDG_TEST_FATHEAD};
+    push @folders, $ENV{DDG_TEST_FATHEAD};
 }
 else {
-    @files = File::Find::Rule->file()
+    my @files = File::Find::Rule->file()
                                 ->name("output.txt")
                                 ->in('lib/fathead/');
+    @folders = map { basename(dirname($_)) } @files;
 }
 
-foreach my $file (@files) {
-    warn "Basename:";
-    warn File::Basename::dirname($file);
-    warn "Fileparse:";
-    warn File::Basename::fileparse($file);
-    my $utils = t::lib::TestUtils->new( fathead => $ENV{DDG_TEST_FATHEAD} );
+plan tests => scalar @folders;
+
+foreach my $dir (@folders) {
+    local $Term::ANSIColor::AUTORESET = 1;
+    diag BOLD GREEN "\nChecking output.txt in 'lib/fathead/$dir'...\n";
+
+    my $utils = t::lib::TestUtils->new( fathead => $dir );
     ok( $utils->duplicates, "Checking for duplicate titles" );
     ok( $utils->types, "Validating types" );
     ok( $utils->field_count, "Validating correct number of fields" );
@@ -31,13 +38,15 @@ foreach my $file (@files) {
 
     SKIP: {
         skip "COVERAGE DATA NOT FOUND", 1 unless $utils->cover_dir;
-        ok( $utils->coverage, "Testing language feature coverage" );
+        ok( $utils->coverage, "Testing article coverage" );
     }
 
     SKIP: {
-        skip "Trigger words not found", 1 unless $utils->trigger_words;
+        skip "TRIGGER WORDS NOT FOUND", 1 unless $utils->trigger_words;
         ok( $utils->category_clash, "Testing category / title clashes" );
     }
+
+    diag "\n\n"
 }
 
 done_testing;
