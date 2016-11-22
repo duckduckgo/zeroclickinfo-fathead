@@ -284,10 +284,9 @@ sub category_clash {
 
     if (@clash){
         my $count = scalar @clash;
-        diag "$count CATEGORIES NAMES MATCHING ARTICLE TITLES";
+        diag YELLOW "$count CATEGORIES NAMES MATCHING ARTICLE TITLES";
         diag $_ for @clash;
     }
     return @clash ? 0 : 1;
 }
-
 1;
