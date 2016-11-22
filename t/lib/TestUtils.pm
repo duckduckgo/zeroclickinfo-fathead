@@ -41,7 +41,8 @@ sub _build_cover_dir {
     my ( $self ) = @_;
     my $cdir = f->catdir( $self->fathead_dir, qw/ cover / );
     if ( ! -d $cdir ) {
-        diag YELLOW sprintf( "COVER DIR FOR NOT FOUND in %s", $self->fathead, $cdir );
+        diag YELLOW "NO COVERAGE DATA FOUND. " .
+            "Please see: https://docs.duckduckhack.com/programming-mission/creating-effective-fatheads.html#full-topic-coverage";
         return;
     }
     return $cdir;
@@ -51,7 +52,7 @@ has output_txt => ( is => 'lazy' );
 sub _build_output_txt {
     my ( $self ) = @_;
     my $otxt = f->catfile( $self->fathead_dir, q'output.txt' );
-    die RED "$otxt does not exist - please generate it" unless -f $otxt;
+    die RED "NO OUTPUT FILE FOUND" unless -f $otxt;
     return $otxt;
 }
 
@@ -60,7 +61,7 @@ sub _build_trigger_words {
     my ( $self ) = @_;
     my $ttxt = f->catfile( $self->fathead_dir, q'trigger_words.txt' );
     if ( ! -f $ttxt ) {
-        diag "$ttxt does not exist - will not be able to validate categories";
+        diag YELLOW "NO TRIGGER WORDS FOUND. Will not be able to validate categories";
         return;
     }
     [ grep { $_ } io( $ttxt )->utf8->chomp->getlines ];
@@ -96,7 +97,8 @@ sub _build_titles {
 has lc_titles => ( is => 'lazy' );
 sub _build_lc_titles {
     my ( $self ) = @_;
-    return uniq map { lc } keys %{ $self->titles };
+    my @lc_titles = uniq map { lc } keys %{ $self->titles };
+    return \@lc_titles;
 }
 
 has valid_types => ( is => 'lazy' );
@@ -116,15 +118,20 @@ sub _build_categories {
     ];
 }
 
-has disambiguations => ( is => 'lazy' );
+has disambiguations => ( is => 'lazy');
 sub _build_disambiguations {
     my ( $self ) = @_;
+
+    my @disambiguations = grep { /\tD\t/ } @{ $self->content };
+    unless (@disambiguations){
+        diag YELLOW "NO DISAMBIGUATIONS FOUND";
+        return;
+    };
     [
         map { split /\s*\\n\s*/ }
         map { ( split /\t/ )[9] }
-        grep { /\tD\t/ }
-        @{ $self->content }
-    ]
+        @disambiguations
+    ];
 }
 
 sub _a_in_b {
@@ -144,6 +151,7 @@ sub _a_in_b {
 sub _a_not_in_b {
     my ( $self, $list_a, $list_b ) = @_;
     my @missing;
+
     my %presence_of =
         map { $_ => 1 }
         @{ $list_b };
@@ -158,12 +166,12 @@ sub _a_not_in_b {
 sub duplicates {
     my ( $self ) = @_;
     my @dupes = grep { $self->titles->{$_}->{count} > 1 } keys %{ $self->titles };
-    my @sorted = sort({ length("$b") <=> length ("$a") } @dupes);
-    my $min_width = length($sorted[0]) + 5;
 
     if (@dupes){
+        my @sorted = sort({ length("$b") <=> length ("$a") } @dupes);
+        my $min_width = length($sorted[0]) + 5;
         my $count = scalar @dupes;
-        diag YELLOW "$count DUPLICATE ARTICLES FOUND:";
+        diag YELLOW "\n$count DUPLICATE ARTICLES FOUND:";
         diag sprintf( "%-*s duplicated on lines %s", $min_width, $_, join( ', ', @{ $self->titles->{$_}->{lines} } ) )
         for @dupes;
     }
@@ -174,7 +182,12 @@ sub coverage {
     my ( $self ) = @_;
     my $titles = $self->lc_titles;
     my @missing = $self->_a_not_in_b( $self->cover_titles, $titles );
-    diag sprintf "Titles missing coverage in output: %s", join( ', ', @missing ) if @missing;
+
+    if (@missing){
+        my $count = scalar @missing;
+        diag YELLOW "\n$count TITLES MISSING IN OUTPUT FILE";
+        diag $_ for @missing;
+    }
     return @missing ? 0 : 1;
 }
 
@@ -182,7 +195,12 @@ sub types {
     my ( $self ) = @_;
     my @output_types = uniq map { ( split /\t/ )[1] } @{ $self->content };
     my @invalid_types = $self->_a_not_in_b( \@output_types, $self->valid_types );
-    diag sprintf "Output contains invalid type fields: %s", join( ', ', @invalid_types ) if @invalid_types;
+
+    if (@invalid_types){
+        my $count = scalar @invalid_types;
+        diag YELLOW "$count INVALID ARTICLE TYPES FOUND";
+        diag $_ for @invalid_types;
+    }
     return @invalid_types ? 0 : 1;
 }
 
@@ -214,7 +232,7 @@ sub escapes {
     }
     if (@unescaped){
         my $count = scalar @unescaped;
-        diag YELLOW "$count POSSIBLY UNESCAPED CHARACTERS FOUND:";
+        diag YELLOW "\n$count POSSIBLY UNESCAPED CHARACTERS FOUND:";
         diag $_ for @unescaped;
     }
     return $r;
@@ -229,8 +247,8 @@ sub disambiguations_format {
     }
     if (@invalid){
         my $count = scalar @invalid;
-        diag YELLOW sprintf "$count INVALID DISMABIGUATIONS FOUND:";
-        diag join( "\n", @invalid );
+        diag YELLOW "\n$count INVALID DISMABIGUATIONS FOUND:";
+        diag $_ for @invalid;
     }
 
     return @invalid ? 0 : 1;
@@ -243,13 +261,13 @@ sub disambiguations_missing {
         @{ $self->disambiguations };
 
     my @titles = keys $self->titles;
-    my @missing = $self->_a_not_in_b( \@disambiguation_titles, \@titles );
+    warn @titles;
+    my @missing = $self->_a_not_in_b( \@disambiguation_titles, @titles );
 
     if (@missing){
         my $count = scalar @missing;
-        diag YELLOW sprintf "$count DISAMBIGUATION TITLES MISSING FROM ARTICLES:";
-        diag join( "\n", @missing );
-
+        diag YELLOW "\n$count DISAMBIGUATION TITLES MISSING FROM ARTICLES:";
+        diag $_ for @missing;
     }
     return @missing ? 0 : 1;
 }
@@ -265,7 +283,11 @@ sub category_clash {
     my @titles = $self->lc_titles;
     my @clash = $self->_a_in_b( \@filtered_categories, \@titles );
 
-    diag sprintf "Categories matching article titles: %s", join( ', ', @clash ) if @clash;
+    if (@clash){
+        my $count = scalar @clash;
+        diag "$count CATEGORIES NAMES MATCHING ARTICLE TITLES";
+        diag $_ for @clash;
+    }
     return @clash ? 0 : 1;
 }
 
