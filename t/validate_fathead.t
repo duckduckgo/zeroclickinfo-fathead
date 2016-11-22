@@ -22,11 +22,11 @@ else {
     @folders = map { basename(dirname($_)) } @files;
 }
 
-plan tests => scalar @folders;
+plan tests => (scalar @folders) * 8;
 
 foreach my $dir (@folders) {
     local $Term::ANSIColor::AUTORESET = 1;
-    diag BOLD GREEN "\nChecking output.txt in 'lib/fathead/$dir'...\n";
+    diag BOLD WHITE "\nChecking $dir:";
 
     my $utils = t::lib::TestUtils->new( fathead => $dir );
     ok( $utils->duplicates, "Checking for duplicate titles" );
@@ -45,8 +45,6 @@ foreach my $dir (@folders) {
         skip "TRIGGER WORDS NOT FOUND", 1 unless $utils->trigger_words;
         ok( $utils->category_clash, "Testing category / title clashes" );
     }
-
-    diag "\n\n"
 }
 
-done_testing;
+done_testing();
