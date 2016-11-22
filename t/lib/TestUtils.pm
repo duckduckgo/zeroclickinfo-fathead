@@ -118,7 +118,7 @@ sub _build_categories {
     ];
 }
 
-has disambiguations => ( is => 'lazy');
+has disambiguations => ( is => 'lazy' );
 sub _build_disambiguations {
     my ( $self ) = @_;
 
@@ -260,9 +260,8 @@ sub disambiguations_missing {
         map { /^\*\[\[(.+?)\]\],?\s*.+?\.$/ }
         @{ $self->disambiguations };
 
-    my @titles = keys $self->titles;
-    warn @titles;
-    my @missing = $self->_a_not_in_b( \@disambiguation_titles, @titles );
+    my $titles = keys $self->titles;
+    my @missing = $self->_a_not_in_b( \@disambiguation_titles, $titles );
 
     if (@missing){
         my $count = scalar @missing;
