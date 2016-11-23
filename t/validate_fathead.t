@@ -6,7 +6,6 @@ use File::Find::Rule;
 use File::Basename;
 use Path::Tiny;
 use Term::ANSIColor qw(:constants);
-use Data::Printer;
 
 use t::lib::TestUtils;
 
