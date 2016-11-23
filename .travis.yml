@@ -1,0 +1,19 @@
+---
+sudo: false
+env:
+  - PERL_LWP_SSL_VERIFY_HOSTNAME=0
+cache:
+  directories:
+    - $HOME/.cpanm
+    - $HOME/perl5/perlbrew/perls/5.16/lib
+before_install:
+  - export HARNESS_OPTIONS=j10:c HARNESS_TIMER=1
+  - git config --global user.name "Dist Zilla Plugin TravisCI"
+  - git config --global user.email $HOSTNAME":not-for-mail@travis-ci.org"
+install:
+  - cpanm --quiet --notest Test::More
+language: perl
+perl:
+  - 5.16
+script:
+  - prove -lr -j1 t
