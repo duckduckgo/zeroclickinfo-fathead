@@ -32,7 +32,10 @@ has fathead_dir => ( is => 'lazy' );
 sub _build_fathead_dir {
     my ( $self ) = @_;
     my $fdir = f->catdir( $self->project_root, qw/ lib fathead /, $self->fathead );
-    die RED "$fdir does not exist" unless -d $fdir;
+    unless (-d $fdir){
+        diag RED "$fdir does not exist";
+        return;
+    }
     return $fdir;
 }
 
@@ -48,12 +51,16 @@ sub _build_cover_dir {
     return $cdir;
 }
 
-has output_txt => ( is => 'lazy' );
+has output_txt => ( is => 'lazy', predicate => 1 );
 sub _build_output_txt {
     my ( $self ) = @_;
     my $otxt = f->catfile( $self->fathead_dir, q'output.txt' );
-    die RED "NO OUTPUT FILE FOUND" unless -f $otxt;
-    die RED "OUTPUT FILE IS EMPTY" unless -s $otxt;
+
+    unless (-f $otxt && -s $otxt){
+        diag RED "NO OUTPUT FILE FOUND" unless -f $otxt;
+        diag RED "OUTPUT FILE IS EMPTY" unless -s $otxt;
+        return;
+    }
     return $otxt;
 }
 

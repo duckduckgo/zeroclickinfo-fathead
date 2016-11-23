@@ -29,25 +29,29 @@ foreach my $dir (@folders) {
     diag BOLD BLUE "\nChecking $dir...";
 
     my $utils = t::lib::TestUtils->new( fathead => $dir );
-    ok( $utils->duplicates, "Checking for duplicate titles" );
-    ok( $utils->types, "Validating types" );
-    ok( $utils->field_count, "Validating correct number of fields" );
-    ok( $utils->escapes, "Checking for unescaped chars" );
 
     SKIP: {
-        skip "NO DISAMBIGUATIONS TO CHECK", 2 unless $utils->disambiguations;
-        ok( $utils->disambiguations_format, "Checking disambiguation format" );
-        ok( $utils->disambiguations_missing, "Checking for disambiguations with missing titles" );
-    }
+        skip 'NONEXISTANT OR EMPTY OUTPUT FILE', 8 unless $utils->fathead_dir && $utils->output_txt;
+        ok( $utils->duplicates, "Checking for duplicate titles" );
+        ok( $utils->types, "Validating types" );
+        ok( $utils->field_count, "Validating correct number of fields" );
+        ok( $utils->escapes, "Checking for unescaped chars" );
 
-    SKIP: {
-        skip "COVERAGE DATA NOT FOUND", 1 unless $utils->cover_dir;
-        ok( $utils->coverage, "Testing article coverage" );
-    }
+        SKIP: {
+            skip 'NO DISAMBIGUATIONS TO CHECK', 2 unless $utils->disambiguations;
+            ok( $utils->disambiguations_format, 'Checking disambiguation format' );
+            ok( $utils->disambiguations_missing, 'Checking for disambiguations with missing titles' );
+        }
 
-    SKIP: {
-        skip "TRIGGER WORDS NOT FOUND", 1 unless $utils->trigger_words;
-        ok( $utils->category_clash, "Testing category / title clashes" );
+        SKIP: {
+            skip 'COVERAGE DATA NOT FOUND', 1 unless $utils->cover_dir;
+            ok( $utils->coverage, 'Testing article coverage' );
+        }
+
+        SKIP: {
+            skip 'TRIGGER WORDS NOT FOUND', 1 unless $utils->trigger_words;
+            ok( $utils->category_clash, 'Testing category / title clashes' );
+        }
     }
 
     diag "\n";
