@@ -180,8 +180,8 @@ sub duplicates {
 
 sub coverage {
     my ( $self ) = @_;
-    my $titles = $self->lc_titles;
-    my @missing = $self->_a_not_in_b( $self->cover_titles, $titles );
+
+    my @missing = $self->_a_not_in_b( $self->cover_titles, $self->lc_titles );
 
     if (@missing){
         my $count = scalar @missing;
@@ -260,8 +260,9 @@ sub disambiguations_missing {
         map { /^\*\[\[(.+?)\]\],?\s*.+?\.$/ }
         @{ $self->disambiguations };
 
-    my $titles = keys $self->titles;
-    my @missing = $self->_a_not_in_b( \@disambiguation_titles, $titles );
+    my @titles = keys $self->titles;
+
+    my @missing = $self->_a_not_in_b( \@disambiguation_titles, \@titles );
 
     if (@missing){
         my $count = scalar @missing;
@@ -279,8 +280,7 @@ sub category_clash {
         map { s/\b$re\b//gr }
         @{ $self->categories };
 
-    my @titles = $self->lc_titles;
-    my @clash = $self->_a_in_b( \@filtered_categories, \@titles );
+    my @clash = $self->_a_in_b( \@filtered_categories, $self->lc_titles );
 
     if (@clash){
         my $count = scalar @clash;

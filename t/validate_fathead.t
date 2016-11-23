@@ -25,7 +25,7 @@ plan tests => (scalar @folders) * 8;
 
 foreach my $dir (@folders) {
     local $Term::ANSIColor::AUTORESET = 1;
-    diag BOLD WHITE "\nChecking $dir...";
+    diag BOLD BLUE "\nChecking $dir...";
 
     my $utils = t::lib::TestUtils->new( fathead => $dir );
     ok( $utils->duplicates, "Checking for duplicate titles" );
@@ -50,7 +50,7 @@ foreach my $dir (@folders) {
     }
 
     diag "\n";
-    diag BOLD WHITE "...Finished";
+    diag BOLD BLUE "...Finished";
     diag "\n";
 }
 
