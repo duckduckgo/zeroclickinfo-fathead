@@ -53,6 +53,7 @@ sub _build_output_txt {
     my ( $self ) = @_;
     my $otxt = f->catfile( $self->fathead_dir, q'output.txt' );
     die RED "NO OUTPUT FILE FOUND" unless -f $otxt;
+    die RED "OUTPUT FILE IS EMPTY" unless -s $otxt;
     return $otxt;
 }
 
