@@ -19,6 +19,7 @@ animation-timing-function
 @annotation
 annotation()
 :any()
+appearance
 attr()
 ::backdrop
 backface-visibility
@@ -36,6 +37,7 @@ background-repeat
 background-size
 <basic-shape>
 ::before
+bleed
 blend-mode
 block-size
 blur()
@@ -139,6 +141,7 @@ filter
 :first-of-type
 fit
 fit-content()
+flex
 <flex>
 flex-basis
 flex-direction
@@ -193,6 +196,7 @@ hz
 <image>
 image()
 image-orientation
+image-rendering
 image-resolution
 ime-mode
 @import
@@ -207,6 +211,7 @@ inset()
 <integer>
 :invalid
 invert()
+isolation
 justify-content
 @keyframes
 khz
@@ -280,6 +285,7 @@ opacity()
 order
 orientation
 orphans
+outline
 outline-color
 outline-offset
 outline-style
@@ -412,8 +418,10 @@ translateY()
 translateZ()
 :tree-cell
 turn
+unicode-bidi
 <url>
 url()
+user-select
 user-zoom
 :valid
 var()
@@ -428,6 +436,7 @@ vw
 white-space
 widows
 width
+will-change
 word-break
 word-spacing
 word-wrap
