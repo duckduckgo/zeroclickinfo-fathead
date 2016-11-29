@@ -357,12 +357,12 @@ class MDNIndexer(object):
         if split_title[0] == "global" and len(split_title) > 1:
             if any(split_title[1] == data_type for data_type in self.DATA_TYPES):
                 self._writer.writerow({
-                    'title': title + " data type",
+                    'title': split_title[1] + " data type",
                     'type': 'R',
                     'redirect': mdn.title
                 })
                 self._writer.writerow({
-                    'title': title + " type",
+                    'title': split_title[1] + " type",
                     'type': 'R',
                     'redirect': mdn.title
                 })
