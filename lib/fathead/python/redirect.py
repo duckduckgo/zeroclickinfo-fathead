@@ -2,10 +2,6 @@
 # -*- coding: utf-8 -*-
 import itertools
 import re
-import sys
-
-reload(sys)
-sys.setdefaultencoding('utf8')
 
 built_in = ['abs','dict','help','min','setattr','all','dir','hex','next',
 'slice','any','divmod','id','object','sorted','ascii','enumerate','input',

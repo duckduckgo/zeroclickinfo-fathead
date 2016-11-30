@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import csv
-import sys
 from bs4 import BeautifulSoup
-
-reload(sys)
-sys.setdefaultencoding('utf8')
 
 PYTHON_VERSIONS = {
     'python3': {'download_path': 'download/python-3.5.2-docs-html', 'doc_base_url': 'https://docs.python.org/3.5{}',
