@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup
 import os
 import re
 
-BASE_JAVADOC_FILE = "./download/allclasses-noframe.html"
 BASE_JAVADOC_URL = "http://docs.spring.io/spring/docs/current/javadoc-api/"
-BASE_LOCAL_JAVADOC_DIR = "./docs/api/"
+BASE_LOCAL_JAVADOC_DIR = "./docs/javadoc-api"
+BASE_JAVADOC_FILE = BASE_LOCAL_JAVADOC_DIR + "/allclasses-noframe.html"
 
 
 def readRootFile():
@@ -18,10 +18,12 @@ def readRootFile():
 def collectDocFilesFrom(dir):
     docFiles = []
     for (path, dirs, files) in os.walk(dir):
-        if 'class-use' not in path:
+        if 'class-use' not in path and 'index-files' not in path:
             for f in files:
-                docFiles.append("%s/%s" % (path, f))
+                if f.endswith('.html') and 'package-' not in f and 'doc-files' not in f:
+                    docFiles.append("%s/%s" % (path, f))
     return docFiles
+
 
 def getDocs(filename, classUrl):
     if filename.endswith('.html') and 'package-' not in filename and 'doc-files' not in filename:
@@ -32,7 +34,9 @@ def getDocs(filename, classUrl):
         if len(block) > 0:
             description = block[0].get_text()
             description = cutlength(description)
-        url = BASE_JAVADOC_URL + classUrl
+        url = ""
+        if len(classUrl) != 0:
+            url = BASE_JAVADOC_URL + classUrl
         return classname, description, url
 
 

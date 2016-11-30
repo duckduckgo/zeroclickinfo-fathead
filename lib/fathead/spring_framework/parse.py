@@ -12,6 +12,9 @@ if os.path.exists('output.txt'):
 content = BeautifulSoup(parse_utils.readRootFile(), 'html.parser')
 
 # iterate classes
-for f in parse_utils.collectDocFilesFrom('./docs/api'):
-    classUrl = content.find_all(href=re.compile(f.replace("./docs/api/", "")))[0].get('href')
+for f in parse_utils.collectDocFilesFrom('./docs/javadoc-api/org'):
+    result = content.find_all(href=re.compile(f.replace("./docs/javadoc-api/", "")))
+    classUrl = ""
+    if len(result) != 0:
+        classUrl = result[0].get('href')
     parse_utils.output("output.txt", parse_utils.getDocs(f, classUrl))

@@ -1,5 +1,0 @@
-Name: Spring Framework 4.3.4.RELEASE
-Domain: docs.spring.io
-Type: Java
-MediaWiki: 0
-Keywords: Java Spring
