@@ -36,7 +36,7 @@ has cover_dir => ( is => 'lazy' );
 sub _build_cover_dir {
     my ( $self ) = @_;
     my $cdir = f->catdir( $self->fathead_dir, qw/ cover / );
-    if ( -d $cdir ) {
+    if ( ! -d $cdir ) {
         warn sprintf( "Coverage files for %s not found in %s", $self->fathead, $cdir );
         return;
     }
@@ -82,7 +82,7 @@ sub _build_titles {
     my $titles;
 
     while ( my ( $number, $line ) = each @{ $self->content } ) {
-        my $title = ( split /\t/, $line )[0];
+        my $title = lc (( split /\t/, $line )[0]);
         $titles->{ $title }->{count}++;
         push @{ $titles->{ $title }->{lines} }, $number + 1;
     }
@@ -189,7 +189,7 @@ sub escapes {
     while ( my ( $number, $line ) = each @{ $self->content } ) {
         my $abstract = ( split /\t/, $line )[11];
         next unless $abstract;
-        if ( my @matches = $abstract =~ /([^\\]\\[0-9nrtx])/g ) {
+        if ( my @matches = $abstract =~ /([^\\]\\[0-9x]|[\n\r\t])/g ) {
             warn sprintf "Line %d appears to contain unescaped characters : %s",
                 $number + 1, join( ', ', @matches );
             $r = 0;

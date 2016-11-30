@@ -1,53 +1,30 @@
-<!--- Please use the appropriate format for your Pull Request title: -->
+<!-- Use the appropriate format for your Pull Request title:
 
-<!-- For a Bug Fix: -->
-<!-- {IA Name}: {Description of change} -->
+    For a Bug Fix:
+    {IA Name}: {Description of change}
 
-<!-- For a New Instant Answer: -->
-<!-- New {IA Name} Fathead" -->
+    For a New Instant Answer:
+    New {IA Name} Fathead
 
-<!-- For anything else: -->
-<!-- {Tests/Docs/Other}: {Short Description} -->
+    For anything else:
+    {Tests/Docs/Other}: {Short Description} -->
 
-
-## Type of Change
-
-<!-- Place and 'X' in the correct box (E.g `[X] Improvement`) -->
-
-- [ ] New Instant Answer
-- [ ] Improvement
-    - [ ] Bug fix
-    - [ ] Enhancement
-- [ ] Non–Instant Answer
-    - [ ] Other (Role, Template, Test, Documentation, etc.)
 
 ## Description of new Instant Answer, or changes
+<!-- What does this new Instant Answer do? What changes does this PR introduce? -->
 
-<!-- What does this new Instant Answer do? -->
-<!-- OR -->
-<!-- What changes does this PR introduce? -->
 
 ## Related Issues and Discussions
+<!--  Link related issues here to automatically close them when PR is merged
+      E.g. "Fixes #1234" -->
 
-<!--- If fixing a bug with a related issue -->
-<!--- Please link to the issue here: -->
-<!-- E.g. "Fixes #1234" -->
 
 ## People to notify
+<!-- Please @mention any relevant people/organizations here: -->
 
-<!-- Please @mention any relevant people/organizations here:-->
-
-
+<!-- DO NOT REMOVE -->
 ---
 
 <!-- The Instant Answer ID can be found by clicking the `?` icon beside the Instant Answer result on DuckDuckGo.com -->
-
-IA Page: https://duck.co/ia/view/{ID}
-
-<!-- All new Instant Answers should be related to the Programming Mission -->
-<!-- They should also have a related Project on the DuckDuckHack Forum -->
-<!-- New Instant Answers related to the Programming Mission, without a forum topic will be put on hold -->
-
-<!-- 	More Info: https://forum.duckduckhack.com/t/duckduckhack-programming-mission-overview/53 -->
-
-Forum Topic:
+Instant Answer Page: https://duck.co/ia/view/{ID}
+<!-- FILL THIS IN:                           ^^^^ -->
