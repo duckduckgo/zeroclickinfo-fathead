@@ -28,22 +28,20 @@ To be completed by Language Leader (or DDG Staff)
 **Pull Request**
 - [ ] Title follows correct format (Specifies Instant Answer + Purpose)
 - [ ] Description contains a valid Instant Answer Page Link (e.g. https://duck.co/ia/view/my_ia)
-
 **Instant Answer Page**
 - [ ] Instant Answer page is correctly filled out and contains:
     - One topic for the Search Space Language (Java, Python, Scala, Ruby, etc.)
-    - One topic for the kind of Instant Answer: Reference, Help, Libraries, Tools
+    - One topic from: Reference, Help, Libraries, Tools
         - Documentation Fatheads are considered "Reference"
     - Description, Data source, and 2+ example queries
     - Perl Module (e.g. "DDG::Fathead::PerlDoc" -- we only need a name, not an actual file)
-    - Source Name (this will be used in the "More at" link)
+    - Source Name (for "More at <source_name>" link)
     - Source Domain (must contain http:// or https:// -- can be the same as Data Source)
-    - Source Info (this will be the subtitle for each Article -- usually matches the IA Name)
+    - Source Info (used as Subtitle for each Article -- usually matches the IA Name)
     - 'Skip Abstract' is checked off
     - Source ID (ping @moollaza to assign one, once Fathead is ready for Beta deploy)
 - [ ] Fathead Tests are passing (run `$ duckpan test <fathead_id>`)
     - Tester should report any failures
-
 **Code**
 - [ ] Uniformly indented, well commented
 - [ ] Fetch.sh and Parse.sh run without errors
