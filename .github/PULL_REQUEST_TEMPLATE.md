@@ -22,6 +22,37 @@
 ## People to notify
 <!-- Please @mention any relevant people/organizations here: -->
 
+## Testing & Review
+To be completed by Language Leader (or DDG Staff)
+
+**Pull Request**
+- [ ] Title follows correct format (Specifies Instant Answer + Purpose)
+- [ ] Description contains a valid Instant Answer Page Link (e.g. https://duck.co/ia/view/my_ia)
+
+**Instant Answer Page**
+- [ ] Instant Answer page is correctly filled out and contains:
+    - One topic for the Search Space Language (Java, Python, Scala, Ruby, etc.)
+    - One topic for the kind of Instant Answer: Reference, Help, Libraries, Tools
+        - Documentation Fatheads are considered "Reference"
+    - Description
+    - Data source
+    - 2+ example queries
+    - Perl Module name (e.g. "DDG::Fathead::PerlDoc")
+    - Source Name (this will be used in the "More at" link)
+    - Source Domain (must contain http:// or https:// -- can be the same as Data Source)
+    - Source Info (this will be the subtitle for each Article -- usually matches the IA Name)
+    - 'Skip Abstract' is checked off
+    - Source ID (ping @moollaza to assign one, once Fathead is ready for Beta deploy)
+- [ ] Fathead Tests are passing (no broken syntax, no duplicates)
+    - Tester should report any failures
+
+**Code**
+- [ ] Uniformly indented, well commented
+- [ ] Fetch.sh and Parse.sh run without errors
+- [ ] Output contains no blank lines, or multi-line entries
+
+**Pull Request Review Guidelines**: https://docs.duckduckhack.com/programming-mission/pr-review.html
+
 <!-- DO NOT REMOVE -->
 ---
 
