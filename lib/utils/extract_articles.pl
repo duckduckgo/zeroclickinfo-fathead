@@ -29,7 +29,7 @@ close $fh;
 # Write list of articles to the new file
 open my $fw, '>:encoding(UTF-8)', $path . "articles.txt" or die();
 
-foreach my $title (@titles) {
+foreach my $title (sort @titles) {
     print $fw $title . "\n";
 }
 close $fw;
