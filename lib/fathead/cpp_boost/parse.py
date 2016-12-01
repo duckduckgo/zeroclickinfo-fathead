@@ -38,15 +38,7 @@ class BoostDataParser:
 
         self.filter_data(self.doc_content)
 
-        
-##        for tag in soup.find_all('dl',{'class':'fields'}):
-##            gop=tag.findAll('dt')
-##            for gopa in gop:
-##                gopa.replaceWith('')
-##        tt_all=soup.find_all('dt')
-##        for t in tt_all:
-##            print(t.text,'\t',t.find_next('p').text,'\t','{}{}'.format(URL_ROOT,t.find_next('a').get('href')))
-    
+
     def parse_name_and_anchor(self,section):
 
         name=section.text
