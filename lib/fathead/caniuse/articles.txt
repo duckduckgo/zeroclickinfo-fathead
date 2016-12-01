@@ -1,0 +1,517 @@
+::selection css pseudo element
+::selection css pseudo-element
+:placeholder shown css pseudo class
+:placeholder-shown css pseudo-class
+@font face web fonts
+@font-face web fonts
+ambient light
+ambient light api
+ambient-light
+animated png (apng)
+apng
+async attribute for external scripts
+atob btoa
+atob-btoa
+audio
+audio api
+audio element
+audio-api
+background img opts
+background-img-opts
+base64 encoding and decoding
+battery status
+battery status api
+battery-status
+blending of html/svg elements
+blob constructing
+blob urls
+blobbuilder
+bloburls
+border image
+border radius
+border-image
+border-radius
+calc
+calc() as css unit value
+canvas
+canvas (basic support)
+canvas blend modes
+canvas blending
+canvas text
+canvas-blending
+canvas-text
+channel messaging
+channel-messaging
+classlist
+classlist (domtokenlist )
+clipboard
+clipboard api
+color input type
+content security policy
+contenteditable
+contenteditable attribute (basic support)
+contentsecuritypolicy
+cors
+cross document messaging
+cross origin resource sharing
+cross-document messaging
+cross-origin resource sharing
+crypto.getrandomvalues()
+cryptography
+css 2.1 selectors
+css animation
+css appearance
+css background blend mode
+css background offsets
+css background position edge offsets
+css background-blend-mode
+css background-position edge offsets
+css backgroundblendmode
+css boxshadow
+css canvas
+css canvas drawings
+css clip path
+css clip path property
+css clip-path property
+css counters
+css feature queries
+css featurequeries
+css filter effects
+css filters
+css fixed
+css font loading
+css font size adjust
+css font stretch
+css font-size-adjust
+css font-stretch
+css gencontent
+css generated content for pseudo elements
+css generated content for pseudo-elements
+css gradients
+css grid
+css grid layout
+css hyphenation
+css hyphens
+css image orientation
+css inline block
+css inline-block
+css masks
+css mediaqueries
+css min/max width/height
+css min/max-width/height
+css mixblendmode
+css opacity
+css outline
+css placeholder
+css pointer events (for html)
+css pointer-events (for html)
+css position:fixed
+css position:sticky
+css reflections
+css regions
+css repeating gradients
+css resize
+css resize property
+css sel2
+css sel3
+css selection
+css shapes
+css shapes level 1
+css sticky
+css supports api
+css table
+css table display
+css text size adjust
+css text stroke
+css text-size-adjust
+css text-stroke
+css textshadow
+css touch action
+css touch action property
+css touch-action property
+css transitions
+css user select: none
+css user-select: none
+css variables
+css will change property
+css will-change property
+css-animation
+css-appearance
+css-background-offsets
+css-backgroundblendmode
+css-boxshadow
+css-canvas
+css-clip-path
+css-counters
+css-featurequeries
+css-filters
+css-fixed
+css-font-stretch
+css-gencontent
+css-gradients
+css-grid
+css-hyphens
+css-image-orientation
+css-masks
+css-mediaqueries
+css-mixblendmode
+css-opacity
+css-placeholder
+css-reflections
+css-regions
+css-repeating-gradients
+css-resize
+css-sel2
+css-sel3
+css-selection
+css-shapes
+css-sticky
+css-supports-api
+css-table
+css-textshadow
+css-touch-action
+css-transitions
+css-variables
+css.supports() dom api
+css3 3d transforms
+css3 animation
+css3 background image options
+css3 background-image options
+css3 border images
+css3 border radius (rounded corners)
+css3 border-radius (rounded corners)
+css3 box shadow
+css3 box sizing
+css3 box-shadow
+css3 box-sizing
+css3 boxsizing
+css3 colors
+css3 cursors
+css3 cursors (original values)
+css3 image orientation
+css3 image-orientation
+css3 media queries
+css3 multiple backgrounds
+css3 multiple column layout
+css3 object fit/object position
+css3 object-fit/object-position
+css3 opacity
+css3 overflow wrap
+css3 overflow-wrap
+css3 selectors
+css3 tab size
+css3 tab-size
+css3 tabsize
+css3 text overflow
+css3 text shadow
+css3 text-overflow
+css3 text-shadow
+css3 transforms
+css3 transitions
+css3 word break
+css3 word-break
+css3-boxsizing
+css3-colors
+css3-cursors
+css3-tabsize
+custom elements
+custom-elements
+data uris
+datalist
+datalist element
+dataset
+dataset & data * attributes
+dataset & data-* attributes
+datauri
+date/time input types
+defer attribute for external scripts
+details
+details & summary elements
+deviceorientation
+deviceorientation events
+dialog
+dialog element
+domcontentloaded
+download
+download attribute
+drag and drop
+dragndrop
+ecmascript 5 strict mode
+eot
+eot   embedded opentype fonts
+eot - embedded opentype fonts
+eventsource
+file api
+fileapi
+filereader
+filereader api
+filesystem
+filesystem & filewriter api
+flexbox
+flexible box layout module
+font feature
+font feature settings
+font loading
+font size adjust
+font unicode range
+font unicode range subsetting
+font unicode-range subsetting
+font-feature
+font-loading
+font-size-adjust
+font-unicode-range
+fontface
+form validation
+form-validation
+forms
+full screen api
+fullscreen
+gamepad
+gamepad api
+geolocation
+getcomputedstyle
+getelementsbyclassname
+getrandomvalues
+getusermedia/stream api
+hashchange
+hashchange event
+high resolution time
+high resolution time api
+high-resolution-time
+history
+html imports
+html templates
+html5 form features
+html5semantic
+iframe sandbox
+iframe seamless
+iframe-sandbox
+iframe-seamless
+imports
+improved kerning pairs & ligatures
+indexeddb
+inline block
+inline svg in html5
+inline-block
+input color
+input datetime
+input file multiple
+input number
+input placeholder
+input placeholder attribute
+input range
+input-color
+input-datetime
+input-file-multiple
+input-number
+input-placeholder
+input-range
+intrinsic & extrinsic sizing
+intrinsic width
+intrinsic-width
+jpeg xr image format
+jpegxr
+json
+json parsing
+kerning pairs ligatures
+kerning-pairs-ligatures
+matches() dom method
+matchesselector
+matchmedia
+mathml
+menu
+minmaxwh
+mpeg 4/h.264 video format
+mpeg-4/h.264 video format
+mpeg4
+multibackgrounds
+multicolumn
+multiple file selection
+mutation observer
+mutationobserver
+namevalue storage
+namevalue-storage
+nav timing
+nav-timing
+navigation timing api
+new semantic elements
+notifications
+number input type
+object fit
+object-fit
+offline apps
+offline web applications
+offline-apps
+ogg/theora video format
+ogv
+opus
+outline
+page visibility
+pagevisibility
+picture
+picture element
+png alpha
+png alpha transparency
+png-alpha
+pointer
+pointer events
+pointer events
+pointer-events
+progress & meter
+progressmeter
+promises
+proximity
+proximity api
+queryselector
+queryselector/queryselectorall
+range input type
+rellist
+rellist (domtokenlist)
+rem
+rem (root em) units
+requestanimationframe
+resource timing
+resource-timing
+rtcpeerconnection
+ruby
+ruby annotation
+sandbox attribute for iframes
+scoped css
+script async
+script defer
+script-async
+script-defer
+seamless attribute for iframes
+server sent dom events
+server-sent dom events
+session history management
+shadow dom
+shadowdom
+shared web workers
+sharedworkers
+spdy
+spdy networking protocol
+speech synthesis
+speech synthesis api
+speech-synthesis
+spellcheck attribute
+spellcheck-attribute
+sql storage
+sql-storage
+srcset
+srcset attribute
+stream
+strict transport security
+stricttransportsecurity
+style scoped
+style-scoped
+svg
+svg (basic support)
+svg css
+svg effects for html
+svg filters
+svg fonts
+svg fragment
+svg fragment identifiers
+svg html
+svg html5
+svg img
+svg in css backgrounds
+svg in html img element
+svg smil
+svg smil animation
+svg-css
+svg-filters
+svg-fonts
+svg-fragment
+svg-html
+svg-html5
+svg-img
+svg-smil
+template
+text api for canvas
+text decoration
+text decoration styling
+text overflow
+text size adjust
+text stroke
+text-decoration
+text-decoration styling
+text-overflow
+text-size-adjust
+text-stroke
+toolbar/context menu
+touch
+touch events
+transforms2d
+transforms3d
+ttf
+ttf/otf   truetype and opentype font support
+ttf/otf - truetype and opentype font support
+typed arrays
+typedarrays
+use strict
+use-strict
+user select none
+user timing
+user timing api
+user-select-none
+user-timing
+vibration
+vibration api
+video
+video element
+viewport units
+viewport units: vw, vh, vmin, vmax
+viewport-units
+wai aria
+wai aria accessibility features
+wai-aria
+wai-aria accessibility features
+web animation
+web animations api
+web audio api
+web cryptography
+web notifications
+web sockets
+web speech
+web speech api
+web sql database
+web storage   name/value pairs
+web storage - name/value pairs
+web workers
+web-animation
+web-speech
+webgl
+webgl   3d canvas graphics
+webgl - 3d canvas graphics
+webm
+webm video format
+webp
+webp image format
+webrtc peer to peer connections
+webrtc peer-to-peer connections
+websockets
+webvtt
+webvtt   web video text tracks
+webvtt - web video text tracks
+webworkers
+will change
+will-change
+woff
+woff   web open font format
+woff - web open font format
+woff 2.0   a better web font compression format
+woff 2.0 - a better web font compression format
+woff2
+word break
+word-break
+wordwrap
+x doc messaging
+x-doc-messaging
+xhr2
+xhtml
+xhtml served as application/xhtml+xml
+xhtml+smil animation
+xhtmlsmil
+xmlhttprequest 2
