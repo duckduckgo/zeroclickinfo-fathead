@@ -9,7 +9,7 @@ unamestr=`uname`
 if [[ "$unamestr" == 'Darwin' ]]; then
    curl -O http://docs.spring.io/spring/docs/current/javadoc-api/overview-summary.html
 else
-  wget --quiet --no-check-certificate --no-cookies -O download/overview-summary.html http://docs.spring.io/spring/docs/current/javadoc-api/overview-summary.html
+  wget --quiet --no-check-certificate --no-cookies -O overview-summary.html http://docs.spring.io/spring/docs/current/javadoc-api/overview-summary.html
 fi
 cd ..
 python ./fetch.py
