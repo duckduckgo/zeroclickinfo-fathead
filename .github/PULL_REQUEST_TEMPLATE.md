@@ -28,6 +28,7 @@ To be completed by Language Leader (or DDG Staff)
 **Pull Request**
 - [ ] Title follows correct format (Specifies Instant Answer + Purpose)
 - [ ] Description contains a valid Instant Answer Page Link (e.g. https://duck.co/ia/view/my_ia)
+
 **Instant Answer Page**
 - [ ] Instant Answer page is correctly filled out and contains:
     - One topic for the Search Space Language (Java, Python, Scala, Ruby, etc.)
@@ -42,6 +43,7 @@ To be completed by Language Leader (or DDG Staff)
     - Source ID (ping @moollaza to assign one, once Fathead is ready for Beta deploy)
 - [ ] Fathead Tests are passing (run `$ duckpan test <fathead_id>`)
     - Tester should report any failures
+
 **Code**
 - [ ] Uniformly indented, well commented
 - [ ] Fetch.sh and Parse.sh run without errors
