@@ -35,6 +35,7 @@ class Entry(object):
         self.key = ''
 
         # Referenced entry key (only for redirects)
+        # i.e. the redirect target
         self.reference = ''
         self.abstract = ''
         self.anchor = ''
@@ -155,6 +156,9 @@ class Entry(object):
 
     def get_abstract(self):
         return self.abstract
+    
+    def get_reference(self):
+        return self.reference
 
     def get_entry(self):
         return '\t'.join([
@@ -181,6 +185,7 @@ def generate_redirects(f):
 
     # For debugging purposes
     duplicate_count = 0
+    disambiguations = 0
     for line in f.readlines():
         try:
             # Parse entry
@@ -189,28 +194,26 @@ def generate_redirects(f):
             if entry.get_type() == 'R' or entry.get_key() in ignore_keys:
                 continue
 
-            key = "'" + entry.get_key() + "'"
+            key = entry.get_key()
 
             # Do we have the entry yet?
             if key not in output or '3.5/library/functions.html' in str(entry):
                 output[key] = str(entry)
 
-            related_key = entry.get_key()
-            splitted_key = related_key.split('.')
-            package_name = '.'.join(splitted_key[0:len(splitted_key)-1])
-            quoted_package_name = "'" + package_name + "'"
+            split_key = key.split('.')
+            package_name = '.'.join(split_key[0:len(split_key)-1])
 
-            if len(splitted_key) >= 2:
-                if quoted_package_name in output \
-                    and output[quoted_package_name].startswith(package_name + '\t' + 'A'):
-                    cur_entry=Entry(output[quoted_package_name])
-                    current_related=cur_entry.get_related()
-                    new_related=''
-                    if current_related != '':
-                        new_related=current_related + '\\\\n'
-                    new_related+='[[' + str(related_key) + ']]'
-                    cur_entry.set_related(new_related)
-                    output[quoted_package_name] = cur_entry.get_entry()
+            if package_name in output \
+                    and output[package_name].startswith(package_name + '\t' + 'A'):
+                #Add related links to this entry to the package entry
+                package_entry=Entry(output[package_name])
+                current_related=package_entry.get_related()
+                new_related=''
+                if current_related != '':
+                    new_related=current_related + '\\\\n'
+                new_related+='[[' + str(key) + ']]'
+                package_entry.set_related(new_related)
+                output[package_name] = package_entry.get_entry()
 
             # Get all possible redirect entries
             key = entry.get_key() 
@@ -218,18 +221,40 @@ def generate_redirects(f):
             if key_length > 1:
                 redirects = entry.get_redirects()
                 for redirect in redirects:
-                    key = redirect.get_key()
-                    built_in_key = '"' + redirect.get_key() + '"'
-                    if key not in output and built_in_key not in built_in:
-                        output[key] = str(redirect.get_entry())
-                    else:
-                        del output[key] #This looks strange to me, if we have exactly two redirects with the same content, won't we remove that key on the second run?
-                        duplicate_count += 1
+                    redirect_key = redirect.get_key()
+                    redirect_entry = redirect.get_entry()
+                    if redirect_key in built_in:
+                        #Ignore built in keys
+                        continue
+                    if redirect_key not in output:
+                        output[redirect_key] = str(redirect_entry)
+                    elif output[redirect_key] != redirect_entry:
+                        #Create a disambiguation
+                        if output[redirect_key].startswith(redirect_key + '\tR'):
+                            #Replace the redirect with a disambiguation
+                            current_entry=Entry(output[redirect_key])
+                            output[redirect_key] = str(redirect_key) + '\t' + 'D' +'\t\t\t\t\t\t\t\t'
+                            output[redirect_key] += '*' + '[['+str(current_entry.get_reference())+']] '
+                            current_entry_article_redirect_target=Entry(output[current_entry.get_reference()])
+                            output[redirect_key] += str(current_entry_article_redirect_target.get_abstract()) + '\\n'
+                            #Add the current redirect as disambiguation
+                            output[redirect_key] += '*' + '[['+str(redirect.get_reference())+']] '
+                            article_redirect_target=Entry(output[redirect.get_reference()])
+                            output[redirect_key] += str(article_redirect_target.get_abstract()) + '\\n'
+                            duplicate_count += 1
+                            disambiguations += 1
+                        else:
+                            #Another disambiguation detected, append it to the entry
+                            output[redirect_key] += '*' + '[['+str(redirect.get_reference())+']] '
+                            article_redirect_target=Entry(output[redirect.get_reference()])
+                            output[redirect_key] += str(article_redirect_target.get_abstract()) + '\\n'
+                            duplicate_count += 1
 
         except BadEntryException as e:
             pass  # Continue execution entry data is invalid.
 
     print("Duplicates: %s" % duplicate_count)
+    print("Disambiguations: %s" % disambiguations)
 
     with open('output2.txt', 'w') as output_file:
         for key, line in output.items():
