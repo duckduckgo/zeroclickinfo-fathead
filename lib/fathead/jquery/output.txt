@@ -1,0 +1,1589 @@
+.add()	A			Traversing\\nMiscellaneous Traversal							<section class="prog__container"><p>Create a new jQuery object with elements added to the set of matched elements.</p><pre><code>$(selector).add(selector) → jQuery\n$(selector).add(elements) → jQuery\n$(selector).add(html) → jQuery\n$(selector).add(selection) → jQuery\n$(selector).add(selector, context) → jQuery</code></pre></section>	https://api.jquery.com/add/
+.addBack()	A			Traversing\\nMiscellaneous Traversal							<section class="prog__container"><p>Add the previous set of elements on the stack to the current set, optionally filtered by a selector.</p><pre><code>$(selector).addBack(selector) → jQuery</code></pre></section>	https://api.jquery.com/addBack/
+add back	R	.addBack()										
+addback	R	.addBack()										
+.addBack	R	.addBack()										
+addBack()	R	.addBack()										
+addBack	R	.addBack()										
+.addClass()	A			Attributes\\nManipulation\\nClass Attribute\\nCss							<section class="prog__container"><p>Adds the specified class(es) to each element in the set of matched elements.</p><pre><code>$(selector).addClass(className) → jQuery\n$(selector).addClass(function) → jQuery</code></pre></section>	https://api.jquery.com/addClass/
+add class	R	.addClass()										
+addclass	R	.addClass()										
+.addClass	R	.addClass()										
+addClass()	R	.addClass()										
+addClass	R	.addClass()										
+.add	R	.add()										
+add()	R	.add()										
+add	R	.add()										
+.after()	A			Manipulation\\nDom Insertion Outside							<section class="prog__container"><p>Insert content, specified by the parameter, after each element in the set of matched elements.</p><pre><code>$(selector).after(content, content) → jQuery\n$(selector).after(function) → jQuery\n$(selector).after(function-html) → jQuery</code></pre></section>	https://api.jquery.com/after/
+.after	R	.after()										
+after()	R	.after()										
+after	R	.after()										
+.ajaxComplete()	A			Ajax\\nGlobal Ajax Event Handlers							<section class="prog__container"><p>Register a handler to be called when Ajax requests complete. This is an AjaxEvent.</p><pre><code>$(selector).ajaxComplete(handler) → jQuery</code></pre></section>	https://api.jquery.com/ajaxComplete/
+ajax complete	R	.ajaxComplete()										
+ajaxcomplete	R	.ajaxComplete()										
+.ajaxComplete	R	.ajaxComplete()										
+ajaxComplete()	R	.ajaxComplete()										
+ajaxComplete	R	.ajaxComplete()										
+.ajaxError()	A			Ajax\\nGlobal Ajax Event Handlers							<section class="prog__container"><p>Register a handler to be called when Ajax requests complete with an error. This is an Ajax Event.</p><pre><code>$(selector).ajaxError(handler) → jQuery</code></pre></section>	https://api.jquery.com/ajaxError/
+ajax error	R	.ajaxError()										
+ajaxerror	R	.ajaxError()										
+.ajaxError	R	.ajaxError()										
+ajaxError()	R	.ajaxError()										
+ajaxError	R	.ajaxError()										
+ajax prefilter	R	jQuery.ajaxPrefilter()										
+ajaxprefilter	R	jQuery.ajaxPrefilter()										
+.ajaxPrefilter()	R	jQuery.ajaxPrefilter()										
+.ajaxPrefilter	R	jQuery.ajaxPrefilter()										
+$.ajaxPrefilter()	R	jQuery.ajaxPrefilter()										
+$.ajaxPrefilter	R	jQuery.ajaxPrefilter()										
+ajaxPrefilter()	R	jQuery.ajaxPrefilter()										
+ajaxPrefilter	R	jQuery.ajaxPrefilter()										
+.ajax()	R	jQuery.ajax()										
+.ajax	R	jQuery.ajax()										
+$.ajax()	R	jQuery.ajax()										
+$.ajax	R	jQuery.ajax()										
+ajax()	R	jQuery.ajax()										
+ajax	R	jQuery.ajax()										
+.ajaxSend()	A			Ajax\\nGlobal Ajax Event Handlers							<section class="prog__container"><p>Attach a function to be executed before an Ajax request is sent. This is an Ajax Event.</p><pre><code>$(selector).ajaxSend(handler) → jQuery</code></pre></section>	https://api.jquery.com/ajaxSend/
+ajax send	R	.ajaxSend()										
+ajaxsend	R	.ajaxSend()										
+.ajaxSend	R	.ajaxSend()										
+ajaxSend()	R	.ajaxSend()										
+ajaxSend	R	.ajaxSend()										
+ajax setup	R	jQuery.ajaxSetup()										
+ajaxsetup	R	jQuery.ajaxSetup()										
+.ajaxSetup()	R	jQuery.ajaxSetup()										
+.ajaxSetup	R	jQuery.ajaxSetup()										
+$.ajaxSetup()	R	jQuery.ajaxSetup()										
+$.ajaxSetup	R	jQuery.ajaxSetup()										
+ajaxSetup()	R	jQuery.ajaxSetup()										
+ajaxSetup	R	jQuery.ajaxSetup()										
+.ajaxStart()	A			Ajax\\nGlobal Ajax Event Handlers							<section class="prog__container"><p>Register a handler to be called when the first Ajax request begins. This is an Ajax Event.</p><pre><code>$(selector).ajaxStart(handler) → jQuery</code></pre></section>	https://api.jquery.com/ajaxStart/
+ajax start	R	.ajaxStart()										
+ajaxstart	R	.ajaxStart()										
+.ajaxStart	R	.ajaxStart()										
+ajaxStart()	R	.ajaxStart()										
+ajaxStart	R	.ajaxStart()										
+.ajaxStop()	A			Ajax\\nGlobal Ajax Event Handlers							<section class="prog__container"><p>Register a handler to be called when all Ajax requests have completed. This is an Ajax Event.</p><pre><code>$(selector).ajaxStop(handler) → jQuery</code></pre></section>	https://api.jquery.com/ajaxStop/
+ajax stop	R	.ajaxStop()										
+ajaxstop	R	.ajaxStop()										
+.ajaxStop	R	.ajaxStop()										
+ajaxStop()	R	.ajaxStop()										
+ajaxStop	R	.ajaxStop()										
+.ajaxSuccess()	A			Ajax\\nGlobal Ajax Event Handlers							<section class="prog__container"><p>Attach a function to be executed whenever an Ajax request completes successfully. This is an Ajax Event.</p><pre><code>$(selector).ajaxSuccess(handler) → jQuery</code></pre></section>	https://api.jquery.com/ajaxSuccess/
+ajax success	R	.ajaxSuccess()										
+ajaxsuccess	R	.ajaxSuccess()										
+.ajaxSuccess	R	.ajaxSuccess()										
+ajaxSuccess()	R	.ajaxSuccess()										
+ajaxSuccess	R	.ajaxSuccess()										
+ajax transport	R	jQuery.ajaxTransport()										
+ajaxtransport	R	jQuery.ajaxTransport()										
+.ajaxTransport()	R	jQuery.ajaxTransport()										
+.ajaxTransport	R	jQuery.ajaxTransport()										
+$.ajaxTransport()	R	jQuery.ajaxTransport()										
+$.ajaxTransport	R	jQuery.ajaxTransport()										
+ajaxTransport()	R	jQuery.ajaxTransport()										
+ajaxTransport	R	jQuery.ajaxTransport()										
+All Selector	A			Selectors\\nBasic Css Selectors							<section class="prog__container"><p>Selects all elements.</p><pre><code>$("*") → jQuery</code></pre></section>	https://api.jquery.com/all-selector/
+all selector	R	All Selector										
+.always()	R	deferred.always()										
+.always	R	deferred.always()										
+always()	R	deferred.always()										
+always	R	deferred.always()										
+.andSelf()	A			Traversing\\nMiscellaneous Traversal							<section class="prog__container"><p>Add the previous set of elements on the stack to the current set.</p><pre><code>$(selector).andSelf() → jQuery</code></pre></section>	https://api.jquery.com/andSelf/
+and self	R	.andSelf()										
+andself	R	.andSelf()										
+.andSelf	R	.andSelf()										
+andSelf()	R	.andSelf()										
+andSelf	R	.andSelf()										
+.animate()	A			Effects\\nCustom Effects							<section class="prog__container"><p>Perform a custom animation of a set of CSS properties.</p><pre><code>$(selector).animate(properties, duration, easing, complete) → jQuery\n$(selector).animate(properties, options) → jQuery</code></pre></section>	https://api.jquery.com/animate/
+:animated Selector	A			Selectors\\nBasic Filter Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Select all elements that are in the progress of an animation at the time the selector is run.</p><pre><code>$(":animated") → jQuery</code></pre></section>	https://api.jquery.com/animated-selector/
+animated selector	R	:animated Selector										
+.animate	R	.animate()										
+animate()	R	.animate()										
+animate	R	.animate()										
+.append()	A			Manipulation\\nDom Insertion Inside							<section class="prog__container"><p>Insert content, specified by the parameter, to the end of each element in the set of matched elements.</p><pre><code>$(selector).append(content, content) → jQuery\n$(selector).append(function) → jQuery</code></pre></section>	https://api.jquery.com/append/
+.append	R	.append()										
+append()	R	.append()										
+append	R	.append()										
+.appendTo()	A			Manipulation\\nDom Insertion Inside							<section class="prog__container"><p>Insert every element in the set of matched elements to the end of the target.</p><pre><code>$(selector).appendTo(target) → jQuery</code></pre></section>	https://api.jquery.com/appendTo/
+append to	R	.appendTo()										
+appendto	R	.appendTo()										
+.appendTo	R	.appendTo()										
+appendTo()	R	.appendTo()										
+appendTo	R	.appendTo()										
+.attr()	A			Attributes\\nManipulation\\nGeneral Attributes							<section class="prog__container"><p>Get the value of an attribute for the first element in the set of matched elements.</p><pre><code>$(selector).attr(attributeName) → String</code></pre>\n<p>Set one or more attributes for the set of matched elements.</p><pre><code>$(selector).attr(attributeName, value) → jQuery\n$(selector).attr(attributes) → jQuery\n$(selector).attr(attributeName, function) → jQuery</code></pre></section>	https://api.jquery.com/attr/
+Attribute Contains Prefix Selector	A			Selectors\\nAttribute Selectors							<section class="prog__container"><p>Selects elements that have the specified attribute with a value either equal to a given string or starting with that string followed by a hyphen (-).</p><pre><code>$("[attribute|='value']") → jQuery</code></pre></section>	https://api.jquery.com/attribute-contains-prefix-selector/
+attribute contains prefix selector	R	Attribute Contains Prefix Selector										
+Attribute Contains Selector	A			Selectors\\nAttribute Selectors							<section class="prog__container"><p>Selects elements that have the specified attribute with a value containing a given substring.</p><pre><code>$("[attribute*='value']") → jQuery</code></pre></section>	https://api.jquery.com/attribute-contains-selector/
+attribute contains selector	R	Attribute Contains Selector										
+Attribute Contains Word Selector	A			Selectors\\nAttribute Selectors							<section class="prog__container"><p>Selects elements that have the specified attribute with a value containing a given word, delimited by spaces.</p><pre><code>$("[attribute~='value']") → jQuery</code></pre></section>	https://api.jquery.com/attribute-contains-word-selector/
+attribute contains word selector	R	Attribute Contains Word Selector										
+Attribute Ends With Selector	A			Selectors\\nAttribute Selectors							<section class="prog__container"><p>Selects elements that have the specified attribute with a value ending exactly with a given string. The comparison is case sensitive.</p><pre><code>$("[attribute$='value']") → jQuery</code></pre></section>	https://api.jquery.com/attribute-ends-with-selector/
+attribute ends with selector	R	Attribute Ends With Selector										
+Attribute Equals Selector	A			Selectors\\nAttribute Selectors							<section class="prog__container"><p>Selects elements that have the specified attribute with a value exactly equal to a certain value.</p><pre><code>$("[attribute='value']") → jQuery</code></pre></section>	https://api.jquery.com/attribute-equals-selector/
+attribute equals selector	R	Attribute Equals Selector										
+Attribute Not Equal Selector	A			Selectors\\nAttribute Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Select elements that either don't have the specified attribute, or do have the specified attribute but not with a certain value.</p><pre><code>$("[attribute!='value']") → jQuery</code></pre></section>	https://api.jquery.com/attribute-not-equal-selector/
+attribute not equal selector	R	Attribute Not Equal Selector										
+Attribute Starts With Selector	A			Selectors\\nAttribute Selectors							<section class="prog__container"><p>Selects elements that have the specified attribute with a value beginning exactly with a given string.</p><pre><code>$("[attribute^='value']") → jQuery</code></pre></section>	https://api.jquery.com/attribute-starts-with-selector/
+attribute starts with selector	R	Attribute Starts With Selector										
+.attr	R	.attr()										
+attr()	R	.attr()										
+attr	R	.attr()										
+.before()	A			Manipulation\\nDom Insertion Outside							<section class="prog__container"><p>Insert content, specified by the parameter, before each element in the set of matched elements.</p><pre><code>$(selector).before(content, content) → jQuery\n$(selector).before(function) → jQuery\n$(selector).before(function-html) → jQuery</code></pre></section>	https://api.jquery.com/before/
+.before	R	.before()										
+before()	R	.before()										
+before	R	.before()										
+.bind()	A			Events\\nEvent Handler Attachment							<section class="prog__container"><p>Attach a handler to an event for the elements.</p><pre><code>$(selector).bind(eventType, eventData, handler) → jQuery\n$(selector).bind(eventType, eventData, preventBubble) → jQuery\n$(selector).bind(events) → jQuery</code></pre></section>	https://api.jquery.com/bind/
+.bind	R	.bind()										
+bind()	R	.bind()										
+bind	R	.bind()										
+.blur()	A			Events\\nForm Events\\nForms							<section class="prog__container"><p>Bind an event handler to the "blur" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).blur(handler) → jQuery\n$(selector).blur(eventData, handler) → jQuery\n$(selector).blur() → jQuery</code></pre></section>	https://api.jquery.com/blur/
+.blur	R	.blur()										
+blur()	R	.blur()										
+blur	R	.blur()										
+box model	R	jQuery.boxModel										
+boxmodel	R	jQuery.boxModel										
+.boxModel	R	jQuery.boxModel										
+$.boxModel	R	jQuery.boxModel										
+boxModel	R	jQuery.boxModel										
+.browser	R	jQuery.browser										
+$.browser	R	jQuery.browser										
+browser	R	jQuery.browser										
+:button Selector	A			Selectors\\nForm Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects all button elements and elements of type button.</p><pre><code>$(":button") → jQuery</code></pre></section>	https://api.jquery.com/button-selector/
+button selector	R	:button Selector										
+callbacks.add()	A			Callbacks Object							<section class="prog__container"><p>Add a callback or a collection of callbacks to a callback list.</p><pre><code>callbacks.add(callbacks) → Callbacks</code></pre></section>	https://api.jquery.com/callbacks.add/
+callbacks add	R	callbacks.add()										
+callbacks.add	R	callbacks.add()										
+callbacks.disable()	A			Callbacks Object							<section class="prog__container"><p>Disable a callback list from doing anything more.</p><pre><code>callbacks.disable() → Callbacks</code></pre></section>	https://api.jquery.com/callbacks.disable/
+callbacks.disabled()	A			Callbacks Object							<section class="prog__container"><p>Determine if the callbacks list has been disabled.</p><pre><code>callbacks.disabled() → Boolean</code></pre></section>	https://api.jquery.com/callbacks.disabled/
+callbacks disabled	R	callbacks.disabled()										
+callbacks.disabled	R	callbacks.disabled()										
+callbacks disable	R	callbacks.disable()										
+callbacks.disable	R	callbacks.disable()										
+callbacks.empty()	A			Callbacks Object							<section class="prog__container"><p>Remove all of the callbacks from a list.</p><pre><code>callbacks.empty() → Callbacks</code></pre></section>	https://api.jquery.com/callbacks.empty/
+callbacks empty	R	callbacks.empty()										
+callbacks.empty	R	callbacks.empty()										
+callbacks.fire()	A			Callbacks Object							<section class="prog__container"><p>Call all of the callbacks with the given arguments.</p><pre><code>callbacks.fire(arguments) → Callbacks</code></pre></section>	https://api.jquery.com/callbacks.fire/
+callbacks.fired()	A			Callbacks Object							<section class="prog__container"><p>Determine if the callbacks have already been called at least once.</p><pre><code>callbacks.fired() → Boolean</code></pre></section>	https://api.jquery.com/callbacks.fired/
+callbacks fired	R	callbacks.fired()										
+callbacks.fired	R	callbacks.fired()										
+callbacks fire	R	callbacks.fire()										
+callbacks.fire	R	callbacks.fire()										
+callbacks.fireWith()	A			Callbacks Object							<section class="prog__container"><p>Call all callbacks in a list with the given context and arguments.</p><pre><code>callbacks.fireWith(context, args) → Callbacks</code></pre></section>	https://api.jquery.com/callbacks.fireWith/
+callbacks fire with	R	callbacks.fireWith()										
+callbacks firewith	R	callbacks.fireWith()										
+callbacks.fireWith	R	callbacks.fireWith()										
+callbacks.has()	A			Callbacks Object							<section class="prog__container"><p>Determine whether or not the list has any callbacks attached. If a callback is provided as an argument, determine whether it is in a list.</p><pre><code>callbacks.has(callback) → Boolean</code></pre></section>	https://api.jquery.com/callbacks.has/
+callbacks has	R	callbacks.has()										
+callbacks.has	R	callbacks.has()										
+callbacks.lock()	A			Callbacks Object							<section class="prog__container"><p>Lock a callback list in its current state.</p><pre><code>callbacks.lock() → Callbacks</code></pre></section>	https://api.jquery.com/callbacks.lock/
+callbacks.locked()	A			Callbacks Object							<section class="prog__container"><p>Determine if the callbacks list has been locked.</p><pre><code>callbacks.locked() → Boolean</code></pre></section>	https://api.jquery.com/callbacks.locked/
+callbacks locked	R	callbacks.locked()										
+callbacks.locked	R	callbacks.locked()										
+callbacks lock	R	callbacks.lock()										
+callbacks.lock	R	callbacks.lock()										
+callbacks.remove()	A			Callbacks Object							<section class="prog__container"><p>Remove a callback or a collection of callbacks from a callback list.</p><pre><code>callbacks.remove(callbacks) → Callbacks</code></pre></section>	https://api.jquery.com/callbacks.remove/
+callbacks remove	R	callbacks.remove()										
+callbacks.remove	R	callbacks.remove()										
+callbacks	R	jQuery.Callbacks()										
+.Callbacks()	R	jQuery.Callbacks()										
+.Callbacks	R	jQuery.Callbacks()										
+$.Callbacks()	R	jQuery.Callbacks()										
+$.Callbacks	R	jQuery.Callbacks()										
+Callbacks()	R	jQuery.Callbacks()										
+Callbacks	R	jQuery.Callbacks()										
+.catch()	R	deferred.catch()										
+.catch	R	deferred.catch()										
+catch()	R	deferred.catch()										
+catch	R	deferred.catch()										
+.change()	A			Events\\nForm Events\\nForms							<section class="prog__container"><p>Bind an event handler to the "change" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).change(handler) → jQuery\n$(selector).change(eventData, handler) → jQuery\n$(selector).change() → jQuery</code></pre></section>	https://api.jquery.com/change/
+.change	R	.change()										
+change()	R	.change()										
+change	R	.change()										
+:checkbox Selector	A			Selectors\\nForm Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects all elements of type checkbox.</p><pre><code>$(":checkbox") → jQuery</code></pre></section>	https://api.jquery.com/checkbox-selector/
+checkbox selector	R	:checkbox Selector										
+:checked Selector	A			Selectors\\nForm Selectors							<section class="prog__container"><p>Matches all elements that are checked or selected.</p><pre><code>$(":checked") → jQuery</code></pre></section>	https://api.jquery.com/checked-selector/
+checked selector	R	:checked Selector										
+.children()	A			Traversing\\nTree Traversal							<section class="prog__container"><p>Get the children of each element in the set of matched elements, optionally filtered by a selector.</p><pre><code>$(selector).children(selector) → jQuery</code></pre></section>	https://api.jquery.com/children/
+.children	R	.children()										
+children()	R	.children()										
+children	R	.children()										
+Child Selector	A			Selectors\\nHierarchy Selectors							<section class="prog__container"><p>Selects all direct child elements specified by "child" of elements specified by "parent".</p><pre><code>$("parent > child") → jQuery</code></pre></section>	https://api.jquery.com/child-selector/
+child selector	R	Child Selector										
+Class Selector	A			Selectors\\nBasic Css Selectors							<section class="prog__container"><p>Selects all elements with the given class. </p><pre><code>$(".class") → jQuery</code></pre></section>	https://api.jquery.com/class-selector/
+class selector	R	Class Selector										
+.clearQueue()	A			Effects\\nCustom Effects\\nData\\nUtilities							<section class="prog__container"><p>Remove from the queue all items that have not yet been run.</p><pre><code>$(selector).clearQueue(queueName) → jQuery</code></pre></section>	https://api.jquery.com/clearQueue/
+clear queue	R	.clearQueue()										
+clearqueue	R	.clearQueue()										
+.clearQueue	R	.clearQueue()										
+clearQueue()	R	.clearQueue()										
+clearQueue	R	.clearQueue()										
+.click()	A			Events\\nMouse Events							<section class="prog__container"><p>Bind an event handler to the "click" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).click(handler) → jQuery\n$(selector).click(eventData, handler) → jQuery\n$(selector).click() → jQuery</code></pre></section>	https://api.jquery.com/click/
+.click	R	.click()										
+click()	R	.click()										
+click	R	.click()										
+.clone()	A			Manipulation\\nCopying							<section class="prog__container"><p>Create a deep copy of the set of matched elements.</p><pre><code>$(selector).clone(withDataAndEvents) → jQuery\n$(selector).clone(withDataAndEvents, deepWithDataAndEvents) → jQuery</code></pre></section>	https://api.jquery.com/clone/
+.clone	R	.clone()										
+clone()	R	.clone()										
+clone	R	.clone()										
+.closest()	A			Traversing\\nTree Traversal							<section class="prog__container"><p>For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.</p><pre><code>$(selector).closest(selector) → jQuery\n$(selector).closest(selector, context) → jQuery\n$(selector).closest(selection) → jQuery\n$(selector).closest(element) → jQuery</code></pre>\n<p>Get an array of all the elements and selectors matched against the current element up through the DOM tree.</p><pre><code>$(selector).closest(selectors, context) → Array</code></pre></section>	https://api.jquery.com/closest/
+.closest	R	.closest()										
+closest()	R	.closest()										
+closest	R	.closest()										
+.contains()	R	jQuery.contains()										
+.contains	R	jQuery.contains()										
+$.contains()	R	jQuery.contains()										
+$.contains	R	jQuery.contains()										
+contains()	R	jQuery.contains()										
+contains	R	jQuery.contains()										
+:contains() Selector	A			Selectors\\nContent Filter Selector							<section class="prog__container"><p>Select all elements that contain the specified text.</p><pre><code>$(":contains(text)") → jQuery</code></pre></section>	https://api.jquery.com/contains-selector/
+contains selector	R	:contains() Selector										
+.contents()	A			Traversing\\nMiscellaneous Traversal							<section class="prog__container"><p>Get the children of each element in the set of matched elements, including text and comment nodes.</p><pre><code>$(selector).contents() → jQuery</code></pre></section>	https://api.jquery.com/contents/
+.contents	R	.contents()										
+contents()	R	.contents()										
+contents	R	.contents()										
+.context	A			Internals\\nProperties\\nJquery Object Instance Properties							<section class="prog__container"><p>The DOM node context originally passed to jQuery(); if none was passed then context will likely be the document.</p><pre><code>$(selector).context → Element</code></pre></section>	https://api.jquery.com/context/
+.contextmenu()	A			Events\\nMouse Events							<section class="prog__container"><p>Bind an event handler to the "contextmenu" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).contextmenu(handler) → jQuery\n$(selector).contextmenu(eventData, handler) → jQuery\n$(selector).contextmenu() → jQuery</code></pre></section>	https://api.jquery.com/contextmenu/
+.contextmenu	R	.contextmenu()										
+contextmenu()	R	.contextmenu()										
+contextmenu	R	.contextmenu()										
+context	R	.context										
+.css()	A			Css\\nManipulation\\nStyle Properties							<section class="prog__container"><p>Get the computed style properties for the first element in the set of matched elements.</p><pre><code>$(selector).css(propertyName) → String\n$(selector).css(propertyNames) → String</code></pre>\n<p>Set one or more CSS properties for the set of matched elements.</p><pre><code>$(selector).css(propertyName, value) → jQuery\n$(selector).css(propertyName, function) → jQuery\n$(selector).css(properties) → jQuery</code></pre></section>	https://api.jquery.com/css/
+css hooks	R	jQuery.cssHooks										
+csshooks	R	jQuery.cssHooks										
+.cssHooks	R	jQuery.cssHooks										
+$.cssHooks	R	jQuery.cssHooks										
+cssHooks	R	jQuery.cssHooks										
+css number	R	jQuery.cssNumber										
+cssnumber	R	jQuery.cssNumber										
+.cssNumber	R	jQuery.cssNumber										
+$.cssNumber	R	jQuery.cssNumber										
+cssNumber	R	jQuery.cssNumber										
+.css	R	.css()										
+css()	R	.css()										
+css	R	.css()										
+current target	R	event.currentTarget										
+currenttarget	R	event.currentTarget										
+.currentTarget	R	event.currentTarget										
+currentTarget	R	event.currentTarget										
+.data()	A			Data\\nMiscellaneous\\nData Storage							<section class="prog__container"><p>Store arbitrary data associated with the matched elements.</p><pre><code>$(selector).data(key, value) → jQuery\n$(selector).data(obj) → jQuery</code></pre>\n<p>Return the value at the named data store for the first element in the jQuery collection, as set by data(name, value) or by an HTML5 data-* attribute.</p><pre><code>$(selector).data(key) → Object\n$(selector).data() → Object</code></pre></section>	https://api.jquery.com/data/
+.data	R	.data()										
+data()	R	.data()										
+data	R	.data()										
+$.data()	R	jQuery.data()										
+$.data	R	jQuery.data()										
+.dblclick()	A			Events\\nMouse Events							<section class="prog__container"><p>Bind an event handler to the "dblclick" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).dblclick(handler) → jQuery\n$(selector).dblclick(eventData, handler) → jQuery\n$(selector).dblclick() → jQuery</code></pre></section>	https://api.jquery.com/dblclick/
+.dblclick	R	.dblclick()										
+dblclick()	R	.dblclick()										
+dblclick	R	.dblclick()										
+deferred.always()	A			Deferred Object							<section class="prog__container"><p> Add handlers to be called when the Deferred object is either resolved or rejected. </p><pre><code>deferred.always(alwaysCallbacks, alwaysCallbacks) → Deferred</code></pre></section>	https://api.jquery.com/deferred.always/
+deferred always	R	deferred.always()										
+deferred.always	R	deferred.always()										
+deferred.catch()	A			Deferred Object							<section class="prog__container"><p>Add handlers to be called when the Deferred object is rejected. </p><pre><code>deferred.catch(failFilter) → Promise</code></pre></section>	https://api.jquery.com/deferred.catch/
+deferred catch	R	deferred.catch()										
+deferred.catch	R	deferred.catch()										
+deferred.done()	A			Deferred Object							<section class="prog__container"><p> Add handlers to be called when the Deferred object is resolved. </p><pre><code>deferred.done(doneCallbacks, doneCallbacks) → Deferred</code></pre></section>	https://api.jquery.com/deferred.done/
+deferred done	R	deferred.done()										
+deferred.done	R	deferred.done()										
+deferred.fail()	A			Deferred Object							<section class="prog__container"><p> Add handlers to be called when the Deferred object is rejected. </p><pre><code>deferred.fail(failCallbacks, failCallbacks) → Deferred</code></pre></section>	https://api.jquery.com/deferred.fail/
+deferred fail	R	deferred.fail()										
+deferred.fail	R	deferred.fail()										
+deferred.isRejected()	A			Deferred Object							<section class="prog__container"><p> Determine whether a Deferred object has been rejected. </p><pre><code>deferred.isRejected() → Boolean</code></pre></section>	https://api.jquery.com/deferred.isRejected/
+deferred is rejected	R	deferred.isRejected()										
+deferred isrejected	R	deferred.isRejected()										
+deferred.isRejected	R	deferred.isRejected()										
+deferred.isResolved()	A			Deferred Object							<section class="prog__container"><p> Determine whether a Deferred object has been resolved. </p><pre><code>deferred.isResolved() → Boolean</code></pre></section>	https://api.jquery.com/deferred.isResolved/
+deferred is resolved	R	deferred.isResolved()										
+deferred isresolved	R	deferred.isResolved()										
+deferred.isResolved	R	deferred.isResolved()										
+deferred.notify()	A			Deferred Object							<section class="prog__container"><p> Call the progressCallbacks on a Deferred object with the given args. </p><pre><code>deferred.notify(args) → Deferred</code></pre></section>	https://api.jquery.com/deferred.notify/
+deferred notify	R	deferred.notify()										
+deferred.notify	R	deferred.notify()										
+deferred.notifyWith()	A			Deferred Object							<section class="prog__container"><p> Call the progressCallbacks on a Deferred object with the given context and args. </p><pre><code>deferred.notifyWith(context, args) → Deferred</code></pre></section>	https://api.jquery.com/deferred.notifyWith/
+deferred notify with	R	deferred.notifyWith()										
+deferred notifywith	R	deferred.notifyWith()										
+deferred.notifyWith	R	deferred.notifyWith()										
+deferred.pipe()	A			Deferred Object							<section class="prog__container"><p> Utility method to filter and/or chain Deferreds.  </p><pre><code>deferred.pipe(doneFilter, failFilter) → Promise\ndeferred.pipe(doneFilter, failFilter, progressFilter) → Promise</code></pre></section>	https://api.jquery.com/deferred.pipe/
+deferred pipe	R	deferred.pipe()										
+deferred.pipe	R	deferred.pipe()										
+deferred.progress()	A			Deferred Object							<section class="prog__container"><p> Add handlers to be called when the Deferred object generates progress notifications.</p><pre><code>deferred.progress(progressCallbacks, progressCallbacks) → Deferred</code></pre></section>	https://api.jquery.com/deferred.progress/
+deferred progress	R	deferred.progress()										
+deferred.progress	R	deferred.progress()										
+deferred.promise()	A			Deferred Object							<section class="prog__container"><p> Return a Deferred's Promise object. </p><pre><code>deferred.promise(target) → Promise</code></pre></section>	https://api.jquery.com/deferred.promise/
+deferred promise	R	deferred.promise()										
+deferred.promise	R	deferred.promise()										
+deferred.reject()	A			Deferred Object							<section class="prog__container"><p> Reject a Deferred object and call any failCallbacks with the given args. </p><pre><code>deferred.reject(args) → Deferred</code></pre></section>	https://api.jquery.com/deferred.reject/
+deferred reject	R	deferred.reject()										
+deferred.reject	R	deferred.reject()										
+deferred.rejectWith()	A			Deferred Object							<section class="prog__container"><p> Reject a Deferred object and call any failCallbacks with the given context and args. </p><pre><code>deferred.rejectWith(context, args) → Deferred</code></pre></section>	https://api.jquery.com/deferred.rejectWith/
+deferred reject with	R	deferred.rejectWith()										
+deferred rejectwith	R	deferred.rejectWith()										
+deferred.rejectWith	R	deferred.rejectWith()										
+deferred.resolve()	A			Deferred Object							<section class="prog__container"><p> Resolve a Deferred object and call any doneCallbacks with the given args. </p><pre><code>deferred.resolve(args) → Deferred</code></pre></section>	https://api.jquery.com/deferred.resolve/
+deferred resolve	R	deferred.resolve()										
+deferred.resolve	R	deferred.resolve()										
+deferred.resolveWith()	A			Deferred Object							<section class="prog__container"><p> Resolve a Deferred object and call any doneCallbacks with the given context and args. </p><pre><code>deferred.resolveWith(context, args) → Deferred</code></pre></section>	https://api.jquery.com/deferred.resolveWith/
+deferred resolve with	R	deferred.resolveWith()										
+deferred resolvewith	R	deferred.resolveWith()										
+deferred.resolveWith	R	deferred.resolveWith()										
+deferred	R	jQuery.Deferred()										
+.Deferred()	R	jQuery.Deferred()										
+.Deferred	R	jQuery.Deferred()										
+$.Deferred()	R	jQuery.Deferred()										
+$.Deferred	R	jQuery.Deferred()										
+Deferred()	R	jQuery.Deferred()										
+Deferred	R	jQuery.Deferred()										
+deferred.state()	A			Deferred Object							<section class="prog__container"><p>Determine the current state of a Deferred object. </p><pre><code>deferred.state() → String</code></pre></section>	https://api.jquery.com/deferred.state/
+deferred state	R	deferred.state()										
+deferred.state	R	deferred.state()										
+deferred.then()	A			Deferred Object							<section class="prog__container"><p>Add handlers to be called when the Deferred object is resolved, rejected, or still in progress. </p><pre><code>deferred.then(doneFilter, failFilter, progressFilter) → Promise\ndeferred.then(doneCallbacks, failCallbacks) → Promise\ndeferred.then(doneCallbacks, failCallbacks, progressCallbacks) → Promise</code></pre></section>	https://api.jquery.com/deferred.then/
+deferred then	R	deferred.then()										
+deferred.then	R	deferred.then()										
+.delay()	A			Effects\\nCustom Effects							<section class="prog__container"><p>Set a timer to delay execution of subsequent items in the queue.</p><pre><code>$(selector).delay(duration, queueName) → jQuery</code></pre></section>	https://api.jquery.com/delay/
+.delay	R	.delay()										
+delay()	R	.delay()										
+delay	R	.delay()										
+.delegate()	A			Events\\nEvent Handler Attachment							<section class="prog__container"><p>Attach a handler to one or more events for all elements that match the selector, now or in the future, based on a specific set of root elements.</p><pre><code>$(selector).delegate(selector, eventType, handler) → jQuery\n$(selector).delegate(selector, eventType, eventData, handler) → jQuery\n$(selector).delegate(selector, events) → jQuery</code></pre></section>	https://api.jquery.com/delegate/
+.delegate	R	.delegate()										
+delegate()	R	.delegate()										
+delegate	R	.delegate()										
+delegate target	R	event.delegateTarget										
+delegatetarget	R	event.delegateTarget										
+.delegateTarget	R	event.delegateTarget										
+delegateTarget	R	event.delegateTarget										
+.dequeue()	A			Effects\\nCustom Effects\\nData\\nUtilities							<section class="prog__container"><p>Execute the next function on the queue for the matched elements.</p><pre><code>$(selector).dequeue(queueName) → jQuery</code></pre></section>	https://api.jquery.com/dequeue/
+.dequeue	R	.dequeue()										
+dequeue()	R	.dequeue()										
+dequeue	R	.dequeue()										
+$.dequeue()	R	jQuery.dequeue()										
+$.dequeue	R	jQuery.dequeue()										
+Descendant Selector	A			Selectors\\nHierarchy Selectors							<section class="prog__container"><p>Selects all elements that are descendants of a given ancestor.</p><pre><code>$("ancestor descendant") → jQuery</code></pre></section>	https://api.jquery.com/descendant-selector/
+descendant selector	R	Descendant Selector										
+.detach()	A			Manipulation\\nDom Removal							<section class="prog__container"><p>Remove the set of matched elements from the DOM.</p><pre><code>$(selector).detach(selector) → jQuery</code></pre></section>	https://api.jquery.com/detach/
+.detach	R	.detach()										
+detach()	R	.detach()										
+detach	R	.detach()										
+.die()	A			Events\\nEvent Handler Attachment							<section class="prog__container"><p>Remove event handlers previously attached using .live() from the elements.</p><pre><code>$(selector).die() → jQuery\n$(selector).die(eventType, handler) → jQuery\n$(selector).die(events) → jQuery</code></pre></section>	https://api.jquery.com/die/
+.die	R	.die()										
+die()	R	.die()										
+die	R	.die()										
+.disabled()	R	callbacks.disabled()										
+.disabled	R	callbacks.disabled()										
+disabled()	R	callbacks.disabled()										
+disabled	R	callbacks.disabled()										
+:disabled Selector	A			Selectors\\nForm Selectors							<section class="prog__container"><p>Selects all elements that are disabled.</p><pre><code>$(":disabled") → jQuery</code></pre></section>	https://api.jquery.com/disabled-selector/
+disabled selector	R	:disabled Selector										
+.disable()	R	callbacks.disable()										
+.disable	R	callbacks.disable()										
+disable()	R	callbacks.disable()										
+disable	R	callbacks.disable()										
+.done()	R	deferred.done()										
+.done	R	deferred.done()										
+done()	R	deferred.done()										
+done	R	deferred.done()										
+.each()	A			Miscellaneous\\nCollection Manipulation\\nTraversing							<section class="prog__container"><p>Iterate over a jQuery object, executing a function for each matched element. </p><pre><code>$(selector).each(function) → jQuery</code></pre></section>	https://api.jquery.com/each/
+.each	R	.each()										
+each()	R	.each()										
+each	R	.each()										
+$.each()	R	jQuery.each()										
+$.each	R	jQuery.each()										
+Element Selector	A			Selectors\\nBasic Css Selectors							<section class="prog__container"><p>Selects all elements with the given tag name.</p><pre><code>$("element") → jQuery</code></pre></section>	https://api.jquery.com/element-selector/
+element selector	R	Element Selector										
+.empty()	A			Manipulation\\nDom Removal							<section class="prog__container"><p>Remove all child nodes of the set of matched elements from the DOM.</p><pre><code>$(selector).empty() → jQuery</code></pre></section>	https://api.jquery.com/empty/
+.empty	R	.empty()										
+empty()	R	.empty()										
+empty	R	.empty()										
+:empty Selector	A			Selectors\\nContent Filter Selector							<section class="prog__container"><p>Select all elements that have no children (including text nodes).</p><pre><code>$(":empty") → jQuery</code></pre></section>	https://api.jquery.com/empty-selector/
+empty selector	R	:empty Selector										
+:enabled Selector	A			Selectors\\nForm Selectors							<section class="prog__container"><p>Selects all elements that are enabled.</p><pre><code>$(":enabled") → jQuery</code></pre></section>	https://api.jquery.com/enabled-selector/
+enabled selector	R	:enabled Selector										
+.end()	A			Traversing\\nMiscellaneous Traversal							<section class="prog__container"><p>End the most recent filtering operation in the current chain and return the set of matched elements to its previous state.</p><pre><code>$(selector).end() → jQuery</code></pre></section>	https://api.jquery.com/end/
+.end	R	.end()										
+end()	R	.end()										
+end	R	.end()										
+.eq()	A			Traversing\\nFiltering							<section class="prog__container"><p>Reduce the set of matched elements to the one at the specified index.</p><pre><code>$(selector).eq(index) → jQuery\n$(selector).eq(indexFromEnd) → jQuery</code></pre></section>	https://api.jquery.com/eq/
+.eq	R	.eq()										
+eq()	R	.eq()										
+eq	R	.eq()										
+:eq() Selector	A			Selectors\\nBasic Filter Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Select the element at index n within the matched set.</p><pre><code>$(":eq(index)") → jQuery\n$(":eq(-index)") → jQuery</code></pre></section>	https://api.jquery.com/eq-selector/
+eq selector	R	:eq() Selector										
+.error()	A			Events\\nBrowser Events							<section class="prog__container"><p>Bind an event handler to the "error" JavaScript event.</p><pre><code>$(selector).error(handler) → jQuery\n$(selector).error(eventData, handler) → jQuery</code></pre></section>	https://api.jquery.com/error/
+.error	R	.error()										
+error()	R	.error()										
+error	R	.error()										
+$.error()	R	jQuery.error()										
+$.error	R	jQuery.error()										
+escape selector	R	jQuery.escapeSelector()										
+escapeselector	R	jQuery.escapeSelector()										
+.escapeSelector()	R	jQuery.escapeSelector()										
+.escapeSelector	R	jQuery.escapeSelector()										
+$.escapeSelector()	R	jQuery.escapeSelector()										
+$.escapeSelector	R	jQuery.escapeSelector()										
+escapeSelector()	R	jQuery.escapeSelector()										
+escapeSelector	R	jQuery.escapeSelector()										
+:even Selector	A			Selectors\\nBasic Filter Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects even elements, zero-indexed.  See also odd.</p><pre><code>$(":even") → jQuery</code></pre></section>	https://api.jquery.com/even-selector/
+even selector	R	:even Selector										
+event.currentTarget	A			Events\\nEvent Object							<section class="prog__container"><p> The current DOM element within the event bubbling phase.  </p><pre><code>event.currentTarget → Element</code></pre></section>	https://api.jquery.com/event.currentTarget/
+event current target	R	event.currentTarget										
+event currenttarget	R	event.currentTarget										
+event.data	A			Events\\nEvent Object							<section class="prog__container"><p>An optional object of data passed to an event method when the current executing handler is bound.  </p><pre><code>event.data → Object</code></pre></section>	https://api.jquery.com/event.data/
+event data	R	event.data										
+event.delegateTarget	A			Events\\nEvent Object							<section class="prog__container"><p>The element where the currently-called jQuery event handler was attached.</p><pre><code>event.delegateTarget → Element</code></pre></section>	https://api.jquery.com/event.delegateTarget/
+event delegate target	R	event.delegateTarget										
+event delegatetarget	R	event.delegateTarget										
+event.isDefaultPrevented()	A			Events\\nEvent Object							<section class="prog__container"><p>Returns whether event.preventDefault() was ever called on this event object. </p><pre><code>event.isDefaultPrevented() → Boolean</code></pre></section>	https://api.jquery.com/event.isDefaultPrevented/
+event is default prevented	R	event.isDefaultPrevented()										
+event isdefaultprevented	R	event.isDefaultPrevented()										
+event.isDefaultPrevented	R	event.isDefaultPrevented()										
+event.isImmediatePropagationStopped()	A			Events\\nEvent Object							<section class="prog__container"><p>  Returns whether event.stopImmediatePropagation() was ever called on this event object. </p><pre><code>event.isImmediatePropagationStopped() → Boolean</code></pre></section>	https://api.jquery.com/event.isImmediatePropagationStopped/
+event is immediate propagation stopped	R	event.isImmediatePropagationStopped()										
+event isimmediatepropagationstopped	R	event.isImmediatePropagationStopped()										
+event.isImmediatePropagationStopped	R	event.isImmediatePropagationStopped()										
+event.isPropagationStopped()	A			Events\\nEvent Object							<section class="prog__container"><p>  Returns whether event.stopPropagation() was ever called on this event object. </p><pre><code>event.isPropagationStopped() → Boolean</code></pre></section>	https://api.jquery.com/event.isPropagationStopped/
+event is propagation stopped	R	event.isPropagationStopped()										
+event ispropagationstopped	R	event.isPropagationStopped()										
+event.isPropagationStopped	R	event.isPropagationStopped()										
+event.metaKey	A			Events\\nEvent Object							<section class="prog__container"><p>Indicates whether the META key was pressed when the event fired.</p><pre><code>event.metaKey → Boolean</code></pre></section>	https://api.jquery.com/event.metaKey/
+event meta key	R	event.metaKey										
+event metakey	R	event.metaKey										
+event.namespace	A			Events\\nEvent Object							<section class="prog__container"><p>The namespace specified when the event was triggered.</p><pre><code>event.namespace → String</code></pre></section>	https://api.jquery.com/event.namespace/
+event namespace	R	event.namespace										
+event.pageX	A			Events\\nEvent Object							<section class="prog__container"><p>The mouse position relative to the left edge of the document.</p><pre><code>event.pageX → Number</code></pre></section>	https://api.jquery.com/event.pageX/
+event page x	R	event.pageX										
+event pagex	R	event.pageX										
+event.pageY	A			Events\\nEvent Object							<section class="prog__container"><p>The mouse position relative to the top edge of the document.</p><pre><code>event.pageY → Number</code></pre></section>	https://api.jquery.com/event.pageY/
+event page y	R	event.pageY										
+event pagey	R	event.pageY										
+event.preventDefault()	A			Events\\nEvent Object							<section class="prog__container"><p>If this method is called, the default action of the event will not be triggered.</p><pre><code>event.preventDefault() → undefined</code></pre></section>	https://api.jquery.com/event.preventDefault/
+event prevent default	R	event.preventDefault()										
+event preventdefault	R	event.preventDefault()										
+event.preventDefault	R	event.preventDefault()										
+event.relatedTarget	A			Events\\nEvent Object							<section class="prog__container"><p>The other DOM element involved in the event, if any.</p><pre><code>event.relatedTarget → Element</code></pre></section>	https://api.jquery.com/event.relatedTarget/
+event related target	R	event.relatedTarget										
+event relatedtarget	R	event.relatedTarget										
+event.result	A			Events\\nEvent Object							<section class="prog__container"><p>The last value returned by an event handler that was triggered by this event, unless the value was undefined.</p><pre><code>event.result → Object</code></pre></section>	https://api.jquery.com/event.result/
+event result	R	event.result										
+event.stopImmediatePropagation()	A			Events\\nEvent Object							<section class="prog__container"><p>Keeps the rest of the handlers from being executed and prevents the event from bubbling up the DOM tree.</p><pre><code>event.stopImmediatePropagation() → undefined</code></pre></section>	https://api.jquery.com/event.stopImmediatePropagation/
+event stop immediate propagation	R	event.stopImmediatePropagation()										
+event stopimmediatepropagation	R	event.stopImmediatePropagation()										
+event.stopImmediatePropagation	R	event.stopImmediatePropagation()										
+event.stopPropagation()	A			Events\\nEvent Object							<section class="prog__container"><p>Prevents the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event.</p><pre><code>event.stopPropagation() → undefined</code></pre></section>	https://api.jquery.com/event.stopPropagation/
+event stop propagation	R	event.stopPropagation()										
+event stoppropagation	R	event.stopPropagation()										
+event.stopPropagation	R	event.stopPropagation()										
+event.target	A			Events\\nEvent Object							<section class="prog__container"><p> The DOM element that initiated the event.  </p><pre><code>event.target → Element</code></pre></section>	https://api.jquery.com/event.target/
+event target	R	event.target										
+event.timeStamp	A			Events\\nEvent Object							<section class="prog__container"><p>The difference in milliseconds between the time the browser created the event and January 1, 1970.</p><pre><code>event.timeStamp → Number</code></pre></section>	https://api.jquery.com/event.timeStamp/
+event time stamp	R	event.timeStamp										
+event timestamp	R	event.timeStamp										
+event.type	A			Events\\nEvent Object							<section class="prog__container"><p>Describes the nature of the event.</p><pre><code>event.type → String</code></pre></section>	https://api.jquery.com/event.type/
+event type	R	event.type										
+event.which	A			Events\\nEvent Object							<section class="prog__container"><p>For key or mouse events, this property indicates the specific key or button that was pressed.</p><pre><code>event.which → Number</code></pre></section>	https://api.jquery.com/event.which/
+event which	R	event.which										
+.extend()	R	jQuery.extend()										
+.extend	R	jQuery.extend()										
+$.extend()	R	jQuery.extend()										
+$.extend	R	jQuery.extend()										
+extend()	R	jQuery.extend()										
+extend	R	jQuery.extend()										
+.fadeIn()	A			Effects\\nFading							<section class="prog__container"><p>Display the matched elements by fading them to opaque.</p><pre><code>$(selector).fadeIn(duration, complete) → jQuery\n$(selector).fadeIn(options) → jQuery\n$(selector).fadeIn(duration, easing, complete) → jQuery</code></pre></section>	https://api.jquery.com/fadeIn/
+fade in	R	.fadeIn()										
+fadein	R	.fadeIn()										
+.fadeIn	R	.fadeIn()										
+fadeIn()	R	.fadeIn()										
+fadeIn	R	.fadeIn()										
+.fadeOut()	A			Effects\\nFading							<section class="prog__container"><p>Hide the matched elements by fading them to transparent.</p><pre><code>$(selector).fadeOut(duration, complete) → jQuery\n$(selector).fadeOut(options) → jQuery\n$(selector).fadeOut(duration, easing, complete) → jQuery</code></pre></section>	https://api.jquery.com/fadeOut/
+fade out	R	.fadeOut()										
+fadeout	R	.fadeOut()										
+.fadeOut	R	.fadeOut()										
+fadeOut()	R	.fadeOut()										
+fadeOut	R	.fadeOut()										
+.fadeTo()	A			Effects\\nFading							<section class="prog__container"><p>Adjust the opacity of the matched elements.</p><pre><code>$(selector).fadeTo(duration, opacity, complete) → jQuery\n$(selector).fadeTo(duration, opacity, easing, complete) → jQuery</code></pre></section>	https://api.jquery.com/fadeTo/
+.fadeToggle()	A			Effects\\nFading							<section class="prog__container"><p>Display or hide the matched elements by animating their opacity.</p><pre><code>$(selector).fadeToggle(duration, easing, complete) → jQuery\n$(selector).fadeToggle(options) → jQuery</code></pre></section>	https://api.jquery.com/fadeToggle/
+fade toggle	R	.fadeToggle()										
+fadetoggle	R	.fadeToggle()										
+.fadeToggle	R	.fadeToggle()										
+fadeToggle()	R	.fadeToggle()										
+fadeToggle	R	.fadeToggle()										
+fade to	R	.fadeTo()										
+fadeto	R	.fadeTo()										
+.fadeTo	R	.fadeTo()										
+fadeTo()	R	.fadeTo()										
+fadeTo	R	.fadeTo()										
+.fail()	R	deferred.fail()										
+.fail	R	deferred.fail()										
+fail()	R	deferred.fail()										
+fail	R	deferred.fail()										
+:file Selector	A			Selectors\\nForm Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects all elements of type file.</p><pre><code>$(":file") → jQuery</code></pre></section>	https://api.jquery.com/file-selector/
+file selector	R	:file Selector										
+.filter()	A			Traversing\\nFiltering							<section class="prog__container"><p>Reduce the set of matched elements to those that match the selector or pass the function's test. </p><pre><code>$(selector).filter(selector) → jQuery\n$(selector).filter(function) → jQuery\n$(selector).filter(elements) → jQuery\n$(selector).filter(selection) → jQuery</code></pre></section>	https://api.jquery.com/filter/
+.filter	R	.filter()										
+filter()	R	.filter()										
+filter	R	.filter()										
+.find()	A			Traversing\\nTree Traversal							<section class="prog__container"><p>Get the descendants of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.</p><pre><code>$(selector).find(selector) → jQuery\n$(selector).find(element) → jQuery</code></pre></section>	https://api.jquery.com/find/
+.find	R	.find()										
+find()	R	.find()										
+find	R	.find()										
+.finish()	A			Effects\\nCustom Effects							<section class="prog__container"><p>Stop the currently-running animation, remove all queued animations, and complete all animations for the matched elements.</p><pre><code>$(selector).finish(queue) → jQuery</code></pre></section>	https://api.jquery.com/finish/
+.finish	R	.finish()										
+finish()	R	.finish()										
+finish	R	.finish()										
+.fired()	R	callbacks.fired()										
+.fired	R	callbacks.fired()										
+fired()	R	callbacks.fired()										
+fired	R	callbacks.fired()										
+.fire()	R	callbacks.fire()										
+.fire	R	callbacks.fire()										
+fire()	R	callbacks.fire()										
+fire	R	callbacks.fire()										
+fire with	R	callbacks.fireWith()										
+firewith	R	callbacks.fireWith()										
+.fireWith()	R	callbacks.fireWith()										
+.fireWith	R	callbacks.fireWith()										
+fireWith()	R	callbacks.fireWith()										
+fireWith	R	callbacks.fireWith()										
+.first()	A			Traversing\\nFiltering							<section class="prog__container"><p>Reduce the set of matched elements to the first in the set.</p><pre><code>$(selector).first() → jQuery</code></pre></section>	https://api.jquery.com/first/
+:first-child Selector	A			Selectors\\nChild Filter Selectors							<section class="prog__container"><p>Selects all elements that are the first child of their parent.</p><pre><code>$(":first-child") → jQuery</code></pre></section>	https://api.jquery.com/first-child-selector/
+first child selector	R	:first-child Selector										
+:first-of-type Selector	A			Selectors\\nChild Filter Selectors							<section class="prog__container"><p>Selects all elements that are the first among siblings of the same element name.</p><pre><code>$(":first-of-type") → jQuery</code></pre></section>	https://api.jquery.com/first-of-type-selector/
+first of type selector	R	:first-of-type Selector										
+.first	R	.first()										
+first()	R	.first()										
+first	R	.first()										
+:first Selector	A			Selectors\\nBasic Filter Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects the first matched DOM element.</p><pre><code>$(":first") → jQuery</code></pre></section>	https://api.jquery.com/first-selector/
+first selector	R	:first Selector										
+.fn.extend()	R	jQuery.fn.extend()										
+.fn.extend	R	jQuery.fn.extend()										
+$.fn.extend()	R	jQuery.fn.extend()										
+$.fn.extend	R	jQuery.fn.extend()										
+fn extend	R	jQuery.fn.extend()										
+fn.extend()	R	jQuery.fn.extend()										
+fn.extend	R	jQuery.fn.extend()										
+.focus()	A			Events\\nForm Events\\nForms							<section class="prog__container"><p>Bind an event handler to the "focus" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).focus(handler) → jQuery\n$(selector).focus(eventData, handler) → jQuery\n$(selector).focus() → jQuery</code></pre></section>	https://api.jquery.com/focus/
+.focusin()	A			Events\\nForm Events\\nForms							<section class="prog__container"><p>Bind an event handler to the "focusin" event.</p><pre><code>$(selector).focusin(handler) → jQuery\n$(selector).focusin(eventData, handler) → jQuery\n$(selector).focusin() → jQuery</code></pre></section>	https://api.jquery.com/focusin/
+.focusin	R	.focusin()										
+focusin()	R	.focusin()										
+focusin	R	.focusin()										
+.focusout()	A			Events\\nForm Events\\nForms							<section class="prog__container"><p>Bind an event handler to the "focusout" JavaScript event.</p><pre><code>$(selector).focusout(handler) → jQuery\n$(selector).focusout(eventData, handler) → jQuery\n$(selector).focusout() → jQuery</code></pre></section>	https://api.jquery.com/focusout/
+.focusout	R	.focusout()										
+focusout()	R	.focusout()										
+focusout	R	.focusout()										
+.focus	R	.focus()										
+focus()	R	.focus()										
+focus	R	.focus()										
+:focus Selector	A			Selectors\\nBasic Filter Selectors\\nForm Selectors							<section class="prog__container"><p>Selects element if it is currently focused.</p><pre><code>$(":focus") → jQuery</code></pre></section>	https://api.jquery.com/focus-selector/
+focus selector	R	:focus Selector										
+.fx.interval	R	jQuery.fx.interval										
+$.fx.interval	R	jQuery.fx.interval										
+fx interval	R	jQuery.fx.interval										
+fx.interval	R	jQuery.fx.interval										
+.fx.off	R	jQuery.fx.off										
+$.fx.off	R	jQuery.fx.off										
+fx off	R	jQuery.fx.off										
+fx.off	R	jQuery.fx.off										
+.get()	A			Miscellaneous\\nDom Element Methods							<section class="prog__container"><p>Retrieve one of the elements matched by the jQuery object.</p><pre><code>$(selector).get(index) → Element</code></pre>\n<p>Retrieve the elements matched by the jQuery object.</p><pre><code>$(selector).get() → Array</code></pre></section>	https://api.jquery.com/get/
+get json	R	jQuery.getJSON()										
+getjson	R	jQuery.getJSON()										
+.getJSON()	R	jQuery.getJSON()										
+.getJSON	R	jQuery.getJSON()										
+$.getJSON()	R	jQuery.getJSON()										
+$.getJSON	R	jQuery.getJSON()										
+getJSON()	R	jQuery.getJSON()										
+getJSON	R	jQuery.getJSON()										
+.get	R	.get()										
+get()	R	.get()										
+get	R	.get()										
+$.get()	R	jQuery.get()										
+$.get	R	jQuery.get()										
+get script	R	jQuery.getScript()										
+getscript	R	jQuery.getScript()										
+.getScript()	R	jQuery.getScript()										
+.getScript	R	jQuery.getScript()										
+$.getScript()	R	jQuery.getScript()										
+$.getScript	R	jQuery.getScript()										
+getScript()	R	jQuery.getScript()										
+getScript	R	jQuery.getScript()										
+global eval	R	jQuery.globalEval()										
+globaleval	R	jQuery.globalEval()										
+.globalEval()	R	jQuery.globalEval()										
+.globalEval	R	jQuery.globalEval()										
+$.globalEval()	R	jQuery.globalEval()										
+$.globalEval	R	jQuery.globalEval()										
+globalEval()	R	jQuery.globalEval()										
+globalEval	R	jQuery.globalEval()										
+.grep()	R	jQuery.grep()										
+.grep	R	jQuery.grep()										
+$.grep()	R	jQuery.grep()										
+$.grep	R	jQuery.grep()										
+grep()	R	jQuery.grep()										
+grep	R	jQuery.grep()										
+:gt() Selector	A			Selectors\\nBasic Filter Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Select all elements at an index greater than index within the matched set.</p><pre><code>$(":gt(index)") → jQuery\n$(":gt(-index)") → jQuery</code></pre></section>	https://api.jquery.com/gt-selector/
+gt selector	R	:gt() Selector										
+.has()	A			Traversing\\nFiltering							<section class="prog__container"><p>Reduce the set of matched elements to those that have a descendant that matches the selector or DOM element.</p><pre><code>$(selector).has(selector) → jQuery\n$(selector).has(contained) → jQuery</code></pre></section>	https://api.jquery.com/has/
+Has Attribute Selector	A			Selectors\\nAttribute Selectors							<section class="prog__container"><p>Selects elements that have the specified attribute, with any value. </p><pre><code>$("[attribute]") → jQuery</code></pre></section>	https://api.jquery.com/has-attribute-selector/
+has attribute selector	R	Has Attribute Selector										
+.hasClass()	A			Attributes\\nManipulation\\nClass Attribute\\nCss							<section class="prog__container"><p>Determine whether any of the matched elements are assigned the given class.</p><pre><code>$(selector).hasClass(className) → Boolean</code></pre></section>	https://api.jquery.com/hasClass/
+has class	R	.hasClass()										
+hasclass	R	.hasClass()										
+.hasClass	R	.hasClass()										
+hasClass()	R	.hasClass()										
+hasClass	R	.hasClass()										
+has data	R	jQuery.hasData()										
+hasdata	R	jQuery.hasData()										
+.hasData()	R	jQuery.hasData()										
+.hasData	R	jQuery.hasData()										
+$.hasData()	R	jQuery.hasData()										
+$.hasData	R	jQuery.hasData()										
+hasData()	R	jQuery.hasData()										
+hasData	R	jQuery.hasData()										
+.has	R	.has()										
+has()	R	.has()										
+has	R	.has()										
+:has() Selector	A			Selectors\\nContent Filter Selector\\nJquery Selector Extensions							<section class="prog__container"><p>Selects elements which contain at least one element that matches the specified selector.</p><pre><code>$(":has(selector)") → jQuery</code></pre></section>	https://api.jquery.com/has-selector/
+has selector	R	:has() Selector										
+:header Selector	A			Selectors\\nBasic Filter Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects all elements that are headers, like h1, h2, h3 and so on.</p><pre><code>$(":header") → jQuery</code></pre></section>	https://api.jquery.com/header-selector/
+header selector	R	:header Selector										
+.height()	A			Css\\nDimensions\\nManipulation\\nStyle Properties							<section class="prog__container"><p>Get the current computed height for the first element in the set of matched elements.</p><pre><code>$(selector).height() → Number</code></pre>\n<p>Set the CSS height of every matched element.</p><pre><code>$(selector).height(value) → jQuery\n$(selector).height(function) → jQuery</code></pre></section>	https://api.jquery.com/height/
+.height	R	.height()										
+height()	R	.height()										
+height	R	.height()										
+:hidden Selector	A			Selectors\\nJquery Selector Extensions\\nVisibility Filter Selectors							<section class="prog__container"><p>Selects all elements that are hidden.</p><pre><code>$(":hidden") → jQuery</code></pre></section>	https://api.jquery.com/hidden-selector/
+hidden selector	R	:hidden Selector										
+.hide()	A			Effects\\nBasics							<section class="prog__container"><p>Hide the matched elements.</p><pre><code>$(selector).hide() → jQuery\n$(selector).hide(duration, complete) → jQuery\n$(selector).hide(options) → jQuery\n$(selector).hide(duration, easing, complete) → jQuery</code></pre></section>	https://api.jquery.com/hide/
+.hide	R	.hide()										
+hide()	R	.hide()										
+hide	R	.hide()										
+hold ready	R	jQuery.holdReady()										
+holdready	R	jQuery.holdReady()										
+.holdReady()	R	jQuery.holdReady()										
+.holdReady	R	jQuery.holdReady()										
+$.holdReady()	R	jQuery.holdReady()										
+$.holdReady	R	jQuery.holdReady()										
+holdReady()	R	jQuery.holdReady()										
+holdReady	R	jQuery.holdReady()										
+.hover()	A			Events\\nMouse Events							<section class="prog__container"><p>Bind two handlers to the matched elements, to be executed when the mouse pointer enters and leaves the elements.</p><pre><code>$(selector).hover(handlerIn, handlerOut) → jQuery</code></pre>\n<p>Bind a single handler to the matched elements, to be executed when the mouse pointer enters or leaves the elements.</p><pre><code>$(selector).hover(handlerInOut) → jQuery</code></pre></section>	https://api.jquery.com/hover/
+.hover	R	.hover()										
+hover()	R	.hover()										
+hover	R	.hover()										
+.html()	A			Attributes\\nManipulation\\nDom Insertion Inside							<section class="prog__container"><p>Get the HTML contents of the first element in the set of matched elements.</p><pre><code>$(selector).html() → String</code></pre>\n<p>Set the HTML contents of each element in the set of matched elements.</p><pre><code>$(selector).html(htmlString) → jQuery\n$(selector).html(function) → jQuery</code></pre></section>	https://api.jquery.com/html/
+html prefilter	R	jQuery.htmlPrefilter()										
+htmlprefilter	R	jQuery.htmlPrefilter()										
+.htmlPrefilter()	R	jQuery.htmlPrefilter()										
+.htmlPrefilter	R	jQuery.htmlPrefilter()										
+$.htmlPrefilter()	R	jQuery.htmlPrefilter()										
+$.htmlPrefilter	R	jQuery.htmlPrefilter()										
+htmlPrefilter()	R	jQuery.htmlPrefilter()										
+htmlPrefilter	R	jQuery.htmlPrefilter()										
+.html	R	.html()										
+html()	R	.html()										
+html	R	.html()										
+ID Selector	A			Selectors\\nBasic Css Selectors							<section class="prog__container"><p>Selects a single element with the given id attribute. </p><pre><code>$("#id") → jQuery</code></pre></section>	https://api.jquery.com/id-selector/
+id selector	R	ID Selector										
+:image Selector	A			Selectors\\nForm Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects all elements of type image.</p><pre><code>$(":image") → jQuery</code></pre></section>	https://api.jquery.com/image-selector/
+image selector	R	:image Selector										
+in array	R	jQuery.inArray()										
+inarray	R	jQuery.inArray()										
+.inArray()	R	jQuery.inArray()										
+.inArray	R	jQuery.inArray()										
+$.inArray()	R	jQuery.inArray()										
+$.inArray	R	jQuery.inArray()										
+inArray()	R	jQuery.inArray()										
+inArray	R	jQuery.inArray()										
+.index()	A			Miscellaneous\\nDom Element Methods							<section class="prog__container"><p>Search for a given element from among the matched elements.</p><pre><code>$(selector).index() → Integer\n$(selector).index(selector) → Integer\n$(selector).index(element) → Integer</code></pre></section>	https://api.jquery.com/index/
+.index	R	.index()										
+index()	R	.index()										
+index	R	.index()										
+.innerHeight()	A			Css\\nDimensions\\nManipulation\\nStyle Properties							<section class="prog__container"><p>Get the current computed height for the first element in the set of matched elements, including padding but not border.</p><pre><code>$(selector).innerHeight() → Number</code></pre>\n<p>Set the CSS inner height of each element in the set of matched elements.</p><pre><code>$(selector).innerHeight(value) → jQuery\n$(selector).innerHeight(function) → jQuery</code></pre></section>	https://api.jquery.com/innerHeight/
+inner height	R	.innerHeight()										
+innerheight	R	.innerHeight()										
+.innerHeight	R	.innerHeight()										
+innerHeight()	R	.innerHeight()										
+innerHeight	R	.innerHeight()										
+.innerWidth()	A			Css\\nDimensions\\nManipulation\\nStyle Properties							<section class="prog__container"><p>Get the current computed inner width for the first element in the set of matched elements, including padding but not border.</p><pre><code>$(selector).innerWidth() → Number</code></pre>\n<p>Set the CSS inner width of each element in the set of matched elements.</p><pre><code>$(selector).innerWidth(value) → jQuery\n$(selector).innerWidth(function) → jQuery</code></pre></section>	https://api.jquery.com/innerWidth/
+inner width	R	.innerWidth()										
+innerwidth	R	.innerWidth()										
+.innerWidth	R	.innerWidth()										
+innerWidth()	R	.innerWidth()										
+innerWidth	R	.innerWidth()										
+:input Selector	A			Selectors\\nForm Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects all input, textarea, select and button elements.</p><pre><code>$(":input") → jQuery</code></pre></section>	https://api.jquery.com/input-selector/
+input selector	R	:input Selector										
+.insertAfter()	A			Manipulation\\nDom Insertion Outside							<section class="prog__container"><p>Insert every element in the set of matched elements after the target.</p><pre><code>$(selector).insertAfter(target) → jQuery</code></pre></section>	https://api.jquery.com/insertAfter/
+insert after	R	.insertAfter()										
+insertafter	R	.insertAfter()										
+.insertAfter	R	.insertAfter()										
+insertAfter()	R	.insertAfter()										
+insertAfter	R	.insertAfter()										
+.insertBefore()	A			Manipulation\\nDom Insertion Outside							<section class="prog__container"><p>Insert every element in the set of matched elements before the target.</p><pre><code>$(selector).insertBefore(target) → jQuery</code></pre></section>	https://api.jquery.com/insertBefore/
+insert before	R	.insertBefore()										
+insertbefore	R	.insertBefore()										
+.insertBefore	R	.insertBefore()										
+insertBefore()	R	.insertBefore()										
+insertBefore	R	.insertBefore()										
+is array	R	jQuery.isArray()										
+isarray	R	jQuery.isArray()										
+.isArray()	R	jQuery.isArray()										
+.isArray	R	jQuery.isArray()										
+$.isArray()	R	jQuery.isArray()										
+$.isArray	R	jQuery.isArray()										
+isArray()	R	jQuery.isArray()										
+isArray	R	jQuery.isArray()										
+.is()	A			Traversing\\nFiltering							<section class="prog__container"><p>Check the current matched set of elements against a selector, element, or jQuery object and return true if at least one of these elements matches the given arguments.</p><pre><code>$(selector).is(selector) → Boolean\n$(selector).is(function) → Boolean\n$(selector).is(selection) → Boolean\n$(selector).is(elements) → Boolean</code></pre></section>	https://api.jquery.com/is/
+is default prevented	R	event.isDefaultPrevented()										
+isdefaultprevented	R	event.isDefaultPrevented()										
+.isDefaultPrevented()	R	event.isDefaultPrevented()										
+.isDefaultPrevented	R	event.isDefaultPrevented()										
+isDefaultPrevented()	R	event.isDefaultPrevented()										
+isDefaultPrevented	R	event.isDefaultPrevented()										
+is empty object	R	jQuery.isEmptyObject()										
+isemptyobject	R	jQuery.isEmptyObject()										
+.isEmptyObject()	R	jQuery.isEmptyObject()										
+.isEmptyObject	R	jQuery.isEmptyObject()										
+$.isEmptyObject()	R	jQuery.isEmptyObject()										
+$.isEmptyObject	R	jQuery.isEmptyObject()										
+isEmptyObject()	R	jQuery.isEmptyObject()										
+isEmptyObject	R	jQuery.isEmptyObject()										
+is function	R	jQuery.isFunction()										
+isfunction	R	jQuery.isFunction()										
+.isFunction()	R	jQuery.isFunction()										
+.isFunction	R	jQuery.isFunction()										
+$.isFunction()	R	jQuery.isFunction()										
+$.isFunction	R	jQuery.isFunction()										
+isFunction()	R	jQuery.isFunction()										
+isFunction	R	jQuery.isFunction()										
+is immediate propagation stopped	R	event.isImmediatePropagationStopped()										
+isimmediatepropagationstopped	R	event.isImmediatePropagationStopped()										
+.isImmediatePropagationStopped()	R	event.isImmediatePropagationStopped()										
+.isImmediatePropagationStopped	R	event.isImmediatePropagationStopped()										
+isImmediatePropagationStopped()	R	event.isImmediatePropagationStopped()										
+isImmediatePropagationStopped	R	event.isImmediatePropagationStopped()										
+is numeric	R	jQuery.isNumeric()										
+isnumeric	R	jQuery.isNumeric()										
+.isNumeric()	R	jQuery.isNumeric()										
+.isNumeric	R	jQuery.isNumeric()										
+$.isNumeric()	R	jQuery.isNumeric()										
+$.isNumeric	R	jQuery.isNumeric()										
+isNumeric()	R	jQuery.isNumeric()										
+isNumeric	R	jQuery.isNumeric()										
+is plain object	R	jQuery.isPlainObject()										
+isplainobject	R	jQuery.isPlainObject()										
+.isPlainObject()	R	jQuery.isPlainObject()										
+.isPlainObject	R	jQuery.isPlainObject()										
+$.isPlainObject()	R	jQuery.isPlainObject()										
+$.isPlainObject	R	jQuery.isPlainObject()										
+isPlainObject()	R	jQuery.isPlainObject()										
+isPlainObject	R	jQuery.isPlainObject()										
+is propagation stopped	R	event.isPropagationStopped()										
+ispropagationstopped	R	event.isPropagationStopped()										
+.isPropagationStopped()	R	event.isPropagationStopped()										
+.isPropagationStopped	R	event.isPropagationStopped()										
+isPropagationStopped()	R	event.isPropagationStopped()										
+isPropagationStopped	R	event.isPropagationStopped()										
+is rejected	R	deferred.isRejected()										
+isrejected	R	deferred.isRejected()										
+.isRejected()	R	deferred.isRejected()										
+.isRejected	R	deferred.isRejected()										
+isRejected()	R	deferred.isRejected()										
+isRejected	R	deferred.isRejected()										
+is resolved	R	deferred.isResolved()										
+isresolved	R	deferred.isResolved()										
+.isResolved()	R	deferred.isResolved()										
+.isResolved	R	deferred.isResolved()										
+isResolved()	R	deferred.isResolved()										
+isResolved	R	deferred.isResolved()										
+.is	R	.is()										
+is()	R	.is()										
+is	R	.is()										
+is window	R	jQuery.isWindow()										
+iswindow	R	jQuery.isWindow()										
+.isWindow()	R	jQuery.isWindow()										
+.isWindow	R	jQuery.isWindow()										
+$.isWindow()	R	jQuery.isWindow()										
+$.isWindow	R	jQuery.isWindow()										
+isWindow()	R	jQuery.isWindow()										
+isWindow	R	jQuery.isWindow()										
+is xmldoc	R	jQuery.isXMLDoc()										
+isxmldoc	R	jQuery.isXMLDoc()										
+.isXMLDoc()	R	jQuery.isXMLDoc()										
+.isXMLDoc	R	jQuery.isXMLDoc()										
+$.isXMLDoc()	R	jQuery.isXMLDoc()										
+$.isXMLDoc	R	jQuery.isXMLDoc()										
+isXMLDoc()	R	jQuery.isXMLDoc()										
+isXMLDoc	R	jQuery.isXMLDoc()										
+jQuery()	A			Core							<section class="prog__container"><p>Accepts a string containing a CSS selector which is then used to match a set of elements.</p><pre><code>$(selector).jQuery(selector, context) → jQuery\n$(selector).jQuery(element) → jQuery\n$(selector).jQuery(elementArray) → jQuery\n$(selector).jQuery(object) → jQuery\n$(selector).jQuery(selection) → jQuery\n$(selector).jQuery() → jQuery</code></pre>\n<p>Creates DOM elements on the fly from the provided string of raw HTML.</p><pre><code>$(selector).jQuery(html, ownerDocument) → jQuery\n$(selector).jQuery(html, attributes) → jQuery</code></pre>\n<p>Binds a function to be executed when the DOM has finished loading.</p><pre><code>$(selector).jQuery(callback) → jQuery</code></pre></section>	https://api.jquery.com/jQuery/
+.jquery	A			Internals\\nProperties\\nJquery Object Instance Properties							<section class="prog__container"><p>A string containing the jQuery version number.</p><pre><code>$(selector).jquery → String</code></pre></section>	https://api.jquery.com/jquery-2/
+jQuery.ajax()	A			Ajax\\nLow Level Interface							<section class="prog__container"><p>Perform an asynchronous HTTP (Ajax) request.</p><pre><code>jQuery.ajax(url, settings) → jqXHR\njQuery.ajax(settings) → jqXHR</code></pre></section>	https://api.jquery.com/jQuery.ajax/
+jQuery.ajaxPrefilter()	A			Ajax\\nLow Level Interface							<section class="prog__container"><p>Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().</p><pre><code>jQuery.ajaxPrefilter(dataTypes, handler) → undefined</code></pre></section>	https://api.jquery.com/jQuery.ajaxPrefilter/
+jQuery.ajaxPrefilter	R	jQuery.ajaxPrefilter()										
+jQuery.ajax	R	jQuery.ajax()										
+jQuery.ajaxSetup()	A			Ajax\\nLow Level Interface							<section class="prog__container"><p>Set default values for future Ajax requests. Its use is not recommended.</p><pre><code>jQuery.ajaxSetup(options) → undefined</code></pre></section>	https://api.jquery.com/jQuery.ajaxSetup/
+jQuery.ajaxSetup	R	jQuery.ajaxSetup()										
+jQuery.ajaxTransport()	A			Ajax\\nLow Level Interface							<section class="prog__container"><p>Creates an object that handles the actual transmission of Ajax data.</p><pre><code>jQuery.ajaxTransport(dataType, handler) → undefined</code></pre></section>	https://api.jquery.com/jQuery.ajaxTransport/
+jQuery.ajaxTransport	R	jQuery.ajaxTransport()										
+jQuery.boxModel	A			Utilities							<section class="prog__container"><p>States if the current page, in the user's browser, is being rendered using the W3C CSS Box Model. This property was removed in jQuery 1.8. Please try to use feature detection instead.</p><pre><code>jQuery.boxModel → Boolean</code></pre></section>	https://api.jquery.com/jQuery.boxModel/
+jQuery.browser	A			Properties\\nGlobal Jquery Object Properties\\nUtilities							<section class="prog__container"><p>Contains flags for the useragent, read from navigator.userAgent. This property was removed in jQuery 1.9 and is available only through the jQuery.migrate plugin. Please try to use feature detection instead.</p><pre><code>jQuery.browser → PlainObject</code></pre>\n<p>The version number of the rendering engine for the user's browser. This property was removed in jQuery 1.9 and is available only through the jQuery.migrate plugin.</p><pre><code>jQuery.browser.version → String</code></pre></section>	https://api.jquery.com/jQuery.browser/
+jQuery.Callbacks()	A			Callbacks Object							<section class="prog__container"><p>A multi-purpose callbacks list object that provides a powerful way to manage callback lists.</p><pre><code>jQuery.Callbacks(flags) → Callbacks</code></pre></section>	https://api.jquery.com/jQuery.Callbacks/
+jQuery.Callbacks	R	jQuery.Callbacks()										
+jQuery.contains()	A			Utilities							<section class="prog__container"><p>Check to see if a DOM element is a descendant of another DOM element.</p><pre><code>jQuery.contains(container, contained) → Boolean</code></pre></section>	https://api.jquery.com/jQuery.contains/
+jQuery.contains	R	jQuery.contains()										
+jQuery.cssHooks	A			Css							<section class="prog__container"><p>Hook directly into jQuery to override how particular CSS properties are retrieved or set, normalize CSS property naming, or create custom properties.</p><pre><code>jQuery.cssHooks → Object</code></pre></section>	https://api.jquery.com/jQuery.cssHooks/
+jQuery.cssNumber	A			Css\\nManipulation\\nStyle Properties							<section class="prog__container"><p>An object containing all CSS properties that may be used without a unit. The .css() method uses this object to see if it may append px to unitless values.</p><pre><code>jQuery.cssNumber → Object</code></pre></section>	https://api.jquery.com/jQuery.cssNumber/
+jQuery.data()	A			Data\\nUtilities							<section class="prog__container"><p>Store arbitrary data associated with the specified element. Returns the value that was set.</p><pre><code>jQuery.data(element, key, value) → Object</code></pre>\n<p>Returns value at named data store for the element, as set by jQuery.data(element, name, value), or the full data store for the element.</p><pre><code>jQuery.data(element, key) → Object\njQuery.data(element) → Object</code></pre></section>	https://api.jquery.com/jQuery.data/
+jQuery.data	R	jQuery.data()										
+jQuery.Deferred()	A			Deferred Object							<section class="prog__container"><p> A factory function that returns a chainable utility object with methods to register multiple callbacks into callback queues, invoke callback queues, and relay the success or failure state of any synchronous or asynchronous function.</p><pre><code>jQuery.Deferred(beforeStart) → Deferred</code></pre></section>	https://api.jquery.com/jQuery.Deferred/
+jQuery.Deferred	R	jQuery.Deferred()										
+jQuery.dequeue()	A			Data\\nUtilities							<section class="prog__container"><p>Execute the next function on the queue for the matched element.</p><pre><code>jQuery.dequeue(element, queueName) → undefined</code></pre></section>	https://api.jquery.com/jQuery.dequeue/
+jQuery.dequeue	R	jQuery.dequeue()										
+jQuery.each()	A			Utilities							<section class="prog__container"><p>A generic iterator function, which can be used to seamlessly iterate over both objects and arrays. Arrays and array-like objects with a length property (such as a function's arguments object) are iterated by numeric index, from 0 to length-1. Other objects are iterated via their named properties.</p><pre><code>jQuery.each(array, callback) → Object\njQuery.each(object, callback) → Object</code></pre></section>	https://api.jquery.com/jQuery.each/
+jQuery.each	R	jQuery.each()										
+jQuery.error()	A			Internals							<section class="prog__container"><p>Takes a string and throws an exception containing it.</p><pre><code>jQuery.error(message) → undefined</code></pre></section>	https://api.jquery.com/jQuery.error/
+jQuery.error	R	jQuery.error()										
+jQuery.escapeSelector()	A			Css							<section class="prog__container"><p>Escapes any character that has a special meaning in a CSS selector.</p><pre><code>jQuery.escapeSelector(selector) → Selector</code></pre></section>	https://api.jquery.com/jQuery.escapeSelector/
+jQuery.escapeSelector	R	jQuery.escapeSelector()										
+jQuery.extend()	A			Utilities							<section class="prog__container"><p>Merge the contents of two or more objects together into the first object.</p><pre><code>jQuery.extend(target, object1, objectN) → Object\njQuery.extend(deep, target, object1, objectN) → Object</code></pre></section>	https://api.jquery.com/jQuery.extend/
+jQuery.extend	R	jQuery.extend()										
+jQuery.fn.extend()	A			Utilities							<section class="prog__container"><p>Merge the contents of an object onto the jQuery prototype to provide new jQuery instance methods.</p><pre><code>jQuery.fn.extend(object) → Object</code></pre></section>	https://api.jquery.com/jQuery.fn.extend/
+jQuery.fn.extend	R	jQuery.fn.extend()										
+jQuery.fx.interval	A			Effects\\nCustom Effects\\nProperties\\nGlobal Jquery Object Properties							<section class="prog__container"><p>The rate (in milliseconds) at which animations fire.</p><pre><code>jQuery.fx.interval → Number</code></pre></section>	https://api.jquery.com/jQuery.fx.interval/
+jQuery.fx.off	A			Effects\\nCustom Effects\\nProperties\\nGlobal Jquery Object Properties							<section class="prog__container"><p>Globally disable all animations.</p><pre><code>jQuery.fx.off → Boolean</code></pre></section>	https://api.jquery.com/jQuery.fx.off/
+jQuery.get()	A			Ajax\\nShorthand Methods							<section class="prog__container"><p>Load data from the server using a HTTP GET request.</p><pre><code>jQuery.get(url, data, success, dataType) → jqXHR\njQuery.get(settings) → jqXHR</code></pre></section>	https://api.jquery.com/jQuery.get/
+jQuery.getJSON()	A			Ajax\\nShorthand Methods							<section class="prog__container"><p>Load JSON-encoded data from the server using a GET HTTP request.</p><pre><code>jQuery.getJSON(url, data, success) → jqXHR</code></pre></section>	https://api.jquery.com/jQuery.getJSON/
+jQuery.getJSON	R	jQuery.getJSON()										
+jQuery.get	R	jQuery.get()										
+jQuery.getScript()	A			Ajax\\nShorthand Methods							<section class="prog__container"><p>Load a JavaScript file from the server using a GET HTTP request, then execute it.</p><pre><code>jQuery.getScript(url, success) → jqXHR</code></pre></section>	https://api.jquery.com/jQuery.getScript/
+jQuery.getScript	R	jQuery.getScript()										
+jQuery.globalEval()	A			Utilities							<section class="prog__container"><p>Execute some JavaScript code globally.</p><pre><code>jQuery.globalEval(code) → undefined</code></pre></section>	https://api.jquery.com/jQuery.globalEval/
+jQuery.globalEval	R	jQuery.globalEval()										
+jQuery.grep()	A			Utilities							<section class="prog__container"><p>Finds the elements of an array which satisfy a filter function. The original array is not affected.</p><pre><code>jQuery.grep(array, function, invert) → Array</code></pre></section>	https://api.jquery.com/jQuery.grep/
+jQuery.grep	R	jQuery.grep()										
+jQuery.hasData()	A			Data							<section class="prog__container"><p>Determine whether an element has any jQuery data associated with it.</p><pre><code>jQuery.hasData(element) → Boolean</code></pre></section>	https://api.jquery.com/jQuery.hasData/
+jQuery.hasData	R	jQuery.hasData()										
+jQuery.holdReady()	A			Core							<section class="prog__container"><p>Holds or releases the execution of jQuery's ready event.</p><pre><code>jQuery.holdReady(hold) → undefined</code></pre></section>	https://api.jquery.com/jQuery.holdReady/
+jQuery.holdReady	R	jQuery.holdReady()										
+jQuery.htmlPrefilter()	A			Manipulation							<section class="prog__container"><p>Modify and filter HTML strings passed through jQuery manipulation methods.</p><pre><code>jQuery.htmlPrefilter(html) → String</code></pre></section>	https://api.jquery.com/jQuery.htmlPrefilter/
+jQuery.htmlPrefilter	R	jQuery.htmlPrefilter()										
+jQuery.inArray()	A			Utilities							<section class="prog__container"><p>Search for a specified value within an array and return its index (or -1 if not found).</p><pre><code>jQuery.inArray(value, array, fromIndex) → Number</code></pre></section>	https://api.jquery.com/jQuery.inArray/
+jQuery.inArray	R	jQuery.inArray()										
+jQuery.isArray()	A			Utilities							<section class="prog__container"><p>Determine whether the argument is an array.</p><pre><code>jQuery.isArray(obj) → boolean</code></pre></section>	https://api.jquery.com/jQuery.isArray/
+jQuery.isArray	R	jQuery.isArray()										
+jQuery.isEmptyObject()	A			Utilities							<section class="prog__container"><p>Check to see if an object is empty (contains no enumerable properties).</p><pre><code>jQuery.isEmptyObject(object) → Boolean</code></pre></section>	https://api.jquery.com/jQuery.isEmptyObject/
+jQuery.isEmptyObject	R	jQuery.isEmptyObject()										
+jQuery.isFunction()	A			Utilities							<section class="prog__container"><p>Determine if the argument passed is a JavaScript function object. </p><pre><code>jQuery.isFunction(obj) → boolean</code></pre></section>	https://api.jquery.com/jQuery.isFunction/
+jQuery.isFunction	R	jQuery.isFunction()										
+jQuery.isNumeric()	A			Utilities							<section class="prog__container"><p>Determines whether its argument represents a JavaScript number.</p><pre><code>jQuery.isNumeric(value) → Boolean</code></pre></section>	https://api.jquery.com/jQuery.isNumeric/
+jQuery.isNumeric	R	jQuery.isNumeric()										
+jQuery.isPlainObject()	A			Utilities							<section class="prog__container"><p>Check to see if an object is a plain object (created using "{}" or "new Object").</p><pre><code>jQuery.isPlainObject(object) → Boolean</code></pre></section>	https://api.jquery.com/jQuery.isPlainObject/
+jQuery.isPlainObject	R	jQuery.isPlainObject()										
+jQuery.isWindow()	A			Utilities							<section class="prog__container"><p>Determine whether the argument is a window.</p><pre><code>jQuery.isWindow(obj) → boolean</code></pre></section>	https://api.jquery.com/jQuery.isWindow/
+jQuery.isWindow	R	jQuery.isWindow()										
+jQuery.isXMLDoc()	A			Utilities							<section class="prog__container"><p>Check to see if a DOM node is within an XML document (or is an XML document).</p><pre><code>jQuery.isXMLDoc(node) → Boolean</code></pre></section>	https://api.jquery.com/jQuery.isXMLDoc/
+jQuery.isXMLDoc	R	jQuery.isXMLDoc()										
+jQuery.makeArray()	A			Utilities							<section class="prog__container"><p>Convert an array-like object into a true JavaScript array.</p><pre><code>jQuery.makeArray(obj) → Array</code></pre></section>	https://api.jquery.com/jQuery.makeArray/
+jQuery.makeArray	R	jQuery.makeArray()										
+jQuery.map()	A			Utilities							<section class="prog__container"><p>Translate all items in an array or object to new array of items.</p><pre><code>jQuery.map(array, callback) → Array\njQuery.map(object, callback) → Array</code></pre></section>	https://api.jquery.com/jQuery.map/
+jQuery.map	R	jQuery.map()										
+jQuery.merge()	A			Utilities							<section class="prog__container"><p>Merge the contents of two arrays together into the first array. </p><pre><code>jQuery.merge(first, second) → Array</code></pre></section>	https://api.jquery.com/jQuery.merge/
+jQuery.merge	R	jQuery.merge()										
+jQuery.noConflict()	A			Core\\nMiscellaneous\\nSetup Methods							<section class="prog__container"><p>Relinquish jQuery's control of the $ variable.</p><pre><code>jQuery.noConflict(removeAll) → Object</code></pre></section>	https://api.jquery.com/jQuery.noConflict/
+jQuery.noConflict	R	jQuery.noConflict()										
+jQuery.noop()	A			Utilities							<section class="prog__container"><p>An empty function.</p><pre><code>jQuery.noop() → undefined</code></pre></section>	https://api.jquery.com/jQuery.noop/
+jQuery.noop	R	jQuery.noop()										
+jQuery.now()	A			Utilities							<section class="prog__container"><p>Return a number representing the current time.</p><pre><code>jQuery.now() → Number</code></pre></section>	https://api.jquery.com/jQuery.now/
+jQuery.now	R	jQuery.now()										
+jQuery.param()	A			Miscellaneous\\nCollection Manipulation\\nForms\\nAjax\\nHelper Functions							<section class="prog__container"><p>Create a serialized representation of an array, a plain object, or a jQuery object suitable for use in a URL query string or Ajax request. In case a jQuery object is passed, it should contain input elements with name/value properties.</p><pre><code>jQuery.param(obj) → String\njQuery.param(obj, traditional) → String</code></pre></section>	https://api.jquery.com/jQuery.param/
+jQuery.param	R	jQuery.param()										
+jQuery.parseHTML()	A			Utilities							<section class="prog__container"><p>Parses a string into an array of DOM nodes.</p><pre><code>jQuery.parseHTML(data, context, keepScripts) → Array</code></pre></section>	https://api.jquery.com/jQuery.parseHTML/
+jQuery.parseHTML	R	jQuery.parseHTML()										
+jQuery.parseJSON()	A			Utilities							<section class="prog__container"><p>Takes a well-formed JSON string and returns the resulting JavaScript value.</p><pre><code>jQuery.parseJSON(json) → String|Number|Object|Array|Boolean</code></pre></section>	https://api.jquery.com/jQuery.parseJSON/
+jQuery.parseJSON	R	jQuery.parseJSON()										
+jQuery.parseXML()	A			Utilities							<section class="prog__container"><p>Parses a string into an XML document.</p><pre><code>jQuery.parseXML(data) → XMLDocument</code></pre></section>	https://api.jquery.com/jQuery.parseXML/
+jQuery.parseXML	R	jQuery.parseXML()										
+jQuery.post()	A			Ajax\\nShorthand Methods							<section class="prog__container"><p>Load data from the server using a HTTP POST request.</p><pre><code>jQuery.post(url, data, success, dataType) → jqXHR\njQuery.post(settings) → jqXHR</code></pre></section>	https://api.jquery.com/jQuery.post/
+jQuery.post	R	jQuery.post()										
+jQuery.proxy()	A			Events\\nEvent Handler Attachment\\nUtilities							<section class="prog__container"><p>Takes a function and returns a new one that will always have a particular context.</p><pre><code>jQuery.proxy(function, context) → Function\njQuery.proxy(context, name) → Function\njQuery.proxy(function, context, additionalArguments) → Function\njQuery.proxy(context, name, additionalArguments) → Function</code></pre></section>	https://api.jquery.com/jQuery.proxy/
+jQuery.proxy	R	jQuery.proxy()										
+jQuery.queue()	A			Data\\nUtilities							<section class="prog__container"><p>Show the queue of functions to be executed on the matched element.</p><pre><code>jQuery.queue(element, queueName) → Array</code></pre>\n<p>Manipulate the queue of functions to be executed on the matched element.</p><pre><code>jQuery.queue(element, queueName, newQueue) → jQuery\njQuery.queue(element, queueName, callback) → jQuery</code></pre></section>	https://api.jquery.com/jQuery.queue/
+jQuery.queue	R	jQuery.queue()										
+jQuery.readyException()	A			Core							<section class="prog__container"><p>Handles errors thrown synchronously in functions wrapped in jQuery().</p><pre><code>jQuery.readyException(error) → Selector</code></pre></section>	https://api.jquery.com/jQuery.readyException/
+jQuery.readyException	R	jQuery.readyException()										
+jQuery.removeData()	A			Data\\nUtilities							<section class="prog__container"><p>Remove a previously-stored piece of data.</p><pre><code>jQuery.removeData(element, name) → jQuery</code></pre></section>	https://api.jquery.com/jQuery.removeData/
+jQuery.removeData	R	jQuery.removeData()										
+jquery	R	.jquery										
+jQuery	R	jQuery()										
+jQuery.speed	A			Effects\\nCustom Effects							<section class="prog__container"><p>Creates an object containing a set of properties ready to be used in the definition of custom animations.</p><pre><code>jQuery.speed(duration, settings) → PlainObject\njQuery.speed(duration, easing, complete) → PlainObject\njQuery.speed(settings) → PlainObject</code></pre></section>	https://api.jquery.com/jQuery.speed/
+jQuery.sub()	A			Core							<section class="prog__container"><p>Creates a new copy of jQuery whose properties and methods can be modified without affecting the original jQuery object.</p><pre><code>jQuery.sub() → jQuery</code></pre></section>	https://api.jquery.com/jQuery.sub/
+jQuery.sub	R	jQuery.sub()										
+jQuery.support	A			Properties\\nGlobal Jquery Object Properties\\nUtilities							<section class="prog__container"><p>A collection of properties that represent the presence of different browser features or bugs. Intended for jQuery's internal use; specific properties may be removed when they are no longer needed internally to improve page startup performance. For your own project's feature-detection needs, we strongly recommend the use of an external library such as Modernizr instead of dependency on properties in jQuery.support.</p><pre><code>jQuery.support → Object</code></pre></section>	https://api.jquery.com/jQuery.support/
+jQuery.trim()	A			Utilities							<section class="prog__container"><p>Remove the whitespace from the beginning and end of a string.</p><pre><code>jQuery.trim(str) → String</code></pre></section>	https://api.jquery.com/jQuery.trim/
+jQuery.trim	R	jQuery.trim()										
+jQuery.type()	A			Utilities							<section class="prog__container"><p>Determine the internal JavaScript [[Class]] of an object.</p><pre><code>jQuery.type(obj) → String</code></pre></section>	https://api.jquery.com/jQuery.type/
+jQuery.type	R	jQuery.type()										
+jQuery.unique()	A			Utilities							<section class="prog__container"><p>Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.</p><pre><code>jQuery.unique(array) → Array</code></pre></section>	https://api.jquery.com/jQuery.unique/
+jQuery.unique	R	jQuery.unique()										
+jQuery.uniqueSort()	A			Utilities							<section class="prog__container"><p>Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.</p><pre><code>jQuery.uniqueSort(array) → Array</code></pre></section>	https://api.jquery.com/jQuery.uniqueSort/
+jQuery.uniqueSort	R	jQuery.uniqueSort()										
+jQuery.when()	A			Core\\nDeferred Object							<section class="prog__container"><p>Provides a way to execute callback functions based on zero or more objects, usually Deferred objects that represent asynchronous events.</p><pre><code>jQuery.when(deferreds) → Promise</code></pre></section>	https://api.jquery.com/jQuery.when/
+jQuery.when	R	jQuery.when()										
+.keydown()	A			Events\\nKeyboard Events							<section class="prog__container"><p>Bind an event handler to the "keydown" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).keydown(handler) → jQuery\n$(selector).keydown(eventData, handler) → jQuery\n$(selector).keydown() → jQuery</code></pre></section>	https://api.jquery.com/keydown/
+.keydown	R	.keydown()										
+keydown()	R	.keydown()										
+keydown	R	.keydown()										
+.keypress()	A			Events\\nKeyboard Events							<section class="prog__container"><p>Bind an event handler to the "keypress" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).keypress(handler) → jQuery\n$(selector).keypress(eventData, handler) → jQuery\n$(selector).keypress() → jQuery</code></pre></section>	https://api.jquery.com/keypress/
+.keypress	R	.keypress()										
+keypress()	R	.keypress()										
+keypress	R	.keypress()										
+.keyup()	A			Events\\nKeyboard Events							<section class="prog__container"><p>Bind an event handler to the "keyup" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).keyup(handler) → jQuery\n$(selector).keyup(eventData, handler) → jQuery\n$(selector).keyup() → jQuery</code></pre></section>	https://api.jquery.com/keyup/
+.keyup	R	.keyup()										
+keyup()	R	.keyup()										
+keyup	R	.keyup()										
+:lang() Selector	A			Selectors\\nBasic Filter Selectors							<section class="prog__container"><p>Selects all elements of the specified language.</p><pre><code>$(":lang(language)") → jQuery</code></pre></section>	https://api.jquery.com/lang-selector/
+lang selector	R	:lang() Selector										
+.last()	A			Traversing\\nFiltering							<section class="prog__container"><p>Reduce the set of matched elements to the final one in the set.</p><pre><code>$(selector).last() → jQuery</code></pre></section>	https://api.jquery.com/last/
+:last-child Selector	A			Selectors\\nChild Filter Selectors							<section class="prog__container"><p>Selects all elements that are the last child of their parent.</p><pre><code>$(":last-child") → jQuery</code></pre></section>	https://api.jquery.com/last-child-selector/
+last child selector	R	:last-child Selector										
+:last-of-type Selector	A			Selectors\\nChild Filter Selectors							<section class="prog__container"><p>Selects all elements that are the last among siblings of the same element name.</p><pre><code>$(":last-of-type") → jQuery</code></pre></section>	https://api.jquery.com/last-of-type-selector/
+last of type selector	R	:last-of-type Selector										
+.last	R	.last()										
+last()	R	.last()										
+last	R	.last()										
+:last Selector	A			Selectors\\nBasic Filter Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects the last matched element.</p><pre><code>$(":last") → jQuery</code></pre></section>	https://api.jquery.com/last-selector/
+last selector	R	:last Selector										
+.length	A			Properties\\nJquery Object Instance Properties							<section class="prog__container"><p>The number of elements in the jQuery object.</p><pre><code>$(selector).length → Integer</code></pre></section>	https://api.jquery.com/length/
+length	R	.length										
+.live()	A			Events\\nEvent Handler Attachment							<section class="prog__container"><p>Attach an event handler for all elements which match the current selector, now and in the future.</p><pre><code>$(selector).live(events, handler) → jQuery\n$(selector).live(events, data, handler) → jQuery\n$(selector).live(events) → jQuery</code></pre></section>	https://api.jquery.com/live/
+.live	R	.live()										
+live()	R	.live()										
+live	R	.live()										
+.load()	A			Ajax\\nShorthand Methods							<section class="prog__container"><p>Load data from the server and place the returned HTML into the matched element.</p><pre><code>$(selector).load(url, data, complete) → jQuery</code></pre></section>	https://api.jquery.com/load/
+.load	R	.load()										
+load()	R	.load()										
+load	R	.load()										
+.locked()	R	callbacks.locked()										
+.locked	R	callbacks.locked()										
+locked()	R	callbacks.locked()										
+locked	R	callbacks.locked()										
+.lock()	R	callbacks.lock()										
+.lock	R	callbacks.lock()										
+lock()	R	callbacks.lock()										
+lock	R	callbacks.lock()										
+:lt() Selector	A			Selectors\\nBasic Filter Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Select all elements at an index less than index within the matched set.</p><pre><code>$(":lt(index)") → jQuery\n$(":lt(-index)") → jQuery</code></pre></section>	https://api.jquery.com/lt-selector/
+lt selector	R	:lt() Selector										
+make array	R	jQuery.makeArray()										
+makearray	R	jQuery.makeArray()										
+.makeArray()	R	jQuery.makeArray()										
+.makeArray	R	jQuery.makeArray()										
+$.makeArray()	R	jQuery.makeArray()										
+$.makeArray	R	jQuery.makeArray()										
+makeArray()	R	jQuery.makeArray()										
+makeArray	R	jQuery.makeArray()										
+.map()	A			Traversing\\nFiltering							<section class="prog__container"><p>Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.</p><pre><code>$(selector).map(callback) → jQuery</code></pre></section>	https://api.jquery.com/map/
+$.map()	R	jQuery.map()										
+$.map	R	jQuery.map()										
+.map	R	.map()										
+map()	R	.map()										
+map	R	.map()										
+.merge()	R	jQuery.merge()										
+.merge	R	jQuery.merge()										
+$.merge()	R	jQuery.merge()										
+$.merge	R	jQuery.merge()										
+merge()	R	jQuery.merge()										
+merge	R	jQuery.merge()										
+meta key	R	event.metaKey										
+metakey	R	event.metaKey										
+.metaKey	R	event.metaKey										
+metaKey	R	event.metaKey										
+.mousedown()	A			Events\\nMouse Events							<section class="prog__container"><p>Bind an event handler to the "mousedown" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).mousedown(handler) → jQuery\n$(selector).mousedown(eventData, handler) → jQuery\n$(selector).mousedown() → jQuery</code></pre></section>	https://api.jquery.com/mousedown/
+.mousedown	R	.mousedown()										
+mouse down	R	.mousedown()										
+mousedown()	R	.mousedown()										
+mousedown	R	.mousedown()										
+.mouseenter()	A			Events\\nMouse Events							<section class="prog__container"><p>Bind an event handler to be fired when the mouse enters an element, or trigger that handler on an element.</p><pre><code>$(selector).mouseenter(handler) → jQuery\n$(selector).mouseenter(eventData, handler) → jQuery\n$(selector).mouseenter() → jQuery</code></pre></section>	https://api.jquery.com/mouseenter/
+.mouseenter	R	.mouseenter()										
+mouse enter	R	.mouseenter()										
+mouseenter()	R	.mouseenter()										
+mouseenter	R	.mouseenter()										
+.mouseleave()	A			Events\\nMouse Events							<section class="prog__container"><p>Bind an event handler to be fired when the mouse leaves an element, or trigger that handler on an element.</p><pre><code>$(selector).mouseleave(handler) → jQuery\n$(selector).mouseleave(eventData, handler) → jQuery\n$(selector).mouseleave() → jQuery</code></pre></section>	https://api.jquery.com/mouseleave/
+.mouseleave	R	.mouseleave()										
+mouse leave	R	.mouseleave()										
+mouseleave()	R	.mouseleave()										
+mouseleave	R	.mouseleave()										
+.mousemove()	A			Events\\nMouse Events							<section class="prog__container"><p>Bind an event handler to the "mousemove" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).mousemove(handler) → jQuery\n$(selector).mousemove(eventData, handler) → jQuery\n$(selector).mousemove() → jQuery</code></pre></section>	https://api.jquery.com/mousemove/
+.mousemove	R	.mousemove()										
+mouse move	R	.mousemove()										
+mousemove()	R	.mousemove()										
+mousemove	R	.mousemove()										
+.mouseout()	A			Events\\nMouse Events							<section class="prog__container"><p>Bind an event handler to the "mouseout" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).mouseout(handler) → jQuery\n$(selector).mouseout(eventData, handler) → jQuery\n$(selector).mouseout() → jQuery</code></pre></section>	https://api.jquery.com/mouseout/
+.mouseout	R	.mouseout()										
+mouse out	R	.mouseout()										
+mouseout()	R	.mouseout()										
+mouseout	R	.mouseout()										
+.mouseover()	A			Events\\nMouse Events							<section class="prog__container"><p>Bind an event handler to the "mouseover" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).mouseover(handler) → jQuery\n$(selector).mouseover(eventData, handler) → jQuery\n$(selector).mouseover() → jQuery</code></pre></section>	https://api.jquery.com/mouseover/
+.mouseover	R	.mouseover()										
+mouse over	R	.mouseover()										
+mouseover()	R	.mouseover()										
+mouseover	R	.mouseover()										
+.mouseup()	A			Events\\nMouse Events							<section class="prog__container"><p>Bind an event handler to the "mouseup" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).mouseup(handler) → jQuery\n$(selector).mouseup(eventData, handler) → jQuery\n$(selector).mouseup() → jQuery</code></pre></section>	https://api.jquery.com/mouseup/
+.mouseup	R	.mouseup()										
+mouse up	R	.mouseup()										
+mouseup()	R	.mouseup()										
+mouseup	R	.mouseup()										
+Multiple Attribute Selector	A			Selectors\\nAttribute Selectors							<section class="prog__container"><p>Matches elements that match all of the specified attribute filters.</p><pre><code>$("[attributeFilter1][attributeFilter2][attributeFilterN]") → jQuery</code></pre></section>	https://api.jquery.com/multiple-attribute-selector/
+multiple attribute selector	R	Multiple Attribute Selector										
+Multiple Selector	A			Selectors\\nBasic Css Selectors							<section class="prog__container"><p>Selects the combined results of all the specified selectors.</p><pre><code>$("selector1, selector2, selectorN") → jQuery</code></pre></section>	https://api.jquery.com/multiple-selector/
+multiple selector	R	Multiple Selector										
+.namespace	R	event.namespace										
+namespace	R	event.namespace										
+Next Adjacent Selector	A			Selectors\\nHierarchy Selectors							<section class="prog__container"><p>Selects all next elements matching "next" that are immediately preceded by a sibling "prev".</p><pre><code>$("prev + next") → jQuery</code></pre></section>	https://api.jquery.com/next-adjacent-selector/
+next adjacent selector	R	Next Adjacent Selector										
+.nextAll()	A			Traversing\\nTree Traversal							<section class="prog__container"><p>Get all following siblings of each element in the set of matched elements, optionally filtered by a selector.</p><pre><code>$(selector).nextAll(selector) → jQuery</code></pre></section>	https://api.jquery.com/nextAll/
+next all	R	.nextAll()										
+nextall	R	.nextAll()										
+.nextAll	R	.nextAll()										
+nextAll()	R	.nextAll()										
+nextAll	R	.nextAll()										
+.next()	A			Traversing\\nTree Traversal							<section class="prog__container"><p>Get the immediately following sibling of each element in the set of matched elements. If a selector is provided, it retrieves the next sibling only if it matches that selector.</p><pre><code>$(selector).next(selector) → jQuery</code></pre></section>	https://api.jquery.com/next/
+.next	R	.next()										
+next()	R	.next()										
+next	R	.next()										
+Next Siblings Selector	A			Selectors\\nHierarchy Selectors							<section class="prog__container"><p>Selects all sibling elements that follow after the "prev" element, have the same parent, and match the filtering "siblings" selector.</p><pre><code>$("prev ~ siblings") → jQuery</code></pre></section>	https://api.jquery.com/next-siblings-selector/
+next siblings selector	R	Next Siblings Selector										
+.nextUntil()	A			Traversing\\nTree Traversal							<section class="prog__container"><p>Get all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.</p><pre><code>$(selector).nextUntil(selector, filter) → jQuery\n$(selector).nextUntil(element, filter) → jQuery</code></pre></section>	https://api.jquery.com/nextUntil/
+next until	R	.nextUntil()										
+nextuntil	R	.nextUntil()										
+.nextUntil	R	.nextUntil()										
+nextUntil()	R	.nextUntil()										
+nextUntil	R	.nextUntil()										
+no conflict	R	jQuery.noConflict()										
+noconflict	R	jQuery.noConflict()										
+.noConflict()	R	jQuery.noConflict()										
+.noConflict	R	jQuery.noConflict()										
+$.noConflict()	R	jQuery.noConflict()										
+$.noConflict	R	jQuery.noConflict()										
+noConflict()	R	jQuery.noConflict()										
+noConflict	R	jQuery.noConflict()										
+.noop()	R	jQuery.noop()										
+.noop	R	jQuery.noop()										
+$.noop()	R	jQuery.noop()										
+$.noop	R	jQuery.noop()										
+noop()	R	jQuery.noop()										
+noop	R	jQuery.noop()										
+.not()	A			Traversing\\nFiltering\\nMiscellaneous Traversal							<section class="prog__container"><p>Remove elements from the set of matched elements.</p><pre><code>$(selector).not(selector) → jQuery\n$(selector).not(function) → jQuery\n$(selector).not(selection) → jQuery</code></pre></section>	https://api.jquery.com/not/
+.notify()	R	deferred.notify()										
+.notify	R	deferred.notify()										
+notify()	R	deferred.notify()										
+notify	R	deferred.notify()										
+notify with	R	deferred.notifyWith()										
+notifywith	R	deferred.notifyWith()										
+.notifyWith()	R	deferred.notifyWith()										
+.notifyWith	R	deferred.notifyWith()										
+notifyWith()	R	deferred.notifyWith()										
+notifyWith	R	deferred.notifyWith()										
+.not	R	.not()										
+not()	R	.not()										
+not	R	.not()										
+:not() Selector	A			Selectors\\nBasic Filter Selectors							<section class="prog__container"><p>Selects all elements that do not match the given selector.</p><pre><code>$(":not(selector)") → jQuery</code></pre></section>	https://api.jquery.com/not-selector/
+not selector	R	:not() Selector										
+.now()	R	jQuery.now()										
+.now	R	jQuery.now()										
+$.now()	R	jQuery.now()										
+$.now	R	jQuery.now()										
+now()	R	jQuery.now()										
+now	R	jQuery.now()										
+:nth-child() Selector	A			Selectors\\nChild Filter Selectors							<section class="prog__container"><p>Selects all elements that are the nth-child of their parent.</p><pre><code>$(":nth-child(index/even/odd/equation)") → jQuery</code></pre></section>	https://api.jquery.com/nth-child-selector/
+nth child selector	R	:nth-child() Selector										
+:nth-last-child() Selector	A			Selectors\\nChild Filter Selectors							<section class="prog__container"><p>Selects all elements that are the nth-child of their parent, counting from the last element to the first.</p><pre><code>$(":nth-last-child(index/even/odd/equation)") → jQuery</code></pre></section>	https://api.jquery.com/nth-last-child-selector/
+nth last child selector	R	:nth-last-child() Selector										
+:nth-last-of-type() Selector	A			Selectors\\nChild Filter Selectors							<section class="prog__container"><p>Selects all the elements that are the nth-child of their parent in relation to siblings with the same element name, counting from the last element to the first.</p><pre><code>$(":nth-last-of-type(index/even/odd/equation)") → jQuery</code></pre></section>	https://api.jquery.com/nth-last-of-type-selector/
+nth last of type selector	R	:nth-last-of-type() Selector										
+:nth-of-type() Selector	A			Selectors\\nChild Filter Selectors							<section class="prog__container"><p>Selects all elements that are the nth child of their parent in relation to siblings with the same element name.</p><pre><code>$(":nth-of-type(index/even/odd/equation)") → jQuery</code></pre></section>	https://api.jquery.com/nth-of-type-selector/
+nth of type selector	R	:nth-of-type() Selector										
+:odd Selector	A			Selectors\\nBasic Filter Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects odd elements, zero-indexed.  See also even.</p><pre><code>$(":odd") → jQuery</code></pre></section>	https://api.jquery.com/odd-selector/
+odd selector	R	:odd Selector										
+.off()	A			Events\\nEvent Handler Attachment							<section class="prog__container"><p>Remove an event handler.</p><pre><code>$(selector).off(events, selector, handler) → jQuery\n$(selector).off(events, selector) → jQuery\n$(selector).off(event) → jQuery\n$(selector).off() → jQuery</code></pre></section>	https://api.jquery.com/off/
+.off	R	.off()										
+off()	R	.off()										
+off	R	.off()										
+.offset()	A			Css\\nOffset\\nManipulation\\nStyle Properties							<section class="prog__container"><p>Get the current coordinates of the first element in the set of matched elements, relative to the document.</p><pre><code>$(selector).offset() → Object</code></pre>\n<p>Set the current coordinates of every element in the set of matched elements, relative to the document.</p><pre><code>$(selector).offset(coordinates) → jQuery\n$(selector).offset(function) → jQuery</code></pre></section>	https://api.jquery.com/offset/
+.offsetParent()	A			Offset\\nTraversing\\nTree Traversal							<section class="prog__container"><p>Get the closest ancestor element that is positioned.</p><pre><code>$(selector).offsetParent() → jQuery</code></pre></section>	https://api.jquery.com/offsetParent/
+offset parent	R	.offsetParent()										
+offsetparent	R	.offsetParent()										
+.offsetParent	R	.offsetParent()										
+offsetParent()	R	.offsetParent()										
+offsetParent	R	.offsetParent()										
+.offset	R	.offset()										
+offset()	R	.offset()										
+offset	R	.offset()										
+.on()	A			Events\\nEvent Handler Attachment							<section class="prog__container"><p>Attach an event handler function for one or more events to the selected elements.</p><pre><code>$(selector).on(events, selector, data, handler) → jQuery\n$(selector).on(events, selector, data) → jQuery</code></pre></section>	https://api.jquery.com/on/
+.one()	A			Events\\nEvent Handler Attachment							<section class="prog__container"><p>Attach a handler to an event for the elements. The handler is executed at most once per element per event type.</p><pre><code>$(selector).one(events, data, handler) → jQuery\n$(selector).one(events, selector, data, handler) → jQuery\n$(selector).one(events, selector, data) → jQuery</code></pre></section>	https://api.jquery.com/one/
+.one	R	.one()										
+one()	R	.one()										
+one	R	.one()										
+:only-child Selector	A			Selectors\\nChild Filter Selectors							<section class="prog__container"><p>Selects all elements that are the only child of their parent.</p><pre><code>$(":only-child") → jQuery</code></pre></section>	https://api.jquery.com/only-child-selector/
+only child selector	R	:only-child Selector										
+:only-of-type Selector	A			Selectors\\nChild Filter Selectors							<section class="prog__container"><p>Selects all elements that have no siblings with the same element name.</p><pre><code>$(":only-of-type") → jQuery</code></pre></section>	https://api.jquery.com/only-of-type-selector/
+only of type selector	R	:only-of-type Selector										
+.on	R	.on()										
+on()	R	.on()										
+on	R	.on()										
+.outerHeight()	A			Css\\nDimensions\\nManipulation\\nStyle Properties							<section class="prog__container"><p>Get the current computed outer height (including padding, border, and optionally margin) for the first element in the set of matched elements.</p><pre><code>$(selector).outerHeight(includeMargin) → Number</code></pre>\n<p>Set the CSS outer height of each element in the set of matched elements.</p><pre><code>$(selector).outerHeight(value) → jQuery\n$(selector).outerHeight(function(index, height)) → jQuery</code></pre></section>	https://api.jquery.com/outerHeight/
+outer height	R	.outerHeight()										
+outerheight	R	.outerHeight()										
+.outerHeight	R	.outerHeight()										
+outerHeight()	R	.outerHeight()										
+outerHeight	R	.outerHeight()										
+.outerWidth()	A			Css\\nDimensions\\nManipulation\\nStyle Properties							<section class="prog__container"><p>Get the current computed outer width (including padding, border, and optionally margin) for the first element in the set of matched elements.</p><pre><code>$(selector).outerWidth(includeMargin) → Number</code></pre>\n<p>Set the CSS outer width of each element in the set of matched elements.</p><pre><code>$(selector).outerWidth(value) → jQuery\n$(selector).outerWidth(function(index, width)) → jQuery</code></pre></section>	https://api.jquery.com/outerWidth/
+outer width	R	.outerWidth()										
+outerwidth	R	.outerWidth()										
+.outerWidth	R	.outerWidth()										
+outerWidth()	R	.outerWidth()										
+outerWidth	R	.outerWidth()										
+page x	R	event.pageX										
+pagex	R	event.pageX										
+.pageX	R	event.pageX										
+pageX	R	event.pageX										
+page y	R	event.pageY										
+pagey	R	event.pageY										
+.pageY	R	event.pageY										
+pageY	R	event.pageY										
+.param()	R	jQuery.param()										
+.param	R	jQuery.param()										
+$.param()	R	jQuery.param()										
+$.param	R	jQuery.param()										
+param()	R	jQuery.param()										
+param	R	jQuery.param()										
+.parent()	A			Traversing\\nTree Traversal							<section class="prog__container"><p>Get the parent of each element in the current set of matched elements, optionally filtered by a selector.</p><pre><code>$(selector).parent(selector) → jQuery</code></pre></section>	https://api.jquery.com/parent/
+.parent	R	.parent()										
+parent()	R	.parent()										
+parent	R	.parent()										
+.parents()	A			Traversing\\nTree Traversal							<section class="prog__container"><p>Get the ancestors of each element in the current set of matched elements, optionally filtered by a selector.</p><pre><code>$(selector).parents(selector) → jQuery</code></pre></section>	https://api.jquery.com/parents/
+:parent Selector	A			Selectors\\nContent Filter Selector\\nJquery Selector Extensions							<section class="prog__container"><p>Select all elements that have at least one child node (either an element or text).</p><pre><code>$(":parent") → jQuery</code></pre></section>	https://api.jquery.com/parent-selector/
+parent selector	R	:parent Selector										
+.parents	R	.parents()										
+parents()	R	.parents()										
+parents	R	.parents()										
+.parentsUntil()	A			Traversing\\nTree Traversal							<section class="prog__container"><p>Get the ancestors of each element in the current set of matched elements, up to but not including the element matched by the selector, DOM node, or jQuery object.</p><pre><code>$(selector).parentsUntil(selector, filter) → jQuery\n$(selector).parentsUntil(element, filter) → jQuery</code></pre></section>	https://api.jquery.com/parentsUntil/
+parents until	R	.parentsUntil()										
+parentsuntil	R	.parentsUntil()										
+.parentsUntil	R	.parentsUntil()										
+parentsUntil()	R	.parentsUntil()										
+parentsUntil	R	.parentsUntil()										
+parse html	R	jQuery.parseHTML()										
+parsehtml	R	jQuery.parseHTML()										
+.parseHTML()	R	jQuery.parseHTML()										
+.parseHTML	R	jQuery.parseHTML()										
+$.parseHTML()	R	jQuery.parseHTML()										
+$.parseHTML	R	jQuery.parseHTML()										
+parseHTML()	R	jQuery.parseHTML()										
+parseHTML	R	jQuery.parseHTML()										
+parse json	R	jQuery.parseJSON()										
+parsejson	R	jQuery.parseJSON()										
+.parseJSON()	R	jQuery.parseJSON()										
+.parseJSON	R	jQuery.parseJSON()										
+$.parseJSON()	R	jQuery.parseJSON()										
+$.parseJSON	R	jQuery.parseJSON()										
+parseJSON()	R	jQuery.parseJSON()										
+parseJSON	R	jQuery.parseJSON()										
+parse xml	R	jQuery.parseXML()										
+parsexml	R	jQuery.parseXML()										
+.parseXML()	R	jQuery.parseXML()										
+.parseXML	R	jQuery.parseXML()										
+$.parseXML()	R	jQuery.parseXML()										
+$.parseXML	R	jQuery.parseXML()										
+parseXML()	R	jQuery.parseXML()										
+parseXML	R	jQuery.parseXML()										
+:password Selector	A			Selectors\\nForm Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects all elements of type password.</p><pre><code>$(":password") → jQuery</code></pre></section>	https://api.jquery.com/password-selector/
+password selector	R	:password Selector										
+.pipe()	R	deferred.pipe()										
+.pipe	R	deferred.pipe()										
+pipe()	R	deferred.pipe()										
+pipe	R	deferred.pipe()										
+.position()	A			Css\\nOffset\\nManipulation\\nStyle Properties							<section class="prog__container"><p>Get the current coordinates of the first element in the set of matched elements, relative to the offset parent.</p><pre><code>$(selector).position() → Object</code></pre></section>	https://api.jquery.com/position/
+.position	R	.position()										
+position()	R	.position()										
+position	R	.position()										
+.post()	R	jQuery.post()										
+.post	R	jQuery.post()										
+$.post()	R	jQuery.post()										
+$.post	R	jQuery.post()										
+post()	R	jQuery.post()										
+post	R	jQuery.post()										
+.prepend()	A			Manipulation\\nDom Insertion Inside							<section class="prog__container"><p>Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.</p><pre><code>$(selector).prepend(content, content) → jQuery\n$(selector).prepend(function) → jQuery</code></pre></section>	https://api.jquery.com/prepend/
+.prepend	R	.prepend()										
+prepend()	R	.prepend()										
+prepend	R	.prepend()										
+.prependTo()	A			Manipulation\\nDom Insertion Inside							<section class="prog__container"><p>Insert every element in the set of matched elements to the beginning of the target.</p><pre><code>$(selector).prependTo(target) → jQuery</code></pre></section>	https://api.jquery.com/prependTo/
+prepend to	R	.prependTo()										
+prependto	R	.prependTo()										
+.prependTo	R	.prependTo()										
+prependTo()	R	.prependTo()										
+prependTo	R	.prependTo()										
+.prevAll()	A			Traversing\\nTree Traversal							<section class="prog__container"><p>Get all preceding siblings of each element in the set of matched elements, optionally filtered by a selector.</p><pre><code>$(selector).prevAll(selector) → jQuery</code></pre></section>	https://api.jquery.com/prevAll/
+prev all	R	.prevAll()										
+prevall	R	.prevAll()										
+.prevAll	R	.prevAll()										
+prevAll()	R	.prevAll()										
+prevAll	R	.prevAll()										
+.prev()	A			Traversing\\nTree Traversal							<section class="prog__container"><p>Get the immediately preceding sibling of each element in the set of matched elements. If a selector is provided, it retrieves the previous sibling only if it matches that selector.</p><pre><code>$(selector).prev(selector) → jQuery</code></pre></section>	https://api.jquery.com/prev/
+prevent default	R	event.preventDefault()										
+preventdefault	R	event.preventDefault()										
+.preventDefault()	R	event.preventDefault()										
+.preventDefault	R	event.preventDefault()										
+preventDefault()	R	event.preventDefault()										
+preventDefault	R	event.preventDefault()										
+.prev	R	.prev()										
+prev()	R	.prev()										
+prev	R	.prev()										
+.prevUntil()	A			Traversing\\nTree Traversal							<section class="prog__container"><p>Get all preceding siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object.</p><pre><code>$(selector).prevUntil(selector, filter) → jQuery\n$(selector).prevUntil(element, filter) → jQuery</code></pre></section>	https://api.jquery.com/prevUntil/
+prev until	R	.prevUntil()										
+prevuntil	R	.prevUntil()										
+.prevUntil	R	.prevUntil()										
+prevUntil()	R	.prevUntil()										
+prevUntil	R	.prevUntil()										
+.progress()	R	deferred.progress()										
+.progress	R	deferred.progress()										
+progress()	R	deferred.progress()										
+progress	R	deferred.progress()										
+.promise()	A			Deferred Object							<section class="prog__container"><p> Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished. </p><pre><code>$(selector).promise(type, target) → Promise</code></pre></section>	https://api.jquery.com/promise/
+.promise	R	.promise()										
+promise()	R	.promise()										
+promise	R	.promise()										
+.prop()	A			Attributes\\nManipulation\\nGeneral Attributes							<section class="prog__container"><p>Get the value of a property for the first element in the set of matched elements.</p><pre><code>$(selector).prop(propertyName) → Anything</code></pre>\n<p>Set one or more properties for the set of matched elements.</p><pre><code>$(selector).prop(propertyName, value) → jQuery\n$(selector).prop(properties) → jQuery\n$(selector).prop(propertyName, function) → jQuery</code></pre></section>	https://api.jquery.com/prop/
+.prop	R	.prop()										
+prop()	R	.prop()										
+prop	R	.prop()										
+.proxy()	R	jQuery.proxy()										
+.proxy	R	jQuery.proxy()										
+$.proxy()	R	jQuery.proxy()										
+$.proxy	R	jQuery.proxy()										
+proxy()	R	jQuery.proxy()										
+proxy	R	jQuery.proxy()										
+.pushStack()	A			Internals							<section class="prog__container"><p>Add a collection of DOM elements onto the jQuery stack.</p><pre><code>$(selector).pushStack(elements) → jQuery\n$(selector).pushStack(elements, name, arguments) → jQuery</code></pre></section>	https://api.jquery.com/pushStack/
+push stack	R	.pushStack()										
+pushstack	R	.pushStack()										
+.pushStack	R	.pushStack()										
+pushStack()	R	.pushStack()										
+pushStack	R	.pushStack()										
+.queue()	A			Effects\\nCustom Effects\\nData\\nUtilities							<section class="prog__container"><p>Show the queue of functions to be executed on the matched elements.</p><pre><code>$(selector).queue(queueName) → Array</code></pre>\n<p>Manipulate the queue of functions to be executed, once for each matched element.</p><pre><code>$(selector).queue(queueName, newQueue) → jQuery\n$(selector).queue(queueName, callback) → jQuery</code></pre></section>	https://api.jquery.com/queue/
+$.queue()	R	jQuery.queue()										
+$.queue	R	jQuery.queue()										
+.queue	R	.queue()										
+queue()	R	.queue()										
+queue	R	.queue()										
+:radio Selector	A			Selectors\\nForm Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects all  elements of type radio.</p><pre><code>$(":radio") → jQuery</code></pre></section>	https://api.jquery.com/radio-selector/
+radio selector	R	:radio Selector										
+.ready()	A			Events\\nDocument Loading							<section class="prog__container"><p>Specify a function to execute when the DOM is fully loaded.</p><pre><code>$(selector).ready(handler) → jQuery</code></pre></section>	https://api.jquery.com/ready/
+ready exception	R	jQuery.readyException()										
+readyexception	R	jQuery.readyException()										
+.readyException()	R	jQuery.readyException()										
+.readyException	R	jQuery.readyException()										
+$.readyException()	R	jQuery.readyException()										
+$.readyException	R	jQuery.readyException()										
+readyException()	R	jQuery.readyException()										
+readyException	R	jQuery.readyException()										
+.ready	R	.ready()										
+ready()	R	.ready()										
+ready	R	.ready()										
+.reject()	R	deferred.reject()										
+.reject	R	deferred.reject()										
+reject()	R	deferred.reject()										
+reject	R	deferred.reject()										
+reject with	R	deferred.rejectWith()										
+rejectwith	R	deferred.rejectWith()										
+.rejectWith()	R	deferred.rejectWith()										
+.rejectWith	R	deferred.rejectWith()										
+rejectWith()	R	deferred.rejectWith()										
+rejectWith	R	deferred.rejectWith()										
+related target	R	event.relatedTarget										
+relatedtarget	R	event.relatedTarget										
+.relatedTarget	R	event.relatedTarget										
+relatedTarget	R	event.relatedTarget										
+.remove()	A			Manipulation\\nDom Removal							<section class="prog__container"><p>Remove the set of matched elements from the DOM.</p><pre><code>$(selector).remove(selector) → jQuery</code></pre></section>	https://api.jquery.com/remove/
+.removeAttr()	A			Attributes\\nManipulation\\nGeneral Attributes							<section class="prog__container"><p>Remove an attribute from each element in the set of matched elements.</p><pre><code>$(selector).removeAttr(attributeName) → jQuery</code></pre></section>	https://api.jquery.com/removeAttr/
+remove attr	R	.removeAttr()										
+removeattr	R	.removeAttr()										
+.removeAttr	R	.removeAttr()										
+removeAttr()	R	.removeAttr()										
+removeAttr	R	.removeAttr()										
+.removeClass()	A			Attributes\\nManipulation\\nClass Attribute\\nCss							<section class="prog__container"><p>Remove a single class, multiple classes, or all classes from each element in the set of matched elements.</p><pre><code>$(selector).removeClass(className) → jQuery\n$(selector).removeClass(function) → jQuery</code></pre></section>	https://api.jquery.com/removeClass/
+remove class	R	.removeClass()										
+removeclass	R	.removeClass()										
+.removeClass	R	.removeClass()										
+removeClass()	R	.removeClass()										
+removeClass	R	.removeClass()										
+.removeData()	A			Data\\nMiscellaneous\\nData Storage							<section class="prog__container"><p>Remove a previously-stored piece of data.</p><pre><code>$(selector).removeData(name) → jQuery\n$(selector).removeData(list) → jQuery</code></pre></section>	https://api.jquery.com/removeData/
+$.removeData()	R	jQuery.removeData()										
+$.removeData	R	jQuery.removeData()										
+remove data	R	.removeData()										
+removedata	R	.removeData()										
+.removeData	R	.removeData()										
+removeData()	R	.removeData()										
+removeData	R	.removeData()										
+.removeProp()	A			Attributes\\nManipulation\\nGeneral Attributes							<section class="prog__container"><p>Remove a property for the set of matched elements.</p><pre><code>$(selector).removeProp(propertyName) → jQuery</code></pre></section>	https://api.jquery.com/removeProp/
+remove prop	R	.removeProp()										
+removeprop	R	.removeProp()										
+.removeProp	R	.removeProp()										
+removeProp()	R	.removeProp()										
+removeProp	R	.removeProp()										
+.remove	R	.remove()										
+remove()	R	.remove()										
+remove	R	.remove()										
+.replaceAll()	A			Manipulation\\nDom Replacement							<section class="prog__container"><p>Replace each target element with the set of matched elements.</p><pre><code>$(selector).replaceAll(target) → jQuery</code></pre></section>	https://api.jquery.com/replaceAll/
+replace all	R	.replaceAll()										
+replaceall	R	.replaceAll()										
+.replaceAll	R	.replaceAll()										
+replaceAll()	R	.replaceAll()										
+replaceAll	R	.replaceAll()										
+.replaceWith()	A			Manipulation\\nDom Replacement							<section class="prog__container"><p>Replace each element in the set of matched elements with the provided new content and return the set of elements that was removed.</p><pre><code>$(selector).replaceWith(newContent) → jQuery\n$(selector).replaceWith(function) → jQuery</code></pre></section>	https://api.jquery.com/replaceWith/
+replace with	R	.replaceWith()										
+replacewith	R	.replaceWith()										
+.replaceWith	R	.replaceWith()										
+replaceWith()	R	.replaceWith()										
+replaceWith	R	.replaceWith()										
+:reset Selector	A			Selectors\\nForm Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects all elements of type reset.</p><pre><code>$(":reset") → jQuery</code></pre></section>	https://api.jquery.com/reset-selector/
+reset selector	R	:reset Selector										
+.resize()	A			Events\\nBrowser Events							<section class="prog__container"><p>Bind an event handler to the "resize" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).resize(handler) → jQuery\n$(selector).resize(eventData, handler) → jQuery\n$(selector).resize() → jQuery</code></pre></section>	https://api.jquery.com/resize/
+.resize	R	.resize()										
+resize()	R	.resize()										
+resize	R	.resize()										
+.resolve()	R	deferred.resolve()										
+.resolve	R	deferred.resolve()										
+resolve()	R	deferred.resolve()										
+resolve	R	deferred.resolve()										
+resolve with	R	deferred.resolveWith()										
+resolvewith	R	deferred.resolveWith()										
+.resolveWith()	R	deferred.resolveWith()										
+.resolveWith	R	deferred.resolveWith()										
+resolveWith()	R	deferred.resolveWith()										
+resolveWith	R	deferred.resolveWith()										
+.result	R	event.result										
+result	R	event.result										
+$.)	R	jQuery()										
+	R	jQuery()										
+:root Selector	A			Selectors\\nBasic Filter Selectors							<section class="prog__container"><p>Selects the element that is the root of the document.</p><pre><code>$(":root") → jQuery</code></pre></section>	https://api.jquery.com/root-selector/
+root selector	R	:root Selector										
+.scroll()	A			Events\\nBrowser Events							<section class="prog__container"><p>Bind an event handler to the "scroll" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).scroll(handler) → jQuery\n$(selector).scroll(eventData, handler) → jQuery\n$(selector).scroll() → jQuery</code></pre></section>	https://api.jquery.com/scroll/
+.scrollLeft()	A			Css\\nOffset\\nManipulation\\nStyle Properties							<section class="prog__container"><p>Get the current horizontal position of the scroll bar for the first element in the set of matched elements.</p><pre><code>$(selector).scrollLeft() → Integer</code></pre>\n<p>Set the current horizontal position of the scroll bar for each of the set of matched elements.</p><pre><code>$(selector).scrollLeft(value) → jQuery</code></pre></section>	https://api.jquery.com/scrollLeft/
+scroll left	R	.scrollLeft()										
+scrollleft	R	.scrollLeft()										
+.scrollLeft	R	.scrollLeft()										
+scrollLeft()	R	.scrollLeft()										
+scrollLeft	R	.scrollLeft()										
+.scroll	R	.scroll()										
+scroll()	R	.scroll()										
+scroll	R	.scroll()										
+.scrollTop()	A			Css\\nOffset\\nManipulation\\nStyle Properties							<section class="prog__container"><p>Get the current vertical position of the scroll bar for the first element in the set of matched elements or set the vertical position of the scroll bar for every matched element.</p><pre><code>$(selector).scrollTop() → Number</code></pre>\n<p>Set the current vertical position of the scroll bar for each of the set of matched elements.</p><pre><code>$(selector).scrollTop(value) → jQuery</code></pre></section>	https://api.jquery.com/scrollTop/
+scroll top	R	.scrollTop()										
+scrolltop	R	.scrollTop()										
+.scrollTop	R	.scrollTop()										
+scrollTop()	R	.scrollTop()										
+scrollTop	R	.scrollTop()										
+.select()	A			Events\\nForm Events\\nForms							<section class="prog__container"><p>Bind an event handler to the "select" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).select(handler) → jQuery\n$(selector).select(eventData, handler) → jQuery\n$(selector).select() → jQuery</code></pre></section>	https://api.jquery.com/select/
+:selected Selector	A			Selectors\\nForm Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects all elements that are selected.</p><pre><code>$(":selected") → jQuery</code></pre></section>	https://api.jquery.com/selected-selector/
+selected selector	R	:selected Selector										
+.selector	A			Internals\\nProperties\\nGlobal Jquery Object Properties							<section class="prog__container"><p>A selector representing selector passed to jQuery(), if any, when creating the original set.</p><pre><code>$(selector).selector → String</code></pre></section>	https://api.jquery.com/selector/
+selector	R	.selector										
+.select	R	.select()										
+select()	R	.select()										
+select	R	.select()										
+.serialize()	A			Forms\\nAjax\\nHelper Functions							<section class="prog__container"><p>Encode a set of form elements as a string for submission.</p><pre><code>$(selector).serialize() → String</code></pre></section>	https://api.jquery.com/serialize/
+.serializeArray()	A			Forms\\nAjax\\nHelper Functions							<section class="prog__container"><p>Encode a set of form elements as an array of names and values.</p><pre><code>$(selector).serializeArray() → Array</code></pre></section>	https://api.jquery.com/serializeArray/
+serialize array	R	.serializeArray()										
+serializearray	R	.serializeArray()										
+.serializeArray	R	.serializeArray()										
+serializeArray()	R	.serializeArray()										
+serializeArray	R	.serializeArray()										
+.serialize	R	.serialize()										
+serialize()	R	.serialize()										
+serialize	R	.serialize()										
+.show()	A			Effects\\nBasics							<section class="prog__container"><p>Display the matched elements.</p><pre><code>$(selector).show() → jQuery\n$(selector).show(duration, complete) → jQuery\n$(selector).show(options) → jQuery\n$(selector).show(duration, easing, complete) → jQuery</code></pre></section>	https://api.jquery.com/show/
+.show	R	.show()										
+show()	R	.show()										
+show	R	.show()										
+.siblings()	A			Traversing\\nTree Traversal							<section class="prog__container"><p>Get the siblings of each element in the set of matched elements, optionally filtered by a selector.</p><pre><code>$(selector).siblings(selector) → jQuery</code></pre></section>	https://api.jquery.com/siblings/
+.siblings	R	.siblings()										
+siblings()	R	.siblings()										
+siblings	R	.siblings()										
+.size()	A			Miscellaneous\\nDom Element Methods							<section class="prog__container"><p>Return the number of elements in the jQuery object.</p><pre><code>$(selector).size() → Integer</code></pre></section>	https://api.jquery.com/size/
+.size	R	.size()										
+size()	R	.size()										
+size	R	.size()										
+.slice()	A			Traversing\\nFiltering							<section class="prog__container"><p>Reduce the set of matched elements to a subset specified by a range of indices.</p><pre><code>$(selector).slice(start, end) → jQuery</code></pre></section>	https://api.jquery.com/slice/
+.slice	R	.slice()										
+slice()	R	.slice()										
+slice	R	.slice()										
+.slideDown()	A			Effects\\nSliding							<section class="prog__container"><p>Display the matched elements with a sliding motion.</p><pre><code>$(selector).slideDown(duration, complete) → jQuery\n$(selector).slideDown(options) → jQuery\n$(selector).slideDown(duration, easing, complete) → jQuery</code></pre></section>	https://api.jquery.com/slideDown/
+slide down	R	.slideDown()										
+slidedown	R	.slideDown()										
+.slideDown	R	.slideDown()										
+slideDown()	R	.slideDown()										
+slideDown	R	.slideDown()										
+.slideToggle()	A			Effects\\nSliding							<section class="prog__container"><p>Display or hide the matched elements with a sliding motion.</p><pre><code>$(selector).slideToggle(duration, complete) → jQuery\n$(selector).slideToggle(options) → jQuery\n$(selector).slideToggle(duration, easing, complete) → jQuery</code></pre></section>	https://api.jquery.com/slideToggle/
+slide toggle	R	.slideToggle()										
+slidetoggle	R	.slideToggle()										
+.slideToggle	R	.slideToggle()										
+slideToggle()	R	.slideToggle()										
+slideToggle	R	.slideToggle()										
+.slideUp()	A			Effects\\nSliding							<section class="prog__container"><p>Hide the matched elements with a sliding motion.</p><pre><code>$(selector).slideUp(duration, complete) → jQuery\n$(selector).slideUp(options) → jQuery\n$(selector).slideUp(duration, easing, complete) → jQuery</code></pre></section>	https://api.jquery.com/slideUp/
+slide up	R	.slideUp()										
+slideup	R	.slideUp()										
+.slideUp	R	.slideUp()										
+slideUp()	R	.slideUp()										
+slideUp	R	.slideUp()										
+.speed	R	jQuery.speed										
+$.speed	R	jQuery.speed										
+speed	R	jQuery.speed										
+.state()	R	deferred.state()										
+.state	R	deferred.state()										
+state()	R	deferred.state()										
+state	R	deferred.state()										
+.stop()	A			Effects\\nCustom Effects							<section class="prog__container"><p>Stop the currently-running animation on the matched elements.</p><pre><code>$(selector).stop(clearQueue, jumpToEnd) → jQuery\n$(selector).stop(queue, clearQueue, jumpToEnd) → jQuery</code></pre></section>	https://api.jquery.com/stop/
+stop immediate propagation	R	event.stopImmediatePropagation()										
+stopimmediatepropagation	R	event.stopImmediatePropagation()										
+.stopImmediatePropagation()	R	event.stopImmediatePropagation()										
+.stopImmediatePropagation	R	event.stopImmediatePropagation()										
+stopImmediatePropagation()	R	event.stopImmediatePropagation()										
+stopImmediatePropagation	R	event.stopImmediatePropagation()										
+stop propagation	R	event.stopPropagation()										
+stoppropagation	R	event.stopPropagation()										
+.stopPropagation()	R	event.stopPropagation()										
+.stopPropagation	R	event.stopPropagation()										
+stopPropagation()	R	event.stopPropagation()										
+stopPropagation	R	event.stopPropagation()										
+.stop	R	.stop()										
+stop()	R	.stop()										
+stop	R	.stop()										
+.submit()	A			Events\\nForm Events\\nForms							<section class="prog__container"><p>Bind an event handler to the "submit" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).submit(handler) → jQuery\n$(selector).submit(eventData, handler) → jQuery\n$(selector).submit() → jQuery</code></pre></section>	https://api.jquery.com/submit/
+.submit	R	.submit()										
+submit()	R	.submit()										
+submit	R	.submit()										
+:submit Selector	A			Selectors\\nForm Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects all elements of type submit.</p><pre><code>$(":submit") → jQuery</code></pre></section>	https://api.jquery.com/submit-selector/
+submit selector	R	:submit Selector										
+.sub()	R	jQuery.sub()										
+.sub	R	jQuery.sub()										
+$.sub()	R	jQuery.sub()										
+$.sub	R	jQuery.sub()										
+sub()	R	jQuery.sub()										
+sub	R	jQuery.sub()										
+.support	R	jQuery.support										
+$.support	R	jQuery.support										
+support	R	jQuery.support										
+.target	R	event.target										
+target	R	event.target										
+:target Selector	A			Selectors\\nBasic Filter Selectors							<section class="prog__container"><p>Selects the target element indicated by the fragment identifier of the document's URI.</p><pre><code>$(":target") → jQuery</code></pre></section>	https://api.jquery.com/target-selector/
+target selector	R	:target Selector										
+.text()	A			Manipulation\\nDom Insertion Inside							<section class="prog__container"><p>Get the combined text contents of each element in the set of matched elements, including their descendants.</p><pre><code>$(selector).text() → String</code></pre>\n<p>Set the content of each element in the set of matched elements to the specified text.</p><pre><code>$(selector).text(text) → jQuery\n$(selector).text(function) → jQuery</code></pre></section>	https://api.jquery.com/text/
+.text	R	.text()										
+text()	R	.text()										
+text	R	.text()										
+:text Selector	A			Selectors\\nForm Selectors\\nJquery Selector Extensions							<section class="prog__container"><p>Selects all input elements of type text.</p><pre><code>$(":text") → jQuery</code></pre></section>	https://api.jquery.com/text-selector/
+text selector	R	:text Selector										
+.then()	R	deferred.then()										
+.then	R	deferred.then()										
+then()	R	deferred.then()										
+then	R	deferred.then()										
+time stamp	R	event.timeStamp										
+timestamp	R	event.timeStamp										
+.timeStamp	R	event.timeStamp										
+timeStamp	R	event.timeStamp										
+.toArray()	A			Miscellaneous\\nDom Element Methods							<section class="prog__container"><p>Retrieve all the elements contained in the jQuery set, as an array.</p><pre><code>$(selector).toArray() → Array</code></pre></section>	https://api.jquery.com/toArray/
+to array	R	.toArray()										
+toarray	R	.toArray()										
+.toArray	R	.toArray()										
+toArray()	R	.toArray()										
+toArray	R	.toArray()										
+.toggle()	A			Effects\\nBasics							<section class="prog__container"><p>Display or hide the matched elements.</p><pre><code>$(selector).toggle(duration, complete) → jQuery\n$(selector).toggle(options) → jQuery\n$(selector).toggle(duration, easing, complete) → jQuery\n$(selector).toggle(display) → jQuery</code></pre></section>	https://api.jquery.com/toggle/
+.toggleClass()	A			Attributes\\nManipulation\\nClass Attribute\\nCss							<section class="prog__container"><p>Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the state argument.</p><pre><code>$(selector).toggleClass(className) → jQuery\n$(selector).toggleClass(className, state) → jQuery\n$(selector).toggleClass(function, state) → jQuery</code></pre>\n<p></p><pre><code>$(selector).toggleClass(state) → jQuery</code></pre></section>	https://api.jquery.com/toggleClass/
+toggle class	R	.toggleClass()										
+toggleclass	R	.toggleClass()										
+.toggleClass	R	.toggleClass()										
+toggleClass()	R	.toggleClass()										
+toggleClass	R	.toggleClass()										
+.toggle	R	.toggle()										
+toggle()	R	.toggle()										
+toggle	R	.toggle()										
+.trigger()	A			Events\\nEvent Handler Attachment							<section class="prog__container"><p>Execute all handlers and behaviors attached to the matched elements for the given event type.</p><pre><code>$(selector).trigger(eventType, extraParameters) → jQuery\n$(selector).trigger(event, extraParameters) → jQuery</code></pre></section>	https://api.jquery.com/trigger/
+.triggerHandler()	A			Events\\nEvent Handler Attachment							<section class="prog__container"><p>Execute all handlers attached to an element for an event.</p><pre><code>$(selector).triggerHandler(eventType, extraParameters) → Object\n$(selector).triggerHandler(event, extraParameters) → Object</code></pre></section>	https://api.jquery.com/triggerHandler/
+trigger handler	R	.triggerHandler()										
+triggerhandler	R	.triggerHandler()										
+.triggerHandler	R	.triggerHandler()										
+triggerHandler()	R	.triggerHandler()										
+triggerHandler	R	.triggerHandler()										
+.trigger	R	.trigger()										
+trigger()	R	.trigger()										
+trigger	R	.trigger()										
+.trim()	R	jQuery.trim()										
+.trim	R	jQuery.trim()										
+$.trim()	R	jQuery.trim()										
+$.trim	R	jQuery.trim()										
+trim()	R	jQuery.trim()										
+trim	R	jQuery.trim()										
+.type	R	event.type										
+type	R	event.type										
+.type()	R	jQuery.type()										
+$.type()	R	jQuery.type()										
+$.type	R	jQuery.type()										
+type()	R	jQuery.type()										
+.unbind()	A			Events\\nEvent Handler Attachment							<section class="prog__container"><p>Remove a previously-attached event handler from the elements.</p><pre><code>$(selector).unbind(eventType, handler) → jQuery\n$(selector).unbind(eventType, false) → jQuery\n$(selector).unbind(event) → jQuery\n$(selector).unbind() → jQuery</code></pre></section>	https://api.jquery.com/unbind/
+.unbind	R	.unbind()										
+unbind()	R	.unbind()										
+unbind	R	.unbind()										
+.undelegate()	A			Events\\nEvent Handler Attachment							<section class="prog__container"><p>Remove a handler from the event for all elements which match the current selector, based upon a specific set of root elements.</p><pre><code>$(selector).undelegate() → jQuery\n$(selector).undelegate(selector, eventType) → jQuery\n$(selector).undelegate(selector, eventType, handler) → jQuery\n$(selector).undelegate(selector, events) → jQuery\n$(selector).undelegate(namespace) → jQuery</code></pre></section>	https://api.jquery.com/undelegate/
+.undelegate	R	.undelegate()										
+undelegate()	R	.undelegate()										
+undelegate	R	.undelegate()										
+.unique()	R	jQuery.unique()										
+.unique	R	jQuery.unique()										
+$.unique()	R	jQuery.unique()										
+$.unique	R	jQuery.unique()										
+unique()	R	jQuery.unique()										
+unique	R	jQuery.unique()										
+unique sort	R	jQuery.uniqueSort()										
+uniquesort	R	jQuery.uniqueSort()										
+.uniqueSort()	R	jQuery.uniqueSort()										
+.uniqueSort	R	jQuery.uniqueSort()										
+$.uniqueSort()	R	jQuery.uniqueSort()										
+$.uniqueSort	R	jQuery.uniqueSort()										
+uniqueSort()	R	jQuery.uniqueSort()										
+uniqueSort	R	jQuery.uniqueSort()										
+.unload()	A			Events\\nDocument Loading							<section class="prog__container"><p>Bind an event handler to the "unload" JavaScript event.</p><pre><code>$(selector).unload(handler) → jQuery\n$(selector).unload(eventData, handler) → jQuery</code></pre></section>	https://api.jquery.com/unload/
+.unload	R	.unload()										
+unload()	R	.unload()										
+unload	R	.unload()										
+.unwrap()	A			Manipulation\\nDom Insertion Around\\nDom Removal							<section class="prog__container"><p>Remove the parents of the set of matched elements from the DOM, leaving the matched elements in their place.</p><pre><code>$(selector).unwrap() → jQuery\n$(selector).unwrap(selector) → jQuery</code></pre></section>	https://api.jquery.com/unwrap/
+.unwrap	R	.unwrap()										
+unwrap()	R	.unwrap()										
+unwrap	R	.unwrap()										
+.val()	A			Attributes\\nForms\\nManipulation\\nGeneral Attributes							<section class="prog__container"><p>Get the current value of the first element in the set of matched elements.</p><pre><code>$(selector).val() → String|Number|Array</code></pre>\n<p>Set the value of each element in the set of matched elements.</p><pre><code>$(selector).val(value) → jQuery\n$(selector).val(function) → jQuery</code></pre></section>	https://api.jquery.com/val/
+.val	R	.val()										
+val()	R	.val()										
+val	R	.val()										
+:visible Selector	A			Selectors\\nJquery Selector Extensions\\nVisibility Filter Selectors							<section class="prog__container"><p>Selects all elements that are visible.</p><pre><code>$(":visible") → jQuery</code></pre></section>	https://api.jquery.com/visible-selector/
+visible selector	R	:visible Selector										
+.when()	R	jQuery.when()										
+.when	R	jQuery.when()										
+$.when()	R	jQuery.when()										
+$.when	R	jQuery.when()										
+when()	R	jQuery.when()										
+when	R	jQuery.when()										
+.which	R	event.which										
+which	R	event.which										
+.width()	A			Css\\nDimensions\\nManipulation\\nStyle Properties							<section class="prog__container"><p>Get the current computed width for the first element in the set of matched elements.</p><pre><code>$(selector).width() → Number</code></pre>\n<p>Set the CSS width of each element in the set of matched elements.</p><pre><code>$(selector).width(value) → jQuery\n$(selector).width(function) → jQuery</code></pre></section>	https://api.jquery.com/width/
+.width	R	.width()										
+width()	R	.width()										
+width	R	.width()										
+.wrapAll()	A			Manipulation\\nDom Insertion Around							<section class="prog__container"><p>Wrap an HTML structure around all elements in the set of matched elements.</p><pre><code>$(selector).wrapAll(wrappingElement) → jQuery\n$(selector).wrapAll(function) → jQuery</code></pre></section>	https://api.jquery.com/wrapAll/
+wrap all	R	.wrapAll()										
+wrapall	R	.wrapAll()										
+.wrapAll	R	.wrapAll()										
+wrapAll()	R	.wrapAll()										
+wrapAll	R	.wrapAll()										
+.wrap()	A			Manipulation\\nDom Insertion Around							<section class="prog__container"><p>Wrap an HTML structure around each element in the set of matched elements.</p><pre><code>$(selector).wrap(wrappingElement) → jQuery\n$(selector).wrap(function) → jQuery</code></pre></section>	https://api.jquery.com/wrap/
+.wrapInner()	A			Manipulation\\nDom Insertion Around							<section class="prog__container"><p>Wrap an HTML structure around the content of each element in the set of matched elements.</p><pre><code>$(selector).wrapInner(wrappingElement) → jQuery\n$(selector).wrapInner(function) → jQuery</code></pre></section>	https://api.jquery.com/wrapInner/
+wrap inner	R	.wrapInner()										
+wrapinner	R	.wrapInner()										
+.wrapInner	R	.wrapInner()										
+wrapInner()	R	.wrapInner()										
+wrapInner	R	.wrapInner()										
+.wrap	R	.wrap()										
+wrap()	R	.wrap()										
+wrap	R	.wrap()										
