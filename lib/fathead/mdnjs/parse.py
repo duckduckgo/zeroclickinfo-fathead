@@ -211,9 +211,9 @@ class MDNParser(object):
                 summary = summary[0].strip()
 
         codesnippet = ""
-        syntax_header = tree.xpath("//h2[contains(@id,'Syntax')]")
-        if syntax_header:
-            elements = tree.xpath("//h2[contains(@id,'Syntax')]/following-sibling::pre[1]")
+        example_header = tree.xpath("//h2[contains(@id,'Example')]")
+        if example_header:
+            elements = tree.xpath("//h2[contains(@id,'Example')]/following-sibling::pre[1]")
             for element in elements:
                 for tag in element.xpath('//*[@class]'):
                     tag.attrib.pop('class')
