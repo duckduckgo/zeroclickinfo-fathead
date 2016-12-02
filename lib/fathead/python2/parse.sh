@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export PYTHONIOENCODING=utf8
 (cd ../python; ./parse.sh)
 #run redirect on python2 results to get permutations of redirects, and remove
 # duplicates
