@@ -315,7 +315,9 @@ class MDNIndexer(object):
         # for special redirects to if, else, each and method
         self.CONDITIONALS_REDIR = ["if", "else", "each", "method"]
         # for special redirects to data type primitives
-        self.DATA_TYPES = ["boolean", "null", "undefined", "number", "string", "symbol"]
+        self.DATA_TYPES = ["boolean", "null", "undefined", "number", "string", "symbol", "bool8x16", 
+                           "bool16x8", "bool32x4", "bool64x2", "int8x16", "int16x8", "int32x4", "uint8x16",
+                           "uint16x8", "uint32x4", "float32x4", "float64x2"]
 
     def add(self, mdn):
         keyword = mdn.prop.lower()
@@ -351,7 +353,7 @@ class MDNIndexer(object):
                             'redirect': mdn.title
                         })
                     return;
-                
+        
         # write redirects for data-types
         split_title = title.split(' ')
         if split_title[0] == "global" and len(split_title) > 1:
@@ -365,7 +367,7 @@ class MDNIndexer(object):
                     'title': split_title[1] + " type",
                     'type': 'R',
                     'redirect': mdn.title
-                })
+                })               
                 
         # write redirects with `syntax` and `example` for functions pages
         if any(wiki == mdn.articletype for wiki in self.SYTAX_EXAMPLE_REDIR) and not mdn.redirected:
