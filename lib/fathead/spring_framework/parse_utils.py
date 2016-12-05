@@ -33,7 +33,7 @@ def getDocs(filename, classUrl):
         description = ""
         if len(block) > 0:
             description = block[0].get_text()
-            description = cutlength(description)
+            # description = cutlength(description)
         url = ""
         if len(classUrl) != 0:
             url = BASE_JAVADOC_URL + classUrl
