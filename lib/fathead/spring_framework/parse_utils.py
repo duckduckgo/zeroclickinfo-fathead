@@ -33,7 +33,7 @@ def getDocs(filename, classUrl):
         description = ""
         if len(block) > 0:
             description = block[0].get_text()
-            # description = cutlength(description)
+            description = cutlength(description)
         url = ""
         if len(classUrl) != 0:
             url = BASE_JAVADOC_URL + classUrl
@@ -42,7 +42,7 @@ def getDocs(filename, classUrl):
 
 def cutlength(description):
     #  if len(description) > 100:
-    description = description[0:description.rfind('.', 0, 300) + 1]
+    #description = description[0:description.rfind('.', 0, 300) + 1]
     return description.replace("\n", "")
 
 
