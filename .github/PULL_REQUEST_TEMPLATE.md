@@ -1,13 +1,15 @@
-<!-- Use the appropriate format for your Pull Request title:
+<!-- Use the appropriate format for your Pull Request title above ^^^^^:
 
-    For a Bug Fix:
-    {IA Name}: {Description of change}
+If this is a bug fix:
+{IA Name}: {Description of change}
 
-    For a New Instant Answer:
-    New {IA Name} Fathead
+If this is a New Instant Answer:
+New {IA Name} Spice
 
-    For anything else:
-    {Tests/Docs/Other}: {Short Description} -->
+If this is something else:
+{Tests/Docs/Other}: {Short Description}
+
+-->
 
 
 ## Description of new Instant Answer, or changes
@@ -15,8 +17,8 @@
 
 
 ## Related Issues and Discussions
-<!--  Link related issues here to automatically close them when PR is merged
-      E.g. "Fixes #1234" -->
+<!-- Link related issues here to automatically close them when PR is merged -->
+<!-- E.g. "Fixes #1234" -->
 
 
 ## People to notify
