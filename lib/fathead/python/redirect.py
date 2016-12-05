@@ -231,7 +231,7 @@ def generate_redirects(f):
                     elif output[redirect_key] != redirect_entry:
                         #Create a disambiguation
                         if output[redirect_key].startswith(redirect_key + '\tR'):
-                            #Replace the redirect with a disambiguation
+                            #Replace the existing redirect with a disambiguation
                             current_entry=Entry(output[redirect_key])
                             output[redirect_key] = str(redirect_key) + '\t' + 'D' +'\t\t\t\t\t\t\t\t'
                             output[redirect_key] += '*' + '[['+str(current_entry.get_reference())+']] '
@@ -243,7 +243,7 @@ def generate_redirects(f):
                             output[redirect_key] += str(article_redirect_target.get_abstract()) + '\\n'
                             duplicate_count += 1
                             disambiguations += 1
-                        else:
+                        elif output[redirect_key].startswith(redirect_key + '\tD'):
                             #Another disambiguation detected, append it to the entry
                             output[redirect_key] += '*' + '[['+str(redirect.get_reference())+']] '
                             article_redirect_target=Entry(output[redirect.get_reference()])
