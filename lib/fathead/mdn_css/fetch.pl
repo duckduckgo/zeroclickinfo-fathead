@@ -44,7 +44,7 @@ Mojo::IOLoop->recurring(
     0 => sub {
         for ( $current_active_connections + 1 .. $maximum_active_connections ) {
             return ( $current_active_connections or Mojo::IOLoop->stop )
-                unless my $url = shift @keyword_urls;
+              unless my $url = shift @keyword_urls;
 
             ++$current_active_connections;
             $ua->get(
@@ -57,11 +57,14 @@ Mojo::IOLoop->recurring(
                         spurt $tx->res->body, catfile 'download',
                           "$file_number.html";
                         ++$file_number;
-                        
-                        #if the keyword URL redirects to another URL, write the keywords to a file
-                        if($url ne $tx->req->url) {
-                            my $keyword  = substr ($url, rindex($url, "/") + 1);
-                            my $redirect = substr ($tx->req->url, rindex($tx->req->url, "/") + 1);
+
+      #if the keyword URL redirects to another URL, write the keywords to a file
+                        if ( $url ne $tx->req->url ) {
+                            my $keyword =
+                              substr( $url, rindex( $url, "/" ) + 1 );
+                            my $redirect =
+                              substr( $tx->req->url,
+                                rindex( $tx->req->url, "/" ) + 1 );
                             $redirect_map{$redirect} = $keyword;
                         }
                     }
@@ -82,7 +85,7 @@ Mojo::IOLoop->recurring(
 Mojo::IOLoop->start unless Mojo::IOLoop->is_running;
 
 # write collected redirects to the file
-DumpFile('redirect_urls.yml', { redirects => {%redirect_map} } );
+DumpFile( 'redirect_urls.yml', { redirects => {%redirect_map} } );
 
 sub process_transaction {
     my $tx = shift;
