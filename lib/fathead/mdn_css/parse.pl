@@ -66,8 +66,8 @@ while ( my ( $unit, $array ) = each %{$units} ) {
 
 # Read redirect_urls.yml to get -webkit and -moz properties,
 # which redirect to properties without prefix
-my $redirects = LoadFile('redirect_urls.yml');
-my %redirect_urls = %{$redirects->{redirects}};
+my $redirects     = LoadFile('redirect_urls.yml');
+my %redirect_urls = %{ $redirects->{redirects} };
 
 # p(%redirect_map);
 # p(%titles);
@@ -365,8 +365,9 @@ sub create_redirects {
 
         # if the cleaned title was different from the title,
         # and a property redirects to the cleaned title, include it
-        if( exists $redirect_urls{$title_clean}) {
-            push @data, _build_redirect( $redirect_urls{$title_clean}, $title );
+        if ( exists $redirect_urls{$title_clean} ) {
+            push @data, _build_redirect( $_, $title )
+              for @{ $redirect_urls{$title_clean} };
         }
     }
     elsif ($postfix) {
@@ -374,8 +375,9 @@ sub create_redirects {
     }
 
     # if a -moz or -webkit property redirects to  this title, include it
-    if( exists $redirect_urls{$title} ) {
-        push @data, _build_redirect( $redirect_urls{$title}, $title );
+    if ( exists $redirect_urls{$title} ) {
+        push @data, _build_redirect( $_, $title )
+          for @{ $redirect_urls{$title} };
     }
 
     _write_to_file(@data);
