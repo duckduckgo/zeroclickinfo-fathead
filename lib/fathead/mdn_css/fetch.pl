@@ -65,7 +65,7 @@ Mojo::IOLoop->recurring(
                             my $redirect =
                               substr( $tx->req->url,
                                 rindex( $tx->req->url, "/" ) + 1 );
-                            $redirect_map{$redirect} = $keyword;
+                            push @{ $redirect_map{$redirect} }, $keyword;
                         }
                     }
                     elsif ( my $error = $tx->error ) {
