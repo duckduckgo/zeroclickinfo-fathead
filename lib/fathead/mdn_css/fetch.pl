@@ -9,6 +9,7 @@ use File::Spec::Functions;
 use Mojo::UserAgent;
 use Mojo::Util 'spurt';
 use Mojo::URL;
+use YAML::XS 'DumpFile';
 
 my $ua = Mojo::UserAgent->new()->max_redirects(4);
 
@@ -32,6 +33,10 @@ my $file_number                = 1;
 my $current_active_connections = 0;
 my $maximum_active_connections = 4;
 my @keyword_urls;
+
+#hash to store properties whose urls redirect to other properties
+my %redirect_map;
+
 queue_urls_for_download();
 
 #see http://mojolicious.org/perldoc/Mojo/IOLoop#recurring
@@ -39,7 +44,7 @@ Mojo::IOLoop->recurring(
     0 => sub {
         for ( $current_active_connections + 1 .. $maximum_active_connections ) {
             return ( $current_active_connections or Mojo::IOLoop->stop )
-              unless my $url = shift @keyword_urls;
+                unless my $url = shift @keyword_urls;
 
             ++$current_active_connections;
             $ua->get(
@@ -52,6 +57,13 @@ Mojo::IOLoop->recurring(
                         spurt $tx->res->body, catfile 'download',
                           "$file_number.html";
                         ++$file_number;
+                        
+                        #if the keyword URL redirects to another URL, write the keywords to a file
+                        if($url ne $tx->req->url) {
+                            my $keyword  = substr ($url, rindex($url, "/") + 1);
+                            my $redirect = substr ($tx->req->url, rindex($tx->req->url, "/") + 1);
+                            $redirect_map{$redirect} = $keyword;
+                        }
                     }
                     elsif ( my $error = $tx->error ) {
 
@@ -68,6 +80,9 @@ Mojo::IOLoop->recurring(
     }
 );
 Mojo::IOLoop->start unless Mojo::IOLoop->is_running;
+
+# write collected redirects to the file
+DumpFile('redirect_urls.yml', { redirects => {%redirect_map} } );
 
 sub process_transaction {
     my $tx = shift;
