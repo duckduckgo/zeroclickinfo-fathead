@@ -134,7 +134,8 @@ foreach my $html_file ( glob 'download/*.html' ) {
             return 1 if $lnk->attr('rel') and $lnk->attr('rel') =~ /canonical/;
         }
     );
-    $link = $link->attr('href') if $link;
+    next unless $link;
+    $link = $link->attr('href');
     chomp $link;
     $link = Mojo::URL->new($link);
 
