@@ -14,7 +14,7 @@ def main():
         data = json.loads(f.read())
 
     answers = generate_answers(data)
-    csv = '\n'.join('\t'.join(line) for line in answers)
+    csv = u'\n'.join(u'\t'.join(line) for line in answers)
     csv = csv.encode('utf-8') + '\n'
     with open(output_path, 'w') as f:
         f.write(csv)
@@ -29,9 +29,9 @@ def generate_answers(data):
             feature,
             feature.replace('-', ' '),
             title,
-            ' '.join(re.split('[ -]', title))
+            u' '.join(re.split('[ -]', title))
         ])
-        print ','.join(titles)
+        print u','.join(titles)
 
         # Commented out for now -- we can revive if we ever have a way to display
         # external links in the Related Topics Infobox
@@ -41,7 +41,7 @@ def generate_answers(data):
         related = ''
 
         # Generate abstract
-        abstract = '<p>{}</p>'.format(feature_data['description'])
+        abstract = u'<p>{}</p>'.format(feature_data['description'])
 
         for browser in ['ie', 'firefox', 'chrome', 'safari', 'ios_saf', 'android']:
             agent = data['agents'][browser]
@@ -49,7 +49,7 @@ def generate_answers(data):
                 browser=agent['browser'],
                 prefix=agent['prefix'],
                 stats=feature_data['stats'][browser])
-            abstract += '<br>' + out
+            abstract += u'<br>' + out
 
         # Add notes to abstract, if there are any
         notes = feature_data.get('notes', '')
@@ -58,13 +58,14 @@ def generate_answers(data):
             bs = BeautifulSoup(notes_in_html)
             for a in bs.findAll('a'):
                 a.replaceWithChildren()
-            abstract += '<p><b>Notes:</b> {}</p>'.format(bs.renderContents())
+            contents = bs.renderContents()
+            abstract += u'<p><b>Notes:</b> {}</p>'.format(contents.decode('utf-8'))
 
-        abstract = abstract.replace('\n', '').replace('\r', '')
+        abstract = '<section class="prog__container">' + abstract.replace('\n', '').replace('\r', '') + '</section>'
         print abstract
         print '------------------------------------------'
 
-        source_url = 'http://caniuse.com/' + feature
+        source_url = u'http://caniuse.com/' + feature
         for title in titles:
             answers.append([
                 title,      # Title
