@@ -4,6 +4,4 @@
 pushd download/*/ > /dev/null
 python3 index2ddg.py index-functions-cpp.xml ../../output.txt
 popd > /dev/null
-
-
 LC_ALL=C sort output.txt -o output.txt

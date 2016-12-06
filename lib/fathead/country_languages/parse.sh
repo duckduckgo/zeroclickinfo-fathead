@@ -1,4 +1,4 @@
 #!/bin/bash
-node parse.js
 
+node parse.js
 LC_ALL=C sort output.txt -o output.txt
