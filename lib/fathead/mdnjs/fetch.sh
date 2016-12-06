@@ -58,6 +58,6 @@ echo " $(ls downloads | wc -l) files downloaded"
 echo "$SECONDS seconds"
 echo -e "Check wget.log for errors, re-run fetch to fix parse incomplete file failures."
 
-# @mbad0la SEPT 2016
-# Test run : Read 15483 : 4232 pages to download
-#            344 seconds
+# @mbad0la NOV 2016
+# Test run : Read 15802 : 4372 pages
+#            383 seconds
