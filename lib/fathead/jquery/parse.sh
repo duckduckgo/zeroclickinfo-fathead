@@ -7,3 +7,5 @@ script=${dir}/parse.js
 output=${dir}/output.txt
 
 node "${script}" "${download_dir}/"*.xml | sort > "${output}"
+
+LC_ALL=C sort output.txt -o output.txt

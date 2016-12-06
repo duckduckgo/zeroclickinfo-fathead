@@ -25,3 +25,4 @@ disambiguate() {
 convert_xml_to_tsv | sort | disambiguate >"$TMP_TARGET_FILE"
 
 echo "Parsing done."
+LC_ALL=C sort output.txt -o output.txt

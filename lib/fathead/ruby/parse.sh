@@ -11,3 +11,5 @@ archive_name=${url##*/}
 index=${download_dir}/${archive_name%_rdocs.tgz}/index.html
 
 ruby -w "${script}" "${index}" | sort > "${output}"
+
+LC_ALL=C sort output.txt -o output.txt
