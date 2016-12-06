@@ -455,6 +455,8 @@ sub _build_article {
 
 sub _build_redirect {
     my ( $title, $redirect ) = @_;
+    return if $SEEN{$title};
+    $SEEN{$title}++;
     say "REDIRECT: $title =========> $redirect";
     return join "\t",
       ( $title, 'R', $redirect, '', '', '', '', '', '', '', '', '', '' );
