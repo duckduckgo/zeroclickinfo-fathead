@@ -187,6 +187,16 @@ foreach my $html_file ( glob 'download/*.html' ) {
             }
         }
     }
+    unless ($description) {
+        my $meta_with_description = $dom->find('meta')->first(
+            sub {
+                my $meta     = $_;
+                my $property = $meta->attr('property');
+                $property && $property =~ /og\:description/;
+            }
+        );
+        $description = $meta_with_description->attr('content');
+    }
 
     # Check if article already processed
     if ( exists $SEEN{$title} ) {
