@@ -7,3 +7,4 @@ export PYTHONIOENCODING=utf8
 cp ../python/output_py2.txt ../python/output.txt
 (cd ../python; python redirect.py)
 cp ../python/output2.txt output.txt
+cat output.txt | ../python/output_statistics.awk
