@@ -1,16 +1,18 @@
 {
-  "name": "zeroclickinfo-fathead-php",
+  "name": "zeroclickinfo-fathead-gradledocs",
   "private": true,
   "version": "1.0.0",
   "description": "Dependencies   - npm install",
   "main": "parse.js",
   "dependencies": {
+    "async": "^2.1.4",
+    "cheerio": "^0.22.0",
     "graceful-fs": "^4.1.9",
-    "jsdom": "^9.6.0"
+    "promise": "^7.1.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Vitor Rocha",
+  "author": "Amit Hetawal",
   "license": "MIT"
 }
