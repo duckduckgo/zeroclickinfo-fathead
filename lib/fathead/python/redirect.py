@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import copy
 import itertools
 import re
 
@@ -28,7 +29,7 @@ class Entry(object):
     Represents a single entry in fathead output.txt datafile
     """
     def __init__(self, obj):
-        # Type of entry. R = Redirect, A = Article.
+        # Type of entry. R = Redirect, A = Article, D = Disambiguation
         self.entry_type = ''
 
         # Unique key
@@ -46,7 +47,6 @@ class Entry(object):
         # Alternative keys used for redirects
         self.alternative_keys = []
         self.parse(obj)
-
 
     def __str__(self, obj):
         return self.alternative_keys
@@ -168,7 +168,7 @@ class Entry(object):
             '',                   # ignore
             self.category,        # categories
             '',                   # ignore
-            self.related,                   # no related topics
+            self.related,         # related topics
             '',                   # ignore
             '',                   # add an external link back to page
             '',                   # no disambiguation
@@ -185,76 +185,108 @@ def generate_redirects(f):
 
     # For debugging purposes
     duplicate_count = 0
-    disambiguations = 0
+    nbr_of_disambiguations = 0
+    # First, add all articles to output, so that package names are 
+    # already in output to be able to correctly generate related articles
     for line in f.readlines():
         try:
             # Parse entry
             entry = Entry(line)
-
-            if entry.get_type() == 'R' or entry.get_key() in ignore_keys:
-                continue
-
             key = entry.get_key()
+                
+            # Ignore redirects from parse.py, generate them in 
+            # get_redirects instead.
+            if entry.get_type() == 'R' or entry.get_key() in ignore_keys:
+                continue               
 
             # Do we have the entry yet?
-            if key not in output or '3.5/library/functions.html' in str(entry):
+            if key not in output:
                 output[key] = str(entry)
-
-            split_key = key.split('.')
-            package_name = '.'.join(split_key[0:len(split_key)-1])
-
-            if package_name in output \
-                    and output[package_name].startswith(package_name + '\t' + 'A'):
-                #Add related links to this entry to the package entry
-                package_entry=Entry(output[package_name])
-                current_related=package_entry.get_related()
-                new_related=''
-                if current_related != '':
-                    new_related=current_related + '\\\\n'
-                new_related+='[[' + str(key) + ']]'
-                package_entry.set_related(new_related)
-                output[package_name] = package_entry.get_entry()
-
-            # Get all possible redirect entries
-            key = entry.get_key() 
-            key_length = len((re.findall(r"[\w']+", key)))
-            if key_length > 1:
-                redirects = entry.get_redirects()
-                for redirect in redirects:
-                    redirect_key = redirect.get_key()
-                    redirect_entry = redirect.get_entry()
-                    if redirect_key in built_in:
-                        #Ignore built in keys
-                        continue
-                    if redirect_key not in output:
-                        output[redirect_key] = str(redirect_entry)
-                    elif output[redirect_key] != redirect_entry:
-                        #Create a disambiguation
-                        if output[redirect_key].startswith(redirect_key + '\tR'):
-                            #Replace the existing redirect with a disambiguation
-                            current_entry=Entry(output[redirect_key])
-                            output[redirect_key] = str(redirect_key) + '\t' + 'D' +'\t\t\t\t\t\t\t\t'
-                            output[redirect_key] += '*' + '[['+str(current_entry.get_reference())+']] '
-                            current_entry_article_redirect_target=Entry(output[current_entry.get_reference()])
-                            output[redirect_key] += str(current_entry_article_redirect_target.get_abstract()) + '\\n'
-                            #Add the current redirect as disambiguation
-                            output[redirect_key] += '*' + '[['+str(redirect.get_reference())+']] '
-                            article_redirect_target=Entry(output[redirect.get_reference()])
-                            output[redirect_key] += str(article_redirect_target.get_abstract()) + '\\n'
-                            duplicate_count += 1
-                            disambiguations += 1
-                        elif output[redirect_key].startswith(redirect_key + '\tD'):
-                            #Another disambiguation detected, append it to the entry
-                            output[redirect_key] += '*' + '[['+str(redirect.get_reference())+']] '
-                            article_redirect_target=Entry(output[redirect.get_reference()])
-                            output[redirect_key] += str(article_redirect_target.get_abstract()) + '\\n'
-                            duplicate_count += 1
-
+                
         except BadEntryException as e:
             pass  # Continue execution entry data is invalid.
+    
+    # Now, go through all articles we have in output, and generate related 
+    # fields, redirects etc. Store them in sets, so that any 
+    # redirect/disambiguation only appear once in the field
+    related_fields = dict()
+    disambiguations = dict()
+    # Need to deepcopy the iterator items, because output will change in 
+    # the loop
+    iterator_items = copy.deepcopy(output).keys()
+    for key in iterator_items:
+        entry = Entry(output[key])
+        split_key = key.split('.')
+        package_name = '.'.join(split_key[0:len(split_key)-1])
 
+        if package_name in output \
+            and output[package_name].startswith(package_name + '\t' + 'A'):
+            #Add related links to this entry to the package entry
+            if package_name not in related_fields:
+                related_fields_for_article = set()
+                related_fields_for_article.add(key)
+                related_fields[package_name] = related_fields_for_article
+            else:
+                related_fields[package_name].add(key)
+
+        # Get all possible redirect entries
+        key_length = len((re.findall(r"[\w']+", key)))
+        if key_length > 1:
+            redirects = entry.get_redirects()
+            for redirect in redirects:
+                redirect_key = redirect.get_key()
+                redirect_entry = redirect.get_entry()
+                if redirect_key not in output:
+                    output[redirect_key] = str(redirect_entry)
+                elif str(output[redirect_key]) != str(redirect_entry):
+                    #Create a disambiguation
+                    if output[redirect_key].startswith(redirect_key + '\tR'):
+                        current_entry = Entry(output[redirect_key])
+                        #Replace the existing redirect with a disambiguation
+                        output[redirect_key] = str(redirect_key) + '\t' + 'D' +'\t\t\t\t\t\t\t\t'
+                        # Add the redirect currently in output to the disambigutions
+                        disambiguation_str = '*' + '[['+str(current_entry.get_reference())+']] '
+                        current_entry_article_redirect_target = Entry(output[current_entry.get_reference()])
+                        disambiguation_str += str(current_entry_article_redirect_target.get_abstract()) + '\\n'
+                        disambiguation_for_this_key = set()
+                        disambiguation_for_this_key.add(disambiguation_str) 
+                        # Add the redirect this line wanted to add to the disambigutions
+                        disambiguation_str = '*' + '[['+str(redirect.get_reference())+']] '
+                        article_redirect_target = Entry(output[redirect.get_reference()])
+                        disambiguation_str += str(article_redirect_target.get_abstract())
+                        disambiguation_for_this_key.add(disambiguation_str)
+                        disambiguations[redirect_key] = disambiguation_for_this_key
+                        duplicate_count += 1
+                        nbr_of_disambiguations += 1
+                    elif output[redirect_key].startswith(redirect_key + '\tD'):
+                        # Another disambiguation detected, append it to the entry
+                        disambiguation_str = '\\n*' + '[['+str(redirect.get_reference())+']] '
+                        article_redirect_target = Entry(output[redirect.get_reference()])
+                        disambiguation_str += str(article_redirect_target.get_abstract())
+                        disambiguations[redirect_key].add(disambiguation_str)
+                        duplicate_count += 1
+
+    # Now, we add the related fields and disambiguations to output
+    for key, related_fields_set in related_fields.items():
+        output_entry = Entry(output[key])
+        related = ''
+        for r in related_fields_set:
+            if related != '':
+                related += '\\\\n'
+            related += '[[' + str(r) + ']]'
+        output_entry.set_related(related)
+        output[key] = output_entry.get_entry()
+        
+    for key, disambiguations_set in disambiguations.items():
+        disambiguation_str = ''
+        for d in disambiguations_set:
+            disambiguation_str += d
+        # Disambiguation field is third last, need to add tabs to the end to
+        # get a valid entry
+        output[key] += disambiguation_str + "\t\t\t"
+        
     print("Duplicates: %s" % duplicate_count)
-    print("Disambiguations: %s" % disambiguations)
+    print("Disambiguations: %s" % nbr_of_disambiguations)
 
     with open('output2.txt', 'w') as output_file:
         for key, line in output.items():
