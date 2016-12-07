@@ -245,25 +245,21 @@ def generate_redirects(f):
                         #Replace the existing redirect with a disambiguation
                         output[redirect_key] = str(redirect_key) + '\t' + 'D' +'\t\t\t\t\t\t\t\t'
                         # Add the redirect currently in output to the disambigutions
-                        disambiguation_str = '*' + '[['+str(current_entry.get_reference())+']] '
                         current_entry_article_redirect_target = Entry(output[current_entry.get_reference()])
-                        disambiguation_str += str(current_entry_article_redirect_target.get_abstract()) + '\\n'
                         disambiguation_for_this_key = set()
-                        disambiguation_for_this_key.add(disambiguation_str) 
+                        disambiguation_for_this_key.add((str(current_entry.get_reference()),
+                                                         str(current_entry_article_redirect_target.get_abstract())))
                         # Add the redirect this line wanted to add to the disambigutions
-                        disambiguation_str = '*' + '[['+str(redirect.get_reference())+']] '
                         article_redirect_target = Entry(output[redirect.get_reference()])
-                        disambiguation_str += str(article_redirect_target.get_abstract())
-                        disambiguation_for_this_key.add(disambiguation_str)
+                        disambiguation_for_this_key.add((str(redirect.get_reference()),
+                                                        str(article_redirect_target.get_abstract())))
                         disambiguations[redirect_key] = disambiguation_for_this_key
                         duplicate_count += 1
                         nbr_of_disambiguations += 1
                     elif output[redirect_key].startswith(redirect_key + '\tD'):
                         # Another disambiguation detected, append it to the entry
-                        disambiguation_str = '\\n*' + '[['+str(redirect.get_reference())+']] '
-                        article_redirect_target = Entry(output[redirect.get_reference()])
-                        disambiguation_str += str(article_redirect_target.get_abstract())
-                        disambiguations[redirect_key].add(disambiguation_str)
+                        disambiguations[redirect_key].add((str(redirect.get_reference()),
+                                                        str(article_redirect_target.get_abstract())))
                         duplicate_count += 1
 
     # Now, we add the related fields and disambiguations to output
@@ -279,8 +275,13 @@ def generate_redirects(f):
         
     for key, disambiguations_set in disambiguations.items():
         disambiguation_str = ''
-        for d in disambiguations_set:
-            disambiguation_str += d
+        for disambiguation_key, abstract in disambiguations_set:
+            disambiguation_entry_str = ''
+            if disambiguation_str != '':
+                disambiguation_entry_str += '\\n'
+            disambiguation_entry_str += '*' + '[['+disambiguation_key+']] '
+            disambiguation_entry_str += abstract
+            disambiguation_str += disambiguation_entry_str
         # Disambiguation field is third last, need to add tabs to the end to
         # get a valid entry
         output[key] += disambiguation_str + "\t\t\t"
