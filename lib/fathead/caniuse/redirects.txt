@@ -22,7 +22,7 @@ calc as unit value, calc() as css unit value
 color inputs, color input type
 color input types, color input type
 security policy, content security policy
-ccontenteditable attributes, ontenteditable attribute (basic support)
+contenteditable attributes, contenteditable attribute (basic support)
 selector, css 2.1 selectors
 selectors, css 2.1 selectors
 animations, css animation
