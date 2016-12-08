@@ -1,7 +1,7 @@
-pseudo elements, ::selection css pseudo element
-pseudo-elements, ::selection css pseudo element
-pseudo element, ::selection css pseudo element
-pseudo-element, ::selection css pseudo element
+::selection element, ::selection css pseudo element
+selection element, ::selection css pseudo element
+selection pseudo elements, ::selection css pseudo element
+css selection element, ::selection css pseudo element
 ambient lights, ambient light
 ambient lights api, ambient light api
 ambient-lights, ambient-light
