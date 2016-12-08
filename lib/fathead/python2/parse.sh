@@ -1,11 +1,11 @@
 #!/bin/bash
 
+LC_ALL=C
 export PYTHONIOENCODING=utf8
-(cd ../python; ./parse.sh)
-#Run redirect on python2 results to get permutations of redirects, and remove
-# duplicates
+(cd ../python; python3 parse.py)
+# Use the python2 entries as input to redirect.py
 cp ../python/output_py2.txt ../python/output.txt
-(cd ../python; python redirect.py)
+(cd ../python; python3 redirect.py)
 cp ../python/output2.txt output.txt
-echo "Python 2 output contains"
+sort output.txt -o output.txt
 cat output.txt | ../python/output_statistics.awk
