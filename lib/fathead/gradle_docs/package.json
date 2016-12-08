@@ -8,7 +8,8 @@
     "async": "^2.1.4",
     "cheerio": "^0.22.0",
     "graceful-fs": "^4.1.9",
-    "promise": "^7.1.1"
+    "promise": "^7.1.1",
+    "request": "^2.79.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
