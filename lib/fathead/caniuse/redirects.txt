@@ -1,0 +1,217 @@
+pseudo elements, ::selection css pseudo element
+pseudo-elements, ::selection css pseudo element
+pseudo element, ::selection css pseudo element
+pseudo-element, ::selection css pseudo element
+ambient lights, ambient light
+ambient lights api, ambient light api
+ambient-lights, ambient-light
+animated pngs, animated png (apng)
+apngs, apng
+async attributes for external scripts, async attribute for external scripts
+audio elements, audio element
+base 64 encodings and decodings, base64 encoding and decoding
+base64 encodings and decodings, base64 encoding and decoding
+blob-urls, blob urls
+blobbuilders, blobbuilder
+border images, border image
+border-images, border image
+calc as css unit value, calc() as css unit value
+calc as css unit values, calc() as css unit value
+calc as unit values, calc() as css unit value
+calc as unit value, calc() as css unit value
+color inputs, color input type
+color input types, color input type
+security policy, content security policy
+ccontenteditable attributes, ontenteditable attribute (basic support)
+selector, css 2.1 selectors
+selectors, css 2.1 selectors
+animations, css animation
+appearance, css appearance
+appearances, css appearance
+background blend mode, css background blend mode
+background offsets, css background offsets
+background offset, css background offsets
+background position edge offsets,css background position edge offsets
+background-blend-mode, css background-blend-mode
+background-position edge offsets, css background-position edge offsets
+backgroundblendmode, css backgroundblendmode
+boxshadow, css boxshadow
+canvas, css canvas
+canvas drawings, css canvas drawings
+clip path, css clip path
+clip path property, css clip path property
+clip-path property, css clip-path property
+counters, css counters
+feature queries, css feature queries
+featurequeries, css featurequeries
+filter effects, css filter effects
+filters, css filters
+fixed, css fixed
+font loading, css font loading
+font size adjust, css font size adjust
+font stretch, css font stretch
+font-size-adjust, css font-size-adjust
+font-stretch, css font-stretch
+gencontent, css gencontent
+generated content for pseudo elements, css generated content for pseudo elements
+generated content for pseudo-elements, css generated content for pseudo-elements
+grid, css grid
+grid layout, css grid layout
+hyphenation, css hyphenation
+hyphens, css hyphens
+image orientation, css image orientation
+inline block, css inline block
+inline-block, css inline-block
+masks, css masks
+mask, css masks
+mediaqueries, css mediaqueries
+min/max width/height, css min/max width/height
+min/max-width/height, css min/max-width/height
+mixblendmode, css mixblendmode
+opacity, css opacity
+outline, css outline
+placeholder, css placeholder
+pointer events (for html), css pointer events (for html)
+pointer-events (for html), css pointer-events (for html)
+position:fixed, css position:fixed
+position:sticky, css position:sticky
+reflections, css reflections
+repeating gradients, css repeating gradients
+resize, css resize
+resize property, css resize property
+selection, css selection
+shapes, css shapes
+shapes level 1, css shapes level 1
+sticky, css sticky
+supports api, css supports api
+table, css table
+table display, css table display
+text size adjust, css text size adjust
+text stroke, css text stroke
+text-size-adjust, css text-size-adjust
+text-stroke, css text-stroke
+textshadow, css textshadow
+touch action, css touch action
+touch action property, css touch action property
+touch-action property, css touch-action property
+transitions, css transitions
+user select: none, css user select: none
+user-select: none, css user-select: none
+will change property, css will change property
+will-change property, css will-change property
+appearance, css-appearance
+background-offsets, css-background-offsets
+backgroundblendmode, css-backgroundblendmode
+css backgroundblendmode, css-backgroundblendmode
+boxshadow, css-boxshadow
+canvas, css-canvas
+clip-path, css-clip-path
+counters, css-counters
+featurequeries, css-featurequeries
+filters, css-filters
+fixed, css-fixed
+font-stretch, css-font-stretch
+font stretch, css-font-stretch
+gencontent, css-gencontent
+gradients, css-gradients
+gradient, css-gradients
+css hyphens, css-hyphens
+image-orientation, css-image-orientation
+image-orientations, css-image-orientation
+image orientation, css-image-orientation
+image orientations, css-image-orientation
+masks, css-masks
+mediaqueries, css-mediaqueries
+mixblendmode, css-mixblendmode
+opacity, css-opacity
+placeholder, css-placeholder
+reflections, css-reflections
+regions, css-regions
+repeating-gradients, css-repeating-gradients
+sel2, css-sel2
+sel3, css-sel3
+selection, css-selection
+shapes, css-shapes
+sticky, css-sticky
+supports-api, css-supports-api
+table, css-table
+tables, css-table
+textshadow, css-textshadow
+touch-action, css-touch-action
+transitions, css-transitions
+css.supports(), css.supports() dom api
+css.supports, css.supports() dom api
+3d transforms, css3 3d transforms
+animation, css3 animation
+background image options, css3 background image options
+background-image options, css3 background-image options
+border images, css3 border images
+border radius (rounded corners), css3 border radius (rounded corners)
+border radius rounded corners, css3 border radius (rounded corners)
+border-radius (rounded corners), css3 border-radius (rounded corners)
+border-radius rounded corners, css3 border-radius (rounded corners)
+box shadow, css3 box shadow
+box sizing, css3 box sizing
+box-shadow, css3 box-shadow
+box-sizing, css3 box-sizing
+boxsizing, css3 boxsizing
+colors, css3 colors
+cursors, css3 cursors
+cursors (original values), css3 cursors (original values)
+cursors original values, css3 cursors (original values)
+css3 cursors original values, css3 cursors (original values)
+image orientation, css3 image orientation
+image-orientation, css3 image-orientation
+media queries, css3 media queries
+multiple backgrounds, css3 multiple backgrounds
+multiple column layout, css3 multiple column layout
+object fit/object position, css3 object fit/object position
+object-fit/object-position, css3 object-fit/object-position
+opacity, css3 opacity
+overflow wrap, css3 overflow wrap
+overflow-wrap, css3 overflow-wrap
+selectors, css3 selectors
+tab size, css3 tab size
+tab-size, css3 tab-size
+tabsize, css3 tabsize
+text overflow, css3 text overflow
+text shadow, css3 text shadow
+text-overflow, css3 text-overflow
+text-shadow, css3 text-shadow
+transforms, css3 transforms
+transitions, css3 transitions
+word break, css3 word break
+word-break, css3 word-break
+boxsizing, css3-boxsizing
+colors, css3-colors
+cursors, css3-cursors
+tabsize, css3-tabsize
+datasets, dataset
+date and time input types, date/time input types
+date and time input type, date/time input types
+date time input types, date/time input types
+date time input type, date/time input types
+getusermedia, getusermedia/stream api
+imports, html imports
+templates, html templates
+form features, html5 form features
+semantics, html5semantic
+inline svg, inline svg in html5
+notificaiton, notifications
+number input types, number input type
+rtcpeerconnections, rtcpeerconnection
+rtc peer connections, rtcpeerconnection
+rtc peer connection, rtcpeerconnection
+svg fragment identifier, svg fragment identifiers
+svg in css background, svg in css backgrounds
+svg in img element, svg in html img element
+video elements, video element
+webnotification, web notifications
+web-notification, web notifications
+web notification, web notifications
+web socket, web sockets
+web speech, web-speech
+webrtc peer to peer connection, webrtc peer to peer connections
+webrtc peer-to-peer connection, webrtc peer to peer connections
+webrtc, webrtc peer to peer connections
+websocket, websockets
