@@ -1,0 +1,16 @@
+pyhton
+python
+python2
+python2.6
+python26
+python2.7
+python27
+python 27
+python 2.4
+python 2.5
+python 2.6
+python 2.7
+python 2.7.10
+python 2.7.12
+python 2
+python 2
