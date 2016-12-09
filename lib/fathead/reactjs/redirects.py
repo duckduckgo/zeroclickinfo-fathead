@@ -25,7 +25,7 @@ class GenerateRedirects():
             redirect = re.sub('(?!^)([A-Z]+)', r' \1', redirect)
         # Parentheses removed
         redirect = re.sub('[()]', '', redirect)
-        return redirect
+        return redirect.lower()
 
     def get_redirects(self):
         # Returns the redirects List
