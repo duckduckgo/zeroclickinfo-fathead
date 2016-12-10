@@ -6,6 +6,7 @@ ambient lights, ambient light
 ambient lights api, ambient light api
 ambient-lights, ambient-light
 animated pngs, animated png (apng)
+animated png, animated png (apng)
 apngs, apng
 async attributes for external scripts, async attribute for external scripts
 audio elements, audio element
