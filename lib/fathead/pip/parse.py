@@ -90,7 +90,9 @@ for page in pages:
                         finaltext += t.strip() + '<br>'
                 except:
                     pass
-
+        if(page == 'pip.html'):
+            finaltext += 'pip is a package management system used to install and manage software packages written in Python. Many packages can be found in the Python Package Index (PyPI). <br>'
+        
         finaltext = '<section class="prog__container">' + finaltext + '</section>'
 
         finaltext = ' '.join(finaltext.split())
@@ -110,7 +112,7 @@ for page in pages:
     command_url = baseUrl + page
 
     list_of_data = [
-                command + 'command',                      # unique name
+                command,                      # unique name
                 'A',                        # type is article
                 '',                         # no redirect data
                 '',                         # ignore
