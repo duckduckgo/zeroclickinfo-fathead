@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 baseUrl = 'https://pip.pypa.io/en/stable/reference/'
-import urllib
+import urllib.request
 from bs4 import BeautifulSoup
 
 response = urllib.request.urlopen(baseUrl)
@@ -11,7 +11,7 @@ download = "download/"
 
 
 
-soup = BeautifulSoup(page_source)
+soup = BeautifulSoup(page_source,"lxml")
 
 mains = soup.find('li', {"class":"toctree-l1 current"})
 

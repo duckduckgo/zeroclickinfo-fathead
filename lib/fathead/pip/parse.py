@@ -20,7 +20,7 @@ for page in pages:
     hashtable = {}
     with open('./download/' + page, 'r') as content_file:
         page_source = content_file.read()
-        soup = BeautifulSoup(page_source)
+        soup = BeautifulSoup(page_source,"lxml")
         namestr = ''
         name = page[:-5].split('_')
         for n in name:
@@ -30,30 +30,18 @@ for page in pages:
 
         pip_show = soup.find("div",{"id":namestr})
 
-        sections = pip_show.findAll("div",{"class":"section"})
+        description = pip_show.findAll("div",{"class":"section","id":"description"})
+        usages = pip_show.findAll("div",{"class":"section","id":"usage"})
 
-
-
-
-
-
-        for section in sections:
-
-            #check if any more section in this if not then continue with this one
-
-            if(len(section.findAll("div",{"class":"section"})) != 0):
-                continue;
-
-            for child in section:
+        for usage in usages:
+            for child in usage:
                 try:
-
                     text = child.text.strip()
                     if(text not in hashtable):
                         hashtable[text] = 1
                     else:
                         continue
                     if(child.find('div','highlight')):
-
                         fin = ''
 
                         for t in text.split('...'):
@@ -69,11 +57,37 @@ for page in pages:
                     elif(child.find('a',{"class":"toc-backref"})):
                         text = '<h4>'+text[:-1]+'</h4>'
 
-
-
                     for t in text.split('\n'):
+                        if(t.strip() == '' and finaltext[-4:] == '<br>'):
+                            continue;
                         finaltext += t.strip() + '<br>'
 
+                except:
+                    pass
+
+        for section in description:
+
+            flag = 0
+            for child in section:
+                try:
+
+                    text = child.text.strip()
+                    if(text not in hashtable):
+                        hashtable[text] = 1
+                    else:
+                        continue
+                    if(child.find('div','highlight')):
+                        break;
+
+                    elif(child.find('a',{"class":"toc-backref"})):
+                        if(text[:-1] != 'Description'):
+                            break;
+                        text = '<h4>'+text[:-1]+'</h4>'
+
+                    for t in text.split('\n'):
+                        if(t.strip() == '' and finaltext[-4:] == '<br>'):
+                            continue;
+                        finaltext += t.strip() + '<br>'
                 except:
                     pass
 
@@ -96,7 +110,7 @@ for page in pages:
     command_url = baseUrl + page
 
     list_of_data = [
-                command,                      # unique name
+                command + 'command',                      # unique name
                 'A',                        # type is article
                 '',                         # no redirect data
                 '',                         # ignore
@@ -116,7 +130,6 @@ for page in pages:
         final = final + l + '\t'
 
     final = final + '\n'
-
     outyo.write(final)
 
 
