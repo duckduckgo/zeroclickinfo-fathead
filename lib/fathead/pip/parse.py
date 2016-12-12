@@ -112,7 +112,7 @@ for page in pages:
     command_url = baseUrl + page
 
     list_of_data = [
-                command,                      # unique name
+                'command ' + command,                      # unique name
                 'A',                        # type is article
                 '',                         # no redirect data
                 '',                         # ignore
