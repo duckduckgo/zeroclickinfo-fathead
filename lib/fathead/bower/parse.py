@@ -57,7 +57,7 @@ def parse_item(text):
     desc = "".join(text.split(r'{% endhighlight %}')[1:]).strip()
     abstract = ('<section class="prog__container">' + desc + code + '</section>').replace('\n', '\\n',).replace('\t', '  ')
     return {
-        'name': 'api ' + name,
+        'name': name,
         'abstract': abstract,
         'URL': name
     }
