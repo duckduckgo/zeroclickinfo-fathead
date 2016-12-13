@@ -16,6 +16,13 @@ def replace_all(text, terms):
     return text
 
 
+def wrap_html_tags(matchObj):
+    """Wraps the html tag matched by the matchObj
+    and wraps it inside <code>"""
+
+    return "<code>" + matchObj.group(0) + "</code>"
+
+
 class Tag(object):
     """ Contains informations about
     a HTML tag """
@@ -30,7 +37,7 @@ class Tag(object):
         self.example = re.sub('\\n$', '', self.example)
 
         # replace all newline and horizontal tab characters
-        terms = {'\n': '\\n', '\t': '\\t', '\r': ''}
+        terms = {'\n': '\\n', '\t': '    ', '\r': ''}
         self.info = replace_all(self.info, terms)
         self.example = replace_all(self.example, terms)
 
@@ -43,6 +50,7 @@ class Tag(object):
             abstract += '<pre><code>' + self.example + '</code></pre>'
 
         if self.info:
+            self.info = re.sub(r'<[^>]+>', wrap_html_tags, self.info)
             abstract += '<p>' + self.info + '</p>'
 
         abstract = '<section class="prog__container">' + abstract + '</section>'
@@ -120,7 +128,7 @@ class Parser(object):
                 reference = soup.find('meta', {'property' : 'og:url'}).get('content')
             else:
                 reference = 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/' + name
-            
+
             new_tag = Tag(name, info, reference, example, see_also)
             self.tags.append(new_tag)
             logger.info('Tag parsed: %s' % new_tag.name)
