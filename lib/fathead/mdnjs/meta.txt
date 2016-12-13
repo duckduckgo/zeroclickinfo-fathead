@@ -1,9 +1,0 @@
-Name: Mozilla Developer Network
-
-Domain: developer.mozilla.org
-
-Type: JavaScript
-
-MediaWiki: 0
-
-Keywords: javascript js mdn
