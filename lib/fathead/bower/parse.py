@@ -53,9 +53,9 @@ def parse_item(text):
     text = text.split('\n####')[0]
     name = text.split('\n')[0].strip()
     code = re.search(CODE_PATTERN, text)
-    code = '<pre><code>%s</code></pre>' % (code.group(1)) if code else ''
+    code = '<pre><code>%s</code></pre>' % (code.group(1).strip()) if code else ''
     desc = "".join(text.split(r'{% endhighlight %}')[1:]).strip()
-    abstract = ('<section class="prog__container">' + desc + code + '</section>').replace('\n', '\\n',).replace('\t', '  ')
+    abstract = ('<section class="prog__container"><p>' + desc + '</p>' + code + '</section>').replace('\n', '\\n',).replace('\t', '  ')
     return {
         'name': name,
         'abstract': abstract,
