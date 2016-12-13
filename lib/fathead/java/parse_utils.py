@@ -20,6 +20,40 @@ def getClass(directory, fname):
   filename = "%s/%s" % (directory, fname)
   return getDocs(filename)
 
+"""
+Retrieves all methods of a specified class and saves them to methods.txt.
+parameters: name of class
+"""
+def getClassMethods(filename, classname):
+    content = BeautifulSoup(getcontent(classname), "html.parser")
+    # Note: this will not find methods inherited from other classes/interfaces
+    for method in content.find_all("table", {"summary" : re.compile("method")}):
+        method_output(filename, extractMethodData(method))
+
+"""
+Extracts data of a method.
+parameters: method html table entry, classname
+returns: all method data and the class it belongs to
+"""
+def extractMethodData(method):
+    method_names = []
+    for td in method.find_all("td", {"class" : "colLast"}):
+            method_names.append(str.replace(td.find("code").text, "&nbsp;", " "))
+    return method_names
+    
+"""
+Method used to append a formatted line of data of a method to the methods.txt file
+parameters: filename (methods.txt), list of method data
+"""
+def method_output(file, data):
+    f = open(file, 'a')
+    for d in data:
+        method_data = d + "\n"
+        for line in method_data:
+             f.write(line)
+    f.close()
+
+    
 def getDocs(filename):
   if filename.endswith('.html') and 'package-' not in filename and 'doc-files' not in filename:
     content = BeautifulSoup(getcontent(filename), 'html.parser')
@@ -45,7 +79,8 @@ def remove_keywords(line):
     return ''
 
 def getcontent(filename):
-  f = open(filename, 'r')
+# added binary mode. will experience UnicodeDecodeError() otherwise
+  f = open(filename, 'rb')
   lines = f.read()
   f.close()
   return lines
@@ -79,6 +114,7 @@ def concat(clazz, description, url):
 def output(filename, data_list):
   line = concat_list(data_list)
   if not line.startswith("No class found") and line != "" and not ("No abstract found" in line):
-    f = open(filename, 'a')
+# added binary mode. will experience TypeError otherwise
+    f = open(filename, 'ab')
     f.write(line.encode('utf'))
     f.close()
