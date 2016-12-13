@@ -13,6 +13,7 @@ items = []
 
 
 def add_item(ops):
+    # Write articles
     items.append(
      '\t'.join([
         ops['name'],
@@ -29,7 +30,23 @@ def add_item(ops):
         ops['abstract'],
         URL_BASE + ops['URL']
         ]))
-
+    # Write 'command' redirect for each article
+    items.append(
+     '\t'.join([
+        '%s command' % ops['name'],
+        'R',
+        ops['name'],
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
+        ]))
 
 def parse_item(text):
     # remove all child block
