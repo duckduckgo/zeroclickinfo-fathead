@@ -52,7 +52,7 @@ for page in pages:
                         for t in fin.split('\n'):
                             fini += t.strip() + '\n'
 
-                        text = '<pre><code>' + fini +'</pre></code>'
+                        text = '<pre><code>' + fini +'</code></pre>'
 
                     elif(child.find('a',{"class":"toc-backref"})):
                         text = '<h4>'+text[:-1]+'</h4>'
@@ -90,6 +90,7 @@ for page in pages:
                         finaltext += t.strip() + '<br>'
                 except:
                     pass
+                
         if(page == 'pip.html'):
             finaltext += 'pip is a package management system used to install and manage software packages written in Python. Many packages can be found in the Python Package Index (PyPI). <br>'
         
