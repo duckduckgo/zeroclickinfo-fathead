@@ -1,5 +1,0 @@
-Name: JDK 8
-Domain: docs.oracle.com
-Type: Java
-MediaWiki: 0
-Keywords: Java
