@@ -269,3 +269,10 @@ onkeypress function,.keypress()
 on key up function,.keyup()
 on keyup function,.keyup()
 onkeyup function,.keyup()
+checkbox is checked,:checked Selector
+checkbox checked,:checked Selector
+checkbox on select,:checked Selector
+checkbox on check,:checked Selector
+checkbox select,:checked Selector
+checkbox selected,:checked Selector
+checkbox is selected,:checked Selector
