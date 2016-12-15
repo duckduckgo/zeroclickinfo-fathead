@@ -20,16 +20,7 @@ example_rows = []
 with open(example) as f:
     content = f.readlines()
     for each in content:
-        print each.count(r'\t'), each
-        print each.replace(r'\t', '    ')
-#             x = each.split(r'\t')
-#             y = '    '.join(x)
-#             example_rows.append(y)
-# with open(example, 'rb') as csvfile:
-#     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-#     for row in spamreader:
-#         for each in row:
-#             print each.split(r'\t')
-# with open(example, 'wb') as csvfile:
-#     spamwriter = csv.writer(csvfile)
-#     spamwriter.writerows(example_rows)
+        example_rows.append(each.replace(r'\t', '    '))
+with open(example_1, 'w+') as f:
+    for each in example_rows:
+        f.write(each)
