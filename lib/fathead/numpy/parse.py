@@ -255,7 +255,7 @@ def get_params(section_div, params_class):
         except AttributeError:
             pass
 
-    return ''.join(parameters)
+    return ''.join(parameters).rstrip()
 
 
 def get_related_topics(section_div):
