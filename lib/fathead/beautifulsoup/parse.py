@@ -79,9 +79,9 @@ class SoupDataParser(object):
         if data:
             arg = ''
             for index,d in enumerate(data):
-                data[index] = d.text.replace('\n', ' ').replace('  ', ' ')
+                data[index] = d.text.replace('\n', ' ').replace('  ', ' ').replace('\\x', '\\\\x')
                 if data[index].startswith('Signature'):
-                    arg += '<pre><code>{}</pre></code><br>'.format(data[index])
+                    arg += '<pre><code>{}</pre></code>'.format(data[index])
                 else:
                     arg += '<p>{}</p>'.format(data[index])
                     break
@@ -154,7 +154,7 @@ class SoupDataOutput(object):
                 name = data_element.get('name').lower()
                 code = data_element.get('code')
                 first_paragraph = data_element.get('first_paragraph')
-                abstract = '<section class="prog__container">{}{}{}</section>'.format(code, '<br>' if code else '', first_paragraph)
+                abstract = '<section class="prog__container">{}{}</section>'.format(first_paragraph, code)
                 url = '{}{}'.format(SOUP_HOME, data_element.get('anchor'))
                 list_of_data = [
                     name,        #unique name
