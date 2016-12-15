@@ -41,7 +41,7 @@ class Parser(object):
         self.soup = BeautifulSoup(data_object.get_raw_data(), 'html.parser')
 
     def parse_for_data(self):
-        for header in self.soup.find_all(['h2']):
+        for header in self.soup.find_all(['dl']):
             section = self.parse_section(header)
             section['example'] = self.clean_formatting(self.get_example(header))
             if section['paragraph'] and section['example']:
@@ -67,7 +67,7 @@ class Parser(object):
 
     def get_url(self, soup):
 
-        link_html = soup.find('a', {'class':'headerlink'}, href=True)
+        link_html = soup.find('a', href=True)
         if not link_html is None:
             anchor=link_html["href"]
         else:
@@ -77,7 +77,7 @@ class Parser(object):
             parsed_url = '{}{}'.format(os.path.join(URL_ROOT, self.file_name), anchor)
         else:
             parsed_url = os.path.join(URL_ROOT, self.file_name)
-
+        
         return parsed_url
 
     def parse_section(self, soup):
@@ -86,7 +86,12 @@ class Parser(object):
             first_paragraph = self.clean_formatting(first_paragraph_html.get_text())
         else:
             first_paragraph=''
-        title = self.clean_formatting(soup.get_text())
+        title=''
+        for el in soup.find_all("dt", id=True):
+            title = el.get('id')
+        if title == '':
+            for el in soup.find_all("code"):
+                title+=el.get_text()
         anchor = self.get_url(soup)
         url = os.path.join(URL_ROOT, self.file_name)
 
@@ -165,13 +170,12 @@ class Writer(object):
 if __name__ == "__main__":
     
     final_data=[]
-
-    for filename in os.listdir(DOWNLOADED_HTML_PATH):
-        file_path = os.path.join(DOWNLOADED_HTML_PATH, filename)
-        data = Data(file_path)
-        parser = Parser(data)
-        parser.parse_for_data()
-        final_data+=parser.get_data()
+    filename = 'api.html'
+    file_path = os.path.join(DOWNLOADED_HTML_PATH, filename)
+    data = Data(file_path)
+    parser = Parser(data)
+    parser.parse_for_data()
+    final_data+=parser.get_data()
     output = Writer(final_data)
     output.create_file()
 
