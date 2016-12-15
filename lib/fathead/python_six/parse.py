@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-6 -*-
 from bs4 import BeautifulSoup
 import glob
 import sys
@@ -27,7 +27,7 @@ class SixModule(object):
         # Clean up the usage statement which can have newline characters and
         # tab characters, which mess up how it renders 
 
-        code =  '<pre><code>{}</code></pre>'.format(self.usage.replace('\n','\\\\n'))
+        code =  '<pre><code>{}</code></pre>'.format(self.usage.replace('\n','\\n')) if self.usage else ''
        
         # Make the abstract have the description as well as a code block
         descrip = '<p>'+self.description+'</p>'
@@ -70,13 +70,17 @@ class Parser(object):
             for tag in div.find_all('dl'):
             
                 '''Get the module name '''
-                module_name = tag.dt.select('code')[1].get_text(strip=True) if tag.dt.select('code')[1].get_text(strip=True) != 'six.' else tag.dt.select('code')[2].get_text(strip=True)
+		if tag.dt.select('code')[1].get_text(strip=True) != 'six.':
+		    module_name = tag.dt.select('code')[1].get_text(strip=True)
+		else:
+		    module_name = tag.dt.select('code')[2].get_text(strip=True)
+                
             
                 '''Get the module desc '''
                 description = tag.dd.p.getText()
             
                 '''Get code for module if present '''
-                code = tag.dd.div.getText() if tag.dd.div else ''
+                code = tag.dd.div.getText() if tag.dd.div else None
 
                 # Create the SixModule object
                 module = SixModule(module_name, description,file.replace('download/', ''))
