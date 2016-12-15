@@ -247,7 +247,10 @@ def get_params(section_div, params_class):
             t.strip()
             if t.startswith("\n"):
                 t = t.lstrip()
-                t = "\t" + t
+                # The DDG system doesn't like "\\t" in abstract so using 4
+                # spaces instead of "\t".
+                # noqa See https://github.com/duckduckgo/zeroclickinfo-fathead/pull/584#discussion_r90515652
+                t = " "*4 + t
             t = t.replace("\n", " ")
             t.rstrip()
             t = t + "\n"
@@ -325,7 +328,7 @@ def scrub_text(text):
     text : str
         Text to clean up.
     """
-    scrubbed_text = text.rstrip().replace("\n", "\\n").replace("\t", "\\t")
+    scrubbed_text = text.rstrip().replace("\n", "\\n").replace("\t", " "*4)
     return scrubbed_text
 
 
