@@ -1,9 +1,13 @@
+align background,background-position
 attachment background,background-attachment
 blend background,background-blend-mode
+center background,background-position
 clip background,background-clip
 color background,background-color
+height background,background-size
 image background,background-image
 origin background,background-origin
 position background,background-position
 repeat background,background-repeat
 size background,background-size
+width background,background-size
