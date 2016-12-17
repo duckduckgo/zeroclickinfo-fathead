@@ -107,7 +107,14 @@ class MDNWriter(FatWriter):
         if mdn.exampledesc:
             abstract += '<p>' + mdn.exampledesc + '</p>'
         if mdn.example:
-            code = '<pre><code>%s</code></pre>' % mdn.example
+            temp = ''
+            if type(mdn.example) == str:
+                temp = '<pre><code>%s</code></pre>' % mdn.example
+            if type(mdn.example) == dict:
+                for key, value in mdn.example.items():
+                    temp += key + '<pre><code>%s</code></pre>' %value
+                    temp += '<br/>'
+            code = temp
 
         fatheadTemplate = '<section class="prog__container">' + abstract + code + "</section>"
 
@@ -223,16 +230,39 @@ class MDNParser(object):
         exampledesc = ""
         example = ""
 
-        # Web/API pages
+        # Web/API pages. In Web/API pages we take the first example. If the example contains both html content and JS
+        # content, we take them both, if not we simply take the first example.
         url=tree.xpath("//meta[@property='og:url']/@content")[0]
         if "Web/API" in url:
-            example_header = tree.xpath("//h2[contains(@id,'Example')]")
+            #TODO: add exampledesc
+            example_header = tree.xpath("//h2[contains(@id,'Example')][position()=1]")
             if example_header:
-                elements = tree.xpath("//h2[contains(@id,'Example')]/following-sibling::pre[1]")
-                for element in elements:
-                    for tag in element.xpath('//*[@class]'):
-                        tag.attrib.pop('class')
-                    example += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+                html_example_header = tree.xpath("//h2[contains(@id,'Example')][position()=1]/following-sibling::h3[contains(@id,'HTML_Content')]")
+                js_example_header = tree.xpath("//h2[contains(@id,'Example')][position()=1]/following-sibling::h3[contains(@id,'JavaScript_Content')]")
+                if html_example_header and js_example_header:
+                    example = {}
+                    example['HTML Content']=''
+                    elements = tree.xpath("//h2[contains(@id,'Example')][position()=1]/following-sibling::h3[contains(@id,'HTML_Content')]/following-sibling::pre[1]")
+                    for element in elements:
+                        for tag in element.xpath('//*[@class]'):
+                            tag.attrib.pop('class')
+                        example['HTML Content'] += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+
+                    example['JavaScript Content']=''
+                    elements = tree.xpath("//h2[contains(@id,'Example')][position()=1]/following-sibling::h3[contains(@id,'JavaScript_Content')]/following-sibling::pre[1]")
+                    for element in elements:
+                        for tag in element.xpath('//*[@class]'):
+                            tag.attrib.pop('class')
+                        example['JavaScript Content'] += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+                else:
+                    example=''
+                    example_header = tree.xpath("//h2[contains(@id,'Example')]")
+                    if example_header:
+                        elements = tree.xpath("//h2[contains(@id,'Example')]/following-sibling::pre[1]")
+                        for element in elements:
+                            for tag in element.xpath('//*[@class]'):
+                                tag.attrib.pop('class')
+                            example += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
 
         # Error pages
         if "Error" in htmlfile.name:
