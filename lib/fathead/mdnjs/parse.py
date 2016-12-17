@@ -234,7 +234,6 @@ class MDNParser(object):
         # content, we take them both, if not we simply take the first example.
         url=tree.xpath("//meta[@property='og:url']/@content")[0]
         if "Web/API" in url:
-            #TODO: add exampledesc
             example_header = tree.xpath("//h2[contains(@id,'Example')][position()=1]")
             if example_header:
                 html_example_header = tree.xpath("//h2[contains(@id,'Example')][position()=1]/following-sibling::h3[contains(@id,'HTML_Content')]")
@@ -263,6 +262,12 @@ class MDNParser(object):
                             for tag in element.xpath('//*[@class]'):
                                 tag.attrib.pop('class')
                             example += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+
+                    elements = tree.xpath("//h2[contains(@id,'Example')]/following-sibling::p[1]")
+                    for element in elements:
+                        for tag in element.xpath('//*[@class]'):
+                            tag.attrib.pop('class')
+                        exampledesc += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
 
         # Error pages
         if "Error" in htmlfile.name:
