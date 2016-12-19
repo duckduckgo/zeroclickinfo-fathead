@@ -201,6 +201,10 @@ $.Callbacks()	R	jQuery.Callbacks()
 $.Callbacks	R	jQuery.Callbacks()										
 Callbacks()	R	jQuery.Callbacks()										
 Callbacks	R	jQuery.Callbacks()										
+.catch()	R	deferred.catch()										
+.catch	R	deferred.catch()										
+catch()	R	deferred.catch()										
+catch	R	deferred.catch()										
 .change()	A			jQuery methods							<section class="prog__container"><p>Bind an event handler to the "change" JavaScript event, or trigger that event on an element.</p><pre><code>$(selector).change(handler) → jQuery\n$(selector).change(eventData, handler) → jQuery\n$(selector).change() → jQuery</code></pre></section>	https://api.jquery.com/change/
 .change event	R	.change()										
 .change() event	R	.change()										
@@ -300,6 +304,9 @@ dblclick	R	.dblclick()
 deferred.always()	A			jQuery methods							<section class="prog__container"><p> Add handlers to be called when the Deferred object is either resolved or rejected. </p><pre><code>deferred.always(alwaysCallbacks, alwaysCallbacks) → Deferred</code></pre></section>	https://api.jquery.com/deferred.always/
 deferred always	R	deferred.always()										
 deferred.always	R	deferred.always()										
+deferred.catch()	A			jQuery methods							<section class="prog__container"><p>Add handlers to be called when the Deferred object is rejected. </p><pre><code>deferred.catch(failFilter) → Promise</code></pre></section>	https://api.jquery.com/deferred.catch/
+deferred catch	R	deferred.catch()										
+deferred.catch	R	deferred.catch()										
 deferred.done()	A			jQuery methods							<section class="prog__container"><p> Add handlers to be called when the Deferred object is resolved. </p><pre><code>deferred.done(doneCallbacks, doneCallbacks) → Deferred</code></pre></section>	https://api.jquery.com/deferred.done/
 deferred done	R	deferred.done()										
 deferred.done	R	deferred.done()										
@@ -1402,13 +1409,13 @@ on .unload()	R	.unload()
 on .unload	R	.unload()										
 on unload()	R	.unload()										
 on unload	R	.unload()										
-.outerHeight()	A			jQuery methods							<section class="prog__container"><p>Get the current computed height for the first element in the set of matched elements, including padding, border, and optionally margin. Returns a number (without "px") representation of the value or null if called on an empty set of elements.</p><pre><code>$(selector).outerHeight(includeMargin) → Number</code></pre>\n<p>Set the CSS outer Height of each element in the set of matched elements.</p><pre><code>$(selector).outerHeight(value) → jQuery\n$(selector).outerHeight(function(index, height)) → jQuery</code></pre></section>	https://api.jquery.com/outerHeight/
+.outerHeight()	A			jQuery methods							<section class="prog__container"><p>Get the current computed outer height (including padding, border, and optionally margin) for the first element in the set of matched elements.</p><pre><code>$(selector).outerHeight(includeMargin) → Number</code></pre>\n<p>Set the CSS outer height of each element in the set of matched elements.</p><pre><code>$(selector).outerHeight(value) → jQuery\n$(selector).outerHeight(function(index, height)) → jQuery</code></pre></section>	https://api.jquery.com/outerHeight/
 outer height	R	.outerHeight()										
 outerheight	R	.outerHeight()										
 .outerHeight	R	.outerHeight()										
 outerHeight()	R	.outerHeight()										
 outerHeight	R	.outerHeight()										
-.outerWidth()	A			jQuery methods							<section class="prog__container"><p>Get the current computed width for the first element in the set of matched elements, including padding and border.</p><pre><code>$(selector).outerWidth(includeMargin) → Number</code></pre>\n<p>Set the CSS outer width of each element in the set of matched elements.</p><pre><code>$(selector).outerWidth(value) → jQuery\n$(selector).outerWidth(function(index, width)) → jQuery</code></pre></section>	https://api.jquery.com/outerWidth/
+.outerWidth()	A			jQuery methods							<section class="prog__container"><p>Get the current computed outer width (including padding, border, and optionally margin) for the first element in the set of matched elements.</p><pre><code>$(selector).outerWidth(includeMargin) → Number</code></pre>\n<p>Set the CSS outer width of each element in the set of matched elements.</p><pre><code>$(selector).outerWidth(value) → jQuery\n$(selector).outerWidth(function(index, width)) → jQuery</code></pre></section>	https://api.jquery.com/outerWidth/
 outer width	R	.outerWidth()										
 outerwidth	R	.outerWidth()										
 .outerWidth	R	.outerWidth()										

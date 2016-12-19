@@ -290,7 +290,6 @@ class MDNParser(object):
                     example += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
                         
         print title + (' ' * 30) + '\r',
-
         mdn = MDN()
         mdn.title = title
         mdn.summary = summary
@@ -313,7 +312,12 @@ class MDNIndexer(object):
         self.ERROR_SYNONYMS = [ ["bad", "not legal", "invalid", "not a valid"] ]
         # for syntax, example redirections
         self.SYTAX_EXAMPLE_REDIR = ["Functions", "Classes", "Statements", "Operators"]
-        self.EXCEPTIONS = ["if", "else", "each", "method"]
+        # for special redirects to if, else, each and method
+        self.CONDITIONALS_REDIR = ["if", "else", "each", "method"]
+        # for special redirects to data type primitives
+        self.DATA_TYPES = ["boolean", "null", "undefined", "number", "string", "symbol", "bool8x16", 
+                           "bool16x8", "bool32x4", "bool64x2", "int8x16", "int16x8", "int32x4", "uint8x16",
+                           "uint16x8", "uint32x4", "float32x4", "float64x2"]
 
     def add(self, mdn):
         keyword = mdn.prop.lower()
@@ -349,6 +353,22 @@ class MDNIndexer(object):
                             'redirect': mdn.title
                         })
                     return;
+        
+        # write redirects for data-types
+        split_title = title.split(' ')
+        if split_title[0] == "global" and len(split_title) > 1:
+            if any(split_title[1] == data_type for data_type in self.DATA_TYPES):
+                self._writer.writerow({
+                    'title': split_title[1] + " data type",
+                    'type': 'R',
+                    'redirect': mdn.title
+                })
+                self._writer.writerow({
+                    'title': split_title[1] + " type",
+                    'type': 'R',
+                    'redirect': mdn.title
+                })               
+                
         # write redirects with `syntax` and `example` for functions pages
         if any(wiki == mdn.articletype for wiki in self.SYTAX_EXAMPLE_REDIR) and not mdn.redirected:
             mdn.redirected = True
@@ -384,7 +404,7 @@ class MDNIndexer(object):
                 })
                 new_title = new_title.split(' ')
                 for split_title in new_title:
-                    if any(exceptions == split_title for exceptions in self.EXCEPTIONS):
+                    if any(exceptions == split_title for exceptions in self.CONDITIONALS_REDIR):
                         self._writer.writerow({
                             'title': split_title,
                             'type': 'R',
