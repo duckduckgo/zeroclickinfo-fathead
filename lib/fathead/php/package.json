@@ -6,7 +6,6 @@
   "main": "parse.js",
   "dependencies": {
     "chalk": "^1.1.3",
-    "graceful-fs": "^4.1.9",
     "jsdom": "^9.6.0"
   },
   "scripts": {
