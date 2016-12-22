@@ -19,3 +19,218 @@ text-variant-ligatures,font-variant-ligatures
 text-variant-numeric,font-variant-numeric
 text-variant-position,font-variant-position
 text-weight,font-weight
+moz edge float,-moz-float-edge
+moz rect image,-moz-image-rect
+moz region image,-moz-image-region
+moz radius outline,-moz-outline-radius
+moz sizing stack,-moz-stack-sizing
+moz focus user,-moz-user-focus
+moz input user,-moz-user-input
+moz modify user,-moz-user-modify
+moz shadow window,-moz-window-shadow
+webkit before border,-webkit-border-before
+webkit reflect box,-webkit-box-reflect
+webkit attachment mask,-webkit-mask-attachment
+webkit composite mask,-webkit-mask-composite
+webkit scrolling overflow,-webkit-overflow-scrolling
+webkit stroke text,-webkit-text-stroke
+webkit callout touch,-webkit-touch-callout
+moz over drag,:-moz-drag-over
+moz node first,:-moz-first-node
+moz blocked handler,:-moz-handler-blocked
+moz crashed handler,:-moz-handler-crashed
+moz disabled handler,:-moz-handler-disabled
+moz node last,:-moz-last-node
+moz brighttext lwtheme,:-moz-lwtheme-brighttext
+moz darktext lwtheme,:-moz-lwtheme-darktext
+moz whitespace only,:-moz-only-whitespace
+moz invalid submit,:-moz-submit-invalid
+moz cell tree,:-moz-tree-cell
+moz column tree,:-moz-tree-column
+moz image tree,:-moz-tree-image
+moz indentation tree,:-moz-tree-indentation
+moz line tree,:-moz-tree-line
+moz progressmeter tree,:-moz-tree-progressmeter
+moz row tree,:-moz-tree-row
+moz separator tree,:-moz-tree-separator
+moz twisty tree,:-moz-tree-twisty
+moz invalid ui,:-moz-ui-invalid
+moz valid ui,:-moz-ui-valid
+moz disabled user,:-moz-user-disabled
+moz inactive window,:-moz-window-inactive
+moz bullet list,::-moz-list-bullet
+moz number list,::-moz-list-number
+moz sequence page,::-moz-page-sequence
+moz bar progress,::-moz-progress-bar
+moz progress range,::-moz-range-progress
+moz thumb range,::-moz-range-thumb
+moz track range,::-moz-range-track
+letter first,::first-letter (:first-letter)
+line first,::first-line (:first-line)
+error grammar,::grammar-error
+error spelling,::spelling-error
+link any,:any-link
+child first,:first-child
+range in,:in-range
+child last,:last-child
+child nth,:nth-child
+child only,:only-child
+only read,:read-only
+write read,:read-write
+style counter,@counter-style
+face font,@font-face
+symbols additive,additive-symbols
+content align,align-content
+items align,align-items
+self align,align-self
+delay animation,animation-delay
+direction animation,animation-direction
+duration animation,animation-duration
+name animation,animation-name
+rule at,at-rule
+visibility backface,backface-visibility
+attachment background,background-attachment
+clip background,background-clip
+color background,background-color
+image background,background-image
+origin background,background-origin
+position background,background-position
+repeat background,background-repeat
+size background,background-size
+size block,block-size
+bottom border,border-bottom
+collapse border,border-collapse
+color border,border-color
+image border,border-image
+left border,border-left
+radius border,border-radius
+right border,border-right
+spacing border,border-spacing
+style border,border-style
+top border,border-top
+width border,border-width
+align box,box-align
+direction box,box-direction
+flex box,box-flex
+orient box,box-orient
+pack box,box-pack
+shadow box,box-shadow
+sizing box,box-sizing
+after break,break-after
+before break,break-before
+inside break,break-inside
+side caption,caption-side
+path clip,clip-path
+count column,column-count
+fill column,column-fill
+gap column,column-gap
+rule column,column-rule
+span column,column-span
+width column,column-width
+increment counter,counter-increment
+reset counter,counter-reset
+shadow drop,drop-shadow()
+cells empty,empty-cells
+basis flex,flex-basis
+direction flex,flex-direction
+flow flex,flex-flow
+grow flex,flex-grow
+shrink flex,flex-shrink
+wrap flex,flex-wrap
+family font,font-family
+kerning font,font-kerning
+size font,font-size
+smooth font,font-smooth
+stretch font,font-stretch
+style font,font-style
+synthesis font,font-synthesis
+variant font,font-variant
+weight font,font-weight
+area grid,grid-area
+column grid,grid-column
+gap grid,grid-gap
+row grid,grid-row
+template grid,grid-template
+orientation image,image-orientation
+rendering image,image-rendering
+mode ime,ime-mode
+size inline,inline-size
+content justify,justify-content
+spacing letter,letter-spacing
+break line,line-break
+height line,line-height
+gradient linear,linear-gradient()
+style list,list-style
+bottom margin,margin-bottom
+left margin,margin-left
+right margin,margin-right
+top margin,margin-top
+clip mask,mask-clip
+composite mask,mask-composite
+image mask,mask-image
+mode mask,mask-mode
+origin mask,mask-origin
+position mask,mask-position
+repeat mask,mask-repeat
+size mask,mask-size
+type mask,mask-type
+height max,max-height
+width max,max-width
+zoom max,max-zoom
+height min,min-height
+width min,min-width
+zoom min,min-zoom
+fit object,object-fit
+position object,object-position
+color outline,outline-color
+offset outline,outline-offset
+style outline,outline-style
+width outline,outline-width
+wrap overflow,overflow-wrap
+x overflow,overflow-x
+y overflow,overflow-y
+bottom padding,padding-bottom
+left padding,padding-left
+right padding,padding-right
+top padding,padding-top
+origin perspective,perspective-origin
+events pointer,pointer-events
+classes pseudo,pseudo-classes
+elements pseudo,pseudo-elements
+gradient radial,radial-gradient()
+align ruby,ruby-align
+position ruby,ruby-position
+behavior scroll,scroll-behavior
+margin shape,shape-margin
+outside shape,shape-outside
+as speak,speak-as
+size tab,tab-size
+layout table,table-layout
+align text,text-align
+decoration text,text-decoration
+emphasis text,text-emphasis
+indent text,text-indent
+orientation text,text-orientation
+overflow text,text-overflow
+rendering text,text-rendering
+shadow text,text-shadow
+transform text,text-transform
+action touch,touch-action
+box transform,transform-box
+origin transform,transform-origin
+style transform,transform-style
+delay transition,transition-delay
+duration transition,transition-duration
+property transition,transition-property
+bidi unicode,unicode-bidi
+range unicode,unicode-range
+select user,user-select
+zoom user,user-zoom
+align vertical,vertical-align
+webkit element pseudo,webkit pseudo-element
+space white,white-space
+change will,will-change
+break word,word-break
+spacing word,word-spacing
+mode writing,writing-mode
+index z,z-index
