@@ -1,236 +1,236 @@
+action touch,touch-action
+after break,break-after
+align box,box-align
+align ruby,ruby-align
+align text,text-align
+align vertical,vertical-align
+area grid,grid-area
+as speak,speak-as
+attachment background,background-attachment
+basis flex,flex-basis
+before break,break-before
+behavior scroll,scroll-behavior
+bidi unicode,unicode-bidi
+bottom border,border-bottom
+bottom margin,margin-bottom
+bottom padding,padding-bottom
+box transform,transform-box
+break line,line-break
+break word,word-break
+cells empty,empty-cells
+change will,will-change
+child first,:first-child
+child last,:last-child
+child nth,:nth-child
+child only,:only-child
+classes pseudo,pseudo-classes
+clip background,background-clip
+clip mask,mask-clip
+collapse border,border-collapse
+color background,background-color
+color border,border-color
+color outline,outline-color
+column grid,grid-column
+composite mask,mask-composite
+content align,align-content
+content justify,justify-content
+count column,column-count
+decoration text,text-decoration
+delay animation,animation-delay
+delay transition,transition-delay
+direction animation,animation-direction
+direction box,box-direction
+direction flex,flex-direction
+duration animation,animation-duration
+duration transition,transition-duration
+elements pseudo,pseudo-elements
+emphasis text,text-emphasis
+error grammar,::grammar-error
+error spelling,::spelling-error
+events pointer,pointer-events
+face font,@font-face
+family font,font-family
+fill column,column-fill
+fit object,object-fit
+flex box,box-flex
+flow flex,flex-flow
+gap column,column-gap
+gap grid,grid-gap
+gradient linear,linear-gradient()
+gradient radial,radial-gradient()
+grow flex,flex-grow
+height line,line-height
+height max,max-height
+height min,min-height
+image background,background-image
+image border,border-image
+image mask,mask-image
+increment counter,counter-increment
+indent text,text-indent
+index z,z-index
+inside break,break-inside
+items align,align-items
+kerning font,font-kerning
+layout table,table-layout
+left border,border-left
+left margin,margin-left
+left padding,padding-left
+letter first,::first-letter (:first-letter)
+line first,::first-line (:first-line)
+link any,:any-link
+margin shape,shape-margin
+mode ime,ime-mode
+mode mask,mask-mode
+mode writing,writing-mode
+moz bar progress,::-moz-progress-bar
+moz blocked handler,:-moz-handler-blocked
+moz brighttext lwtheme,:-moz-lwtheme-brighttext
+moz bullet list,::-moz-list-bullet
+moz cell tree,:-moz-tree-cell
+moz column tree,:-moz-tree-column
+moz crashed handler,:-moz-handler-crashed
+moz darktext lwtheme,:-moz-lwtheme-darktext
+moz disabled handler,:-moz-handler-disabled
+moz disabled user,:-moz-user-disabled
+moz edge float,-moz-float-edge
+moz focus user,-moz-user-focus
+moz image tree,:-moz-tree-image
+moz inactive window,:-moz-window-inactive
+moz indentation tree,:-moz-tree-indentation
+moz input user,-moz-user-input
+moz invalid submit,:-moz-submit-invalid
+moz invalid ui,:-moz-ui-invalid
+moz line tree,:-moz-tree-line
+moz modify user,-moz-user-modify
+moz node first,:-moz-first-node
+moz node last,:-moz-last-node
+moz number list,::-moz-list-number
+moz over drag,:-moz-drag-over
+moz progressmeter tree,:-moz-tree-progressmeter
+moz progress range,::-moz-range-progress
+moz radius outline,-moz-outline-radius
+moz rect image,-moz-image-rect
+moz region image,-moz-image-region
+moz row tree,:-moz-tree-row
+moz separator tree,:-moz-tree-separator
+moz sequence page,::-moz-page-sequence
+moz shadow window,-moz-window-shadow
+moz sizing stack,-moz-stack-sizing
+moz thumb range,::-moz-range-thumb
+moz track range,::-moz-range-track
+moz twisty tree,:-moz-tree-twisty
+moz valid ui,:-moz-ui-valid
+moz whitespace only,:-moz-only-whitespace
+name animation,animation-name
+offset outline,outline-offset
+only read,:read-only
+orientation image,image-orientation
+orientation text,text-orientation
+orient box,box-orient
+origin background,background-origin
+origin mask,mask-origin
+origin perspective,perspective-origin
+origin transform,transform-origin
+outside shape,shape-outside
+overflow text,text-overflow
+pack box,box-pack
+path clip,clip-path
+position background,background-position
+position mask,mask-position
+position object,object-position
+position ruby,ruby-position
+property transition,transition-property
+radius border,border-radius
+range in,:in-range
+range unicode,unicode-range
+rendering image,image-rendering
+rendering text,text-rendering
+repeat background,background-repeat
+repeat mask,mask-repeat
+reset counter,counter-reset
+right border,border-right
+right margin,margin-right
+right padding,padding-right
+row grid,grid-row
+rule at,at-rule
+rule column,column-rule
+select user,user-select
+self align,align-self
+shadow box,box-shadow
+shadow drop,drop-shadow()
+shadow text,text-shadow
+shrink flex,flex-shrink
+side caption,caption-side
+size background,background-size
+size block,block-size
+size font,font-size
+size inline,inline-size
+size mask,mask-size
+size tab,tab-size
+sizing box,box-sizing
+smooth font,font-smooth
+space white,white-space
+spacing border,border-spacing
+spacing letter,letter-spacing
+spacing word,word-spacing
+span column,column-span
+stretch font,font-stretch
+style border,border-style
+style counter,@counter-style
+style font,font-style
+style list,list-style
+style outline,outline-style
+style transform,transform-style
+symbols additive,additive-symbols
+synthesis font,font-synthesis
+template grid,grid-template
 @text-face,@font-face
-text-feature-values,@font-feature-values
-text,font
 text-family,font-family
 text-feature-settings,font-feature-settings
+text-feature-values,@font-feature-values
+text,font
 text-kerning,font-kerning
 text-language-override,font-language-override
-text-size,font-size
 text-size-adjust,font-size-adjust
+text-size,font-size
 text-smooth,font-smooth
 text-stretch,font-stretch
 text-style,font-style
 text-synthesis,font-synthesis
-text-variant,font-variant
 text-variant-alternates,font-variant-alternates
 text-variant-caps,font-variant-caps
 text-variant-east-asian,font-variant-east-asian
+text-variant,font-variant
 text-variant-ligatures,font-variant-ligatures
 text-variant-numeric,font-variant-numeric
 text-variant-position,font-variant-position
 text-weight,font-weight
-moz edge float,-moz-float-edge
-moz rect image,-moz-image-rect
-moz region image,-moz-image-region
-moz radius outline,-moz-outline-radius
-moz sizing stack,-moz-stack-sizing
-moz focus user,-moz-user-focus
-moz input user,-moz-user-input
-moz modify user,-moz-user-modify
-moz shadow window,-moz-window-shadow
-webkit before border,-webkit-border-before
-webkit reflect box,-webkit-box-reflect
+top border,border-top
+top margin,margin-top
+top padding,padding-top
+transform text,text-transform
+type mask,mask-type
+variant font,font-variant
+visibility backface,backface-visibility
 webkit attachment mask,-webkit-mask-attachment
+webkit before border,-webkit-border-before
+webkit callout touch,-webkit-touch-callout
 webkit composite mask,-webkit-mask-composite
+webkit element pseudo,webkit pseudo-element
+webkit reflect box,-webkit-box-reflect
 webkit scrolling overflow,-webkit-overflow-scrolling
 webkit stroke text,-webkit-text-stroke
-webkit callout touch,-webkit-touch-callout
-moz over drag,:-moz-drag-over
-moz node first,:-moz-first-node
-moz blocked handler,:-moz-handler-blocked
-moz crashed handler,:-moz-handler-crashed
-moz disabled handler,:-moz-handler-disabled
-moz node last,:-moz-last-node
-moz brighttext lwtheme,:-moz-lwtheme-brighttext
-moz darktext lwtheme,:-moz-lwtheme-darktext
-moz whitespace only,:-moz-only-whitespace
-moz invalid submit,:-moz-submit-invalid
-moz cell tree,:-moz-tree-cell
-moz column tree,:-moz-tree-column
-moz image tree,:-moz-tree-image
-moz indentation tree,:-moz-tree-indentation
-moz line tree,:-moz-tree-line
-moz progressmeter tree,:-moz-tree-progressmeter
-moz row tree,:-moz-tree-row
-moz separator tree,:-moz-tree-separator
-moz twisty tree,:-moz-tree-twisty
-moz invalid ui,:-moz-ui-invalid
-moz valid ui,:-moz-ui-valid
-moz disabled user,:-moz-user-disabled
-moz inactive window,:-moz-window-inactive
-moz bullet list,::-moz-list-bullet
-moz number list,::-moz-list-number
-moz sequence page,::-moz-page-sequence
-moz bar progress,::-moz-progress-bar
-moz progress range,::-moz-range-progress
-moz thumb range,::-moz-range-thumb
-moz track range,::-moz-range-track
-letter first,::first-letter (:first-letter)
-line first,::first-line (:first-line)
-error grammar,::grammar-error
-error spelling,::spelling-error
-link any,:any-link
-child first,:first-child
-range in,:in-range
-child last,:last-child
-child nth,:nth-child
-child only,:only-child
-only read,:read-only
-write read,:read-write
-style counter,@counter-style
-face font,@font-face
-symbols additive,additive-symbols
-content align,align-content
-items align,align-items
-self align,align-self
-delay animation,animation-delay
-direction animation,animation-direction
-duration animation,animation-duration
-name animation,animation-name
-rule at,at-rule
-visibility backface,backface-visibility
-attachment background,background-attachment
-clip background,background-clip
-color background,background-color
-image background,background-image
-origin background,background-origin
-position background,background-position
-repeat background,background-repeat
-size background,background-size
-size block,block-size
-bottom border,border-bottom
-collapse border,border-collapse
-color border,border-color
-image border,border-image
-left border,border-left
-radius border,border-radius
-right border,border-right
-spacing border,border-spacing
-style border,border-style
-top border,border-top
-width border,border-width
-align box,box-align
-direction box,box-direction
-flex box,box-flex
-orient box,box-orient
-pack box,box-pack
-shadow box,box-shadow
-sizing box,box-sizing
-after break,break-after
-before break,break-before
-inside break,break-inside
-side caption,caption-side
-path clip,clip-path
-count column,column-count
-fill column,column-fill
-gap column,column-gap
-rule column,column-rule
-span column,column-span
-width column,column-width
-increment counter,counter-increment
-reset counter,counter-reset
-shadow drop,drop-shadow()
-cells empty,empty-cells
-basis flex,flex-basis
-direction flex,flex-direction
-flow flex,flex-flow
-grow flex,flex-grow
-shrink flex,flex-shrink
-wrap flex,flex-wrap
-family font,font-family
-kerning font,font-kerning
-size font,font-size
-smooth font,font-smooth
-stretch font,font-stretch
-style font,font-style
-synthesis font,font-synthesis
-variant font,font-variant
 weight font,font-weight
-area grid,grid-area
-column grid,grid-column
-gap grid,grid-gap
-row grid,grid-row
-template grid,grid-template
-orientation image,image-orientation
-rendering image,image-rendering
-mode ime,ime-mode
-size inline,inline-size
-content justify,justify-content
-spacing letter,letter-spacing
-break line,line-break
-height line,line-height
-gradient linear,linear-gradient()
-style list,list-style
-bottom margin,margin-bottom
-left margin,margin-left
-right margin,margin-right
-top margin,margin-top
-clip mask,mask-clip
-composite mask,mask-composite
-image mask,mask-image
-mode mask,mask-mode
-origin mask,mask-origin
-position mask,mask-position
-repeat mask,mask-repeat
-size mask,mask-size
-type mask,mask-type
-height max,max-height
+width border,border-width
+width column,column-width
 width max,max-width
-zoom max,max-zoom
-height min,min-height
 width min,min-width
-zoom min,min-zoom
-fit object,object-fit
-position object,object-position
-color outline,outline-color
-offset outline,outline-offset
-style outline,outline-style
 width outline,outline-width
+wrap flex,flex-wrap
 wrap overflow,overflow-wrap
+write read,:read-write
 x overflow,overflow-x
 y overflow,overflow-y
-bottom padding,padding-bottom
-left padding,padding-left
-right padding,padding-right
-top padding,padding-top
-origin perspective,perspective-origin
-events pointer,pointer-events
-classes pseudo,pseudo-classes
-elements pseudo,pseudo-elements
-gradient radial,radial-gradient()
-align ruby,ruby-align
-position ruby,ruby-position
-behavior scroll,scroll-behavior
-margin shape,shape-margin
-outside shape,shape-outside
-as speak,speak-as
-size tab,tab-size
-layout table,table-layout
-align text,text-align
-decoration text,text-decoration
-emphasis text,text-emphasis
-indent text,text-indent
-orientation text,text-orientation
-overflow text,text-overflow
-rendering text,text-rendering
-shadow text,text-shadow
-transform text,text-transform
-action touch,touch-action
-box transform,transform-box
-origin transform,transform-origin
-style transform,transform-style
-delay transition,transition-delay
-duration transition,transition-duration
-property transition,transition-property
-bidi unicode,unicode-bidi
-range unicode,unicode-range
-select user,user-select
+zoom max,max-zoom
+zoom min,min-zoom
 zoom user,user-zoom
-align vertical,vertical-align
-webkit element pseudo,webkit pseudo-element
-space white,white-space
-change will,will-change
-break word,word-break
-spacing word,word-spacing
-mode writing,writing-mode
-index z,z-index
