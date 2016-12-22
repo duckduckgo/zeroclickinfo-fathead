@@ -2,7 +2,6 @@
 
 dir=$(dirname $0)
 
-url=$(<"${dir}/data.url")
 download_dir=${dir}/download
 archive=$(mktemp)
 docs_rel_dir=api.jquery.com-master/entries
@@ -11,7 +10,7 @@ curl \
   --silent \
   --create-dirs \
   --output "${archive}" \
-  "${url}"
+  "https://codeload.github.com/jquery/api.jquery.com/zip/master"
 
 mkdir -p "${download_dir}"
 
