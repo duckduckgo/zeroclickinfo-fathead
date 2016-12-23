@@ -1,5 +1,0 @@
-Name: HGNC Gene Names
-Domain: www.genenames.org
-Type: Human Gene Name
-MediaWiki: 0
-Keywords: HGNC, human gene, gene

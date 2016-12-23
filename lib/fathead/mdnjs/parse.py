@@ -13,10 +13,10 @@ class Standardizer(object):
       Array.prototype.reverse
     """
     TITLE_FORMATTING = {
-      'class_property': '%s.%s',
-      'class_function': '%s.%s',
-      'instance_method': '%s.prototype.%s',
-      'instance_property': '%s.prototype.%s',
+        'class_property': '%s.%s',
+        'class_function': '%s.%s',
+        'instance_method': '%s.prototype.%s',
+        'instance_property': '%s.prototype.%s',
     }
 
     def __init__(self, specfile):
@@ -64,19 +64,19 @@ class FatWriter(object):
     zeroclickinfo-fathead."""
 
     FIELDS = [
-      'title',
-      'type',
-      'redirect',
-      'otheruses',
-      'categories',
-      'references',
-      'see_also',
-      'further_reading',
-      'external_links',
-      'disambiguation',
-      'images',
-      'abstract',
-      'source_url'
+        'title',
+        'type',
+        'redirect',
+        'otheruses',
+        'categories',
+        'references',
+        'see_also',
+        'further_reading',
+        'external_links',
+        'disambiguation',
+        'images',
+        'abstract',
+        'source_url'
     ]
 
     def __init__(self, outfile):
@@ -107,15 +107,22 @@ class MDNWriter(FatWriter):
         if mdn.exampledesc:
             abstract += '<p>' + mdn.exampledesc + '</p>'
         if mdn.example:
-            code = '<pre><code>%s</code></pre>' % mdn.example    
-        
+            temp = ''
+            if type(mdn.example) == str:
+                temp = '<pre><code>%s</code></pre>' % mdn.example
+            if type(mdn.example) == dict:
+                for key, value in mdn.example.items():
+                    temp += key + '<pre><code>%s</code></pre>' %value
+                    temp += '<br/>'
+            code = temp
+
         fatheadTemplate = '<section class="prog__container">' + abstract + code + "</section>"
-        
+
         d = {
-          'title': mdn.title,
-          'type': 'A',
-          'source_url': mdn.url,
-          'abstract': fatheadTemplate
+            'title': mdn.title,
+            'type': 'A',
+            'source_url': mdn.url,
+            'abstract': fatheadTemplate
         }
         self.writerow(d)
         self.articles_index.append(mdn.title.lower())
@@ -181,7 +188,7 @@ class MDNParser(object):
         tree = html.fromstring(page)
 
         if self._is_obsolete(tree):
-          return None
+            return None
 
         title = tree.xpath("//meta[@property='og:title']/@content")[0]
         article = tree.xpath("//article[contains(@id,'wikiArticle')]")
@@ -189,15 +196,15 @@ class MDNParser(object):
         if article:
             summary_nodes = tree.xpath("//h2[contains(@id,'Summary')]/following-sibling::p[1]")
             for summary_el in summary_nodes :
-              for tag in summary_el.xpath('//*[@class]'):
-                  tag.attrib.pop('class')
-              summary += re.sub('<[^<]+?>', '', etree.tostring(summary_el).strip())
-        
+                for tag in summary_el.xpath('//*[@class]'):
+                    tag.attrib.pop('class')
+                summary += re.sub('<[^<]+?>', '', etree.tostring(summary_el).strip())
+
         # if there's no summary, getting description section
         if not summary:
             summary_el = tree.xpath("//meta[@property='og:description']/@content")
             if summary_el:
-              summary = summary_el[0]
+                summary = summary_el[0]
 
         # if there's no summary or description, getting see also section title
         if not summary:
@@ -222,75 +229,114 @@ class MDNParser(object):
         articletype = ""
         exampledesc = ""
         example = ""
+
+        # Web/API pages. In Web/API pages we take the first example. If the example contains both html content and JS
+        # content, we take them both, if not we simply take the first example.
+        url=tree.xpath("//meta[@property='og:url']/@content")[0]
+        if "Web/API" in url:
+            example_header = tree.xpath("//h2[contains(@id,'Example')][position()=1]")
+            if example_header:
+                html_example_header = tree.xpath("//h2[contains(@id,'Example')][position()=1]/following-sibling::h3[contains(@id,'HTML_Content')]")
+                js_example_header = tree.xpath("//h2[contains(@id,'Example')][position()=1]/following-sibling::h3[contains(@id,'JavaScript_Content')]")
+                if html_example_header and js_example_header:
+                    example = {}
+                    example['HTML Content']=''
+                    elements = tree.xpath("//h2[contains(@id,'Example')][position()=1]/following-sibling::h3[contains(@id,'HTML_Content')]/following-sibling::pre[1]")
+                    for element in elements:
+                        for tag in element.xpath('//*[@class]'):
+                            tag.attrib.pop('class')
+                        example['HTML Content'] += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+
+                    example['JavaScript Content']=''
+                    elements = tree.xpath("//h2[contains(@id,'Example')][position()=1]/following-sibling::h3[contains(@id,'JavaScript_Content')]/following-sibling::pre[1]")
+                    for element in elements:
+                        for tag in element.xpath('//*[@class]'):
+                            tag.attrib.pop('class')
+                        example['JavaScript Content'] += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+                else:
+                    example=''
+                    example_header = tree.xpath("//h2[contains(@id,'Example')]")
+                    if example_header:
+                        elements = tree.xpath("//h2[contains(@id,'Example')]/following-sibling::pre[1]")
+                        for element in elements:
+                            for tag in element.xpath('//*[@class]'):
+                                tag.attrib.pop('class')
+                            example += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+
+                    elements = tree.xpath("//h2[contains(@id,'Example')]/following-sibling::p[1]")
+                    for element in elements:
+                        for tag in element.xpath('//*[@class]'):
+                            tag.attrib.pop('class')
+                        exampledesc += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+
         # Error pages
         if "Error" in htmlfile.name:
 
-          articletype = "Error"
+            articletype = "Error"
 
-          # What went wrong?
-          whatWentWrong_summary = ""
-          whatWentWrong = tree.xpath("//h2[contains(@id,'What_went_wrong')]/following-sibling::p[1]")
-          for element in whatWentWrong:
-              for tag in element.xpath('//*[@class]'):
-                  tag.attrib.pop('class')
-              whatWentWrong_summary += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
+            # What went wrong?
+            whatWentWrong_summary = ""
+            whatWentWrong = tree.xpath("//h2[contains(@id,'What_went_wrong')]/following-sibling::p[1]")
+            for element in whatWentWrong:
+                for tag in element.xpath('//*[@class]'):
+                    tag.attrib.pop('class')
+                whatWentWrong_summary += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
 
-          if whatWentWrong_summary:
-            summary = whatWentWrong_summary
+            if whatWentWrong_summary:
+                summary = whatWentWrong_summary
 
-          # Examples
-          exampleGood = ''.join(tree.xpath("//h3[contains(@id,'Valid_cases')]/following-sibling::pre/text()"))
-          exampleBad = ''.join(tree.xpath("//h3[contains(@id,'Invalid_cases')]/following-sibling::pre/text()"))
+            # Examples
+            exampleGood = ''.join(tree.xpath("//h3[contains(@id,'Valid_cases')]/following-sibling::pre/text()"))
+            exampleBad = ''.join(tree.xpath("//h3[contains(@id,'Invalid_cases')]/following-sibling::pre/text()"))
 
-          exampleGood = re.sub('<[^<]+?>', '', exampleGood)
-          exampleBad = re.sub('<[^<]+?>', '', exampleBad)
+            exampleGood = re.sub('<[^<]+?>', '', exampleGood)
+            exampleBad = re.sub('<[^<]+?>', '', exampleBad)
 
-          if exampleGood:
-            exampleGood = "Valid Cases:\n" + exampleGood
-          if exampleBad:
-            exampleBad = "Invalid Cases:\n" + exampleGood
+            if exampleGood:
+                exampleGood = "Valid Cases:\n" + exampleGood
+            if exampleBad:
+                exampleBad = "Invalid Cases:\n" + exampleGood
 
-          if exampleBad or exampleGood:
-            codesnippet = exampleBad + "\n" + exampleGood
-            
+            if exampleBad or exampleGood:
+                codesnippet = exampleBad + "\n" + exampleGood
+
         if any(wiki in htmlfile.name for wiki in ["Functions.", "Classes.", "Statements.", "Operators."]):
-            
+
             articletype = htmlfile.name.split('.')[0].split('/')[1]
             desc_header = tree.xpath("//h2[contains(@id,'Description')]")
 
             if desc_header:
 
                 elements = tree.xpath("//h2[contains(@id,'Description')]/following-sibling::p[1]")
-                
+
                 for element in elements:
                     for tag in element.xpath('//*[@class]'):
                         tag.attrib.pop('class')
                     exampledesc += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
-                        
+
                 elements = tree.xpath("//h2[contains(@id,'Description')]/following-sibling::pre[1]")
-                
+
                 for element in elements:
                     for tag in element.xpath('//*[@class]'):
                         tag.attrib.pop('class')
                     example += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
             else:
-                
+
                 elements = tree.xpath("//h2[contains(@id,'Examples')]/following-sibling::p[1]")
-                
+
                 for element in elements:
                     for tag in element.xpath('//*[@class]'):
                         tag.attrib.pop('class')
                     exampledesc += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
-                        
+
                 elements = tree.xpath("//h2[contains(@id,'Examples')]/following-sibling::pre[1]")
-                
+
                 for element in elements:
                     for tag in element.xpath('//*[@class]'):
                         tag.attrib.pop('class')
                     example += re.sub('<[^<]+?>', '', etree.tostring(element).strip())
-                        
-        print title + (' ' * 30) + '\r',
 
+        print title + (' ' * 30) + '\r',
         mdn = MDN()
         mdn.title = title
         mdn.summary = summary
@@ -307,13 +353,18 @@ class MDNIndexer(object):
         self.inverted_index = {}
         # for Web/Api pages
         self.WEBAPI_CLASS_WORDS = ['Window', 'Navigator', 'MouseEvent',
-                            'KeyboardEvent', 'GlobalEventHandlers', 'Element',
-                            'Node', 'Event', 'Selection']
+                                   'KeyboardEvent', 'GlobalEventHandlers', 'Element',
+                                   'Node', 'Event', 'Selection']
         # for Error pages
         self.ERROR_SYNONYMS = [ ["bad", "not legal", "invalid", "not a valid"] ]
         # for syntax, example redirections
         self.SYTAX_EXAMPLE_REDIR = ["Functions", "Classes", "Statements", "Operators"]
-        self.EXCEPTIONS = ["if", "else", "each", "method"]
+        # for special redirects to if, else, each and method
+        self.CONDITIONALS_REDIR = ["if", "else", "each", "method"]
+        # for special redirects to data type primitives
+        self.DATA_TYPES = ["boolean", "null", "undefined", "number", "string", "symbol", "bool8x16", 
+                           "bool16x8", "bool32x4", "bool64x2", "int8x16", "int16x8", "int32x4", "uint8x16",
+                           "uint16x8", "uint32x4", "float32x4", "float64x2"]
 
     def add(self, mdn):
         keyword = mdn.prop.lower()
@@ -328,9 +379,9 @@ class MDNIndexer(object):
         strippedRedirect = re.sub( '\s+', ' ',strippedRedirect ).strip()
         if (strippedRedirect != mdn.title.lower()):
             self._writer.writerow({
-              'title': strippedRedirect,
-              'type': 'R',
-              'redirect': mdn.title
+                'title': strippedRedirect,
+                'type': 'R',
+                'redirect': mdn.title
             })
 
     def writeredirect(self, title, mdn):
@@ -340,7 +391,7 @@ class MDNIndexer(object):
         # write redirects with synonyms for error pages
         if mdn.articletype == "Error":
             for synonyms_list in self.ERROR_SYNONYMS:
-                if any(word in title.lower() for word in synonyms_list): 
+                if any(word in title.lower() for word in synonyms_list):
                     word = set(synonyms_list).intersection(title.lower().split()).pop()
                     for synonym in synonyms_list:
                         self._writer.writerow({
@@ -349,6 +400,22 @@ class MDNIndexer(object):
                             'redirect': mdn.title
                         })
                     return;
+        
+        # write redirects for data-types
+        split_title = title.split(' ')
+        if split_title[0] == "global" and len(split_title) > 1:
+            if any(split_title[1] == data_type for data_type in self.DATA_TYPES):
+                self._writer.writerow({
+                    'title': split_title[1] + " data type",
+                    'type': 'R',
+                    'redirect': mdn.title
+                })
+                self._writer.writerow({
+                    'title': split_title[1] + " type",
+                    'type': 'R',
+                    'redirect': mdn.title
+                })               
+                
         # write redirects with `syntax` and `example` for functions pages
         if any(wiki == mdn.articletype for wiki in self.SYTAX_EXAMPLE_REDIR) and not mdn.redirected:
             mdn.redirected = True
@@ -384,7 +451,7 @@ class MDNIndexer(object):
                 })
                 new_title = new_title.split(' ')
                 for split_title in new_title:
-                    if any(exceptions == split_title for exceptions in self.EXCEPTIONS):
+                    if any(exceptions == split_title for exceptions in self.CONDITIONALS_REDIR):
                         self._writer.writerow({
                             'title': split_title,
                             'type': 'R',
@@ -400,7 +467,7 @@ class MDNIndexer(object):
                             'type': 'R',
                             'redirect': mdn.title
                         })
-            
+
         # To avoid redirections like "default parameters" -> "Default Parameters"
         if title.lower() != mdn.title.lower():
             self._writer.writerow({
@@ -411,15 +478,15 @@ class MDNIndexer(object):
 
     def writedisambiguation(self, keyword, disambig):
         self._writer.writerow({
-          'title': keyword,
-          'type': 'D',
-          'disambiguation': disambig
+            'title': keyword,
+            'type': 'D',
+            'disambiguation': disambig
         })
         self._writer.articles_index.append(keyword.lower())
 
     def writerows(self):
         for keyword, count in self.counter.most_common():
-            
+
             if count > 1:
                 disambig = ''
                 for mdn in self.inverted_index[keyword]:
@@ -434,7 +501,7 @@ class MDNIndexer(object):
                 # skips D if already an article
                 if keyword.lower() not in self._writer.articles_index:
                     self.writedisambiguation(keyword, disambig)
-                    
+
             for mdn in self.inverted_index[keyword]:
                 # add redirect for Web/Api pages
                 strip_title = ""
@@ -504,7 +571,7 @@ def run(cachedir, cachejournal, langdefs, outfname):
                 indexer.add(mdn)
                 # For the error articles, we write a redirect
                 # with a stripped version of the article
-                if mdn.articletype == "Error":            
+                if mdn.articletype == "Error":
                     indexer.writestrippedredirect(mdn)
         indexer.writerows()
 

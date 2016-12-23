@@ -12,7 +12,7 @@ from urllib2 import urlopen
 popular_packages = []
 
 def get_popular_packages():
-    limit = 200 #10000 Packages
+    limit = 300 #15000 Packages
     package = 1
     seed = 'http://pypi-ranking.info/alltime?page='
     print("Getting Popular Packages ...")

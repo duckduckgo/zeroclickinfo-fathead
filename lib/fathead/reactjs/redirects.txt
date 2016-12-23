@@ -1,0 +1,26 @@
+children,React.Children
+children count,React.Children.count
+children for each,React.Children.forEach
+children map,React.Children.map
+children only,React.Children.only
+children to array,React.Children.toArray
+component,React.Component
+proptypes,React.PropTypes
+proptypes any,React.PropTypes.any
+proptypes array,React.PropTypes.array
+proptypes array of,React.PropTypes.arrayOf()
+proptypes bool,React.PropTypes.bool
+proptypes element,React.PropTypes.element
+proptypes func,React.PropTypes.func
+proptypes instance of,React.PropTypes.instanceOf()
+proptypes node,React.PropTypes.node
+proptypes number,React.PropTypes.number
+proptypes object,React.PropTypes.object
+proptypes object of,React.PropTypes.objectOf()
+proptypes one of,React.PropTypes.oneOf()
+proptypes one of type,React.PropTypes.oneOfType()
+proptypes shape,React.PropTypes.shape()
+proptypes string,React.PropTypes.string
+proptypes symbol,React.PropTypes.symbol
+purecomponent,React.PureComponent
+addons,React.addons

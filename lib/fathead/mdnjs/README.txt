@@ -12,7 +12,7 @@ https://developer.mozilla.org/en-US/docs/JavaScript/Reference. From each wiki
 article, it extracts:
   - Title
   - Summary
-  - Syntax
+  - Syntax or example
 
 It then combines Syntax and Summary to create an abstract for the article.
 
