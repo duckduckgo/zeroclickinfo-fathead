@@ -21,29 +21,47 @@ def getClass(directory, fname):
   return getDocs(filename)
 
 """
-Retrieves all methods of a specified class and saves them to methods.txt.
+Retrieves all methods of a specified class and saves them to methods.txt for coverage and appends formatted data to output.txt.
 parameters: name of class
 """
 def getClassMethods(filename, classname):
     content = BeautifulSoup(getcontent(classname), "html.parser")
     # Note: this will not find methods inherited from other classes/interfaces
     for method in content.find_all("table", {"summary" : re.compile("method")}):
-        method_output(filename, extractMethodData(method))
-
+        method_output(filename, extractMethodData(method, classname, True))
+        method_output('output.txt', extractMethodData(method, classname, False))
 """
 Extracts data of a method.
-parameters: method html table entry, classname
+parameters: method html table entry, classname, boolean coverage
 returns: all method data and the class it belongs to
 """
-def extractMethodData(method):
+def extractMethodData(method, classname, coverage):
     method_names = []
-    for td in method.find_all("td", {"class" : "colLast"}):
+    if coverage is True:
+        for td in method.find_all("td", {"class" : "colLast"}):
             method_names.append(str.replace(td.find("code").text, "&nbsp;", " "))
+    elif coverage is False:
+        for td in method.find_all("td", {"class" : "colLast"}):
+            method_names.append(format(td))
     return method_names
+
+"""
+Formats output for method data to be appended to output.txt
+parameters: data entry of a method
+returns: a formatted string for output.txt
+"""
+def format(tabledata):
+    method_name = str.replace(tabledata.find("code").text, "&nbsp;", " ")
+    method_description = ""
+    if tabledata.find("div") is not None:
+        method_description = str(tabledata.find("div").get_text())
+    method_url = str(tabledata.find("href"))
+    formatted_string = method_name + "\tA\t\t\t\t\t\t\t\t\t" + method_description + method_url
+    return formatted_string
     
 """
-Method used to append a formatted line of data of a method to the methods.txt file
-parameters: filename (methods.txt), list of method data
+Appends a formatted line of data of a method to a specified file
+parameters: filename (output.txt), list of method data
 """
 def method_output(file, data):
     f = open(file, 'a')
@@ -53,7 +71,6 @@ def method_output(file, data):
              f.write(line)
     f.close()
 
-    
 def getDocs(filename):
   if filename.endswith('.html') and 'package-' not in filename and 'doc-files' not in filename:
     content = BeautifulSoup(getcontent(filename), 'html.parser')
@@ -72,15 +89,15 @@ def cutlength(description):
   return description.replace("\n", "")
 
 def remove_keywords(line):
-  if isinstance(line, basestring):
+  if isinstance(line, str): # replaced basestring with str. basestring is deprecated in python 3.x
     line = re.sub(r'<\w,?\w?>', '', line)
     return line.replace('Class ', '').replace('Enum ', '').replace('Interface ', '').replace('Annotation Type ', '')
   else:
     return ''
 
 def getcontent(filename):
-# added binary mode. will experience UnicodeDecodeError() otherwise
   f = open(filename, 'rb')
+  # added 'b' to option. forces bytes rather than string.
   lines = f.read()
   f.close()
   return lines
@@ -114,7 +131,6 @@ def concat(clazz, description, url):
 def output(filename, data_list):
   line = concat_list(data_list)
   if not line.startswith("No class found") and line != "" and not ("No abstract found" in line):
-# added binary mode. will experience TypeError otherwise
     f = open(filename, 'ab')
     f.write(line.encode('utf'))
     f.close()
