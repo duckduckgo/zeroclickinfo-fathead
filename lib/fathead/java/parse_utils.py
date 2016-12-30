@@ -39,7 +39,7 @@ def extractMethodData(method, coverage):
     method_names = []
     if coverage is True:
         for td in method.find_all("td", {"class" : "colLast"}):
-            method_names.append(str.replace(td.find("code").text, "&nbsp;", " "))
+            method_names.append(str.replace(str.replace(str.replace(td.find("code").text, " ", ""), "\n", ""), "&nbsp;", ""))
     elif coverage is False:
         for td in method.find_all("td", {"class" : "colLast"}):
             method_names.append(format(td))
@@ -51,10 +51,10 @@ parameters: data entry of a method
 returns: a formatted string for output.txt
 """
 def format(tabledata):
-    method_name = str.replace(tabledata.find("code").text, "&nbsp;", " ")
+    method_name = str.replace(str.replace(str.replace(tabledata.find("code").text, "\n", ""), " ", ""), "&nbsp;", " ")
     method_description = ""
     if tabledata.find("div") is not None:
-        method_description = str(tabledata.find("div").get_text())
+        method_description = str.replace(tabledata.find("div").get_text(), "\n", "")
     method_url = str(tabledata.find("href"))
     formatted_string = method_name + "\tA\t\t\t\t\t\t\t\t\t" + method_description + method_url
     return formatted_string
