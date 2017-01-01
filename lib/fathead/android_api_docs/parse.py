@@ -3,30 +3,13 @@
 from bs4 import BeautifulSoup
 from glob import glob
 import re
+# Import the os module, for the os.walk function
+import os
 
-def build_article(tr):
-    '''Builds fathead article entry.
+def build_summary_article(page):
 
-    '''
 
-    title = tr.td.a.contents[0]
-    url = (tr.find('a')['href'])
-    #Some packages don't have a description, but simply a page listing classes and interfaces (possibly enums)
-    try:
-        abstract = tr.find('p').contents[0]
-    except:
-        abstract = "More information about interfaces and classes at " + url
-    title = '<span class="prog__sub">%s</span>' % title
-    #Replace newline characters with a space
-    abstract = re.sub('\n', ' ', abstract)
-    abstract = abstract.strip()
-    
-    abstract = '<p>%s</p>' % abstract
-    abstract = '<section class="prog__container">%s</section>' % abstract
-    print('Title %s ' % title)
-    print('URL %s' % url)
-    print('Description %s' % abstract)
-    return  [  
+    return  [
             title,           # title
             'A',             # type is article
             '',              # no redirect data
@@ -42,11 +25,51 @@ def build_article(tr):
             url,             # anchor to specific section
         ]
 
+def build_article(page):
+    '''Builds fathead article entry.
+
+    '''
+
+    '''
+    title = tr.td.a.contents[0]
+    url = (tr.find('a')['href'])
+    #Some packages don't have a description, but simply a page listing classes and interfaces (possibly enums)
+    try:
+        abstract = tr.find('p').contents[0]
+    except:
+        abstract = "More information about interfaces and classes at " + url
+    title = '<span class="prog__sub">%s</span>' % title
+    #Replace newline characters with a space
+    abstract = re.sub('\n', ' ', abstract)
+    abstract = abstract.strip()
+
+    abstract = '<p>%s</p>' % abstract
+    abstract = '<section class="prog__container">%s</section>' % abstract
+    print('Title %s ' % title)
+    print('URL %s' % url)
+    print('Description %s' % abstract)
+    return  [
+            title,           # title
+            'A',             # type is article
+            '',              # no redirect data
+            '',              # ignore
+            '',              # no categories
+            '',              # ignore
+            '',              # no related topics
+            '',              # ignore
+            '',              # external link
+            '',              # no disambiguation
+            '',              # images
+            abstract,        # abstract
+            url,             # anchor to specific section
+        ]
+    '''
+
+'''
 with open('output.txt', 'w') as fp:
     for html_file in glob('download/*.html'):
         print('Processing %s' % html_file)
         soup = BeautifulSoup(open(html_file), 'html.parser')
-        page_url = soup.find('link', attrs={'rel': 'canonical'}).get('href')
         print('Page url %s' % page_url)
         trs = soup.findAll("tr")
         for tr in trs:
@@ -54,3 +77,28 @@ with open('output.txt', 'w') as fp:
             print(data)
             data = '\t'.join(data)
             fp.write('{}\n'.format(data))
+'''
+
+with open('output.txt', 'w') as fp:
+    # Set the directory you want to start from
+    rootDir = './download'
+    for dirName, subdirList, fileList in os.walk(rootDir):
+        #print('Found directory: %s' % dirName)
+
+        #These are all .html files in a package, one of which is package-summary.html
+        for fname in fileList:
+            filePath = dirName + "/" + fname
+            soup = BeautifulSoup(open(filePath), 'html.parser')
+            print(soup)
+            #The package summary needs to be built differently
+            if (fname == "package-summary.html"):
+                print("\tThe summary:" + fname)
+                data = build_summary_article(soup)
+                data = '\t'.join(data)
+                fp.write('{}\n'.format(data))
+            else:
+                #Build regular article with code highlighting
+                print('\t%s' % fname)
+                data = build_article(soup)
+                data = '\t'.join(data)
+                fp.write('{}\n'.format(data))

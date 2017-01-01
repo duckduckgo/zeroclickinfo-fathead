@@ -2,6 +2,5 @@
 
 rm -rf download
 mkdir download
-cd download
 
-python3 fetch.py
+python2.7 fetch.py
