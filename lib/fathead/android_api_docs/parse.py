@@ -128,8 +128,8 @@ def build_article(soup, filePath, fileName):
 
         #Build the abstract from the description and example code usage
         abstract = ""
-        abstract += (classDescription + "\\n").encode('utf-8')
-        abstract += "<pre><code>%s</code></pre>" % ((firstCode + "\\n" + secondCode).encode('utf-8'))
+        abstract += (classDescription).encode('utf-8')
+        abstract += "<pre><code>%s</code></pre>" % ((firstCode + "\n" + secondCode).encode('utf-8'))
         abstract = '<section class="prog__container">%s</section>' % abstract
     except:
         abstract = "For more information, see " + url
