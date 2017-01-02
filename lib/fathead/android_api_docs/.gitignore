@@ -1,4 +1,5 @@
 venv/
 *.pyc
 download/
-output.txt
+test.py
+archive.py

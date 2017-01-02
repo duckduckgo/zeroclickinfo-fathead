@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+'''
+    Coulter Peterson
+'''
 from bs4 import BeautifulSoup
 
 import requests
