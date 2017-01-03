@@ -22,24 +22,25 @@ def getClass(directory, fname):
 
 """
 Retrieves all methods of a specified class and saves them to methods.txt for coverage and appends formatted data to output.txt.
-parameters: file where ouput is to be save (methods.txt), name of class
+parameters: name of class
 """
 def getClassMethods(filename, classname):
     content = BeautifulSoup(getcontent(classname), "html.parser")
     # Note: this will not find methods inherited from other classes/interfaces
     for method in content.find_all("table", {"summary" : re.compile("method")}):
-        method_output(filename, extractMethodData(method, True))
-        method_output('output.txt', extractMethodData(method, False))
+        methodclass = getDocs(classname)[0]
+        method_output(filename, extractMethodData(method, methodclass, True))
+        method_output('output.txt', extractMethodData(method, methodclass, False))
 """
-Extracts data of a method.
-parameters: method html table entry, boolean coverage
-returns: all method data
+Extracts data of a method, formatting it for either coverage or output.
+parameters: method html table entry, class, boolean coverage
+returns: all method data and the class it belongs to
 """
-def extractMethodData(method, coverage):
+def extractMethodData(method, methodclass, coverage):
     method_names = []
     if coverage is True:
         for td in method.find_all("td", {"class" : "colLast"}):
-            method_names.append(str.replace(str.replace(str.replace(td.find("code").text, " ", ""), "\n", ""), "&nbsp;", ""))
+            method_names.append(remove_keywords(methodclass) + " " + str.replace(str.replace(str.replace(td.find("code").text, " ", ""), "\n", ""), "&nbsp;", ""))
     elif coverage is False:
         for td in method.find_all("td", {"class" : "colLast"}):
             method_names.append(format(td))
