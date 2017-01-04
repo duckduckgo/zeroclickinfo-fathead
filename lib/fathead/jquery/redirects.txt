@@ -276,3 +276,546 @@ checkbox on check,:checked Selector
 checkbox select,:checked Selector
 checkbox selected,:checked Selector
 checkbox is selected,:checked Selector
+add example,.add()
+add back example,.addBack()
+addBack example,.addBack()
+add class example,.addClass()
+addClass example,.addClass()
+after example,.after()
+ajax complete example,.ajaxComplete()
+ajaxComplete example,.ajaxComplete()
+ajax error example,.ajaxError()
+ajaxError example,.ajaxError()
+ajax send example,.ajaxSend()
+ajaxSend example,.ajaxSend()
+ajax start example,.ajaxStart()
+ajaxStart example,.ajaxStart()
+ajax stop example,.ajaxStop()
+ajaxStop example,.ajaxStop()
+ajax success example,.ajaxSuccess()
+ajaxSuccess example,.ajaxSuccess()
+and self example,.andSelf()
+andSelf example,.andSelf()
+animate example,.animate()
+append example,.append()
+append to example,.appendTo()
+appendTo example,.appendTo()
+attr example,.attr()
+before example,.before()
+bind example,.bind()
+blur example,.blur()
+change example,.change()
+children example,.children()
+clear queue example,.clearQueue()
+clearQueue example,.clearQueue()
+click example,.click()
+clone example,.clone()
+closest example,.closest()
+contents example,.contents()
+context example,.context
+contextmenu example,.contextmenu()
+css example,.css()
+data example,.data()
+dblclick example,.dblclick()
+delay example,.delay()
+delegate example,.delegate()
+dequeue example,.dequeue()
+detach example,.detach()
+die example,.die()
+each example,.each()
+empty example,.empty()
+end example,.end()
+eq example,.eq()
+error example,.error()
+fade in example,.fadeIn()
+fadeIn example,.fadeIn()
+fade out example,.fadeOut()
+fadeOut example,.fadeOut()
+fade to example,.fadeTo()
+fadeTo example,.fadeTo()
+fade toggle example,.fadeToggle()
+fadeToggle example,.fadeToggle()
+filter example,.filter()
+find example,.find()
+finish example,.finish()
+first example,.first()
+focus example,.focus()
+focusin example,.focusin()
+focusout example,.focusout()
+get example,.get()
+has example,.has()
+has class example,.hasClass()
+hasClass example,.hasClass()
+height example,.height()
+hide example,.hide()
+hover example,.hover()
+html example,.html()
+index example,.index()
+inner height example,.innerHeight()
+innerHeight example,.innerHeight()
+inner width example,.innerWidth()
+innerWidth example,.innerWidth()
+insert after example,.insertAfter()
+insertAfter example,.insertAfter()
+insert before example,.insertBefore()
+insertBefore example,.insertBefore()
+is example,.is()
+jquery example,.jquery
+keydown example,.keydown()
+keypress example,.keypress()
+keyup example,.keyup()
+last example,.last()
+length example,.length
+live example,.live()
+load example,.load()
+map example,.map()
+mousedown example,.mousedown()
+mouseenter example,.mouseenter()
+mouseleave example,.mouseleave()
+mousemove example,.mousemove()
+mouseout example,.mouseout()
+mouseover example,.mouseover()
+mouseup example,.mouseup()
+next example,.next()
+next all example,.nextAll()
+nextAll example,.nextAll()
+next until example,.nextUntil()
+nextUntil example,.nextUntil()
+not example,.not()
+off example,.off()
+offset example,.offset()
+offset parent example,.offsetParent()
+offsetParent example,.offsetParent()
+on example,.on()
+one example,.one()
+outer height example,.outerHeight()
+outerHeight example,.outerHeight()
+outer width example,.outerWidth()
+outerWidth example,.outerWidth()
+parent example,.parent()
+parents example,.parents()
+parents until example,.parentsUntil()
+parentsUntil example,.parentsUntil()
+position example,.position()
+prepend example,.prepend()
+prepend to example,.prependTo()
+prependTo example,.prependTo()
+prev example,.prev()
+prev all example,.prevAll()
+prevAll example,.prevAll()
+prev until example,.prevUntil()
+prevUntil example,.prevUntil()
+promise example,.promise()
+prop example,.prop()
+push stack example,.pushStack()
+pushStack example,.pushStack()
+queue example,.queue()
+ready example,.ready()
+remove example,.remove()
+remove attr example,.removeAttr()
+removeAttr example,.removeAttr()
+remove class example,.removeClass()
+removeClass example,.removeClass()
+remove data example,.removeData()
+removeData example,.removeData()
+remove prop example,.removeProp()
+removeProp example,.removeProp()
+replace all example,.replaceAll()
+replaceAll example,.replaceAll()
+replace with example,.replaceWith()
+replaceWith example,.replaceWith()
+resize example,.resize()
+scroll example,.scroll()
+scroll left example,.scrollLeft()
+scrollLeft example,.scrollLeft()
+scroll top example,.scrollTop()
+scrollTop example,.scrollTop()
+select example,.select()
+selector example,.selector
+serialize example,.serialize()
+serialize array example,.serializeArray()
+serializeArray example,.serializeArray()
+show example,.show()
+siblings example,.siblings()
+size example,.size()
+slice example,.slice()
+slide down example,.slideDown()
+slideDown example,.slideDown()
+slide toggle example,.slideToggle()
+slideToggle example,.slideToggle()
+slide up example,.slideUp()
+slideUp example,.slideUp()
+stop example,.stop()
+submit example,.submit()
+text example,.text()
+to array example,.toArray()
+toArray example,.toArray()
+toggle example,.toggle()
+toggle class example,.toggleClass()
+toggleClass example,.toggleClass()
+trigger example,.trigger()
+trigger handler example,.triggerHandler()
+triggerHandler example,.triggerHandler()
+unbind example,.unbind()
+undelegate example,.undelegate()
+unload example,.unload()
+unwrap example,.unwrap()
+val example,.val()
+width example,.width()
+wrap example,.wrap()
+wrap all example,.wrapAll()
+wrapAll example,.wrapAll()
+wrap inner example,.wrapInner()
+wrapInner example,.wrapInner()
+animated selector example,:animated Selector
+animated Selector example,:animated Selector
+button selector example,:button Selector
+button Selector example,:button Selector
+checkbox selector example,:checkbox Selector
+checkbox Selector example,:checkbox Selector
+checked selector example,:checked Selector
+checked Selector example,:checked Selector
+contains selector example,:contains() Selector
+contains Selector example,:contains() Selector
+disabled selector example,:disabled Selector
+disabled Selector example,:disabled Selector
+empty selector example,:empty Selector
+empty Selector example,:empty Selector
+enabled selector example,:enabled Selector
+enabled Selector example,:enabled Selector
+eq selector example,:eq() Selector
+eq Selector example,:eq() Selector
+even selector example,:even Selector
+even Selector example,:even Selector
+file selector example,:file Selector
+file Selector example,:file Selector
+first selector example,:first Selector
+first Selector example,:first Selector
+first child selector example,:first-child Selector
+first child Selector example,:first-child Selector
+first of type selector example,:first-of-type Selector
+first of type Selector example,:first-of-type Selector
+focus selector example,:focus Selector
+focus Selector example,:focus Selector
+gt selector example,:gt() Selector
+gt Selector example,:gt() Selector
+has selector example,:has() Selector
+has Selector example,:has() Selector
+header selector example,:header Selector
+header Selector example,:header Selector
+hidden selector example,:hidden Selector
+hidden Selector example,:hidden Selector
+image selector example,:image Selector
+image Selector example,:image Selector
+input selector example,:input Selector
+input Selector example,:input Selector
+lang selector example,:lang() Selector
+lang Selector example,:lang() Selector
+last selector example,:last Selector
+last Selector example,:last Selector
+last child selector example,:last-child Selector
+last child Selector example,:last-child Selector
+last of type selector example,:last-of-type Selector
+last of type Selector example,:last-of-type Selector
+lt selector example,:lt() Selector
+lt Selector example,:lt() Selector
+not selector example,:not() Selector
+not Selector example,:not() Selector
+nth child selector example,:nth-child() Selector
+nth child Selector example,:nth-child() Selector
+nth last child selector example,:nth-last-child() Selector
+nth last child Selector example,:nth-last-child() Selector
+nth last of type selector example,:nth-last-of-type() Selector
+nth last of type Selector example,:nth-last-of-type() Selector
+nth of type selector example,:nth-of-type() Selector
+nth of type Selector example,:nth-of-type() Selector
+odd selector example,:odd Selector
+odd Selector example,:odd Selector
+only child selector example,:only-child Selector
+only child Selector example,:only-child Selector
+only of type selector example,:only-of-type Selector
+only of type Selector example,:only-of-type Selector
+parent selector example,:parent Selector
+parent Selector example,:parent Selector
+password selector example,:password Selector
+password Selector example,:password Selector
+radio selector example,:radio Selector
+radio Selector example,:radio Selector
+reset selector example,:reset Selector
+reset Selector example,:reset Selector
+root selector example,:root Selector
+root Selector example,:root Selector
+selected selector example,:selected Selector
+selected Selector example,:selected Selector
+submit selector example,:submit Selector
+submit Selector example,:submit Selector
+target selector example,:target Selector
+target Selector example,:target Selector
+text selector example,:text Selector
+text Selector example,:text Selector
+visible selector example,:visible Selector
+visible Selector example,:visible Selector
+all selector example,All Selector
+All Selector example,All Selector
+attribute contains prefix selector example,Attribute Contains Prefix Selector
+Attribute Contains Prefix Selector example,Attribute Contains Prefix Selector
+attribute contains selector example,Attribute Contains Selector
+Attribute Contains Selector example,Attribute Contains Selector
+attribute contains word selector example,Attribute Contains Word Selector
+Attribute Contains Word Selector example,Attribute Contains Word Selector
+attribute ends with selector example,Attribute Ends With Selector
+Attribute Ends With Selector example,Attribute Ends With Selector
+attribute equals selector example,Attribute Equals Selector
+Attribute Equals Selector example,Attribute Equals Selector
+attribute not equal selector example,Attribute Not Equal Selector
+Attribute Not Equal Selector example,Attribute Not Equal Selector
+attribute starts with selector example,Attribute Starts With Selector
+Attribute Starts With Selector example,Attribute Starts With Selector
+child selector example,Child Selector
+Child Selector example,Child Selector
+class selector example,Class Selector
+Class Selector example,Class Selector
+descendant selector example,Descendant Selector
+Descendant Selector example,Descendant Selector
+element selector example,Element Selector
+Element Selector example,Element Selector
+has attribute selector example,Has Attribute Selector
+Has Attribute Selector example,Has Attribute Selector
+id selector example,ID Selector
+ID Selector example,ID Selector
+multiple attribute selector example,Multiple Attribute Selector
+Multiple Attribute Selector example,Multiple Attribute Selector
+multiple selector example,Multiple Selector
+Multiple Selector example,Multiple Selector
+next adjacent selector example,Next Adjacent Selector
+Next Adjacent Selector example,Next Adjacent Selector
+next siblings selector example,Next Siblings Selector
+Next Siblings Selector example,Next Siblings Selector
+callbacks add example,callbacks.add()
+callbacks disable example,callbacks.disable()
+callbacks disabled example,callbacks.disabled()
+callbacks empty example,callbacks.empty()
+callbacks fire example,callbacks.fire()
+callbacks fire with example,callbacks.fireWith()
+callbacks fireWith example,callbacks.fireWith()
+callbacks fired example,callbacks.fired()
+callbacks has example,callbacks.has()
+callbacks lock example,callbacks.lock()
+callbacks locked example,callbacks.locked()
+callbacks remove example,callbacks.remove()
+deferred always example,deferred.always()
+deferred catch example,deferred.catch()
+deferred done example,deferred.done()
+deferred fail example,deferred.fail()
+deferred is rejected example,deferred.isRejected()
+deferred isRejected example,deferred.isRejected()
+deferred is resolved example,deferred.isResolved()
+deferred isResolved example,deferred.isResolved()
+deferred notify example,deferred.notify()
+deferred notify with example,deferred.notifyWith()
+deferred notifyWith example,deferred.notifyWith()
+deferred pipe example,deferred.pipe()
+deferred progress example,deferred.progress()
+deferred promise example,deferred.promise()
+deferred reject example,deferred.reject()
+deferred reject with example,deferred.rejectWith()
+deferred rejectWith example,deferred.rejectWith()
+deferred resolve example,deferred.resolve()
+deferred resolve with example,deferred.resolveWith()
+deferred resolveWith example,deferred.resolveWith()
+deferred state example,deferred.state()
+deferred then example,deferred.then()
+event current target example,event.currentTarget
+event currentTarget example,event.currentTarget
+event data example,event.data
+event delegate target example,event.delegateTarget
+event delegateTarget example,event.delegateTarget
+event is default prevented example,event.isDefaultPrevented()
+event isDefaultPrevented example,event.isDefaultPrevented()
+event is immediate propagation stopped example,event.isImmediatePropagationStopped()
+event isImmediatePropagationStopped example,event.isImmediatePropagationStopped()
+event is propagation stopped example,event.isPropagationStopped()
+event isPropagationStopped example,event.isPropagationStopped()
+event meta key example,event.metaKey
+event metaKey example,event.metaKey
+event namespace example,event.namespace
+event page x example,event.pageX
+event pageX example,event.pageX
+event page y example,event.pageY
+event pageY example,event.pageY
+event prevent default example,event.preventDefault()
+event preventDefault example,event.preventDefault()
+event related target example,event.relatedTarget
+event relatedTarget example,event.relatedTarget
+event result example,event.result
+event stop immediate propagation example,event.stopImmediatePropagation()
+event stopImmediatePropagation example,event.stopImmediatePropagation()
+event stop propagation example,event.stopPropagation()
+event stopPropagation example,event.stopPropagation()
+event target example,event.target
+event time stamp example,event.timeStamp
+event timeStamp example,event.timeStamp
+event type example,event.type
+event which example,event.which
+callbacks example,jQuery.Callbacks()
+Callbacks example,jQuery.Callbacks()
+deferred example,jQuery.Deferred()
+Deferred example,jQuery.Deferred()
+ajax example,jQuery.ajax()
+ajax prefilter example,jQuery.ajaxPrefilter()
+ajaxPrefilter example,jQuery.ajaxPrefilter()
+ajax setup example,jQuery.ajaxSetup()
+ajaxSetup example,jQuery.ajaxSetup()
+ajax transport example,jQuery.ajaxTransport()
+ajaxTransport example,jQuery.ajaxTransport()
+box model example,jQuery.boxModel
+boxModel example,jQuery.boxModel
+browser example,jQuery.browser
+contains example,jQuery.contains()
+css hooks example,jQuery.cssHooks
+cssHooks example,jQuery.cssHooks
+css number example,jQuery.cssNumber
+cssNumber example,jQuery.cssNumber
+data example,jQuery.data()
+dequeue example,jQuery.dequeue()
+each example,jQuery.each()
+error example,jQuery.error()
+escape selector example,jQuery.escapeSelector()
+escapeSelector example,jQuery.escapeSelector()
+extend example,jQuery.extend()
+fn extend example,jQuery.fn.extend()
+fx interval example,jQuery.fx.interval
+fx off example,jQuery.fx.off
+get example,jQuery.get()
+get json example,jQuery.getJSON()
+getJSON example,jQuery.getJSON()
+get script example,jQuery.getScript()
+getScript example,jQuery.getScript()
+global eval example,jQuery.globalEval()
+globalEval example,jQuery.globalEval()
+grep example,jQuery.grep()
+has data example,jQuery.hasData()
+hasData example,jQuery.hasData()
+hold ready example,jQuery.holdReady()
+holdReady example,jQuery.holdReady()
+html prefilter example,jQuery.htmlPrefilter()
+htmlPrefilter example,jQuery.htmlPrefilter()
+in array example,jQuery.inArray()
+inArray example,jQuery.inArray()
+is array example,jQuery.isArray()
+isArray example,jQuery.isArray()
+is empty object example,jQuery.isEmptyObject()
+isEmptyObject example,jQuery.isEmptyObject()
+is function example,jQuery.isFunction()
+isFunction example,jQuery.isFunction()
+is numeric example,jQuery.isNumeric()
+isNumeric example,jQuery.isNumeric()
+is plain object example,jQuery.isPlainObject()
+isPlainObject example,jQuery.isPlainObject()
+is window example,jQuery.isWindow()
+isWindow example,jQuery.isWindow()
+is xmldoc example,jQuery.isXMLDoc()
+isXMLDoc example,jQuery.isXMLDoc()
+make array example,jQuery.makeArray()
+makeArray example,jQuery.makeArray()
+map example,jQuery.map()
+merge example,jQuery.merge()
+no conflict example,jQuery.noConflict()
+noConflict example,jQuery.noConflict()
+noop example,jQuery.noop()
+now example,jQuery.now()
+param example,jQuery.param()
+parse html example,jQuery.parseHTML()
+parseHTML example,jQuery.parseHTML()
+parse json example,jQuery.parseJSON()
+parseJSON example,jQuery.parseJSON()
+parse xml example,jQuery.parseXML()
+parseXML example,jQuery.parseXML()
+post example,jQuery.post()
+proxy example,jQuery.proxy()
+queue example,jQuery.queue()
+ready exception example,jQuery.readyException()
+readyException example,jQuery.readyException()
+remove data example,jQuery.removeData()
+removeData example,jQuery.removeData()
+speed example,jQuery.speed
+sub example,jQuery.sub()
+support example,jQuery.support
+trim example,jQuery.trim()
+type example,jQuery.type()
+unique example,jQuery.unique()
+unique sort example,jQuery.uniqueSort()
+uniqueSort example,jQuery.uniqueSort()
+when example,jQuery.when()
+add class,.addClass()
+add css class,.addClass()
+add classes,.addClass()
+add css classes,.addClass()
+add a class,.addClass()
+add a css class,.addClass()
+add classname,.addClass()
+add class name,.addClass()
+add classnames,.addClass()
+add class names,.addClass()
+add a class name,.addClass()
+set class,.addClass()
+set css class,.addClass()
+set classes,.addClass()
+set css classes,.addClass()
+set a class,.addClass()
+set a css class,.addClass()
+set classname,.addClass()
+set class name,.addClass()
+set classnames,.addClass()
+set class names,.addClass()
+set a class name,.addClass()
+toggle class,.toggleClass()
+toggle css class,.toggleClass()
+toggle classes,.toggleClass()
+toggle css classes,.toggleClass()
+toggle a class,.toggleClass()
+toggle a css class,.toggleClass()
+toggle classname,.toggleClass()
+toggle class name,.toggleClass()
+toggle classnames,.toggleClass()
+toggle class names,.toggleClass()
+toggle a class name,.toggleClass()
+remove class,.removeClass()
+remove css class,.removeClass()
+remove classes,.removeClass()
+remove css classes,.removeClass()
+remove a class,.removeClass()
+remove a css class,.removeClass()
+remove classname,.removeClass()
+remove class name,.removeClass()
+remove classnames,.removeClass()
+remove class names,.removeClass()
+remove a class name,.removeClass()
+add css,.css()
+set css,.css()
+set css property,.css()
+set css properties,.css()
+set style,.css()
+set style property,.css()
+set style properties,.css()
+get css property,.css()
+get css properties,.css()
+get style,.css()
+get computed style,.css()
+get computed css property,.css()
+get computed css properties,.css()
+get computed style property,.css()
+get computed style properties,.css()
+get computed styles,.css()
+add element,.add()
+add elements,.add()
+add html element,.add()
+add html elements,.add()
+add dom element,.add()
+add dom elements,.add()
+add child,.add()
+add children,.add()
+add child element,.add()
+add children elements,.add()
+add to dom,.add()
+add to html,.add()
