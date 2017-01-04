@@ -188,7 +188,7 @@ sub report {
         my @slice = splice @$elements, $limit;
         my $remaining = scalar @slice;
         diag $_ for @$elements;
-        diag "...\nPLUS $remaining MORE. (Use `duckpan test -v` to see full output)";
+        diag UNDERSCORE BOLD MAGENTA "PLUS $remaining MORE!", RESET, " (Use `duckpan test -v` to see full output)";
     }
 }
 
