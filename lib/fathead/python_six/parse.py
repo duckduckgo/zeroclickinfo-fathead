@@ -1,9 +1,9 @@
-# -*- coding: utf-6 -*-
+# -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
 import glob
 import sys
 
-python_six_base_url = 'https://pythonhosted.org/six/'
+python_six_base_url = 'https://pythonhosted.org/six'
 
 class SixModule(object):
     '''
@@ -14,7 +14,8 @@ class SixModule(object):
     def __init__(self, name, description, filename):
         
         self.name = name
-        self.description = description
+        self.description = description.replace('\n','\\n').replace('\t', '    ')
+        self.description = '<p>{}</p>'.format(self.description)
         self.filename = filename
         self.usage = ''
 
@@ -26,15 +27,16 @@ class SixModule(object):
 
         # Clean up the usage statement which can have newline characters and
         # tab characters, which mess up how it renders 
-
-        code =  '<pre><code>{}</code></pre>'.format(self.usage.replace('\n','\\n')) if self.usage else ''
-       
+        code =  '<pre><code>{}</code></pre>'.format(self.usage.replace('\n','\\n').replace('\t', '    ')) if self.usage else '' 
+         
         # Make the abstract have the description as well as a code block
-        descrip = '<p>'+self.description+'</p>'
-        abstract = '{}{}{}'.format(descrip, '', code)
-        abstract = '<section class="prog__container">' + abstract + '</section>' 
- 
-        return '\t'.join([
+        if code:
+            print self.name
+            abstract = '{}{}'.format(self.description,code)	   
+	else:
+            abstract = self.description
+        abstract = '<section class="prog__container">{}</section>'.format(abstract)  
+        return '    '.join([
             self.name,  # Full article title
             'A',  # Type of article
             '',  # For redirects only
@@ -88,8 +90,7 @@ class Parser(object):
                 #Add the module in SixModule
                 self.six_module.append(module)
 
-if __name__ == '__main__':
-
+if __name__ == '__main__': 
     reload(sys)
     sys.setdefaultencoding('utf-8')
     #Create the Parser
@@ -98,6 +99,6 @@ if __name__ == '__main__':
     parser.parse_module()
 
     # Write the output in Output.txt
-    with open('output.txt', 'w+') as output:
+    with open('output.txt', 'wb') as output:
         for module in parser.six_module:
-            output.write((module.__str__() + '\n'))
+            output.write((module.__str__()+ '\n'))
