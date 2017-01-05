@@ -188,7 +188,7 @@ class DocumentParser(object):
             html = re.sub(re.compile("</a>"), "", html)
             html = re.sub(re.compile("\[\d+\]"), "", html) # removes the vancouver type referencing
             html = re.sub(re.compile("\n"), " ", html)
-            html = html.rstrip().replace("\t", "\\t")
+            html = html.rstrip().replace("\t", "    ")
             self.body = html
         except AttributeError:
             pass
