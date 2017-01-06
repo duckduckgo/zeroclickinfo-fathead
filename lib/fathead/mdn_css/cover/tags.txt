@@ -16,7 +16,6 @@
 :first-child
 :first-of-type
 :focus
-:full-screen
 :fullscreen
 :hover
 :indeterminate
