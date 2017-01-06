@@ -25,7 +25,7 @@ If this is something else:
 <!-- Please @mention any relevant people/organizations here: -->
 
 ## Testing & Review
-To be completed by Language Leader (or DDG Staff)
+To be completed by Language Leader (or DDG Staff) when reviewing Pull Request
 
 **Pull Request**
 - [ ] Title follows correct format (Specifies Instant Answer + Purpose)
