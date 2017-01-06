@@ -143,9 +143,9 @@ class DocumentParser(object):
         """
         Gets the title for the PEP
         """
-        # peptitle = self.document.find("h1", { "class": "page-title" }).get_text()
-        # self.title = re.sub("--", "-", peptitle)
-        self.title = "PEP " + self.pep
+        # self.title = "PEP " + self.pep
+        peptitle = self.document.find("h1", { "class": "page-title" }).get_text()
+        self.title = re.sub("--", "-", peptitle)
 
     def set_pep_number(self):
         """
