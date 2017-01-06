@@ -364,7 +364,7 @@ ruby-merge
 ruby-position
 s
 scale()
-scale3d(X)
+scale3d()
 scaleX()
 scaleY()
 scaleZ()
