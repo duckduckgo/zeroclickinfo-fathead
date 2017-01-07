@@ -66,22 +66,22 @@ def generate_answers(data):
         print '------------------------------------------'
 
         source_url = u'http://caniuse.com/' + feature
-        for title in titles:
-            answers.append([
-                title,      # Title
-                'A',        # Type
-                '',         # Redirect
-                '',         # Other uses
-                '',         # Categories
-                '',         # References
-                related,    # See also
-                '',         # Further reading
-                '',         # External links
-                '',         # Disambiguation
-                '',         # Images
-                abstract,   # Abstract
-                source_url  # Source URL
-            ])
+#        for title in titles:
+        answers.append([
+        title,      # Title
+        'A',        # Type
+        '',         # Redirect
+        '',         # Other uses
+        '',         # Categories
+        '',         # References
+        related,    # See also
+        '',         # Further reading
+        '',         # External links
+        '',         # Disambiguation
+        '',         # Images
+        abstract,   # Abstract
+        source_url  # Source URL
+       ])
     return answers
 
 
