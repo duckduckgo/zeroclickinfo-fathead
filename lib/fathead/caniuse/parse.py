@@ -10,27 +10,39 @@ def main():
     cwd = os.path.dirname(__file__)
     data_path = os.path.join(cwd, 'download', 'data.json')
     output_path = os.path.join(cwd, 'output.txt')
+    redirect_path = os.path.join(cwd, 'redirects.txt')
     with open(data_path, 'r') as f:
         data = json.loads(f.read())
 
-    answers = generate_answers(data)
+    answers, redirects = generate_answers(data)
     csv = u'\n'.join(u'\t'.join(line) for line in answers)
     csv = csv.encode('utf-8') + '\n'
     with open(output_path, 'w') as f:
+        f.write(csv)
+    csv = u'\n'.join(line for line in redirects)
+    csv = csv.encode('utf-8') + '\n'
+    with open(redirect_path, 'w') as f:
         f.write(csv)
 
 
 def generate_answers(data):
     answers = []
+    redirects = []
     for feature, feature_data in data['data'].items():
         # Generate titles of possible search terms
         title = feature_data['title'].lower().strip()
-        titles = set([
+        titles = [
             feature,
             feature.replace('-', ' '),
             title,
             u' '.join(re.split('[ -]', title))
-        ])
+        ]
+	# Generate redirects for the title
+	for keyword in titles[1:]:
+	    if keyword == titles[0]: continue
+	    redirects.append(
+	    keyword + ',' + titles[0]
+	    )
         print u','.join(titles)
 
         # Commented out for now -- we can revive if we ever have a way to display
@@ -68,7 +80,7 @@ def generate_answers(data):
         source_url = u'http://caniuse.com/' + feature
 #        for title in titles:
         answers.append([
-        title,      # Title
+        titles[0],      # Title
         'A',        # Type
         '',         # Redirect
         '',         # Other uses
@@ -82,7 +94,7 @@ def generate_answers(data):
         abstract,   # Abstract
         source_url  # Source URL
        ])
-    return answers
+    return answers, redirects
 
 
 def browser_support(browser, prefix, stats):
