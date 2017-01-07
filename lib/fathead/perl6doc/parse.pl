@@ -6,7 +6,7 @@ use HTML::Entities;
 use HTML::Parser;
 use URI::Escape;
 binmode STDOUT, ':encoding(UTF-8)';
-chdir 'download/doc.perl6.org/type';
+chdir 'download/docs.perl6.org/type';
 opendir my $dh, '.';
 
 sub duck_escape(_) {
@@ -167,8 +167,8 @@ for my $type ( sort keys %types ) {
                 : q[]
             ) . '<p>' . duck_escape $function{description} . '</p></section>';
             $line[12]
-                = 'http://doc.perl6.org/type/'
-                . uri_escape_utf8($type)
+                = 'https://docs.perl6.org/type/'
+                . uri_escape_utf8($type) . '.html'
                 . (
                 $function{method}
                 ? '#' . uri_escape_utf8 $function{method}
