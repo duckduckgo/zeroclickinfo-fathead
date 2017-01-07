@@ -83,6 +83,10 @@ for my $file (@files) {
 
                     # First paragraph after <h2> is method name.
                     elsif ( $tags[-2] eq 'h2' || $tags[-3] eq 'h2' ) {
+                        my $prev = $dtext;
+                        $dtext =~ s/\s/_/msg;
+                        $current_field->{anchor} = $dtext;
+                        $dtext = $prev;
                         $dtext =~ s/^.* \s+ ( \S+ ) \z/$1/msx;
                         $current_field->{method} = $dtext;
                         $methods{$class}{$dtext} = $current_field;
@@ -171,7 +175,7 @@ for my $type ( sort keys %types ) {
                 . uri_escape_utf8($type) . '.html'
                 . (
                 $function{method}
-                ? '#' . uri_escape_utf8 $function{method}
+                ? '#' . uri_escape_utf8 $function{anchor}
                 : q[]
                 );
             say join "\t", @line;
