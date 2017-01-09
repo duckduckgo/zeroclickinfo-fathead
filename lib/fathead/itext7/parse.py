@@ -55,12 +55,15 @@ class Parser(object):
             print(file)
             soup = BeautifulSoup(open(file), 'html.parser')
 
-            name_list = soup.select('h2.title')
+            title_list = soup.select('title')
 
-            if len(name_list) != 1:
+            if len(title_list) != 1:
                 continue
 
-            name = name_list[0].text
+            title = title_list[0].text
+
+            # Titles take the format "<Classname> (iText 7 7.0.1 API)" so we strip the second part out
+            name = title.split()[0]
 
             description_list = soup.select('div.contentContainer div.description div')
 
