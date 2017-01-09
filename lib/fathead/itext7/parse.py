@@ -21,7 +21,6 @@ class ITextClass(object):
         self.description = description.replace('\n', '\\n').replace('\t', '    ')
         self.description = '<p>{}</p>'.format(self.description)
         self.filename = filename
-        self.usage = ''
 
     def __str__(self):
         abstract = '<section class="prog__container">{}</section>'.format(self.description)
