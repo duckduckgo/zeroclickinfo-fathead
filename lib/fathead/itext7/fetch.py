@@ -9,13 +9,13 @@ import requests
 session = requests.Session()
 
 
-def gather_itext_html_files():
-    '''
+def gather_itext_html_files(all_classes_extension):
+    """
     Getting the html file for each class in the classes list
     in the itext7 api
-    '''
+    """
     # Get the Base URL with the list of commands
-    command_list_html = session.get(itext_docs_base_url)
+    command_list_html = session.get(itext_docs_base_url + all_classes_extension)
 
     # Use BeautifulSoup to make it easy to parse
     soup = BeautifulSoup(command_list_html.text, 'html.parser')
@@ -27,13 +27,12 @@ def gather_itext_html_files():
     commands = []
     for link in links:
         href = link.get('href')
-        href = href.replace('/docs', '')
         with open('download/{}.html'.format(link.text), 'wb') as outfile:
-            outfile.write(bytes(session.get('{}{}'.format(git_docs_base_url, href)).text, 'UTF-8'))
+            outfile.write(bytes(session.get('{}{}'.format(itext_docs_base_url, href)).text, 'UTF-8'))
 
 if __name__ == '__main__':
     # Base URL for itext documentation -- list of classes are defined in this
     # base URL and the individual class pages use this base
     itext_docs_base_url = open('data.url').read().strip()
 
-    gather_itext_html_files()
+    gather_itext_html_files('allclasses-noframe.html')
