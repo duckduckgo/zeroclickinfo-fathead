@@ -8,6 +8,41 @@ import glob
 itext_docs_base_url = open('data.url').read().strip()
 
 
+class ITextClass(object):
+    """
+        Class for storing all necessary information about an iText Class. This
+        information is then used to create the output.txt file using the
+        __str__() method on this class
+    """
+
+    def __init__(self, name, description, filename):
+        """Instantiate the information about the class"""
+        self.name = name
+        self.description = description.replace('\n', '\\n').replace('\t', '    ')
+        self.description = '<p>{}</p>'.format(self.description)
+        self.filename = filename
+        self.usage = ''
+
+    def __str__(self):
+        abstract = '<section class="prog__container">{}</section>'.format(self.description)
+
+        return '\t'.join([
+            self.name,  # Full article title
+            'A',  # Type of article
+            '',  # For redirects only
+            '',  # Ignore
+            '',  # Categories
+            '',  # Ignore
+            '',  # Related Topics
+            '',  # Ignore
+            '',  # External links
+            '',  # For disambiguation pages only
+            '',  # Image
+            abstract,  # Abstract
+            '{}{}'.format(itext_docs_base_url,
+                          self.filename),  # URL
+        ])
+
 
 class Parser(object):
     def __init__(self):
@@ -18,12 +53,15 @@ class Parser(object):
         self.itext_classes = []
 
         for file in self.files_to_parse:
+            print(file)
             soup = BeautifulSoup(open(file), 'html.parser')
 
-            name = soup.select('h2.title').text
+            name_list = soup.select('h2.title')
 
-            if not name:
+            if len(name_list) != 1:
                 continue
+
+            name = name_list[0].text
 
             description_list = soup.select('div.contentContainer div.description div')
 
@@ -32,7 +70,10 @@ class Parser(object):
 
             description = description_list[0].text
 
-            itext_class = ITextClass(name, description)
+            itext_class = ITextClass(name,
+                                     description,
+                                     file.replace('download/', ''))
+            self.itext_classes.append(itext_class)
 
 
 if __name__ == '__main__':
@@ -45,4 +86,4 @@ if __name__ == '__main__':
     # Write the output for each class into the output.txt file
     with open('output.txt', 'wb') as output:
         for itext_class in parser.itext_classes:
-            output.write((itext_class.basic_usage() + '\n').encode('utf-8'))
+            output.write((str(itext_class) + '\n').encode('utf-8'))
