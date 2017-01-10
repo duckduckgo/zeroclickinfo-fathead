@@ -153,7 +153,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
         }
     );
     $title = lc $meta_with_title->attr('content') if $meta_with_title;
-    my $alternate_title = '';
+    my @alternate_titles;
 
     my $h2 = $dom->at('h2#Summary');
     if ($h2) {
@@ -168,10 +168,13 @@ foreach my $html_file ( glob 'download/*.html' ) {
 	<p>The <code>:any()</code> pseudo-class lets you quickly...</p>
 =cut
 
-            if ( my $alt_title = $p->at('code') ) {
-                $alt_title       = trim $alt_title->all_text;
-                $alternate_title = $alt_title
-                  if $alt_title ne $title;
+            my $alt_titles = $p->find('code') if $p->tag eq 'p';
+            if ( $alt_titles && $alt_titles->size ) {
+                for my $alt_title ( $alt_titles->each ) {
+                    $alt_title = trim $alt_title->all_text;
+                    push @alternate_titles, $alt_title
+                      if $alt_title ne $title;
+                }
             }
             my $next = $p->next;
             if ( $next && $next->tag eq 'ul' ) {
@@ -252,7 +255,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
 
     next unless $title && $link && $description;
 
-    create_article( $title, $description, $link, $alternate_title );
+    create_article( $title, $description, $link, @alternate_titles );
     if ( $title =~ m/[():<>@]/ || exists $titles{$title} ) {
         say "title in parse: $title";
         create_redirects($title);
@@ -312,7 +315,7 @@ sub parse_initial_value {
 # Create Article and Redirects as needed
 # Write to output files
 sub create_article {
-    my ( $title, $description, $link, $alternate_title ) = @_;
+    my ( $title, $description, $link, @alternate_titles ) = @_;
     my @data;
 
     my $categories = '';
@@ -327,7 +330,7 @@ sub create_article {
     }
 
     push @data, _build_article( $title, $categories, $description, $link );
-    push @data, _build_redirect( $alternate_title, $title ) if $alternate_title;
+    push @data, _build_redirect( $_, $title ) for @alternate_titles;
     _write_to_file(@data);
 }
 
