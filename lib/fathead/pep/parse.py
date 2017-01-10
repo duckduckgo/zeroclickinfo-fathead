@@ -38,7 +38,10 @@ OUTPUT_TEMPLATE = """\
 
 FHTEMPLATE = """\
 <section class="prog__container">
-{information}
+  <span class="prog__sub">Title</span>
+  <p>{title}</p>
+  <span class="prog__sub">Description</span>
+  <p>{information}</p>
 </section>
 """.replace("\n", "")
 
@@ -112,6 +115,7 @@ class DocumentParser(object):
     document = None
     pep = None
     title = None
+    long_title = None
     header = None
     body = None
     url = None
@@ -143,9 +147,9 @@ class DocumentParser(object):
         """
         Gets the title for the PEP
         """
-        # self.title = "PEP " + self.pep
         peptitle = self.document.find("h1", { "class": "page-title" }).get_text()
-        self.title = re.sub("--", "-", peptitle)
+        self.long_title = re.sub("--", "-", peptitle)
+        self.title = "PEP " + self.pep
 
     def set_pep_number(self):
         """
@@ -178,7 +182,7 @@ class DocumentParser(object):
 
             if html is None: raise AttributeError
 
-            html = FHTEMPLATE.format(information=str(html))
+            html = FHTEMPLATE.format(information=str(html), title=self.long_title)
             html = html.replace("<pre class=\"literal-block\">", "<pre><code>")
             html = html.replace("</pre>", "</code></pre>")
             html = html.replace("<tt class=\"docutils literal\">", "<code class=\"inline\">")
@@ -187,6 +191,9 @@ class DocumentParser(object):
             html = re.sub(re.compile("<a (.+?)>"), "", html)
             html = re.sub(re.compile("</a>"), "", html)
             html = re.sub(re.compile("\[\d+\]"), "", html) # removes the vancouver type referencing
+            html = re.sub(re.compile("<div (.+?)>"), "", html)
+            html = re.sub(re.compile("</div>"), "", html)
+            html = re.sub(re.compile("\s+"), " ", html)
             html = re.sub(re.compile("\n"), " ", html)
             html = html.rstrip().replace("\t", "    ")
             self.body = html
@@ -205,7 +212,7 @@ class DocumentParser(object):
                 entry_type="A",
                 redirect_title="",
                 empty_field="",
-                categories=self.pep,
+                categories="",
                 related_topics="",
                 external_links="",
                 disambiguation="",
