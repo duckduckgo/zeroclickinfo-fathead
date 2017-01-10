@@ -112,6 +112,7 @@ class DocumentParser(object):
         - set_structure() - sets the structure for the file
     """
     collection = set()
+    pep_db = set()
     document = None
     pep = None
     title = None
@@ -150,6 +151,7 @@ class DocumentParser(object):
         peptitle = self.document.find("h1", { "class": "page-title" }).get_text()
         self.long_title = re.sub("--", "-", peptitle)
         self.title = "PEP " + self.pep
+        self.pep_db.add(self.title)
 
     def set_pep_number(self):
         """
@@ -223,18 +225,30 @@ class DocumentParser(object):
             self.collection.add(entry)
 
 class OutputFile(object):
-    """
-    The object responsible for outputting data into the output.txt file.
-    """
-    def __init__(self, collection):
+    def __init__(self, collection, pep_db):
+        self.create_output(collection)
+        self.create_redirects(pep_db)
+
+    def create_output(self, collection):
+        print("Creating the output.txt file...")
         with open(__OUTPUT__, "w") as f:
             for item in collection:
                 f.write(item + "\n")
+        print("Done creating the output.txt file.")
+
+    def create_redirects(self, pep_db):
+        print("Creating the redirects file...")
+        with open("cover/redirects.txt", "w") as f:
+            for item in pep_db:
+                f.write(item.replace(" ", "") + ", " + item + "\n")
+        print("Done creating the redirects file")
+
+
 
 if __name__ == "__main__":
     # Preprocess > DocumentParser > OutputFile
     print("Starting " + __MODULE__)
     env = Preprocess()
     doc = DocumentParser(env.links)
-    OutputFile(doc.collection)
+    OutputFile(doc.collection, doc.pep_db)
     print("Finishing " + __MODULE__)
