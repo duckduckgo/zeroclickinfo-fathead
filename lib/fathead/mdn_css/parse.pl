@@ -153,12 +153,26 @@ foreach my $html_file ( glob 'download/*.html' ) {
         }
     );
     $title = lc $meta_with_title->attr('content') if $meta_with_title;
+    my $alternate_title = '';
 
     my $h2 = $dom->at('h2#Summary');
     if ($h2) {
         my $p = $h2->next;
         if ($p) {
             $description = $p->all_text;
+
+=begin
+	Some titles have a variant form in the description text which is
+	going to be used to make redirects. An example is any which has
+	the following description:
+	<p>The <code>:any()</code> pseudo-class lets you quickly...</p>
+=cut
+
+            if ( my $alt_title = $p->at('code') ) {
+                $alt_title       = trim $alt_title->all_text;
+                $alternate_title = $alt_title
+                  if $alt_title ne $title;
+            }
             my $next = $p->next;
             if ( $next && $next->tag eq 'ul' ) {
                 my $li = $next->at('li');
@@ -238,7 +252,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
 
     next unless $title && $link && $description;
 
-    create_article( $title, $description, $link );
+    create_article( $title, $description, $link, $alternate_title );
     if ( $title =~ m/[():<>@]/ || exists $titles{$title} ) {
         say "title in parse: $title";
         create_redirects($title);
@@ -298,7 +312,7 @@ sub parse_initial_value {
 # Create Article and Redirects as needed
 # Write to output files
 sub create_article {
-    my ( $title, $description, $link ) = @_;
+    my ( $title, $description, $link, $alternate_title ) = @_;
     my @data;
 
     my $categories = '';
@@ -313,6 +327,7 @@ sub create_article {
     }
 
     push @data, _build_article( $title, $categories, $description, $link );
+    push @data, _build_redirect( $alternate_title, $title ) if $alternate_title;
     _write_to_file(@data);
 }
 
@@ -448,8 +463,8 @@ sub _build_article {
     # say "DESCRIPTION: $description" if $description;
     return join "\t",
       (
-        $title, 'A', '', '', $categories, '', '', '', '', '', '', $description,
-        $link
+        $title, 'A', '', '', $categories, '', '', '', '', '', '',
+        $description, $link
       );
 }
 
