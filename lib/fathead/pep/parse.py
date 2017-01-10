@@ -34,7 +34,7 @@ OUTPUT_TEMPLATE = """\
 {image}\t
 {abstract}\t
 {url}
-""".replace("\n", "")
+"""
 
 FHTEMPLATE = """\
 <section class="prog__container">
@@ -43,7 +43,7 @@ FHTEMPLATE = """\
   <span class="prog__sub">Description</span>
   <p>{information}</p>
 </section>
-""".replace("\n", "")
+"""
 
 class Preprocess(object):
     """
@@ -196,7 +196,7 @@ class DocumentParser(object):
             html = re.sub(re.compile("<div (.+?)>"), "", html)
             html = re.sub(re.compile("</div>"), "", html)
             html = re.sub(re.compile("\s+"), " ", html)
-            html = re.sub(re.compile("\n"), " ", html)
+            html = re.sub(re.compile("\n"), "\\n", html)
             html = html.rstrip().replace("\t", "    ")
             self.body = html
         except AttributeError:
