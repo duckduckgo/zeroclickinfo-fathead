@@ -34,7 +34,7 @@ OUTPUT_TEMPLATE = """\
 {image}\t
 {abstract}\t
 {url}
-"""
+""".replace("\n", "")
 
 FHTEMPLATE = """\
 <section class="prog__container">
@@ -242,8 +242,6 @@ class OutputFile(object):
             for item in pep_db:
                 f.write(item.replace(" ", "") + ", " + item + "\n")
         print("Done creating the redirects file")
-
-
 
 if __name__ == "__main__":
     # Preprocess > DocumentParser > OutputFile
