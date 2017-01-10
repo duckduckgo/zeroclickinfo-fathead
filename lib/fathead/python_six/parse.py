@@ -30,13 +30,12 @@ class SixModule(object):
         code =  '<pre><code>{}</code></pre>'.format(self.usage.replace('\n','\\n').replace('\t', '    ')) if self.usage else '' 
          
         # Make the abstract have the description as well as a code block
-        if code:
-            print self.name
+        if code: 
             abstract = '{}{}'.format(self.description,code)	   
 	else:
             abstract = self.description
         abstract = '<section class="prog__container">{}</section>'.format(abstract)  
-        return '    '.join([
+        return '\t'.join([
             self.name,  # Full article title
             'A',  # Type of article
             '',  # For redirects only
@@ -70,12 +69,11 @@ class Parser(object):
                 continue
         
             for tag in div.find_all('dl'):
-            
                 '''Get the module name '''
-		if tag.dt.select('code')[1].get_text(strip=True) != 'six.':
-		    module_name = tag.dt.select('code')[1].get_text(strip=True)
-		else:
-		    module_name = tag.dt.select('code')[2].get_text(strip=True)
+                if tag.dt.select('code')[1].get_text(strip=True) != 'six.':
+                    module_name = tag.dt.select('code')[1].get_text(strip=True)
+                else:
+                    module_name = tag.dt.select('code')[2].get_text(strip=True)
                 
             
                 '''Get the module desc '''
