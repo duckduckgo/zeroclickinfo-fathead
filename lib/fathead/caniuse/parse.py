@@ -14,37 +14,31 @@ def main():
     with open(data_path, 'r') as f:
         data = json.loads(f.read())
 
-    answers, redirects = generate_answers(data)
+    answers = generate_answers(data)
     csv = u'\n'.join(u'\t'.join(line) for line in answers)
     csv = csv.encode('utf-8') + '\n'
     with open(output_path, 'w') as f:
         f.write(csv)
-    csv = u'\n'.join(line for line in redirects)
-    csv = csv.encode('utf-8') + '\n'
-    with open(redirect_path, 'w') as f:
-        f.write(csv)
-
 
 def generate_answers(data):
     answers = []
-    redirects = []
     for feature, feature_data in data['data'].items():
         # Generate titles of possible search terms
         title = feature_data['title'].lower().strip()
         titles = [
-            feature,
-            feature.replace('-', ' '),
             title,
+            feature.replace('-', ' '),
+            feature,
             u' '.join(re.split('[ -]', title))
         ]
 	# Generate redirects for the title
-	for keyword in titles[1:]:
+	redirects = []
+        for keyword in titles[1:]:
 	    if keyword == titles[0]: continue
-	    redirects.append(
-	    keyword + ',' + titles[0]
-	    )
+	    redirects.append(keyword)
+        print '************************'
         print u','.join(titles)
-
+        print '************************'
         # Commented out for now -- we can revive if we ever have a way to display
         # external links in the Related Topics Infobox
         ## Generate Related Topics
@@ -87,7 +81,7 @@ def generate_answers(data):
         source_url = u'http://caniuse.com/' + feature
 #        for title in titles:
         answers.append([
-        titles[0],      # Title
+        title,  # Title
         'A',        # Type
         '',         # Redirect
         '',         # Other uses
@@ -100,8 +94,15 @@ def generate_answers(data):
         '',         # Images
         abstract,   # Abstract
         source_url  # Source URL
-       ])
-    return answers, redirects
+        ])
+
+        for redirect in redirects:
+            answers.append([
+                redirect,   # Title
+                'R',        # Type
+                title,      # Redirect
+            ])
+    return answers
 
 
 def browser_support(browser, prefix, stats):
