@@ -251,7 +251,7 @@ sub disambiguations_format {
     # (*[[\w+]],?\s?\w+\n)+
     my @invalid;
     for my $d ( @{ $self->disambiguations } ) {
-        push @invalid, $d unless $d =~ /^\*\[\[.+?\]\],?\s*.+?\.$/;
+        push @invalid, $d unless $d =~ /^\*\[\[.+?\]\],?\s*.+?\.?$/;
     }
     if (@invalid){
         my $count = scalar @invalid;

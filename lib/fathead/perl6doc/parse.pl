@@ -6,7 +6,7 @@ use HTML::Entities;
 use HTML::Parser;
 use URI::Escape;
 binmode STDOUT, ':encoding(UTF-8)';
-chdir 'download/doc.perl6.org/type';
+chdir 'download/docs.perl6.org/type';
 opendir my $dh, '.';
 
 sub duck_escape(_) {
@@ -83,6 +83,10 @@ for my $file (@files) {
 
                     # First paragraph after <h2> is method name.
                     elsif ( $tags[-2] eq 'h2' || $tags[-3] eq 'h2' ) {
+                        my $prev = $dtext;
+                        $dtext =~ s/\s/_/msg;
+                        $current_field->{anchor} = $dtext;
+                        $dtext = $prev;
                         $dtext =~ s/^.* \s+ ( \S+ ) \z/$1/msx;
                         $current_field->{method} = $dtext;
                         $methods{$class}{$dtext} = $current_field;
@@ -167,11 +171,11 @@ for my $type ( sort keys %types ) {
                 : q[]
             ) . '<p>' . duck_escape $function{description} . '</p></section>';
             $line[12]
-                = 'http://doc.perl6.org/type/'
-                . uri_escape_utf8($type)
+                = 'https://docs.perl6.org/type/'
+                . uri_escape_utf8($type) . '.html'
                 . (
                 $function{method}
-                ? '#' . uri_escape_utf8 $function{method}
+                ? '#' . uri_escape_utf8 $function{anchor}
                 : q[]
                 );
             say join "\t", @line;

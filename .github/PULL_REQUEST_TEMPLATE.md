@@ -31,7 +31,7 @@ To be completed by Language Leader (or DDG Staff) when reviewing Pull Request
 - [ ] Title follows correct format (Specifies Instant Answer + Purpose)
 - [ ] Description contains a valid Instant Answer Page Link (e.g. https://duck.co/ia/view/my_ia)
 
-**Instant Answer Page**
+**Instant Answer Page** (for new Instant Answers)
 - [ ] Instant Answer page is correctly filled out and contains:
     - One topic for the Search Space Language (Java, Python, Scala, Ruby, etc.)
     - One topic from: Reference, Help, Libraries, Tools
@@ -43,13 +43,13 @@ To be completed by Language Leader (or DDG Staff) when reviewing Pull Request
     - Source Info (used as Subtitle for each Article -- usually matches the IA Name)
     - 'Skip Abstract' is checked off
     - Source ID (ping @moollaza to assign one, once Fathead is ready for Beta deploy)
-- [ ] Fathead Tests are passing (run `$ duckpan test <fathead_id>`)
-    - Tester should report any failures
 
 **Code**
 - [ ] Uniformly indented, well commented
 - [ ] Fetch.sh and Parse.sh run without errors
 - [ ] Output contains no blank lines, or multi-line entries
+- [ ] Fathead Tests are passing (run `$ duckpan test <fathead_id>`)
+    - Tester should report any failures
 
 **Pull Request Review Guidelines**: https://docs.duckduckhack.com/programming-mission/pr-review.html
 
