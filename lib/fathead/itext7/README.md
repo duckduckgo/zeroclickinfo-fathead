@@ -10,4 +10,5 @@ in output.txt.
 
 Dependencies:
 -----
-This script requires python 3 along with the requests and Beautiful Soup 4 libraries.
+This script requires python 3 along with the requests and Beautiful Soup 4 libraries.  The 
+libraries can be installed using pip3 install -r requirements.txt
