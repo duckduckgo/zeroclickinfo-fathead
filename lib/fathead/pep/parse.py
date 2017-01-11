@@ -195,7 +195,9 @@ class DocumentParser(object):
             html = re.sub(re.compile("\[\d+\]"), "", html) # removes the vancouver type referencing
             html = re.sub(re.compile("<div (.+?)>"), "", html)
             html = re.sub(re.compile("</div>"), "", html)
-            html = re.sub(re.compile("\s+"), " ", html)
+            # html = re.sub(re.compile("\s+"), " ", html) # causing issues with new lines
+            pattern = re.compile(r'<p>.*?</p>', re.DOTALL)
+            html = pattern.sub(lambda x: x.group().replace("\n", ""), html)
             html = re.sub(re.compile("\n"), "\\n", html)
             html = html.rstrip().replace("\t", "    ")
             self.body = html
