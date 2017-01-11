@@ -37,11 +37,7 @@ OUTPUT_TEMPLATE = """\
 """.replace("\n", "")
 
 FHTEMPLATE = """\
-<section class="prog__container">
-  <span class="prog__sub">Title</span>
-  <p>{title}</p>
-  <span class="prog__sub">Description</span>
-  <p>{information}</p>
+<section class="prog__container"><span class="prog__sub">Title</span><p>{title}</p><span class="prog__sub">Description</span><p>{information}</p>
 </section>
 """
 
@@ -195,10 +191,10 @@ class DocumentParser(object):
             html = re.sub(re.compile("\[\d+\]"), "", html) # removes the vancouver type referencing
             html = re.sub(re.compile("<div (.+?)>"), "", html)
             html = re.sub(re.compile("</div>"), "", html)
-            # html = re.sub(re.compile("\s+"), " ", html) # causing issues with new lines
             pattern = re.compile(r'<p>.*?</p>', re.DOTALL)
             html = pattern.sub(lambda x: x.group().replace("\n", ""), html)
             html = re.sub(re.compile("\n"), "\\n", html)
+            html = re.sub(re.compile("\s+"), " ", html) # causing issues with new lines
             html = html.rstrip().replace("\t", "    ")
             self.body = html
         except AttributeError:
