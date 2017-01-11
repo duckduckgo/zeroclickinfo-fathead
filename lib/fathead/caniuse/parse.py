@@ -10,7 +10,6 @@ def main():
     cwd = os.path.dirname(__file__)
     data_path = os.path.join(cwd, 'download', 'data.json')
     output_path = os.path.join(cwd, 'output.txt')
-    redirect_path = os.path.join(cwd, 'redirects.txt')
     with open(data_path, 'r') as f:
         data = json.loads(f.read())
 
@@ -27,14 +26,19 @@ def generate_answers(data):
         title = feature_data['title'].lower().strip()
         titles = [
             title,
-            feature.replace('-', ' '),
             feature,
-            u' '.join(re.split('[ -]', title))
         ]
+	if feature.find('-') > -1:
+	    titles.append(feature.replace('-', ' '))
+
+	if title.find('-') > -1: 
+	    titles.append(u' '.join(re.split('[-]',title)))
+	else:
+	    titles.append(u'-'.join(re.split('[ ]',title)))
 	# Generate redirects for the title
 	redirects = []
         for keyword in titles[1:]:
-	    if keyword == titles[0]: continue
+	    if keyword == titles[0] or keyword in redirects: continue
 	    redirects.append(keyword)
         print '************************'
         print u','.join(titles)
