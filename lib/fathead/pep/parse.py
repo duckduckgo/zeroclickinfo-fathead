@@ -198,7 +198,7 @@ class DocumentParser(object):
             html = html.rstrip().replace("\t", "    ")
             self.body = html
         except AttributeError:
-            pass
+            self.body = ""
         except:
             print("Parse Error: Investigate " + self.pep)
 
@@ -206,7 +206,7 @@ class DocumentParser(object):
         """
         Sets the structure for the output.txt file
         """
-        if int(self.pep) not in [205, 210, 308]: # throw out redundent peps
+        if int(self.pep) not in [205, 210, 308] and self.body != "": # throw out redundent peps
             entry = OUTPUT_TEMPLATE.format(
                 title=self.title,
                 entry_type="A",
