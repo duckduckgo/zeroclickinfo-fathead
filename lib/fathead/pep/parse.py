@@ -192,7 +192,7 @@ class DocumentParser(object):
             html = re.sub(re.compile("<div (.+?)>"), "", html)
             html = re.sub(re.compile("</div>"), "", html)
             pattern = re.compile(r'<p>.*?</p>', re.DOTALL)
-            html = pattern.sub(lambda x: x.group().replace("\n", ""), html)
+            html = pattern.sub(lambda x: x.group().replace("\n", " "), html)
             html = re.sub(re.compile("\n"), "\\n", html)
             html = re.sub(re.compile("\s+"), " ", html) # causing issues with new lines
             html = html.rstrip().replace("\t", "    ")
