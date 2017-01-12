@@ -181,21 +181,23 @@ class DocumentParser(object):
             if html is None: raise AttributeError
 
             html = FHTEMPLATE.format(information=str(html), title=self.long_title)
-            html = html.replace("<pre class=\"literal-block\">", "<pre><code>")
-            html = html.replace("</pre>", "</code></pre>")
-            html = html.replace("<tt class=\"docutils literal\">", "<code class=\"inline\">")
-            html = html.replace("</tt>", "</code>")
-            html = re.sub(re.compile("<h1>((.|\n)+?)</h1>"), "", html)
-            html = re.sub(re.compile("<a (.+?)>"), "", html)
-            html = re.sub(re.compile("</a>"), "", html)
-            html = re.sub(re.compile("\[\d+\]"), "", html) # removes the vancouver type referencing
-            html = re.sub(re.compile("<div (.+?)>"), "", html)
-            html = re.sub(re.compile("</div>"), "", html)
-            pattern = re.compile(r'<p>.*?</p>', re.DOTALL)
-            html = pattern.sub(lambda x: x.group().replace("\n", " "), html)
-            html = re.sub(re.compile("\n"), "\\n", html)
             html = re.sub(re.compile("\s+"), " ", html) # causing issues with new lines
             html = html.rstrip().replace("\t", "    ")
+            html = re.sub(re.compile("\n"), "\\n", html)
+            html = re.sub(re.compile("\[\d+\]"), "", html) # removes the vancouver type referencing
+            html = re.sub(re.compile("<h1>((.|\n)+?)</h1>"), "", html)
+            html = html.replace("<pre class=\"literal-block\">", "<pre><code>")
+            html = html.replace("</pre>", "</code></pre>")
+            html = html.replace("<tt class=\"docutils literal\">", "<code>")
+            html = html.replace("</tt>", "</code>")
+
+            soup = BeautifulSoup(html, "html.parser")
+
+            for match in soup.findAll(['div']):
+                match.unwrap()
+
+            html = soup.contents[0]            
+
             self.body = html
         except AttributeError:
             self.body = ""
