@@ -185,9 +185,7 @@ class DocumentParser(object):
             if html is None: raise AttributeError
 
             html = FHTEMPLATE.format(information=str(html), title=self.long_title)
-            # html = re.sub(re.compile("\s+"), " ", html) # causing issues with new lines
             html = html.rstrip().replace("\t", "    ")
-            html = re.sub(re.compile("\n"), "\\n", html)
             html = re.sub(re.compile("\[\d+\]"), "", html) # removes the vancouver type referencing
             html = re.sub(re.compile("<h1>((.|\n)+?)</h1>"), "", html)
             html = html.replace("<pre class=\"literal-block\">", "<pre><code>")
@@ -205,13 +203,13 @@ class DocumentParser(object):
 
             html = soup.contents[0]
             html = str(html)
-            html = html.splitlines(True)
-            html = " ".join(html)
+            # html = re.sub(re.compile("\s+"), " ", html) # causing issues with new lines
+            html = re.sub(re.compile("\n"), "\\n", html)
             print(">>" * 20)
-            print(repr(html))
+            print(repr(html).replace("'", ''))
             print("<<" * 20)
 
-            self.body = repr(html)
+            self.body = repr(html).replace("'", '')
 
         except AttributeError:
             self.body = ""
