@@ -37,7 +37,11 @@ OUTPUT_TEMPLATE = """\
 """.replace("\n", "")
 
 FHTEMPLATE = """\
-<section class="prog__container"><span class="prog__sub">Title</span><p>{title}</p><span class="prog__sub">Description</span><p>{information}</p>
+<section class="prog__container">
+  <span class="prog__sub">Title</span>
+  <p>{title}</p>
+  <span class="prog__sub">Description</span>
+  <p>{information}</p>
 </section>
 """
 
@@ -181,7 +185,7 @@ class DocumentParser(object):
             if html is None: raise AttributeError
 
             html = FHTEMPLATE.format(information=str(html), title=self.long_title)
-            html = re.sub(re.compile("\s+"), " ", html) # causing issues with new lines
+            # html = re.sub(re.compile("\s+"), " ", html) # causing issues with new lines
             html = html.rstrip().replace("\t", "    ")
             html = re.sub(re.compile("\n"), "\\n", html)
             html = re.sub(re.compile("\[\d+\]"), "", html) # removes the vancouver type referencing
@@ -196,9 +200,19 @@ class DocumentParser(object):
             for match in soup.findAll(['div']):
                 match.unwrap()
 
-            html = soup.contents[0]            
+            for match in soup.findAll(['a']):
+                match.unwrap()
 
-            self.body = html
+            html = soup.contents[0]
+            html = str(html)
+            html = html.splitlines(True)
+            html = " ".join(html)
+            print(">>" * 20)
+            print(repr(html))
+            print("<<" * 20)
+
+            self.body = repr(html)
+
         except AttributeError:
             self.body = ""
         except:
