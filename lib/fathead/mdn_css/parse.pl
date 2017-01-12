@@ -22,6 +22,7 @@ This script extracts data from html files under the downloads folder
 
 # Keep track of unique keys
 my %SEEN;
+my %REDIRECT_ENTRIES;
 
 # Map categories to redirect keywords
 # These are used to create additional redirects
@@ -262,6 +263,8 @@ foreach my $html_file ( glob 'download/*.html' ) {
     }
 }
 
+process_redirects();
+
 ####################
 # HELPER FUNCTIONS
 ####################
@@ -330,17 +333,17 @@ sub create_article {
     }
 
     push @data, _build_article( $title, $categories, $description, $link );
-    push @data, _build_redirect( $_, $title ) for @alternate_titles;
+    _build_redirect( $_, $title ) for @alternate_titles;
     _write_to_file(@data);
 }
 
 sub create_redirects {
 
 =begin
-    Check for CSS Functions like not() or for titles
-    beginning with @ like @page and replace "()"
-    with "function" in title e.g. "not()" -> "not function".
-    remove @ and create output entry with redirect field
+	Check for CSS Functions like not() or for titles
+	beginning with @ like @page and replace "()"
+	with "function" in title e.g. "not()" -> "not function".
+	remove @ and create output entry with redirect field
 =cut
 
     my $title = shift;
@@ -377,39 +380,55 @@ sub create_redirects {
         say "OUTER: $outer";
         say "INNER: $inner";
         my $inner_clean = _clean_string($inner);
-        push @data, _build_redirect( $outer,       $title );
-        push @data, _build_redirect( $inner,       $title );
-        push @data, _build_redirect( $inner_clean, $title );
+        _build_redirect( $outer,       $title );
+        _build_redirect( $inner,       $title );
+        _build_redirect( $inner_clean, $title );
 
         if ($postfix) {
-            push @data, _build_redirect( "$inner $postfix",       $title );
-            push @data, _build_redirect( "$outer $postfix",       $title );
-            push @data, _build_redirect( "$inner_clean $postfix", $title );
+            _build_redirect( "$inner $postfix",       $title );
+            _build_redirect( "$outer $postfix",       $title );
+            _build_redirect( "$inner_clean $postfix", $title );
         }
     }
     elsif ( $title_clean ne $title ) {
-        push @data, _build_redirect( $title_clean,            $title );
-        push @data, _build_redirect( "$title_clean $postfix", $title )
+        _build_redirect( $title_clean,            $title );
+        _build_redirect( "$title_clean $postfix", $title )
           if $postfix;
 
         # if the cleaned title was different from the title,
         # and a property redirects to the cleaned title, include it
         if ( exists $redirect_urls{$title_clean} ) {
-            push @data, _build_redirect( $_, $title )
-              for @{ $redirect_urls{$title_clean} };
+            _build_redirect( $_, $title ) for @{ $redirect_urls{$title_clean} };
         }
     }
     elsif ($postfix) {
-        push @data, _build_redirect( "$title $postfix", $title );
+        _build_redirect( "$title $postfix", $title );
     }
 
     # if a -moz or -webkit property redirects to  this title, include it
     if ( exists $redirect_urls{$title} ) {
-        push @data, _build_redirect( $_, $title )
-          for @{ $redirect_urls{$title} };
+        _build_redirect( $_, $title ) for @{ $redirect_urls{$title} };
     }
 
     _write_to_file(@data);
+}
+
+sub process_redirects {
+
+=begin
+	For each redirect, check if there is a title with the same
+	name, if it is there, discard the redirect, else write to file
+=cut
+
+    for my $title ( keys %REDIRECT_ENTRIES ) {
+        unless ( exists $SEEN{$title} ) {
+            my $redirect = $REDIRECT_ENTRIES{$title};
+            my $output   = join "\t",
+              ( $title, 'R', $redirect, '', '', '', '', '', '', '', '', '',
+                '' );
+            _write_to_file($output);
+        }
+    }
 }
 
 ####################
@@ -473,11 +492,9 @@ sub _build_article {
 
 sub _build_redirect {
     my ( $title, $redirect ) = @_;
-    return if $SEEN{$title};
-    $SEEN{$title}++;
+    $REDIRECT_ENTRIES{$title} = $redirect;
     say "REDIRECT: $title =========> $redirect";
-    return join "\t",
-      ( $title, 'R', $redirect, '', '', '', '', '', '', '', '', '', '' );
+
 }
 
 sub _write_to_file {
