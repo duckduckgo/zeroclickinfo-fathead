@@ -216,6 +216,22 @@ foreach my $html_file ( glob 'download/*.html' ) {
         $description = $meta_with_description->attr('content');
     }
 
+    #Units or Values
+    my $units = $dom->at('#Units') || $dom->at('#Values');
+    if ($units) {
+        my $dl = $dom->at('dl');
+        if ($dl) {
+            for my $dt ( $dl->find('dt')->each ) {
+                my $title = $dt->all_text;
+                my $description = $dt->next->all_text if $dt->next;
+                next unless $description;
+                $description = create_abstract($description);
+                my $href = $link->clone->fragment( $units->attr('id') );
+                create_article( $title, $description, $href );
+            }
+        }
+    }
+
     # Get syntax code snippet
     my $code;
 
