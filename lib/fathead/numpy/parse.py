@@ -34,6 +34,7 @@ ABSTRACT_TEMPLATE = """\
 {rendered_signature}
 {rendered_parameters}
 {rendered_returns}
+{rendered_examples}
 </section>
 """.replace("\n", "")
 
@@ -49,6 +50,11 @@ PARAMETERS_TEMPLATE = """
 RETURNS_TEMPLATE = """\
 <span class="prog__sub">Returns:</span>
 <pre><code>{returns}</code></pre>
+""".replace("\n", "")
+
+EXAMPLES_TEMPLATE = """
+<span class="prog__sub">Examples:</span>
+<pre><code>{examples}</code></pre>
 """.replace("\n", "")
 
 CPU_COUNT = cpu_count()
@@ -206,17 +212,27 @@ def get_abstract(section_div):
         rendered_returns = RETURNS_TEMPLATE.format(returns=returns)
     else:
         rendered_returns = ""
+    
+#     examples = get_examples(section_div, "rubrik")
+#     if examples:
+#         rendered_examples = EXAMPLES_TEMPLATE.format(examples=examples)
+#     else:
+#         rendered_examples = ""
+    rendered_examples = ""
+        
+        
 
     abstract = ABSTRACT_TEMPLATE.format(
         rendered_information=scrub_text(rendered_information),
         rendered_signature=scrub_text(rendered_signature),
         rendered_parameters=scrub_text(rendered_parameters),
-        rendered_returns=scrub_text(rendered_returns)
+        rendered_returns=scrub_text(rendered_returns),
+        rendered_examples=scrub_text(rendered_examples)
     )
     return abstract
 
 
-def get_params(section_div, params_class):
+def get_examples(section_div, params_class):
     """Parse and return the parameters or returns of the documentation topic.
 
     Parameters
@@ -226,6 +242,32 @@ def get_params(section_div, params_class):
         attribute equal to "section" in the html doc file.
 
     params_class: Str
+        The value of the "class" attribute of the <p> tag within section_div.
+        If "rubrik" is present, then only the examples   for the topic is there.
+
+    Returns
+    -------
+    Str:
+        The examples for the topic.
+    """
+    examples_present = section_div.find("p", attrs={"class": params_class})
+    if not examples_present:
+        return
+    examples = section_div.find("div", attrs={"class": "highlight"})
+    example = examples[0]
+    return example
+    
+
+def get_params(section_div, examples_class):
+    """Parse and return the parameters or returns of the documentation topic.
+
+    Parameters
+    ----------
+    section_div : bs4.BeautifulSoup
+        The BeautifulSoup object corresponding to the div with the "class"
+        attribute equal to "section" in the html doc file.
+
+    examples_class: Str
         The value of the "class" attribute of the table row within
         `section_div` that contains the parameters or the returns.
         "field-odd field" for parameters. "field-even field" for returns.
