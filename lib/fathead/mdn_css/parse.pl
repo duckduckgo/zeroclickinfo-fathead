@@ -216,14 +216,6 @@ foreach my $html_file ( glob 'download/*.html' ) {
         $description = $meta_with_description->attr('content');
     }
 
-    # Check if article already processed
-    if ( exists $SEEN{$title} ) {
-        say "SKIPPING: $title!";
-        next;
-    }
-
-    $SEEN{$title} = 1;
-
     # Get syntax code snippet
     my $code;
 
@@ -319,6 +311,7 @@ sub parse_initial_value {
 # Write to output files
 sub create_article {
     my ( $title, $description, $link, @alternate_titles ) = @_;
+    return if $SEEN{$title}++;
     my @data;
 
     my $categories = '';
