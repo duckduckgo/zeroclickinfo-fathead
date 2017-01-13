@@ -239,9 +239,9 @@ def get_examples(section_div, examples_class):
         The BeautifulSoup object corresponding to the div with the "class"
         attribute equal to "section" in the html doc file.
 
-    params_class: Str
+    examples_class: Str
         The value of the "class" attribute of the <p> tag within section_div.
-        If "rubrik" is present, then only the examples for the topic is there.
+        If "rubric" is present, then only the examples for the topic is there.
 
     Returns
     -------
@@ -268,7 +268,7 @@ def get_params(section_div, params_class):
         The BeautifulSoup object corresponding to the div with the "class"
         attribute equal to "section" in the html doc file.
 
-    examples_class: Str
+    params_class: Str
         The value of the "class" attribute of the table row within
         `section_div` that contains the parameters or the returns.
         "field-odd field" for parameters. "field-even field" for returns.
