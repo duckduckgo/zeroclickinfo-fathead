@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import argparse
 import glob
 from multiprocessing import Pool, cpu_count
@@ -213,14 +214,11 @@ def get_abstract(section_div):
     else:
         rendered_returns = ""
     
-#     examples = get_examples(section_div, "rubrik")
-#     if examples:
-#         rendered_examples = EXAMPLES_TEMPLATE.format(examples=examples)
-#     else:
-#         rendered_examples = ""
-    rendered_examples = ""
-        
-        
+    examples = get_examples(section_div, "rubric")
+    if examples:
+        rendered_examples = EXAMPLES_TEMPLATE.format(examples=examples)
+    else:
+        rendered_examples = ""    
 
     abstract = ABSTRACT_TEMPLATE.format(
         rendered_information=scrub_text(rendered_information),
@@ -232,7 +230,7 @@ def get_abstract(section_div):
     return abstract
 
 
-def get_examples(section_div, params_class):
+def get_examples(section_div, examples_class):
     """Parse and return the parameters or returns of the documentation topic.
 
     Parameters
@@ -243,22 +241,25 @@ def get_examples(section_div, params_class):
 
     params_class: Str
         The value of the "class" attribute of the <p> tag within section_div.
-        If "rubrik" is present, then only the examples   for the topic is there.
+        If "rubrik" is present, then only the examples for the topic is there.
 
     Returns
     -------
     Str:
         The examples for the topic.
     """
-    examples_present = section_div.find("p", attrs={"class": params_class})
+    examples_present = section_div.find("p", attrs={"class": examples_class})
     if not examples_present:
         return
-    examples = section_div.find("div", attrs={"class": "highlight"})
-    example = examples[0]
-    return example
+    examples = section_div.find("pre")
+    examples = str(examples)
+    if examples.endswith('</pre>') and examples.startswith('<pre>'):
+        examples = examples[:-6]
+        examples = examples[5:]
+    return examples
     
 
-def get_params(section_div, examples_class):
+def get_params(section_div, params_class):
     """Parse and return the parameters or returns of the documentation topic.
 
     Parameters
