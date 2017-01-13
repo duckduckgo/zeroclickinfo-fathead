@@ -1,0 +1,19 @@
+{
+    "name": "zeroclickinfo-fathead-javascript_eslint",
+    "version": "1.0.0",
+    "description": "Fathead project for ESLint.",
+    "main": "parse.js",
+    "scripts": {
+        "build": "node_modules/.bin/eslint ./",
+        "test": "node_modules/.bin/jasmine"
+    },
+    "author": "Konstantin A. Magg",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "js-yaml": "^3.7.0"
+    },
+    "devDependencies": {
+        "eslint": "^3.12.2",
+        "jasmine": "^2.5.2"
+    }
+}
