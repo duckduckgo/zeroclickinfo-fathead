@@ -413,6 +413,12 @@ sub create_redirects {
     elsif ($postfix) {
         _build_redirect( "$title $postfix", $title );
     }
+    if ( $title =~ /^:\S+()/ ) {
+        my $title_with_preceeding_colon = $title;
+        $title_with_preceeding_colon =~ s/[()]//g;
+        _build_redirect( $title_with_preceeding_colon, $title )
+          if $title_with_preceeding_colon ne $title;
+    }
 
     # if a -moz or -webkit property redirects to  this title, include it
     if ( exists $redirect_urls{$title} ) {
