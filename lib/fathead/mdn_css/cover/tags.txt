@@ -50,7 +50,7 @@
 <frequency>
 <gradient>
 <image>
-<indent>
+ident
 <integer>
 <length>
 <number>
