@@ -327,6 +327,7 @@ sub parse_initial_value {
 # Write to output files
 sub create_article {
     my ( $title, $description, $link, @alternate_titles ) = @_;
+    $title = lc $title;
     return if $SEEN{$title}++;
     my @data;
 
