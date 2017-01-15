@@ -22,13 +22,7 @@ def print_line(title, abstract):
 
     abstract = abstract.replace('\n', '\\n')
     abstract = abstract.replace('\t', '  ')
-    abstract = abstract.replace(u'\u2019', '&#8217;')
-    abstract = abstract.replace(u'\u201c', '&#8220;')
-    abstract = abstract.replace(u'\u201d', '&#8221;')
-    abstract = abstract.replace(u'\xb6', '')
-    abstract = abstract.replace(u'\xa0', '')
-    abstract = abstract.replace(u'\u2013', '&#8211;')
-    abstract = abstract.replace(u'\u2018', '&#8216;')
+    abstract = ''.join([i if ord(i) < 128 else ' ' for i in abstract])
 
     abstract = '<section class="prog__container"><pre><code>' + abstract + \
                '</code></pre></section>'
@@ -42,7 +36,7 @@ def print_line(title, abstract):
         '',         # 6.leave empty
         '',         # 7.no related topics
         '',         # 8.leave empty
-        '',    		# 9.an external link back to home
+        '',         # 9.an external link back to home
         '',         # 10.no disambiguation
         '',         # 11.images
         abstract,   # 12.abstract
@@ -68,12 +62,6 @@ def _get_func_name(url):
 
     page = requests.get(url)
     src = page.text
-    idx = src.rfind("Functions")  # Used for getting links to only functions
-    if idx == -1:
-        idx = src.rfind("Member functions")  # Some are Member Functions
-    if idx == -1:
-        return
-    src = src[idx:]
     ob = BeautifulSoup(src, 'html.parser')
 
     for info in ob.findAll('tr', {'class': 't-dsc'}):
@@ -98,11 +86,10 @@ def get_header_links():
     src = page.text
     ob = BeautifulSoup(src, 'html.parser')
 
-    for info in ob.findAll('div', {'class': 'mainpagediv'}):
+    for info in ob.findAll('p'):
         try:
-            temp = info.find('p').findAll('a')
-            for i in range(len(temp)):
-                RESULT_URL.append(BASE_URL + temp[i]['href'])
+            for url in info.findAll('a'):
+                RESULT_URL.append(BASE_URL + url['href'])
         except:
             continue
 
