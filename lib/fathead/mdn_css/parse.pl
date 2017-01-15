@@ -227,8 +227,9 @@ foreach my $html_file ( glob 'download/*.html' ) {
                 my $description = $dt->next->all_text if $dt->next;
                 next unless $description;
                 $description = create_abstract($description);
-                my $href =
-                  $link->clone->fragment( $units_or_values->attr('id') );
+                my $id = $dt->at('a')->attr('name') if $dt->at('a');
+                $id ||= $units_or_values->attr('id');
+                my $href = $link->clone->fragment($id);
                 create_article( $title, $description, $href );
             }
         }
