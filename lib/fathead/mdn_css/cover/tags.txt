@@ -39,7 +39,6 @@
 :root
 :scope
 :target
-:tree-cell
 :valid
 :visited
 <angle>
