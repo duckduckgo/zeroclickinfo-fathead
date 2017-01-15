@@ -45,7 +45,7 @@
 <basic-shape>
 <color>
 <counter>
-<custom-indent>
+<custom-ident>
 <flex>
 <frequency>
 <gradient>
