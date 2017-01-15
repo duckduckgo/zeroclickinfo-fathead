@@ -60,7 +60,7 @@ def format(tabledata):
     if tabledata.find("div") is not None:
         method_description = str.replace(tabledata.find("div").get_text(), "\n", "")
     method_url = str(tabledata.find("href"))
-    formatted_string = method_name + "\tA\t\t\t\t\t\t\t\t\t" + method_description + method_url
+    formatted_string = method_name + "\tA\t\t\t\t\t\t\t\t\t" + method_description + " " + method_url
     return formatted_string
     
 """
