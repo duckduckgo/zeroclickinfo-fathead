@@ -1,23 +1,42 @@
 # Notes
 
-## Sources
+## Intro
 
-### List of all rules
+DuckDuckGo [Instant Answer Page](https://duck.co/ia/view/eslint) for [ESLint](http://eslint.org/).
 
-https://github.com/eslint/eslint.github.io/blob/master/_data/rules.yml
-auto generated
-uses categories
+### DDH Docs
+- Main page: https://docs.duckduckhack.com/
+- Fathead intro: https://docs.duckduckhack.com/resources/fathead-overview.html
 
-### Docs for all rules
+### Manual Testing
+For manual testing, first install **npm dependencies** from  https://www.npmjs.com/package/, then run **fetch** and **parse** scripts:
+
+```
+$ npm install
+$ bash fetch.sh
+$ bash parse.sh
+```
+
+### Test on Codio
+Follow the [instructions](https://docs.duckduckhack.com/welcome/setup-dev-environment.html) and open the virtual machine on [Codio.com](https://codio.com/home/projects)
+
+## Rule Sources
+
+### Rule Summary
+
+This URL can provide a YAML file containing a summary of all rules: https://github.com/eslint/eslint.github.io/blob/master/_data/rules.yml.
+
+- The file sorts the rules by **category**.
+- Following the docs, this file gets **auto-generated** from sources.
+
+### Rule Detail
+This URL contains a MD file for each rule with further details and examples:
 https://github.com/eslint/eslint.github.io/tree/master/docs/rules
-folder contains MD files.
 
-## DDG Resources
+## Output
 
-- [Codio Editor](https://codio.com/home/projects)
-- [DuckPAN Server](http://brigade-extreme.codio.io:5000/)
-
-## Layout Draft
+### Layout Draft
+Quick draft how the content should get displayed on the search page.
 
 > **no-console**
 >
