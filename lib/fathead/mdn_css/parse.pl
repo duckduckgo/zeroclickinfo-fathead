@@ -217,8 +217,9 @@ foreach my $html_file ( glob 'download/*.html' ) {
     }
 
     #Units or Values
-    my $units = $dom->at('#Units') || $dom->at('#Values');
-    if ($units) {
+    my $units_or_values =
+      $dom->find('#Units, #Values, #Feature_value_blocks')->first;
+    if ($units_or_values) {
         my $dl = $dom->at('dl');
         if ($dl) {
             for my $dt ( $dl->find('dt')->each ) {
@@ -226,7 +227,8 @@ foreach my $html_file ( glob 'download/*.html' ) {
                 my $description = $dt->next->all_text if $dt->next;
                 next unless $description;
                 $description = create_abstract($description);
-                my $href = $link->clone->fragment( $units->attr('id') );
+                my $href =
+                  $link->clone->fragment( $units_or_values->attr('id') );
                 create_article( $title, $description, $href );
             }
         }
