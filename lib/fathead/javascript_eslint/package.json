@@ -7,7 +7,7 @@
         "build": "node_modules/.bin/eslint ./",
         "test": "node_modules/.bin/jasmine"
     },
-    "author": "Konstantin A. Magg",
+    "author": "zodiac403",
     "license": "Apache-2.0",
     "dependencies": {
         "js-yaml": "^3.7.0"
