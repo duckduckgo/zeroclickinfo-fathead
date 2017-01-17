@@ -1,5 +1,0 @@
-Name: Scholrly
-Domain: scholr.ly
-Type: Research
-MediaWiki: 0
-Keywords: scholrly, schol, sch,research,researcher

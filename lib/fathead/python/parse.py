@@ -79,13 +79,24 @@ class PythonDataParser(object):
             if methods:
                 self.method_sections.extend(methods)
 
-        intro = soup_data.find_all('p', limit=2)
+        intro = []
+        # If there is a horizontal ruler with class 'docutils', take the 
+        # paragraphs after this as intro_text. (Some pages has a paragraph
+        # "Source code:" above this hr)
+        # If there isn't a horizontal ruler, this page does not describe a 
+        # module and thus, has not intro text.
+        hr=soup_data.find_all('hr', {'class': 'docutils'})
+        if hr:
+            first_paragraph_after_hr=soup_data.hr.find_next('p')
+            intro.append(first_paragraph_after_hr)
+            second_paragraph_after_hr = first_paragraph_after_hr.find_next('p')
+            intro.append(second_paragraph_after_hr)
         for p in intro:
             self.intro_text += p.text.replace('  ', ' ').replace('\n', ' ').replace('\\n', r'\\n')
 
-        title = soup_data.find('a', {'class': 'reference internal'})
-        if title:
-            self.title = title.text
+        module_title = soup_data.find('a', {'class': 'reference internal'})
+        if module_title:
+            self.title = module_title.text
 
     def parse_for_module_name(self, section):
         """
