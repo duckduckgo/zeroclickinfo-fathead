@@ -1,15 +1,22 @@
-# Notes
+# Readme
 
-## Intro
+[Instant Answer Fathead](https://duck.co/ia/view/eslint) for [ESLint](http://eslint.org/).
 
-DuckDuckGo [Instant Answer Page](https://duck.co/ia/view/eslint) for [ESLint](http://eslint.org/).
+## Dependencies
 
-### DDH Docs
-- Main page: https://docs.duckduckhack.com/
-- Fathead intro: https://docs.duckduckhack.com/resources/fathead-overview.html
+Node >= v7.0
+
+## Useful References
+- DDH docs main page: https://docs.duckduckhack.com/
+- DDH docs fathead intro: https://docs.duckduckhack.com/resources/fathead-overview.html
+
+## Testing
+
+### Test Environment on Codio
+Test environment available at [Codio.com](https://codio.com/home/projects). Follow the  [DDH instructions](https://docs.duckduckhack.com/welcome/setup-dev-environment.html) to set it up initially.
 
 ### Manual Testing
-For manual testing, first install **npm dependencies** from  https://www.npmjs.com/package/, then run **fetch** and **parse** scripts:
+For manual testing, first **npm install** dependencies, then run **fetch** and **parse** scripts:
 
 ```
 $ npm install
@@ -17,23 +24,21 @@ $ bash fetch.sh
 $ bash parse.sh
 ```
 
-### Test on Codio
-Follow the [instructions](https://docs.duckduckhack.com/welcome/setup-dev-environment.html) and open the virtual machine on [Codio.com](https://codio.com/home/projects)
-
-## Rule Sources
+## Fathead Sources
 
 ### Rule Summary
+https://raw.githubusercontent.com/eslint/eslint.github.io/master/_data/rules.yml
 
-This URL can provide a YAML file containing a summary of all rules: https://github.com/eslint/eslint.github.io/blob/master/_data/rules.yml.
-
+This URL can provide a YAML file containing a summary of all rules.
 - The file sorts the rules by **category**.
 - Following the docs, this file gets **auto-generated** from sources.
 
 ### Rule Detail
-This URL contains a MD file for each rule with further details and examples:
 https://github.com/eslint/eslint.github.io/tree/master/docs/rules
 
-## Output
+This URL contains a MD file for each rule with further details and examples:
+
+## Fathead Output
 
 ### Layout Draft
 Quick draft how the content should get displayed on the search page.
