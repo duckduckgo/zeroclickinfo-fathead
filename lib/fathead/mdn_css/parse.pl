@@ -331,6 +331,10 @@ sub parse_initial_value {
 sub create_article {
     my ( $title, $description, $link, @alternate_titles ) = @_;
     $title = lc $title;
+
+    #No need for redirects for titles like <'border-color'>.
+    #See: /en-US/docs/Web/CSS/border-inline-end-color#Values
+    $title =~ s/'//g if index( $title, "'" ) != -1;
     return if $SEEN{$title}++;
     my @data;
 
