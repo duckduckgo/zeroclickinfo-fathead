@@ -214,7 +214,7 @@ def get_abstract(section_div):
     else:
         rendered_returns = ""
     
-    examples = get_examples(section_div, "rubric")
+    examples = get_examples(section_div, "highlight-python")
     if examples:
         rendered_examples = EXAMPLES_TEMPLATE.format(examples=examples)
     else:
@@ -230,7 +230,7 @@ def get_abstract(section_div):
     return abstract
 
 
-def get_examples(section_div, headings_class):
+def get_examples(section_div, examples_class):
     """Parse and return the parameters or returns of the documentation topic.
 
     Parameters
@@ -239,29 +239,19 @@ def get_examples(section_div, headings_class):
         The BeautifulSoup object corresponding to the div with the "class"
         attribute equal to "section" in the html doc file.
 
-    headings_class: Str
-        The value of the "class" attribute of the <p> tag within section_div.
-        "rubric" is the class which are used for headings in the webpage. So finding all
-        headings i.e "Examples" or "Notes" and then checking whether examples are 
-        present or not.
+    examples_class: Str
+        The value of the "class" attribute of the <div> tag within section_div.
+        "highlight-python" is the class which are used for examples in the webpage. 
 
     Returns
     -------
     Str:
         The examples for the topic.
     """
-    examples_present = False
-    headings_present = section_div.find_all("p", attrs={"class": "rubric"})
-    if not headings_present:
-        return
-    for heading in headings_present:
-        if heading.text == str("Examples"):
-            examples_present = True;
-    if not examples_present:
-        return
-    examples = section_div.find("pre")
-    
-    return examples.text
+    example = section_div.find("div", attrs={"class": examples_class})
+    if example:
+        return example.text
+    return
     
 
 def get_params(section_div, params_class):
