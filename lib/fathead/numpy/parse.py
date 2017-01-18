@@ -230,7 +230,7 @@ def get_abstract(section_div):
     return abstract
 
 
-def get_examples(section_div, examples_class):
+def get_examples(section_div, headings_class):
     """Parse and return the parameters or returns of the documentation topic.
 
     Parameters
@@ -239,24 +239,29 @@ def get_examples(section_div, examples_class):
         The BeautifulSoup object corresponding to the div with the "class"
         attribute equal to "section" in the html doc file.
 
-    examples_class: Str
+    headings_class: Str
         The value of the "class" attribute of the <p> tag within section_div.
-        If "rubric" is present, then only the examples for the topic is there.
+        "rubric" is the class which are used for headings in the webpage. So finding all
+        headings i.e "Examples" or "Notes" and then checking whether examples are 
+        present or not.
 
     Returns
     -------
     Str:
         The examples for the topic.
     """
-    examples_present = section_div.find("p", attrs={"class": examples_class})
+    examples_present = False
+    headings_present = section_div.find_all("p", attrs={"class": "rubric"})
+    if not headings_present:
+        return
+    for heading in headings_present:
+        if heading.text == str("Examples"):
+            examples_present = True;
     if not examples_present:
         return
     examples = section_div.find("pre")
-    examples = str(examples)
-    if examples.endswith('</pre>') and examples.startswith('<pre>'):
-        examples = examples[:-6]
-        examples = examples[5:]
-    return examples
+    
+    return examples.text
     
 
 def get_params(section_div, params_class):
