@@ -1,0 +1,74 @@
+npm access public, access
+npm access restricted, access
+npm access grant, access
+npm access revoke, access
+npm access ls-packages, access
+npm access ls-collaborators, access
+npm access edit, access
+npm adduser --registry, adduser
+npm adduser --scope, adduser
+npm adduser --always-auth, adduser
+npm login, adduser
+npm bin -g, bin
+npm bin --global, bin
+npm cache add, cache
+npm cache ls, cache
+npm cache clean, cache
+npm config set, config
+npm config get, config
+npm config delete, config
+npm config list, config
+npm config edit, config
+npm get, config
+npm set. config
+npm ddp, dedupe
+npm dist-tag add, dist-tag
+npm dist-tag rm, dist-tag
+npm dist-tag ls, dist-tag
+npm home, docs
+npm edit connect, connect
+npm init -f, init
+npm init --force, init
+npm init -y, init
+npm init --yes, init
+npm i, install
+npm it, install-test
+npm ln, link
+npm logout --registery, logout
+npm logout -scope, logout
+npm list, ls
+npm la, ls
+npm ll, ls
+npm owner add, owner
+npm owner rm, owner
+npm owner ls, owner
+npm ping --registry, ping
+npm prefix -g, prefix
+npm prune --production, prune
+npm publish --tag, publish
+npm publish --access, publish
+npm rb, rebuild
+npm root -g, root
+npm run-script, run
+npm s, search
+npm se, search
+npm search -l, search
+npm search --long, search
+npm unstar, star
+npm team create, team
+npm team destroy, team
+npm team add, team
+npm team remove, team
+npm team ls, team
+npm team edit, team
+npm tst, test
+npm remove, uninstall
+npm rm, uninstall
+npm r, uninstall
+npm un, uninstall
+npm unlink, uninstall
+npm update -g, update
+npm info, view
+npm show, view
+npm v, view
+npm whoami --registry, whoami

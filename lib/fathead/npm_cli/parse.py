@@ -2,12 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import requests
-import re
 from bs4 import BeautifulSoup
 
 
-START_URL = "https://docs.npmjs.com/cli/access"
-BASE_URL = "https://docs.npmjs.com"
+START_URL = 'https://docs.npmjs.com/cli/access'
+BASE_URL = 'https://docs.npmjs.com'
 OUTPUL_FILE = open('output.txt', 'w+')
 RESULT_URLS = []
 
@@ -53,7 +52,6 @@ def get_func_desc():
 
         info = ob.find('code')
         code = info.text
-
         info = ob.findAll('p')
         content = info[0].text
 
@@ -77,6 +75,6 @@ def get_page_links():
     get_func_desc()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 
     get_page_links()
