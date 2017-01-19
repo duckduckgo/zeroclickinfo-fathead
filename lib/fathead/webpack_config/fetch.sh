@@ -4,7 +4,7 @@ ouput_dir='downloads';
 mkdir -p $ouput_dir;
 
 #getting all the links from  a tags with class code-link
-./fetch/fetch.js > tempLinks;
+./fetch.js > tempLinks;
 
 #removin the part after #, removing duplicate links and getting only /configuration links
 awk -F '#' '{print $1}' tempLinks | sort | uniq | grep configuration > links;
