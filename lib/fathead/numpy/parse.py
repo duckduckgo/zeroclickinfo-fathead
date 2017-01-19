@@ -213,12 +213,12 @@ def get_abstract(section_div):
         rendered_returns = RETURNS_TEMPLATE.format(returns=returns)
     else:
         rendered_returns = ""
-    
+
     examples = get_examples(section_div, "highlight-python")
     if examples:
         rendered_examples = EXAMPLES_TEMPLATE.format(examples=examples)
     else:
-        rendered_examples = ""    
+        rendered_examples = ""
 
     abstract = ABSTRACT_TEMPLATE.format(
         rendered_information=scrub_text(rendered_information),
@@ -254,7 +254,6 @@ def get_examples(section_div, examples_class):
         return example.text.strip()
     return
     
-
 def get_params(section_div, params_class):
     """Parse and return the parameters or returns of the documentation topic.
 
@@ -386,3 +385,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     generate_fathead(args.docs_folder, args.processes)
+    
