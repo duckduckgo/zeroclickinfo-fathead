@@ -173,7 +173,7 @@ class DocsParser(object):
             section = '<section class="prog__container">{}</section>'
             code = '<pre><code>{}</code></pre>'
             desc='<p>{}</p>'
-            header = '<span class="prog__sub">{}</span>'
+            header = '<pre><code>{}</code></pre>'
             code_done=0                    
             txt='' # The string of all HTML elements
             p='' # The description so far
@@ -236,7 +236,7 @@ class DocsParser(object):
             
             # Replace unicodes with HTML equivalent in the head
             head= head.replace(u'\u2192','&#8594;')
-            head = head.replace('\n','\\n')
+            head = head.replace('\n','')
 
             header=header.format(head)
              
