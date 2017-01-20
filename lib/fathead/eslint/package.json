@@ -1,5 +1,5 @@
 {
-    "name": "zeroclickinfo-fathead-javascript_eslint",
+    "name": "zeroclickinfo-fathead-eslint",
     "version": "1.0.0",
     "description": "Fathead project for ESLint.",
     "main": "parse.js",
