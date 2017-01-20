@@ -1,51 +1,207 @@
-access	A										<section class="prog__container"><pre><code>npm access public [&lt;package&gt;]\nnpm access restricted [&lt;package&gt;]\n\nnpm access grant &lt;read-only|read-write&gt; &lt;scope:team&gt; [&lt;package&gt;]\nnpm access revoke &lt;scope:team&gt; [&lt;package&gt;]\n\nnpm access ls-packages [&lt;user&gt;|&lt;scope&gt;|&lt;scope:team&gt;]\nnpm access ls-collaborators [&lt;package&gt; [&lt;user&gt;]]\nnpm access edit [&lt;package&gt;]\n</code></pre>Used to set access controls on private packages.</section>	https://docs.npmjs.com/cli/access
-adduser	A										<section class="prog__container"><pre><code>npm adduser [--registry=url] [--scope=@orgname] [--always-auth]\n</code></pre>Create or verify a user named &lt;username&gt; in the specified registry, and\nsave the credentials to the .npmrc file. If no registry is specified,\nthe default registry will be used (see npm-config).</section>	https://docs.npmjs.com/cli/access
-bin	A										<section class="prog__container"><pre><code>npm bin [-g|--global]\n</code></pre>Print the folder where npm will install executables.</section>	https://docs.npmjs.com/cli/access
-bugs	A										<section class="prog__container"><pre><code>npm bugs [&lt;pkgname&gt;]\n</code></pre>This command tries to guess at the likely location of a package&apos;s\nbug tracker URL, and then tries to open it using the --browser\nconfig param. If no package name is provided, it will search for\na package.json in the current folder and use the name property.</section>	https://docs.npmjs.com/cli/access
-build	A										<section class="prog__container"><pre><code>npm build [&lt;package-folder&gt;]\n</code></pre>This is the plumbing command called by npm link and npm install.</section>	https://docs.npmjs.com/cli/access
-bundle	A										<section class="prog__container"><pre><code>npm bundle</code></pre>The npm bundle command has been removed in 1.0, for the simple reason\nthat it is no longer necessary, as the default behavior is now to\ninstall packages into the local space.</section>	https://docs.npmjs.com/cli/access
-cache	A										<section class="prog__container"><pre><code>npm cache add &lt;tarball file&gt;\nnpm cache add &lt;folder&gt;\nnpm cache add &lt;tarball url&gt;\nnpm cache add &lt;name&gt;@&lt;version&gt;\n\nnpm cache ls [&lt;path&gt;]\n\nnpm cache clean [&lt;path&gt;]\n</code></pre>Used to add, list, or clear the npm cache folder.</section>	https://docs.npmjs.com/cli/access
-completion	A										<section class="prog__container"><pre><code>source &lt;(npm completion)\n</code></pre>Enables tab-completion in all npm commands.</section>	https://docs.npmjs.com/cli/access
-config	A										<section class="prog__container"><pre><code>npm config set &lt;key&gt; &lt;value&gt; [-g|--global]\nnpm config get &lt;key&gt;\nnpm config delete &lt;key&gt;\nnpm config list\nnpm config edit\nnpm get &lt;key&gt;\nnpm set &lt;key&gt; &lt;value&gt; [-g|--global]\n</code></pre>npm gets its config settings from the command line, environment\nvariables, npmrc files, and in some cases, the package.json file.</section>	https://docs.npmjs.com/cli/access
-dedupe	A										<section class="prog__container"><pre><code>npm dedupe\nnpm ddp\n</code></pre>Searches the local package tree and attempts to simplify the overall\nstructure by moving dependencies further up the tree, where they can\nbe more effectively shared by multiple dependent packages.</section>	https://docs.npmjs.com/cli/access
-deprecate	A										<section class="prog__container"><pre><code>npm deprecate &lt;pkg&gt;[@&lt;version&gt;] &lt;message&gt;\n</code></pre>This command will update the npm registry entry for a package, providing\na deprecation warning to all who attempt to install it.</section>	https://docs.npmjs.com/cli/access
-dist-tag	A										<section class="prog__container"><pre><code>npm dist-tag add &lt;pkg&gt;@&lt;version&gt; [&lt;tag&gt;]\nnpm dist-tag rm &lt;pkg&gt; &lt;tag&gt;\nnpm dist-tag ls [&lt;pkg&gt;]\n</code></pre>Add, remove, and enumerate distribution tags on a package:</section>	https://docs.npmjs.com/cli/access
-docs	A										<section class="prog__container"><pre><code>npm docs [&lt;pkgname&gt; [&lt;pkgname&gt; ...]]\nnpm docs .\nnpm home [&lt;pkgname&gt; [&lt;pkgname&gt; ...]]\nnpm home .\n</code></pre>This command tries to guess at the likely location of a package&apos;s\ndocumentation URL, and then tries to open it using the --browser\nconfig param. You can pass multiple package names at once. If no\npackage name is provided, it will search for a package.json in\nthe current folder and use the name property.</section>	https://docs.npmjs.com/cli/access
-edit	A										<section class="prog__container"><pre><code>npm edit &lt;pkg&gt;[@&lt;version&gt;]\n</code></pre>Opens the package folder in the default editor (or whatever you&apos;ve\nconfigured as the npm editor config -- see npm-config.)</section>	https://docs.npmjs.com/cli/access
-explore	A										<section class="prog__container"><pre><code>npm explore &lt;pkg&gt; [ -- &lt;cmd&gt;]\n</code></pre>Spawn a subshell in the directory of the installed package specified.</section>	https://docs.npmjs.com/cli/access
-help	A										<section class="prog__container"><pre><code>npm help &lt;term&gt; [&lt;terms..&gt;]\n</code></pre>If supplied a topic, then show the appropriate documentation page.</section>	https://docs.npmjs.com/cli/access
-help-search	A										<section class="prog__container"><pre><code>npm help-search &lt;text&gt;\n</code></pre>This command will search the npm markdown documentation files for the\nterms provided, and then list the results, sorted by relevance.</section>	https://docs.npmjs.com/cli/access
-init	A										<section class="prog__container"><pre><code>npm init [-f|--force|-y|--yes]\n</code></pre>This will ask you a bunch of questions, and then write a package.json for you.</section>	https://docs.npmjs.com/cli/access
-install	A										<section class="prog__container"><pre><code>npm install (with no args, in package dir)\nnpm install [&lt;@scope&gt;/]&lt;name&gt;\nnpm install [&lt;@scope&gt;/]&lt;name&gt;@&lt;tag&gt;\nnpm install [&lt;@scope&gt;/]&lt;name&gt;@&lt;version&gt;\nnpm install [&lt;@scope&gt;/]&lt;name&gt;@&lt;version range&gt;\nnpm install &lt;tarball file&gt;\nnpm install &lt;tarball url&gt;\nnpm install &lt;folder&gt;\n\nalias: npm i\ncommon options: [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [--dry-run]\n</code></pre>This command installs a package, and any packages that it depends on. If the\npackage has a shrinkwrap file, the installation of dependencies will be driven\nby that. See npm-shrinkwrap.</section>	https://docs.npmjs.com/cli/access
-install-test	A										<section class="prog__container"><pre><code>npm install-test (with no args, in package dir)\nnpm install-test [&lt;@scope&gt;/]&lt;name&gt;\nnpm install-test [&lt;@scope&gt;/]&lt;name&gt;@&lt;tag&gt;\nnpm install-test [&lt;@scope&gt;/]&lt;name&gt;@&lt;version&gt;\nnpm install-test [&lt;@scope&gt;/]&lt;name&gt;@&lt;version range&gt;\nnpm install-test &lt;tarball file&gt;\nnpm install-test &lt;tarball url&gt;\nnpm install-test &lt;folder&gt;\n\nalias: npm it\ncommon options: [--save|--save-dev|--save-optional] [--save-exact] [--dry-run]\n</code></pre>This command runs an npm install followed immediately by an npm test. It\ntakes exactly the same arguments as npm install.</section>	https://docs.npmjs.com/cli/access
-link	A										<section class="prog__container"><pre><code>npm link (in package dir)\nnpm link [&lt;@scope&gt;/]&lt;pkg&gt;[@&lt;version&gt;]\n\nalias: npm ln\n</code></pre>Package linking is a two-step process.</section>	https://docs.npmjs.com/cli/access
-logout	A										<section class="prog__container"><pre><code>npm logout [--registry=&lt;url&gt;] [--scope=&lt;@scope&gt;]\n</code></pre>When logged into a registry that supports token-based authentication, tell the\nserver to end this token&apos;s session. This will invalidate the token everywhere\nyou&apos;re using it, not just for the current environment.</section>	https://docs.npmjs.com/cli/access
-ls	A										<section class="prog__container"><pre><code>npm ls [[&lt;@scope&gt;/]&lt;pkg&gt; ...]\n\naliases: list, la, ll\n</code></pre>This command will print to stdout all the versions of packages that are\ninstalled, as well as their dependencies, in a tree-structure.</section>	https://docs.npmjs.com/cli/access
-npm	A										<section class="prog__container"><pre><code>npm &lt;command&gt; [args]\n</code></pre>@VERSION@</section>	https://docs.npmjs.com/cli/access
-outdated	A										<section class="prog__container"><pre><code>npm outdated [[&lt;@scope&gt;/]&lt;pkg&gt; ...]\n</code></pre>This command will check the registry to see if any (or, specific) installed\npackages are currently outdated.</section>	https://docs.npmjs.com/cli/access
-owner	A										<section class="prog__container"><pre><code>npm owner add &lt;user&gt; [&lt;@scope&gt;/]&lt;pkg&gt;\nnpm owner rm &lt;user&gt; [&lt;@scope&gt;/]&lt;pkg&gt;\nnpm owner ls [&lt;@scope&gt;/]&lt;pkg&gt;\n</code></pre>Manage ownership of published packages.</section>	https://docs.npmjs.com/cli/access
-pack	A										<section class="prog__container"><pre><code>npm pack [[&lt;@scope&gt;/]&lt;pkg&gt;...]\n</code></pre>For anything that&apos;s installable (that is, a package folder, tarball,\ntarball url, name@tag, name@version, name, or scoped name), this\ncommand will fetch it to the cache, and then copy the tarball to the\ncurrent working directory as &lt;name&gt;-&lt;version&gt;.tgz, and then write\nthe filenames out to stdout.</section>	https://docs.npmjs.com/cli/access
-ping	A										<section class="prog__container"><pre><code>npm ping [--registry &lt;registry&gt;]\n</code></pre>Ping the configured or given npm registry and verify authentication.</section>	https://docs.npmjs.com/cli/access
-prefix	A										<section class="prog__container"><pre><code>npm prefix [-g]\n</code></pre>Print the local prefix to standard out. This is the closest parent directory\nto contain a package.json file unless -g is also specified.</section>	https://docs.npmjs.com/cli/access
-prune	A										<section class="prog__container"><pre><code>npm prune [[&lt;@scope&gt;/]&lt;pkg&gt;...] [--production]\n</code></pre>This command removes "extraneous" packages.  If a package name is\nprovided, then only packages matching one of the supplied names are\nremoved.</section>	https://docs.npmjs.com/cli/access
-publish	A										<section class="prog__container"><pre><code>npm publish [&lt;tarball&gt;|&lt;folder&gt;] [--tag &lt;tag&gt;] [--access &lt;public|restricted&gt;]\n\nPublishes &apos;.&apos; if no argument supplied\nSets tag &apos;latest&apos; if no --tag specified\n</code></pre>Publishes a package to the registry so that it can be installed by name. All\nfiles in the package directory are included if no local .gitignore or\n.npmignore file exists. If both files exist and a file is ignored by\n.gitignore but not by .npmignore then it will be included.  See\nnpm-developers for full details on what&apos;s included in the published\npackage, as well as details on how the package is built.</section>	https://docs.npmjs.com/cli/access
-rebuild	A										<section class="prog__container"><pre><code>npm rebuild [[&lt;@scope&gt;/&lt;name&gt;]...]\n\nalias: npm rb\n</code></pre>This command runs the npm build command on the matched folders.  This is useful\nwhen you install a new version of node, and must recompile all your C++ addons with\nthe new binary.</section>	https://docs.npmjs.com/cli/access
-repo	A										<section class="prog__container"><pre><code>npm repo [&lt;pkg&gt;]\n</code></pre>This command tries to guess at the likely location of a package&apos;s\nrepository URL, and then tries to open it using the --browser\nconfig param. If no package name is provided, it will search for\na package.json in the current folder and use the name property.</section>	https://docs.npmjs.com/cli/access
-restart	A										<section class="prog__container"><pre><code>npm restart [-- &lt;args&gt;]\n</code></pre>This restarts a package.</section>	https://docs.npmjs.com/cli/access
-root	A										<section class="prog__container"><pre><code>npm root [-g]\n</code></pre>Print the effective node_modules folder to standard out.</section>	https://docs.npmjs.com/cli/access
-run-script	A										<section class="prog__container"><pre><code>npm run-script &lt;command&gt; [-- &lt;args&gt;...]\n\nalias: npm run\n</code></pre>This runs an arbitrary command from a package&apos;s "scripts" object.  If no\n"command" is provided, it will list the available scripts.  run[-script] is\nused by the test, start, restart, and stop commands, but can be called\ndirectly, as well. When the scripts in the package are printed out, they&apos;re\nseparated into lifecycle (test, start, restart) and directly-run scripts.</section>	https://docs.npmjs.com/cli/access
-search	A										<section class="prog__container"><pre><code>npm search [-l|--long] [search terms ...]\n\naliases: s, se\n</code></pre>Search the registry for packages matching the search terms.</section>	https://docs.npmjs.com/cli/access
-shrinkwrap	A										<section class="prog__container"><pre><code>npm shrinkwrap\n</code></pre>This command locks down the versions of a package&apos;s dependencies so\nthat you can control exactly which versions of each dependency will be\nused when your package is installed. The package.json file is still\nrequired if you want to use npm install.</section>	https://docs.npmjs.com/cli/access
-star	A										<section class="prog__container"><pre><code>npm star [&lt;pkg&gt;...]\nnpm unstar [&lt;pkg&gt;...]\n</code></pre>"Starring" a package means that you have some interest in it.  It&apos;s\na vaguely positive way to show that you care.</section>	https://docs.npmjs.com/cli/access
-stars	A										<section class="prog__container"><pre><code>npm stars [&lt;user&gt;]\n</code></pre>If you have starred a lot of neat things and want to find them again\nquickly this command lets you do just that.</section>	https://docs.npmjs.com/cli/access
-start	A										<section class="prog__container"><pre><code>npm start [-- &lt;args&gt;]\n</code></pre>This runs an arbitrary command specified in the package&apos;s "start" property of\nits "scripts" object. If no "start" property is specified on the\n"scripts" object, it will run node server.js.</section>	https://docs.npmjs.com/cli/access
-stop	A										<section class="prog__container"><pre><code>npm stop [-- &lt;args&gt;]\n</code></pre>This runs a package&apos;s "stop" script, if one was provided.</section>	https://docs.npmjs.com/cli/access
-tag	A										<section class="prog__container"><pre><code>[DEPRECATED] npm tag &lt;name&gt;@&lt;version&gt; [&lt;tag&gt;]\nSee `dist-tag`\n</code></pre>THIS COMMAND IS DEPRECATED. See npm-dist-tag for details.</section>	https://docs.npmjs.com/cli/access
-team	A										<section class="prog__container"><pre><code>npm team create &lt;scope:team&gt;\nnpm team destroy &lt;scope:team&gt;\n\nnpm team add &lt;scope:team&gt; &lt;user&gt;\nnpm team rm &lt;scope:team&gt; &lt;user&gt;\n\nnpm team ls &lt;scope&gt;|&lt;scope:team&gt;\n\nnpm team edit &lt;scope:team&gt;\n</code></pre>Used to manage teams in organizations, and change team memberships. Does not\nhandle permissions for packages.</section>	https://docs.npmjs.com/cli/access
-test	A										<section class="prog__container"><pre><code>  npm test [-- &lt;args&gt;]\n  npm tst [-- &lt;args&gt;]\n</code></pre>This runs a package&apos;s "test" script, if one was provided.</section>	https://docs.npmjs.com/cli/access
-uninstall	A										<section class="prog__container"><pre><code>npm uninstall [&lt;@scope&gt;/]&lt;pkg&gt;[@&lt;version&gt;]... [-S|--save|-D|--save-dev|-O|--save-optional]\n\naliases: remove, rm, r, un, unlink\n</code></pre>This uninstalls a package, completely removing everything npm installed\non its behalf.</section>	https://docs.npmjs.com/cli/access
-unpublish	A										<section class="prog__container"><pre><code>npm unpublish [&lt;@scope&gt;/]&lt;pkg&gt;[@&lt;version&gt;]\n</code></pre>It is generally considered bad behavior to remove versions of a library\nthat others are depending on!</section>	https://docs.npmjs.com/cli/access
-update	A										<section class="prog__container"><pre><code>npm update [-g] [&lt;pkg&gt;...]\n</code></pre>This command will update all the packages listed to the latest version\n(specified by the tag config), respecting semver.</section>	https://docs.npmjs.com/cli/access
-version	A										<section class="prog__container"><pre><code>npm version [&lt;newversion&gt; | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git]\n\n&apos;npm [-v | --version]&apos; to print npm version\n&apos;npm view &lt;pkg&gt; version&apos; to view a package&apos;s published version\n&apos;npm ls&apos; to inspect current package/dependency versions\n</code></pre>Run this in a package directory to bump the version and write the new\ndata back to package.json and, if present, npm-shrinkwrap.json.</section>	https://docs.npmjs.com/cli/access
-view	A										<section class="prog__container"><pre><code>npm view [&lt;@scope&gt;/]&lt;name&gt;[@&lt;version&gt;] [&lt;field&gt;[.&lt;subfield&gt;]...]\n\naliases: info, show, v\n</code></pre>This command shows data about a package and prints it to the stream\nreferenced by the outfd config, which defaults to stdout.</section>	https://docs.npmjs.com/cli/access
-whoami	A										<section class="prog__container"><pre><code>npm whoami [--registry &lt;registry&gt;]\n</code></pre>Print the username config to standard output.</section>	https://docs.npmjs.com/cli/access
+access	R	npm-access										
+access edit	R	npm-access										
+access grant	R	npm-access										
+access ls-collaborators	R	npm-access										
+access ls-packages	R	npm-access										
+access public	R	npm-access										
+access restricted	R	npm-access										
+access revoke	R	npm-access										
+adduser	R	npm-adduser										
+adduser --always	R	npm-adduser										
+adduser --registry	R	npm-adduser										
+adduser --scope	R	npm-adduser										
+bin	R	npm-bin										
+bin --global	R	npm-bin										
+bin -g	R	npm-bin										
+bugs	R	npm-bugs										
+bugs	R	npm-bugs										
+build	R	npm-build										
+build	R	npm-build										
+bundle	R	npm-bundle										
+bundle	R	npm-bundle										
+cache	R	npm-cache										
+cache add	R	npm-cache										
+cache clean	R	npm-cache										
+cache ls	R	npm-cache										
+completion	R	npm-completion										
+config	R	npm-config										
+config delete	R	npm-config										
+config edit	R	npm-config										
+config get	R	npm-config										
+config list	R	npm-config										
+config set --global	R	npm-config										
+config set -g	R	npm-config										
+ddp	R	npm-dedupe										
+dedupe	R	npm-dedupe										
+dedupe	R	npm-dedupe										
+deprecate	R	npm-deprecate										
+deprecate	R	npm-deprecate										
+dist-tag	R	npm-dist-tag										
+dist-tag add	R	npm-dist-tag										
+dist-tag ls	R	npm-dist-tag										
+dist-tag rm	R	npm-dist-tag										
+docs	R	npm-docs										
+docs	R	npm-docs										
+docs .	R	npm-docs										
+edit	R	npm-edit										
+edit	R	npm-edit										
+explore	R	npm-explore										
+explore	R	npm-explore										
+get	R	npm-config										
+help	R	npm-help										
+help	R	npm-help										
+help-search	R	npm-help-search										
+help-search	R	npm-help-search										
+home	R	npm-docs										
+home .	R	npm-docs										
+i	R	npm-install										
+info	R	npm-view										
+init	R	npm-init										
+init --force	R	npm-init										
+init --yes	R	npm-init										
+init -f	R	npm-init										
+init -y	R	npm-init										
+install	R	npm-install										
+install	R	npm-install										
+install-test	R	npm-install-test										
+install-test	R	npm-install-test										
+it	R	npm-install-test										
+la	R	npm-ls										
+link	R	npm-link										
+link	R	npm-link										
+list	R	npm-ls										
+ll	R	npm-ls										
+ln	R	npm-link										
+logout	R	npm-logout										
+logout --registry	R	npm-logout										
+logout --scope	R	npm-logout										
+ls	R	npm-ls										
+ls	R	npm-ls										
+npm	R	npm-npm										
+npm	R	npm-npm										
+npm-access	A										<section class="prog__container"><pre><code>npm access public [&lt;package&gt;]\nnpm access restricted [&lt;package&gt;]\n\nnpm access grant &lt;read-only|read-write&gt; &lt;scope:team&gt; [&lt;package&gt;]\nnpm access revoke &lt;scope:team&gt; [&lt;package&gt;]\n\nnpm access ls-packages [&lt;user&gt;|&lt;scope&gt;|&lt;scope:team&gt;]\nnpm access ls-collaborators [&lt;package&gt; [&lt;user&gt;]]\nnpm access edit [&lt;package&gt;]\n</code></pre>Used to set access controls on private packages.</section>	https://docs.npmjs.com/cli/install
+npm-adduser	A										<section class="prog__container"><pre><code>npm adduser [--registry=url] [--scope=@orgname] [--always-auth]\n</code></pre>Create or verify a user named &lt;username&gt; in the specified registry, and\nsave the credentials to the .npmrc file. If no registry is specified,\nthe default registry will be used (see npm-config).</section>	https://docs.npmjs.com/cli/install
+npm-bin	A										<section class="prog__container"><pre><code>npm bin [-g|--global]\n</code></pre>Print the folder where npm will install executables.</section>	https://docs.npmjs.com/cli/install
+npm-bugs	A										<section class="prog__container"><pre><code>npm bugs [&lt;pkgname&gt;]\n</code></pre>This command tries to guess at the likely location of a package&apos;s\nbug tracker URL, and then tries to open it using the --browser\nconfig param. If no package name is provided, it will search for\na package.json in the current folder and use the name property.</section>	https://docs.npmjs.com/cli/install
+npm-build	A										<section class="prog__container"><pre><code>npm build [&lt;package-folder&gt;]\n</code></pre>This is the plumbing command called by npm link and npm install.</section>	https://docs.npmjs.com/cli/install
+npm-bundle	A										<section class="prog__container"><pre><code>npm bundle</code></pre>The npm bundle command has been removed in 1.0, for the simple reason\nthat it is no longer necessary, as the default behavior is now to\ninstall packages into the local space.</section>	https://docs.npmjs.com/cli/install
+npm-cache	A										<section class="prog__container"><pre><code>npm cache add &lt;tarball file&gt;\nnpm cache add &lt;folder&gt;\nnpm cache add &lt;tarball url&gt;\nnpm cache add &lt;name&gt;@&lt;version&gt;\n\nnpm cache ls [&lt;path&gt;]\n\nnpm cache clean [&lt;path&gt;]\n</code></pre>Used to add, list, or clear the npm cache folder.</section>	https://docs.npmjs.com/cli/install
+npm-completion	A										<section class="prog__container"><pre><code>source &lt;(npm completion)\n</code></pre>Enables tab-completion in all npm commands.</section>	https://docs.npmjs.com/cli/install
+npm-config	A										<section class="prog__container"><pre><code>npm config set &lt;key&gt; &lt;value&gt; [-g|--global]\nnpm config get &lt;key&gt;\nnpm config delete &lt;key&gt;\nnpm config list\nnpm config edit\nnpm get &lt;key&gt;\nnpm set &lt;key&gt; &lt;value&gt; [-g|--global]\n</code></pre>npm gets its config settings from the command line, environment\nvariables, npmrc files, and in some cases, the package.json file.</section>	https://docs.npmjs.com/cli/install
+npm-dedupe	A										<section class="prog__container"><pre><code>npm dedupe\nnpm ddp\n</code></pre>Searches the local package tree and attempts to simplify the overall\nstructure by moving dependencies further up the tree, where they can\nbe more effectively shared by multiple dependent packages.</section>	https://docs.npmjs.com/cli/install
+npm-deprecate	A										<section class="prog__container"><pre><code>npm deprecate &lt;pkg&gt;[@&lt;version&gt;] &lt;message&gt;\n</code></pre>This command will update the npm registry entry for a package, providing\na deprecation warning to all who attempt to install it.</section>	https://docs.npmjs.com/cli/install
+npm-dist-tag	A										<section class="prog__container"><pre><code>npm dist-tag add &lt;pkg&gt;@&lt;version&gt; [&lt;tag&gt;]\nnpm dist-tag rm &lt;pkg&gt; &lt;tag&gt;\nnpm dist-tag ls [&lt;pkg&gt;]\n</code></pre>Add, remove, and enumerate distribution tags on a package:</section>	https://docs.npmjs.com/cli/install
+npm-docs	A										<section class="prog__container"><pre><code>npm docs [&lt;pkgname&gt; [&lt;pkgname&gt; ...]]\nnpm docs .\nnpm home [&lt;pkgname&gt; [&lt;pkgname&gt; ...]]\nnpm home .\n</code></pre>This command tries to guess at the likely location of a package&apos;s\ndocumentation URL, and then tries to open it using the --browser\nconfig param. You can pass multiple package names at once. If no\npackage name is provided, it will search for a package.json in\nthe current folder and use the name property.</section>	https://docs.npmjs.com/cli/install
+npm-edit	A										<section class="prog__container"><pre><code>npm edit &lt;pkg&gt;[@&lt;version&gt;]\n</code></pre>Opens the package folder in the default editor (or whatever you&apos;ve\nconfigured as the npm editor config -- see npm-config.)</section>	https://docs.npmjs.com/cli/install
+npm-explore	A										<section class="prog__container"><pre><code>npm explore &lt;pkg&gt; [ -- &lt;cmd&gt;]\n</code></pre>Spawn a subshell in the directory of the installed package specified.</section>	https://docs.npmjs.com/cli/install
+npm-help	A										<section class="prog__container"><pre><code>npm help &lt;term&gt; [&lt;terms..&gt;]\n</code></pre>If supplied a topic, then show the appropriate documentation page.</section>	https://docs.npmjs.com/cli/install
+npm-help-search	A										<section class="prog__container"><pre><code>npm help-search &lt;text&gt;\n</code></pre>This command will search the npm markdown documentation files for the\nterms provided, and then list the results, sorted by relevance.</section>	https://docs.npmjs.com/cli/install
+npm-init	A										<section class="prog__container"><pre><code>npm init [-f|--force|-y|--yes]\n</code></pre>This will ask you a bunch of questions, and then write a package.json for you.</section>	https://docs.npmjs.com/cli/install
+npm-install	A										<section class="prog__container"><pre><code>npm install (with no args, in package dir)\nnpm install [&lt;@scope&gt;/]&lt;name&gt;\nnpm install [&lt;@scope&gt;/]&lt;name&gt;@&lt;tag&gt;\nnpm install [&lt;@scope&gt;/]&lt;name&gt;@&lt;version&gt;\nnpm install [&lt;@scope&gt;/]&lt;name&gt;@&lt;version range&gt;\nnpm install &lt;tarball file&gt;\nnpm install &lt;tarball url&gt;\nnpm install &lt;folder&gt;\n\nalias: npm i\ncommon options: [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [--dry-run]\n</code></pre>This command installs a package, and any packages that it depends on. If the\npackage has a shrinkwrap file, the installation of dependencies will be driven\nby that. See npm-shrinkwrap.</section>	https://docs.npmjs.com/cli/install
+npm-install-test	A										<section class="prog__container"><pre><code>npm install-test (with no args, in package dir)\nnpm install-test [&lt;@scope&gt;/]&lt;name&gt;\nnpm install-test [&lt;@scope&gt;/]&lt;name&gt;@&lt;tag&gt;\nnpm install-test [&lt;@scope&gt;/]&lt;name&gt;@&lt;version&gt;\nnpm install-test [&lt;@scope&gt;/]&lt;name&gt;@&lt;version range&gt;\nnpm install-test &lt;tarball file&gt;\nnpm install-test &lt;tarball url&gt;\nnpm install-test &lt;folder&gt;\n\nalias: npm it\ncommon options: [--save|--save-dev|--save-optional] [--save-exact] [--dry-run]\n</code></pre>This command runs an npm install followed immediately by an npm test. It\ntakes exactly the same arguments as npm install.</section>	https://docs.npmjs.com/cli/install
+npm-link	A										<section class="prog__container"><pre><code>npm link (in package dir)\nnpm link [&lt;@scope&gt;/]&lt;pkg&gt;[@&lt;version&gt;]\n\nalias: npm ln\n</code></pre>Package linking is a two-step process.</section>	https://docs.npmjs.com/cli/install
+npm-logout	A										<section class="prog__container"><pre><code>npm logout [--registry=&lt;url&gt;] [--scope=&lt;@scope&gt;]\n</code></pre>When logged into a registry that supports token-based authentication, tell the\nserver to end this token&apos;s session. This will invalidate the token everywhere\nyou&apos;re using it, not just for the current environment.</section>	https://docs.npmjs.com/cli/install
+npm-ls	A										<section class="prog__container"><pre><code>npm ls [[&lt;@scope&gt;/]&lt;pkg&gt; ...]\n\naliases: list, la, ll\n</code></pre>This command will print to stdout all the versions of packages that are\ninstalled, as well as their dependencies, in a tree-structure.</section>	https://docs.npmjs.com/cli/install
+npm-npm	A										<section class="prog__container"><pre><code>npm &lt;command&gt; [args]\n</code></pre>@VERSION@</section>	https://docs.npmjs.com/cli/install
+npm-outdated	A										<section class="prog__container"><pre><code>npm outdated [[&lt;@scope&gt;/]&lt;pkg&gt; ...]\n</code></pre>This command will check the registry to see if any (or, specific) installed\npackages are currently outdated.</section>	https://docs.npmjs.com/cli/install
+npm-owner	A										<section class="prog__container"><pre><code>npm owner add &lt;user&gt; [&lt;@scope&gt;/]&lt;pkg&gt;\nnpm owner rm &lt;user&gt; [&lt;@scope&gt;/]&lt;pkg&gt;\nnpm owner ls [&lt;@scope&gt;/]&lt;pkg&gt;\n</code></pre>Manage ownership of published packages.</section>	https://docs.npmjs.com/cli/install
+npm-pack	A										<section class="prog__container"><pre><code>npm pack [[&lt;@scope&gt;/]&lt;pkg&gt;...]\n</code></pre>For anything that&apos;s installable (that is, a package folder, tarball,\ntarball url, name@tag, name@version, name, or scoped name), this\ncommand will fetch it to the cache, and then copy the tarball to the\ncurrent working directory as &lt;name&gt;-&lt;version&gt;.tgz, and then write\nthe filenames out to stdout.</section>	https://docs.npmjs.com/cli/install
+npm-ping	A										<section class="prog__container"><pre><code>npm ping [--registry &lt;registry&gt;]\n</code></pre>Ping the configured or given npm registry and verify authentication.</section>	https://docs.npmjs.com/cli/install
+npm-prefix	A										<section class="prog__container"><pre><code>npm prefix [-g]\n</code></pre>Print the local prefix to standard out. This is the closest parent directory\nto contain a package.json file unless -g is also specified.</section>	https://docs.npmjs.com/cli/install
+npm-prune	A										<section class="prog__container"><pre><code>npm prune [[&lt;@scope&gt;/]&lt;pkg&gt;...] [--production]\n</code></pre>This command removes "extraneous" packages.  If a package name is\nprovided, then only packages matching one of the supplied names are\nremoved.</section>	https://docs.npmjs.com/cli/install
+npm-publish	A										<section class="prog__container"><pre><code>npm publish [&lt;tarball&gt;|&lt;folder&gt;] [--tag &lt;tag&gt;] [--access &lt;public|restricted&gt;]\n\nPublishes &apos;.&apos; if no argument supplied\nSets tag &apos;latest&apos; if no --tag specified\n</code></pre>Publishes a package to the registry so that it can be installed by name. All\nfiles in the package directory are included if no local .gitignore or\n.npmignore file exists. If both files exist and a file is ignored by\n.gitignore but not by .npmignore then it will be included.  See\nnpm-developers for full details on what&apos;s included in the published\npackage, as well as details on how the package is built.</section>	https://docs.npmjs.com/cli/install
+npm-rebuild	A										<section class="prog__container"><pre><code>npm rebuild [[&lt;@scope&gt;/&lt;name&gt;]...]\n\nalias: npm rb\n</code></pre>This command runs the npm build command on the matched folders.  This is useful\nwhen you install a new version of node, and must recompile all your C++ addons with\nthe new binary.</section>	https://docs.npmjs.com/cli/install
+npm-repo	A										<section class="prog__container"><pre><code>npm repo [&lt;pkg&gt;]\n</code></pre>This command tries to guess at the likely location of a package&apos;s\nrepository URL, and then tries to open it using the --browser\nconfig param. If no package name is provided, it will search for\na package.json in the current folder and use the name property.</section>	https://docs.npmjs.com/cli/install
+npm-restart	A										<section class="prog__container"><pre><code>npm restart [-- &lt;args&gt;]\n</code></pre>This restarts a package.</section>	https://docs.npmjs.com/cli/install
+npm-root	A										<section class="prog__container"><pre><code>npm root [-g]\n</code></pre>Print the effective node_modules folder to standard out.</section>	https://docs.npmjs.com/cli/install
+npm-run-script	A										<section class="prog__container"><pre><code>npm run-script &lt;command&gt; [-- &lt;args&gt;...]\n\nalias: npm run\n</code></pre>This runs an arbitrary command from a package&apos;s "scripts" object.  If no\n"command" is provided, it will list the available scripts.  run[-script] is\nused by the test, start, restart, and stop commands, but can be called\ndirectly, as well. When the scripts in the package are printed out, they&apos;re\nseparated into lifecycle (test, start, restart) and directly-run scripts.</section>	https://docs.npmjs.com/cli/install
+npm-search	A										<section class="prog__container"><pre><code>npm search [-l|--long] [search terms ...]\n\naliases: s, se\n</code></pre>Search the registry for packages matching the search terms.</section>	https://docs.npmjs.com/cli/install
+npm-shrinkwrap	A										<section class="prog__container"><pre><code>npm shrinkwrap\n</code></pre>This command locks down the versions of a package&apos;s dependencies so\nthat you can control exactly which versions of each dependency will be\nused when your package is installed. The package.json file is still\nrequired if you want to use npm install.</section>	https://docs.npmjs.com/cli/install
+npm-star	A										<section class="prog__container"><pre><code>npm star [&lt;pkg&gt;...]\nnpm unstar [&lt;pkg&gt;...]\n</code></pre>"Starring" a package means that you have some interest in it.  It&apos;s\na vaguely positive way to show that you care.</section>	https://docs.npmjs.com/cli/install
+npm-stars	A										<section class="prog__container"><pre><code>npm stars [&lt;user&gt;]\n</code></pre>If you have starred a lot of neat things and want to find them again\nquickly this command lets you do just that.</section>	https://docs.npmjs.com/cli/install
+npm-start	A										<section class="prog__container"><pre><code>npm start [-- &lt;args&gt;]\n</code></pre>This runs an arbitrary command specified in the package&apos;s "start" property of\nits "scripts" object. If no "start" property is specified on the\n"scripts" object, it will run node server.js.</section>	https://docs.npmjs.com/cli/install
+npm-stop	A										<section class="prog__container"><pre><code>npm stop [-- &lt;args&gt;]\n</code></pre>This runs a package&apos;s "stop" script, if one was provided.</section>	https://docs.npmjs.com/cli/install
+npm-tag	A										<section class="prog__container"><pre><code>[DEPRECATED] npm tag &lt;name&gt;@&lt;version&gt; [&lt;tag&gt;]\nSee `dist-tag`\n</code></pre>THIS COMMAND IS DEPRECATED. See npm-dist-tag for details.</section>	https://docs.npmjs.com/cli/install
+npm-team	A										<section class="prog__container"><pre><code>npm team create &lt;scope:team&gt;\nnpm team destroy &lt;scope:team&gt;\n\nnpm team add &lt;scope:team&gt; &lt;user&gt;\nnpm team rm &lt;scope:team&gt; &lt;user&gt;\n\nnpm team ls &lt;scope&gt;|&lt;scope:team&gt;\n\nnpm team edit &lt;scope:team&gt;\n</code></pre>Used to manage teams in organizations, and change team memberships. Does not\nhandle permissions for packages.</section>	https://docs.npmjs.com/cli/install
+npm-test	A										<section class="prog__container"><pre><code>  npm test [-- &lt;args&gt;]\n  npm tst [-- &lt;args&gt;]\n</code></pre>This runs a package&apos;s "test" script, if one was provided.</section>	https://docs.npmjs.com/cli/install
+npm-uninstall	A										<section class="prog__container"><pre><code>npm uninstall [&lt;@scope&gt;/]&lt;pkg&gt;[@&lt;version&gt;]... [-S|--save|-D|--save-dev|-O|--save-optional]\n\naliases: remove, rm, r, un, unlink\n</code></pre>This uninstalls a package, completely removing everything npm installed\non its behalf.</section>	https://docs.npmjs.com/cli/install
+npm-unpublish	A										<section class="prog__container"><pre><code>npm unpublish [&lt;@scope&gt;/]&lt;pkg&gt;[@&lt;version&gt;]\n</code></pre>It is generally considered bad behavior to remove versions of a library\nthat others are depending on!</section>	https://docs.npmjs.com/cli/install
+npm-update	A										<section class="prog__container"><pre><code>npm update [-g] [&lt;pkg&gt;...]\n</code></pre>This command will update all the packages listed to the latest version\n(specified by the tag config), respecting semver.</section>	https://docs.npmjs.com/cli/install
+npm-version	A										<section class="prog__container"><pre><code>npm version [&lt;newversion&gt; | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git]\n\n&apos;npm [-v | --version]&apos; to print npm version\n&apos;npm view &lt;pkg&gt; version&apos; to view a package&apos;s published version\n&apos;npm ls&apos; to inspect current package/dependency versions\n</code></pre>Run this in a package directory to bump the version and write the new\ndata back to package.json and, if present, npm-shrinkwrap.json.</section>	https://docs.npmjs.com/cli/install
+npm-view	A										<section class="prog__container"><pre><code>npm view [&lt;@scope&gt;/]&lt;name&gt;[@&lt;version&gt;] [&lt;field&gt;[.&lt;subfield&gt;]...]\n\naliases: info, show, v\n</code></pre>This command shows data about a package and prints it to the stream\nreferenced by the outfd config, which defaults to stdout.</section>	https://docs.npmjs.com/cli/install
+npm-whoami	A										<section class="prog__container"><pre><code>npm whoami [--registry &lt;registry&gt;]\n</code></pre>Print the username config to standard output.</section>	https://docs.npmjs.com/cli/install
+outdated	R	npm-outdated										
+outdated	R	npm-outdated										
+owner	R	npm-owner										
+owner add	R	npm-owner										
+owner ls	R	npm-owner										
+owner rm	R	npm-owner										
+pack	R	npm-pack										
+pack	R	npm-pack										
+ping	R	npm-ping										
+ping --registry	R	npm-ping										
+prefix	R	npm-prefix										
+prefix -g	R	npm-prefix										
+prune	R	npm-prune										
+prune --production	R	npm-prune										
+publish	R	npm-publish										
+publish --access	R	npm-publish										
+publish --tag	R	npm-publish										
+r	R	npm-uninstall										
+rb	R	npm-rebuild										
+rebuild	R	npm-rebuild										
+rebuild	R	npm-rebuild										
+remove	R	npm-uninstall										
+repo	R	npm-repo										
+repo	R	npm-repo										
+restart	R	npm-restart										
+restart	R	npm-restart										
+rm	R	npm-uninstall										
+root	R	npm-root										
+root -g	R	npm-root										
+run	R	npm-run-script										
+run-script	R	npm-run-script										
+run-script	R	npm-run-script										
+s	R	npm-search										
+se	R	npm-search										
+search	R	npm-search										
+search --long	R	npm-search										
+search -l	R	npm-search										
+set --global	R	npm-config										
+set -g	R	npm-config										
+show	R	npm-view										
+shrinkwrap	R	npm-shrinkwrap										
+shrinkwrap	R	npm-shrinkwrap										
+star	R	npm-star										
+star	R	npm-star										
+stars	R	npm-stars										
+stars	R	npm-stars										
+start	R	npm-start										
+start	R	npm-start										
+stop	R	npm-stop										
+stop	R	npm-stop										
+tag	R	npm-tag										
+team	R	npm-team										
+team add	R	npm-team										
+team create	R	npm-team										
+team destroy	R	npm-team										
+team edit	R	npm-team										
+team ls	R	npm-team										
+team rm	R	npm-team										
+test	R	npm-test										
+un	R	npm-uninstall										
+uninstall	R	npm-uninstall										
+uninstall --save	R	npm-uninstall										
+unlink	R	npm-uninstall										
+unpublish	R	npm-unpublish										
+unpublish	R	npm-unpublish										
+unstar	R	npm-star										
+update	R	npm-update										
+update -g	R	npm-update										
+v	R	npm-view										
+version	R	npm-version										
+version	R	npm-version										
+view	R	npm-view										
+view	R	npm-view										
+whoami	R	npm-whoami										
+whoami --registry	R	npm-whoami										

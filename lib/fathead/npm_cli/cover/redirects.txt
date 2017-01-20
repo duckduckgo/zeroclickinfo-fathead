@@ -1,74 +1,74 @@
-npm access public, access
-npm access restricted, access
-npm access grant, access
-npm access revoke, access
-npm access ls-packages, access
-npm access ls-collaborators, access
-npm access edit, access
-npm adduser --registry, adduser
-npm adduser --scope, adduser
-npm adduser --always-auth, adduser
-npm login, adduser
-npm bin -g, bin
-npm bin --global, bin
-npm cache add, cache
-npm cache ls, cache
-npm cache clean, cache
-npm config set, config
-npm config get, config
-npm config delete, config
-npm config list, config
-npm config edit, config
-npm get, config
-npm set. config
-npm ddp, dedupe
-npm dist-tag add, dist-tag
-npm dist-tag rm, dist-tag
-npm dist-tag ls, dist-tag
-npm home, docs
-npm edit connect, connect
-npm init -f, init
-npm init --force, init
-npm init -y, init
-npm init --yes, init
-npm i, install
-npm it, install-test
-npm ln, link
-npm logout --registery, logout
-npm logout -scope, logout
-npm list, ls
-npm la, ls
-npm ll, ls
-npm owner add, owner
-npm owner rm, owner
-npm owner ls, owner
-npm ping --registry, ping
-npm prefix -g, prefix
-npm prune --production, prune
-npm publish --tag, publish
-npm publish --access, publish
-npm rb, rebuild
-npm root -g, root
-npm run-script, run
-npm s, search
-npm se, search
-npm search -l, search
-npm search --long, search
-npm unstar, star
-npm team create, team
-npm team destroy, team
-npm team add, team
-npm team remove, team
-npm team ls, team
-npm team edit, team
-npm tst, test
-npm remove, uninstall
-npm rm, uninstall
-npm r, uninstall
-npm un, uninstall
-npm unlink, uninstall
-npm update -g, update
-npm info, view
-npm show, view
-npm v, view
-npm whoami --registry, whoami
+access public,access
+access restricted,access
+access grant,access
+access revoke,access
+access ls-packages,access
+access ls-collaborators,access
+access edit,access
+adduser --registry,adduser
+adduser --scope,adduser
+adduser --always-auth,adduser
+login,adduser
+bin -g,bin
+bin --global,bin
+cache add,cache
+cache ls,cache
+cache clean,cache
+config set,config
+config get,config
+config delete,config
+config list,config
+config edit,config
+get,config
+set.config
+ddp,dedupe
+dist-tag add,dist-tag
+dist-tag rm,dist-tag
+dist-tag ls,dist-tag
+home,docs
+edit connect,connect
+init -f,init
+init --force,init
+init -y,init
+init --yes,init
+i,install
+it,install-test
+ln,link
+logout --registery,logout
+logout -scope,logout
+list,ls
+la,ls
+ll,ls
+owner add,owner
+owner rm,owner
+owner ls,owner
+ping --registry,ping
+prefix -g,prefix
+prune --production,prune
+publish --tag,publish
+publish --access,publish
+rb,rebuild
+root -g,root
+run-script,run
+s,search
+se,search
+search -l,search
+search --long,search
+unstar,star
+team create,team
+team destroy,team
+team add,team
+team remove,team
+team ls,team
+team edit,team
+tst,test
+remove,uninstall
+rm,uninstall
+r,uninstall
+un,uninstall
+unlink,uninstall
+update -g,update
+info,view
+show,view
+v,view
+whoami --registry,whoami
