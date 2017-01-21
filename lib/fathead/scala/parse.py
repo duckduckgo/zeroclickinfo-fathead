@@ -41,13 +41,11 @@ def get_tuple(filename):
 def output(filename="output.txt"):
 	doc_files = get_all_files()
 	line = ''
-	i = 0
 	for doc_file in doc_files:
 		data = get_tuple( doc_file )
 		line += "\t".join(data) + "\n"
 		i+=1
-		if i == 100:
-			break
+
 	f = open(filename, 'a')
 	f.write(line.encode('utf'))
 	f.close()
