@@ -354,7 +354,7 @@ scale3d()
 scaleX()
 scaleY()
 scaleZ()
-scroll-behaviour
+scroll-behavior
 scroll-snap-type
 shape-image-threshold
 shape-margin
