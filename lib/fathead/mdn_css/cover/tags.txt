@@ -256,7 +256,6 @@ margin-inline-start
 margin-left
 margin-right
 margin-top
-mark
 mask
 mask-clip
 mask-composite
