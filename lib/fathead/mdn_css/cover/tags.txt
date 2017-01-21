@@ -207,7 +207,6 @@ font-style
 font-synthesis
 font-variant
 font-weight
-format()
 fr
 grad
 grayscale()
