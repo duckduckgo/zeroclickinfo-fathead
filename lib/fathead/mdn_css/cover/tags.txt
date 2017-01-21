@@ -207,7 +207,6 @@ font-style
 font-synthesis
 font-variant
 font-weight
-fr
 grad
 grayscale()
 grid
