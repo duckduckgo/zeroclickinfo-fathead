@@ -134,7 +134,6 @@ border-right-color
 border-right-style
 border-right-width
 border-spacing
-border-start
 border-style
 border-top
 border-top-color
