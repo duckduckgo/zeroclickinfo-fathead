@@ -5,3 +5,4 @@ class
 public class
 enum
 jmeter enum
+exception
