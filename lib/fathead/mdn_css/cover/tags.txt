@@ -187,7 +187,6 @@ empty-cells
 ex
 fallback
 filter
-fit
 fit-content()
 flex
 flex-basis
