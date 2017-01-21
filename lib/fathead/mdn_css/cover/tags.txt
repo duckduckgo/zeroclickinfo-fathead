@@ -199,7 +199,6 @@ float
 font
 font-family
 font-feature-settings
-font-height
 font-kerning
 font-size
 font-size-adjust
