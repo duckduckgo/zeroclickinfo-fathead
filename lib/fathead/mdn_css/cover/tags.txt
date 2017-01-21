@@ -170,8 +170,6 @@ contrast()
 content
 counter-increment
 counter-reset
-cross-fade()
-cubic-bezier()
 cursor
 custom properties (--*)
 deg
@@ -227,16 +225,13 @@ hsl()
 hsla()
 hyphens
 hz
-image()
 image-orientation
 image-rendering
-image-resolution
 ime-mode
 in
 inherit
 initial
 inline-size
-inset()
 invert()
 isolation
 justify-content
@@ -248,7 +243,6 @@ list-style
 list-style-image
 list-style-position
 list-style-type
-local()
 margin
 margin-bottom
 margin-inline-end
@@ -329,9 +323,7 @@ quotes
 rad
 radial-gradient
 range
-rect()
 rem
-repeat()
 repeating-linear-gradient()
 repeating-radial-gradient()
 resize
@@ -346,7 +338,6 @@ rotateX()
 rotateY()
 rotateZ()
 ruby-align
-ruby-merge
 ruby-position
 s
 scale()
@@ -364,7 +355,6 @@ skewX()
 skewY()
 speak-as
 src
-steps()
 suffix
 swash()
 symbols
@@ -372,8 +362,6 @@ symbols()
 system
 tab-size
 table-layout
-target-counters()
-target-text()
 text-align
 text-align-last
 text-combine-upright
@@ -424,7 +412,6 @@ width
 will-change
 word-break
 word-spacing
-word-wrap
 writing-mode
 z-index
 zoom
