@@ -219,7 +219,6 @@ grid-row
 grid-row-end
 grid-row-gap
 grid-row-start
-grid-span
 grid-template-areas
 grid-template-columns
 grid-template-rows
