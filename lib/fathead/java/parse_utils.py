@@ -41,15 +41,17 @@ def extractMethodData(method, methodclass, coverage):
     if coverage is True:
         for td in method.find_all("td", {"class" : "colLast"}):
             method_names.append(remove_keywords(methodclass) + " " + extractMethodName(td.find("code").text))
-            #method_names.append(remove_keywords(methodclass) + " " + str(td.find("span").text))
+            # for just the method name:
+            method_names.append(remove_keywords(methodclass) + " " + str(td.find("span").text))
 
-    elif coverage is False:
+    else:
         for td in method.find_all("td", {"class" : "colLast"}):
-            method_names.append(remove_keywords(methodclass) + " " + format(td))
+            method_names.append(remove_keywords(methodclass) + " " + format(td, True))
+            method_names.append(remove_keywords(methodclass) + " " + format(td, False))
     return method_names
 
 """
-Extracts method name and parameters
+Extracts a method's name and parameters
 parameters: data entry of a method
 returns: formatted method and parameters for output.txt and methods.txt
 """
@@ -62,9 +64,12 @@ Formats output for method data to be appended to output.txt
 parameters: data entry of a method
 returns: a formatted string for output.txt
 """
-def format(tabledata):
-    method_name = extractMethodName(tabledata.find("code").text)
-    #method_name = str(tabledata.find("span").text)
+def format(tabledata, parameters):
+    method_name = ""
+    if parameters is True:
+        method_name = extractMethodName(tabledata.find("code").text)
+    else:
+        method_name = str(tabledata.find("span").text)
     method_description = ""
     if tabledata.find("div") is not None:
         method_description = str.replace(tabledata.find("div").get_text(), "\n", "")

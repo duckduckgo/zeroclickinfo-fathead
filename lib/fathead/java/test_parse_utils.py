@@ -34,7 +34,7 @@ class TestParse(unittest.TestCase):
     (clazz, description, url) = parse_utils.getClass('./docs/api', 'java/lang/String.html')
     self.assertEqual(u'Class String', clazz)
     # check for an almost random piece in the documentation
-    self.assertEqual(u'The String class represents character strings.', description)
+    self.assertEqual(u'The String class represents character strings. All string literals in Java programs, such as "abc", are implemented as instances of this class.  Strings are constant; their values cannot be changed after they are created. String buffers support mutable strings.', description)
 
   def test_do_not_concat_if_no_class_found(self):
     line = parse_utils.concat_list(["", "", ""])
