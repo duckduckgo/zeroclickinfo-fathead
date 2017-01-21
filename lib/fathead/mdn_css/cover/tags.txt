@@ -102,7 +102,6 @@ background-origin
 background-position
 background-repeat
 background-size
-bleed
 blend-mode
 block-size
 blur()
