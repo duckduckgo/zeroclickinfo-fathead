@@ -41,10 +41,9 @@ def extractMethodData(method, methodclass, coverage):
     if coverage is True:
         for td in method.find_all("td", {"class" : "colLast"}):
             method_names.append(remove_keywords(methodclass) + " " + extractMethodName(td.find("code").text))
-            # for just the method name:
+            # method name without parameters:
             method_names.append(remove_keywords(methodclass) + " " + str(td.find("span").text))
-
-    else:
+    elif coverage is False:
         for td in method.find_all("td", {"class" : "colLast"}):
             method_names.append(remove_keywords(methodclass) + " " + format(td, True))
             method_names.append(remove_keywords(methodclass) + " " + format(td, False))
@@ -61,19 +60,19 @@ def extractMethodName(tabledata):
 
 """
 Formats output for method data to be appended to output.txt
-parameters: data entry of a method
+parameters: data entry of a method, boolean determines whether parameters are to be included or not
 returns: a formatted string for output.txt
 """
 def format(tabledata, parameters):
     method_name = ""
     if parameters is True:
         method_name = extractMethodName(tabledata.find("code").text)
-    else:
+    elif parameters if False:
         method_name = str(tabledata.find("span").text)
     method_description = ""
     if tabledata.find("div") is not None:
         method_description = str.replace(tabledata.find("div").get_text(), "\n", "")
-    method_url = str(tabledata.find("href"))
+    method_url = str(tabledata.find("a".text))
     formatted_string = method_name + "\tA\t\t\t\t\t\t\t\t\t" + method_description + " " + method_url
     return formatted_string
     
