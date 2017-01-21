@@ -24,8 +24,7 @@ class TestParse(unittest.TestCase):
     self.assertEqual(2892, len(parse_utils.collectDocFilesFrom("./docs/api/javax")))
 
   def test_description_is_cut_down(self):
-    self.assertEqual("1234567890.", 
-	parse_utils.cutlength("1234567890.1234567890"))
+    self.assertEqual("1234567890.", parse_utils.cutlength("1234567890.1234567890"))
 
   def test_description_is_not_cut_when_it_is_short(self):
     self.assertEqual("This is a short description. It has multiple sentences.", parse_utils.cutlength("This is a short description. It has multiple sentences. 12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"))
@@ -39,6 +38,22 @@ class TestParse(unittest.TestCase):
   def test_do_not_concat_if_no_class_found(self):
     line = parse_utils.concat_list(["", "", ""])
     self.assertTrue(line.startswith("No class found"))
+
+  # correct output should be in the form: <class> <method> <parameter1> <parameter2> ...
+  def test_methods_with_parameters(self):
+   coverage_testcase = parse_utils.extractMethodData(valueOf, String, True)
+   self.assertEqual("String valueOf boolean b", coverage_testcase)
+
+   output_testcase = parse_utils.extractMethodData(valueOf, String, False)
+   self.assertEqual("String valueOf boolean b	A									Returns the string representation of the boolean argument. None", output_testcase)
+
+  # correct output should be in the form: <class> <method>
+  def test_methods_without_parameters(self):
+    coverage_testcase = parse_utils.extractMethodData(valueOf, String, True)
+    self.assertEqual("String valueOf", coverage_testcase)
+
+    output_testcase = parse_utils.extractMethodData(valueOf, String, False)
+    self.assertEqual("String valueOf	A									Returns the string representation of the boolean argument. None", output_testcase)
 
 if __name__ == '__main__':
     unittest.main()
