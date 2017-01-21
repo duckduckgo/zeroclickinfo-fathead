@@ -362,7 +362,6 @@ shape-outside
 skew()
 skewX()
 skewY()
-skewZ()
 speak-as
 src
 steps()
