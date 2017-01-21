@@ -425,7 +425,6 @@ will-change
 word-break
 word-spacing
 word-wrap
-wrap-mode
 writing-mode
 z-index
 zoom
