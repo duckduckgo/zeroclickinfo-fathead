@@ -44,7 +44,6 @@ def output(filename="output.txt"):
 	for doc_file in doc_files:
 		data = get_tuple( doc_file )
 		line += "\t".join(data) + "\n"
-		i+=1
 
 	f = open(filename, 'a')
 	f.write(line.encode('utf'))
