@@ -90,7 +90,6 @@ animation-name
 animation-play-state
 animation-timing-function
 annotation()
-appearance
 attr()
 backface-visibility
 background
