@@ -43,7 +43,8 @@ queue_urls_for_download();
 Mojo::IOLoop->recurring(
     0 => sub {
         for ( $current_active_connections + 1 .. $maximum_active_connections ) {
-            return ( $current_active_connections or Mojo::IOLoop->stop )
+            return ( $current_active_connections
+                  or Mojo::IOLoop->stop_gracefully )
               unless my $url = shift @keyword_urls;
 
             ++$current_active_connections;
