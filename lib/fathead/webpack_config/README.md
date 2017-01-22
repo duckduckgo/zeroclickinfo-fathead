@@ -2,7 +2,7 @@ Webpack config fathead
 ======================
 
 ##Dependencies:
-NodeJS >= 4.6.0
+NodeJS >= 6.9.1
 
 ```bash
 	npm i
