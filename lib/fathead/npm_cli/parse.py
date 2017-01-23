@@ -6,7 +6,7 @@ import re
 from bs4 import BeautifulSoup
 
 
-START_URL = 'https://docs.npmjs.com/cli/install'
+START_URL = 'https://docs.npmjs.com/cli/access'
 BASE_URL = 'https://docs.npmjs.com'
 OUTPUL_FILE = open('output.txt', 'w+')
 RESULT_URLS = []
@@ -17,12 +17,10 @@ def print_article_line(title, code, content):
 
     title = 'npm-' + title
     code = code.replace('\n', '\\n').replace('\t', '  ')
-    code = code.replace('<', '&lt;').replace('>', '&gt;')
     content = content.replace('\n', '\\n').replace('\t', '  ')
-    content = content.replace('<', '&lt;').replace('>', '&gt;')
 
-    abstract = '<section class="prog__container">' + content + \
-               '<code><pre>' + code + '</pre></code></section>'
+    abstract = '<section class="prog__container"><p>' + content + \
+               '</p><pre><code>' + code + '</code></pre></section>'
 
     list_of_data = [
         title,      # 1. article title
@@ -43,14 +41,8 @@ def print_article_line(title, code, content):
     OUTPUL_FILE.write('{}\n'.format('\t'.join(list_of_data)))
 
 
-# Print the redirect info to the output file
-def print_redirect_line(title, code):
+def create_redirect(title, new_title):
 
-    # Redirect
-    new_title = 'npm-' + title
-    command_dict = {}
-
-    # Always add the original title
     list_of_data = [
         title,            # 1. article title
         'R',              # 2.type is article
@@ -69,6 +61,16 @@ def print_redirect_line(title, code):
 
     OUTPUL_FILE.write('{}\n'.format('\t'.join(list_of_data)))
 
+
+# Print the redirect info to the output file
+def print_redirect_line(title, code):
+
+    # Redirect
+    new_title = 'npm-' + title
+    command_dict = {}
+
+    create_redirect(title, new_title)
+
     for i in code.split('\n'):
         # Check explicitly for alias and aliases, both follow diff pattern
         if i.startswith('aliases'):
@@ -76,46 +78,13 @@ def print_redirect_line(title, code):
             temp = temp.split(', ')
 
             for alias in temp:
-                list_of_data = [
-                    alias,            # 1. article title
-                    'R',              # 2.type is article
-                    new_title,        # 3.no redirect data
-                    '',               # 4.leave empty
-                    '',               # 5.no categories
-                    '',               # 6.leave empty
-                    '',               # 7.no related topics
-                    '',               # 8.leave empty
-                    '',               # 9.an external link back to home
-                    '',               # 10.no disambiguation
-                    '',               # 11.images
-                    '',               # 12.abstract
-                    ''                # 13.url to doc
-                    ]
-
-                OUTPUL_FILE.write('{}\n'.format('\t'.join(list_of_data)))
+                create_redirect(alias, new_title)
 
             continue
 
         if i.startswith('alias'):
             command = i.split('npm ')[-1]
-
-            list_of_data = [
-                command,          # 1. article title
-                'R',              # 2.type is article
-                new_title,        # 3.no redirect data
-                '',               # 4.leave empty
-                '',               # 5.no categories
-                '',               # 6.leave empty
-                '',               # 7.no related topics
-                '',               # 8.leave empty
-                '',               # 9.an external link back to home
-                '',               # 10.no disambiguation
-                '',               # 11.images
-                '',               # 12.abstract
-                ''                # 13.url to doc
-            ]
-
-            OUTPUL_FILE.write('{}\n'.format('\t'.join(list_of_data)))
+            create_redirect(command, new_title)
 
             continue
 
@@ -128,24 +97,7 @@ def print_redirect_line(title, code):
 
         if not temp and not command == title:
             command_dict[command] = True
-
-            list_of_data = [
-                command,          # 1. article title
-                'R',              # 2.type is article
-                new_title,        # 3.no redirect data
-                '',               # 4.leave empty
-                '',               # 5.no categories
-                '',               # 6.leave empty
-                '',               # 7.no related topics
-                '',               # 8.leave empty
-                '',               # 9.an external link back to home
-                '',               # 10.no disambiguation
-                '',               # 11.images
-                '',               # 12.abstract
-                ''                # 13.url to doc
-            ]
-
-            OUTPUL_FILE.write('{}\n'.format('\t'.join(list_of_data)))
+            create_redirect(command, new_title)
 
             continue
 
@@ -156,24 +108,7 @@ def print_redirect_line(title, code):
                 continue
 
             command_dict[final_command] = True
-
-            list_of_data = [
-                final_command,    # 1. article title
-                'R',              # 2.type is article
-                new_title,        # 3.no redirect data
-                '',               # 4.leave empty
-                '',               # 5.no categories
-                '',               # 6.leave empty
-                '',               # 7.no related topics
-                '',               # 8.leave empty
-                '',               # 9.an external link back to home
-                '',               # 10.no disambiguation
-                '',               # 11.images
-                '',               # 12.abstract
-                ''                # 13.url to doc
-            ]
-
-            OUTPUL_FILE.write('{}\n'.format('\t'.join(list_of_data)))
+            create_redirect(final_command, new_title)
 
 
 # Extracts content of all the pages
