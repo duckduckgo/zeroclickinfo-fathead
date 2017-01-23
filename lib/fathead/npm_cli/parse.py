@@ -21,8 +21,8 @@ def print_article_line(title, code, content):
     content = content.replace('\n', '\\n').replace('\t', '  ')
     content = content.replace('<', '&lt;').replace('>', '&gt;')
 
-    abstract = '<section class="prog__container"><pre><code>' + code + \
-               '</code></pre>' + content + '</section>'
+    abstract = '<section class="prog__container">' + content + \
+               '<code><pre>' + code + '</pre></code></section>'
 
     list_of_data = [
         title,      # 1. article title
@@ -126,7 +126,7 @@ def print_redirect_line(title, code):
         command = re.split(r' [<[()]', i)[0].replace('npm ', '')
         temp = re.findall(r'[^a-z](-+[a-z]+)', i)
 
-        if not temp and command not in command_dict:
+        if not temp and not command == title:
             command_dict[command] = True
 
             list_of_data = [
