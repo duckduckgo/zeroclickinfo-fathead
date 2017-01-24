@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 INFO = {'download_path': 'download/docs', 
     'doc_base_url': 
             'https://facebook.github.io/react-native/releases/0.40/docs{}',
-    'out_file': 'output_parsed.txt'}
+    'out_file': 'output.txt'}
 HOME_LINK= 'http://facebook.github.io/react-native/docs/getting-started.html'
 """
 This design is based on the python fathead 
