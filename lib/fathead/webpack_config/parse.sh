@@ -11,9 +11,13 @@ output='./output.txt'
 #clean up last runs
 rm -f ${output};
 
+total_files=$(ls "$download_dir" | wc -l )
+counter=0;
+
 ls ${download_dir} | while read -r;
 do
-    temp_file="$download_dir/$REPLY"
-    echo "processing $temp_file"
-    ./parse.js ${temp_file} >> ${output}
+    temp_file="$download_dir/$REPLY";
+    echo "processing $counter/$total_files: $temp_file";
+    ./parse.js ${temp_file} >> ${output};
+    counter=$((counter+1));
 done;
