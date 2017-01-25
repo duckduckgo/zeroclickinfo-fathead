@@ -12,7 +12,7 @@ output='./output.txt'
 rm -f ${output};
 
 total_files=$(ls "$download_dir" | wc -l )
-counter=0;
+counter=1;
 
 ls ${download_dir} | while read -r;
 do
