@@ -44,7 +44,7 @@
 <angle>
 <basic-shape>
 <color>
-<counter>
+counters
 <custom-ident>
 <flex>
 <frequency>
