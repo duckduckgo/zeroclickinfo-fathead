@@ -4,7 +4,6 @@
     "private": true,
     "main": "parse.js",
     "scripts": {
-        "build": "node ./parse.js",
         "start": "babel ./script.js --watch -o ./parse.js"
     },
     "author": "\"Lord-Lavios\"",
