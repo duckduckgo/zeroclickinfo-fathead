@@ -1,5 +1,4 @@
 *	R	universal selectors										
-*.warning	R	universal selectors										
 -epub-caption-side	R	caption-side										
 -epub-text-transform	R	text-transform										
 -moz-appearance	R	-moz-appearance (-webkit-appearance, appearance)										
