@@ -3,8 +3,10 @@
 
 import os
 from bs4 import BeautifulSoup
+import html
+import unicodedata
 
-URL_ROOT = 'http://flask.pocoo.org/docs/0.11/'
+URL_ROOT = 'http://flask.pocoo.org/docs/0.12/'
 DOWNLOADED_HTML_PATH = 'download/'
 
 class Data(object):
@@ -44,12 +46,19 @@ class Parser(object):
         for header in self.soup.find_all(['dl']):
             section = self.parse_section(header)
             section['example'] = self.clean_formatting(self.get_example(header))
-            if section['paragraph'] and section['example']:
-                section['abstract'] = '<section class="prog__container><p>{}</p><pre><code>{}</code></pre></section>'.format(section['paragraph'], section['example'])
-                self.sections.append(section)
-            elif section['paragraph'] and not section['example']:
-                section['abstract'] = '<section class="prog__container><p>{}</p></section>'.format(section['paragraph'])
-                self.sections.append(section)
+            if 'HTML4 and XHTML entities' in section['paragraph']:
+                s=section['example']
+                if "u'\xbb'" in s:
+                    print("yes")
+                    
+            if section['paragraph']:
+                section['paragraph'] = section['paragraph'].replace('\n','')
+                if section['example']:
+                    section['abstract'] = '<section class="prog__container><p>{}</p><pre><code>{}</code></pre></section>'.format(section['paragraph'], section['example'])
+                    self.sections.append(section)
+                else:
+                    section['abstract'] = '<section class="prog__container><p>{}</p></section>'.format(section['paragraph'])
+                    self.sections.append(section)
 
         self.parsed_data = self.sections
 
@@ -107,10 +116,11 @@ class Parser(object):
         """
         Flask documentation contains '¶' symbol to represent hyperlinks
         which needs to be removed. Double spaces needs to be 
-        converted to single spaces 
+        converted to single spaces. HTML symbol xbb causes problems in 
+        postgres, needs to be escaped.  
         """
         
-        text = text.replace('  ', ' ').replace('\n', ' ').replace('\\n', r'\\n').replace("Â¶","").strip()
+        text = text.replace('  ', ' ').replace('\n', '\\n').replace("Â¶","").replace("\\xbb","\\\\xbb").strip()
         return text
 
 
@@ -170,7 +180,7 @@ class Writer(object):
 if __name__ == "__main__":
     
     final_data=[]
-    filename = 'api.html'
+    filename = 'api'
     file_path = os.path.join(DOWNLOADED_HTML_PATH, filename)
     data = Data(file_path)
     parser = Parser(data)

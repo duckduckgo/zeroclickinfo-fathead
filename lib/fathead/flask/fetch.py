@@ -3,7 +3,7 @@ import requests
 import os
 
 #Flast documentation root url and download path for all the html files 
-URL_ROOT = 'http://flask.pocoo.org/docs/0.11/api'
+URL_ROOT = 'http://flask.pocoo.org/docs/0.12/api'
 DOWNLOADED_HTML_PATH = 'download/'
 
 #Shared session object
@@ -16,7 +16,7 @@ def fetch_documentation():
         and save it in DOWNLOADED_HTML_PATH"""
 
         curr_page = session.get(URL_ROOT)
-        filename = DOWNLOADED_HTML_PATH+'api.html'
+        filename = DOWNLOADED_HTML_PATH+'api'
         with open(filename, 'w') as f:
                 f.write(curr_page.text)
 
