@@ -1,1 +1,5 @@
 lodash
+javascript
+lodash 4.17.4
+lodash javascript
+javascript lodash
