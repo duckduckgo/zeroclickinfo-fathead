@@ -219,7 +219,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
     }
 
     #Units
-    my $units = $dom->find('#Units')->first;
+    my $units = $dom->find('#Units, #Feature_value_blocks')->first;
     if ($units) {
         my $dl = $dom->at('dl');
         if ($dl) {
