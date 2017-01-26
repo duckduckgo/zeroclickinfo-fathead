@@ -46,7 +46,6 @@
 <color>
 counters
 <custom-ident>
-<flex>
 <frequency>
 <gradient>
 <image>
