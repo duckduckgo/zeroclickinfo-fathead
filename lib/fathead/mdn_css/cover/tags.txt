@@ -49,7 +49,6 @@ counters
 <frequency>
 <gradient>
 <image>
-ident
 <integer>
 <length>
 <number>
