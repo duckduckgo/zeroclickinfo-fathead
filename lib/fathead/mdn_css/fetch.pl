@@ -43,9 +43,10 @@ queue_urls_for_download();
 Mojo::IOLoop->recurring(
     0 => sub {
         for ( $current_active_connections + 1 .. $maximum_active_connections ) {
-            return ( $current_active_connections
-                  or Mojo::IOLoop->stop_gracefully )
-              unless my $url = shift @keyword_urls;
+            return (
+                $current_active_connections
+                  or Mojo::IOLoop->stop_gracefully
+            ) unless my $url = shift @keyword_urls;
 
             ++$current_active_connections;
             $ua->get(
@@ -122,6 +123,8 @@ sub queue_urls_for_download {
 
     for my $url ( keys %urls ) {
         $url = Mojo::URL->new($url);
+        my $third_part = $url->path->parts->[3] || '';
+        next if $third_part eq 'API';    #Ignore /API/Document/...
         next unless $url->host eq 'developer.mozilla.org';
         if ( $url->fragment ) {
             if ( $url =~ qr/transform-function/ ) {
