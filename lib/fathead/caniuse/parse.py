@@ -25,17 +25,15 @@ def generate_answers(data):
     for feature, feature_data in data['data'].items():
         # Generate titles of possible search terms
         title = feature_data['title'].lower().strip()
+        removePlural = re.sub(r'[s]$', '', feature)
         titles = set([
             feature,
             feature.replace('-', ' '),
-            re.sub(r'[s]$', '', feature),
+            removePlural.replace('-', ' '),
             title,
             u' '.join(re.split('[ -]', title))
         ])
-        print title
-        print feature
         print u','.join(titles)
-        print '*****'
 
         # Commented out for now -- we can revive if we ever have a way to display
         # external links in the Related Topics Infobox
