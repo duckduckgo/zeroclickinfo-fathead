@@ -219,7 +219,13 @@ foreach my $html_file ( glob 'download/*.html' ) {
     }
 
     #Units
-    my $units = $dom->find('#Units, #Feature_value_blocks')->first;
+    my $units;
+    if ( $title eq 'font-variant-alternates' ) {
+        $units = $dom->find('#Units, #Feature_value_blocks, #Values')->first;
+    }
+    else {
+        $units = $dom->find('#Units, #Feature_value_blocks')->first;
+    }
     if ($units) {
         my $dl = $dom->at('dl');
         if ($dl) {
