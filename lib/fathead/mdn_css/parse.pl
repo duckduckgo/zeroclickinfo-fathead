@@ -154,6 +154,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
         }
     );
     $title = lc $meta_with_title->attr('content') if $meta_with_title;
+    $title =~ s/using (css)? ?//g;
     my @alternate_titles;
 
     my $h2 = $dom->at('h2#Summary');
