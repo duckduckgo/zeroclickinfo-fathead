@@ -39,21 +39,5 @@ class TestParse(unittest.TestCase):
     line = parse_utils.concat_list(["", "", ""])
     self.assertTrue(line.startswith("No class found"))
 
-  # correct output should be in the form: <class> <method> <parameter1> <parameter2> ...
-  def test_methods_with_parameters(self):
-   coverage_testcase = parse_utils.extractMethodData(valueOf, String, True)
-   self.assertEqual("String valueOf boolean b", coverage_testcase)
-
-   output_testcase = parse_utils.extractMethodData(valueOf, String, False)
-   self.assertEqual("String valueOf boolean b	A									Returns the string representation of the boolean argument. None", output_testcase)
-
-  # correct output should be in the form: <class> <method>
-  def test_methods_without_parameters(self):
-    coverage_testcase = parse_utils.extractMethodData(valueOf, String, True)
-    self.assertEqual("String valueOf", coverage_testcase)
-
-    output_testcase = parse_utils.extractMethodData(valueOf, String, False)
-    self.assertEqual("String valueOf	A									Returns the string representation of the boolean argument. None", output_testcase)
-
 if __name__ == '__main__':
     unittest.main()
