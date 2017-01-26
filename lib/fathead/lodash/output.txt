@@ -1,0 +1,11 @@
+chunk	A	""	""	""	""	""	""	""	""	
+    <section class="prog__container">
+        <p>Creates an array of elements split into groups the length of size. If array can't be split evenly, the final chunk will be the remaining elements.</p>
+        <pre><code>_.chunk(array, [size=1])</code></pre>
+        <span class="prog__sub">Arguments</span>
+        <pre><ol><li><code>array</code> <em>(Array)</em>: The array to process.</li><li><code>[size=1]</code> <em>(number)</em>: The length of each chunk</li></ol></pre>
+        <span class="prog__sub">Returns</span>
+        <pre><p><em>(Array)</em>: Returns the new array of chunks.</p></pre>
+        <span class="prog__sub">Example</span>
+        <div class="highlight js"><pre><div>_<span class="delimiter method">.</span><span class="name">chunk</span>([<span class="string">&apos;a&apos;</span><span class="delimiter">,</span>&#xA0;<span class="string">&apos;b&apos;</span><span class="delimiter">,</span>&#xA0;<span class="string">&apos;c&apos;</span><span class="delimiter">,</span>&#xA0;<span class="string">&apos;d&apos;</span>]<span class="delimiter">,</span>&#xA0;<span class="numeric">2</span>);</div><div><span class="comment">//&#xA0;=&gt;&#xA0;[[&apos;a&apos;,&#xA0;&apos;b&apos;],&#xA0;[&apos;c&apos;,&#xA0;&apos;d&apos;]]</span></div><div>&#xA0;</div><div>_<span class="delimiter method">.</span><span class="name">chunk</span>([<span class="string">&apos;a&apos;</span><span class="delimiter">,</span>&#xA0;<span class="string">&apos;b&apos;</span><span class="delimiter">,</span>&#xA0;<span class="string">&apos;c&apos;</span><span class="delimiter">,</span>&#xA0;<span class="string">&apos;d&apos;</span>]<span class="delimiter">,</span>&#xA0;<span class="numeric">3</span>);</div><div><span class="comment">//&#xA0;=&gt;&#xA0;[[&apos;a&apos;,&#xA0;&apos;b&apos;,&#xA0;&apos;c&apos;],&#xA0;[&apos;d&apos;]]</span></div></pre></div>
+    </section>	https://lodash.com/docs/4.17.4#chunk
