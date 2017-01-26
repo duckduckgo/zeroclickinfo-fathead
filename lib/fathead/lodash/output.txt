@@ -1,5 +1,4 @@
-chunk	A	""	""	""	""	""	""	""	""	
-    <section class="prog__container">
+chunk	A									<section class="prog__container">
         <p>Creates an array of elements split into groups the length of size. If array can't be split evenly, the final chunk will be the remaining elements.</p>
         <pre><code>_.chunk(array, [size=1])</code></pre>
         <span class="prog__sub">Arguments</span>
