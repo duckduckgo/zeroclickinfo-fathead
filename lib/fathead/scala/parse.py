@@ -21,7 +21,14 @@ def get_docs(filename):
 		
 		url = BASE_URL + filename.replace("./download/api/", "") #title_link.find("a").get('href')
 
-		article_text = soup.find_all("div", attrs={"class" : "comment"})[0].text
+		article = soup.find_all("div", attrs={"class" : "comment"})[0]
+		article_text = ""
+
+		for i in article.children:
+			if i.name == "p":
+				article_text += "<p>" + i.text + "</p>"
+			elif i.name == "pre":
+   				article_text += "<pre>" + i.text+ "</pre>"
 		
 		return title_text, url, article_text
 
