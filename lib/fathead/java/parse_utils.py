@@ -65,7 +65,7 @@ returns: a formatted string for output.txt
 """
 def format(tabledata, parameters):
     method_name = ""
-    if parameters is True:
+    if parameters is True and "()" not in tabledata.find("code").text:
         method_name = extractMethodName(tabledata.find("code").text)
     elif parameters is False:
         method_name = str(tabledata.find("span").text)
