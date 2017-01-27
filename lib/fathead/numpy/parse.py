@@ -251,7 +251,9 @@ def get_examples(section_div, examples_class):
     """
     example = section_div.find("div", attrs={"class": examples_class})
     if example:
-        return example.text.strip()
+        example = example.text.strip()
+        example = repr(example)
+        return example
     return
     
 def get_params(section_div, params_class):
