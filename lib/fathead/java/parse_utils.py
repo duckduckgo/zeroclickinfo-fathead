@@ -40,9 +40,9 @@ def extractMethodData(method, methodclass, coverage):
     method_names = []
     if coverage is True:
         for td in method.find_all("td", {"class" : "colLast"}):
-            method_names.append(remove_keywords(methodclass) + " " + extractMethodName(td.find("code").text).replace(' ', ''))
+            method_names.append(remove_keywords(methodclass) + " " + extractMethodName(td.find("code").text))
             # method name without parameters:
-            method_names.append(remove_keywords(methodclass) + " " + str.replace(td.find("span").text, " ", ""))
+            method_names.append(remove_keywords(methodclass) + " " + td.find("span").text.replace(" ", ""))
     elif coverage is False:
         for td in method.find_all("td", {"class" : "colLast"}):
             method_names.append(remove_keywords(methodclass) + " " + format(td, True))
@@ -55,7 +55,7 @@ parameters: data entry of a method
 returns: formatted method and parameters for output.txt and methods.txt
 """
 def extractMethodName(tabledata):
-    methodname = str.replace(str.replace(str.replace(str.replace(str.replace(tabledata, "\n", ""), " ", ""), "&nbsp;", ""), "(", " "), ")", "")
+    methodname = tabledata.replace("\n", "").replace(" ", "").replace("&nbsp;", "").replace("(", " ").replace(")", "")
     return methodname
 
 """
@@ -65,15 +65,19 @@ returns: a formatted string for output.txt
 """
 def format(tabledata, parameters):
     method_name = ""
-    if parameters is True and "()" not in tabledata.find("code").text:
+
+    if parameters is True:
         method_name = extractMethodName(tabledata.find("code").text)
     elif parameters is False:
         method_name = str(tabledata.find("span").text)
+
     method_description = ""
     if tabledata.find("div") is not None:
-        method_description = str.replace(tabledata.find("div").get_text(), "\n", "")
-    method_url = str(tabledata.find("a").get_text())
+        method_description = tabledata.find("div").get_text().replace("\n", "")
+
+    method_url = str(tabledata.find("a").get("href")).replace("../../", "http://docs.oracle.com/javase/8/docs/api/")
     formatted_string = method_name + "\tA\t\t\t\t\t\t\t\t\t" + method_description + " " + method_url
+
     return formatted_string
     
 """
