@@ -40,9 +40,9 @@ def extractMethodData(method, methodclass, coverage):
     method_names = []
     if coverage is True:
         for td in method.find_all("td", {"class" : "colLast"}):
-            method_names.append(remove_keywords(methodclass) + " " + extractMethodName(td.find("code").text))
+            method_names.append(remove_keywords(methodclass) + " " + extractMethodName(td.find("code").text).replace(' ', ''))
             # method name without parameters:
-            method_names.append(remove_keywords(methodclass) + " " + str(td.find("span").text))
+            method_names.append(remove_keywords(methodclass) + " " + str.replace(td.find("span").text, " ", ""))
     elif coverage is False:
         for td in method.find_all("td", {"class" : "colLast"}):
             method_names.append(remove_keywords(methodclass) + " " + format(td, True))
@@ -67,12 +67,12 @@ def format(tabledata, parameters):
     method_name = ""
     if parameters is True:
         method_name = extractMethodName(tabledata.find("code").text)
-    elif parameters if False:
+    elif parameters is False:
         method_name = str(tabledata.find("span").text)
     method_description = ""
     if tabledata.find("div") is not None:
         method_description = str.replace(tabledata.find("div").get_text(), "\n", "")
-    method_url = str(tabledata.find("a".text))
+    method_url = str(tabledata.find("a").get_text())
     formatted_string = method_name + "\tA\t\t\t\t\t\t\t\t\t" + method_description + " " + method_url
     return formatted_string
     
@@ -108,7 +108,7 @@ def cutlength(description):
 def remove_keywords(line):
   if isinstance(line, str): # replaced basestring with str. basestring is deprecated in python 3.x
     line = re.sub(r'<\w,?\w?>', '', line)
-    return line.replace('Class ', '').replace('Enum ', '').replace('Interface ', '').replace('Annotation Type ', '')
+    return line.replace('Class ', '').replace('Enum ', '').replace('Interface ', '').replace('Annotation Type ', '').replace(' ', '')
   else:
     return ''
 
