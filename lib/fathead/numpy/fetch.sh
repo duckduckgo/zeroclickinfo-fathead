@@ -1,8 +1,9 @@
 #!/bin/bash
-DOCS_ZIP=numpy-html-1.11.0.zip
+VERSION=1.12.0
+DOCS_ZIP=numpy-html-$VERSION.zip
 
 rm -rf docs-tmp
-wget -c https://docs.scipy.org/doc/numpy/$DOCS_ZIP
+wget -c https://docs.scipy.org/doc/numpy-$VERSION/$DOCS_ZIP
 unzip -d docs-tmp $DOCS_ZIP
 
 rm -rf numpy-docs
