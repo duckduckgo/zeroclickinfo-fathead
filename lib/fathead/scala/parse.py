@@ -31,9 +31,7 @@ def get_tuple(filename):
 	data[0] = title
 	data[1] = 'A'
 	data[12] = url
-	if abstract == None:
-		abstract = "No data found"
-	abstract = abstract.replace("\n", "\\n").replace("\t","\\t")
+	abstract = abstract.replace("\n", "\\n").replace("\t","    ")
 	abstract = '<section class="prog_container">' + abstract + '</section>'
 	data[11] = abstract
 	return data
