@@ -29,24 +29,27 @@ def getClassMethods(filename, classname):
     # Note: this will not find methods inherited from other classes/interfaces
     for method in content.find_all("table", {"summary" : re.compile("method")}):
         methodclass = getDocs(classname)[0]
-        method_output(filename, extractMethodData(method, methodclass, True))
-        method_output('output.txt', extractMethodData(method, methodclass, False))
+        methodbaseurl = getDocs(classname)[2]
+        method_output(filename, extractMethodData(method, methodclass, methodbaseurl, True))
+        method_output('output.txt', extractMethodData(method, methodclass, methodbaseurl, False))
 """
 Extracts data of a method, formatting it for either coverage or output.
-parameters: method html table entry, class, boolean coverage
+parameters: method html table entry, class, url of the class, boolean coverage
 returns: all method data and the class it belongs to
 """
-def extractMethodData(method, methodclass, coverage):
+def extractMethodData(method, methodclass, baseurl, coverage):
     method_names = []
-    if coverage is True:
-        for td in method.find_all("td", {"class" : "colLast"}):
-            method_names.append(remove_keywords(methodclass) + " " + extractMethodName(td.find("code").text))
-            # method name without parameters:
-            method_names.append(remove_keywords(methodclass) + " " + td.find("span").text.replace(" ", ""))
-    elif coverage is False:
-        for td in method.find_all("td", {"class" : "colLast"}):
-            method_names.append(remove_keywords(methodclass) + " " + format(td, True))
-            method_names.append(remove_keywords(methodclass) + " " + format(td, False))
+    method_class = remove_keywords(methodclass)
+    if method_class is not "":
+        if coverage is True:
+            for td in method.find_all("td", {"class" : "colLast"}):
+                method_names.append(method_class + " " + extractMethodName(td.find("code").text.replace(" ", "")))
+                # method name without parameters:
+                method_names.append(method_class + " " + td.find("a").text.replace(" ", ""))
+        elif coverage is False:
+            for td in method.find_all("td", {"class" : "colLast"}):
+                method_names.append(method_class + " " + format(td, baseurl, True))
+                method_names.append(method_class + " " + format(td, baseurl, False))
     return method_names
 
 """
@@ -55,29 +58,30 @@ parameters: data entry of a method
 returns: formatted method and parameters for output.txt and methods.txt
 """
 def extractMethodName(tabledata):
-    methodname = tabledata.replace("\n", "").replace(" ", "").replace("&nbsp;", "").replace("(", " ").replace(")", "")
+    methodname = ""
+    if "()" in tabledata:
+        methodname = tabledata.replace("\n", "").replace("()", "")
+    else:
+        methodname = tabledata.replace("\n", "").replace("&nbsp;", "").replace(")", "").replace("(", " ")
     return methodname
 
 """
 Formats output for method data to be appended to output.txt
-parameters: data entry of a method, boolean determines whether parameters are to be included or not
+parameters: data entry of a method, base class url needed to construct a full url for the method, boolean determines whether parameters are to be included or not
 returns: a formatted string for output.txt
 """
-def format(tabledata, parameters):
+def format(tabledata, baseurl, parameters):
     method_name = ""
-
     if parameters is True:
         method_name = extractMethodName(tabledata.find("code").text)
     elif parameters is False:
         method_name = str(tabledata.find("span").text)
-
     method_description = ""
     if tabledata.find("div") is not None:
         method_description = tabledata.find("div").get_text().replace("\n", "")
-
-    method_url = str(tabledata.find("a").get("href")).replace("../../", "http://docs.oracle.com/javase/8/docs/api/")
-    formatted_string = method_name + "\tA\t\t\t\t\t\t\t\t\t" + method_description + " " + method_url
-
+    url_matcher = re.search(r'#(.*)', tabledata.find("a").get("href"))
+    method_url = baseurl.replace("index.html?", "") + url_matcher.group(0)
+    formatted_string = method_name + "\tA\t\t\t\t\t\t\t\t\t" + method_description + "\t" + method_url
     return formatted_string
     
 """
