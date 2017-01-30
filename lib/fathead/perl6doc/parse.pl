@@ -54,8 +54,12 @@ $func->{"pod-body\n\n"} = sub {
 	}
 	if ($elem->tagName eq 'pre' && $index >= 0) {
 	    if (not exists($preprocess->[$index]{prototype})) {
-		$preprocess->[$index]->{prototype} = $elem->innerText;
-		$preprocess->[$index]->{prototype} =~ s/ \n $//msx;
+		my @lines = $elem->subTree->getElementsByClassName('line');
+		for my $line (@lines) {
+		    my $tmp = $line->innerText;
+		    $tmp =~ s/ &nbsp; / /xg;
+		    $preprocess->[$index]->{prototype} .= $tmp . "\n";
+		}
 	    }
 	}
 	if ($elem->tagName eq 'p' && $index >= 0) {
@@ -80,8 +84,12 @@ $func->{"pod-body\n no-toc\n"} = sub {
 	$preprocess->[$index]->{method} =~ s/^.* \s+ ( \S+ ) \z/$1/msx;
 	if ($elem->tagName eq 'pre') {
 	    if (not exists($preprocess->[$index]{prototype})) {
-		$preprocess->[$index]->{prototype} = $elem->innerText;
-		$preprocess->[$index]->{prototype} =~ s/ \n $//msx;
+		my @lines = $elem->subTree->getElementsByClassName('line');
+		for my $line (@lines) {
+		    my $tmp = $line->innerText;
+		    $tmp =~ s/ &nbsp; / /xg;
+		    $preprocess->[$index]->{prototype} .= $tmp . "\n";
+		}
 	    }
 	}
 	if ($elem->tagName eq 'p') {
