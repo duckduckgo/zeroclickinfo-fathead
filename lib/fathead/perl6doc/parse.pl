@@ -5,6 +5,8 @@ use Encode;
 use HTML::Entities;
 use HTML::Parser;
 use URI::Escape;
+use HTML::TagParser;
+
 binmode STDOUT, ':encoding(UTF-8)';
 chdir 'download/docs.perl6.org/type';
 opendir my $dh, '.';
@@ -25,111 +27,89 @@ my %methods;
 # Only files count, magical directories like '.' shouldn't
 my @files = grep {-f && / \A [\w:]+ \z /msx} readdir $dh;
 my %files = map { $_ => 1 } @files;
-for my $file (@files) {
-    my @tags;
-    my $current_field;
-    my $p;
-    my $pre_level = 0; # >0 if we're within a <pre>, == 0 otherwise
-    my $need_prototype;
-    my $class;
-    my $parser = HTML::Parser->new(
-        api_version => 3,
 
-        # Broken text could make parsing harder than it should be.
-        unbroken_text => 1,
-        utf8_mode     => 1,
-        start_h       => [
-            sub {
-                my ($tagname) = @_;
-                push @tags, $tagname;
-                if ( $tagname eq 'pre' ) {
-                    $pre_level++;
-                }
-            },
-            'tagname'
-        ],
-        text_h => [
-            sub {
-                my ($dtext) = @_;
-                $dtext = decode 'UTF-8', $dtext;
-                if ( @tags > 2 ) {
+my @body_tags = ("pod-body\n\n", "pod-body\n no-toc\n");
+my $func;
 
-                    # <h1> stores name of class.
-                    if (   $tags[-2] eq 'h1'
-                        || $tags[-2] eq 'h2'
-                        || $tags[-3] eq 'h2'
-                        || ( $tags[-2] eq 'pre' && !$class ) )
-                    {
-                        $dtext =~ m{
+$func->{"pod-body\n\n"} = sub {
+    my ($file, $pod_body) = @_;
+    my $preprocess;
+    my $class = $file;
+    my $index = -1;
+    for my $elem (@{ $pod_body->childNodes() }) {
+	if ($elem->tagName eq 'h1' && defined($elem->innerText)) {
+	    $elem->innerText =~ m{
                             \A
                             (?: Methods | Operators )
                             .* \s+ ( \S+ ) \z
                         }msx;
-                        $class = $1 // $class // $file;
+	    $class = $1 // $class // $file;
+	}
+	if ($elem->tagName eq 'h2') {
+	    $index++;
+	    $preprocess->[$index]->{class} = $class;
+	    $preprocess->[$index]->{anchor} = $elem->id;
+	    $preprocess->[$index]->{method} = $elem->innerText;
+	    $preprocess->[$index]->{method} =~ s/^.* \s+ ( \S+ ) \z/$1/msx;
+	}
+	if ($elem->tagName eq 'pre' && $index >= 0) {
+	    if (not exists($preprocess->[$index]{prototype})) {
+		$preprocess->[$index]->{prototype} = $elem->innerText;
+		$preprocess->[$index]->{prototype} =~ s/ \n $//msx;
+	    }
+	}
+	if ($elem->tagName eq 'p' && $index >= 0) {
+	    next if ($elem->innerText =~ / Defined \s+ as \: /ix);
+	    next if (exists($preprocess->[$index]->{description}));
+	    $preprocess->[$index]->{description} .= $elem->innerText;
+	    $preprocess->[$index]->{description} =~ s/ \n //gmsx;
+	    $preprocess->[$index]->{description} =~ s/^(.*?(?<!(i\.e|e\.g|..\.))\.)( .*|$)/$1/ms;
+	}
+    }
+    return $preprocess;
+};
 
-                        # Declare new field to store data
-                        if ( $tags[-2] ne 'h1' || $1 ) {
-                            $current_field = { class => $class };
-                            push @{ $types{$file} }, $current_field;
-                            $need_prototype = 1;
-                            $p = 1;
-                        }
-                    }
+$func->{"pod-body\n no-toc\n"} = sub {
+    my ($file, $pod_body) = @_;
+    my $preprocess;
+    my $index = 0;
+    for my $elem (@{ $pod_body->childNodes() }) {
+	$preprocess->[$index]->{class} = $file;
+	$preprocess->[$index]->{anchor} = $file;
+	$preprocess->[$index]->{method} = $file;
+	$preprocess->[$index]->{method} =~ s/^.* \s+ ( \S+ ) \z/$1/msx;
+	if ($elem->tagName eq 'pre') {
+	    if (not exists($preprocess->[$index]{prototype})) {
+		$preprocess->[$index]->{prototype} = $elem->innerText;
+		$preprocess->[$index]->{prototype} =~ s/ \n $//msx;
+	    }
+	}
+	if ($elem->tagName eq 'p') {
+	    next if ($elem->innerText =~ / Defined \s+ as \: /ix);
+	    next if (exists($preprocess->[$index]->{description}));
+	    $preprocess->[$index]->{description} .= $elem->innerText;
+	    $preprocess->[$index]->{description} =~ s/ \n //gmsx;
+	    $preprocess->[$index]->{description} =~ s/^(.*?(?<!(i\.e|e\.g|..\.))\.)( .*|$)/$1/ms;
+	}
+    }
+    return $preprocess;
+};
 
-                    # <pre> stores method prototype.
-                    if ($need_prototype && $pre_level) {
-                        $current_field->{prototype} .= $dtext;
-                    }
-
-                    # First paragraph after <h2> is method name.
-                    elsif ( $tags[-2] eq 'h2' || $tags[-3] eq 'h2' ) {
-                        my $prev = $dtext;
-                        $dtext =~ s/\s/_/msg;
-                        $current_field->{anchor} = $dtext;
-                        $dtext = $prev;
-                        $dtext =~ s/^.* \s+ ( \S+ ) \z/$1/msx;
-                        $current_field->{method} = $dtext;
-                        $methods{$class}{$dtext} = $current_field;
-                    }
-
-                    # In <p> mode, every text is part of description.
-                    elsif ($p) {
-                        $dtext =~ s/ \n //gmsx;
-                        $current_field->{description} .= $dtext;
-                    }
-
-                }
-            },
-            'dtext'
-        ],
-        end_h => [
-            sub {
-                # If current tag is <p> then turn off <p> mode.
-                my $ended_tag = pop @tags;
-                if ( $ended_tag eq 'p' && $p ) {
-                    $p = 0;
-
-                    # Trim description to a single sentence. That is: Find the
-                    # first period that is followed by a blank, or the end of
-                    # line, but avoid matching “i.e.”, “e.g.”, “..”.
-                    $current_field->{description} =~ s/^(.*?(?<!(i\.e|e\.g|..\.))\.)( .*|$)/$1/ms;
-
-                    # Since <pre>s after the first <p> are not prototypes, but
-                    # code examples, we force-stop to looking for a prototype
-                    # after the first <p>. That way, we avoid picking up an code
-                    # example snippets as prototype for prototype-less methods
-                    # (like IO's dd).
-                    $need_prototype = 0;
-                } elsif ( $ended_tag eq 'pre' && $pre_level > 0 ) {
-                    if ( $need_prototype && $pre_level == 1 ) {
-                        $current_field->{prototype} =~ s/ \n $//msx;
-                        $need_prototype = 0;
-                    }
-                    $pre_level--;
-                }
-            },
-        ],
-    )->parse_file($file);
+for my $file (@files) {
+    my $html = HTML::TagParser->new($file);
+    for my $body_tag (@body_tags) {
+	my $pod_body = $html->getElementsByClassName($body_tag);
+	next if (not defined($pod_body));
+	my $preprocess = $func->{$body_tag}->($file, $pod_body);
+	for my $elem (@{ $preprocess }) {
+	    $methods{$elem->{class}}{$elem->{method}} = { class => $elem->{class},
+							  method => $elem->{method},
+							  prototype => $elem->{prototype},
+							  description => $elem->{description},
+							  anchor => $elem->{anchor}};
+	    push @{ $types{$file} }, $methods{$elem->{class}}{$elem->{method}};
+	}
+    }
 }
 
 # Prepare disambig table
