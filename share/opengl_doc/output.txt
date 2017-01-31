@@ -1,0 +1,538 @@
+glActiveShaderProgram	A										<pre><code>void glActiveShaderProgram(GLuint pipeline, GLuint program)</code></pre> set the active program object for a program pipeline object	http://www.opengl.org/sdk/docs/man/html/glActiveShaderProgram.xhtml
+glActiveTexture	A										<pre><code>void glActiveTexture(GLenum texture)</code></pre> select active texture unit	http://www.opengl.org/sdk/docs/man/html/glActiveTexture.xhtml
+glAttachShader	A										<pre><code>void glAttachShader(GLuint program, GLuint shader)</code></pre> Attaches a shader object to a program object	http://www.opengl.org/sdk/docs/man/html/glAttachShader.xhtml
+glBeginConditionalRender	A										<pre><code>void glBeginConditionalRender(GLuint id, GLenum mode)<br>void glEndConditionalRender(void)</code></pre> start conditional rendering	http://www.opengl.org/sdk/docs/man/html/glBeginConditionalRender.xhtml
+glEndConditionalRender	R	glBeginConditionalRender										
+glBeginQuery	A										<pre><code>void glBeginQuery(GLenum target, GLuint id)<br>void glEndQuery(GLenum target)</code></pre> delimit the boundaries of a query object	http://www.opengl.org/sdk/docs/man/html/glBeginQuery.xhtml
+glEndQuery	R	glBeginQuery										
+glBeginQueryIndexed	A										<pre><code>void glBeginQueryIndexed(GLenum target, GLuint index, GLuint id)</code></pre> delimit the boundaries of a query object on an indexed target	http://www.opengl.org/sdk/docs/man/html/glBeginQueryIndexed.xhtml
+glEndQueryIndexed	A										<pre><code>void glEndQueryIndexed(GLenum target, GLuint index)</code></pre> delimit the boundaries of a query object on an indexed target	http://www.opengl.org/sdk/docs/man/html/glBeginQueryIndexed.xhtml
+glBeginTransformFeedback	A										<pre><code>void glBeginTransformFeedback(GLenum primitiveMode)<br>void glEndTransformFeedback(void)</code></pre> start transform feedback operation	http://www.opengl.org/sdk/docs/man/html/glBeginTransformFeedback.xhtml
+glEndTransformFeedback	R	glBeginTransformFeedback										
+glBindAttribLocation	A										<pre><code>void glBindAttribLocation(GLuint program, GLuint index, const GLchar *name)</code></pre> Associates a generic vertex attribute index with a named attribute variable	http://www.opengl.org/sdk/docs/man/html/glBindAttribLocation.xhtml
+glBindBuffer	A										<pre><code>void glBindBuffer(GLenum target, GLuint buffer)</code></pre> bind a named buffer object	http://www.opengl.org/sdk/docs/man/html/glBindBuffer.xhtml
+glBindBufferBase	A										<pre><code>void glBindBufferBase(GLenum target, GLuint index, GLuint buffer)</code></pre> bind a buffer object to an indexed buffer target	http://www.opengl.org/sdk/docs/man/html/glBindBufferBase.xhtml
+glBindBufferRange	A										<pre><code>void glBindBufferRange(GLenumtarget, GLuintindex, GLuintbuffer, GLintptroffset, GLsizeiptrsize)</code></pre> bind a range within a buffer object to an indexed buffer target	http://www.opengl.org/sdk/docs/man/html/glBindBufferRange.xhtml
+glBindBuffersBase	A										<pre><code>void glBindBuffersBase(GLenum target, GLuint first, GLsizei count, const GLuint *buffers)</code></pre> bind one or more buffer objects to a sequence of indexed buffer targets	http://www.opengl.org/sdk/docs/man/html/glBindBuffersBase.xhtml
+glBindBuffersRange	A										<pre><code>void glBindBuffersRange(GLenum target, GLuint first, GLsizei count, const GLuint *buffers, const GLintptr *offsets, const GLintptr *sizes)</code></pre> bind ranges of one or more buffer objects to a sequence of indexed buffer targets	http://www.opengl.org/sdk/docs/man/html/glBindBuffersRange.xhtml
+glBindFragDataLocation	A										<pre><code>void glBindFragDataLocation(GLuint program, GLuint colorNumber, const char * name)</code></pre> bind a user-defined varying out variable to a fragment shader color number	http://www.opengl.org/sdk/docs/man/html/glBindFragDataLocation.xhtml
+glBindFragDataLocationIndexed	A										<pre><code>void glBindFragDataLocationIndexed(GLuint program, GLuint colorNumber, GLuint index, const char *name)</code></pre> bind a user-defined varying out variable to a fragment shader color number and index	http://www.opengl.org/sdk/docs/man/html/glBindFragDataLocationIndexed.xhtml
+glBindFramebuffer	A										<pre><code>void glBindFramebuffer(GLenum target, GLuint framebuffer)</code></pre> bind a framebuffer to a framebuffer target	http://www.opengl.org/sdk/docs/man/html/glBindFramebuffer.xhtml
+glBindImageTexture	A										<pre><code>void glBindImageTexture(GLuint unit, GLuint texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format)</code></pre> bind a level of a texture to an image unit	http://www.opengl.org/sdk/docs/man/html/glBindImageTexture.xhtml
+glBindImageTextures	A										<pre><code>void glBindImageTextures(GLuint first, GLsizei count, const GLuint *textures)</code></pre> bind one or more named texture images to a sequence of consecutive image units	http://www.opengl.org/sdk/docs/man/html/glBindImageTextures.xhtml
+glBindProgramPipeline	A										<pre><code>void glBindProgramPipeline(GLuint pipeline)</code></pre> bind a program pipeline to the current context	http://www.opengl.org/sdk/docs/man/html/glBindProgramPipeline.xhtml
+glBindRenderbuffer	A										<pre><code>void glBindRenderbuffer(GLenum target, GLuint renderbuffer)</code></pre> bind a renderbuffer to a renderbuffer target	http://www.opengl.org/sdk/docs/man/html/glBindRenderbuffer.xhtml
+glBindSampler	A										<pre><code>void glBindSampler(GLuint unit, GLuint sampler)</code></pre> bind a named sampler to a texturing target	http://www.opengl.org/sdk/docs/man/html/glBindSampler.xhtml
+glBindSamplers	A										<pre><code>void glBindSamplers(GLuint first, GLsizei count, const GLuint *samplers)</code></pre> bind one or more named sampler objects to a sequence of consecutive sampler units	http://www.opengl.org/sdk/docs/man/html/glBindSamplers.xhtml
+glBindTexture	A										<pre><code>void glBindTexture(GLenum target, GLuint texture)</code></pre> bind a named texture to a texturing target	http://www.opengl.org/sdk/docs/man/html/glBindTexture.xhtml
+glBindTextures	A										<pre><code>void glBindTextures(GLuint first, GLsizei count, const GLuint *textures)</code></pre> bind one or more named textures to a sequence of consecutive texture units	http://www.opengl.org/sdk/docs/man/html/glBindTextures.xhtml
+glBindTransformFeedback	A										<pre><code>void glBindTransformFeedback(GLenum target, GLuint id)</code></pre> bind a transform feedback object	http://www.opengl.org/sdk/docs/man/html/glBindTransformFeedback.xhtml
+glBindVertexArray	A										<pre><code>void glBindVertexArray(GLuint array)</code></pre> bind a vertex array object	http://www.opengl.org/sdk/docs/man/html/glBindVertexArray.xhtml
+glBindVertexBuffer	A										<pre><code>void glBindVertexBuffer(GLuint bindingindex, GLuint buffer, GLintptr offset, GLintptr stride)</code></pre> bind a buffer to a vertex buffer bind point	http://www.opengl.org/sdk/docs/man/html/glBindVertexBuffer.xhtml
+glBindVertexBuffers	A										<pre><code>void glBindVertexBuffers(GLuint first, GLsizei count, const GLuint *buffers, const GLuintptr *offsets, const GLsizei *strides)</code></pre> bind one or more named buffer objects to a sequence of consecutive vertex buffer binding points	http://www.opengl.org/sdk/docs/man/html/glBindVertexBuffers.xhtml
+glBlendColor	A										<pre><code>void glBlendColor(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)</code></pre> set the blend color	http://www.opengl.org/sdk/docs/man/html/glBlendColor.xhtml
+glBlendEquation	A										<pre><code>void glBlendEquation(GLenum mode)<br>void glBlendEquationi(GLuint buf, GLenum mode)</code></pre> specify the equation used for both the RGB blend equation and the Alpha blend equation	http://www.opengl.org/sdk/docs/man/html/glBlendEquation.xhtml
+glBlendEquationi	R	glBlendEquation										
+glBlendEquationSeparate	A										<pre><code>void glBlendEquationSeparate(GLenum modeRGB, GLenum modeAlpha)<br>void glBlendEquationSeparatei(GLuint buf, GLenum modeRGB, GLenum modeAlpha)</code></pre> set the RGB blend equation and the alpha blend equation separately	http://www.opengl.org/sdk/docs/man/html/glBlendEquationSeparate.xhtml
+glBlendEquationSeparatei	R	glBlendEquationSeparate										
+glBlendFunc	A										<pre><code>void glBlendFunc(GLenum sfactor, GLenum dfactor)<br>void glBlendFunci(GLuint buf, GLenum sfactor, GLenum dfactor)</code></pre> specify pixel arithmetic	http://www.opengl.org/sdk/docs/man/html/glBlendFunc.xhtml
+glBlendFunci	R	glBlendFunc										
+glBlendFuncSeparate	A										<pre><code>void glBlendFuncSeparate(GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha)<br>void glBlendFuncSeparatei(GLuint buf, GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha)</code></pre> specify pixel arithmetic for RGB and alpha components separately	http://www.opengl.org/sdk/docs/man/html/glBlendFuncSeparate.xhtml
+glBlendFuncSeparatei	R	glBlendFuncSeparate										
+glBlitFramebuffer	A										<pre><code>void glBlitFramebuffer(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter)</code></pre> copy a block of pixels from the read framebuffer to the draw framebuffer	http://www.opengl.org/sdk/docs/man/html/glBlitFramebuffer.xhtml
+glBufferData	A										<pre><code>void glBufferData(GLenum target, GLsizeiptr size, const GLvoid * data, GLenum usage)</code></pre> creates and initializes a buffer object's data store	http://www.opengl.org/sdk/docs/man/html/glBufferData.xhtml
+glBufferStorage	A										<pre><code>void glBufferStorage(GLenum target, GLsizeiptr size, const GLvoid * data, GLbitfield flags)</code></pre> creates and initializes a buffer object's immutable data store	http://www.opengl.org/sdk/docs/man/html/glBufferStorage.xhtml
+glBufferSubData	A										<pre><code>void glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const GLvoid * data)</code></pre> updates a subset of a buffer object's data store	http://www.opengl.org/sdk/docs/man/html/glBufferSubData.xhtml
+glCheckFramebufferStatus	A										<pre><code>GLenum glCheckFramebufferStatus(GLenum target)</code></pre> check the completeness status of a framebuffer	http://www.opengl.org/sdk/docs/man/html/glCheckFramebufferStatus.xhtml
+glClampColor	A										<pre><code>void glClampColor(GLenum target, GLenum clamp)</code></pre> specify whether data read via glReadPixels should be clamped	http://www.opengl.org/sdk/docs/man/html/glClampColor.xhtml
+glClear	A										<pre><code>void glClear(GLbitfield mask)</code></pre> clear buffers to preset values	http://www.opengl.org/sdk/docs/man/html/glClear.xhtml
+glClearBuffer	A										<pre><code>void glClearBufferiv(GLenum buffer, GLint drawBuffer, const GLint * value)<br>void glClearBufferuiv(GLenum buffer, GLint drawBuffer, const GLuint * value)<br>void glClearBufferfv(GLenum buffer, GLint drawBuffer, const GLfloat * value)<br>...</code></pre> clear individual buffers of the currently bound draw framebuffer	http://www.opengl.org/sdk/docs/man/html/glClearBuffer.xhtml
+glClearBufferiv	R	glClearBuffer										
+glClearBufferuiv	R	glClearBuffer										
+glClearBufferfv	R	glClearBuffer										
+glClearBufferfi	R	glClearBuffer										
+glClearBufferData	A										<pre><code>void glClearBufferData(GLenum target, GLenum internalformat, GLenum format, GLenum type, const void * data)</code></pre> fill a buffer object's data store with a fixed value	http://www.opengl.org/sdk/docs/man/html/glClearBufferData.xhtml
+glClearBufferSubData	A										<pre><code>void glClearBufferSubData(GLenum target, GLenum internalformat, GLintptr offset, GLsizeiptr size, GLenum format, GLenum type, const void * data)</code></pre> fill all or part of buffer object's data store with a fixed value	http://www.opengl.org/sdk/docs/man/html/glClearBufferSubData.xhtml
+glClearColor	A										<pre><code>void glClearColor(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)</code></pre> specify clear values for the color buffers	http://www.opengl.org/sdk/docs/man/html/glClearColor.xhtml
+glClearDepth	A										<pre><code>void glClearDepth(GLdouble depth)<br>void glClearDepthf(GLfloat depth)</code></pre> specify the clear value for the depth buffer	http://www.opengl.org/sdk/docs/man/html/glClearDepth.xhtml
+glClearDepthf	R	glClearDepth										
+glClearStencil	A										<pre><code>void glClearStencil(GLint s)</code></pre> specify the clear value for the stencil buffer	http://www.opengl.org/sdk/docs/man/html/glClearStencil.xhtml
+glClearTexImage	A										<pre><code>void glClearTexImage(GLuint texture, GLint level, GLenum format, GLenum type, const void * data)</code></pre> fills all a texture image with a constant value	http://www.opengl.org/sdk/docs/man/html/glClearTexImage.xhtml
+glClearTexSubImage	A										<pre><code>void glClearTexSubImage(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * data)</code></pre> fills all or part of a texture image with a constant value	http://www.opengl.org/sdk/docs/man/html/glClearTexSubImage.xhtml
+glClientWaitSync	A										<pre><code>GLenum glClientWaitSync(GLsync sync, GLbitfield flags, GLuint64 timeout)</code></pre> block and wait for a sync object to become signaled	http://www.opengl.org/sdk/docs/man/html/glClientWaitSync.xhtml
+glColorMask	A										<pre><code>void glColorMask(GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha)<br>void glColorMaski(GLuint buf, GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha)</code></pre> enable and disable writing of frame buffer color components	http://www.opengl.org/sdk/docs/man/html/glColorMask.xhtml
+glColorMaski	R	glColorMask										
+glCompileShader	A										<pre><code>void glCompileShader(GLuint shader)</code></pre> Compiles a shader object	http://www.opengl.org/sdk/docs/man/html/glCompileShader.xhtml
+glCompressedTexImage1D	A										<pre><code>void glCompressedTexImage1D(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLint border, GLsizei imageSize, const GLvoid * data)</code></pre> specify a one-dimensional texture image in a compressed format	http://www.opengl.org/sdk/docs/man/html/glCompressedTexImage1D.xhtml
+glCompressedTexImage2D	A										<pre><code>void glCompressedTexImage2D(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, const GLvoid * data)</code></pre> specify a two-dimensional texture image in a compressed format	http://www.opengl.org/sdk/docs/man/html/glCompressedTexImage2D.xhtml
+glCompressedTexImage3D	A										<pre><code>void glCompressedTexImage3D(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, const GLvoid * data)</code></pre> specify a three-dimensional texture image in a compressed format	http://www.opengl.org/sdk/docs/man/html/glCompressedTexImage3D.xhtml
+glCompressedTexSubImage1D	A										<pre><code>void glCompressedTexSubImage1D(GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const GLvoid * data)</code></pre> specify a one-dimensional texture subimage in a compressed format	http://www.opengl.org/sdk/docs/man/html/glCompressedTexSubImage1D.xhtml
+glCompressedTexSubImage2D	A										<pre><code>void glCompressedTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const GLvoid * data)</code></pre> specify a two-dimensional texture subimage in a compressed format	http://www.opengl.org/sdk/docs/man/html/glCompressedTexSubImage2D.xhtml
+glCompressedTexSubImage3D	A										<pre><code>void glCompressedTexSubImage3D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const GLvoid * data)</code></pre> specify a three-dimensional texture subimage in a compressed format	http://www.opengl.org/sdk/docs/man/html/glCompressedTexSubImage3D.xhtml
+glCopyBufferSubData	A										<pre><code>void glCopyBufferSubData(GLenum readtarget, GLenum writetarget, GLintptr readoffset, GLintptr writeoffset, GLsizeiptr size)</code></pre> copy part of the data store of a buffer object to the data store of another buffer object	http://www.opengl.org/sdk/docs/man/html/glCopyBufferSubData.xhtml
+glCopyImageSubData	A										<pre><code>void glCopyImageSubData(GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei srcWidth, GLsizei srcHeight, GLsizei srcDepth)</code></pre> perform a raw data copy between two images	http://www.opengl.org/sdk/docs/man/html/glCopyImageSubData.xhtml
+glCopyTexImage1D	A										<pre><code>void glCopyTexImage1D(GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLint border)</code></pre> copy pixels into a 1D texture image	http://www.opengl.org/sdk/docs/man/html/glCopyTexImage1D.xhtml
+glCopyTexImage2D	A										<pre><code>void glCopyTexImage2D(GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border)</code></pre> copy pixels into a 2D texture image	http://www.opengl.org/sdk/docs/man/html/glCopyTexImage2D.xhtml
+glCopyTexSubImage1D	A										<pre><code>void glCopyTexSubImage1D(GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width)</code></pre> copy a one-dimensional texture subimage	http://www.opengl.org/sdk/docs/man/html/glCopyTexSubImage1D.xhtml
+glCopyTexSubImage2D	A										<pre><code>void glCopyTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height)</code></pre> copy a two-dimensional texture subimage	http://www.opengl.org/sdk/docs/man/html/glCopyTexSubImage2D.xhtml
+glCopyTexSubImage3D	A										<pre><code>void glCopyTexSubImage3D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height)</code></pre> copy a three-dimensional texture subimage	http://www.opengl.org/sdk/docs/man/html/glCopyTexSubImage3D.xhtml
+glCreateProgram	A										<pre><code>GLuint glCreateProgram(void)</code></pre> Creates a program object	http://www.opengl.org/sdk/docs/man/html/glCreateProgram.xhtml
+glCreateShader	A										<pre><code>GLuint glCreateShader(GLenum shaderType)</code></pre> Creates a shader object	http://www.opengl.org/sdk/docs/man/html/glCreateShader.xhtml
+glCreateShaderProgram	A										<pre><code>GLuint glCreateShaderProgramv(GLenum type, GLsizei count, const char **strings)</code></pre> create a stand-alone program from an array of null-terminated source code strings	http://www.opengl.org/sdk/docs/man/html/glCreateShaderProgram.xhtml
+glCreateShaderProgramv	R	glCreateShaderProgram										
+glCullFace	A										<pre><code>void glCullFace(GLenum mode)</code></pre> specify whether front- or back-facing facets can be culled	http://www.opengl.org/sdk/docs/man/html/glCullFace.xhtml
+glDebugMessageCallback	A										<pre><code>void glDebugMessageCallback(DEBUGPROC callback, void * userParam)</code></pre> specify a callback to receive debugging messages from the GL	http://www.opengl.org/sdk/docs/man/html/glDebugMessageCallback.xhtml
+glDebugMessageControl	A										<pre><code>void glDebugMessageControl(GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint *ids, GLboolean enabled)</code></pre> control the reporting of debug messages in a debug context	http://www.opengl.org/sdk/docs/man/html/glDebugMessageControl.xhtml
+glDebugMessageInsert	A										<pre><code>void glDebugMessageInsert(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const char *message)</code></pre> inject an application-supplied message into the debug message queue	http://www.opengl.org/sdk/docs/man/html/glDebugMessageInsert.xhtml
+glDeleteBuffers	A										<pre><code>void glDeleteBuffers(GLsizei n, const GLuint * buffers)</code></pre> delete named buffer objects	http://www.opengl.org/sdk/docs/man/html/glDeleteBuffers.xhtml
+glDeleteFramebuffers	A										<pre><code>void glDeleteFramebuffers(GLsizei n, GLuint *framebuffers)</code></pre> delete framebuffer objects	http://www.opengl.org/sdk/docs/man/html/glDeleteFramebuffers.xhtml
+glDeleteProgram	A										<pre><code>void glDeleteProgram(GLuint program)</code></pre> Deletes a program object	http://www.opengl.org/sdk/docs/man/html/glDeleteProgram.xhtml
+glDeleteProgramPipelines	A										<pre><code>void glDeleteProgramPipelines(GLsizei n, const GLuint *pipelines)</code></pre> delete program pipeline objects	http://www.opengl.org/sdk/docs/man/html/glDeleteProgramPipelines.xhtml
+glDeleteQueries	A										<pre><code>void glDeleteQueries(GLsizei n, const GLuint * ids)</code></pre> delete named query objects	http://www.opengl.org/sdk/docs/man/html/glDeleteQueries.xhtml
+glDeleteRenderbuffers	A										<pre><code>void glDeleteRenderbuffers(GLsizei n, GLuint *renderbuffers)</code></pre> delete renderbuffer objects	http://www.opengl.org/sdk/docs/man/html/glDeleteRenderbuffers.xhtml
+glDeleteSamplers	A										<pre><code>void glDeleteSamplers(GLsizei n, const GLuint * samplers)</code></pre> delete named sampler objects	http://www.opengl.org/sdk/docs/man/html/glDeleteSamplers.xhtml
+glDeleteShader	A										<pre><code>void glDeleteShader(GLuint shader)</code></pre> Deletes a shader object	http://www.opengl.org/sdk/docs/man/html/glDeleteShader.xhtml
+glDeleteSync	A										<pre><code>void glDeleteSync(GLsync sync)</code></pre> delete a sync object	http://www.opengl.org/sdk/docs/man/html/glDeleteSync.xhtml
+glDeleteTextures	A										<pre><code>void glDeleteTextures(GLsizei n, const GLuint * textures)</code></pre> delete named textures	http://www.opengl.org/sdk/docs/man/html/glDeleteTextures.xhtml
+glDeleteTransformFeedbacks	A										<pre><code>void glDeleteTransformFeedbacks(GLsizei n, const GLuint *ids)</code></pre> delete transform feedback objects	http://www.opengl.org/sdk/docs/man/html/glDeleteTransformFeedbacks.xhtml
+glDeleteVertexArrays	A										<pre><code>void glDeleteVertexArrays(GLsizei n, const GLuint *arrays)</code></pre> delete vertex array objects	http://www.opengl.org/sdk/docs/man/html/glDeleteVertexArrays.xhtml
+glDepthFunc	A										<pre><code>void glDepthFunc(GLenum func)</code></pre> specify the value used for depth buffer comparisons	http://www.opengl.org/sdk/docs/man/html/glDepthFunc.xhtml
+glDepthMask	A										<pre><code>void glDepthMask(GLboolean flag)</code></pre> enable or disable writing into the depth buffer	http://www.opengl.org/sdk/docs/man/html/glDepthMask.xhtml
+glDepthRange	A										<pre><code>void glDepthRange(GLdouble nearVal, GLdouble farVal)<br>void glDepthRangef(GLfloat nearVal, GLfloat farVal)</code></pre> specify mapping of depth values from normalized device coordinates to window coordinates	http://www.opengl.org/sdk/docs/man/html/glDepthRange.xhtml
+glDepthRangef	R	glDepthRange										
+glDepthRangeArray	A										<pre><code>void glDepthRangeArrayv(GLuint first, GLsizei count, const GLdouble *v)</code></pre> specify mapping of depth values from normalized device coordinates to window coordinates for a specified set of viewports	http://www.opengl.org/sdk/docs/man/html/glDepthRangeArray.xhtml
+glDepthRangeArrayv	R	glDepthRangeArray										
+glDepthRangeIndexed	A										<pre><code>void glDepthRangeIndexed(GLuint index, GLdouble nearVal, GLdouble farVal)</code></pre> specify mapping of depth values from normalized device coordinates to window coordinates for a specified viewport	http://www.opengl.org/sdk/docs/man/html/glDepthRangeIndexed.xhtml
+glDetachShader	A										<pre><code>void glDetachShader(GLuint program, GLuint shader)</code></pre> Detaches a shader object from a program object to which it is attached	http://www.opengl.org/sdk/docs/man/html/glDetachShader.xhtml
+glDispatchCompute	A										<pre><code>void glDispatchCompute(GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z)</code></pre> launch one or more compute work groups	http://www.opengl.org/sdk/docs/man/html/glDispatchCompute.xhtml
+glDispatchComputeIndirect	A										<pre><code>void glDispatchComputeIndirect(GLintptr indirect)</code></pre> launch one or more compute work groups using parameters stored in a buffer	http://www.opengl.org/sdk/docs/man/html/glDispatchComputeIndirect.xhtml
+glDrawArrays	A										<pre><code>void glDrawArrays(GLenum mode, GLint first, GLsizei count)</code></pre> render primitives from array data	http://www.opengl.org/sdk/docs/man/html/glDrawArrays.xhtml
+glDrawArraysIndirect	A										<pre><code>void glDrawArraysIndirect(GLenum mode, const void *indirect)</code></pre> render primitives from array data, taking parameters from memory	http://www.opengl.org/sdk/docs/man/html/glDrawArraysIndirect.xhtml
+glDrawArraysInstanced	A										<pre><code>void glDrawArraysInstanced(GLenum mode, GLint first, GLsizei count, GLsizei primcount)</code></pre> draw multiple instances of a range of elements	http://www.opengl.org/sdk/docs/man/html/glDrawArraysInstanced.xhtml
+glDrawArraysInstancedBaseInstance	A										<pre><code>void glDrawArraysInstancedBaseInstance(GLenum mode, GLint first, GLsizei count, GLsizei primcount, GLuint baseinstance)</code></pre> draw multiple instances of a range of elements with offset applied to instanced attributes	http://www.opengl.org/sdk/docs/man/html/glDrawArraysInstancedBaseInstance.xhtml
+glDrawBuffer	A										<pre><code>void glDrawBuffer(GLenum mode)</code></pre> specify which color buffers are to be drawn into	http://www.opengl.org/sdk/docs/man/html/glDrawBuffer.xhtml
+glDrawBuffers	A										<pre><code>void glDrawBuffers(GLsizei n, const GLenum *bufs)</code></pre> Specifies a list of color buffers to be drawn into	http://www.opengl.org/sdk/docs/man/html/glDrawBuffers.xhtml
+glDrawElements	A										<pre><code>void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid * indices)</code></pre> render primitives from array data	http://www.opengl.org/sdk/docs/man/html/glDrawElements.xhtml
+glDrawElementsBaseVertex	A										<pre><code>void glDrawElementsBaseVertex(GLenum mode, GLsizei count, GLenum type, GLvoid *indices, GLint basevertex)</code></pre> render primitives from array data with a per-element offset	http://www.opengl.org/sdk/docs/man/html/glDrawElementsBaseVertex.xhtml
+glDrawElementsIndirect	A										<pre><code>void glDrawElementsIndirect(GLenum mode, GLenum type, const void *indirect)</code></pre> render indexed primitives from array data, taking parameters from memory	http://www.opengl.org/sdk/docs/man/html/glDrawElementsIndirect.xhtml
+glDrawElementsInstanced	A										<pre><code>void glDrawElementsInstanced(GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei primcount)</code></pre> draw multiple instances of a set of elements	http://www.opengl.org/sdk/docs/man/html/glDrawElementsInstanced.xhtml
+glDrawElementsInstancedBaseInstance	A										<pre><code>void glDrawElementsInstancedBaseInstance(GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei primcount, GLuitn baseinstance)</code></pre> draw multiple instances of a set of elements with offset applied to instanced attributes	http://www.opengl.org/sdk/docs/man/html/glDrawElementsInstancedBaseInstance.xhtml
+glDrawElementsInstancedBaseVertex	A										<pre><code>void glDrawElementsInstancedBaseVertex(GLenum mode, GLsizei count, GLenum type, GLvoid *indices, GLsizei primcount, GLint basevertex)</code></pre> render multiple instances of a set of primitives from array data with a per-element offset	http://www.opengl.org/sdk/docs/man/html/glDrawElementsInstancedBaseVertex.xhtml
+glDrawElementsInstancedBaseVertexBaseInstance	A										<pre><code>void glDrawElementsInstancedBaseVertexBaseInstance(GLenum mode, GLsizei count, GLenum type, GLvoid *indices, GLsizei primcount, GLint basevertex, GLuint baseinstance)</code></pre> render multiple instances of a set of primitives from array data with a per-element offset	http://www.opengl.org/sdk/docs/man/html/glDrawElementsInstancedBaseVertexBaseInstance.xhtml
+glDrawRangeElements	A										<pre><code>void glDrawRangeElements(GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const GLvoid * indices)</code></pre> render primitives from array data	http://www.opengl.org/sdk/docs/man/html/glDrawRangeElements.xhtml
+glDrawRangeElementsBaseVertex	A										<pre><code>void glDrawRangeElementsBaseVertex(GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, GLvoid *indices, GLint basevertex)</code></pre> render primitives from array data with a per-element offset	http://www.opengl.org/sdk/docs/man/html/glDrawRangeElementsBaseVertex.xhtml
+glDrawTransformFeedback	A										<pre><code>void glDrawTransformFeedback(GLenum mode, GLuint id)</code></pre> render primitives using a count derived from a transform feedback object	http://www.opengl.org/sdk/docs/man/html/glDrawTransformFeedback.xhtml
+glDrawTransformFeedbackInstanced	A										<pre><code>void glDrawTransformFeedbackInstanced(GLenum mode, GLuint id, GLsizei primcount)</code></pre> render multiple instances of primitives using a count derived from a transform feedback object	http://www.opengl.org/sdk/docs/man/html/glDrawTransformFeedbackInstanced.xhtml
+glDrawTransformFeedbackStream	A										<pre><code>void glDrawTransformFeedbackStream(GLenum mode, GLuint id, GLuint stream)</code></pre> render primitives using a count derived from a specifed stream of a transform feedback object	http://www.opengl.org/sdk/docs/man/html/glDrawTransformFeedbackStream.xhtml
+glDrawTransformFeedbackStreamInstanced	A										<pre><code>void glDrawTransformFeedbackStreamInstanced(GLenum mode, GLuint id, GLuint stream, GLsizei primcount)</code></pre> render multiple instances of primitives using a count derived from a specifed stream of a transform feedback object	http://www.opengl.org/sdk/docs/man/html/glDrawTransformFeedbackStreamInstanced.xhtml
+glEnable	A										<pre><code>void glEnable(GLenum cap)<br>void glDisable(GLenum cap)<br>void glEnablei(GLenum cap, GLuint index)<br>...</code></pre> enable or disable server-side GL capabilities	http://www.opengl.org/sdk/docs/man/html/glEnable.xhtml
+glDisable	R	glEnable										
+glEnablei	R	glEnable										
+glDisablei	R	glEnable										
+glEnableVertexAttribArray	A										<pre><code>void glEnableVertexAttribArray(GLuint index)<br>void glDisableVertexAttribArray(GLuint index)</code></pre> Enable or disable a generic vertex attribute array	http://www.opengl.org/sdk/docs/man/html/glEnableVertexAttribArray.xhtml
+glDisableVertexAttribArray	R	glEnableVertexAttribArray										
+glFenceSync	A										<pre><code>GLsync glFenceSync(GLenum condition, GLbitfield flags)</code></pre> create a new sync object and insert it into the GL command stream	http://www.opengl.org/sdk/docs/man/html/glFenceSync.xhtml
+glFinish	A										<pre><code>void glFinish( void)</code></pre> block until all GL execution is complete	http://www.opengl.org/sdk/docs/man/html/glFinish.xhtml
+glFlush	A										<pre><code>void glFlush( void)</code></pre> force execution of GL commands in finite time	http://www.opengl.org/sdk/docs/man/html/glFlush.xhtml
+glFlushMappedBufferRange	A										<pre><code>void glFlushMappedBufferRange(GLenum target, GLintptr offset, GLsizeiptr length)</code></pre> indicate modifications to a range of a mapped buffer	http://www.opengl.org/sdk/docs/man/html/glFlushMappedBufferRange.xhtml
+glFramebufferParameteri	A										<pre><code>void glFramebufferParameteri(GLenum target, GLenum pname, GLint param)</code></pre> set a named parameter of a framebuffer	http://www.opengl.org/sdk/docs/man/html/glFramebufferParameteri.xhtml
+glFramebufferRenderbuffer	A										<pre><code>void glFramebufferRenderbuffer(GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer)</code></pre> attach a renderbuffer as a logical buffer to the currently bound framebuffer object	http://www.opengl.org/sdk/docs/man/html/glFramebufferRenderbuffer.xhtml
+glFramebufferTexture	A										<pre><code>void glFramebufferTexture(GLenum target, GLenum attachment, GLuint texture, GLint level)<br>void glFramebufferTexture1D(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level)<br>void glFramebufferTexture2D(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level)<br>...</code></pre> attach a level of a texture object as a logical buffer to the currently bound framebuffer object	http://www.opengl.org/sdk/docs/man/html/glFramebufferTexture.xhtml
+glFramebufferTexture1D	R	glFramebufferTexture										
+glFramebufferTexture2D	R	glFramebufferTexture										
+glFramebufferTexture3D	R	glFramebufferTexture										
+glFramebufferTextureLayer	A										<pre><code>void glFramebufferTextureLayer(GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer)</code></pre> attach a single layer of a texture to a framebuffer	http://www.opengl.org/sdk/docs/man/html/glFramebufferTextureLayer.xhtml
+glFrontFace	A										<pre><code>void glFrontFace(GLenum mode)</code></pre> define front- and back-facing polygons	http://www.opengl.org/sdk/docs/man/html/glFrontFace.xhtml
+glGenBuffers	A										<pre><code>void glGenBuffers(GLsizei n, GLuint * buffers)</code></pre> generate buffer object names	http://www.opengl.org/sdk/docs/man/html/glGenBuffers.xhtml
+glGenerateMipmap	A										<pre><code>void glGenerateMipmap(GLenum target)</code></pre> generate mipmaps for a specified texture target	http://www.opengl.org/sdk/docs/man/html/glGenerateMipmap.xhtml
+glGenFramebuffers	A										<pre><code>void glGenFramebuffers(GLsizei n, GLuint *ids)</code></pre> generate framebuffer object names	http://www.opengl.org/sdk/docs/man/html/glGenFramebuffers.xhtml
+glGenProgramPipelines	A										<pre><code>void glGenProgramPipelines(GLsizei n, GLuint *pipelines)</code></pre> reserve program pipeline object names	http://www.opengl.org/sdk/docs/man/html/glGenProgramPipelines.xhtml
+glGenQueries	A										<pre><code>void glGenQueries(GLsizei n, GLuint * ids)</code></pre> generate query object names	http://www.opengl.org/sdk/docs/man/html/glGenQueries.xhtml
+glGenRenderbuffers	A										<pre><code>void glGenRenderbuffers(GLsizei n, GLuint *renderbuffers)</code></pre> generate renderbuffer object names	http://www.opengl.org/sdk/docs/man/html/glGenRenderbuffers.xhtml
+glGenSamplers	A										<pre><code>void glGenSamplers(GLsizei n, GLuint *samplers)</code></pre> generate sampler object names	http://www.opengl.org/sdk/docs/man/html/glGenSamplers.xhtml
+glGenTextures	A										<pre><code>void glGenTextures(GLsizei n, GLuint * textures)</code></pre> generate texture names	http://www.opengl.org/sdk/docs/man/html/glGenTextures.xhtml
+glGenTransformFeedbacks	A										<pre><code>void glGenTransformFeedbacks(GLsizei n, GLuint *ids)</code></pre> reserve transform feedback object names	http://www.opengl.org/sdk/docs/man/html/glGenTransformFeedbacks.xhtml
+glGenVertexArrays	A										<pre><code>void glGenVertexArrays(GLsizei n, GLuint *arrays)</code></pre> generate vertex array object names	http://www.opengl.org/sdk/docs/man/html/glGenVertexArrays.xhtml
+glGet	A										<pre><code>void glGetBooleanv(GLenum pname, GLboolean * data)<br>void glGetDoublev(GLenum pname, GLdouble * data)<br>void glGetFloatv(GLenum pname, GLfloat * data)<br>...</code></pre> return the value or values of a selected parameter	http://www.opengl.org/sdk/docs/man/html/glGet.xhtml
+glGetBooleanv	R	glGet										
+glGetDoublev	R	glGet										
+glGetFloatv	R	glGet										
+glGetIntegerv	R	glGet										
+glGetInteger64v	R	glGet										
+glGetBooleani_v	R	glGet										
+glGetIntegeri_v	R	glGet										
+glGetFloati_v	R	glGet										
+glGetDoublei_v	R	glGet										
+glGetInteger64i_v	R	glGet										
+glGetActiveAtomicCounterBufferiv	A										<pre><code>void glGetActiveAtomicCounterBufferiv(Gluint program, GLuint bufferIndex, GLenum pname, GLint *params)</code></pre> retrieve information about the set of active atomic counter buffers for a program	http://www.opengl.org/sdk/docs/man/html/glGetActiveAtomicCounterBufferiv.xhtml
+glGetActiveAttrib	A										<pre><code>void glGetActiveAttrib(GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *type, GLchar *name)</code></pre> Returns information about an active attribute variable for the specified program object	http://www.opengl.org/sdk/docs/man/html/glGetActiveAttrib.xhtml
+glGetActiveSubroutineName	A										<pre><code>void glGetActiveSubroutineName(GLuint program, GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei *length, GLchar *name)</code></pre> query the name of an active shader subroutine	http://www.opengl.org/sdk/docs/man/html/glGetActiveSubroutineName.xhtml
+glGetActiveSubroutineUniform	A										<pre><code>void glGetActiveSubroutineUniformiv(GLuint program, GLenum shadertype, GLuint index, GLenum pname, GLint *values)</code></pre> query a property of an active shader subroutine uniform	http://www.opengl.org/sdk/docs/man/html/glGetActiveSubroutineUniform.xhtml
+glGetActiveSubroutineUniformiv	R	glGetActiveSubroutineUniform										
+glGetActiveSubroutineUniformName	A										<pre><code>void glGetActiveSubroutineUniformName(GLuint program, GLenum shadertype, GLuint index, GLsizei bufsize, GLsizei *length, GLchar *name)</code></pre> query the name of an active shader subroutine uniform	http://www.opengl.org/sdk/docs/man/html/glGetActiveSubroutineUniformName.xhtml
+glGetActiveUniform	A										<pre><code>void glGetActiveUniform(GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint *size, GLenum *type, GLchar *name)</code></pre> Returns information about an active uniform variable for the specified program object	http://www.opengl.org/sdk/docs/man/html/glGetActiveUniform.xhtml
+glGetActiveUniformBlock	A										<pre><code>void glGetActiveUniformBlockiv(GLuint program, GLuint uniformBlockIndex, GLenum pname, GLint *params)</code></pre> query information about an active uniform block	http://www.opengl.org/sdk/docs/man/html/glGetActiveUniformBlock.xhtml
+glGetActiveUniformBlockiv	R	glGetActiveUniformBlock										
+glGetActiveUniformBlockName	A										<pre><code>void glGetActiveUniformBlockName(GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei *length, GLchar *uniformBlockName)</code></pre> retrieve the name of an active uniform block	http://www.opengl.org/sdk/docs/man/html/glGetActiveUniformBlockName.xhtml
+glGetActiveUniformName	A										<pre><code>void glGetActiveUniformName(GLuint program, GLuint uniformIndex, GLsizei bufSize, GLsizei *length, GLchar *uniformName)</code></pre> query the name of an active uniform	http://www.opengl.org/sdk/docs/man/html/glGetActiveUniformName.xhtml
+glGetActiveUniformsiv	A										<pre><code>void glGetActiveUniformsiv(GLuint program, GLsizei uniformCount, const GLuint *uniformIndices, GLenum pname, GLint *params)</code></pre> Returns information about several active uniform variables for the specified program object	http://www.opengl.org/sdk/docs/man/html/glGetActiveUniformsiv.xhtml
+glGetAttachedShaders	A										<pre><code>void glGetAttachedShaders(GLuint program, GLsizei maxCount, GLsizei *count, GLuint *shaders)</code></pre> Returns the handles of the shader objects attached to a program object	http://www.opengl.org/sdk/docs/man/html/glGetAttachedShaders.xhtml
+glGetAttribLocation	A										<pre><code>GLint glGetAttribLocation(GLuint program, const GLchar *name)</code></pre> Returns the location of an attribute variable	http://www.opengl.org/sdk/docs/man/html/glGetAttribLocation.xhtml
+glGetBufferParameteriv	A										<pre><code>void glGetBufferParameteriv(GLenum target, GLenum value, GLint * data)<br>void glGetBufferParameteri64v(GLenum target, GLenum value, GLint64 * data)</code></pre> return parameters of a buffer object	http://www.opengl.org/sdk/docs/man/html/glGetBufferParameter.xhtml
+glGetBufferParameteri64v	R	glGetBufferParameteriv										
+glGetBufferPointerv	A										<pre><code>void glGetBufferPointerv(GLenum target, GLenum pname, GLvoid ** params)</code></pre> return the pointer to a mapped buffer object's data store	http://www.opengl.org/sdk/docs/man/html/glGetBufferPointerv.xhtml
+glGetBufferSubData	A										<pre><code>void glGetBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, GLvoid * data)</code></pre> returns a subset of a buffer object's data store	http://www.opengl.org/sdk/docs/man/html/glGetBufferSubData.xhtml
+glGetCompressedTexImage	A										<pre><code>void glGetCompressedTexImage(GLenum target, GLint lod, GLvoid * img)</code></pre> return a compressed texture image	http://www.opengl.org/sdk/docs/man/html/glGetCompressedTexImage.xhtml
+glGetDebugMessageLog	A										<pre><code>GLuint glGetDebugMessageLog(GLuint count, GLsizei bufSize, GLenum *sources, Glenum *types, GLuint *ids, GLenum *severities, GLsizei *lengths, GLchar *messageLog)</code></pre> retrieve messages from the debug message log	http://www.opengl.org/sdk/docs/man/html/glGetDebugMessageLog.xhtml
+glGetError	A										<pre><code>GLenum glGetError( void)</code></pre> return error information	http://www.opengl.org/sdk/docs/man/html/glGetError.xhtml
+glGetFragDataIndex	A										<pre><code>GLint glGetFragDataIndex(GLuint program, const char * name)</code></pre> query the bindings of color indices to user-defined varying out variables	http://www.opengl.org/sdk/docs/man/html/glGetFragDataIndex.xhtml
+glGetFragDataLocation	A										<pre><code>GLint glGetFragDataLocation(GLuint program, const char * name)</code></pre> query the bindings of color numbers to user-defined varying out variables	http://www.opengl.org/sdk/docs/man/html/glGetFragDataLocation.xhtml
+glGetFramebufferAttachmentParameteriv	A										<pre><code>void glGetFramebufferAttachmentParameteriv(GLenum target, GLenum attachment, GLenum pname, GLint *params)</code></pre> retrieve information about attachments of a bound framebuffer object	http://www.opengl.org/sdk/docs/man/html/glGetFramebufferAttachmentParameter.xhtml
+glGetFramebufferParameter	A										<pre><code>void glGetFramebufferParameteriv(GLenum target, GLenum pname, GLint * params)</code></pre> retrieve a named parameter from a framebuffer	http://www.opengl.org/sdk/docs/man/html/glGetFramebufferParameter.xhtml
+glGetFramebufferParameteriv	R	glGetFramebufferParameter										
+glGetInternalformat	A										<pre><code>void glGetInternalformativ(GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint *params)<br>void glGetInternalformati64v(GLenum target, GLenum internalformat, GLenum pname, GLsizei bufSize, GLint64 *params)</code></pre> retrieve information about implementation-dependent support for internal formats	http://www.opengl.org/sdk/docs/man/html/glGetInternalformat.xhtml
+glGetInternalformativ	R	glGetInternalformat										
+glGetInternalformati64v	R	glGetInternalformat										
+glGetMultisamplefv	A										<pre><code>void glGetMultisamplefv(GLenum pname, GLuint index, GLfloat *val)</code></pre> retrieve the location of a sample	http://www.opengl.org/sdk/docs/man/html/glGetMultisample.xhtml
+glGetObjectLabel	A										<pre><code>void glGetObjectLabel(GLenum identifier, GLuint name, GLsizei bifSize, GLsizei * length, char * label)</code></pre> retrieve the label of a named object identified within a namespace	http://www.opengl.org/sdk/docs/man/html/glGetObjectLabel.xhtml
+glGetObjectPtrLabel	A										<pre><code>void glGetObjectPtrLabel(void * ptr, GLsizei bifSize, GLsizei * length, char * label)</code></pre> retrieve the label of a sync object identified by a pointer	http://www.opengl.org/sdk/docs/man/html/glGetObjectPtrLabel.xhtml
+glGetProgram	A										<pre><code>void glGetProgramiv(GLuint program, GLenum pname, GLint *params)</code></pre> Returns a parameter from a program object	http://www.opengl.org/sdk/docs/man/html/glGetProgram.xhtml
+glGetProgramiv	R	glGetProgram										
+glGetProgramBinary	A										<pre><code>void glGetProgramBinary(GLuint program, GLsizei bufsize, GLsizei *length, GLenum *binaryFormat, void *binary)</code></pre> return a binary representation of a program object's compiled and linked executable source	http://www.opengl.org/sdk/docs/man/html/glGetProgramBinary.xhtml
+glGetProgramInfoLog	A										<pre><code>void glGetProgramInfoLog(GLuint program, GLsizei maxLength, GLsizei *length, GLchar *infoLog)</code></pre> Returns the information log for a program object	http://www.opengl.org/sdk/docs/man/html/glGetProgramInfoLog.xhtml
+glGetProgramInterface	A										<pre><code>void glGetProgramInterfaceiv(GLuint program, GLenum programInterface, GLenum pname, GLint * params)</code></pre> query a property of an interface in a program	http://www.opengl.org/sdk/docs/man/html/glGetProgramInterface.xhtml
+glGetProgramInterfaceiv	R	glGetProgramInterface										
+glGetProgramPipeline	A										<pre><code>void glGetProgramPipelineiv(GLuint pipeline, GLenum pname, GLint *params)</code></pre> retrieve properties of a program pipeline object	http://www.opengl.org/sdk/docs/man/html/glGetProgramPipeline.xhtml
+glGetProgramPipelineiv	R	glGetProgramPipeline										
+glGetProgramPipelineInfoLog	A										<pre><code>void glGetProgramPipelineInfoLog(GLuint pipeline, GLsizei bufSize, GLsizei *length, GLchar *infoLog)</code></pre> retrieve the info log string from a program pipeline object	http://www.opengl.org/sdk/docs/man/html/glGetProgramPipelineInfoLog.xhtml
+glGetProgramResource	A										<pre><code>void glGetProgramResourceiv(GLuint program, GLenum programInterface, GLuint index, GLsizei propCount, const Glenum * props, GLsizei bufSize, GLsizei * length, GLint * params)</code></pre> retrieve values for multiple properties of a single active resource within a program object	http://www.opengl.org/sdk/docs/man/html/glGetProgramResource.xhtml
+glGetProgramResourceiv	R	glGetProgramResource										
+glGetProgramResourceIndex	A										<pre><code>GLuint glGetProgramResourceIndex(GLuint program, GLenum programInterface, const char * name)</code></pre> query the index of a named resource within a program	http://www.opengl.org/sdk/docs/man/html/glGetProgramResourceIndex.xhtml
+glGetProgramResourceLocation	A										<pre><code>GLint glGetProgramResourceLocation(GLuint program, GLenum programInterface, const char * name)</code></pre> query the location of a named resource within a program	http://www.opengl.org/sdk/docs/man/html/glGetProgramResourceLocation.xhtml
+glGetProgramResourceLocationIndex	A										<pre><code>GLint glGetProgramResourceLocationIndex(GLuint program, GLenum programInterface, const char * name)</code></pre> query the fragment color index of a named variable within a program	http://www.opengl.org/sdk/docs/man/html/glGetProgramResourceLocationIndex.xhtml
+glGetProgramResourceName	A										<pre><code>void glGetProgramResourceName(GLuint program, GLenum programInterface, GLuint index, GLsizei bufSize, GLsizei * length, char * name)</code></pre> query the name of an indexed resource within a program	http://www.opengl.org/sdk/docs/man/html/glGetProgramResourceName.xhtml
+glGetProgramStage	A										<pre><code>void glGetProgramStageiv(GLuint program, GLenum shadertype, GLenum pname, GLint *values)</code></pre> retrieve properties of a program object corresponding to a specified shader stage	http://www.opengl.org/sdk/docs/man/html/glGetProgramStage.xhtml
+glGetProgramStageiv	R	glGetProgramStage										
+glGetQueryIndexediv	A										<pre><code>void glGetQueryIndexediv(GLenum target, GLuint index, GLenum pname, GLint * params)</code></pre> return parameters of an indexed query object target	http://www.opengl.org/sdk/docs/man/html/glGetQueryIndexed.xhtml
+glGetQueryiv	A										<pre><code>void glGetQueryiv(GLenum target, GLenum pname, GLint * params)</code></pre> return parameters of a query object target	http://www.opengl.org/sdk/docs/man/html/glGetQueryiv.xhtml
+glGetQueryObject	A										<pre><code>void glGetQueryObjectiv(GLuint id, GLenum pname, GLint * params)<br>void glGetQueryObjectuiv(GLuint id, GLenum pname, GLuint * params)<br>void glGetQueryObjecti64v(GLuint id, GLenum pname, GLint64 * params)<br>...</code></pre> return parameters of a query object	http://www.opengl.org/sdk/docs/man/html/glGetQueryObject.xhtml
+glGetQueryObjectiv	R	glGetQueryObject										
+glGetQueryObjectuiv	R	glGetQueryObject										
+glGetQueryObjecti64v	R	glGetQueryObject										
+glGetQueryObjectui64v	R	glGetQueryObject										
+glGetRenderbufferParameteriv	A										<pre><code>void glGetRenderbufferParameteriv(GLenum target, GLenum pname, GLint *params)</code></pre> retrieve information about a bound renderbuffer object	http://www.opengl.org/sdk/docs/man/html/glGetRenderbufferParameter.xhtml
+glGetSamplerParameter	A										<pre><code>void glGetSamplerParameterfv(GLuint sampler, GLenum pname, GLfloat * params)<br>void glGetSamplerParameteriv(GLuint sampler, GLenum pname, GLint * params)<br>void glGetSamplerParameterIiv(GLuint sampler, GLenum pname, GLint * params)<br>...</code></pre> return sampler parameter values	http://www.opengl.org/sdk/docs/man/html/glGetSamplerParameter.xhtml
+glGetSamplerParameterfv	R	glGetSamplerParameter										
+glGetSamplerParameteriv	R	glGetSamplerParameter										
+glGetSamplerParameterIiv	R	glGetSamplerParameter										
+glGetSamplerParameterIuiv	R	glGetSamplerParameter										
+glGetShader	A										<pre><code>void glGetShaderiv(GLuint shader, GLenum pname, GLint *params)</code></pre> Returns a parameter from a shader object	http://www.opengl.org/sdk/docs/man/html/glGetShader.xhtml
+glGetShaderiv	R	glGetShader										
+glGetShaderInfoLog	A										<pre><code>void glGetShaderInfoLog(GLuint shader, GLsizei maxLength, GLsizei *length, GLchar *infoLog)</code></pre> Returns the information log for a shader object	http://www.opengl.org/sdk/docs/man/html/glGetShaderInfoLog.xhtml
+glGetShaderPrecisionFormat	A										<pre><code>void glGetShaderPrecisionFormat(GLenum shaderType, GLenum precisionType, GLint *range, GLint *precision)</code></pre> retrieve the range and precision for numeric formats supported by the shader compiler	http://www.opengl.org/sdk/docs/man/html/glGetShaderPrecisionFormat.xhtml
+glGetShaderSource	A										<pre><code>void glGetShaderSource(GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *source)</code></pre> Returns the source code string from a shader object	http://www.opengl.org/sdk/docs/man/html/glGetShaderSource.xhtml
+glGetString	A										<pre><code>const GLubyte* glGetString(GLenum name)<br>const GLubyte* glGetStringi(GLenum name, GLuint index)</code></pre> return a string describing the current GL connection	http://www.opengl.org/sdk/docs/man/html/glGetString.xhtml
+glGetStringi	R	glGetString										
+glGetSubroutineIndex	A										<pre><code>GLuint glGetSubroutineIndex(GLuint program, GLenum shadertype, const GLchar *name)</code></pre> retrieve the index of a subroutine uniform of a given shader stage within a program	http://www.opengl.org/sdk/docs/man/html/glGetSubroutineIndex.xhtml
+glGetSubroutineUniformLocation	A										<pre><code>GLint glGetSubroutineUniformLocation(GLuint program, GLenum shadertype, const GLchar *name)</code></pre> retrieve the location of a subroutine uniform of a given shader stage within a program	http://www.opengl.org/sdk/docs/man/html/glGetSubroutineUniformLocation.xhtml
+glGetSynciv	A										<pre><code>void glGetSynciv(GLsync sync, GLenum pname, GLsizei bufSize, GLsizei *length, GLint *values)</code></pre> query the properties of a sync object	http://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml
+glGetTexImage	A										<pre><code>void glGetTexImage(GLenum target, GLint level, GLenum format, GLenum type, GLvoid * img)</code></pre> return a texture image	http://www.opengl.org/sdk/docs/man/html/glGetTexImage.xhtml
+glGetTexLevelParameter	A										<pre><code>void glGetTexLevelParameterfv(GLenum target, GLint level, GLenum pname, GLfloat * params)<br>void glGetTexLevelParameteriv(GLenum target, GLint level, GLenum pname, GLint * params)</code></pre> return texture parameter values for a specific level of detail	http://www.opengl.org/sdk/docs/man/html/glGetTexLevelParameter.xhtml
+glGetTexLevelParameterfv	R	glGetTexLevelParameter										
+glGetTexLevelParameteriv	R	glGetTexLevelParameter										
+glGetTexParameter	A										<pre><code>void glGetTexParameterfv(GLenum target, GLenum pname, GLfloat * params)<br>void glGetTexParameteriv(GLenum target, GLenum pname, GLint * params)<br>void glGetTexParameterIiv(GLenum target, GLenum pname, GLint * params)<br>...</code></pre> return texture parameter values	http://www.opengl.org/sdk/docs/man/html/glGetTexParameter.xhtml
+glGetTexParameterfv	R	glGetTexParameter										
+glGetTexParameteriv	R	glGetTexParameter										
+glGetTexParameterIiv	R	glGetTexParameter										
+glGetTexParameterIuiv	R	glGetTexParameter										
+glGetTransformFeedbackVarying	A										<pre><code>void glGetTransformFeedbackVarying(GLuintprogram, GLuintindex, GLsizeibufSize, GLsizei *length, GLsizei *size, GLenum *type, char *name)</code></pre> retrieve information about varying variables selected for transform feedback	http://www.opengl.org/sdk/docs/man/html/glGetTransformFeedbackVarying.xhtml
+glGetUniform	A										<pre><code>void glGetUniformfv(GLuint program, GLint location, GLfloat *params)<br>void glGetUniformiv(GLuint program, GLint location, GLint *params)<br>void glGetUniformuiv(GLuint program, GLint location, GLuint *params)<br>...</code></pre> Returns the value of a uniform variable	http://www.opengl.org/sdk/docs/man/html/glGetUniform.xhtml
+glGetUniformfv	R	glGetUniform										
+glGetUniformiv	R	glGetUniform										
+glGetUniformuiv	R	glGetUniform										
+glGetUniformdv	R	glGetUniform										
+glGetUniformBlockIndex	A										<pre><code>GLuint glGetUniformBlockIndex(GLuint program, const GLchar *uniformBlockName)</code></pre> retrieve the index of a named uniform block	http://www.opengl.org/sdk/docs/man/html/glGetUniformBlockIndex.xhtml
+glGetUniformIndices	A										<pre><code>void glGetUniformIndices(GLuint program, GLsizei uniformCount, const GLchar **uniformNames, GLuint *uniformIndices)</code></pre> retrieve the index of a named uniform block	http://www.opengl.org/sdk/docs/man/html/glGetUniformIndices.xhtml
+glGetUniformLocation	A										<pre><code>GLint glGetUniformLocation(GLuint program, const GLchar *name)</code></pre> Returns the location of a uniform variable	http://www.opengl.org/sdk/docs/man/html/glGetUniformLocation.xhtml
+glGetUniformSubroutine	A										<pre><code>void glGetUniformSubroutineuiv(GLenum shadertype, GLint location, GLuint *values)</code></pre> retrieve the value of a subroutine uniform of a given shader stage of the current program	http://www.opengl.org/sdk/docs/man/html/glGetUniformSubroutine.xhtml
+glGetUniformSubroutineuiv	R	glGetUniformSubroutine										
+glGetVertexAttrib	A										<pre><code>void glGetVertexAttribdv(GLuint index, GLenum pname, GLdouble *params)<br>void glGetVertexAttribfv(GLuint index, GLenum pname, GLfloat *params)<br>void glGetVertexAttribiv(GLuint index, GLenum pname, GLint *params)<br>...</code></pre> Return a generic vertex attribute parameter	http://www.opengl.org/sdk/docs/man/html/glGetVertexAttrib.xhtml
+glGetVertexAttribdv	R	glGetVertexAttrib										
+glGetVertexAttribfv	R	glGetVertexAttrib										
+glGetVertexAttribiv	R	glGetVertexAttrib										
+glGetVertexAttribIiv	R	glGetVertexAttrib										
+glGetVertexAttribIuiv	R	glGetVertexAttrib										
+glGetVertexAttribLdv	R	glGetVertexAttrib										
+glGetVertexAttribPointerv	A										<pre><code>void glGetVertexAttribPointerv(GLuint index, GLenum pname, GLvoid **pointer)</code></pre> return the address of the specified generic vertex attribute pointer	http://www.opengl.org/sdk/docs/man/html/glGetVertexAttribPointerv.xhtml
+glHint	A										<pre><code>void glHint(GLenum target, GLenum mode)</code></pre> specify implementation-specific hints	http://www.opengl.org/sdk/docs/man/html/glHint.xhtml
+glInvalidateBufferData	A										<pre><code>void glInvalidateBufferData(GLuint buffer)</code></pre> invalidate the content of a buffer object's data store	http://www.opengl.org/sdk/docs/man/html/glInvalidateBufferData.xhtml
+glInvalidateBufferSubData	A										<pre><code>void glInvalidateBufferSubData(GLuint buffer, GLintptr offset, GLsizeiptr length)</code></pre> invalidate a region of a buffer object's data store	http://www.opengl.org/sdk/docs/man/html/glInvalidateBufferSubData.xhtml
+glInvalidateFramebuffer	A										<pre><code>void glInvalidateFramebuffer(GLenum target, GLsizei numAttachments, const GLenum * attachments)</code></pre> invalidate the content some or all of a framebuffer object's attachments	http://www.opengl.org/sdk/docs/man/html/glInvalidateFramebuffer.xhtml
+glInvalidateSubFramebuffer	A										<pre><code>void glInvalidateSubFramebuffer(GLenum target, GLsizei numAttachments, const GLenum * attachments, GLint x, GLint y, GLint width, GLint height)</code></pre> invalidate the content of a region of some or all of a framebuffer object's attachments	http://www.opengl.org/sdk/docs/man/html/glInvalidateSubFramebuffer.xhtml
+glInvalidateTexImage	A										<pre><code>void glInvalidateTexImage(GLuint texture, GLint level)</code></pre> invalidate the entirety a texture image	http://www.opengl.org/sdk/docs/man/html/glInvalidateTexImage.xhtml
+glInvalidateTexSubImage	A										<pre><code>void glInvalidateTexSubImage(GLuint texture, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth)</code></pre> invalidate a region of a texture image	http://www.opengl.org/sdk/docs/man/html/glInvalidateTexSubImage.xhtml
+glIsBuffer	A										<pre><code>GLboolean glIsBuffer(GLuint buffer)</code></pre> determine if a name corresponds to a buffer object	http://www.opengl.org/sdk/docs/man/html/glIsBuffer.xhtml
+glIsEnabled	A										<pre><code>GLboolean glIsEnabled(GLenum cap)<br>GLboolean glIsEnabledi(GLenum cap, GLuint index)</code></pre> test whether a capability is enabled	http://www.opengl.org/sdk/docs/man/html/glIsEnabled.xhtml
+glIsEnabledi	R	glIsEnabled										
+glIsFramebuffer	A										<pre><code>GLboolean glIsFramebuffer(GLuint framebuffer)</code></pre> determine if a name corresponds to a framebuffer object	http://www.opengl.org/sdk/docs/man/html/glIsFramebuffer.xhtml
+glIsProgram	A										<pre><code>GLboolean glIsProgram(GLuint program)</code></pre> Determines if a name corresponds to a program object	http://www.opengl.org/sdk/docs/man/html/glIsProgram.xhtml
+glIsProgramPipeline	A										<pre><code>GLboolean glIsProgramPipeline(GLuint pipeline)</code></pre> determine if a name corresponds to a program pipeline object	http://www.opengl.org/sdk/docs/man/html/glIsProgramPipeline.xhtml
+glIsQuery	A										<pre><code>GLboolean glIsQuery(GLuint id)</code></pre> determine if a name corresponds to a query object	http://www.opengl.org/sdk/docs/man/html/glIsQuery.xhtml
+glIsRenderbuffer	A										<pre><code>GLboolean glIsRenderbuffer(GLuint renderbuffer)</code></pre> determine if a name corresponds to a renderbuffer object	http://www.opengl.org/sdk/docs/man/html/glIsRenderbuffer.xhtml
+glIsSampler	A										<pre><code>GLboolean glIsSampler(GLuint id)</code></pre> determine if a name corresponds to a sampler object	http://www.opengl.org/sdk/docs/man/html/glIsSampler.xhtml
+glIsShader	A										<pre><code>GLboolean glIsShader(GLuint shader)</code></pre> Determines if a name corresponds to a shader object	http://www.opengl.org/sdk/docs/man/html/glIsShader.xhtml
+glIsSync	A										<pre><code>GLboolean glIsSync(GLsync sync)</code></pre> determine if a name corresponds to a sync object	http://www.opengl.org/sdk/docs/man/html/glIsSync.xhtml
+glIsTexture	A										<pre><code>GLboolean glIsTexture(GLuint texture)</code></pre> determine if a name corresponds to a texture	http://www.opengl.org/sdk/docs/man/html/glIsTexture.xhtml
+glIsTransformFeedback	A										<pre><code>GLboolean glIsTransformFeedback(GLuint id)</code></pre> determine if a name corresponds to a transform feedback object	http://www.opengl.org/sdk/docs/man/html/glIsTransformFeedback.xhtml
+glIsVertexArray	A										<pre><code>GLboolean glIsVertexArray(GLuint array)</code></pre> determine if a name corresponds to a vertex array object	http://www.opengl.org/sdk/docs/man/html/glIsVertexArray.xhtml
+glLineWidth	A										<pre><code>void glLineWidth(GLfloat width)</code></pre> specify the width of rasterized lines	http://www.opengl.org/sdk/docs/man/html/glLineWidth.xhtml
+glLinkProgram	A										<pre><code>void glLinkProgram(GLuint program)</code></pre> Links a program object	http://www.opengl.org/sdk/docs/man/html/glLinkProgram.xhtml
+glLogicOp	A										<pre><code>void glLogicOp(GLenum opcode)</code></pre> specify a logical pixel operation for rendering	http://www.opengl.org/sdk/docs/man/html/glLogicOp.xhtml
+glMapBuffer	A										<pre><code>void * glMapBuffer(GLenum target, GLenum access)<br>GLboolean glUnmapBuffer(GLenum target)</code></pre> map a buffer object's data store	http://www.opengl.org/sdk/docs/man/html/glMapBuffer.xhtml
+glUnmapBuffer	R	glMapBuffer										
+glMapBufferRange	A										<pre><code>void *glMapBufferRange(GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access)</code></pre> map a section of a buffer object's data store	http://www.opengl.org/sdk/docs/man/html/glMapBufferRange.xhtml
+glMemoryBarrier	A										<pre><code>void glMemoryBarrier(GLbitfield barriers)</code></pre> defines a barrier ordering memory transactions	http://www.opengl.org/sdk/docs/man/html/glMemoryBarrier.xhtml
+glMinSampleShading	A										<pre><code>void glMinSampleShading(GLfloat value)</code></pre> specifies minimum rate at which sample shaing takes place	http://www.opengl.org/sdk/docs/man/html/glMinSampleShading.xhtml
+glMultiDrawArrays	A										<pre><code>void glMultiDrawArrays(GLenum mode, const GLint * first, const GLsizei * count, GLsizei drawcount)</code></pre> render multiple sets of primitives from array data	http://www.opengl.org/sdk/docs/man/html/glMultiDrawArrays.xhtml
+glMultiDrawArraysIndirect	A										<pre><code>void glMultiDrawArraysIndirect(GLenum mode, const void *indirect, GLsizei drawcount, GLsizei stride)</code></pre> render multiple sets of primitives from array data, taking parameters from memory	http://www.opengl.org/sdk/docs/man/html/glMultiDrawArraysIndirect.xhtml
+glMultiDrawElements	A										<pre><code>void glMultiDrawElements(GLenum mode, const GLsizei * count, GLenum type, const GLvoid * const * indices, GLsizei drawcount)</code></pre> render multiple sets of primitives by specifying indices of array data elements	http://www.opengl.org/sdk/docs/man/html/glMultiDrawElements.xhtml
+glMultiDrawElementsBaseVertex	A										<pre><code>void glMultiDrawElementsBaseVertex(GLenum mode, const GLsizei *count, GLenum type, const GLvoid * const *indices, GLsizei drawcount, const GLint *basevertex)</code></pre> render multiple sets of primitives by specifying indices of array data elements and an index to apply to each index	http://www.opengl.org/sdk/docs/man/html/glMultiDrawElementsBaseVertex.xhtml
+glMultiDrawElementsIndirect	A										<pre><code>void glMultiDrawElementsIndirect(GLenum mode, GLenum type, const void *indirect, GLsizei drawcount, GLsizei stride)</code></pre> render indexed primitives from array data, taking parameters from memory	http://www.opengl.org/sdk/docs/man/html/glMultiDrawElementsIndirect.xhtml
+glObjectLabel	A										<pre><code>void glObjectLabel(GLenum identifier, GLuint name, GLsizei length, const char * label)</code></pre> label a named object identified within a namespace	http://www.opengl.org/sdk/docs/man/html/glObjectLabel.xhtml
+glObjectPtrLabel	A										<pre><code>void glObjectPtrLabel(void * ptr, GLsizei length, const char * label)</code></pre> label a a sync object identified by a pointer	http://www.opengl.org/sdk/docs/man/html/glObjectPtrLabel.xhtml
+glPatchParameter	A										<pre><code>void glPatchParameteri(GLenum pname, GLint value)<br>void glPatchParameterfv(GLenum pname, const GLfloat *values)</code></pre> specifies the parameters for patch primitives	http://www.opengl.org/sdk/docs/man/html/glPatchParameter.xhtml
+glPatchParameteri	R	glPatchParameter										
+glPatchParameterfv	R	glPatchParameter										
+glPauseTransformFeedback	A										<pre><code>void glPauseTransformFeedback(void)</code></pre> pause transform feedback operations	http://www.opengl.org/sdk/docs/man/html/glPauseTransformFeedback.xhtml
+glPixelStore	A										<pre><code>void glPixelStoref(GLenum pname, GLfloat param)<br>void glPixelStorei(GLenum pname, GLint param)</code></pre> set pixel storage modes	http://www.opengl.org/sdk/docs/man/html/glPixelStore.xhtml
+glPixelStoref	R	glPixelStore										
+glPixelStorei	R	glPixelStore										
+glPointParameter	A										<pre><code>void glPointParameterf(GLenum pname, GLfloat param)<br>void glPointParameteri(GLenum pname, GLint param)<br>void glPointParameterfv(GLenum pname, const GLfloat * params)<br>...</code></pre> specify point parameters	http://www.opengl.org/sdk/docs/man/html/glPointParameter.xhtml
+glPointParameterf	R	glPointParameter										
+glPointParameteri	R	glPointParameter										
+glPointParameterfv	R	glPointParameter										
+glPointParameteriv	R	glPointParameter										
+glPointSize	A										<pre><code>void glPointSize(GLfloat size)</code></pre> specify the diameter of rasterized points	http://www.opengl.org/sdk/docs/man/html/glPointSize.xhtml
+glPolygonMode	A										<pre><code>void glPolygonMode(GLenum face, GLenum mode)</code></pre> select a polygon rasterization mode	http://www.opengl.org/sdk/docs/man/html/glPolygonMode.xhtml
+glPolygonOffset	A										<pre><code>void glPolygonOffset(GLfloat factor, GLfloat units)</code></pre> set the scale and units used to calculate depth values	http://www.opengl.org/sdk/docs/man/html/glPolygonOffset.xhtml
+glPopDebugGroup	A										<pre><code>void glPopDebugGroup(void)</code></pre> pop the active debug group	http://www.opengl.org/sdk/docs/man/html/glPopDebugGroup.xhtml
+glPrimitiveRestartIndex	A										<pre><code>void glPrimitiveRestartIndex(GLuint index)</code></pre> specify the primitive restart index	http://www.opengl.org/sdk/docs/man/html/glPrimitiveRestartIndex.xhtml
+glProgramBinary	A										<pre><code>void glProgramBinary(GLuint program, GLenum binaryFormat, const void *binary, GLsizei length)</code></pre> load a program object with a program binary	http://www.opengl.org/sdk/docs/man/html/glProgramBinary.xhtml
+glProgramParameter	A										<pre><code>void glProgramParameteri(GLuint program, GLenum pname, GLint value)</code></pre> specify a parameter for a program object	http://www.opengl.org/sdk/docs/man/html/glProgramParameter.xhtml
+glProgramParameteri	R	glProgramParameter										
+glProgramUniform	A										<pre><code>void glProgramUniform1f(GLuint program, GLint location, GLfloat v0)<br>void glProgramUniform2f(GLuint program, GLint location, GLfloat v0, GLfloat v1)<br>void glProgramUniform3f(GLuint program, GLint location, GLfloat v0, GLfloat v1, GLfloat v2)<br>...</code></pre> Specify the value of a uniform variable for a specified program object	http://www.opengl.org/sdk/docs/man/html/glProgramUniform.xhtml
+glProgramUniform1f	R	glProgramUniform										
+glProgramUniform2f	R	glProgramUniform										
+glProgramUniform3f	R	glProgramUniform										
+glProgramUniform4f	R	glProgramUniform										
+glProgramUniform1i	R	glProgramUniform										
+glProgramUniform2i	R	glProgramUniform										
+glProgramUniform3i	R	glProgramUniform										
+glProgramUniform4i	R	glProgramUniform										
+glProgramUniform1ui	R	glProgramUniform										
+glProgramUniform2ui	R	glProgramUniform										
+glProgramUniform3ui	R	glProgramUniform										
+glProgramUniform4ui	R	glProgramUniform										
+glProgramUniform1fv	R	glProgramUniform										
+glProgramUniform2fv	R	glProgramUniform										
+glProgramUniform3fv	R	glProgramUniform										
+glProgramUniform4fv	R	glProgramUniform										
+glProgramUniform1iv	R	glProgramUniform										
+glProgramUniform2iv	R	glProgramUniform										
+glProgramUniform3iv	R	glProgramUniform										
+glProgramUniform4iv	R	glProgramUniform										
+glProgramUniform1uiv	R	glProgramUniform										
+glProgramUniform2uiv	R	glProgramUniform										
+glProgramUniform3uiv	R	glProgramUniform										
+glProgramUniform4uiv	R	glProgramUniform										
+glProgramUniformMatrix2fv	R	glProgramUniform										
+glProgramUniformMatrix3fv	R	glProgramUniform										
+glProgramUniformMatrix4fv	R	glProgramUniform										
+glProgramUniformMatrix2x3fv	R	glProgramUniform										
+glProgramUniformMatrix3x2fv	R	glProgramUniform										
+glProgramUniformMatrix2x4fv	R	glProgramUniform										
+glProgramUniformMatrix4x2fv	R	glProgramUniform										
+glProgramUniformMatrix3x4fv	R	glProgramUniform										
+glProgramUniformMatrix4x3fv	R	glProgramUniform										
+glProvokingVertex	A										<pre><code>void glProvokingVertex(GLenum provokeMode)</code></pre> specifiy the vertex to be used as the source of data for flat shaded varyings	http://www.opengl.org/sdk/docs/man/html/glProvokingVertex.xhtml
+glPushDebugGroup	A										<pre><code>void glPushDebugGroup(GLenum source, GLuint id, GLsizei length, const char * message)</code></pre> push a named debug group into the command stream	http://www.opengl.org/sdk/docs/man/html/glPushDebugGroup.xhtml
+glQueryCounter	A										<pre><code>void glQueryCounter(GLuint id, GLenum target)</code></pre> record the GL time into a query object after all previous commands have reached the GL server but have not yet necessarily executed.	http://www.opengl.org/sdk/docs/man/html/glQueryCounter.xhtml
+glReadBuffer	A										<pre><code>void glReadBuffer(GLenum mode)</code></pre> select a color buffer source for pixels	http://www.opengl.org/sdk/docs/man/html/glReadBuffer.xhtml
+glReadPixels	A										<pre><code>void glReadPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid * data)</code></pre> read a block of pixels from the frame buffer	http://www.opengl.org/sdk/docs/man/html/glReadPixels.xhtml
+glReleaseShaderCompiler	A										<pre><code>void glReleaseShaderCompiler(void)</code></pre> release resources consumed by the implementation's shader compiler	http://www.opengl.org/sdk/docs/man/html/glReleaseShaderCompiler.xhtml
+glRenderbufferStorage	A										<pre><code>void glRenderbufferStorage(GLenum target, GLenum internalformat, GLsizei width, GLsizei height)</code></pre> establish data storage, format and dimensions of a renderbuffer object's image	http://www.opengl.org/sdk/docs/man/html/glRenderbufferStorage.xhtml
+glRenderbufferStorageMultisample	A										<pre><code>void glRenderbufferStorageMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height)</code></pre> establish data storage, format, dimensions and sample count of a renderbuffer object's image	http://www.opengl.org/sdk/docs/man/html/glRenderbufferStorageMultisample.xhtml
+glResumeTransformFeedback	A										<pre><code>void glResumeTransformFeedback(void)</code></pre> resume transform feedback operations	http://www.opengl.org/sdk/docs/man/html/glResumeTransformFeedback.xhtml
+glSampleCoverage	A										<pre><code>void glSampleCoverage(GLfloat value, GLboolean invert)</code></pre> specify multisample coverage parameters	http://www.opengl.org/sdk/docs/man/html/glSampleCoverage.xhtml
+glSampleMaski	A										<pre><code>void glSampleMaski(GLuint maskNumber, GLbitfield mask)</code></pre> set the value of a sub-word of the sample mask	http://www.opengl.org/sdk/docs/man/html/glSampleMaski.xhtml
+glSamplerParameter	A										<pre><code>void glSamplerParameterf(GLuint sampler, GLenum pname, GLfloat param)<br>void glSamplerParameteri(GLuint sampler, GLenum pname, GLint param)<br>void glSamplerParameterfv(GLuint sampler, GLenum pname, const GLfloat * params)<br>...</code></pre> set sampler parameters	http://www.opengl.org/sdk/docs/man/html/glSamplerParameter.xhtml
+glSamplerParameterf	R	glSamplerParameter										
+glSamplerParameteri	R	glSamplerParameter										
+glSamplerParameterfv	R	glSamplerParameter										
+glSamplerParameteriv	R	glSamplerParameter										
+glSamplerParameterIiv	R	glSamplerParameter										
+glSamplerParameterIuiv	R	glSamplerParameter										
+glScissor	A										<pre><code>void glScissor(GLint x, GLint y, GLsizei width, GLsizei height)</code></pre> define the scissor box	http://www.opengl.org/sdk/docs/man/html/glScissor.xhtml
+glScissorArray	A										<pre><code>void glScissorArrayv(GLuint first, GLsizei count, const GLint *v)</code></pre> define the scissor box for multiple viewports	http://www.opengl.org/sdk/docs/man/html/glScissorArray.xhtml
+glScissorArrayv	R	glScissorArray										
+glScissorIndexed	A										<pre><code>void glScissorIndexed(GLuint index, GLint left, GLint bottom, GLsizei width, GLsizei height)<br>void glScissorIndexedv(GLuint index, const GLint *v)</code></pre> define the scissor box for a specific viewport	http://www.opengl.org/sdk/docs/man/html/glScissorIndexed.xhtml
+glScissorIndexedv	R	glScissorIndexed										
+glShaderBinary	A										<pre><code>void glShaderBinary(GLsizei count, const GLuint *shaders, GLenum binaryFormat, const void *binary, GLsizei length)</code></pre> load pre-compiled shader binaries	http://www.opengl.org/sdk/docs/man/html/glShaderBinary.xhtml
+glShaderSource	A										<pre><code>void glShaderSource(GLuint shader, GLsizei count, const GLchar **string, const GLint *length)</code></pre> Replaces the source code in a shader object	http://www.opengl.org/sdk/docs/man/html/glShaderSource.xhtml
+glShaderStorageBlockBinding	A										<pre><code>void glShaderStorageBlockBinding(GLuint program, GLuint storageBlockIndex, GLuint storageBlockBinding)</code></pre> change an active shader storage block binding	http://www.opengl.org/sdk/docs/man/html/glShaderStorageBlockBinding.xhtml
+glStencilFunc	A										<pre><code>void glStencilFunc(GLenum func, GLint ref, GLuint mask)</code></pre> set front and back function and reference value for stencil testing	http://www.opengl.org/sdk/docs/man/html/glStencilFunc.xhtml
+glStencilFuncSeparate	A										<pre><code>void glStencilFuncSeparate(GLenum face, GLenum func, GLint ref, GLuint mask)</code></pre> set front and/or back function and reference value for stencil testing	http://www.opengl.org/sdk/docs/man/html/glStencilFuncSeparate.xhtml
+glStencilMask	A										<pre><code>void glStencilMask(GLuint mask)</code></pre> control the front and back writing of individual bits in the stencil planes	http://www.opengl.org/sdk/docs/man/html/glStencilMask.xhtml
+glStencilMaskSeparate	A										<pre><code>void glStencilMaskSeparate(GLenum face, GLuint mask)</code></pre> control the front and/or back writing of individual bits in the stencil planes	http://www.opengl.org/sdk/docs/man/html/glStencilMaskSeparate.xhtml
+glStencilOp	A										<pre><code>void glStencilOp(GLenum sfail, GLenum dpfail, GLenum dppass)</code></pre> set front and back stencil test actions	http://www.opengl.org/sdk/docs/man/html/glStencilOp.xhtml
+glStencilOpSeparate	A										<pre><code>void glStencilOpSeparate(GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass)</code></pre> set front and/or back stencil test actions	http://www.opengl.org/sdk/docs/man/html/glStencilOpSeparate.xhtml
+glTexBuffer	A										<pre><code>void glTexBuffer(GLenum target, GLenum internalFormat, GLuint buffer)</code></pre> attach the storage for a buffer object to the active buffer texture	http://www.opengl.org/sdk/docs/man/html/glTexBuffer.xhtml
+glTexBufferRange	A										<pre><code>void glTexBufferRange(GLenum target, GLenum internalFormat, GLuint buffer, GLintptr offset, GLsizeiptr size)</code></pre> bind a range of a buffer's data store to a buffer texture	http://www.opengl.org/sdk/docs/man/html/glTexBufferRange.xhtml
+glTexImage1D	A										<pre><code>void glTexImage1D(GLenum target, GLint level, GLint internalFormat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid * data)</code></pre> specify a one-dimensional texture image	http://www.opengl.org/sdk/docs/man/html/glTexImage1D.xhtml
+glTexImage2D	A										<pre><code>void glTexImage2D(GLenum target, GLint level, GLint internalFormat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid * data)</code></pre> specify a two-dimensional texture image	http://www.opengl.org/sdk/docs/man/html/glTexImage2D.xhtml
+glTexImage2DMultisample	A										<pre><code>void glTexImage2DMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)</code></pre> establish the data storage, format, dimensions, and number of samples of a multisample texture's image	http://www.opengl.org/sdk/docs/man/html/glTexImage2DMultisample.xhtml
+glTexImage3D	A										<pre><code>void glTexImage3D(GLenum target, GLint level, GLint internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const GLvoid * data)</code></pre> specify a three-dimensional texture image	http://www.opengl.org/sdk/docs/man/html/glTexImage3D.xhtml
+glTexImage3DMultisample	A										<pre><code>void glTexImage3DMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)</code></pre> establish the data storage, format, dimensions, and number of samples of a multisample texture's image	http://www.opengl.org/sdk/docs/man/html/glTexImage3DMultisample.xhtml
+glTexParameter	A										<pre><code>void glTexParameterf(GLenum target, GLenum pname, GLfloat param)<br>void glTexParameteri(GLenum target, GLenum pname, GLint param)<br>void glTexParameterfv(GLenum target, GLenum pname, const GLfloat * params)<br>...</code></pre> set texture parameters	http://www.opengl.org/sdk/docs/man/html/glTexParameter.xhtml
+glTexParameterf	R	glTexParameter										
+glTexParameteri	R	glTexParameter										
+glTexParameterfv	R	glTexParameter										
+glTexParameteriv	R	glTexParameter										
+glTexParameterIiv	R	glTexParameter										
+glTexParameterIuiv	R	glTexParameter										
+glTexStorage1D	A										<pre><code>void glTexStorage1D(GLenum target, GLsizei levels, GLenum internalformat, GLsizei width)</code></pre> simultaneously specify storage for all levels of a one-dimensional texture	http://www.opengl.org/sdk/docs/man/html/glTexStorage1D.xhtml
+glTexStorage2D	A										<pre><code>void glTexStorage2D(GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height)</code></pre> simultaneously specify storage for all levels of a two-dimensional or one-dimensional array texture	http://www.opengl.org/sdk/docs/man/html/glTexStorage2D.xhtml
+glTexStorage2DMultisample	A										<pre><code>void glTexStorage2DMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations)</code></pre> specify storage for a two-dimensional multisample texture	http://www.opengl.org/sdk/docs/man/html/glTexStorage2DMultisample.xhtml
+glTexStorage3D	A										<pre><code>void glTexStorage3D(GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth)</code></pre> simultaneously specify storage for all levels of a three-dimensional, two-dimensional array or cube-map array texture	http://www.opengl.org/sdk/docs/man/html/glTexStorage3D.xhtml
+glTexStorage3DMultisample	A										<pre><code>void glTexStorage3DMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations)</code></pre> specify storage for a two-dimensional multisample array texture	http://www.opengl.org/sdk/docs/man/html/glTexStorage3DMultisample.xhtml
+glTexSubImage1D	A										<pre><code>void glTexSubImage1D(GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const GLvoid * data)</code></pre> specify a one-dimensional texture subimage	http://www.opengl.org/sdk/docs/man/html/glTexSubImage1D.xhtml
+glTexSubImage2D	A										<pre><code>void glTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid * data)</code></pre> specify a two-dimensional texture subimage	http://www.opengl.org/sdk/docs/man/html/glTexSubImage2D.xhtml
+glTexSubImage3D	A										<pre><code>void glTexSubImage3D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const GLvoid * data)</code></pre> specify a three-dimensional texture subimage	http://www.opengl.org/sdk/docs/man/html/glTexSubImage3D.xhtml
+glTextureView	A										<pre><code>void glTextureView(GLuint texture, GLenum target, GLuint origtexture, GLenum internalformat, GLuint minlevel, GLuint numlevels, GLuint minlayer, GLuint numlayers)</code></pre> initialize a texture as a data alias of another texture's data store	http://www.opengl.org/sdk/docs/man/html/glTextureView.xhtml
+glTransformFeedbackVaryings	A										<pre><code>void glTransformFeedbackVaryings(GLuintprogram, GLsizeicount, const char **varyings, GLenumbufferMode)</code></pre> specify values to record in transform feedback buffers	http://www.opengl.org/sdk/docs/man/html/glTransformFeedbackVaryings.xhtml
+glUniform	A										<pre><code>void glUniform1f(GLint location, GLfloat v0)<br>void glUniform2f(GLint location, GLfloat v0, GLfloat v1)<br>void glUniform3f(GLint location, GLfloat v0, GLfloat v1, GLfloat v2)<br>...</code></pre> Specify the value of a uniform variable for the current program object	http://www.opengl.org/sdk/docs/man/html/glUniform.xhtml
+glUniform1f	R	glUniform										
+glUniform2f	R	glUniform										
+glUniform3f	R	glUniform										
+glUniform4f	R	glUniform										
+glUniform1i	R	glUniform										
+glUniform2i	R	glUniform										
+glUniform3i	R	glUniform										
+glUniform4i	R	glUniform										
+glUniform1ui	R	glUniform										
+glUniform2ui	R	glUniform										
+glUniform3ui	R	glUniform										
+glUniform4ui	R	glUniform										
+glUniform1fv	R	glUniform										
+glUniform2fv	R	glUniform										
+glUniform3fv	R	glUniform										
+glUniform4fv	R	glUniform										
+glUniform1iv	R	glUniform										
+glUniform2iv	R	glUniform										
+glUniform3iv	R	glUniform										
+glUniform4iv	R	glUniform										
+glUniform1uiv	R	glUniform										
+glUniform2uiv	R	glUniform										
+glUniform3uiv	R	glUniform										
+glUniform4uiv	R	glUniform										
+glUniformMatrix2fv	R	glUniform										
+glUniformMatrix3fv	R	glUniform										
+glUniformMatrix4fv	R	glUniform										
+glUniformMatrix2x3fv	R	glUniform										
+glUniformMatrix3x2fv	R	glUniform										
+glUniformMatrix2x4fv	R	glUniform										
+glUniformMatrix4x2fv	R	glUniform										
+glUniformMatrix3x4fv	R	glUniform										
+glUniformMatrix4x3fv	R	glUniform										
+glUniformBlockBinding	A										<pre><code>void glUniformBlockBinding(GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding)</code></pre> assign a binding point to an active uniform block	http://www.opengl.org/sdk/docs/man/html/glUniformBlockBinding.xhtml
+glUniformSubroutines	A										<pre><code>void glUniformSubroutinesuiv(GLenum shadertype, GLsizei count, const GLuint *indices)</code></pre> load active subroutine uniforms	http://www.opengl.org/sdk/docs/man/html/glUniformSubroutines.xhtml
+glUniformSubroutinesuiv	R	glUniformSubroutines										
+glUseProgram	A										<pre><code>void glUseProgram(GLuint program)</code></pre> Installs a program object as part of current rendering state	http://www.opengl.org/sdk/docs/man/html/glUseProgram.xhtml
+glUseProgramStages	A										<pre><code>void glUseProgramStages(GLuint pipeline, GLbitfield stages, GLuint program)</code></pre> bind stages of a program object to a program pipeline	http://www.opengl.org/sdk/docs/man/html/glUseProgramStages.xhtml
+glValidateProgram	A										<pre><code>void glValidateProgram(GLuint program)</code></pre> Validates a program object	http://www.opengl.org/sdk/docs/man/html/glValidateProgram.xhtml
+glValidateProgramPipeline	A										<pre><code>void glValidateProgramPipeline(GLuint pipeline)</code></pre> validate a program pipeline object against current GL state	http://www.opengl.org/sdk/docs/man/html/glValidateProgramPipeline.xhtml
+glVertexAttrib	A										<pre><code>void glVertexAttrib1f(GLuint index, GLfloat v0)<br>void glVertexAttrib1s(GLuint index, GLshort v0)<br>void glVertexAttrib1d(GLuint index, GLdouble v0)<br>...</code></pre> Specifies the value of a generic vertex attribute	http://www.opengl.org/sdk/docs/man/html/glVertexAttrib.xhtml
+glVertexAttrib1f	R	glVertexAttrib										
+glVertexAttrib1s	R	glVertexAttrib										
+glVertexAttrib1d	R	glVertexAttrib										
+glVertexAttribI1i	R	glVertexAttrib										
+glVertexAttribI1ui	R	glVertexAttrib										
+glVertexAttrib2f	R	glVertexAttrib										
+glVertexAttrib2s	R	glVertexAttrib										
+glVertexAttrib2d	R	glVertexAttrib										
+glVertexAttribI2i	R	glVertexAttrib										
+glVertexAttribI2ui	R	glVertexAttrib										
+glVertexAttrib3f	R	glVertexAttrib										
+glVertexAttrib3s	R	glVertexAttrib										
+glVertexAttrib3d	R	glVertexAttrib										
+glVertexAttribI3i	R	glVertexAttrib										
+glVertexAttribI3ui	R	glVertexAttrib										
+glVertexAttrib4f	R	glVertexAttrib										
+glVertexAttrib4s	R	glVertexAttrib										
+glVertexAttrib4d	R	glVertexAttrib										
+glVertexAttrib4Nub	R	glVertexAttrib										
+glVertexAttribI4i	R	glVertexAttrib										
+glVertexAttribI4ui	R	glVertexAttrib										
+glVertexAttribL1d	R	glVertexAttrib										
+glVertexAttribL2d	R	glVertexAttrib										
+glVertexAttribL3d	R	glVertexAttrib										
+glVertexAttribL4d	R	glVertexAttrib										
+glVertexAttrib1fv	R	glVertexAttrib										
+glVertexAttrib1sv	R	glVertexAttrib										
+glVertexAttrib1dv	R	glVertexAttrib										
+glVertexAttribI1iv	R	glVertexAttrib										
+glVertexAttribI1uiv	R	glVertexAttrib										
+glVertexAttrib2fv	R	glVertexAttrib										
+glVertexAttrib2sv	R	glVertexAttrib										
+glVertexAttrib2dv	R	glVertexAttrib										
+glVertexAttribI2iv	R	glVertexAttrib										
+glVertexAttribI2uiv	R	glVertexAttrib										
+glVertexAttrib3fv	R	glVertexAttrib										
+glVertexAttrib3sv	R	glVertexAttrib										
+glVertexAttrib3dv	R	glVertexAttrib										
+glVertexAttribI3iv	R	glVertexAttrib										
+glVertexAttribI3uiv	R	glVertexAttrib										
+glVertexAttrib4fv	R	glVertexAttrib										
+glVertexAttrib4sv	R	glVertexAttrib										
+glVertexAttrib4dv	R	glVertexAttrib										
+glVertexAttrib4iv	R	glVertexAttrib										
+glVertexAttrib4bv	R	glVertexAttrib										
+glVertexAttrib4ubv	R	glVertexAttrib										
+glVertexAttrib4usv	R	glVertexAttrib										
+glVertexAttrib4uiv	R	glVertexAttrib										
+glVertexAttrib4Nbv	R	glVertexAttrib										
+glVertexAttrib4Nsv	R	glVertexAttrib										
+glVertexAttrib4Niv	R	glVertexAttrib										
+glVertexAttrib4Nubv	R	glVertexAttrib										
+glVertexAttrib4Nusv	R	glVertexAttrib										
+glVertexAttrib4Nuiv	R	glVertexAttrib										
+glVertexAttribI4bv	R	glVertexAttrib										
+glVertexAttribI4ubv	R	glVertexAttrib										
+glVertexAttribI4sv	R	glVertexAttrib										
+glVertexAttribI4usv	R	glVertexAttrib										
+glVertexAttribI4iv	R	glVertexAttrib										
+glVertexAttribI4uiv	R	glVertexAttrib										
+glVertexAttribL1dv	R	glVertexAttrib										
+glVertexAttribL2dv	R	glVertexAttrib										
+glVertexAttribL3dv	R	glVertexAttrib										
+glVertexAttribL4dv	R	glVertexAttrib										
+glVertexAttribP1ui	R	glVertexAttrib										
+glVertexAttribP2ui	R	glVertexAttrib										
+glVertexAttribP3ui	R	glVertexAttrib										
+glVertexAttribP4ui	R	glVertexAttrib										
+glVertexAttribBinding	A										<pre><code>void glVertexAttribBinding(GLuint attribindex, GLuint bindingindex)</code></pre> associate a vertex attribute and a vertex buffer binding	http://www.opengl.org/sdk/docs/man/html/glVertexAttribBinding.xhtml
+glVertexAttribDivisor	A										<pre><code>void glVertexAttribDivisor(GLuint index, GLuint divisor)</code></pre> modify the rate at which generic vertex attributes advance during instanced rendering	http://www.opengl.org/sdk/docs/man/html/glVertexAttribDivisor.xhtml
+glVertexAttribFormat	A										<pre><code>void glVertexAttribFormat(GLuint attribindex, GLint size, GLenum type, GLboolean normalized, GLuint relativeoffset)<br>void glVertexAttribIFormat(GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)<br>void glVertexAttribLFormat(GLuint attribindex, GLint size, GLenum type, GLuint relativeoffset)</code></pre> specify the organization of vertex arrays	http://www.opengl.org/sdk/docs/man/html/glVertexAttribFormat.xhtml
+glVertexAttribIFormat	R	glVertexAttribFormat										
+glVertexAttribLFormat	R	glVertexAttribFormat										
+glVertexAttribPointer	A										<pre><code>void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid * pointer)<br>void glVertexAttribIPointer(GLuint index, GLint size, GLenum type, GLsizei stride, const GLvoid * pointer)<br>void glVertexAttribLPointer(GLuint index, GLint size, GLenum type, GLsizei stride, const GLvoid * pointer)</code></pre> define an array of generic vertex attribute data	http://www.opengl.org/sdk/docs/man/html/glVertexAttribPointer.xhtml
+glVertexAttribIPointer	R	glVertexAttribPointer										
+glVertexAttribLPointer	R	glVertexAttribPointer										
+glVertexBindingDivisor	A										<pre><code>void glVertexBindingDivisor(GLuint bindingindex, GLuint divisor)</code></pre> modify the rate at which generic vertex attributes advance	http://www.opengl.org/sdk/docs/man/html/glVertexBindingDivisor.xhtml
+glViewport	A										<pre><code>void glViewport(GLint x, GLint y, GLsizei width, GLsizei height)</code></pre> set the viewport	http://www.opengl.org/sdk/docs/man/html/glViewport.xhtml
+glViewportArray	A										<pre><code>void glViewportArrayv(GLuint first, GLsizei count, const GLfloat *v)</code></pre> set multiple viewports	http://www.opengl.org/sdk/docs/man/html/glViewportArray.xhtml
+glViewportArrayv	R	glViewportArray										
+glViewportIndexed	A										<pre><code>void glViewportIndexedf(GLuint index, GLfloat x, GLfloat y, GLfloat w, GLfloat h)<br>void glViewportIndexedfv(GLuint index, const GLfloat *v)</code></pre> set a specified viewport	http://www.opengl.org/sdk/docs/man/html/glViewportIndexed.xhtml
+glViewportIndexedf	R	glViewportIndexed										
+glViewportIndexedfv	R	glViewportIndexed										
+glWaitSync	A										<pre><code>void glWaitSync(GLsync sync, GLbitfield flags, GLuint64 timeout)</code></pre> instruct the GL server to block until the specified sync object becomes signaled	http://www.opengl.org/sdk/docs/man/html/glWaitSync.xhtml
