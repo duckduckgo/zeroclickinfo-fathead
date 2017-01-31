@@ -7,7 +7,7 @@ import re
 INFILE = 'download/docs.html'
 OUTFILE = 'output.txt'
 
-abstract_fmt = '<section class="prog__container"><p>{}{}</p></section>'
+abstract_fmt = '<section class="prog__container"><p>{}</p>{}</section>'
 url_fmt = 'https://arrow.readthedocs.io/en/latest/%s'
 
 
