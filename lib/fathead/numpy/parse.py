@@ -368,7 +368,11 @@ def scrub_text(text):
     text : str
         Text to clean up.
     """
-    scrubbed_text = text.rstrip().replace("\n", "\\n").replace("\t", " "*4)
+    scrubbed_text = text.rstrip()
+    scrubbed_text = scrubbed_text.replace("\\x", "\\\\x")
+    scrubbed_text = scrubbed_text.replace("\0", "\\0")
+    scrubbed_text = scrubbed_text.replace("\n", "\\n")
+    scrubbed_text = scrubbed_text.replace("\t", " "*4)
     return scrubbed_text
 
 
