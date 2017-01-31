@@ -19,5 +19,10 @@ do
     temp_file="$download_dir/$REPLY";
     echo "processing $counter/$total_files: $temp_file";
     ./parse.js ${temp_file} >> ${output};
+    
+    #removing the last line if it is empty
+    last_line=$(tail -n 1 ${output});
+    [ -z "$last_line" ] && sed -i '$ d' ${output}
+
     counter=$((counter+1));
 done;
