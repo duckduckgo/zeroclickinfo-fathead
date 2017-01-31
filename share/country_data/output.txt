@@ -1,0 +1,233 @@
+GDP (in US $) of Canada	A										The GDP (in US $) of Canada in 2013 was 1826768562832.01	http://data.worldbank.org/country/Canada
+GDP (in US $) of Sao Tome and Principe	A										The GDP (in US $) of Sao Tome and Principe in 2013 was 310684635.73614	http://data.worldbank.org/country/Sao-Tome-and-Principe
+GDP (in US $) of Turkmenistan	A										The GDP (in US $) of Turkmenistan in 2013 was 41850877192.9825	http://data.worldbank.org/country/Turkmenistan
+GDP (in US $) of Lao PDR	A										The GDP (in US $) of Lao PDR in 2013 was 11242526454.037	http://data.worldbank.org/country/Lao-PDR
+GDP (in US $) of Arab World	A										The GDP (in US $) of Arab World in 2013 was 2853079422136.26	http://data.worldbank.org/country/Arab-World
+GDP (in US $) of Latin America & Caribbean (all income levels)	A										The GDP (in US $) of Latin America & Caribbean (all income levels) in 2013 was 6158278891980.05	http://data.worldbank.org/country/Latin-America-&-Caribbean-(all-income-levels)
+GDP (in US $) of Cambodia	A										The GDP (in US $) of Cambodia in 2013 was 15238689686.4362	http://data.worldbank.org/country/Cambodia
+GDP (in US $) of Ethiopia	A										The GDP (in US $) of Ethiopia in 2013 was 47525186490.0517	http://data.worldbank.org/country/Ethiopia
+GDP (in US $) of Aruba	A										The GDP (in US $) of Aruba in 2013 was 2584463687.15084	http://data.worldbank.org/country/Aruba
+GDP (in US $) of Swaziland	A										The GDP (in US $) of Swaziland in 2013 was 3791304347.82609	http://data.worldbank.org/country/Swaziland
+GDP (in US $) of South Asia	A										The GDP (in US $) of South Asia in 2013 was 2369941573888.93	http://data.worldbank.org/country/South-Asia
+GDP (in US $) of Argentina	A										The GDP (in US $) of Argentina in 2013 was 609888971036.196	http://data.worldbank.org/country/Argentina
+GDP (in US $) of Bolivia	A										The GDP (in US $) of Bolivia in 2013 was 30601157742.4023	http://data.worldbank.org/country/Bolivia
+GDP (in US $) of Bahamas, The	A										The GDP (in US $) of Bahamas, The in 2013 was 8420000000	http://data.worldbank.org/country/Bahamas,-The
+GDP (in US $) of Burkina Faso	A										The GDP (in US $) of Burkina Faso in 2013 was 11582556068.3345	http://data.worldbank.org/country/Burkina-Faso
+GDP (in US $) of OECD members	A										The GDP (in US $) of OECD members in 2013 was 47976933999788.8	http://data.worldbank.org/country/OECD-members
+GDP (in US $) of Ghana	A										The GDP (in US $) of Ghana in 2013 was 48137027487.1795	http://data.worldbank.org/country/Ghana
+GDP (in US $) of Saudi Arabia	A										The GDP (in US $) of Saudi Arabia in 2013 was 748449600000	http://data.worldbank.org/country/Saudi-Arabia
+GDP (in US $) of Japan	A										The GDP (in US $) of Japan in 2013 was 4919563108372.5	http://data.worldbank.org/country/Japan
+GDP (in US $) of Channel Islands	A										The GDP (in US $) of Channel Islands in 2013 was 11514605842.3369	http://data.worldbank.org/country/Channel-Islands
+GDP (in US $) of Slovenia	A										The GDP (in US $) of Slovenia in 2013 was 47987303637.812	http://data.worldbank.org/country/Slovenia
+GDP (in US $) of Guatemala	A										The GDP (in US $) of Guatemala in 2013 was 53796709474.5953	http://data.worldbank.org/country/Guatemala
+GDP (in US $) of Bosnia and Herzegovina	A										The GDP (in US $) of Bosnia and Herzegovina in 2013 was 17851326454.4159	http://data.worldbank.org/country/Bosnia-and-Herzegovina
+GDP (in US $) of Kuwait	A										The GDP (in US $) of Kuwait in 2013 was 175830502497.796	http://data.worldbank.org/country/Kuwait
+GDP (in US $) of Russian Federation	A										The GDP (in US $) of Russian Federation in 2013 was 2096777030571.25	http://data.worldbank.org/country/Russian-Federation
+GDP (in US $) of Jordan	A										The GDP (in US $) of Jordan in 2013 was 33678500148	http://data.worldbank.org/country/Jordan
+GDP (in US $) of St. Lucia	A										The GDP (in US $) of St. Lucia in 2013 was 1335764111.11111	http://data.worldbank.org/country/St.-Lucia
+GDP (in US $) of Congo, Rep.	A										The GDP (in US $) of Congo, Rep. in 2013 was 14085852120.4761	http://data.worldbank.org/country/Congo,-Rep.
+GDP (in US $) of Dominica	A										The GDP (in US $) of Dominica in 2013 was 516666666.666667	http://data.worldbank.org/country/Dominica
+GDP (in US $) of Liberia	A										The GDP (in US $) of Liberia in 2013 was 1950960137.7301	http://data.worldbank.org/country/Liberia
+GDP (in US $) of Maldives	A										The GDP (in US $) of Maldives in 2013 was 2299843167.3684	http://data.worldbank.org/country/Maldives
+GDP (in US $) of East Asia & Pacific (all income levels)	A										The GDP (in US $) of East Asia & Pacific (all income levels) in 2013 was 20498590153853.7	http://data.worldbank.org/country/East-Asia-&-Pacific-(all-income-levels)
+GDP (in US $) of Lithuania	A										The GDP (in US $) of Lithuania in 2013 was 45931968473.664	http://data.worldbank.org/country/Lithuania
+GDP (in US $) of Tanzania	A										The GDP (in US $) of Tanzania in 2013 was 33225037489.6903	http://data.worldbank.org/country/Tanzania
+GDP (in US $) of Vietnam	A										The GDP (in US $) of Vietnam in 2013 was 171390003299.399	http://data.worldbank.org/country/Vietnam
+GDP (in US $) of Cabo Verde	A										The GDP (in US $) of Cabo Verde in 2013 was 1879402553.60154	http://data.worldbank.org/country/Cabo-Verde
+GDP (in US $) of Albania	A										The GDP (in US $) of Albania in 2013 was 12923240278.3416	http://data.worldbank.org/country/Albania
+GDP (in US $) of Gabon	A										The GDP (in US $) of Gabon in 2013 was 19343506598.656	http://data.worldbank.org/country/Gabon
+GDP (in US $) of Monaco	A										The GDP (in US $) of Monaco in 2013 was 6074506533.22213	http://data.worldbank.org/country/Monaco
+GDP (in US $) of New Zealand	A										The GDP (in US $) of New Zealand in 2013 was 185787824483.114	http://data.worldbank.org/country/New-Zealand
+GDP (in US $) of European Union	A										The GDP (in US $) of European Union in 2013 was 17958073311154.8	http://data.worldbank.org/country/European-Union
+GDP (in US $) of Jamaica	A										The GDP (in US $) of Jamaica in 2013 was 14362262584.9078	http://data.worldbank.org/country/Jamaica
+GDP (in US $) of Greenland	A										The GDP (in US $) of Greenland in 2013 was 1267711816.12426	http://data.worldbank.org/country/Greenland
+GDP (in US $) of Samoa	A										The GDP (in US $) of Samoa in 2013 was 801916057.595518	http://data.worldbank.org/country/Samoa
+GDP (in US $) of Slovak Republic	A										The GDP (in US $) of Slovak Republic in 2013 was 97707323420.0744	http://data.worldbank.org/country/Slovak-Republic
+GDP (in US $) of United Arab Emirates	A										The GDP (in US $) of United Arab Emirates in 2013 was 402340106795.685	http://data.worldbank.org/country/United-Arab-Emirates
+GDP (in US $) of Uruguay	A										The GDP (in US $) of Uruguay in 2013 was 55707944621.9719	http://data.worldbank.org/country/Uruguay
+GDP (in US $) of India	A										The GDP (in US $) of India in 2013 was 1876797199132.6	http://data.worldbank.org/country/India
+GDP (in US $) of Azerbaijan	A										The GDP (in US $) of Azerbaijan in 2013 was 73560484384.9586	http://data.worldbank.org/country/Azerbaijan
+GDP (in US $) of Lesotho	A										The GDP (in US $) of Lesotho in 2013 was 2334989648.03313	http://data.worldbank.org/country/Lesotho
+GDP (in US $) of Kenya	A										The GDP (in US $) of Kenya in 2013 was 55243056200.6503	http://data.worldbank.org/country/Kenya
+GDP (in US $) of Upper middle income	A										The GDP (in US $) of Upper middle income in 2013 was 18687365790575.7	http://data.worldbank.org/country/Upper-middle-income
+GDP (in US $) of Tajikistan	A										The GDP (in US $) of Tajikistan in 2013 was 8508103455.51497	http://data.worldbank.org/country/Tajikistan
+GDP (in US $) of Pacific island small states	A										The GDP (in US $) of Pacific island small states in 2013 was 8009303950.85642	http://data.worldbank.org/country/Pacific-island-small-states
+GDP (in US $) of Turkey	A										The GDP (in US $) of Turkey in 2013 was 822135183159.996	http://data.worldbank.org/country/Turkey
+GDP (in US $) of Afghanistan	A										The GDP (in US $) of Afghanistan in 2013 was 20309671014.6236	http://data.worldbank.org/country/Afghanistan
+GDP (in US $) of Venezuela, RB	A										The GDP (in US $) of Venezuela, RB in 2013 was 438283564814.815	http://data.worldbank.org/country/Venezuela,-RB
+GDP (in US $) of Bangladesh	A										The GDP (in US $) of Bangladesh in 2013 was 149990454541.474	http://data.worldbank.org/country/Bangladesh
+GDP (in US $) of Mauritania	A										The GDP (in US $) of Mauritania in 2013 was 4158182904.24541	http://data.worldbank.org/country/Mauritania
+GDP (in US $) of Solomon Islands	A										The GDP (in US $) of Solomon Islands in 2013 was 1096396926.91144	http://data.worldbank.org/country/Solomon-Islands
+GDP (in US $) of Korea, Rep.	A										The GDP (in US $) of Korea, Rep. in 2013 was 1304553972501.69	http://data.worldbank.org/country/Korea,-Rep.
+GDP (in US $) of San Marino	A										The GDP (in US $) of San Marino in 2013 was 1899809579.61037	http://data.worldbank.org/country/San-Marino
+GDP (in US $) of Mongolia	A										The GDP (in US $) of Mongolia in 2013 was 11516409581.2988	http://data.worldbank.org/country/Mongolia
+GDP (in US $) of France	A										The GDP (in US $) of France in 2013 was 2806427978233.99	http://data.worldbank.org/country/France
+GDP (in US $) of Syrian Arab Republic	A										The GDP (in US $) of Syrian Arab Republic in 2013 was 40405006007.2086	http://data.worldbank.org/country/Syrian-Arab-Republic
+GDP (in US $) of Bermuda	A										The GDP (in US $) of Bermuda in 2013 was 5473536000	http://data.worldbank.org/country/Bermuda
+GDP (in US $) of Namibia	A										The GDP (in US $) of Namibia in 2013 was 13113069776.5948	http://data.worldbank.org/country/Namibia
+GDP (in US $) of Peru	A										The GDP (in US $) of Peru in 2013 was 202349846974.371	http://data.worldbank.org/country/Peru
+GDP (in US $) of Vanuatu	A										The GDP (in US $) of Vanuatu in 2013 was 828237181.13311	http://data.worldbank.org/country/Vanuatu
+GDP (in US $) of Nigeria	A										The GDP (in US $) of Nigeria in 2013 was 521803314653.784	http://data.worldbank.org/country/Nigeria
+GDP (in US $) of Seychelles	A										The GDP (in US $) of Seychelles in 2013 was 1443345214.37698	http://data.worldbank.org/country/Seychelles
+GDP (in US $) of Norway	A										The GDP (in US $) of Norway in 2013 was 512580425531.915	http://data.worldbank.org/country/Norway
+GDP (in US $) of Cote d'Ivoire	A										The GDP (in US $) of Cote d'Ivoire in 2013 was 31062026533.1508	http://data.worldbank.org/country/Cote-d'Ivoire
+GDP (in US $) of Europe & Central Asia (developing only)	A										The GDP (in US $) of Europe & Central Asia (developing only) in 2013 was 2001154446704.21	http://data.worldbank.org/country/Europe-&-Central-Asia-(developing-only)
+GDP (in US $) of Benin	A										The GDP (in US $) of Benin in 2013 was 8307222087.28038	http://data.worldbank.org/country/Benin
+GDP (in US $) of Other small states	A										The GDP (in US $) of Other small states in 2013 was 98229548568.3187	http://data.worldbank.org/country/Other-small-states
+GDP (in US $) of Cuba	A										The GDP (in US $) of Cuba in 2013 was 68233900000	http://data.worldbank.org/country/Cuba
+GDP (in US $) of Cameroon	A										The GDP (in US $) of Cameroon in 2013 was 29567504655.4935	http://data.worldbank.org/country/Cameroon
+GDP (in US $) of Montenegro	A										The GDP (in US $) of Montenegro in 2013 was 4416083089.99204	http://data.worldbank.org/country/Montenegro
+GDP (in US $) of Low & middle income	A										The GDP (in US $) of Low & middle income in 2013 was 24547721876578.7	http://data.worldbank.org/country/Low-&-middle-income
+GDP (in US $) of Togo	A										The GDP (in US $) of Togo in 2013 was 4338575823.81993	http://data.worldbank.org/country/Togo
+GDP (in US $) of China	A										The GDP (in US $) of China in 2013 was 9240270452046.99	http://data.worldbank.org/country/China
+GDP (in US $) of Sub-Saharan Africa (developing only)	A										The GDP (in US $) of Sub-Saharan Africa (developing only) in 2013 was 1612862847736.08	http://data.worldbank.org/country/Sub-Saharan-Africa-(developing-only)
+GDP (in US $) of Armenia	A										The GDP (in US $) of Armenia in 2013 was 10432169571.25	http://data.worldbank.org/country/Armenia
+GDP (in US $) of Small states	A										The GDP (in US $) of Small states in 2013 was 173269710559.452	http://data.worldbank.org/country/Small-states
+GDP (in US $) of Timor-Leste	A										The GDP (in US $) of Timor-Leste in 2013 was 1270000000	http://data.worldbank.org/country/Timor-Leste
+GDP (in US $) of Dominican Republic	A										The GDP (in US $) of Dominican Republic in 2013 was 61163676804.5466	http://data.worldbank.org/country/Dominican-Republic
+GDP (in US $) of Low income	A										The GDP (in US $) of Low income in 2013 was 612710062255.673	http://data.worldbank.org/country/Low-income
+GDP (in US $) of Ukraine	A										The GDP (in US $) of Ukraine in 2013 was 177430609756.098	http://data.worldbank.org/country/Ukraine
+GDP (in US $) of Bahrain	A										The GDP (in US $) of Bahrain in 2013 was 32890110533.0908	http://data.worldbank.org/country/Bahrain
+GDP (in US $) of Tonga	A										The GDP (in US $) of Tonga in 2013 was 466259084.092744	http://data.worldbank.org/country/Tonga
+GDP (in US $) of Indonesia	A										The GDP (in US $) of Indonesia in 2013 was 868345652474.898	http://data.worldbank.org/country/Indonesia
+GDP (in US $) of Latin America & Caribbean (developing only)	A										The GDP (in US $) of Latin America & Caribbean (developing only) in 2013 was 5657371727400.43	http://data.worldbank.org/country/Latin-America-&-Caribbean-(developing-only)
+GDP (in US $) of High income	A										The GDP (in US $) of High income in 2013 was 51091047558548	http://data.worldbank.org/country/High-income
+GDP (in US $) of Libya	A										The GDP (in US $) of Libya in 2013 was 74199528672.4273	http://data.worldbank.org/country/Libya
+GDP (in US $) of Finland	A										The GDP (in US $) of Finland in 2013 was 267328613728.338	http://data.worldbank.org/country/Finland
+GDP (in US $) of Central African Republic	A										The GDP (in US $) of Central African Republic in 2013 was 1538175744.07775	http://data.worldbank.org/country/Central-African-Republic
+GDP (in US $) of Europe & Central Asia (all income levels)	A										The GDP (in US $) of Europe & Central Asia (all income levels) in 2013 was 22920192854590.2	http://data.worldbank.org/country/Europe-&-Central-Asia-(all-income-levels)
+GDP (in US $) of Mauritius	A										The GDP (in US $) of Mauritius in 2013 was 11929250814.3322	http://data.worldbank.org/country/Mauritius
+GDP (in US $) of Liechtenstein	A										The GDP (in US $) of Liechtenstein in 2013 was 4826167676.3641	http://data.worldbank.org/country/Liechtenstein
+GDP (in US $) of Belarus	A										The GDP (in US $) of Belarus in 2013 was 71709513654.3393	http://data.worldbank.org/country/Belarus
+GDP (in US $) of Mali	A										The GDP (in US $) of Mali in 2013 was 10942727309.5296	http://data.worldbank.org/country/Mali
+GDP (in US $) of Micronesia, Fed. Sts.	A										The GDP (in US $) of Micronesia, Fed. Sts. in 2013 was 316245700	http://data.worldbank.org/country/Micronesia,-Fed.-Sts.
+GDP (in US $) of Bulgaria	A										The GDP (in US $) of Bulgaria in 2013 was 54479873099.8914	http://data.worldbank.org/country/Bulgaria
+GDP (in US $) of North America	A										The GDP (in US $) of North America in 2013 was 18600527817154.2	http://data.worldbank.org/country/North-America
+GDP (in US $) of Romania	A										The GDP (in US $) of Romania in 2013 was 189638162013.271	http://data.worldbank.org/country/Romania
+GDP (in US $) of Angola	A										The GDP (in US $) of Angola in 2013 was 124178241815.737	http://data.worldbank.org/country/Angola
+GDP (in US $) of Central Europe and the Baltics	A										The GDP (in US $) of Central Europe and the Baltics in 2013 was 1417536159600.65	http://data.worldbank.org/country/Central-Europe-and-the-Baltics
+GDP (in US $) of Egypt, Arab Rep.	A										The GDP (in US $) of Egypt, Arab Rep. in 2013 was 271972822883.38	http://data.worldbank.org/country/Egypt,-Arab-Rep.
+GDP (in US $) of Trinidad and Tobago	A										The GDP (in US $) of Trinidad and Tobago in 2013 was 24640839007.5918	http://data.worldbank.org/country/Trinidad-and-Tobago
+GDP (in US $) of St. Vincent and the Grenadines	A										The GDP (in US $) of St. Vincent and the Grenadines in 2013 was 709358185.185185	http://data.worldbank.org/country/St.-Vincent-and-the-Grenadines
+GDP (in US $) of Cyprus	A										The GDP (in US $) of Cyprus in 2013 was 21911444503.4519	http://data.worldbank.org/country/Cyprus
+GDP (in US $) of Caribbean small states	A										The GDP (in US $) of Caribbean small states in 2013 was 67033118185.1864	http://data.worldbank.org/country/Caribbean-small-states
+GDP (in US $) of Brunei Darussalam	A										The GDP (in US $) of Brunei Darussalam in 2013 was 16111135788.9616	http://data.worldbank.org/country/Brunei-Darussalam
+GDP (in US $) of Qatar	A										The GDP (in US $) of Qatar in 2013 was 203235158977.963	http://data.worldbank.org/country/Qatar
+GDP (in US $) of Middle income	A										The GDP (in US $) of Middle income in 2013 was 23925991489633.2	http://data.worldbank.org/country/Middle-income
+GDP (in US $) of Austria	A										The GDP (in US $) of Austria in 2013 was 428321897648.215	http://data.worldbank.org/country/Austria
+GDP (in US $) of High income: OECD	A										The GDP (in US $) of High income: OECD in 2013 was 45760460257039.8	http://data.worldbank.org/country/High-income:-OECD
+GDP (in US $) of Mozambique	A										The GDP (in US $) of Mozambique in 2013 was 15630302813.9535	http://data.worldbank.org/country/Mozambique
+GDP (in US $) of Uganda	A										The GDP (in US $) of Uganda in 2013 was 21493615478.373	http://data.worldbank.org/country/Uganda
+GDP (in US $) of Kyrgyz Republic	A										The GDP (in US $) of Kyrgyz Republic in 2013 was 7226303261.27573	http://data.worldbank.org/country/Kyrgyz-Republic
+GDP (in US $) of Hungary	A										The GDP (in US $) of Hungary in 2013 was 133423898611.949	http://data.worldbank.org/country/Hungary
+GDP (in US $) of Niger	A										The GDP (in US $) of Niger in 2013 was 7407418427.65768	http://data.worldbank.org/country/Niger
+GDP (in US $) of United States	A										The GDP (in US $) of United States in 2013 was 16768100000000	http://data.worldbank.org/country/United-States
+GDP (in US $) of Brazil	A										The GDP (in US $) of Brazil in 2013 was 2245673032353.76	http://data.worldbank.org/country/Brazil
+GDP (in US $) of World	A										The GDP (in US $) of World in 2013 was 75592940968183.3	http://data.worldbank.org/country/World
+GDP (in US $) of Middle East & North Africa (all income levels)	A										The GDP (in US $) of Middle East & North Africa (all income levels) in 2013 was 3442350270405.94	http://data.worldbank.org/country/Middle-East-&-North-Africa-(all-income-levels)
+GDP (in US $) of Guinea	A										The GDP (in US $) of Guinea in 2013 was 6144131903.01383	http://data.worldbank.org/country/Guinea
+GDP (in US $) of Panama	A										The GDP (in US $) of Panama in 2013 was 42648100000	http://data.worldbank.org/country/Panama
+GDP (in US $) of Costa Rica	A										The GDP (in US $) of Costa Rica in 2013 was 49621089476.1317	http://data.worldbank.org/country/Costa-Rica
+GDP (in US $) of Luxembourg	A										The GDP (in US $) of Luxembourg in 2013 was 60130847623.6353	http://data.worldbank.org/country/Luxembourg
+GDP (in US $) of Andorra	A										The GDP (in US $) of Andorra in 2013 was 3712034266.50674	http://data.worldbank.org/country/Andorra
+GDP (in US $) of Chad	A										The GDP (in US $) of Chad in 2013 was 13513552424.9049	http://data.worldbank.org/country/Chad
+GDP (in US $) of Euro area	A										The GDP (in US $) of Euro area in 2013 was 13148056314733.8	http://data.worldbank.org/country/Euro-area
+GDP (in US $) of Ireland	A										The GDP (in US $) of Ireland in 2013 was 232077419239.968	http://data.worldbank.org/country/Ireland
+GDP (in US $) of Pakistan	A										The GDP (in US $) of Pakistan in 2013 was 232286781110.56	http://data.worldbank.org/country/Pakistan
+GDP (in US $) of Palau	A										The GDP (in US $) of Palau in 2013 was 247043400	http://data.worldbank.org/country/Palau
+GDP (in US $) of Faeroe Islands	A										The GDP (in US $) of Faeroe Islands in 2013 was 2198138372.28824	http://data.worldbank.org/country/Faeroe-Islands
+GDP (in US $) of Lower middle income	A										The GDP (in US $) of Lower middle income in 2013 was 5234088255000.32	http://data.worldbank.org/country/Lower-middle-income
+GDP (in US $) of Ecuador	A										The GDP (in US $) of Ecuador in 2013 was 94472679000	http://data.worldbank.org/country/Ecuador
+GDP (in US $) of Czech Republic	A										The GDP (in US $) of Czech Republic in 2013 was 208796024645.834	http://data.worldbank.org/country/Czech-Republic
+GDP (in US $) of Australia	A										The GDP (in US $) of Australia in 2013 was 1560372473125.21	http://data.worldbank.org/country/Australia
+GDP (in US $) of Algeria	A										The GDP (in US $) of Algeria in 2013 was 210183410526.104	http://data.worldbank.org/country/Algeria
+GDP (in US $) of El Salvador	A										The GDP (in US $) of El Salvador in 2013 was 24259100000	http://data.worldbank.org/country/El-Salvador
+GDP (in US $) of Tuvalu	A										The GDP (in US $) of Tuvalu in 2013 was 38322359.5288666	http://data.worldbank.org/country/Tuvalu
+GDP (in US $) of St. Kitts and Nevis	A										The GDP (in US $) of St. Kitts and Nevis in 2013 was 765870666.666667	http://data.worldbank.org/country/St.-Kitts-and-Nevis
+GDP (in US $) of Marshall Islands	A										The GDP (in US $) of Marshall Islands in 2013 was 190914600	http://data.worldbank.org/country/Marshall-Islands
+GDP (in US $) of Chile	A										The GDP (in US $) of Chile in 2013 was 277198774856.807	http://data.worldbank.org/country/Chile
+GDP (in US $) of Puerto Rico	A										The GDP (in US $) of Puerto Rico in 2013 was 103134778000	http://data.worldbank.org/country/Puerto-Rico
+GDP (in US $) of Belgium	A										The GDP (in US $) of Belgium in 2013 was 524805525215.191	http://data.worldbank.org/country/Belgium
+GDP (in US $) of Kiribati	A										The GDP (in US $) of Kiribati in 2013 was 168951535.045376	http://data.worldbank.org/country/Kiribati
+GDP (in US $) of Haiti	A										The GDP (in US $) of Haiti in 2013 was 8459326659.75657	http://data.worldbank.org/country/Haiti
+GDP (in US $) of Belize	A										The GDP (in US $) of Belize in 2013 was 1624294250	http://data.worldbank.org/country/Belize
+GDP (in US $) of Fragile and conflict affected situations	A										The GDP (in US $) of Fragile and conflict affected situations in 2013 was 713498884107.841	http://data.worldbank.org/country/Fragile-and-conflict-affected-situations
+GDP (in US $) of Sierra Leone	A										The GDP (in US $) of Sierra Leone in 2013 was 4136280752.03693	http://data.worldbank.org/country/Sierra-Leone
+GDP (in US $) of Georgia	A										The GDP (in US $) of Georgia in 2013 was 16140047012.1438	http://data.worldbank.org/country/Georgia
+GDP (in US $) of East Asia & Pacific (developing only)	A										The GDP (in US $) of East Asia & Pacific (developing only) in 2013 was 11413581061319.8	http://data.worldbank.org/country/East-Asia-&-Pacific-(developing-only)
+GDP (in US $) of Denmark	A										The GDP (in US $) of Denmark in 2013 was 335877548363.831	http://data.worldbank.org/country/Denmark
+GDP (in US $) of Philippines	A										The GDP (in US $) of Philippines in 2013 was 272066554885.95	http://data.worldbank.org/country/Philippines
+GDP (in US $) of Moldova	A										The GDP (in US $) of Moldova in 2013 was 7969618965.90078	http://data.worldbank.org/country/Moldova
+GDP (in US $) of Macedonia, FYR	A										The GDP (in US $) of Macedonia, FYR in 2013 was 10195404131.453	http://data.worldbank.org/country/Macedonia,-FYR
+GDP (in US $) of Morocco	A										The GDP (in US $) of Morocco in 2013 was 103835702813.634	http://data.worldbank.org/country/Morocco
+GDP (in US $) of Croatia	A										The GDP (in US $) of Croatia in 2013 was 57868674297.5337	http://data.worldbank.org/country/Croatia
+GDP (in US $) of Guinea-Bissau	A										The GDP (in US $) of Guinea-Bissau in 2013 was 960778479.475346	http://data.worldbank.org/country/Guinea-Bissau
+GDP (in US $) of Thailand	A										The GDP (in US $) of Thailand in 2013 was 387252164290.829	http://data.worldbank.org/country/Thailand
+GDP (in US $) of Switzerland	A										The GDP (in US $) of Switzerland in 2013 was 685434185074.108	http://data.worldbank.org/country/Switzerland
+GDP (in US $) of Grenada	A										The GDP (in US $) of Grenada in 2013 was 835581688.946799	http://data.worldbank.org/country/Grenada
+GDP (in US $) of Yemen, Rep.	A										The GDP (in US $) of Yemen, Rep. in 2013 was 35954502303.5041	http://data.worldbank.org/country/Yemen,-Rep.
+GDP (in US $) of Isle of Man	A										The GDP (in US $) of Isle of Man in 2013 was 4075664785.25458	http://data.worldbank.org/country/Isle-of-Man
+GDP (in US $) of Portugal	A										The GDP (in US $) of Portugal in 2013 was 227323728006.703	http://data.worldbank.org/country/Portugal
+GDP (in US $) of Estonia	A										The GDP (in US $) of Estonia in 2013 was 24880264958.1187	http://data.worldbank.org/country/Estonia
+GDP (in US $) of Kosovo	A										The GDP (in US $) of Kosovo in 2013 was 7071959240.57355	http://data.worldbank.org/country/Kosovo
+GDP (in US $) of Sweden	A										The GDP (in US $) of Sweden in 2013 was 579679985303.385	http://data.worldbank.org/country/Sweden
+GDP (in US $) of Mexico	A										The GDP (in US $) of Mexico in 2013 was 1260914660977.14	http://data.worldbank.org/country/Mexico
+GDP (in US $) of Hong Kong SAR, China	A										The GDP (in US $) of Hong Kong SAR, China in 2013 was 274012815223.557	http://data.worldbank.org/country/Hong-Kong-SAR,-China
+GDP (in US $) of South Africa	A										The GDP (in US $) of South Africa in 2013 was 350630133297.428	http://data.worldbank.org/country/South-Africa
+GDP (in US $) of Uzbekistan	A										The GDP (in US $) of Uzbekistan in 2013 was 56795656324.5823	http://data.worldbank.org/country/Uzbekistan
+GDP (in US $) of West Bank and Gaza	A										The GDP (in US $) of West Bank and Gaza in 2013 was 11262141134.3655	http://data.worldbank.org/country/West-Bank-and-Gaza
+GDP (in US $) of Djibouti	A										The GDP (in US $) of Djibouti in 2013 was 1456344495.0231	http://data.worldbank.org/country/Djibouti
+GDP (in US $) of Rwanda	A										The GDP (in US $) of Rwanda in 2013 was 7521261790.62935	http://data.worldbank.org/country/Rwanda
+GDP (in US $) of Antigua and Barbuda	A										The GDP (in US $) of Antigua and Barbuda in 2013 was 1200587518.51852	http://data.worldbank.org/country/Antigua-and-Barbuda
+GDP (in US $) of Spain	A										The GDP (in US $) of Spain in 2013 was 1393040177013.68	http://data.worldbank.org/country/Spain
+GDP (in US $) of Colombia	A										The GDP (in US $) of Colombia in 2013 was 378415326790.081	http://data.worldbank.org/country/Colombia
+GDP (in US $) of Burundi	A										The GDP (in US $) of Burundi in 2013 was 2714507030.9757	http://data.worldbank.org/country/Burundi
+GDP (in US $) of Least developed countries: UN classification	A										The GDP (in US $) of Least developed countries: UN classification in 2013 was 804442152795.78	http://data.worldbank.org/country/Least-developed-countries:-UN-classification
+GDP (in US $) of Fiji	A										The GDP (in US $) of Fiji in 2013 was 3855017106.54936	http://data.worldbank.org/country/Fiji
+GDP (in US $) of Barbados	A										The GDP (in US $) of Barbados in 2013 was 4224850000	http://data.worldbank.org/country/Barbados
+GDP (in US $) of Madagascar	A										The GDP (in US $) of Madagascar in 2013 was 10613494031.3832	http://data.worldbank.org/country/Madagascar
+GDP (in US $) of Congo, Dem. Rep.	A										The GDP (in US $) of Congo, Dem. Rep. in 2013 was 32690896872.7644	http://data.worldbank.org/country/Congo,-Dem.-Rep.
+GDP (in US $) of Italy	A										The GDP (in US $) of Italy in 2013 was 2149484516711.75	http://data.worldbank.org/country/Italy
+GDP (in US $) of Bhutan	A										The GDP (in US $) of Bhutan in 2013 was 1781261412.5445	http://data.worldbank.org/country/Bhutan
+GDP (in US $) of Sudan	A										The GDP (in US $) of Sudan in 2013 was 66565889416.8701	http://data.worldbank.org/country/Sudan
+GDP (in US $) of Nepal	A										The GDP (in US $) of Nepal in 2013 was 19294348174.0026	http://data.worldbank.org/country/Nepal
+GDP (in US $) of Malta	A										The GDP (in US $) of Malta in 2013 was 9642326075.41158	http://data.worldbank.org/country/Malta
+GDP (in US $) of Netherlands	A										The GDP (in US $) of Netherlands in 2013 was 853539351964.458	http://data.worldbank.org/country/Netherlands
+GDP (in US $) of Macao SAR, China	A										The GDP (in US $) of Macao SAR, China in 2013 was 51753094764.2472	http://data.worldbank.org/country/Macao-SAR,-China
+GDP (in US $) of Suriname	A										The GDP (in US $) of Suriname in 2013 was 5298787878.78788	http://data.worldbank.org/country/Suriname
+GDP (in US $) of Middle East & North Africa (developing only)	A										The GDP (in US $) of Middle East & North Africa (developing only) in 2013 was 1495674086801.22	http://data.worldbank.org/country/Middle-East-&-North-Africa-(developing-only)
+GDP (in US $) of Iran, Islamic Rep.	A										The GDP (in US $) of Iran, Islamic Rep. in 2013 was 368904351626.505	http://data.worldbank.org/country/Iran,-Islamic-Rep.
+GDP (in US $) of Israel	A										The GDP (in US $) of Israel in 2013 was 290550599943.225	http://data.worldbank.org/country/Israel
+GDP (in US $) of Malaysia	A										The GDP (in US $) of Malaysia in 2013 was 313159097400.743	http://data.worldbank.org/country/Malaysia
+GDP (in US $) of Iceland	A										The GDP (in US $) of Iceland in 2013 was 15330057867.1487	http://data.worldbank.org/country/Iceland
+GDP (in US $) of Zambia	A										The GDP (in US $) of Zambia in 2013 was 26820870558.9406	http://data.worldbank.org/country/Zambia
+GDP (in US $) of Sub-Saharan Africa (all income levels)	A										The GDP (in US $) of Sub-Saharan Africa (all income levels) in 2013 was 1628604422995.17	http://data.worldbank.org/country/Sub-Saharan-Africa-(all-income-levels)
+GDP (in US $) of Senegal	A										The GDP (in US $) of Senegal in 2013 was 14791699008.5823	http://data.worldbank.org/country/Senegal
+GDP (in US $) of Papua New Guinea	A										The GDP (in US $) of Papua New Guinea in 2013 was 15289374025.3954	http://data.worldbank.org/country/Papua-New-Guinea
+GDP (in US $) of Malawi	A										The GDP (in US $) of Malawi in 2013 was 3705386789.60511	http://data.worldbank.org/country/Malawi
+GDP (in US $) of Zimbabwe	A										The GDP (in US $) of Zimbabwe in 2013 was 13490000000	http://data.worldbank.org/country/Zimbabwe
+GDP (in US $) of Germany	A										The GDP (in US $) of Germany in 2013 was 3730260571356.51	http://data.worldbank.org/country/Germany
+GDP (in US $) of Oman	A										The GDP (in US $) of Oman in 2013 was 79655917417.1363	http://data.worldbank.org/country/Oman
+GDP (in US $) of Kazakhstan	A										The GDP (in US $) of Kazakhstan in 2013 was 231876282133.87	http://data.worldbank.org/country/Kazakhstan
+GDP (in US $) of Poland	A										The GDP (in US $) of Poland in 2013 was 525865974814.909	http://data.worldbank.org/country/Poland
+GDP (in US $) of Eritrea	A										The GDP (in US $) of Eritrea in 2013 was 3444097560.97561	http://data.worldbank.org/country/Eritrea
+GDP (in US $) of Iraq	A										The GDP (in US $) of Iraq in 2013 was 229327284734.134	http://data.worldbank.org/country/Iraq
+GDP (in US $) of Paraguay	A										The GDP (in US $) of Paraguay in 2013 was 29009411737.9175	http://data.worldbank.org/country/Paraguay
+GDP (in US $) of Latvia	A										The GDP (in US $) of Latvia in 2013 was 30956691627.5877	http://data.worldbank.org/country/Latvia
+GDP (in US $) of South Sudan	A										The GDP (in US $) of South Sudan in 2013 was 11804406779.661	http://data.worldbank.org/country/South-Sudan
+GDP (in US $) of Guyana	A										The GDP (in US $) of Guyana in 2013 was 2990128820.97983	http://data.worldbank.org/country/Guyana
+GDP (in US $) of Honduras	A										The GDP (in US $) of Honduras in 2013 was 18550026034.7589	http://data.worldbank.org/country/Honduras
+GDP (in US $) of Equatorial Guinea	A										The GDP (in US $) of Equatorial Guinea in 2013 was 15580563835.9242	http://data.worldbank.org/country/Equatorial-Guinea
+GDP (in US $) of Tunisia	A										The GDP (in US $) of Tunisia in 2013 was 46993598818.2434	http://data.worldbank.org/country/Tunisia
+GDP (in US $) of Nicaragua	A										The GDP (in US $) of Nicaragua in 2013 was 11255608410.0506	http://data.worldbank.org/country/Nicaragua
+GDP (in US $) of Singapore	A										The GDP (in US $) of Singapore in 2013 was 297941261088.468	http://data.worldbank.org/country/Singapore
+GDP (in US $) of Serbia	A										The GDP (in US $) of Serbia in 2013 was 45519650911.4138	http://data.worldbank.org/country/Serbia
+GDP (in US $) of Botswana	A										The GDP (in US $) of Botswana in 2013 was 14784707345.2381	http://data.worldbank.org/country/Botswana
+GDP (in US $) of United Kingdom	A										The GDP (in US $) of United Kingdom in 2013 was 2678454886796.67	http://data.worldbank.org/country/United-Kingdom
+GDP (in US $) of Gambia, The	A										The GDP (in US $) of Gambia, The in 2013 was 903497025.655483	http://data.worldbank.org/country/Gambia,-The
+GDP (in US $) of High income: nonOECD	A										The GDP (in US $) of High income: nonOECD in 2013 was 5368742595386.1	http://data.worldbank.org/country/High-income:-nonOECD
+GDP (in US $) of Greece	A										The GDP (in US $) of Greece in 2013 was 242230333768.932	http://data.worldbank.org/country/Greece
+GDP (in US $) of Sri Lanka	A										The GDP (in US $) of Sri Lanka in 2013 was 67182015335.7602	http://data.worldbank.org/country/Sri-Lanka
+GDP (in US $) of Lebanon	A										The GDP (in US $) of Lebanon in 2013 was 44352418120.4377	http://data.worldbank.org/country/Lebanon
+GDP (in US $) of Comoros	A										The GDP (in US $) of Comoros in 2013 was 598925862.953067	http://data.worldbank.org/country/Comoros
+GDP (in US $) of Heavily indebted poor countries (HIPC)	A										The GDP (in US $) of Heavily indebted poor countries (HIPC) in 2013 was 583955229557.655	http://data.worldbank.org/country/Heavily-indebted-poor-countries-(HIPC)
