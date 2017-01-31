@@ -76,7 +76,6 @@ def generate_fathead(folder, processes=CPU_COUNT):
     docs_folder = op.abspath(folder)
     files_to_parse = glob.glob(op.join(docs_folder, "*.html"))
 
-    # TODO make pool size a switch via argparse
     pool = Pool(processes)
     output = pool.map(parse_file, files_to_parse)
 
