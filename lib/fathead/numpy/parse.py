@@ -241,8 +241,8 @@ def get_examples(section_div, examples_class):
 
     examples_class: Str
         The value of the "class" attribute of the <div> tag within section_div.
-        "highlight-python" is the class which are used for examples in the 
-        webpage. 
+        "highlight-python" is the class which are used for examples in the
+        webpage.
 
     Returns
     -------
@@ -253,7 +253,8 @@ def get_examples(section_div, examples_class):
     if example:
         return example.text.strip()
     return
-    
+
+
 def get_params(section_div, params_class):
     """Parse and return the parameters or returns of the documentation topic.
 
@@ -385,4 +386,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     generate_fathead(args.docs_folder, args.processes)
-    
