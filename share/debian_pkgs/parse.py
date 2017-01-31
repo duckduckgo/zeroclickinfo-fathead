@@ -1,0 +1,58 @@
+#!/usr/bin/python3
+
+repos = ["stable", "testing", "unstable"]
+
+lines = {}
+names = {}
+pkgs = {}
+
+for repo in repos:
+    with open("download/%s.txt" % repo) as f:
+        lines[repo] = f.readlines()
+
+    names[repo] = lines[repo][0].rsplit(" ", 1)[1].strip("\"\n")    #the codename of each repo is in the first line
+
+    lines[repo] = lines[repo][6:]   #omit the 6 lines of header
+
+    for p in lines[repo]:
+        (name, ver, desc) = p.split(" ", 2)
+
+        if name not in pkgs.keys():
+            pkgs[name] = {} #this dict will hold the package's (ver, desc) from each of the three repos. Some may not exist.
+
+        if repo not in pkgs[name].keys():
+            pkgs[name][repo] = {}
+
+        pkgs[name][repo]["ver"] = ver.strip("()")
+        pkgs[name][repo]["desc"] = desc.strip()
+
+for (p, q) in pkgs.items():
+    desc = None
+    ver = None
+    abstract = []
+    firstrepo = None  #the first repo that contains the package, for generating a link
+    for repo in repos:
+        if repo in q.keys():        #11
+            abstract.append("%s (%s) %s" % (repo, names[repo], q[repo]["ver"]))
+            if not desc:    #we only need to show one of the descriptions, since they're all very similar. We'll prefer them in the order listed in the repos array
+                desc = q[repo]["desc"]
+            if not ver:     #same for the screenshot
+                ver = q[repo]["ver"]
+            if not firstrepo:
+                firstrepo = names[repo]
+
+    out = p + "\t"         #1
+    out += "A\t"           #2
+    out += "\t"            #3
+    out += "\t"            #4
+    out += "\t"            #5
+    out += "\t"            #6
+    out += "\t"            #7
+    out += "\t"            #8
+    out += "\t"            #9
+    out += "\t"            #10
+    out += "[[Image:https://screenshots.debian.net/thumbnail-with-version/%s/%s]]\t" % (p, ver)        #11
+    out += desc + "<br><br>" + "<br>".join(abstract)    #12
+    out += "\thttps://packages.debian.org/%s/%s" % (firstrepo, p)            #13
+
+    print(out)
