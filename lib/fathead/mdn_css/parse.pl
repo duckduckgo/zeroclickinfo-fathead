@@ -170,7 +170,12 @@ foreach my $html_file ( glob 'download/*.html' ) {
 	<p>The <code>:any()</code> pseudo-class lets you quickly...</p>
 =cut
 
-            my $alt_titles = $p->find('code') if $p->tag eq 'p';
+            my $alt_titles = $p->find('code')->grep(
+                sub {
+                    #if it has a link, it has its own article entry
+                    $_->parent->tag ne 'a';
+                }
+            ) if $p->tag eq 'p';
             if ( $alt_titles && $alt_titles->size ) {
                 for my $alt_title ( $alt_titles->each ) {
                     $alt_title = trim $alt_title->all_text;
