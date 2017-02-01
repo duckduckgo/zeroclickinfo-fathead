@@ -376,22 +376,13 @@ sub create_redirects {
 	remove @ and create output entry with redirect field
 =cut
 
-    my $title = shift;
-    my $title_clean;
+    my $title       = shift;
+    my $title_clean = _clean_string($title);
     my $title_with_space;
     my $lookup = _category_title($title);
     my @data;
     my $postfix;
     my $outputline;
-
-  # Add a space between the pseudo class and parentheses, when it is not present
-    if ( $title =~ /(:?:?-moz[^\s\(]+)\((.+)\)/ ) {
-        $title_with_space = "$1 ($2)";
-        $title_clean      = _clean_string($title_with_space);
-    }
-    else {
-        $title_clean = _clean_string($title);
-    }
 
     if ( exists $titles{$lookup} ) {
 
@@ -436,8 +427,9 @@ sub create_redirects {
     }
     if ( $title =~ /^:\S+()/ ) {
         my $title_with_preceeding_colon = $title;
-        $title_with_preceeding_colon =~ s/[()]//g;
-        _build_redirect( $title_with_preceeding_colon, $title )
+        $title_with_preceeding_colon =~ s/[()]/ /g;
+        $title_with_preceeding_colon =~ s/\s+/ /g;
+        _build_redirect( trim($title_with_preceeding_colon), $title )
           if $title_with_preceeding_colon ne $title;
     }
 
@@ -504,6 +496,7 @@ sub _category_title {
 sub _clean_string {
     my $input = shift;
     say "Input: '$input'";
+    $input =~ s/\(/ (/ if $input =~ /\S\(/;
     $input =~ s/[:<>@()]//g;
     trim($input);
     say "Cleaned: '$input'";
