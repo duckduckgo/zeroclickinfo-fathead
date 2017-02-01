@@ -219,7 +219,6 @@ foreach my $html_file ( glob 'download/*.html' ) {
         $description = $meta_with_description->attr('content');
     }
 
-    #Units
     my $units;
     if ( $title eq 'font-variant-alternates' ) {
         $units = $dom->find('#Units, #Feature_value_blocks, #Values')->first;
