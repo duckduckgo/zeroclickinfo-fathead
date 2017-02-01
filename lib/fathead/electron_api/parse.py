@@ -15,9 +15,17 @@ RESULT_URLS = []
 
 
 # Print the content to the output file
-def print_article_line(title, content):
+def print_article_line(title, content, url):
 
+    _platform = ''
     content = content.replace('\n', '\\n').replace('\t', '  ')
+    if 'Windows' in title:
+        _platform = 'Windows'
+    if 'macOS' in title:
+        _platform = _platform + ' macOS'
+    if _platform:
+        content = '<span class="prog__sub>Platform:</span><p>'+_platform+'</p>'
+    title = title.replace('Windows', '').replace('macOS', '')
     abstract = '<section class="prog__container">' + content + '</section>'
     abstract = ''.join([i if ord(i) < 128 else ' ' for i in abstract])
 
@@ -34,7 +42,7 @@ def print_article_line(title, content):
         '',         # 10.no disambiguation
         '',         # 11.images
         abstract,   # 12.abstract
-        START_URL   # 13.url to doc
+        url   # 13.url to doc
     ]
 
     OUTPUL_FILE.write('{}\n'.format('\t'.join(list_of_data)))
@@ -58,18 +66,20 @@ def get_func_desc():
 
         while info:
             if info.name == 'p':
-                content = content + info.text + '\n\n'
+                content = content + re.sub(r'\<a.*\"\>|\<\/a\>', '', str(info))
             elif info.name == 'ul':
-                content = content + str(info)
+                content = content + re.sub(r'\<a.*\"\>|\<\/a\>', '', str(info))
+                .replace('<ul>', '<ul class="prog__ul">')
             elif info.name == 'h3':
-                content = content + '<pre><code>' + info.text + '</code></pre>'
+                content = content + '<span class=prog__sub">' +
+                info.text + '</span>'
             elif info.name == 'div':
                 if 'highlighter-rouge' in info['class']:
                     content = content + '<pre><code>' + \
                               info.text + '</code></pre>'
             info = info.find_next()
 
-        print_article_line(title, content)  # Print content to the file
+        print_article_line(title, content, url)  # Print content to the file
 
         # Look for methods and class in the page
         idx = src.find('Methods')
@@ -85,16 +95,21 @@ def get_func_desc():
                 if first_time == 0:
                     first_time = 1
                 else:
-                    if title[:5] != 'Event' and title[:8] != 'Instance' \
-                       and '.' in title:
+                    if title[:8] != 'Instance':
                         title = re.sub(r'\([^)]*\)', '', title)
-                        print_article_line(title, content)  # Print content
+                        if 'Event' in title:
+                            title = title.replace('Event: ', '')
+                            .replace('‘', '')
+                            title = url.split('/')[-1].lower()
+                            .replace('-', ' ') + ' ' + title
+                        print_article_line(title, content, url)
                     content = ""
                 title = info.text
             elif info.name == 'p' and first_time == 1:
-                content = content + info.text + '\n\n'
+                content = content + re.sub(r'\<a.*\"\>|\<\/a\>', '', str(info))
             elif info.name == 'ul' and first_time == 1:
-                content = content + str(info)
+                content = content + re.sub(r'\<a.*\"\>|\<\/a\>', '', str(info))
+                .replace('<ul>', '<ul class="prog__ul">')
             elif info.name == 'div' and first_time == 1:
                 if 'highlighter-rouge' in info['class']:
                     content = content + '<pre><code>' + \
