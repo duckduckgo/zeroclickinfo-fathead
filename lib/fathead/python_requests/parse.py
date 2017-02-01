@@ -59,6 +59,7 @@ def build_article(h2_parent, page_url):
             url              # anchor to specific section
         ]
 
+
 with open('output.txt', 'w') as fp:
     for html_file in glob('download/*.html'):
         print('Processing %s' % html_file)
