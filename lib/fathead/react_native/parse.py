@@ -269,7 +269,7 @@ class DataParser(object):
 
                 data_elements = {
                     'module': self.title,
-                    'function':  self.title + "." + method_name,
+                    'function': method_name,
                     'method_signature': method_signature,
                     'first_paragraph': first_paragraph,
                     'url': url,
@@ -332,9 +332,13 @@ class DataOutput(object):
             for data_element in self.data:
                 if data_element.get('module') or data_element.get('function'):
                     method_signature = data_element.get('method_signature')
-                    first_paragraph='<p>'
-                    first_paragraph+=data_element.get('first_paragraph')
-                    first_paragraph+='</p>'
+                    first_paragraph_text=data_element.get('first_paragraph')
+                    first_paragraph=''
+                    if (first_paragraph_text):
+                        first_paragraph='<p>'
+                        first_paragraph+=first_paragraph_text
+                        first_paragraph+='</p>'
+
                     name, redirect = self.create_names_from_data(data_element)
 
                     abstract='<section class="prog__container">'
