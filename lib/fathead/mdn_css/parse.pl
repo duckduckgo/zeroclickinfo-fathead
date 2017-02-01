@@ -181,6 +181,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
                     $alt_title = trim $alt_title->all_text;
                     next if $alt_title =~ /^\d+|\*\.|\.$/;
                     next if index( $title, $alt_title ) != -1;
+                    next if index( $alt_title, "=" ) != -1;
                     push @alternate_titles, $alt_title
                       if $alt_title ne $title;
                 }
