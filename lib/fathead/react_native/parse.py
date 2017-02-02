@@ -106,7 +106,11 @@ class DataParser(object):
             if prop_name_h4.find('span', {'class': 'platform'}):
                 prop_name=prop_name_h4.find(
                                 'span', {'class': 'platform'}).next.next
-            
+            if not isinstance(prop_name, str):
+                # The prop_name is not a bs4.element.NavigableString
+                # It is probably a "ScrollView props..." link or something else
+                # that does not conform to the general format of the docs.
+                return None
             return prop_name
 
     def parse_for_first_paragraph(self, section):
