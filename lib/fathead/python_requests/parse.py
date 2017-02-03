@@ -91,6 +91,7 @@ def parse_dl(dl, page_url):
                     redirect = create_redirect(module_func, func_with_params)
                     output_data.append(redirect)
         output_data.append(out)
+    return output_data
 
 def parse_h2(h2_parent, page_url):
     '''Extracts article details from h2.
@@ -139,7 +140,8 @@ with open('output.txt', 'w') as fp:
             dls = soup.findAll('dl')
             for dl in dls:
                 data = parse_dl(dl, page_url)
-            print(page_url)
+                for dat in data:
+                    fp.write('{}\n'.format(dat))
         else:
             h2s = soup.findAll('h2')
             for h2 in h2s:
