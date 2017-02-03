@@ -79,7 +79,7 @@ def parse_dl(dl, page_url):
     code = ''
     if dl.pre:
         code = dl.pre.text.replace('\n', '\\n')
-        print(code)
+        code = '<pre><code>{}</code></pre>'.format(code)
 
 
 def parse_h2(h2_parent, page_url):
