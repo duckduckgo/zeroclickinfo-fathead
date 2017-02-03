@@ -55,8 +55,10 @@ def parse_dl(dl, page_url):
     dt = dl.find('dt')
     func_with_params = dt.text.replace('¶', '').replace('[source]', '')
     func_without_params = dt.get('id')
+    module_func = ' '.join(func_without_params.split('.'))
     print(func_with_params)
     print(func_without_params)
+    print(module_func)
 
 
 def parse_h2(h2_parent, page_url):
