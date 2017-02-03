@@ -6,9 +6,9 @@ from urllib.parse import urljoin
 
 
 def create_article(title, abstract, url):
-    print('Title %s ' % title)
-    print('URL %s' % url)
-    print('Description %s' % abstract)
+    print('TITLE   : %s ' % title)
+    print('URL     : %s ' % url)
+    print('ABSTRACT: %s\n' % abstract)
     data = [
             title,           # title
             'A',             # type is article
@@ -28,7 +28,7 @@ def create_article(title, abstract, url):
 
 
 def create_redirect(redirect_title, original_title):
-    print('REDIRECT: {0} ~> {1}'.format(redirect_title, original_title))
+    print('REDIRECT: {0} ~> {1}\n'.format(redirect_title, original_title))
     data = [
             redirect_title,  # title
             'R',             # type is article
