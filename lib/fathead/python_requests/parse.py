@@ -58,10 +58,6 @@ def parse_dl(dl, page_url):
     func_without_params = dt.get('id')
     permalink = urljoin(page_url, '#{}'.format(func_without_params))
     module_func = ' '.join(func_without_params.split('.'))
-    print(func_with_params)
-    print(func_without_params)
-    print(module_func)
-    print(permalink)
     dd = dl.find('dd')
     abstract = ''
     if dd.p:
