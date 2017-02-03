@@ -64,6 +64,10 @@ def parse_dl(dl, page_url):
     abstract = ''
     if dd.p:
         abstract = dd.p.text
+        next_sibling = dd.p.find_next_sibling(text=None)
+        while next_sibling and next_sibling.name == 'p':
+            abstract += next_sibling.text
+            next_sibling = next_sibling.find_next_sibling(text=None)
         table_params = dl.find('table')
         if table_params:
             for tr in table_params.findAll('tr'):
