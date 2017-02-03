@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
 from glob import glob
-import re
 from urllib.parse import urljoin
 
 
