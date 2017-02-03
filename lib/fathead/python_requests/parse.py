@@ -5,6 +5,28 @@ from glob import glob
 from urllib.parse import urljoin
 
 
+def create_article(title, abstract, url):
+    print('Title %s ' % title)
+    print('URL %s' % url)
+    print('Description %s' % abstract)
+    data = [
+            title,           # title
+            'A',             # type is article
+            '',              # no redirect data
+            '',              # ignore
+            '',              # no categories
+            '',              # ignore
+            '',              # no related topics
+            '',              # ignore
+            '',              # external link
+            '',              # no disambiguation
+            '',              # images
+            abstract,        # abstract
+            url              # anchor to specific section
+        ]
+    return '\t'.join(data)
+
+
 def parse_dl(dl, page_url):
     pass
 
@@ -43,24 +65,7 @@ def parse_h2(h2_parent, page_url):
     abstract = abstract.lstrip()
     abstract = abstract.strip('\n')
     abstract = '<section class="prog__container">%s</section>' % abstract
-    print('Title %s ' % title)
-    print('URL %s' % url)
-    print('Description %s' % abstract)
-    return [
-            title,           # title
-            'A',             # type is article
-            '',              # no redirect data
-            '',              # ignore
-            '',              # no categories
-            '',              # ignore
-            '',              # no related topics
-            '',              # ignore
-            '',              # external link
-            '',              # no disambiguation
-            '',              # images
-            abstract,        # abstract
-            url              # anchor to specific section
-        ]
+    return create_article(title, abstract, url)
 
 
 with open('output.txt', 'w') as fp:
@@ -73,12 +78,9 @@ with open('output.txt', 'w') as fp:
             dls = soup.findAll('dl')
             for dl in dls:
                 data = parse_dl(dl, page_url)
-                data = '\t'.join(data)
-                fp.write('{}\n'.format(data))
             print(page_url)
         else:
             h2s = soup.findAll('h2')
             for h2 in h2s:
                 data = parse_h2(h2.parent, page_url)
-                data = '\t'.join(data)
                 fp.write('{}\n'.format(data))
