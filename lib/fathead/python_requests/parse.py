@@ -47,7 +47,16 @@ def create_redirect(redirect_title, original_title):
 
 
 def parse_dl(dl, page_url):
-    pass
+    '''Parse dl containing function definitions for requests api.
+
+    Accepts a dl and page_url.
+    Returns list of articles and or redirect entries
+    '''
+    dt = dl.find('dt')
+    func_with_params = dt.text
+    func_without_params = dt.get('id')
+    print(func_with_params)
+    print(func_without_params)
 
 
 def parse_h2(h2_parent, page_url):
