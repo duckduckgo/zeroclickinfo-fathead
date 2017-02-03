@@ -56,7 +56,8 @@ def parse_dl(dl, page_url):
     output_data = []
     dt = dl.find('dt')
     func_with_params = dt.text.replace('¶', '').replace('[source]', '')
-    func_without_params = dt.get('id')
+    func_with_params = func_with_params.strip()
+    func_without_params = dt.get('id').strip()
     permalink = urljoin(page_url, '#{}'.format(func_without_params))
     module_func = ' '.join(func_without_params.split('.'))
     dd = dl.find('dd')
