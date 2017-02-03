@@ -53,7 +53,7 @@ def parse_dl(dl, page_url):
     Returns list of articles and or redirect entries
     '''
     dt = dl.find('dt')
-    func_with_params = dt.text
+    func_with_params = dt.text.replace('¶', '').replace('[source]', '')
     func_without_params = dt.get('id')
     print(func_with_params)
     print(func_without_params)
