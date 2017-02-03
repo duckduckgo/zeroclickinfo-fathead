@@ -67,7 +67,12 @@ def parse_dl(dl, page_url):
         abstract = dd.p.text
         table_params = dl.find('table')
         if table_params:
-            print(table_params)
+            for tr in table_params.findAll('tr'):
+                abstract += ' {} '.format(tr.th.text)
+                abstract += ' '.join([
+                    li.text.strip() for li in tr.td.findAll('li')
+                ])
+        print(abstract)
     code = ''
     if dl.pre:
         code = dl.pre.text.replace('\n', '\\n')
