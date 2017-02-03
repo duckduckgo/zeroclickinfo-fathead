@@ -63,9 +63,12 @@ def parse_dl(dl, page_url):
     print(permalink)
     dd = dl.find('dd')
     p = dd.p
-    description = ''
+    abstract = ''
     if p:
-        description = p.text
+        abstract = p.text
+        table_params = dl.find('table')
+        if table_params:
+            print(table_params)
 
 
 def parse_h2(h2_parent, page_url):
