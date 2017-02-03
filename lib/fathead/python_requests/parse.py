@@ -52,6 +52,7 @@ def parse_dl(dl, page_url):
     Accepts a dl and page_url.
     Returns list of articles and or redirect entries
     '''
+    output_data = []
     dt = dl.find('dt')
     func_with_params = dt.text.replace('¶', '').replace('[source]', '')
     func_without_params = dt.get('id')
@@ -83,8 +84,15 @@ def parse_dl(dl, page_url):
         abstract += code
     if abstract:
         abstract = '<section>{}</section>'.format(abstract)
-        print(abstract)
-
+        out = create_article(func_with_params, abstract, permalink)
+        if func_without_params != func_with_params:
+            redirect = create_redirect(func_without_params, func_with_params)
+            output_data.append(redirect)
+            if module_func != func_without_params:
+                if module_func != func_with_params:
+                    redirect = create_redirect(module_func, func_with_params)
+                    output_data.append(redirect)
+        output_data.append(out)
 
 def parse_h2(h2_parent, page_url):
     '''Extracts article details from h2.
