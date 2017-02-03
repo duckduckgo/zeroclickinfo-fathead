@@ -77,7 +77,7 @@ def parse_dl(dl, page_url):
                     abstract += li_text
                 else:
                     abstract += tr.td.text.strip()
-        abstract = abstract.replace('\n', '')
+        abstract = abstract.replace('\n', ' ')
         abstract = '<p>{}</p>'.format(abstract)
     code = ''
     if dl.pre:
