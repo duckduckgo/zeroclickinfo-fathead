@@ -27,6 +27,25 @@ def create_article(title, abstract, url):
     return '\t'.join(data)
 
 
+def create_redirect(redirect_title, original_title):
+    data = [
+            redirect_title,  # title
+            'R',             # type is article
+            original_title,  # redirect title
+            '',              # ignore
+            '',              # no categories
+            '',              # ignore
+            '',              # no related topics
+            '',              # ignore
+            '',              # external link
+            '',              # no disambiguation
+            '',              # images
+            '',              # abstract
+            ''               # anchor to specific section
+        ]
+    return '\t'.join(data)
+
+
 def parse_dl(dl, page_url):
     pass
 
