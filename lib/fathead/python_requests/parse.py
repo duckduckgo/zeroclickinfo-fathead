@@ -6,8 +6,8 @@ import re
 from urllib.parse import urljoin
 
 
-def build_article(h2_parent, page_url):
-    '''Builds fathead article entry.
+def parse_h2(h2_parent, page_url):
+    '''Extracts article details from h2.
 
     Accepts h2_parent and extracts title, url, abstract and code snippets.
     Returns a list
@@ -68,6 +68,6 @@ with open('output.txt', 'w') as fp:
         print('Page url %s' % page_url)
         h2s = soup.findAll('h2')
         for h2 in h2s:
-            data = build_article(h2.parent, page_url)
+            data = parse_h2(h2.parent, page_url)
             data = '\t'.join(data)
             fp.write('{}\n'.format(data))
