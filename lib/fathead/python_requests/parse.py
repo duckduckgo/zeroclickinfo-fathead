@@ -69,6 +69,10 @@ def parse_dl(dl, page_url):
         table_params = dl.find('table')
         if table_params:
             print(table_params)
+    code = ''
+    if dl.pre:
+        code = dl.pre.text.replace('\n', '\\n')
+        print(code)
 
 
 def parse_h2(h2_parent, page_url):
