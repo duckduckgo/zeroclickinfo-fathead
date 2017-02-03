@@ -65,8 +65,11 @@ with open('output.txt', 'w') as fp:
         soup = BeautifulSoup(open(html_file), 'html.parser')
         page_url = soup.find('link', attrs={'rel': 'canonical'}).get('href')
         print('Page url %s' % page_url)
-        h2s = soup.findAll('h2')
-        for h2 in h2s:
-            data = parse_h2(h2.parent, page_url)
-            data = '\t'.join(data)
-            fp.write('{}\n'.format(data))
+        if 'api' in page_url:
+            print(page_url)
+        else:
+            h2s = soup.findAll('h2')
+            for h2 in h2s:
+                data = parse_h2(h2.parent, page_url)
+                data = '\t'.join(data)
+                fp.write('{}\n'.format(data))
