@@ -28,6 +28,7 @@ def create_article(title, abstract, url):
 
 
 def create_redirect(redirect_title, original_title):
+    print('REDIRECT: {0} ~> {1}'.format(redirect_title, original_title))
     data = [
             redirect_title,  # title
             'R',             # type is article
