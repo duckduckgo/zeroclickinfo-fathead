@@ -80,6 +80,10 @@ def parse_dl(dl, page_url):
     if dl.pre:
         code = dl.pre.text.replace('\n', '\\n')
         code = '<pre><code>{}</code></pre>'.format(code)
+        abstract += code
+    if abstract:
+        abstract = '<section>{}</section>'.format(abstract)
+        print(abstract)
 
 
 def parse_h2(h2_parent, page_url):
