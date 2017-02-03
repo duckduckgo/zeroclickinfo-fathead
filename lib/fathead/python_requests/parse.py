@@ -83,13 +83,14 @@ def parse_dl(dl, page_url):
     if abstract:
         abstract = '<section>{}</section>'.format(abstract)
         out = create_article(func_with_params, abstract, permalink)
-        if func_without_params != func_with_params:
-            redirect = create_redirect(func_without_params, func_with_params)
-            output_data.append(redirect)
-            if module_func != func_without_params:
-                if module_func != func_with_params:
-                    redirect = create_redirect(module_func, func_with_params)
-                    output_data.append(redirect)
+        if func_without_params:
+            if func_without_params != func_with_params:
+                redirect = create_redirect(func_without_params, func_with_params)
+                output_data.append(redirect)
+                if module_func != func_without_params:
+                    if module_func != func_with_params:
+                        redirect = create_redirect(module_func, func_with_params)
+                        output_data.append(redirect)
         output_data.append(out)
     return output_data
 
