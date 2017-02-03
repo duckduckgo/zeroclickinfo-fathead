@@ -5,6 +5,10 @@ from glob import glob
 from urllib.parse import urljoin
 
 
+def parse_dl(dl, page_url):
+    pass
+
+
 def parse_h2(h2_parent, page_url):
     '''Extracts article details from h2.
 
@@ -66,6 +70,11 @@ with open('output.txt', 'w') as fp:
         page_url = soup.find('link', attrs={'rel': 'canonical'}).get('href')
         print('Page url %s' % page_url)
         if 'api' in page_url:
+            dls = soup.findAll('dl')
+            for dl in dls:
+                data = parse_dl(dl, page_url)
+                data = '\t'.join(data)
+                fp.write('{}\n'.format(data))
             print(page_url)
         else:
             h2s = soup.findAll('h2')
