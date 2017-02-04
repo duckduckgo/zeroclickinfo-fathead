@@ -46,10 +46,6 @@ class Parser(object):
         for header in self.soup.find_all(['dl']):
             section = self.parse_section(header)
             section['example'] = self.clean_formatting(self.get_example(header))
-            if 'HTML4 and XHTML entities' in section['paragraph']:
-                s=section['example']
-                if "u'\xbb'" in s:
-                    print("yes")
                     
             if section['paragraph']:
                 section['paragraph'] = section['paragraph'].replace('\n','')
