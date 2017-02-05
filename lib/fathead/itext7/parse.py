@@ -2,8 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from bs4 import BeautifulSoup
+import re
 
 import glob
+
+METHODS = 2
 
 itext_docs_base_url = open('data.url').read().strip()
 
@@ -82,23 +85,30 @@ class Parser(object):
                                      description,
                                      page_link)
 
-            method_blocks = soup.select('.details ul.blockList li.blockList ul.blockList li.blockList ul.blockList li.blockList')
-            for method_block in method_blocks:
-                method_name = method_block.select('h4')[0].text
+            method_details = soup.find(text=re.compile(r'Method Detail'))
 
-                description = None
-                for element in method_block.select('.block'):
-                    if description is None:
-                        description = str(element)
-                    else:
-                        description += '<br>'
-                        description += str(element)
+            if method_details is not None:
+                method_details = method_details.parent.parent.parent
 
-                if description is not None:
-                    itext_method = ITextClass(name + ' ' + method_name,
-                                              description,
-                                              page_link)
-                    self.itext_classes.append(itext_method)
+                method_blocks = method_details.select('li.blockList > ul')
+                method_anchors = method_details.select('li.blockList > a')[1:] #First anchor just links to method section
+
+                for method_details, anchor in zip(method_blocks, method_anchors):
+                    method_name = method_details.select('h4')[0].text
+
+                    description = None
+                    for element in method_details.select('.block'):
+                        if description is None:
+                            description = str(element)
+                        else:
+                            description += '<br>'
+                            description += str(element)
+
+                    if description is not None:
+                        itext_method = ITextClass(name + ' ' + method_name,
+                                                  description,
+                                                  page_link + '#' + anchor['name'])
+                        self.itext_classes.append(itext_method)
 
             self.itext_classes.append(itext_class)
 
