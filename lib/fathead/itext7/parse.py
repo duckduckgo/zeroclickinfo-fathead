@@ -72,13 +72,14 @@ class Parser(object):
             description_list = soup.select('div.contentContainer div.description div')
 
             if len(description_list) != 1:
-                continue
+                description = ''
 
-            description = description_list[0].text
+            else:
+
+                description = description_list[0].text
 
             class_path = soup.select('.header .subTitle')[0].text
             class_path = class_path.replace('.', '/')
-
             page_link = class_path + '/' + name + '.html'
 
             itext_class = ITextClass(name,
