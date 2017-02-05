@@ -73,9 +73,14 @@ class Parser(object):
 
             description = description_list[0].text
 
+            class_path = soup.select('.header .subTitle')[0].text
+            class_path = class_path.replace('.', '/')
+
+            page_link = class_path + '/' + name + '.html'
+
             itext_class = ITextClass(name,
                                      description,
-                                     file.replace('download/', ''))
+                                     page_link)
 
             method_blocks = soup.select('.details ul.blockList li.blockList ul.blockList li.blockList ul.blockList li.blockList')
             for method_block in method_blocks:
@@ -86,13 +91,13 @@ class Parser(object):
                     if description is None:
                         description = str(element)
                     else:
-                        description += '<br><br>'
+                        description += '<br>'
                         description += str(element)
 
                 if description is not None:
                     itext_method = ITextClass(name + ' ' + method_name,
                                               description,
-                                              file.replace('download/', ''))
+                                              page_link)
                     self.itext_classes.append(itext_method)
 
             self.itext_classes.append(itext_class)
