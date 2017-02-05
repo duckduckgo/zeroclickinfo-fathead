@@ -98,6 +98,9 @@ class Parser(object):
 
                     description = None
                     for element in method_details.select('.block'):
+                        copied = element.select('span.descfrmTypeLabel')
+                        if len(copied) > 0:
+                            copied[0].name = 'b'
                         if description is None:
                             description = str(element)
                         else:
