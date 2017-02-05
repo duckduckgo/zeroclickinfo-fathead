@@ -121,8 +121,7 @@ class CoverageClass():
         # 8. Empty
         output_line += "" + "\t"
         # 9. External Links (official site) [$url link_text]
-        output_line += "[{} {}]".format(attributes["base_url"],
-                                        attributes["base_title"]) + "\t"
+        output_line += "" + "\t"
         # 10. Disambiguation pages only
         output_line += "" + "\t"
         # 11. Image
