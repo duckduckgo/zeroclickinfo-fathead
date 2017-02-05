@@ -14,7 +14,7 @@ Dependencies are:
 
 * Install requirements:
 ```
-$ pip3.5 install -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
 
 * Download latest Coverage API Documentation via:
