@@ -80,10 +80,19 @@ class Parser(object):
             method_blocks = soup.select('.details ul.blockList li.blockList ul.blockList li.blockList ul.blockList li.blockList')
             for method_block in method_blocks:
                 method_name = method_block.select('h4')[0].text
-                itext_method = ITextClass(name + ' ' + method_name,
-                                          method_block.text,
-                                          file.replace('download/', ''))
-                self.itext_classes.append(itext_method)
+
+                description = None
+                for element in method_block.select('.block'):
+                    if description is None:
+                        description = element
+                    else:
+                        description.append(element)
+
+                if description is not None:
+                    itext_method = ITextClass(name + ' ' + method_name,
+                                              description.text,
+                                              file.replace('download/', ''))
+                    self.itext_classes.append(itext_method)
 
             self.itext_classes.append(itext_class)
 
