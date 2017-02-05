@@ -84,13 +84,14 @@ class Parser(object):
                 description = None
                 for element in method_block.select('.block'):
                     if description is None:
-                        description = element
+                        description = str(element)
                     else:
-                        description.append(element)
+                        description += '<br><br>'
+                        description += str(element)
 
                 if description is not None:
                     itext_method = ITextClass(name + ' ' + method_name,
-                                              description.text,
+                                              description,
                                               file.replace('download/', ''))
                     self.itext_classes.append(itext_method)
 
