@@ -46,6 +46,7 @@ class ITextClass(object):
 class Parser(object):
     def __init__(self):
         """Get all itext class files that need to be parsed"""
+        self.itext_classes = []
         self.files_to_parse = glob.glob('download/*.html')
 
     def parse_itext_classes(self):
@@ -75,6 +76,15 @@ class Parser(object):
             itext_class = ITextClass(name,
                                      description,
                                      file.replace('download/', ''))
+
+            method_blocks = soup.select('.details ul.blockList li.blockList ul.blockList li.blockList ul.blockList li.blockList')
+            for method_block in method_blocks:
+                method_name = method_block.select('h4')[0].text
+                itext_method = ITextClass(name + ' ' + method_name,
+                                          method_block.text,
+                                          file.replace('download/', ''))
+                self.itext_classes.append(itext_method)
+
             self.itext_classes.append(itext_class)
 
 
