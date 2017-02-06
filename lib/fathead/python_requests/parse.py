@@ -94,7 +94,7 @@ def parse_dl(dl, page_url):
         code = '<pre><code>{}</code></pre>'.format(code)
         abstract += code
     if abstract:
-        abstract = '<section>{}</section>'.format(abstract)
+        abstract = '<section class="prog__container">{}</section>'.format(abstract)
         out = create_article(func_with_params, abstract, permalink)
         if func_without_params:
             if func_without_params != func_with_params:
