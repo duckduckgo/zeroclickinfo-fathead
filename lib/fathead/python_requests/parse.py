@@ -50,6 +50,15 @@ def create_redirect(redirect_title, original_title):
     return '\t'.join(data)
 
 
+def format_abstract(abstract, code=None):
+    abstract = '<p>{}</p>'.format(abstract)
+    section = '<section class="prog__container">{0}{1}</section>'
+    if code:
+        code = '<pre><code>{}</code></pre>'.format(code)
+        return section.format(abstract, code)
+    return section.format(abstract, '')
+
+
 def parse_dl(dl, page_url):
     '''Parse dl containing function definitions for requests api.
 
