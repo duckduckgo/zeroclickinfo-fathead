@@ -77,7 +77,7 @@ def parse_dl(dl, page_url):
         table_params = dl.find('table')
         if table_params:
             for tr in table_params.findAll('tr'):
-                abstract += ' {} '.format(tr.th.text)
+                abstract += '<b>{}</b> '.format(tr.th.text)
                 for li in tr.td.findAll('li'):
                     li_text = li.text.strip()
                     abstract += li_text
