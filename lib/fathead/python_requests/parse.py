@@ -78,9 +78,12 @@ def parse_dl(dl, page_url):
         if table_params:
             for tr in table_params.findAll('tr'):
                 abstract += '<b>{}</b> '.format(tr.th.text)
-                for li in tr.td.findAll('li'):
-                    li_text = li.text.strip()
-                    abstract += li_text
+                if tr.td.findAll('li'):
+                    abstract += '<ul>'
+                    for li in tr.td.findAll('li'):
+                        li_text = li.text.strip()
+                        abstract += '<li>{}</li>'.format(li_text)
+                    abstract += '</ul>'
                 else:
                     abstract += tr.td.text.strip()
         abstract = abstract.replace('\n', ' ')
