@@ -96,14 +96,11 @@ def parse_dl(dl, page_url):
                 else:
                     abstract += tr.td.text.strip()
         abstract = abstract.replace('\n', ' ')
-        abstract = '<p>{}</p>'.format(abstract)
     code = ''
     if dl.pre:
         code = dl.pre.text.replace('\n', '\\n')
-        code = '<pre><code>{}</code></pre>'.format(code)
-        abstract += code
     if abstract:
-        abstract = '<section class="prog__container">{}</section>'.format(abstract)
+        abstract = format_abstract(abstract, code)
         out = create_article(func_with_params, abstract, permalink)
         if func_without_params:
             if func_without_params != func_with_params:
@@ -128,11 +125,12 @@ def parse_h2(h2_parent, page_url):
     fragment = h2_parent.find('a').get('href')
     url = urljoin(page_url, fragment)
     abstract = ''
+    code = ''
     next_sibling = h2.find_next_sibling(text=None)
     while next_sibling:
         if next_sibling.name == 'p':
             next_sibling_text = next_sibling.text.replace('\n', ' ')
-            abstract += '<p>{}</p>'.format(next_sibling_text)
+            abstract += '{}'.format(next_sibling_text)
         elif next_sibling.name == 'div':
             pre = next_sibling.find('pre')
             if pre:
@@ -145,12 +143,11 @@ def parse_h2(h2_parent, page_url):
                                               encoding='UTF-8')
                     pre_text = pre.text.replace(original_span_text,
                                                 '{}'.format(escaped_span_text))
-                pre_text = pre_text.replace('\n', '\\n')
-                abstract += '<pre><code>{0}</code></pre>'.format(pre_text)
+                code += pre_text.replace('\n', '\\n')
         next_sibling = next_sibling.find_next_sibling(text=None)
     abstract = abstract.lstrip()
     abstract = abstract.strip('\n')
-    abstract = '<section class="prog__container">%s</section>' % abstract
+    abstract = format_abstract(abstract, code)
     if title not in SEEN_TITLES:
         return create_article(title, abstract, url)
 
