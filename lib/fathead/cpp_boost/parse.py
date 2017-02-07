@@ -2,7 +2,7 @@ import os
 from bs4 import BeautifulSoup
 URL_ROOT = 'http://www.boost.org'
 
-URL_DOC = 'http://www.boost.org/doc/libs/1_62_0/'
+URL_DOC = 'http://www.boost.org/doc/libs/1_63_0/'
 
 
 DOWNLOADED_HTML_PATH = 'download/'
