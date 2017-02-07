@@ -24,7 +24,6 @@ def gather_itext_html_files(all_classes_extension):
     links = soup.find_all('a')
 
     # Go through each link 
-    commands = []
     for link in links:
         href = link.get('href')
         with open('download/{}.html'.format(link.text), 'wb') as outfile:

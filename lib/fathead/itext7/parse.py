@@ -3,6 +3,8 @@
 
 from bs4 import BeautifulSoup
 import re
+from urllib.parse import urljoin
+
 
 import glob
 
@@ -96,6 +98,9 @@ class Parser(object):
 
                 for method_details, anchor in zip(method_blocks, method_anchors):
                     method_name = method_details.select('h4')[0].text
+
+                    for a in method_details.findAll('a'):
+                        a['href'] = urljoin(itext_docs_base_url + page_link, a['href'])
 
                     description = None
                     for element in method_details.select('.block'):
