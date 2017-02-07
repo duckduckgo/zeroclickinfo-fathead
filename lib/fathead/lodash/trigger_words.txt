@@ -1,4 +1,5 @@
 lodash
 lodash 4.17.4
 lodash javascript
-odash
+lodashjs
+lodash.js
