@@ -89,7 +89,6 @@ class DocsParser(object):
 
         currFile.close()
 
-
     def remove_newline(self,text):
         """
             Function to remove '\n'
@@ -104,119 +103,46 @@ class DocsParser(object):
 
         return txt
 
-
-    def get_ul_contents(self,ulist):
-        """
-        Function to scrape 
-        contents of an unordered 
-        list 
- 
-        """
-
-        if ulist is None:
-            return ''
-
-        # The final text
-        text = ''
-
-        for li in ulist:
-            cur = ''
-            for e in li:
-                try:
-                    if e.name=='a':
-                        code = e.find('code')
-                        if code is not None:
-                            cur+='<code>'+code.text+'</code>'
-                    elif e.name=='div' and 'highlight-default' in e['class']:
-                        cur+='<pre><code>'+e.text+'</code></pre>'
-                    elif e.name=='code':
-                        cur+='<code>'+e.text+'</code>'
-                    elif e.name=='strong':
-                        cur+=str(e)
-                    elif e.name=='p':
-                        cur+=self.get_paragraph_contents(e)
-                except:
-                    if str(type(e))=="<class 'bs4.element.NavigableString'>":
-                    #print str(e)
-                        cur+=e.string
-            if cur!='':
-                text+='<li>'+cur+'</li>'
-    
-        return '<ul>'+text+'</ul>'
-
-
     def get_table_contents(self,table):
         """
-            Function to scrape the 
-            contents of a table
-
+            Function to return the 
+            contents of a table after
+            checking for code snippets
         """
 
-       if table is None:# Return empty string for None objects
-           return ''
+        if table.find('div',{'class':'highlight-default'}) is None:
+            return table.text # If table doesn't have snippets then return entire text
         
         tbody = table.find('tbody')
 
-        text= ''
+        th =  tbody.find('th')
+        text = '\\n\\n<span class="prog__sub">'+th.text+'</span>'
+        td = tbody.find('td')
+        ul = td.find('ul')
+        text += '<ul>{}</ul>' # Fetch the elements and insert them into unordered list
+        lis=''
 
-        if tbody is None:# Return empty string if element is not a table
-            return ''
-
-        trs = tbody.find_all('tr')
-
-        for tr in trs:# Got through all rows in the table
-            td = tr.find('td')
-
-            th =  tr.find('th')
-            text += '\\n\\n<span class="prog__sub">'+th.text+'</span>'
-            strong = td.find('strong',recursive=False)
-
-            if strong is not None:
-                text+='<p><strong>'+strong.text+'</strong></p>'
-
-            p = td.find_all('p')
-            if p!=[]:
-                for e in p:
-                    text+='<p>'+e.text+'</p>'
-
-            ul = td.find('ul')
-            text += self.get_ul_contents(ul) # Fetch the elements and insert them into unordered list
-        
-        return text
-
-
-    def get_paragraph_contents(self,paragraph):
-        """
-            Function to scrape 
-            contents of a 'p' tag
-        
-        """
-
-        p = paragraph
-        
-        if p is None:
-            return ''
-
-        final_p = '<p>{}</p>'
-        text = ''
-
-        for e in p:
-          
-            if e is not None:
-                try:# Check for all possible tags 
-                    if e.name=='code':
-                        text+=('<code>{}</code>'.format(e.string))
-                    elif e.name=='a':
-                        code = e.find('code')
-                        text+='<code>{}</code>'.format(e.string)
+        for li in ul:
+            cur = '<li>{}</li>\\n'
+            txt=''
+            for e in li:
+                try:
+                    if e.name=='div' and 'highlight-default' in e['class']:
+                        txt+='<pre><code>{}</code></pre>'.format(e.text)
                     else:
-                        text+=e.text
+                        txt+=e.text
                 except:
-                    text+=e.string
+                    if str(type(e))=="<class 'bs4.element.NavigableString'>":
+                        txt+=e.string
+
+            cur=cur.format(self.replace_unicodes(txt))
+            lis+=cur
+        text = text.format(lis)
+
+        return text
+                
+
         
-        return final_p.format(self.replace_unicodes(text))
-
-
     def generate_pages(self,page_name):
         """
             Function to parse the source code 
@@ -246,7 +172,7 @@ class DocsParser(object):
             # The required components of each element
             section = '<section class="prog__container">{}</section>'
             code = '<pre><code>{}</code></pre>'
-            desc='{}'
+            desc='<p>{}</p>'
             header = '<pre><code>{}</code></pre>'
             code_done=0                    
             txt='' # The string of all HTML elements
@@ -265,38 +191,35 @@ class DocsParser(object):
                         strg=''
                         if 'event-signatures' in elem['class']:# Add event signatures separately
                             ptag = elem.find('p')
-                            p+=self.replace_unicodes(self.get_paragraph_contents(ptag))
+                            p+=ptag.text
                             divtag= elem.find('div',{'class':'highlight-default'})
-                            strg=divtag.text
+                            strg+=divtag.text
                         else:
-                            strg = elem.text
+                            strg += elem.text
                         p = self.replace_unicodes(p)# Replace all unicodes with HTML equivalent
                         strg = self.replace_unicodes(strg)# Replace all unicodes with HTML equivalent
                         txt += desc.format(p)+code.format(strg)
                         p=''
+                        code_done=1
                         is_first_p=0
-                    
-                    elif elem.name=='div' and ('admonition' in elem['class'] or'versionadded' in elem['class'] or 'versionchanged' in elem['class']):
-                        continue
                     elif elem.name=='div' and 'seealso' in elem['class']:
                         break# Ignore the divs which have 'see also' content
                     elif elem.name=='table':
                         p+=self.get_table_contents(elem)
                         p = self.replace_unicodes(p)
-                    elif elem.name=='ul':
-                        p+=self.replace_unicodes(self.get_ul_contents(elem))
                     else:
-                        
-                        if elem.name=='p':
-                            p+=self.replace_unicodes(self.get_paragraph_contents(elem))
+                        if elem.name is not None:
+                            p+=elem.text
                             if is_first_p:
                                 first_p+=elem.text
                                 is_first_p=0
-                        elif elem is not None:
-                            try:
-                                p+=(elem.text)
-                            except:
-                                p+=elem
+                            code_done=0
+                        else:
+                            p+=elem
+                            if is_first_p:
+                                first_p+=elem
+                                is_first_p=0
+                            code_done=0
 
 
             cur_dt = k.find('dt')
@@ -313,14 +236,17 @@ class DocsParser(object):
             
             # Replace unicodes with HTML equivalent in the head
             head= head.replace(u'\u2192','&#8594;')
-            head = head.replace('\n','')
+            head = head.replace('\n','\\n')
 
             header=header.format(head)
              
             
-            p = self.replace_unicodes(p)
-            txt+=desc.format(p)
-            section = section.format(header+txt)
+            if code_done==1:
+                section = section.format(header+txt)
+            else:
+                p = self.replace_unicodes(p)
+                txt+=desc.format(p)
+                section = section.format(header+txt)
         
 
             # 'descname' is the current redirect name 
