@@ -55,11 +55,11 @@ class Parser(object):
             section['paragraph'] = section['paragraph'].replace('\n','')
             if section['example']:
                 section['example'] = section['example'].text
-                section['abstract'] = '<section class="prog__container><p>{}</p><pre><code>{}</code></pre></section>'.format(section['paragraph'], section['example'])
+                section['abstract'] = '<section class="prog__container"><p>{}</p><pre><code>{}</code></pre></section>'.format(section['paragraph'], section['example'])
             else:
-                section['abstract'] = '<section class="prog__container><p>{}</p></section>'.format(section['paragraph'])
+                section['abstract'] = '<section class="prog__container"><p>{}</p></section>'.format(section['paragraph'])
         else:
-            section['abstract'] = '<section class="prog__container><p>{}</p></section>'.format('')
+            section['abstract'] = '<section class="prog__container"><p>{}</p></section>'.format('')
 
         del section['paragraph'] 
 
