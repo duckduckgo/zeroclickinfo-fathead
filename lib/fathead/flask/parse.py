@@ -50,10 +50,10 @@ class Parser(object):
             if section['paragraph']:
                 section['paragraph'] = section['paragraph'].replace('\n','')
                 if section['example']:
-                    section['abstract'] = '<section class="prog__container><p>{}</p><pre><code>{}</code></pre></section>'.format(section['paragraph'], section['example'])
+                    section['abstract'] = '<section class="prog__container"><p>{}</p><pre><code>{}</code></pre></section>'.format(section['paragraph'], section['example'])
                     self.sections.append(section)
                 else:
-                    section['abstract'] = '<section class="prog__container><p>{}</p></section>'.format(section['paragraph'])
+                    section['abstract'] = '<section class="prog__container"><p>{}</p></section>'.format(section['paragraph'])
                     self.sections.append(section)
 
         self.parsed_data = self.sections
