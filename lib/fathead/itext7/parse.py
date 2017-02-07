@@ -23,7 +23,7 @@ class ITextClass(object):
     def __init__(self, name, description, filename):
         """Instantiate the information about the class"""
         self.name = name
-        self.description = description.replace('\n', '\\n').replace('\t', '    ')
+        self.description = description.replace('\n', '').replace('\t', '    ')
         self.description = '<p>{}</p>'.format(self.description)
         self.filename = filename
 
