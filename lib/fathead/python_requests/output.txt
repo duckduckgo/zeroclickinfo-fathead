@@ -70,7 +70,6 @@ add_headers	R	add_headers(request, **kwargs)
 add_headers(request, **kwargs)	A										<section class="prog__container"><p>Add any headers needed by the connection. As of v2.0 this does nothing by default, but is left for overriding by users that subclass the HTTPAdapter.This should not be called from user code, and is only exposed for use when subclassing the HTTPAdapter.<b>Parameters:</b> <ul><li>request -- The PreparedRequest to add headers to.</li><li>kwargs -- The keyword arguments from the call to send().</li></ul></p></section>	http://docs.python-requests.org/en/master/api/#requests.adapters.HTTPAdapter.add_headers
 apparent encoding	R	apparent_encoding										
 apparent_encoding	A										<section class="prog__container"><p>The apparent encoding, provided by the chardet library</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.apparent_encoding
-apparent_encoding	R	apparent_encoding										
 auth	R	auth 										
 auth 	A										<section class="prog__container"><p>Default Authentication tuple or object to attach to Request.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.auth
 body	R	body 										
@@ -106,7 +105,6 @@ clear_session_cookies()	A										<section class="prog__container"><p>Discard a
 close	R	close()										
 close()	A										<section class="prog__container"><p>Closes all adapters and as such the session</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.close
 content	A										<section class="prog__container"><p>Content of the response, in bytes.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.content
-content	R	content										
 cookiejar from dict	R	requests.cookies.cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)										
 cookiejar_from_dict	R	requests.cookies.cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)										
 cookies	R	cookies 										
@@ -167,9 +165,7 @@ init_poolmanager(connections, maxsize, block=False, **pool_kwargs)	A										<s
 is permanent redirect	R	is_permanent_redirect										
 is redirect	R	is_redirect										
 is_permanent_redirect	A										<section class="prog__container"><p>True if this Response one of the permanent versions of redirect</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.is_permanent_redirect
-is_permanent_redirect	R	is_permanent_redirect										
 is_redirect	A										<section class="prog__container"><p>True if this Response is a well-formed HTTP redirect that could have been processed automatically (by Session.resolve_redirects).</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.is_redirect
-is_redirect	R	is_redirect										
 items	R	items()										
 items()	A										<section class="prog__container"><p>Dict-like items() that returns a list of name-value tuples from the jar. Allows client-code to call dict(RequestsCookieJar) and get a vanilla python dict of key value pairs.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.items
 iter content	R	iter_content(chunk_size=1, decode_unicode=False)										
@@ -189,7 +185,6 @@ json(**kwargs)	A										<section class="prog__container"><p>Returns the json-e
 keys	R	keys()										
 keys()	A										<section class="prog__container"><p>Dict-like keys() that returns a list of names of cookies from the jar.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.keys
 links	A										<section class="prog__container"><p>Returns the parsed header links of the response, if any.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.links
-links	R	links										
 list domains	R	list_domains()										
 list paths	R	list_paths()										
 list_domains	R	list_domains()										
@@ -220,7 +215,6 @@ patch	R	requests.patch(url, data=None, **kwargs)
 patch(url, data=None, **kwargs)	A										<section class="prog__container"><p>Sends a PATCH request. Returns Response object.<b>Parameters:</b> <ul><li>url -- URL for the new Request object.</li><li>data -- (optional) Dictionary, bytes, or file-like object to send in the body of the Request.</li><li>**kwargs -- Optional arguments that request takes.</li></ul><b>Return type:</b> requests.Response</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.patch
 path url	R	path_url										
 path_url	A										<section class="prog__container"><p>Build the path URL to use.</p></section>	http://docs.python-requests.org/en/master/api/#requests.PreparedRequest.path_url
-path_url	R	path_url										
 pop	R	pop(k[, d])										
 pop(k[, d])	A										<section class="prog__container"><p>→  v, remove specified key and return the corresponding value. If key is not found, d is returned if given, otherwise KeyError is raised.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.pop
 popitem	R	popitem()										
@@ -602,7 +596,6 @@ status_code 	A										<section class="prog__container"><p>Integer Code of resp
 stream	R	stream 										
 stream 	A										<section class="prog__container"><p>Stream response content default.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.stream
 text	A										<section class="prog__container"><p>Content of the response, in unicode.If Response.encoding is None, encoding will be guessed using chardet.The encoding of the response content is determined based solely on HTTP headers, following RFC 2616 to the letter. If you can take advantage of non-HTTP knowledge to make a better guess at the encoding, you should set r.encoding appropriately before accessing this property.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.text
-text	R	text										
 trust env	R	trust_env 										
 trust_env	R	trust_env 										
 trust_env 	A										<section class="prog__container"><p>Trust environment settings for proxy configuration, default authentication and similar.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.trust_env
