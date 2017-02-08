@@ -117,7 +117,8 @@ def parse_dl(dl, page_url):
         out = create_article(func_with_params, abstract, permalink)
         output_data.append(out)
         for redirect_title in redirect_titles:
-            redirect = create_redirect(redirect_title, func_with_params)
+            if redirect_title not in SEEN_REDIRECTS:
+                redirect = create_redirect(redirect_title, func_with_params)
             output_data.append(redirect)
     output_data = [d for d in output_data if d]
     return output_data
