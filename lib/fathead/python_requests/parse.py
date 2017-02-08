@@ -119,7 +119,7 @@ def parse_dl(dl, page_url):
         for redirect_title in redirect_titles:
             if redirect_title not in SEEN_REDIRECTS:
                 redirect = create_redirect(redirect_title, func_with_params)
-            output_data.append(redirect)
+                output_data.append(redirect)
     output_data = [d for d in output_data if d]
     return output_data
 
