@@ -6,6 +6,7 @@ from urllib.parse import urljoin
 
 
 SEEN_TITLES = []
+SEEN_REDIRECTS = []
 
 
 def create_article(title, abstract, url):
@@ -34,6 +35,7 @@ def create_article(title, abstract, url):
 
 def create_redirect(redirect_title, original_title):
     print('REDIRECT: {0} ~> {1}\n'.format(redirect_title, original_title))
+    SEEN_REDIRECTS.append(redirect_title)
     data = [
             redirect_title,  # title
             'R',             # type is article
