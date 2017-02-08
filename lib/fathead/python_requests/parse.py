@@ -126,7 +126,7 @@ def parse_dl(dl, page_url):
         table_params = dl.find('table')
         if table_params:
             for tr in table_params.findAll('tr'):
-                abstract += '<b>{}</b> '.format(tr.th.text)
+                abstract += '<b>{}\\n</b>'.format(tr.th.text)
                 if tr.td.findAll('li'):
                     abstract += '<ul>'
                     for li in tr.td.findAll('li'):
