@@ -86,8 +86,9 @@ def parse_dl(dl, page_url):
     isolated_func_name = fully_qualified_name_parts[-1]
     module_func = ' '.join(fully_qualified_name_parts)
     possible_redirect_titles = [module_func, func_without_params,
-                                isolated_func_name]
-    redirect_titles = [i for i in possible_redirect_titles if i and
+                                isolated_func_name,
+                                ' '.join(isolated_func_name.split('_'))]
+    redirect_titles = [i for i in set(possible_redirect_titles) if i and
                        i is not func_with_params]
     dd = dl.find('dd')
     if dd.p:
