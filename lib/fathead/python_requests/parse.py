@@ -80,8 +80,11 @@ def parse_dl(dl, page_url):
         func_with_params = func_with_params.strip()
         abstract = '→ {} '.format(abstract)
     permalink = urljoin(page_url, '#{}'.format(func_without_params))
-    module_func = ' '.join(func_without_params.split('.'))
-    possible_redirect_titles = [module_func, func_without_params]
+    fully_qualified_name_parts = func_without_params.split('.')
+    isolated_func_name = fully_qualified_name_parts[-1]
+    module_func = ' '.join(fully_qualified_name_parts)
+    possible_redirect_titles = [module_func, func_without_params,
+                                isolated_func_name]
     redirect_titles = [i for i in possible_redirect_titles if i and
                        i is not func_with_params]
     dd = dl.find('dd')
