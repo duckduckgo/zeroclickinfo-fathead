@@ -125,8 +125,11 @@ def parse_dl(dl, page_url):
             next_sibling = next_sibling.find_next_sibling(text=None)
         table_params = dl.find('table')
         if table_params:
-            for tr in table_params.findAll('tr'):
-                abstract += '<b>{}\\n</b>'.format(tr.th.text)
+            for n, tr in enumerate(table_params.findAll('tr')):
+                if n == 0:
+                    abstract += '\\n<b>{}</b>'.format(tr.th.text)
+                else:
+                    abstract += '<b>{}</b>'.format(tr.th.text)
                 if tr.td.findAll('li'):
                     abstract += '<ul>'
                     for li in tr.td.findAll('li'):
