@@ -17,6 +17,12 @@ def is_duplicate_entry(entry):
     return False
 
 
+def clean_title(title):
+    for unwanted_text in ['¶', '[source]', '= None']:
+        title = title.replace(unwanted_text, '')
+    return title
+
+
 def create_article(title, abstract, url):
     print('TITLE   : %s ' % title)
     print('URL     : %s ' % url)
@@ -99,9 +105,7 @@ def parse_dl(dl, page_url):
     '''
     output_data = []
     dt = dl.find('dt')
-    func_with_params = dt.text.strip()
-    for unwanted_text in ['¶', '[source]', '= None']:
-        func_with_params = func_with_params.replace(unwanted_text, '')
+    func_with_params = clean_title(dt.text.strip())
     abstract = ''
     func_without_params = dt.get('id').strip()
     if '→' in func_with_params:
