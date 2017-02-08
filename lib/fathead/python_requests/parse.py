@@ -69,11 +69,10 @@ def parse_dl(dl, page_url):
     '''
     output_data = []
     dt = dl.find('dt')
-    func_with_params = dt.text.replace('¶', '').replace('[source]', '')
-    func_with_params = func_with_params.strip()
+    func_with_params = dt.text.strip()
+    for unwanted_text in ['¶', '[source]', '= None']:
+        func_with_params = func_with_params.replace(unwanted_text, '')
 
-    # remove session attribute initialization with None
-    func_with_params = func_with_params.replace('= None', '')
     func_without_params = dt.get('id').strip()
     permalink = urljoin(page_url, '#{}'.format(func_without_params))
     module_func = ' '.join(func_without_params.split('.'))
