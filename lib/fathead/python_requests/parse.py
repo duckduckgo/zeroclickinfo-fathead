@@ -135,11 +135,19 @@ def parse_dl(dl, page_url):
                     for li in tr.td.findAll('li'):
                         li_text = li.text.strip()
                         param, desc = li_text.split('--')
-                        abstract += '<li><b>{0}</b> --{1}</li>'.format(param,
+                        param, desc = param.strip(), desc.strip()
+                        abstract += '<li><b>{0}</b> -- {1}</li>'.format(param,
                                                                         desc)
                     abstract += '</ul>'
                 else:
-                    abstract += tr.td.text.strip()
+                    if 'Return type' in tr.th.text:
+                        # return type is last one, no need for space after it
+                        abstract += tr.td.text.strip()
+                    elif 'Returns' in tr.th.text:
+                        abstract += '{}\\n'.format(tr.td.text.strip())
+                    else:
+                        abstract += tr.td.text.strip()
+
         abstract = abstract.replace('\n', ' ')
     code = ''
     if dl.pre:
