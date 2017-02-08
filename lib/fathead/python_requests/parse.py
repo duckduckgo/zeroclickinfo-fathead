@@ -76,6 +76,9 @@ def parse_dl(dl, page_url):
     func_without_params = dt.get('id').strip()
     permalink = urljoin(page_url, '#{}'.format(func_without_params))
     module_func = ' '.join(func_without_params.split('.'))
+    possible_redirect_titles = [module_func, func_without_params]
+    redirect_titles = [i for i in possible_redirect_titles if i and
+                       i is not func_with_params]
     dd = dl.find('dd')
     abstract = ''
     if dd.p:
@@ -103,17 +106,10 @@ def parse_dl(dl, page_url):
     if abstract:
         abstract = format_abstract(abstract, code)
         out = create_article(func_with_params, abstract, permalink)
-        if func_without_params:
-            if func_without_params != func_with_params:
-                redirect = create_redirect(func_without_params,
-                                           func_with_params)
-                output_data.append(redirect)
-                if module_func != func_without_params:
-                    if module_func != func_with_params:
-                        redirect = create_redirect(module_func,
-                                                   func_with_params)
-                        output_data.append(redirect)
         output_data.append(out)
+        for redirect_title in redirect_titles:
+            redirect = create_redirect(redirect_title, func_with_params)
+            output_data.append(redirect)
     output_data = [d for d in output_data if d]
     return output_data
 
