@@ -113,8 +113,8 @@ options(url, **kwargs)	A										<section class="prog__container"><p>Sends a OP
 params 	A										<section class="prog__container"><p>Dictionary of querystring data to attach to each Request. The dictionary values may be lists for representing multivalued query parameters.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.params
 patch(url, data=None, **kwargs)	A										<section class="prog__container"><p>Sends a PATCH request. Returns Response object.<b>Parameters:</b> <ul><li>url -- URL for the new Request object.</li><li>data -- (optional) Dictionary, bytes, or file-like object to send in the body of the Request.</li><li>**kwargs -- Optional arguments that request takes.</li></ul><b>Return type:</b> requests.Response</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.patch
 path_url	A										<section class="prog__container"><p>Build the path URL to use.</p></section>	http://docs.python-requests.org/en/master/api/#requests.PreparedRequest.path_url
-pop(k[, d]) → v, remove specified key and return the corresponding value.	A										<section class="prog__container"><p>If key is not found, d is returned if given, otherwise KeyError is raised.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.pop
-popitem() → (k, v), remove and return some (key, value) pair	A										<section class="prog__container"><p>as a 2-tuple; but raise KeyError if D is empty.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.popitem
+pop(k[, d])	A										<section class="prog__container"><p>→  v, remove specified key and return the corresponding value. If key is not found, d is returned if given, otherwise KeyError is raised.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.pop
+popitem()	A										<section class="prog__container"><p>→  (k, v), remove and return some (key, value) pair as a 2-tuple; but raise KeyError if D is empty.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.popitem
 post(url, data=None, json=None, **kwargs)	A										<section class="prog__container"><p>Sends a POST request. Returns Response object.<b>Parameters:</b> <ul><li>url -- URL for the new Request object.</li><li>data -- (optional) Dictionary, bytes, or file-like object to send in the body of the Request.</li><li>json -- (optional) json to send in the body of the Request.</li><li>**kwargs -- Optional arguments that request takes.</li></ul><b>Return type:</b> requests.Response</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.post
 prepare()	A										<section class="prog__container"><p>Constructs a PreparedRequest for transmission and returns it.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Request.prepare
 prepare(method=None, url=None, headers=None, files=None, data=None, params=None, auth=None, cookies=None, hooks=None, json=None)	A										<section class="prog__container"><p>Prepares the entire request with the given parameters.</p></section>	http://docs.python-requests.org/en/master/api/#requests.PreparedRequest.prepare
@@ -260,10 +260,11 @@ requests cookies RequestsCookieJar list_domains	R	list_domains()
 requests cookies RequestsCookieJar list_paths	R	list_paths()										
 requests cookies RequestsCookieJar make_cookies	R	make_cookies(response, request)										
 requests cookies RequestsCookieJar multiple_domains	R	multiple_domains()										
-requests cookies RequestsCookieJar pop	R	pop(k[, d]) → v, remove specified key and return the corresponding value.										
-requests cookies RequestsCookieJar popitem	R	popitem() → (k, v), remove and return some (key, value) pair										
+requests cookies RequestsCookieJar pop	R	pop(k[, d])										
+requests cookies RequestsCookieJar popitem	R	popitem()										
 requests cookies RequestsCookieJar set	R	set(name, value, **kwargs)										
 requests cookies RequestsCookieJar set_cookie_if_ok	R	set_cookie_if_ok(cookie, request)										
+requests cookies RequestsCookieJar setdefault	R	setdefault(k[, d])										
 requests cookies RequestsCookieJar update	R	update(other)										
 requests cookies RequestsCookieJar values	R	values()										
 requests cookies cookiejar_from_dict	R	requests.cookies.cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)										
@@ -398,10 +399,11 @@ requests.cookies.RequestsCookieJar.list_domains	R	list_domains()
 requests.cookies.RequestsCookieJar.list_paths	R	list_paths()										
 requests.cookies.RequestsCookieJar.make_cookies	R	make_cookies(response, request)										
 requests.cookies.RequestsCookieJar.multiple_domains	R	multiple_domains()										
-requests.cookies.RequestsCookieJar.pop	R	pop(k[, d]) → v, remove specified key and return the corresponding value.										
-requests.cookies.RequestsCookieJar.popitem	R	popitem() → (k, v), remove and return some (key, value) pair										
+requests.cookies.RequestsCookieJar.pop	R	pop(k[, d])										
+requests.cookies.RequestsCookieJar.popitem	R	popitem()										
 requests.cookies.RequestsCookieJar.set	R	set(name, value, **kwargs)										
 requests.cookies.RequestsCookieJar.set_cookie_if_ok	R	set_cookie_if_ok(cookie, request)										
+requests.cookies.RequestsCookieJar.setdefault	R	setdefault(k[, d])										
 requests.cookies.RequestsCookieJar.update	R	update(other)										
 requests.cookies.RequestsCookieJar.values	R	values()										
 requests.cookies.cookiejar_from_dict	R	requests.cookies.cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)										
@@ -435,6 +437,7 @@ send(request, **kwargs)	A										<section class="prog__container"><p>Send a gi
 send(request, stream=False, timeout=None, verify=True, cert=None, proxies=None)	A										<section class="prog__container"><p>Sends PreparedRequest object. Returns Response object.<b>Parameters:</b> <ul><li>request -- The PreparedRequest being sent.</li><li>stream -- (optional) Whether to stream the request content.</li><li>timeout (float or tuple) -- (optional) How long to wait for the server to send data before giving up, as a float, or a (connect timeout, read timeout) tuple.</li><li>verify -- (optional) Whether to verify SSL certificates.</li><li>cert -- (optional) Any user-provided SSL certificate to be trusted.</li><li>proxies -- (optional) The proxies dictionary to apply to the request.</li></ul></p></section>	http://docs.python-requests.org/en/master/api/#requests.adapters.BaseAdapter.send
 set(name, value, **kwargs)	A										<section class="prog__container"><p>Dict-like set() that also supports optional domain and path args in order to resolve naming collisions from using one cookie jar over multiple domains.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.set
 set_cookie_if_ok(cookie, request)	A										<section class="prog__container"><p>Set a cookie if policy says it's OK to do so.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.set_cookie_if_ok
+setdefault(k[, d])	A										<section class="prog__container"><p>→  D.get(k,d), also set D[k]=d if k not in D </p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.setdefault
 status_code 	A										<section class="prog__container"><p>Integer Code of responded HTTP Status, e.g. 404 or 200.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.status_code
 stream 	A										<section class="prog__container"><p>Stream response content default.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.stream
 text	A										<section class="prog__container"><p>Content of the response, in unicode.If Response.encoding is None, encoding will be guessed using chardet.The encoding of the response content is determined based solely on HTTP headers, following RFC 2616 to the letter. If you can take advantage of non-HTTP knowledge to make a better guess at the encoding, you should set r.encoding appropriately before accessing this property.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.text
