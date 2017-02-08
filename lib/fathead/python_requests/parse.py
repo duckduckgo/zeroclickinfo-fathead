@@ -72,17 +72,21 @@ def parse_dl(dl, page_url):
     func_with_params = dt.text.strip()
     for unwanted_text in ['¶', '[source]', '= None']:
         func_with_params = func_with_params.replace(unwanted_text, '')
-
+    abstract = ''
     func_without_params = dt.get('id').strip()
+    if '→' in func_with_params:
+        # see /en/master/api/#requests.cookies.RequestsCookieJar.pop
+        func_with_params, abstract = func_with_params.split('→')
+        func_with_params = func_with_params.strip()
+        abstract = '→ {} '.format(abstract)
     permalink = urljoin(page_url, '#{}'.format(func_without_params))
     module_func = ' '.join(func_without_params.split('.'))
     possible_redirect_titles = [module_func, func_without_params]
     redirect_titles = [i for i in possible_redirect_titles if i and
                        i is not func_with_params]
     dd = dl.find('dd')
-    abstract = ''
     if dd.p:
-        abstract = dd.p.text
+        abstract += dd.p.text
         next_sibling = dd.p.find_next_sibling(text=None)
         while next_sibling and next_sibling.name == 'p':
             abstract += next_sibling.text
