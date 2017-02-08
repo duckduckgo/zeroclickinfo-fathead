@@ -353,7 +353,6 @@ def get_redirects(title):
     if title_split[0] == PACKAGE_NAME:
         title_split = title_split[1:]
 
-    redirects.add(".".join(title_split))
     redirects.add(" ".join(title_split))
     return redirects
 
