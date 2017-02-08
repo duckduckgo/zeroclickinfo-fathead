@@ -60,21 +60,27 @@ Timeouts	A										<section class="prog__container"><p>Most requests to externa
 TooManyRedirects	R	exception requests.TooManyRedirects(*args, **kwargs)										
 Transport Adapters	A										<section class="prog__container"><p>As of v1.0.0, Requests has moved to a modular internal design. Part of the reason this was done was to implement Transport Adapters, originally described here. Transport Adapters provide a mechanism to define interaction methods for an HTTP service. In particular, they allow you to apply per-service configuration.Requests ships with a single Transport Adapter, the HTTPAdapter. This adapter provides the default Requests interaction with HTTP and HTTPS using the powerful urllib3 library. Whenever a Requests Session is initialized, one of these is attached to the Session object for HTTP, and one for HTTPS.Requests enables users to create and use their own Transport Adapters that provide specific functionality. Once created, a Transport Adapter can be mounted to a Session object, along with an indication of which web services it should apply to.The mount call registers a specific instance of a Transport Adapter to a prefix. Once mounted, any HTTP request made using that session whose URL starts with the given prefix will use the given Transport Adapter.Many of the details of implementing a Transport Adapter are beyond the scope of this documentation, but take a look at the next example for a simple SSL use- case. For more than that, you might look at subclassing the BaseAdapter.</p><pre><code>>>> s = requests.Session()\n>>> s.mount('http://www.github.com', MyAdapter())\nimport ssl\n\nfrom requests.adapters import HTTPAdapter\nfrom requests.packages.urllib3.poolmanager import PoolManager\n\n\nclass Ssl3HttpAdapter(HTTPAdapter):\n    """"Transport adapter" that allows us to use SSLv3."""\n\n    def init_poolmanager(self, connections, maxsize, block=False):\n        self.poolmanager = PoolManager(\n            num_pools=connections, maxsize=maxsize,\n            block=block, ssl_version=ssl.PROTOCOL_SSLv3)\n</code></pre></section>	http://docs.python-requests.org/en/master/user/advanced/#transport-adapters
 URLRequired	R	exception requests.URLRequired(*args, **kwargs)										
+add cookie header	R	add_cookie_header(request)										
+add dict to cookiejar	R	requests.utils.add_dict_to_cookiejar(cj, cookie_dict)										
+add headers	R	add_headers(request, **kwargs)										
 add_cookie_header	R	add_cookie_header(request)										
 add_cookie_header(request)	A										<section class="prog__container"><p>Add correct Cookie: header to request (urllib2.Request object).The Cookie2 header is also added unless policy.hide_cookie2 is true.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.add_cookie_header
 add_dict_to_cookiejar	R	requests.utils.add_dict_to_cookiejar(cj, cookie_dict)										
 add_headers	R	add_headers(request, **kwargs)										
 add_headers(request, **kwargs)	A										<section class="prog__container"><p>Add any headers needed by the connection. As of v2.0 this does nothing by default, but is left for overriding by users that subclass the HTTPAdapter.This should not be called from user code, and is only exposed for use when subclassing the HTTPAdapter.<b>Parameters:</b> <ul><li>request -- The PreparedRequest to add headers to.</li><li>kwargs -- The keyword arguments from the call to send().</li></ul></p></section>	http://docs.python-requests.org/en/master/api/#requests.adapters.HTTPAdapter.add_headers
+apparent encoding	R	apparent_encoding										
 apparent_encoding	A										<section class="prog__container"><p>The apparent encoding, provided by the chardet library</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.apparent_encoding
 apparent_encoding	R	apparent_encoding										
 auth	R	auth 										
 auth 	A										<section class="prog__container"><p>Default Authentication tuple or object to attach to Request.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.auth
 body	R	body 										
 body 	A										<section class="prog__container"><p>request body to send to the server.</p></section>	http://docs.python-requests.org/en/master/api/#requests.PreparedRequest.body
+build response	R	build_response(req, resp)										
 build_response	R	build_response(req, resp)										
 build_response(req, resp)	A										<section class="prog__container"><p>Builds a Response object from a urllib3 response. This should not be called from user code, and is only exposed for use when subclassing the HTTPAdapter<b>Parameters:</b> <ul><li>req -- The PreparedRequest used to generate the response.</li><li>resp -- The urllib3 response object.</li></ul><b>Return type:</b> requests.Response</p></section>	http://docs.python-requests.org/en/master/api/#requests.adapters.HTTPAdapter.build_response
 cert	R	cert 										
 cert 	A										<section class="prog__container"><p>SSL client certificate default.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.cert
+cert verify	R	cert_verify(conn, url, verify, cert)										
 cert_verify	R	cert_verify(conn, url, verify, cert)										
 cert_verify(conn, url, verify, cert)	A										<section class="prog__container"><p>Verify a SSL certificate. This method should not be called from user code, and is only exposed for use when subclassing the HTTPAdapter.<b>Parameters:</b> <ul><li>conn -- The urllib3 connection object associated with the cert.</li><li>url -- The requested URL.</li><li>verify -- Whether we should actually verify the certificate.</li><li>cert -- The SSL certificate to verify.</li></ul></p></section>	http://docs.python-requests.org/en/master/api/#requests.adapters.HTTPAdapter.cert_verify
 class requests.PreparedRequest	A										<section class="prog__container"><p>The fully mutable PreparedRequest object, containing the exact bytes that will be sent to the server.Generated from either a Request object or manually.Usage:</p><pre><code>>>> import requests\n>>> req = requests.Request('GET', 'http://httpbin.org/get')\n>>> r = req.prepare()\n<PreparedRequest [GET]>\n\n>>> s = requests.Session()\n>>> s.send(r)\n<Response [200]>\n</code></pre></section>	http://docs.python-requests.org/en/master/api/#requests.PreparedRequest
@@ -90,6 +96,8 @@ class requests.auth.HTTPProxyAuth(username, password)	A										<section class=
 class requests.cookies.CookieConflictError	A										<section class="prog__container"><p>There are two cookies that meet the criteria specified in the cookie jar. Use .get and .set and include domain and path args in order to be more specific.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.CookieConflictError
 class requests.cookies.RequestsCookieJar(policy=None)	A										<section class="prog__container"><p>Compatibility class; is a cookielib.CookieJar, but exposes a dict interface.This is the CookieJar we create by default for requests and sessions that don't specify one, since some clients may expect response.cookies and session.cookies to support dict operations.Requests does not use the dict interface internally; it's just for compatibility with external client code. All requests code should work out of the box with externally provided instances of CookieJar, e.g. LWPCookieJar and FileCookieJar.Unlike a regular CookieJar, this class is pickleable.<b>Return type:</b> dict</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar
 clear	R	clear(domain=None, path=None, name=None)										
+clear expired cookies	R	clear_expired_cookies()										
+clear session cookies	R	clear_session_cookies()										
 clear(domain=None, path=None, name=None)	A										<section class="prog__container"><p>Clear some cookies.Invoking this method without arguments will clear all cookies.  If given a single argument, only cookies belonging to that domain will be removed.  If given two arguments, cookies belonging to the specified path within that domain are removed.  If given three arguments, then the cookie with the specified name, path and domain is removed.Raises KeyError if no matching cookie exists.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.clear
 clear_expired_cookies	R	clear_expired_cookies()										
 clear_expired_cookies()	A										<section class="prog__container"><p>Discard all expired cookies.You probably don't need to call this method: expired cookies are never sent back to the server (provided you're using DefaultCookiePolicy), this method is called by CookieJar itself every so often, and the .save() method won't save expired cookies anyway (unless you ask otherwise by passing a true ignore_expires argument).</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.clear_expired_cookies
@@ -99,6 +107,7 @@ close	R	close()
 close()	A										<section class="prog__container"><p>Closes all adapters and as such the session</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.close
 content	A										<section class="prog__container"><p>Content of the response, in bytes.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.content
 content	R	content										
+cookiejar from dict	R	requests.cookies.cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)										
 cookiejar_from_dict	R	requests.cookies.cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)										
 cookies	R	cookies 										
 cookies 	A										<section class="prog__container"><p>A CookieJar containing all currently outstanding cookies set on this session. By default it is a RequestsCookieJar, but may be any other cookielib.CookieJar compatible object.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.cookies
@@ -106,8 +115,10 @@ copy	R	copy()
 copy()	A										<section class="prog__container"><p>Return a copy of this RequestsCookieJar.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.copy
 delete	R	requests.delete(url, **kwargs)										
 delete(url, **kwargs)	A										<section class="prog__container"><p>Sends a DELETE request. Returns Response object.<b>Parameters:</b> <ul><li>url -- URL for the new Request object.</li><li>**kwargs -- Optional arguments that request takes.</li></ul><b>Return type:</b> requests.Response</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.delete
+deregister hook	R	deregister_hook(event, hook)										
 deregister_hook	R	deregister_hook(event, hook)										
 deregister_hook(event, hook)	A										<section class="prog__container"><p>Deregister a previously registered hook. Returns True if the hook existed, False if not.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Request.deregister_hook
+dict from cookiejar	R	requests.utils.dict_from_cookiejar(cj)										
 dict_from_cookiejar	R	requests.utils.dict_from_cookiejar(cj)										
 elapsed	R	elapsed 										
 elapsed 	A										<section class="prog__container"><p>The amount of time elapsed between sending the request and the arrival of the response (as a timedelta). This property specifically measures the time taken between sending the first byte of the request and finishing parsing the headers. It is therefore unaffected by consuming the response content or the value of the stream keyword argument.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.elapsed
@@ -121,9 +132,16 @@ exception requests.RequestException(*args, **kwargs)	A										<section class="
 exception requests.Timeout(*args, **kwargs)	A										<section class="prog__container"><p>The request timed out.Catching this error will catch both ConnectTimeout and ReadTimeout errors.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Timeout
 exception requests.TooManyRedirects(*args, **kwargs)	A										<section class="prog__container"><p>Too many redirects.</p></section>	http://docs.python-requests.org/en/master/api/#requests.TooManyRedirects
 exception requests.URLRequired(*args, **kwargs)	A										<section class="prog__container"><p>A valid URL is required to make a request.</p></section>	http://docs.python-requests.org/en/master/api/#requests.URLRequired
+extract cookies	R	extract_cookies(response, request)										
 extract_cookies	R	extract_cookies(response, request)										
 extract_cookies(response, request)	A										<section class="prog__container"><p>Extract cookies from response, where allowable given the request.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.extract_cookies
 get	R	requests.get(url, params=None, **kwargs)										
+get adapter	R	get_adapter(url)										
+get connection	R	get_connection(url, proxies=None)										
+get dict	R	get_dict(domain=None, path=None)										
+get encoding from headers	R	requests.utils.get_encoding_from_headers(headers)										
+get encodings from content	R	requests.utils.get_encodings_from_content(content)										
+get unicode from response	R	requests.utils.get_unicode_from_response(r)										
 get(name, default=None, domain=None, path=None)	A										<section class="prog__container"><p>Dict-like get() that also supports optional domain and path args in order to resolve naming collisions from using one cookie jar over multiple domains.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.get
 get(url, **kwargs)	A										<section class="prog__container"><p>Sends a GET request. Returns Response object.<b>Parameters:</b> <ul><li>url -- URL for the new Request object.</li><li>**kwargs -- Optional arguments that request takes.</li></ul><b>Return type:</b> requests.Response</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.get
 get_adapter	R	get_adapter(url)										
@@ -143,14 +161,19 @@ history	R	history
 history 	A										<section class="prog__container"><p>A list of Response objects from the history of the Request. Any redirect responses will end up here. The list is sorted from the oldest to the most recent request.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.history
 hooks	R	hooks 										
 hooks 	A										<section class="prog__container"><p>Event-handling hooks.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.hooks
+init poolmanager	R	init_poolmanager(connections, maxsize, block=False, **pool_kwargs)										
 init_poolmanager	R	init_poolmanager(connections, maxsize, block=False, **pool_kwargs)										
 init_poolmanager(connections, maxsize, block=False, **pool_kwargs)	A										<section class="prog__container"><p>Initializes a urllib3 PoolManager.This method should not be called from user code, and is only exposed for use when subclassing the HTTPAdapter.<b>Parameters:</b> <ul><li>connections -- The number of urllib3 connection pools to cache.</li><li>maxsize -- The maximum number of connections to save in the pool.</li><li>block -- Block when no free connections are available.</li><li>pool_kwargs -- Extra keyword arguments used to initialize the Pool Manager.</li></ul></p></section>	http://docs.python-requests.org/en/master/api/#requests.adapters.HTTPAdapter.init_poolmanager
+is permanent redirect	R	is_permanent_redirect										
+is redirect	R	is_redirect										
 is_permanent_redirect	A										<section class="prog__container"><p>True if this Response one of the permanent versions of redirect</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.is_permanent_redirect
 is_permanent_redirect	R	is_permanent_redirect										
 is_redirect	A										<section class="prog__container"><p>True if this Response is a well-formed HTTP redirect that could have been processed automatically (by Session.resolve_redirects).</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.is_redirect
 is_redirect	R	is_redirect										
 items	R	items()										
 items()	A										<section class="prog__container"><p>Dict-like items() that returns a list of name-value tuples from the jar. Allows client-code to call dict(RequestsCookieJar) and get a vanilla python dict of key value pairs.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.items
+iter content	R	iter_content(chunk_size=1, decode_unicode=False)										
+iter lines	R	iter_lines(chunk_size=512, decode_unicode=None, delimiter=None)										
 iter_content	R	iter_content(chunk_size=1, decode_unicode=False)										
 iter_content(chunk_size=1, decode_unicode=False)	A										<section class="prog__container"><p>Iterates over the response data.  When stream=True is set on the request, this avoids reading the content at once into memory for large responses.  The chunk size is the number of bytes it should read into memory.  This is not necessarily the length of each item returned as decoding can take place.chunk_size must be of type int or None. A value of None will function differently depending on the value of stream. stream=True will read data as it arrives in whatever size the chunks are received. If stream=False, data is returned as a single chunk.If decode_unicode is True, content will be decoded using the best available encoding based on the response.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.iter_content
 iter_lines	R	iter_lines(chunk_size=512, decode_unicode=None, delimiter=None)										
@@ -167,20 +190,26 @@ keys	R	keys()
 keys()	A										<section class="prog__container"><p>Dict-like keys() that returns a list of names of cookies from the jar.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.keys
 links	A										<section class="prog__container"><p>Returns the parsed header links of the response, if any.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.links
 links	R	links										
+list domains	R	list_domains()										
+list paths	R	list_paths()										
 list_domains	R	list_domains()										
 list_domains()	A										<section class="prog__container"><p>Utility method to list all the domains in the jar.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.list_domains
 list_paths	R	list_paths()										
 list_paths()	A										<section class="prog__container"><p>Utility method to list all the paths in the jar.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.list_paths
+make cookies	R	make_cookies(response, request)										
 make_cookies	R	make_cookies(response, request)										
 make_cookies(response, request)	A										<section class="prog__container"><p>Return sequence of Cookie objects extracted from response object.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.make_cookies
+max redirects	R	max_redirects 										
 max_redirects	R	max_redirects 										
 max_redirects 	A										<section class="prog__container"><p>Maximum number of redirects allowed. If the request exceeds this limit, a TooManyRedirects exception is raised. This defaults to requests.models.DEFAULT_REDIRECT_LIMIT, which is 30.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.max_redirects
+merge environment settings	R	merge_environment_settings(url, proxies, stream, verify, cert)										
 merge_environment_settings	R	merge_environment_settings(url, proxies, stream, verify, cert)										
 merge_environment_settings(url, proxies, stream, verify, cert)	A										<section class="prog__container"><p>Check the environment and merge it with some settings.<b>Return type:</b> dict</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.merge_environment_settings
 method	R	method 										
 method 	A										<section class="prog__container"><p>HTTP verb to send to the server.</p></section>	http://docs.python-requests.org/en/master/api/#requests.PreparedRequest.method
 mount	R	mount(prefix, adapter)										
 mount(prefix, adapter)	A										<section class="prog__container"><p>Registers a connection adapter to a prefix.Adapters are sorted in descending order by key length.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.mount
+multiple domains	R	multiple_domains()										
 multiple_domains	R	multiple_domains()										
 multiple_domains()	A										<section class="prog__container"><p>Returns True if there are multiple domains in the jar. Returns False otherwise.<b>Return type:</b> bool</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.multiple_domains
 options	R	options(url, **kwargs)										
@@ -189,6 +218,7 @@ params	R	params
 params 	A										<section class="prog__container"><p>Dictionary of querystring data to attach to each Request. The dictionary values may be lists for representing multivalued query parameters.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.params
 patch	R	requests.patch(url, data=None, **kwargs)										
 patch(url, data=None, **kwargs)	A										<section class="prog__container"><p>Sends a PATCH request. Returns Response object.<b>Parameters:</b> <ul><li>url -- URL for the new Request object.</li><li>data -- (optional) Dictionary, bytes, or file-like object to send in the body of the Request.</li><li>**kwargs -- Optional arguments that request takes.</li></ul><b>Return type:</b> requests.Response</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.patch
+path url	R	path_url										
 path_url	A										<section class="prog__container"><p>Build the path URL to use.</p></section>	http://docs.python-requests.org/en/master/api/#requests.PreparedRequest.path_url
 path_url	R	path_url										
 pop	R	pop(k[, d])										
@@ -198,6 +228,15 @@ popitem()	A										<section class="prog__container"><p>→  (k, v), remove and
 post	R	requests.post(url, data=None, json=None, **kwargs)										
 post(url, data=None, json=None, **kwargs)	A										<section class="prog__container"><p>Sends a POST request. Returns Response object.<b>Parameters:</b> <ul><li>url -- URL for the new Request object.</li><li>data -- (optional) Dictionary, bytes, or file-like object to send in the body of the Request.</li><li>json -- (optional) json to send in the body of the Request.</li><li>**kwargs -- Optional arguments that request takes.</li></ul><b>Return type:</b> requests.Response</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.post
 prepare	R	prepare()										
+prepare auth	R	prepare_auth(auth, url='')										
+prepare body	R	prepare_body(data, files, json=None)										
+prepare content length	R	prepare_content_length(body)										
+prepare cookies	R	prepare_cookies(cookies)										
+prepare headers	R	prepare_headers(headers)										
+prepare hooks	R	prepare_hooks(hooks)										
+prepare method	R	prepare_method(method)										
+prepare request	R	prepare_request(request)										
+prepare url	R	prepare_url(url, params)										
 prepare()	A										<section class="prog__container"><p>Constructs a PreparedRequest for transmission and returns it.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Request.prepare
 prepare(method=None, url=None, headers=None, files=None, data=None, params=None, auth=None, cookies=None, hooks=None, json=None)	A										<section class="prog__container"><p>Prepares the entire request with the given parameters.</p></section>	http://docs.python-requests.org/en/master/api/#requests.PreparedRequest.prepare
 prepare_auth	R	prepare_auth(auth, url='')										
@@ -220,28 +259,36 @@ prepare_url	R	prepare_url(url, params)
 prepare_url(url, params)	A										<section class="prog__container"><p>Prepares the given HTTP URL.</p></section>	http://docs.python-requests.org/en/master/api/#requests.PreparedRequest.prepare_url
 proxies	R	proxies 										
 proxies 	A										<section class="prog__container"><p>Dictionary mapping protocol or protocol and host to the URL of the proxy (e.g. {'http': 'foo.bar:3128', 'http://host.name': 'foo.bar:4012'}) to be used on each Request.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.proxies
+proxy headers	R	proxy_headers(proxy)										
+proxy manager for	R	proxy_manager_for(proxy, **proxy_kwargs)										
 proxy_headers	R	proxy_headers(proxy)										
 proxy_headers(proxy)	A										<section class="prog__container"><p>Returns a dictionary of the headers to add to any request sent through a proxy. This works with urllib3 magic to ensure that they are correctly sent to the proxy, rather than in a tunnelled request if CONNECT is being used.This should not be called from user code, and is only exposed for use when subclassing the HTTPAdapter.<b>Parameters:</b> proxies -- The url of the proxy being used for this request.<b>Return type:</b> dict</p></section>	http://docs.python-requests.org/en/master/api/#requests.adapters.HTTPAdapter.proxy_headers
 proxy_manager_for	R	proxy_manager_for(proxy, **proxy_kwargs)										
 proxy_manager_for(proxy, **proxy_kwargs)	A										<section class="prog__container"><p>Return urllib3 ProxyManager for the given proxy.This method should not be called from user code, and is only exposed for use when subclassing the HTTPAdapter.<b>Parameters:</b> <ul><li>proxy -- The proxy to return a urllib3 ProxyManager for.</li><li>proxy_kwargs -- Extra keyword arguments used to configure the Proxy Manager.</li></ul><b>Returns:</b> ProxyManager<b>Return type:</b> requests.packages.urllib3.ProxyManager</p></section>	http://docs.python-requests.org/en/master/api/#requests.adapters.HTTPAdapter.proxy_manager_for
 put	R	requests.put(url, data=None, **kwargs)										
 put(url, data=None, **kwargs)	A										<section class="prog__container"><p>Sends a PUT request. Returns Response object.<b>Parameters:</b> <ul><li>url -- URL for the new Request object.</li><li>data -- (optional) Dictionary, bytes, or file-like object to send in the body of the Request.</li><li>**kwargs -- Optional arguments that request takes.</li></ul><b>Return type:</b> requests.Response</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.put
+raise for status	R	raise_for_status()										
 raise_for_status	R	raise_for_status()										
 raise_for_status()	A										<section class="prog__container"><p>Raises stored HTTPError, if one occurred.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.raise_for_status
 raw	R	raw 										
 raw 	A										<section class="prog__container"><p>File-like object representation of response (for advanced usage). Use of raw requires that stream=True be set on the request.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.raw
 reason	R	reason 										
 reason 	A										<section class="prog__container"><p>Textual reason of responded HTTP Status, e.g. "Not Found" or "OK".</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.reason
+rebuild auth	R	rebuild_auth(prepared_request, response)										
+rebuild method	R	rebuild_method(prepared_request, response)										
+rebuild proxies	R	rebuild_proxies(prepared_request, proxies)										
 rebuild_auth	R	rebuild_auth(prepared_request, response)										
 rebuild_auth(prepared_request, response)	A										<section class="prog__container"><p>When being redirected we may want to strip authentication from the request to avoid leaking credentials. This method intelligently removes and reapplies authentication where possible to avoid credential loss.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.rebuild_auth
 rebuild_method	R	rebuild_method(prepared_request, response)										
 rebuild_method(prepared_request, response)	A										<section class="prog__container"><p>When being redirected we may want to change the method of the request based on certain specs or browser behavior.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.rebuild_method
 rebuild_proxies	R	rebuild_proxies(prepared_request, proxies)										
 rebuild_proxies(prepared_request, proxies)	A										<section class="prog__container"><p>This method re-evaluates the proxy configuration by considering the environment variables. If we are redirected to a URL covered by NO_PROXY, we strip the proxy configuration. Otherwise, we set missing proxy keys for this URL (in case they were stripped by a previous redirect).This method also replaces the Proxy-Authorization header where necessary.<b>Return type:</b> dict</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.rebuild_proxies
+register hook	R	register_hook(event, hook)										
 register_hook	R	register_hook(event, hook)										
 register_hook(event, hook)	A										<section class="prog__container"><p>Properly register a hook.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Request.register_hook
 request	R	requests.request(method, url, **kwargs)										
 request 	A										<section class="prog__container"><p>The PreparedRequest object to which this is a response.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.request
+request url	R	request_url(request, proxies)										
 request(method, url, params=None, data=None, headers=None, cookies=None, files=None, auth=None, timeout=None, allow_redirects=True, proxies=None, hooks=None, stream=None, verify=None, cert=None, json=None)	A										<section class="prog__container"><p>Constructs a Request, prepares it and sends it. Returns Response object.<b>Parameters:</b> <ul><li>method -- method for the new Request object.</li><li>url -- URL for the new Request object.</li><li>params -- (optional) Dictionary or bytes to be sent in the query string for the Request.</li><li>data -- (optional) Dictionary, bytes, or file-like object to send in the body of the Request.</li><li>json -- (optional) json to send in the body of the Request.</li><li>headers -- (optional) Dictionary of HTTP Headers to send with the Request.</li><li>cookies -- (optional) Dict or CookieJar object to send with the Request.</li><li>files -- (optional) Dictionary of 'filename': file-like-objects for multipart encoding upload.</li><li>auth -- (optional) Auth tuple or callable to enable Basic/Digest/Custom HTTP Auth.</li><li>timeout (float or tuple) -- (optional) How long to wait for the server to send data before giving up, as a float, or a (connect timeout, read timeout) tuple.</li><li>allow_redirects (bool) -- (optional) Set to True by default.</li><li>proxies -- (optional) Dictionary mapping protocol or protocol and hostname to the URL of the proxy.</li><li>stream -- (optional) whether to immediately download the response content. Defaults to False.</li><li>verify -- (optional) whether the SSL cert will be verified. A CA_BUNDLE path can also be provided. Defaults to True.</li><li>cert -- (optional) if String, path to ssl client cert file (.pem). If Tuple, ('cert', 'key') pair.</li></ul><b>Return type:</b> requests.Response</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.request
 request_url	R	request_url(request, proxies)										
 request_url(request, proxies)	A										<section class="prog__container"><p>Obtain the url to use when making the final request.If the message is being sent through a HTTP proxy, the full URL has to be used. Otherwise, we should only use the path portion of the URL.This should not be called from user code, and is only exposed for use when subclassing the HTTPAdapter.<b>Parameters:</b> <ul><li>request -- The PreparedRequest being sent.</li><li>proxies -- A dictionary of schemes or schemes and hosts to proxy URLs.</li></ul><b>Return type:</b> str</p></section>	http://docs.python-requests.org/en/master/api/#requests.adapters.HTTPAdapter.request_url
@@ -390,14 +437,10 @@ requests.HTTPError	R	exception requests.HTTPError(*args, **kwargs)
 requests.PreparedRequest	R	class requests.PreparedRequest										
 requests.PreparedRequest.body	R	body 										
 requests.PreparedRequest.deregister_hook	R	deregister_hook(event, hook)										
-requests.PreparedRequest.deregister_hook	R	deregister_hook(event, hook)										
 requests.PreparedRequest.headers	R	headers 										
-requests.PreparedRequest.headers	R	headers 										
-requests.PreparedRequest.hooks	R	hooks 										
 requests.PreparedRequest.hooks	R	hooks 										
 requests.PreparedRequest.method	R	method 										
 requests.PreparedRequest.path_url	R	path_url										
-requests.PreparedRequest.prepare	R	prepare(method=None, url=None, headers=None, files=None, data=None, params=None, auth=None, cookies=None, hooks=None, json=None)										
 requests.PreparedRequest.prepare	R	prepare(method=None, url=None, headers=None, files=None, data=None, params=None, auth=None, cookies=None, hooks=None, json=None)										
 requests.PreparedRequest.prepare_auth	R	prepare_auth(auth, url='')										
 requests.PreparedRequest.prepare_body	R	prepare_body(data, files, json=None)										
@@ -408,8 +451,6 @@ requests.PreparedRequest.prepare_hooks	R	prepare_hooks(hooks)
 requests.PreparedRequest.prepare_method	R	prepare_method(method)										
 requests.PreparedRequest.prepare_url	R	prepare_url(url, params)										
 requests.PreparedRequest.register_hook	R	register_hook(event, hook)										
-requests.PreparedRequest.register_hook	R	register_hook(event, hook)										
-requests.PreparedRequest.url	R	url 										
 requests.PreparedRequest.url	R	url 										
 requests.ReadTimeout	R	exception requests.ReadTimeout(*args, **kwargs)										
 requests.Request	R	class requests.Request(method=None, url=None, headers=None, files=None, data=None, params=None, auth=None, cookies=None, hooks=None, json=None)										
@@ -420,13 +461,10 @@ requests.RequestException	R	exception requests.RequestException(*args, **kwargs)
 requests.Response	R	class requests.Response										
 requests.Response.apparent_encoding	R	apparent_encoding										
 requests.Response.close	R	close()										
-requests.Response.close	R	close()										
 requests.Response.content	R	content										
-requests.Response.cookies	R	cookies 										
 requests.Response.cookies	R	cookies 										
 requests.Response.elapsed	R	elapsed 										
 requests.Response.encoding	R	encoding 										
-requests.Response.headers	R	headers 										
 requests.Response.headers	R	headers 										
 requests.Response.history	R	history 										
 requests.Response.is_permanent_redirect	R	is_permanent_redirect										
@@ -439,7 +477,6 @@ requests.Response.raise_for_status	R	raise_for_status()
 requests.Response.raw	R	raw 										
 requests.Response.reason	R	reason 										
 requests.Response.request	R	request 										
-requests.Response.request	R	request 										
 requests.Response.status_code	R	status_code 										
 requests.Response.text	R	text										
 requests.Response.url	R	url 										
@@ -449,11 +486,8 @@ requests.Session.cert	R	cert
 requests.Session.close	R	close()										
 requests.Session.cookies	R	cookies 										
 requests.Session.delete	R	delete(url, **kwargs)										
-requests.Session.delete	R	delete(url, **kwargs)										
-requests.Session.get	R	get(url, **kwargs)										
 requests.Session.get	R	get(url, **kwargs)										
 requests.Session.get_adapter	R	get_adapter(url)										
-requests.Session.head	R	head(url, **kwargs)										
 requests.Session.head	R	head(url, **kwargs)										
 requests.Session.headers	R	headers 										
 requests.Session.hooks	R	hooks 										
@@ -463,17 +497,13 @@ requests.Session.mount	R	mount(prefix, adapter)
 requests.Session.options	R	options(url, **kwargs)										
 requests.Session.params	R	params 										
 requests.Session.patch	R	patch(url, data=None, **kwargs)										
-requests.Session.patch	R	patch(url, data=None, **kwargs)										
-requests.Session.post	R	post(url, data=None, json=None, **kwargs)										
 requests.Session.post	R	post(url, data=None, json=None, **kwargs)										
 requests.Session.prepare_request	R	prepare_request(request)										
 requests.Session.proxies	R	proxies 										
 requests.Session.put	R	put(url, data=None, **kwargs)										
-requests.Session.put	R	put(url, data=None, **kwargs)										
 requests.Session.rebuild_auth	R	rebuild_auth(prepared_request, response)										
 requests.Session.rebuild_method	R	rebuild_method(prepared_request, response)										
 requests.Session.rebuild_proxies	R	rebuild_proxies(prepared_request, proxies)										
-requests.Session.request	R	request(method, url, params=None, data=None, headers=None, cookies=None, files=None, auth=None, timeout=None, allow_redirects=True, proxies=None, hooks=None, stream=None, verify=None, cert=None, json=None)										
 requests.Session.request	R	request(method, url, params=None, data=None, headers=None, cookies=None, files=None, auth=None, timeout=None, allow_redirects=True, proxies=None, hooks=None, stream=None, verify=None, cert=None, json=None)										
 requests.Session.resolve_redirects	R	resolve_redirects(resp, req, stream=False, timeout=None, verify=True, cert=None, proxies=None, **adapter_kwargs)										
 requests.Session.send	R	send(request, **kwargs)										
@@ -485,21 +515,17 @@ requests.TooManyRedirects	R	exception requests.TooManyRedirects(*args, **kwargs)
 requests.URLRequired	R	exception requests.URLRequired(*args, **kwargs)										
 requests.adapters.BaseAdapter	R	class requests.adapters.BaseAdapter										
 requests.adapters.BaseAdapter.close	R	close()										
-requests.adapters.BaseAdapter.close	R	close()										
-requests.adapters.BaseAdapter.send	R	send(request, stream=False, timeout=None, verify=True, cert=None, proxies=None)										
 requests.adapters.BaseAdapter.send	R	send(request, stream=False, timeout=None, verify=True, cert=None, proxies=None)										
 requests.adapters.HTTPAdapter	R	class requests.adapters.HTTPAdapter(pool_connections=10, pool_maxsize=10, max_retries=0, pool_block=False)										
 requests.adapters.HTTPAdapter.add_headers	R	add_headers(request, **kwargs)										
 requests.adapters.HTTPAdapter.build_response	R	build_response(req, resp)										
 requests.adapters.HTTPAdapter.cert_verify	R	cert_verify(conn, url, verify, cert)										
 requests.adapters.HTTPAdapter.close	R	close()										
-requests.adapters.HTTPAdapter.close	R	close()										
 requests.adapters.HTTPAdapter.get_connection	R	get_connection(url, proxies=None)										
 requests.adapters.HTTPAdapter.init_poolmanager	R	init_poolmanager(connections, maxsize, block=False, **pool_kwargs)										
 requests.adapters.HTTPAdapter.proxy_headers	R	proxy_headers(proxy)										
 requests.adapters.HTTPAdapter.proxy_manager_for	R	proxy_manager_for(proxy, **proxy_kwargs)										
 requests.adapters.HTTPAdapter.request_url	R	request_url(request, proxies)										
-requests.adapters.HTTPAdapter.send	R	send(request, stream=False, timeout=None, verify=True, cert=None, proxies=None)										
 requests.adapters.HTTPAdapter.send	R	send(request, stream=False, timeout=None, verify=True, cert=None, proxies=None)										
 requests.auth.AuthBase	R	class requests.auth.AuthBase										
 requests.auth.HTTPBasicAuth	R	class requests.auth.HTTPBasicAuth(username, password)										
@@ -513,7 +539,6 @@ requests.cookies.RequestsCookieJar.clear_expired_cookies	R	clear_expired_cookies
 requests.cookies.RequestsCookieJar.clear_session_cookies	R	clear_session_cookies()										
 requests.cookies.RequestsCookieJar.copy	R	copy()										
 requests.cookies.RequestsCookieJar.extract_cookies	R	extract_cookies(response, request)										
-requests.cookies.RequestsCookieJar.get	R	get(name, default=None, domain=None, path=None)										
 requests.cookies.RequestsCookieJar.get	R	get(name, default=None, domain=None, path=None)										
 requests.cookies.RequestsCookieJar.get_dict	R	get_dict(domain=None, path=None)										
 requests.cookies.RequestsCookieJar.items	R	items()										
@@ -558,23 +583,27 @@ requests.utils.get_encodings_from_content	R	requests.utils.get_encodings_from_co
 requests.utils.get_encodings_from_content(content)	A										<section class="prog__container"><p>Returns encodings from given content string.<b>Parameters:</b> content -- bytestring to extract encodings from.</p></section>	http://docs.python-requests.org/en/master/api/#requests.utils.get_encodings_from_content
 requests.utils.get_unicode_from_response	R	requests.utils.get_unicode_from_response(r)										
 requests.utils.get_unicode_from_response(r)	A										<section class="prog__container"><p>Returns the requested content back in unicode.<b>Parameters:</b> r -- Response object to get unicode content from.</p></section>	http://docs.python-requests.org/en/master/api/#requests.utils.get_unicode_from_response
+resolve redirects	R	resolve_redirects(resp, req, stream=False, timeout=None, verify=True, cert=None, proxies=None, **adapter_kwargs)										
 resolve_redirects	R	resolve_redirects(resp, req, stream=False, timeout=None, verify=True, cert=None, proxies=None, **adapter_kwargs)										
 resolve_redirects(resp, req, stream=False, timeout=None, verify=True, cert=None, proxies=None, **adapter_kwargs)	A										<section class="prog__container"><p>Receives a Response. Returns a generator of Responses.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.resolve_redirects
 send	R	send(request, **kwargs)										
 send(request, **kwargs)	A										<section class="prog__container"><p>Send a given PreparedRequest.<b>Return type:</b> requests.Response</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.send
 send(request, stream=False, timeout=None, verify=True, cert=None, proxies=None)	A										<section class="prog__container"><p>Sends PreparedRequest object. Returns Response object.<b>Parameters:</b> <ul><li>request -- The PreparedRequest being sent.</li><li>stream -- (optional) Whether to stream the request content.</li><li>timeout (float or tuple) -- (optional) How long to wait for the server to send data before giving up, as a float, or a (connect timeout, read timeout) tuple.</li><li>verify -- (optional) Whether to verify SSL certificates.</li><li>cert -- (optional) Any user-provided SSL certificate to be trusted.</li><li>proxies -- (optional) The proxies dictionary to apply to the request.</li></ul></p></section>	http://docs.python-requests.org/en/master/api/#requests.adapters.BaseAdapter.send
 set	R	set(name, value, **kwargs)										
+set cookie if ok	R	set_cookie_if_ok(cookie, request)										
 set(name, value, **kwargs)	A										<section class="prog__container"><p>Dict-like set() that also supports optional domain and path args in order to resolve naming collisions from using one cookie jar over multiple domains.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.set
 set_cookie_if_ok	R	set_cookie_if_ok(cookie, request)										
 set_cookie_if_ok(cookie, request)	A										<section class="prog__container"><p>Set a cookie if policy says it's OK to do so.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.set_cookie_if_ok
 setdefault	R	setdefault(k[, d])										
 setdefault(k[, d])	A										<section class="prog__container"><p>→  D.get(k,d), also set D[k]=d if k not in D </p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.setdefault
+status code	R	status_code 										
 status_code	R	status_code 										
 status_code 	A										<section class="prog__container"><p>Integer Code of responded HTTP Status, e.g. 404 or 200.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.status_code
 stream	R	stream 										
 stream 	A										<section class="prog__container"><p>Stream response content default.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.stream
 text	A										<section class="prog__container"><p>Content of the response, in unicode.If Response.encoding is None, encoding will be guessed using chardet.The encoding of the response content is determined based solely on HTTP headers, following RFC 2616 to the letter. If you can take advantage of non-HTTP knowledge to make a better guess at the encoding, you should set r.encoding appropriately before accessing this property.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.text
 text	R	text										
+trust env	R	trust_env 										
 trust_env	R	trust_env 										
 trust_env 	A										<section class="prog__container"><p>Trust environment settings for proxy configuration, default authentication and similar.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.trust_env
 update	R	update(other)										
