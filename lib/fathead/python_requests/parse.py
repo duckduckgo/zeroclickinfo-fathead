@@ -142,11 +142,11 @@ def parse_dl(dl, page_url):
                 else:
                     if 'Return type' in tr.th.text:
                         # return type is last one, no need for space after it
-                        abstract += tr.td.text.strip()
+                        abstract += ' ' + tr.td.text.strip()
                     elif 'Returns' in tr.th.text:
-                        abstract += '{}\\n'.format(tr.td.text.strip())
+                        abstract += ' {}\\n'.format(tr.td.text.strip())
                     else:
-                        abstract += tr.td.text.strip()
+                        abstract += ' ' + tr.td.text.strip()
 
         abstract = abstract.replace('\n', ' ')
     code = ''
