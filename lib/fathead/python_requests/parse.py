@@ -62,6 +62,26 @@ def create_redirect(redirect_title, original_title):
     return '\t'.join(data)
 
 
+def create_redirect_titles(func_with_params='', func_without_params=''):
+    # Superclass.class.method becomes [Superclass, class, method]
+    fully_qualified_name_parts = func_without_params.split('.')
+
+    # [Superclass, class, method] becomes method
+    isolated_func_name = fully_qualified_name_parts[-1]
+
+    # [Superclass, class, method] becomes Superclass class method
+    module_func = ' '.join(fully_qualified_name_parts)
+
+    # some_long_method becomes some long method
+    spaced_func_without_params = ' '.join(isolated_func_name.split('_'))
+    possible_redirect_titles = [module_func, func_without_params,
+                                isolated_func_name,
+                                spaced_func_without_params]
+    redirect_titles = [i for i in set(possible_redirect_titles) if i and
+                       i is not func_with_params]
+    return redirect_titles
+
+
 def format_abstract(abstract, code=None):
     abstract = '<p>{}</p>'.format(abstract)
     section = '<section class="prog__container">{0}{1}</section>'
@@ -90,14 +110,8 @@ def parse_dl(dl, page_url):
         func_with_params = func_with_params.strip()
         abstract = '→ {} '.format(abstract)
     permalink = urljoin(page_url, '#{}'.format(func_without_params))
-    fully_qualified_name_parts = func_without_params.split('.')
-    isolated_func_name = fully_qualified_name_parts[-1]
-    module_func = ' '.join(fully_qualified_name_parts)
-    possible_redirect_titles = [module_func, func_without_params,
-                                isolated_func_name,
-                                ' '.join(isolated_func_name.split('_'))]
-    redirect_titles = [i for i in set(possible_redirect_titles) if i and
-                       i is not func_with_params]
+    redirect_titles = create_redirect_titles(func_with_params,
+                                             func_without_params)
     dd = dl.find('dd')
     if dd.p:
         abstract += dd.p.text
