@@ -134,7 +134,9 @@ def parse_dl(dl, page_url):
                     abstract += '<ul>'
                     for li in tr.td.findAll('li'):
                         li_text = li.text.strip()
-                        abstract += '<li>{}</li>'.format(li_text)
+                        param, desc = li_text.split('--')
+                        abstract += '<li><b>{0}</b> --{1}</li>'.format(param,
+                                                                        desc)
                     abstract += '</ul>'
                 else:
                     abstract += tr.td.text.strip()
