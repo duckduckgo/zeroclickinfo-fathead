@@ -6,6 +6,8 @@ from urllib.parse import urljoin
 
 
 SEEN_TITLES = []
+
+
 def create_article(title, abstract, url):
     print('TITLE   : %s ' % title)
     print('URL     : %s ' % url)
@@ -70,7 +72,7 @@ def parse_dl(dl, page_url):
     func_with_params = dt.text.replace('¶', '').replace('[source]', '')
     func_with_params = func_with_params.strip()
 
-    #remove session attribute initialization with None
+    # remove session attribute initialization with None
     func_with_params = func_with_params.replace('= None', '')
     func_without_params = dt.get('id').strip()
     permalink = urljoin(page_url, '#{}'.format(func_without_params))
@@ -104,15 +106,18 @@ def parse_dl(dl, page_url):
         out = create_article(func_with_params, abstract, permalink)
         if func_without_params:
             if func_without_params != func_with_params:
-                redirect = create_redirect(func_without_params, func_with_params)
+                redirect = create_redirect(func_without_params,
+                                           func_with_params)
                 output_data.append(redirect)
                 if module_func != func_without_params:
                     if module_func != func_with_params:
-                        redirect = create_redirect(module_func, func_with_params)
+                        redirect = create_redirect(module_func,
+                                                   func_with_params)
                         output_data.append(redirect)
         output_data.append(out)
     output_data = [d for d in output_data if d]
     return output_data
+
 
 def parse_h2(h2_parent, page_url):
     '''Extracts article details from h2.
