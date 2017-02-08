@@ -351,12 +351,11 @@ def get_redirects(title):
     redirects = set()
     title_split = title.split(".")
     if title_split[0] == PACKAGE_NAME:
-        redirects.add(PACKAGE_NAME + " " + ".".join(title_split[1:]))
-    else:
-        redirects.add(PACKAGE_NAME + "." + title)
+        title_split = title_split[1:]
+
+    redirects.add(".".join(title_split))
     redirects.add(" ".join(title_split))
     return redirects
-
 
 def scrub_text(text):
     """Cleans up text.
