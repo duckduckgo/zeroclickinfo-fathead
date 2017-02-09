@@ -107,7 +107,7 @@ class Parser(object):
                         copied = element.select('span.descfrmTypeLabel')
                         if len(copied) > 0:
                             copied[0].name = 'b'
-                        if description is None:
+                        if len(description) == 0:
                             description += str(element)
                         else:
                             description += '<br>'
