@@ -102,16 +102,23 @@ class Parser(object):
                     for a in method_details.findAll('a'):
                         a['href'] = urljoin(itext_docs_base_url + page_link, a['href'])
 
-                    description = None
+                    description = ''
                     for element in method_details.select('.block'):
                         copied = element.select('span.descfrmTypeLabel')
                         if len(copied) > 0:
                             copied[0].name = 'b'
                         if description is None:
-                            description = str(element)
+                            description += str(element)
                         else:
                             description += '<br>'
                             description += str(element)
+
+                    header = method_details.select('li.blockList > pre')
+                    if len(header) > 1:
+                        raise Exception('More than one pre')
+
+                    if len(header) > 0:
+                        description += str(header[0])
 
                     if description is not None:
                         itext_method = ITextClass(name + ' ' + method_name,
