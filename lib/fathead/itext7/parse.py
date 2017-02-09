@@ -51,6 +51,32 @@ class ITextFathead(object):
         ])
 
 
+def get_class_name(file, soup):
+    title_list = soup.select('title')
+    if len(title_list) != 1:
+        raise Exception('Page format for {} not know'.format(file))
+    title = title_list[0].text
+    # Titles take the format "<Classname> (iText 7 7.0.1 API)" so we strip the second part out
+    name = title.split()[0]
+    return name
+
+
+def get_class_description(soup):
+    description_list = soup.select('div.contentContainer div.description div')
+    if len(description_list) != 1:
+        description = ''
+    else:
+        description = description_list[0].text
+    return description
+
+
+def create_page_link(class_name, soup):
+    class_path = soup.select('.header .subTitle')[0].text
+    class_path = class_path.replace('.', '/')
+    page_link = class_path + '/' + class_name + '.html'
+    return page_link
+
+
 class Parser(object):
     def __init__(self):
         """Get all itext class files that need to be parsed"""
@@ -64,74 +90,62 @@ class Parser(object):
             print(file)
             soup = BeautifulSoup(open(file), 'html.parser')
 
-            title_list = soup.select('title')
+            class_name = get_class_name(file, soup)
+            description = get_class_description(soup)
+            page_link = create_page_link(class_name, soup)
 
-            if len(title_list) != 1:
-                continue
-
-            title = title_list[0].text
-
-            # Titles take the format "<Classname> (iText 7 7.0.1 API)" so we strip the second part out
-            name = title.split()[0]
-
-            description_list = soup.select('div.contentContainer div.description div')
-
-            if len(description_list) != 1:
-                description = ''
-
-            else:
-
-                description = description_list[0].text
-
-            class_path = soup.select('.header .subTitle')[0].text
-            class_path = class_path.replace('.', '/')
-            page_link = class_path + '/' + name + '.html'
-
-            itext_class = ITextFathead(name,
+            itext_class = ITextFathead(class_name,
                                        description,
                                        page_link)
 
-            method_details = soup.find(text=re.compile(r'Method Detail'))
+            self.parse_methods_from_class(class_name, page_link, soup)
 
-            if method_details is not None:
-                method_details = method_details.parent.parent.parent
+            self.itext_classes[class_name] = itext_class
 
-                method_blocks = method_details.select('li.blockList > ul')
-                method_anchors = method_details.select('li.blockList > a')[1:] #First anchor just links to method section
+    def parse_methods_from_class(self, class_name, page_link, soup):
+        method_details = soup.find(text=re.compile(r'Method Detail'))
+        if method_details is not None:
+            method_details = method_details.parent.parent.parent
 
-                for method_details, anchor in zip(method_blocks, method_anchors):
-                    method_name = method_details.select('h4')[0].text
+            method_blocks = method_details.select('li.blockList > ul')
+            method_anchors = method_details.select('li.blockList > a')[1:]  # First anchor just links to method section
 
-                    for a in method_details.findAll('a'):
-                        a['href'] = urljoin(itext_docs_base_url + page_link, a['href'])
+            for method_details, anchor in zip(method_blocks, method_anchors):
+                method_name = method_details.select('h4')[0].text
 
-                    description = ''
-                    for element in method_details.select('.block'):
-                        copied = element.select('span.descfrmTypeLabel')
-                        if len(copied) > 0:
-                            copied[0].name = 'b'
-                        if len(description) == 0:
-                            description += str(element)
-                        else:
-                            description += '<br>'
-                            description += str(element)
+                for a in method_details.findAll('a'):
+                    a['href'] = urljoin(itext_docs_base_url + page_link, a['href'])
 
-                    header = method_details.select('li.blockList > pre')
+                description = self.get_method_description(method_details)
 
-                    if len(header) > 0:
-                        description += re.sub(r'([,\)])\s+', r'\1 ', str(header[0]))
+                itext_method = ITextFathead(class_name + ' ' + method_name,
+                                            description,
+                                            page_link + '#' + anchor['class_name'])
 
-                    if description is not None:
-                        method = name + ' ' + method_name
-                        itext_method = ITextFathead(method,
-                                                    description,
-                                                    page_link + '#' + anchor['name'])
-                        if method not in self.itext_classes:
-                            self.itext_classes[method] = itext_method
-                        elif len(self.itext_classes[method].description) < len(description):
-                            self.itext_classes[method] = itext_method
+                self.add_method_to_output(itext_method)
 
-            self.itext_classes[name] = itext_class
+    def add_method_to_output(self, itext_method):
+        name = itext_method.name
+        if name not in self.itext_classes:
+            self.itext_classes[name] = itext_method
+        elif len(self.itext_classes[name].description) < len(itext_method.description):
+            self.itext_classes[name] = itext_method
+
+    def get_method_description(self, method_details):
+        description = ''
+        for element in method_details.select('.block'):
+            copied = element.select('span.descfrmTypeLabel')
+            if len(copied) > 0:
+                copied[0].name = 'b'
+            if len(description) == 0:
+                description += str(element)
+            else:
+                description += '<br>'
+                description += str(element)
+        header = method_details.select('li.blockList > pre')
+        if len(header) > 0:
+            description += re.sub(r'([,\)])\s+', r'\1 ', str(header[0]))
+        return description
 
     def write_classes_to_file(self, filename):
         # Write the output for each class into the output.txt file
