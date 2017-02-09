@@ -114,11 +114,9 @@ class Parser(object):
                             description += str(element)
 
                     header = method_details.select('li.blockList > pre')
-                    if len(header) > 1:
-                        raise Exception('More than one pre')
 
                     if len(header) > 0:
-                        description += str(header[0])
+                        description += re.sub(r'([,\)])\s+', r'\1 ', str(header[0]))
 
                     if description is not None:
                         itext_method = ITextClass(name + ' ' + method_name,
