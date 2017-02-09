@@ -6,8 +6,6 @@ import re
 from urllib.parse import urljoin
 import glob
 
-METHODS = 2
-
 itext_docs_base_url = open('data.url').read().strip()
 
 
