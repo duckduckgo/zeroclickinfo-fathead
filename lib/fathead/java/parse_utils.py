@@ -62,7 +62,7 @@ def extractMethodName(tabledata):
     if "()" in tabledata:
         methodname = tabledata.replace("\n", "").replace("()", "")
     else:
-        methodname = tabledata.replace("\n", "").replace("&nbsp;", "").replace(")", "").replace("(", " ")
+        methodname = tabledata.replace(" ", "").replace("\n", "").replace("&nbsp;", "").replace(")", "").replace("(", " ")
     return methodname
 
 """
@@ -81,7 +81,7 @@ def format(tabledata, baseurl, parameters):
         method_description = tabledata.find("div").get_text().replace("\n", "")
     url_matcher = re.search(r'#(.*)', tabledata.find("a").get("href"))
     method_url = baseurl.replace("index.html?", "") + url_matcher.group(0)
-    formatted_string = method_name + "\tA\t\t\t\t\t\t\t\t\t" + method_description + "\t" + method_url
+    formatted_string = method_name + "\tA\t\t\t\t\t\t\t\t\t\t" + "<section class=\"prog__container\"><p>" + method_description + "</p></section>" + "\t" + method_url
     return formatted_string
     
 """
