@@ -27,12 +27,6 @@ class ITextClass(object):
         self.description = '<p>{}</p>'.format(self.description)
         self.filename = filename
 
-    def __hash__(self):
-        return hash(self.name)
-
-    def __eq__(self, other):
-        return self.name == other.name
-
     def __str__(self):
         abstract = '<section class="prog__container">{}</section>'.format(self.description)
 
@@ -57,11 +51,11 @@ class ITextClass(object):
 class Parser(object):
     def __init__(self):
         """Get all itext class files that need to be parsed"""
-        self.itext_classes = set()
+        self.itext_classes = {}
         self.files_to_parse = glob.glob('download/*.html')
 
     def parse_itext_classes(self):
-        self.itext_classes = set()
+        self.itext_classes = {}
 
         for file in self.files_to_parse:
             print(file)
@@ -125,13 +119,16 @@ class Parser(object):
                         description += re.sub(r'([,\)])\s+', r'\1 ', str(header[0]))
 
                     if description is not None:
-                        itext_method = ITextClass(name + ' ' + method_name,
+                        method = name + ' ' + method_name
+                        itext_method = ITextClass(method,
                                                   description,
                                                   page_link + '#' + anchor['name'])
-                        if itext_method not in self.itext_classes:
-                            self.itext_classes.add(itext_method)
+                        if method not in self.itext_classes:
+                            self.itext_classes[method] = itext_method
+                        elif len(self.itext_classes[method].description) < len(description):
+                            self.itext_classes[method] = itext_method
 
-            self.itext_classes.add(itext_class)
+            self.itext_classes[name] = itext_class
 
 
 if __name__ == '__main__':
@@ -143,5 +140,5 @@ if __name__ == '__main__':
 
     # Write the output for each class into the output.txt file
     with open('output.txt', 'wb') as output:
-        for itext_class in parser.itext_classes:
+        for itext_class in parser.itext_classes.values():
             output.write((str(itext_class) + '\n').encode('utf-8'))
