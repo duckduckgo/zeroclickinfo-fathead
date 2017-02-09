@@ -203,7 +203,7 @@ exception handler provider	R	$exceptionHandlerProvider
 exceptionHandler	R	$exceptionHandler										
 exceptionHandlerProvider	R	$exceptionHandlerProvider										
 extend	R	angular.extend										
-filter	R	$filter										
+filter	A			filter in module ng							<section class="prog__container"><p>Selects a subset of items from <code>array</code> and returns it as a new array.</p><h2>Usage</h2><h3>In HTML Template Binding</h3><pre><code>{{ filter_expression | filter : expression : comparator : anyPropertyKey}}</code></pre><h3>In JavaScript</h3><pre><code>$filter(&apos;filter&apos;)(array, expression, comparator, anyPropertyKey)</code></pre></section>	https://docs.angularjs.org/api/ng/filter/filter
 filter provider	R	$filterProvider										
 filterProvider	R	$filterProvider										
 for each	R	angular.forEach										
@@ -296,7 +296,6 @@ ng csp	R	ngCsp
 ng cut	R	ngCut										
 ng dblclick	R	ngDblclick										
 ng disabled	R	ngDisabled										
-ng filter	A			filter in module ng							<section class="prog__container"><p>Selects a subset of items from <code>array</code> and returns it as a new array.</p><h2>Usage</h2><h3>In HTML Template Binding</h3><pre><code>{{ filter_expression | filter : expression : comparator : anyPropertyKey}}</code></pre><h3>In JavaScript</h3><pre><code>$filter(&apos;filter&apos;)(array, expression, comparator, anyPropertyKey)</code></pre></section>	https://docs.angularjs.org/api/ng/filter/filter
 ng focus	R	ngFocus										
 ng form	R	ngForm										
 ng hide	R	ngHide										
