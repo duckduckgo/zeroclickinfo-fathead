@@ -27,6 +27,12 @@ class ITextClass(object):
         self.description = '<p>{}</p>'.format(self.description)
         self.filename = filename
 
+    def __hash__(self):
+        return hash(self.name)
+
+    def __eq__(self, other):
+        return self.name == other.name
+
     def __str__(self):
         abstract = '<section class="prog__container">{}</section>'.format(self.description)
 
@@ -51,11 +57,11 @@ class ITextClass(object):
 class Parser(object):
     def __init__(self):
         """Get all itext class files that need to be parsed"""
-        self.itext_classes = []
+        self.itext_classes = set()
         self.files_to_parse = glob.glob('download/*.html')
 
     def parse_itext_classes(self):
-        self.itext_classes = []
+        self.itext_classes = set()
 
         for file in self.files_to_parse:
             print(file)
@@ -122,9 +128,10 @@ class Parser(object):
                         itext_method = ITextClass(name + ' ' + method_name,
                                                   description,
                                                   page_link + '#' + anchor['name'])
-                        self.itext_classes.append(itext_method)
+                        if itext_method not in self.itext_classes:
+                            self.itext_classes.add(itext_method)
 
-            self.itext_classes.append(itext_class)
+            self.itext_classes.add(itext_class)
 
 
 if __name__ == '__main__':
