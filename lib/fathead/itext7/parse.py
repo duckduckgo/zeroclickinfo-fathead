@@ -4,8 +4,6 @@
 from bs4 import BeautifulSoup
 import re
 from urllib.parse import urljoin
-
-
 import glob
 
 METHODS = 2
@@ -13,15 +11,20 @@ METHODS = 2
 itext_docs_base_url = open('data.url').read().strip()
 
 
-class ITextClass(object):
+class ITextFathead(object):
     """
-        Class for storing all necessary information about an iText Class. This
+        Class for storing all necessary information about an iText Fathead entry. This
         information is then used to create the output.txt file using the
         __str__() method on this class
     """
 
     def __init__(self, name, description, filename):
-        """Instantiate the information about the class"""
+        """
+        :param name: Name of the Fathead
+        :param description: Description of what's being displayed
+        :param filename: The filename from which the information came. Used to construct the URL for the entry
+        Instantiate the information about the class
+        """
         self.name = name
         self.description = description.replace('\n', '').replace('\t', '    ')
         self.description = '<p>{}</p>'.format(self.description)
@@ -84,9 +87,9 @@ class Parser(object):
             class_path = class_path.replace('.', '/')
             page_link = class_path + '/' + name + '.html'
 
-            itext_class = ITextClass(name,
-                                     description,
-                                     page_link)
+            itext_class = ITextFathead(name,
+                                       description,
+                                       page_link)
 
             method_details = soup.find(text=re.compile(r'Method Detail'))
 
@@ -120,9 +123,9 @@ class Parser(object):
 
                     if description is not None:
                         method = name + ' ' + method_name
-                        itext_method = ITextClass(method,
-                                                  description,
-                                                  page_link + '#' + anchor['name'])
+                        itext_method = ITextFathead(method,
+                                                    description,
+                                                    page_link + '#' + anchor['name'])
                         if method not in self.itext_classes:
                             self.itext_classes[method] = itext_method
                         elif len(self.itext_classes[method].description) < len(description):
@@ -130,15 +133,17 @@ class Parser(object):
 
             self.itext_classes[name] = itext_class
 
+    def write_classes_to_file(self, filename):
+        # Write the output for each class into the output.txt file
+        with open(filename, 'wb') as output:
+            for itext_class in self.itext_classes.values():
+                output.write((str(itext_class) + '\n').encode('utf-8'))
+
+    def create_output(self):
+        self.parse_itext_classes()
+        self.write_classes_to_file('output.txt')
+
 
 if __name__ == '__main__':
-    # Create the parser
     parser = Parser()
-
-    # Parse the commands
-    parser.parse_itext_classes()
-
-    # Write the output for each class into the output.txt file
-    with open('output.txt', 'wb') as output:
-        for itext_class in parser.itext_classes.values():
-            output.write((str(itext_class) + '\n').encode('utf-8'))
+    parser.create_output()
