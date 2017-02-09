@@ -76,7 +76,6 @@ def generate_fathead(folder, processes=CPU_COUNT):
     docs_folder = op.abspath(folder)
     files_to_parse = glob.glob(op.join(docs_folder, "*.html"))
 
-    # TODO make pool size a switch via argparse
     pool = Pool(processes)
     output = pool.map(parse_file, files_to_parse)
 
@@ -241,8 +240,8 @@ def get_examples(section_div, examples_class):
 
     examples_class: Str
         The value of the "class" attribute of the <div> tag within section_div.
-        "highlight-python" is the class which are used for examples in the 
-        webpage. 
+        "highlight-python" is the class which are used for examples in the
+        webpage.
 
     Returns
     -------
@@ -253,7 +252,8 @@ def get_examples(section_div, examples_class):
     if example:
         return example.text.strip()
     return
-    
+
+
 def get_params(section_div, params_class):
     """Parse and return the parameters or returns of the documentation topic.
 
@@ -351,12 +351,10 @@ def get_redirects(title):
     redirects = set()
     title_split = title.split(".")
     if title_split[0] == PACKAGE_NAME:
-        redirects.add(PACKAGE_NAME + " " + ".".join(title_split[1:]))
-    else:
-        redirects.add(PACKAGE_NAME + "." + title)
+        title_split = title_split[1:]
+
     redirects.add(" ".join(title_split))
     return redirects
-
 
 def scrub_text(text):
     """Cleans up text.
@@ -368,7 +366,11 @@ def scrub_text(text):
     text : str
         Text to clean up.
     """
-    scrubbed_text = text.rstrip().replace("\n", "\\n").replace("\t", " "*4)
+    scrubbed_text = text.rstrip()
+    scrubbed_text = scrubbed_text.replace("\\x", "\\\\x")
+    scrubbed_text = scrubbed_text.replace("\0", "\\0")
+    scrubbed_text = scrubbed_text.replace("\n", "\\n")
+    scrubbed_text = scrubbed_text.replace("\t", " "*4)
     return scrubbed_text
 
 
@@ -385,4 +387,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     generate_fathead(args.docs_folder, args.processes)
-    
