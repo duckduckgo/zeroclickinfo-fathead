@@ -152,7 +152,7 @@ class DocsParser(object):
 
         """
 
-       if table is None:# Return empty string for None objects
+        if table is None:# Return empty string for None objects
            return ''
         
         tbody = table.find('tbody')
