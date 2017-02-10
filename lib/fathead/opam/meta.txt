@@ -1,0 +1,9 @@
+Name: OPAM: OCaml Package manager
+
+Domain: https://opam.ocaml.org/
+
+Type: OCaml
+
+MediaWiki: 0
+
+Keywords: ocaml, opam
