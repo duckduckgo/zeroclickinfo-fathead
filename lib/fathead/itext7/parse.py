@@ -6,7 +6,7 @@ import re
 from urllib.parse import urljoin
 import glob
 
-itext_docs_base_url = open('data.url').read().strip()
+itext_docs_base_url = 'http://itextsupport.com/apidocs/itext7/7.0.1/'
 
 
 class ITextFathead(object):
