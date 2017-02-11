@@ -203,13 +203,13 @@ class DocumentParser(object):
 
             html = soup.contents[0]
             html = str(html)
-            # html = re.sub(re.compile("\s+"), " ", html) # causing issues with new lines
             html = re.sub(re.compile("\n"), "\\n", html)
-            print(">>" * 20)
-            print(repr(html).replace("'", ''))
-            print("<<" * 20)
+            html = re.sub(r'<p>[\n\s]+<p>[\n\s]*|<(\/)p>[\n\s]+<\/p>[\n\s]*', r"<\1p>", html)
 
             self.body = repr(html).replace("'", '')
+            print(">>" * 20)
+            print(self.body)
+            print("<<" * 20)
 
         except AttributeError:
             self.body = ""
