@@ -108,7 +108,7 @@ class Document(object):
         image = ''
         nAbstract = u"""
             <section class="prog__container">
-                <p>Description: {0}</p>
+                <p>{0}</p>
                 <pre>
                     <code>
                         opam install {1}
