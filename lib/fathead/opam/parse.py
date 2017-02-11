@@ -114,8 +114,7 @@ class Document(object):
                         opam install {1}
                     </code>
                 </pre>
-                <span class="prog__sub">Version</span>
-                <p>Version: {2}</p>
+                <span class="prog__sub">Version: {2}</span>
             </section>
             """.format(desc, name, version)
         abstract = re.sub("\s+", " ", nAbstract)
