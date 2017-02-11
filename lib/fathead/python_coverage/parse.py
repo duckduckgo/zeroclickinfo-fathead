@@ -55,6 +55,48 @@ class CoverageClass():
         """
         return self.method_list[method_index]
 
+    def _clean_html_tags(self, html_to_clean):
+        """
+
+        """
+
+        html_soup_cleaner = BeautifulSoup(html_to_clean, 'html.parser')
+        # Replace code tag from documentation to expected
+        for tag in html_soup_cleaner.find_all("div", {"class": "highlight-default"}):
+            tag.name = "pre"
+            del tag.attrs
+            tag.next_element.name = "code"
+            del tag.next_element.attrs
+            tag.next_element.next_element.name = "span"
+
+        # Remove tags we don't want
+        tags_to_replace = ['code', 'span', 'div', 'blockquote']
+        for tag_to_replace in tags_to_replace:
+            regex_pattern = "^{}*".format(tag_to_replace)
+            for tag in html_soup_cleaner.find_all(re.compile(regex_pattern)):
+                if tag.name == "a":
+                    print(tag)
+                del tag.name
+                if tag.attrs:
+                    del tag.attrs
+        # Remove links
+        for tag in html_soup_cleaner.find_all("a"):
+            if tag.attrs:
+                del tag.name
+                del tag.attrs
+
+        # Remove any formatting class specified for table
+        for tag in html_soup_cleaner.find_all("ul"):
+            if tag.attrs:
+                del tag.attrs
+
+        cleaned_html = str(html_soup_cleaner)
+        cleaned_html = cleaned_html.replace("<None>", '')
+        cleaned_html = cleaned_html.replace("</None>", '')
+        cleaned_html = cleaned_html.replace('\n', '\\n').strip('\\n ')
+
+        return cleaned_html
+
     def get_parsed_method_from_data(self, method):
         """
         Parses method html into json object
@@ -72,23 +114,19 @@ class CoverageClass():
         attributes["headerlink"] = "{}{}".format(self.base_url,
                                                  html_soup.a["href"])
 
-        attributes["description"] = ''
-        for index, value in enumerate(html_soup.dd.text):
-            attributes["description"] += str(value)
-        attributes["description"] = attributes["description"]\
-            .replace('\n', '\\n').strip('\\n ')
-
         attributes["code"] = ''
         # find the line of code in the method
-        # due to formatting, its full of <span> and <em> tags
         code_line = re.search('^<code.*\n', method, re.MULTILINE).group(0)
         # grab everything starting with <code to the last </span> tag, which
         # is the closing paren
-        code_line = code_line[0:code_line.rindex('</span>') + 7]
-        # last step, remove all the html tags to give a clean output
-        # clear_exclude(which='exclude')
-        attributes["code"] = re.sub('<[^>]*>', '', code_line, re.UNICODE)
+        code_line = code_line[0:code_line.rindex('</span>') + len('</span>')]
+        attributes["code"] = self._clean_html_tags(code_line)
 
+        temp_desc = ''
+        for index, value in enumerate(html_soup.dd):
+            temp_desc += str(value)
+
+        attributes["description"] = self._clean_html_tags(temp_desc)
         attributes["abstract"] = '<section class="prog_container">' + \
                                  '<pre><code>' + attributes["code"] + \
                                  '</pre></code><p>' +\
