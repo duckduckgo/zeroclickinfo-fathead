@@ -1003,3 +1003,119 @@ Collection conn	R	Collection-conn
 Collection-name	A									http://mongodb-tools.com/img/mongoose.png	<section class="prog__container"><pre><code>Collection#name</code></pre><p>The collection name</p></section>	http://mongoosejs.com/docs/api.html#collection_Collection-name
 Collection.name	R	Collection-name										
 Collection name	R	Collection-name										
+Aggregate	D								*[[Aggregate]], Aggregate constructor used for building aggregation pipelines.			
+Collection	D								*[[Collection]], Abstract Collection constructor			
+Connection	D								*[[Connection]], Connection constructor			
+get	D								*[[VirtualType-get]], Defines a getter.\n*[[Schema-get]], Gets a schema option.\n*[[Document-get]], Returns the value of a path.\n*[[SchemaType-get]], Adds a getter to this schematype.			
+model	D								*[[Connection-model]], Defines or retrieves a model.\n*[[Aggregate-model]], Binds this aggregate to a model.\n*[[Model-model]], Returns another Model instance.			
+Model	D								*[[Model]], Model constructor			
+modelNames	D								*[[Connection-modelNames]], Returns an array of model names created on this connection.			
+Mongoose	D								*[[Mongoose-Mongoose]], The Mongoose constructor			
+Mongoose	D								*[[Mongoose]], Mongoose constructor.			
+plugin	D								*[[Schema-plugin]], Registers a plugin for this schema.			
+Schema	D								*[[Schema]], Schema constructor.			
+SchemaType	D								*[[SchemaType]], SchemaType constructor			
+set	D								*[[VirtualType-set]], Defines a setter.\n*[[Schema-set]], Sets/gets a schema option.\n*[[Document-set]], Sets the value of a path, or many paths.\n*[[SchemaType-set]], Adds a setter to this schematype.			
+VirtualType	D								*[[VirtualType]], VirtualType constructor			
+SchemaTypes	D								*[[exports-SchemaTypes]], The various Mongoose SchemaTypes.			
+Types	D								*[[exports-Types]], The various Mongoose Types.			
+Connection	D								*[[Mongoose-Connection]], The Mongoose Connection constructor			
+close	D								*[[QueryCursor-close]], Marks this cursor as closed. Will stop streaming and subsequent calls tonext() will error.			
+collection	D								*[[Model-collection]], Collection the model uses.			
+model	D								*[[Mongoose-model]], Defines a model or retrieves it.\n*[[Aggregate-model]], Binds this aggregate to a model.\n*[[Model-model]], Returns another Model instance.			
+modelNames	D								*[[Mongoose-modelNames]], Returns an array of model names created on this instance of Mongoose.			
+db	D								*[[Model-db]], Connection the model uses.			
+SchemaTypes	D								*[[Mongoose-SchemaTypes]], The various Mongoose SchemaTypes.			
+Types	D								*[[Mongoose-Types]], The various Mongoose Types.			
+getIndexes	D								*[[Collection-getIndexes]], Abstract method that drivers must implement.			
+toString	D								*[[Document-toString]], Helper for console.log			
+close	D								*[[Connection-close]], Closes the connection			
+get	D								*[[Mongoose-get]], Gets mongoose options\n*[[Schema-get]], Gets a schema option.\n*[[Document-get]], Returns the value of a path.\n*[[SchemaType-get]], Adds a getter to this schematype.			
+set	D								*[[Mongoose-set]], Sets mongoose options\n*[[Schema-set]], Sets/gets a schema option.\n*[[Document-set]], Sets the value of a path, or many paths.\n*[[SchemaType-set]], Adds a setter to this schematype.			
+VirtualType	D								*[[Mongoose-VirtualType]], The Mongoose VirtualType constructor			
+get	D								*[[Mongoose-get]], Gets mongoose options\n*[[VirtualType-get]], Defines a getter.\n*[[Document-get]], Returns the value of a path.\n*[[SchemaType-get]], Adds a getter to this schematype.			
+index	D								*[[SchemaType-index]], Declares the index options for this schematype.			
+plugin	D								*[[Mongoose-plugin]], Declares a global plugin executed on all Schemas.			
+remove	D								*[[Subdocument-remove]], Null-out this subdoc\n*[[MongooseArray-remove]], Alias of pull\n*[[EmbeddedDocument-remove]], Removes the subdocument from its parent array.\n*[[Query-remove]], Declare and/or execute this query as a remove() operation.\n*[[Model-remove]], Removes this document from the db.			
+Schema	D								*[[Mongoose-Schema]], The Mongoose Schema constructor			
+set	D								*[[Mongoose-set]], Sets mongoose options\n*[[VirtualType-set]], Defines a setter.\n*[[Document-set]], Sets the value of a path, or many paths.\n*[[SchemaType-set]], Adds a setter to this schematype.			
+equals	D								*[[Query-equals]], Specifies the complementary comparison value for paths specified with where()			
+get	D								*[[Mongoose-get]], Gets mongoose options\n*[[VirtualType-get]], Defines a getter.\n*[[Schema-get]], Gets a schema option.\n*[[SchemaType-get]], Adds a getter to this schematype.			
+inspect	D								*[[EmbeddedDocument-inspect]], Helper for console.log			
+invalidate	D								*[[EmbeddedDocument-invalidate]], Marks a path as invalid, causing validation to fail.			
+populate	D								*[[Query-populate]], Specifies paths which should be populated with other documents.			
+set	D								*[[Mongoose-set]], Sets mongoose options\n*[[VirtualType-set]], Defines a setter.\n*[[Schema-set]], Sets/gets a schema option.\n*[[SchemaType-set]], Adds a setter to this schematype.			
+toString	D								*[[ValidationError-toString]], Console.log helper			
+update	D								*[[Query-update]], Declare and/or execute this query as an update() operation.\n*[[Collection-update]], Abstract method that drivers must implement.			
+validate	D								*[[SchemaType-validate]], Adds validator(s) for this document path.			
+schema	D								*[[Model-schema]], Schema the model uses.			
+ownerDocument	D								*[[EmbeddedDocument-ownerDocument]], Returns the top level document of this sub-document.			
+remove	D								*[[Schema-remove]], Removes the given path (or [paths]).\n*[[MongooseArray-remove]], Alias of pull\n*[[EmbeddedDocument-remove]], Removes the subdocument from its parent array.\n*[[Query-remove]], Declare and/or execute this query as a remove() operation.\n*[[Model-remove]], Removes this document from the db.			
+remove	D								*[[Schema-remove]], Removes the given path (or [paths]).\n*[[Subdocument-remove]], Null-out this subdoc\n*[[EmbeddedDocument-remove]], Removes the subdocument from its parent array.\n*[[Query-remove]], Declare and/or execute this query as a remove() operation.\n*[[Model-remove]], Removes this document from the db.			
+inspect	D								*[[Document-inspect]], Helper for console.log			
+invalidate	D								*[[Document-invalidate]], Marks a path as invalid, causing validation to fail.			
+ownerDocument	D								*[[Subdocument-ownerDocument]], Returns the top level document of this sub-document.			
+remove	D								*[[Schema-remove]], Removes the given path (or [paths]).\n*[[Subdocument-remove]], Null-out this subdoc\n*[[MongooseArray-remove]], Alias of pull\n*[[Query-remove]], Declare and/or execute this query as a remove() operation.\n*[[Model-remove]], Removes this document from the db.			
+catch	D								*[[Promise-catch]], ES6-style .catch() shorthand			
+collation	D								*[[Aggregate-collation]], Adds a collation			
+cursor	D								*[[Aggregate-cursor]], Sets the cursor option option for the aggregation query (ignored for < 2.6.0).Note the different syntax below: .exec() returns a cursor object, and no callbackis necessary.			
+equals	D								*[[Document-equals]], Returns true if the Document stores the same data as doc.			
+exec	D								*[[Aggregate-exec]], Executes the aggregate pipeline on the currently bound Model.			
+find	D								*[[Collection-find]], Abstract method that drivers must implement.			
+findOne	D								*[[Collection-findOne]], Abstract method that drivers must implement.			
+limit	D								*[[Aggregate-limit]], Appends a new $limit operator to this aggregate pipeline.			
+near	D								*[[Aggregate-near]], Appends a new $geoNear operator to this aggregate pipeline.			
+populate	D								*[[Document-populate]], Populates document references, executing the callback when complete.If you want to use promises instead, use this function withexecPopulate()			
+read	D								*[[Aggregate-read]], Sets the readPreference option for the aggregation query.			
+remove	D								*[[Schema-remove]], Removes the given path (or [paths]).\n*[[Subdocument-remove]], Null-out this subdoc\n*[[MongooseArray-remove]], Alias of pull\n*[[EmbeddedDocument-remove]], Removes the subdocument from its parent array.\n*[[Model-remove]], Removes this document from the db.			
+select	D								*[[SchemaType-select]], Sets default select() behavior for this path.			
+skip	D								*[[Aggregate-skip]], Appends a new $skip operator to this aggregate pipeline.			
+sort	D								*[[Aggregate-sort]], Appends a new $sort operator to this aggregate pipeline.			
+then	D								*[[Aggregate-then]], Provides promise for aggregate.\n*[[Promise-then]], Creates a new promise and returns it. If onFulfill or onReject are passed, they are added as SUCCESS/ERROR callbacks to this promise after the nextTick.			
+update	D								*[[Document-update]], Sends an update command with this document _id as the query selector.\n*[[Collection-update]], Abstract method that drivers must implement.			
+checkRequired	D								*[[SchemaArray-checkRequired]], Check if the given value satisfies a required validator. The given valuemust be not null nor undefined, and have a non-zero length.\n*[[SchemaString-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaNumber-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaDate-checkRequired]], Check if the given value satisfies a required validator. To satisfya required validator, the given value must be an instance of Date.\n*[[SchemaBuffer-checkRequired]], Check if the given value satisfies a required validator. To satisfy arequired validator, a buffer must not be null or undefined and havenon-zero length.\n*[[SchemaBoolean-checkRequired]], Check if the given value satisfies a required validator. For a booleanto satisfy a required validator, it must be strictly equal to true or tofalse.\n*[[ObjectId-checkRequired]], Check if the given value satisfies a required validator.			
+checkRequired	D								*[[Decimal128-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaString-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaNumber-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaDate-checkRequired]], Check if the given value satisfies a required validator. To satisfya required validator, the given value must be an instance of Date.\n*[[SchemaBuffer-checkRequired]], Check if the given value satisfies a required validator. To satisfy arequired validator, a buffer must not be null or undefined and havenon-zero length.\n*[[SchemaBoolean-checkRequired]], Check if the given value satisfies a required validator. For a booleanto satisfy a required validator, it must be strictly equal to true or tofalse.\n*[[ObjectId-checkRequired]], Check if the given value satisfies a required validator.			
+checkRequired	D								*[[Decimal128-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaArray-checkRequired]], Check if the given value satisfies a required validator. The given valuemust be not null nor undefined, and have a non-zero length.\n*[[SchemaNumber-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaDate-checkRequired]], Check if the given value satisfies a required validator. To satisfya required validator, the given value must be an instance of Date.\n*[[SchemaBuffer-checkRequired]], Check if the given value satisfies a required validator. To satisfy arequired validator, a buffer must not be null or undefined and havenon-zero length.\n*[[SchemaBoolean-checkRequired]], Check if the given value satisfies a required validator. For a booleanto satisfy a required validator, it must be strictly equal to true or tofalse.\n*[[ObjectId-checkRequired]], Check if the given value satisfies a required validator.			
+match	D								*[[Aggregate-match]], Appends a new custom $match operator to this aggregate pipeline.			
+checkRequired	D								*[[Decimal128-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaArray-checkRequired]], Check if the given value satisfies a required validator. The given valuemust be not null nor undefined, and have a non-zero length.\n*[[SchemaString-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaDate-checkRequired]], Check if the given value satisfies a required validator. To satisfya required validator, the given value must be an instance of Date.\n*[[SchemaBuffer-checkRequired]], Check if the given value satisfies a required validator. To satisfy arequired validator, a buffer must not be null or undefined and havenon-zero length.\n*[[SchemaBoolean-checkRequired]], Check if the given value satisfies a required validator. For a booleanto satisfy a required validator, it must be strictly equal to true or tofalse.\n*[[ObjectId-checkRequired]], Check if the given value satisfies a required validator.			
+max	D								*[[SchemaDate-max]], Sets a maximum date validator.			
+min	D								*[[SchemaDate-min]], Sets a minimum date validator.			
+checkRequired	D								*[[Decimal128-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaArray-checkRequired]], Check if the given value satisfies a required validator. The given valuemust be not null nor undefined, and have a non-zero length.\n*[[SchemaString-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaNumber-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaBuffer-checkRequired]], Check if the given value satisfies a required validator. To satisfy arequired validator, a buffer must not be null or undefined and havenon-zero length.\n*[[SchemaBoolean-checkRequired]], Check if the given value satisfies a required validator. For a booleanto satisfy a required validator, it must be strictly equal to true or tofalse.\n*[[ObjectId-checkRequired]], Check if the given value satisfies a required validator.			
+max	D								*[[SchemaNumber-max]], Sets a maximum number validator.			
+min	D								*[[SchemaNumber-min]], Sets a minimum number validator.			
+checkRequired	D								*[[Decimal128-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaArray-checkRequired]], Check if the given value satisfies a required validator. The given valuemust be not null nor undefined, and have a non-zero length.\n*[[SchemaString-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaNumber-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaDate-checkRequired]], Check if the given value satisfies a required validator. To satisfya required validator, the given value must be an instance of Date.\n*[[SchemaBoolean-checkRequired]], Check if the given value satisfies a required validator. For a booleanto satisfy a required validator, it must be strictly equal to true or tofalse.\n*[[ObjectId-checkRequired]], Check if the given value satisfies a required validator.			
+checkRequired	D								*[[Decimal128-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaArray-checkRequired]], Check if the given value satisfies a required validator. The given valuemust be not null nor undefined, and have a non-zero length.\n*[[SchemaString-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaNumber-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaDate-checkRequired]], Check if the given value satisfies a required validator. To satisfya required validator, the given value must be an instance of Date.\n*[[SchemaBuffer-checkRequired]], Check if the given value satisfies a required validator. To satisfy arequired validator, a buffer must not be null or undefined and havenon-zero length.\n*[[ObjectId-checkRequired]], Check if the given value satisfies a required validator.			
+checkRequired	D								*[[Decimal128-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaArray-checkRequired]], Check if the given value satisfies a required validator. The given valuemust be not null nor undefined, and have a non-zero length.\n*[[SchemaString-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaNumber-checkRequired]], Check if the given value satisfies a required validator.\n*[[SchemaDate-checkRequired]], Check if the given value satisfies a required validator. To satisfya required validator, the given value must be an instance of Date.\n*[[SchemaBuffer-checkRequired]], Check if the given value satisfies a required validator. To satisfy arequired validator, a buffer must not be null or undefined and havenon-zero length.\n*[[SchemaBoolean-checkRequired]], Check if the given value satisfies a required validator. For a booleanto satisfy a required validator, it must be strictly equal to true or tofalse.			
+Aggregate	D								*[[Mongoose-Aggregate]], The Mongoose Aggregate constructor			
+collation	D								*[[Query-collation]], Adds a collation to this op (MongoDB 3.4 and up)			
+cursor	D								*[[Query-cursor]], Returns a wrapper around a mongodb driver cursor.A QueryCursor exposes a Streams3-compatibleinterface, as well as a .next() function.			
+exec	D								*[[Query-exec]], Executes the query			
+limit	D								*[[Query-limit]], Specifies the maximum number of documents the query will return.			
+match	D								*[[SchemaString-match]], Sets a regexp validator.			
+model	D								*[[Mongoose-model]], Defines a model or retrieves it.\n*[[Connection-model]], Defines or retrieves a model.\n*[[Model-model]], Returns another Model instance.			
+near	D								*[[Query-near]], Specifies a $near or $nearSphere condition			
+read	D								*[[Query-read]], Determines the MongoDB nodes from which to read.			
+skip	D								*[[Query-skip]], Specifies the number of documents to skip.			
+sort	D								*[[Query-sort]], Sets the sort order			
+then	D								*[[Query-then]], Executes the query returning a Promise which will beresolved with either the doc(s) or rejected with the error.\n*[[Promise-then]], Creates a new promise and returns it. If onFulfill or onReject are passed, they are added as SUCCESS/ERROR callbacks to this promise after the nextTick.			
+get	D								*[[Mongoose-get]], Gets mongoose options\n*[[VirtualType-get]], Defines a getter.\n*[[Schema-get]], Gets a schema option.\n*[[Document-get]], Returns the value of a path.			
+index	D								*[[Schema-index]], Defines an index (most likely compound) for this schema.			
+SchemaType	D								*[[Mongoose-SchemaType]], The Mongoose SchemaType constructor			
+select	D								*[[Query-select]], Specifies which document fields to include or exclude (also known as the query "projection")			
+set	D								*[[Mongoose-set]], Sets mongoose options\n*[[VirtualType-set]], Defines a setter.\n*[[Schema-set]], Sets/gets a schema option.\n*[[Document-set]], Sets the value of a path, or many paths.			
+validate	D								*[[Document-validate]], Executes registered validation rules for this document.			
+catch	D								*[[Query-catch]], Executes the query returning a Promise which will beresolved with either the doc(s) or rejected with the error.Like .then(), but only takes a rejection handler.			
+then	D								*[[Query-then]], Executes the query returning a Promise which will beresolved with either the doc(s) or rejected with the error.\n*[[Aggregate-then]], Provides promise for aggregate.			
+model	D								*[[Mongoose-model]], Defines a model or retrieves it.\n*[[Connection-model]], Defines or retrieves a model.\n*[[Aggregate-model]], Binds this aggregate to a model.			
+Model	D								*[[Mongoose-Model]], The Mongoose Model constructor.			
+remove	D								*[[Schema-remove]], Removes the given path (or [paths]).\n*[[Subdocument-remove]], Null-out this subdoc\n*[[MongooseArray-remove]], Alias of pull\n*[[EmbeddedDocument-remove]], Removes the subdocument from its parent array.\n*[[Query-remove]], Declare and/or execute this query as a remove() operation.			
+save	D								*[[Collection-save]], Abstract method that drivers must implement.			
+collection	D								*[[Connection-collection]], Retrieves a collection, creating it if not cached.			
+db	D								*[[Connection-db]], The mongodb.Db instance, set when the connection is opened			
+schema	D								*[[Document-schema]], The documents schema.			
+Collection	D								*[[Mongoose-Collection]], The Mongoose Collection constructor			
+find	D								*[[Query-find]], Finds documents.			
+findOne	D								*[[Query-findOne]], Declares the query a findOne operation. When executed, the first found document is passed to the callback.			
+getIndexes	D								*[[NativeCollection-getIndexes]], Retreives information about this collections indexes.			
+save	D								*[[Model-save]], Saves this document.			
+update	D								*[[Document-update]], Sends an update command with this document _id as the query selector.\n*[[Query-update]], Declare and/or execute this query as an update() operation.			
