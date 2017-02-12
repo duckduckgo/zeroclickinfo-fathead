@@ -79,7 +79,7 @@ class SoupDataParser(object):
         if data:
             arg = ''
             for index,d in enumerate(data):
-                data[index] = d.text.replace('\n', ' ').replace('  ', ' ').replace('\\x', '\\\\x')
+                data[index] = d.text.replace('\n', ' ').replace('  ', ' ').replace('\\x', '')
                 if data[index].startswith('Signature'):
                     arg += '<pre><code>{}</pre></code>'.format(data[index])
                 else:
@@ -98,7 +98,7 @@ class SoupDataParser(object):
         """
         code = section.find('div', {'class': 'highlight-python'})
         if code:
-            return '<pre><code>{}</code></pre>'.format(code.text.replace('¶', '').replace('\n', '\\n'))
+            return '<pre><code>{}</code></pre>'.format(code.text.replace('¶', '').replace('\n', '\\n').replace('\\x', ''))
         return None
 
     def parse_for_data(self):
