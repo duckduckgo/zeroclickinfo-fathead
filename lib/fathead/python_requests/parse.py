@@ -172,7 +172,7 @@ def parse_h2(h2_parent, page_url):
     Returns a list
     '''
     h2 = h2_parent.find('h2')
-    title = h2.text.replace('¶', '')
+    title = clean_title(h2.text)
     fragment = h2_parent.find('a').get('href')
     url = urljoin(page_url, fragment)
     abstract = ''
