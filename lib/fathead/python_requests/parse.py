@@ -210,14 +210,12 @@ with open('output.txt', 'w') as fp:
         page_url = soup.find('link', attrs={'rel': 'canonical'}).get('href')
         print('Page url %s' % page_url)
         if 'api' in page_url:
-            dls = soup.findAll('dl')
-            for dl in dls:
+            for dl in soup.findAll('dl'):
                 data = parse_dl(dl, page_url)
                 for dat in data:
                     fp.write('{}\n'.format(dat))
         else:
-            h2s = soup.findAll('h2')
-            for h2 in h2s:
+            for h2 in soup.findAll('h2'):
                 data = parse_h2(h2.parent, page_url)
                 if data:
                     fp.write('{}\n'.format(data))
