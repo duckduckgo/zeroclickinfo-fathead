@@ -43,8 +43,10 @@ queue_urls_for_download();
 Mojo::IOLoop->recurring(
     0 => sub {
         for ( $current_active_connections + 1 .. $maximum_active_connections ) {
-            return ( $current_active_connections or Mojo::IOLoop->stop )
-              unless my $url = shift @keyword_urls;
+            return (
+                $current_active_connections
+                  or Mojo::IOLoop->stop_gracefully
+            ) unless my $url = shift @keyword_urls;
 
             ++$current_active_connections;
             $ua->get(
@@ -58,7 +60,8 @@ Mojo::IOLoop->recurring(
                           "$file_number.html";
                         ++$file_number;
 
-      #if the keyword URL redirects to another URL, write the keywords to a file
+                        #if the keyword URL redirects
+                        #to another URL, write the keywords to a file
                         if ( $url ne $tx->req->url ) {
                             my $keyword =
                               substr( $url, rindex( $url, "/" ) + 1 );
@@ -120,6 +123,8 @@ sub queue_urls_for_download {
 
     for my $url ( keys %urls ) {
         $url = Mojo::URL->new($url);
+        my $third_part = $url->path->parts->[3] || '';
+        next if $third_part eq 'API';    #Ignore /API/Document/...
         next unless $url->host eq 'developer.mozilla.org';
         if ( $url->fragment ) {
             if ( $url =~ qr/transform-function/ ) {
