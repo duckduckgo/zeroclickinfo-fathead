@@ -13,6 +13,7 @@ use Mojo::Util 'slurp';
 use Text::Trim;
 use HTML::Strip;
 use HTML::Entities;    # Used by HTML::Strip
+use HTML::Escape 'escape_html';
 use Data::Printer return_value => 'dump';
 use YAML::XS 'LoadFile';
 
@@ -297,6 +298,7 @@ sub create_abstract {
     my ( $description, $code, $initial_value ) = @_;
     if ($description) {
         $description = trim($description);
+        $description = escape_html($description) if $description =~ /</;
         $description =~ s/\r?\n+/\\n/g;
     }
     else {
