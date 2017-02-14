@@ -74,8 +74,6 @@ class CoverageClass():
         for tag_to_replace in tags_to_replace:
             regex_pattern = "^{}*".format(tag_to_replace)
             for tag in html_soup_cleaner.find_all(re.compile(regex_pattern)):
-                if tag.name == "a":
-                    print(tag)
                 del tag.name
                 if tag.attrs:
                     del tag.attrs
@@ -89,6 +87,10 @@ class CoverageClass():
         for tag in html_soup_cleaner.find_all("ul"):
             if tag.attrs:
                 del tag.attrs
+
+        # Change <cite> tags to more relevant <code> tags
+        for tag in html_soup_cleaner.find_all("cite"):
+            tag.name = "code"
 
         cleaned_html = str(html_soup_cleaner)
         cleaned_html = cleaned_html.replace("<None>", '')
