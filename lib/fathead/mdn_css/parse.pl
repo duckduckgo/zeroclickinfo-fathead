@@ -13,7 +13,6 @@ use Mojo::Util 'slurp';
 use Text::Trim;
 use HTML::Strip;
 use HTML::Entities;    # Used by HTML::Strip
-use HTML::Escape 'escape_html';
 use Data::Printer return_value => 'dump';
 use YAML::XS 'LoadFile';
 
@@ -298,7 +297,6 @@ sub create_abstract {
     my ( $description, $code, $initial_value ) = @_;
     if ($description) {
         $description = trim($description);
-        $description = escape_html($description) if $description =~ /</;
         $description =~ s/\r?\n+/\\n/g;
     }
     else {
@@ -307,6 +305,7 @@ sub create_abstract {
     $initial_value =~ s/\r?\n+/\\n/g if $initial_value;
     $code = _clean_code($code) if $code;
     my $out = "<p>$description</p>" if $description;
+    $out = _escape_input_elements($out) if $out =~ /<input|progress>/;
     $out .= "<p>$initial_value</p>"         if $initial_value;
     $out .= "<pre><code>$code</code></pre>" if $code;
     $out = sprintf '<section class="prog__container">%s</section>', $out;
@@ -502,6 +501,17 @@ sub _clean_string {
     $input =~ s/[:<>@()]//g;
     trim($input);
     say "Cleaned: '$input'";
+    return $input;
+}
+
+#Wrap <progress> and <input> elements in <code>
+sub _escape_input_elements {
+    my $input = Mojo::DOM->new(shift);
+    $input->find('input, progress')->each(
+        sub {
+            $_->replace( '<code>' . $_ . '</code>' );
+        }
+    );
     return $input;
 }
 
