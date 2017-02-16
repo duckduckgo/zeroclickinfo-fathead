@@ -4,4 +4,3 @@ requires 'HTML::Entities', '3.69';
 requires 'Data::Printer', '0.38';
 requires 'YAML::XS', '0.63';
 requires 'Mojo', '';
-requires 'HTML::Escape', '1.10';
