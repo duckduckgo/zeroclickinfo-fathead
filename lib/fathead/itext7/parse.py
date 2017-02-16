@@ -25,7 +25,7 @@ class ITextFathead(object):
         """
         self.name = name
         self.description = description.replace('\n', '').replace('\t', '    ')
-        self.description = '{}</p>'.format(self.description)
+        self.description = '</p>{}</p>'.format(self.description)
         self.filename = filename
 
     def __str__(self):
@@ -88,7 +88,7 @@ class Parser(object):
             for method_details, anchor in zip(method_blocks, method_anchors):
                 method_name = method_details.select('h4')[0].text
 
-                self.convert_relative_link_to_absolute(method_details, page_link)
+                self.remove_anchor_tags(method_details)
 
                 description = self.get_method_description(method_details)
 
@@ -132,10 +132,9 @@ class Parser(object):
         return page_link
 
     @staticmethod
-    def convert_relative_link_to_absolute(method_details, page_link):
+    def remove_anchor_tags(method_details):
         for a in method_details.findAll('a'):
             a.unwrap()
-            #a['href'] = urljoin(itext_docs_base_url + page_link, a['href'])
 
     @staticmethod
     def get_method_description(method_details):
