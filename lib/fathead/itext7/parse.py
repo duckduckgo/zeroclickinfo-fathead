@@ -140,13 +140,13 @@ class Parser(object):
     @staticmethod
     def get_method_description(method_details):
         description = ''
-        for element in method_details.select('.block'):
+        for element in method_details.select('div.block'):
             copied = element.select('span.descfrmTypeLabel')
             if len(copied) > 0:
                 copied[0].name = 'b'
             if len(description) > 0:
                 description += '<br>'
-            description += str(element)
+            description += str(element.decode_contents(formatter="html"))
 
         header = method_details.select('li.blockList > pre')
         if len(header) > 0:
