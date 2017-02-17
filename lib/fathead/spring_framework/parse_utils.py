@@ -28,7 +28,7 @@ def collectDocFilesFrom(dir):
 def getDocs(filename, classUrl):
     if filename.endswith('.html') and 'package-' not in filename and 'doc-files' not in filename:
         content = BeautifulSoup(getcontent(filename), 'html.parser')
-        classname = content.find_all('h2')[0].string
+        classname = remove_keywords(content.find_all('h2')[0].string)
         block = content.find_all('div', 'block', limit=1)
         description = ""
         if len(block) > 0:
@@ -63,15 +63,25 @@ def getcontent(filename):
 
 def concat_list(data_list=['', '', '']):
     if data_list != None:
-        return concat(data_list[0], data_list[1], data_list[2])
+        return concat_article(data_list[0], data_list[1], data_list[2])
     else:
         return ""
 
 
-def concat(clazz, description, url):
-    title = remove_keywords(clazz) or 'No class found'
-    typez = 'A'
-    redirect = ''
+def concat_article(clazz, description, url):
+    description = description.replace("\n", "\\n").replace("\t", "\\t") or "No abstract found"
+    abstract = '<section class="prog__container">' + description + '</section>'
+
+    url = url or "No URL found"
+
+    return concat(clazz, 'A', abstract=abstract, url=url)
+
+
+def concat_redirect(title, redirect_location):
+    return concat(title, 'R', redirect_location=redirect_location)
+
+
+def concat(title, entry_type, abstract='', url='', redirect_location=''):
     four = ''
     categories = ''
     six = ''
@@ -80,14 +90,19 @@ def concat(clazz, description, url):
     external_links = ''  # [$url title text]\\n, can be multiples
     ten = ''
     image = ''
-    abstract = description.replace("\n", "\\n").replace("\t", "\\t") or "No abstract found"
-    abstract = '<section class="prog__container">' + abstract + '</section>'
-    url = url or "No URL found"
 
-    data = [title, typez, redirect, four, categories, six, related_topics, eight, external_links, ten, image, abstract,
-            url]
+    data = [title, entry_type, redirect_location, four, categories, six,
+            related_topics, eight, external_links, ten, image, abstract, url]
     line = "\t".join(data) + "\n"
     return line
+
+
+def add_redirects(f, clazz):
+    uppercase_words = re.findall(r'[A-Z][^A-Z]*', clazz)
+    if len(uppercase_words) > 1:
+        redirect_title = ' '.join(uppercase_words)
+        line = concat_redirect(redirect_title, clazz)
+        f.write(line.encode('utf'))
 
 
 def output(filename, data_list):
@@ -95,4 +110,5 @@ def output(filename, data_list):
     if not line.startswith("No class found") and line != "" and not ("No abstract found" in line):
         f = open(filename, 'a')
         f.write(line.encode('utf'))
+        add_redirects(f, data_list[0])
         f.close()
