@@ -8,14 +8,14 @@ BASE_LOCAL_JAVADOC_DIR = "./docs/javadoc-api"
 BASE_JAVADOC_FILE = BASE_LOCAL_JAVADOC_DIR + "/allclasses-noframe.html"
 
 
-def readRootFile():
+def read_root_file():
     rootFile = open(BASE_JAVADOC_FILE, 'r')
     lines = rootFile.read()
     rootFile.close()
     return lines
 
 
-def collectDocFilesFrom(dir):
+def collect_doc_files_from(dir):
     docFiles = []
     for (path, dirs, files) in os.walk(dir):
         if 'class-use' not in path and 'index-files' not in path:
@@ -25,22 +25,22 @@ def collectDocFilesFrom(dir):
     return docFiles
 
 
-def getDocs(filename, classUrl):
+def get_docs(filename, classUrl):
     if filename.endswith('.html') and 'package-' not in filename and 'doc-files' not in filename:
-        content = BeautifulSoup(getcontent(filename), 'html.parser')
+        content = BeautifulSoup(get_content(filename), 'html.parser')
         classname = remove_keywords(content.find_all('h2')[0].string)
         block = content.find_all('div', 'block', limit=1)
         description = ""
         if len(block) > 0:
             description = block[0].get_text()
-            description = cutlength(description)
+            description = cut_length(description)
         url = ""
         if len(classUrl) != 0:
             url = BASE_JAVADOC_URL + classUrl
         return classname, description, url
 
 
-def cutlength(description):
+def cut_length(description):
     #  if len(description) > 100:
     description = description[0:description.rfind('.', 0, 300) + 1]
     return description.replace("\n", "")
@@ -54,7 +54,7 @@ def remove_keywords(line):
         return ''
 
 
-def getcontent(filename):
+def get_content(filename):
     f = open(filename, 'r')
     lines = f.read()
     f.close()
