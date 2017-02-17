@@ -98,7 +98,8 @@ def concat(title, entry_type, abstract='', url='', redirect_location=''):
 
 
 def add_redirects(f, clazz):
-    uppercase_words = re.findall(r'[A-Z][^A-Z]*', clazz)
+    # Regex splits on uppercase letters.  Won't split on SQL since it's used in a few class names
+    uppercase_words = re.findall(r'[A-Z](?:QL)?[^A-Z]*', clazz)
     if len(uppercase_words) > 1:
         redirect_title = ' '.join(uppercase_words)
         line = concat_redirect(redirect_title, clazz)
