@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import argparse
 import glob
 from multiprocessing import Pool, cpu_count
@@ -34,6 +35,7 @@ ABSTRACT_TEMPLATE = """\
 {rendered_signature}
 {rendered_parameters}
 {rendered_returns}
+{rendered_examples}
 </section>
 """.replace("\n", "")
 
@@ -49,6 +51,11 @@ PARAMETERS_TEMPLATE = """
 RETURNS_TEMPLATE = """\
 <span class="prog__sub">Returns:</span>
 <pre><code>{returns}</code></pre>
+""".replace("\n", "")
+
+EXAMPLES_TEMPLATE = """
+<span class="prog__sub">Examples:</span>
+<pre><code>{examples}</code></pre>
 """.replace("\n", "")
 
 CPU_COUNT = cpu_count()
@@ -69,7 +76,6 @@ def generate_fathead(folder, processes=CPU_COUNT):
     docs_folder = op.abspath(folder)
     files_to_parse = glob.glob(op.join(docs_folder, "*.html"))
 
-    # TODO make pool size a switch via argparse
     pool = Pool(processes)
     output = pool.map(parse_file, files_to_parse)
 
@@ -207,13 +213,45 @@ def get_abstract(section_div):
     else:
         rendered_returns = ""
 
+    examples = get_examples(section_div, "highlight-python")
+    if examples:
+        rendered_examples = EXAMPLES_TEMPLATE.format(examples=examples)
+    else:
+        rendered_examples = ""
+
     abstract = ABSTRACT_TEMPLATE.format(
         rendered_information=scrub_text(rendered_information),
         rendered_signature=scrub_text(rendered_signature),
         rendered_parameters=scrub_text(rendered_parameters),
-        rendered_returns=scrub_text(rendered_returns)
+        rendered_returns=scrub_text(rendered_returns),
+        rendered_examples=scrub_text(rendered_examples)
     )
     return abstract
+
+
+def get_examples(section_div, examples_class):
+    """Parse and return the examples of the documentation topic.
+
+    Parameters
+    ----------
+    section_div : bs4.BeautifulSoup
+        The BeautifulSoup object corresponding to the div with the "class"
+        attribute equal to "section" in the html doc file.
+
+    examples_class: Str
+        The value of the "class" attribute of the <div> tag within section_div.
+        "highlight-python" is the class which are used for examples in the
+        webpage.
+
+    Returns
+    -------
+    Str:
+        The examples for the topic.
+    """
+    example = section_div.find("div", attrs={"class": examples_class})
+    if example:
+        return example.text.strip()
+    return
 
 
 def get_params(section_div, params_class):
@@ -313,12 +351,10 @@ def get_redirects(title):
     redirects = set()
     title_split = title.split(".")
     if title_split[0] == PACKAGE_NAME:
-        redirects.add(PACKAGE_NAME + " " + ".".join(title_split[1:]))
-    else:
-        redirects.add(PACKAGE_NAME + "." + title)
+        title_split = title_split[1:]
+
     redirects.add(" ".join(title_split))
     return redirects
-
 
 def scrub_text(text):
     """Cleans up text.
@@ -330,7 +366,11 @@ def scrub_text(text):
     text : str
         Text to clean up.
     """
-    scrubbed_text = text.rstrip().replace("\n", "\\n").replace("\t", " "*4)
+    scrubbed_text = text.rstrip()
+    scrubbed_text = scrubbed_text.replace("\\x", "\\\\x")
+    scrubbed_text = scrubbed_text.replace("\0", "\\0")
+    scrubbed_text = scrubbed_text.replace("\n", "\\n")
+    scrubbed_text = scrubbed_text.replace("\t", " "*4)
     return scrubbed_text
 
 
