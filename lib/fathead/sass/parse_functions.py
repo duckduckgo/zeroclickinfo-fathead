@@ -152,7 +152,7 @@ class DataParser(object):
         if example:
             code = example.find('pre')
             text = '<span class="prog__sub">Example</span>'+ str(code)
-            text = '\\n'.join(text.split('\n'))
+            text = '<br/>'.join(text.split('\n'))
             return text
         return None
     
