@@ -25,7 +25,7 @@ class ITextFathead(object):
         """
         self.name = name
         self.description = description.replace('\n', '').replace('\t', '    ')
-        self.description = '</p>{}</p>'.format(self.description)
+        self.description = '<p>{}</p>'.format(self.description)
         self.filename = filename
 
     def __str__(self):
