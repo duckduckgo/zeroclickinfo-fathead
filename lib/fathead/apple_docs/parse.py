@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import html
 import unicodedata
 
-URL_ROOT = 'https://developer.apple.com/reference/objectivec'
+URL_ROOT = 'https://developer.apple.com/reference/'
 DOWNLOADED_HTML_PATH = 'download/'
 
 class Data(object):
@@ -45,8 +45,8 @@ class Parser(object):
     def parse_for_data(self):
         section = {}
         section['title'] = self.soup.find('h1', {'class':'topic-heading'}).text
-        section['anchor'] = URL_ROOT + '/' + self.file_name
-        section['url'] = URL_ROOT + '/' + self.file_name
+        section['anchor'] = URL_ROOT + self.file_name.replace('#','/')
+        section['url'] = URL_ROOT + self.file_name.replace('#','/')
         section['paragraph'] = self.soup.find('div', {'class':'topic-abstract abstract formatted-content'})
         section['example'] = self.soup.find('code')
 

@@ -3,7 +3,7 @@ import requests
 import os
 
 #Flast documentation root url and download path for all the html files 
-URL_ROOT = 'https://developer.apple.com/reference/objectivec'
+URL_ROOT = 'https://developer.apple.com/reference'
 SOURCE_URL='https://developer.apple.com'
 DOWNLOADED_HTML_PATH = 'download/'
 
@@ -11,17 +11,18 @@ DOWNLOADED_HTML_PATH = 'download/'
 session = requests.Session()                               
 
 def save_file(link, text):
-    name=link.split('/')[-1]
-    filename = DOWNLOADED_HTML_PATH+name+'.html'
+    name=link.split('/')[-2]+'#'+link.split('/')[-1]
+    filename = DOWNLOADED_HTML_PATH+name
+    print("downloading %s"%(filename))
     with open(filename, 'w') as f:
         f.write(text)
 
 
 def parse_links(soup, links_dict):
-    class_names=["has-adjacent-element symbol-name", "symbol symbol-name","symbol struct symbol-name", 
-                "has-adjacent-element symbol-name symbol-name-decorated", "symbol structp symbol-name symbol-name-decorated"]
+    class_names=["category-list-item-link", "has-adjacent-element symbol-name"]
     for name in class_names:
         for links in soup.find_all("a", {"class":name}):
+            print(links["href"])
             links_dict.append(SOURCE_URL+links["href"])
     return links_dict                         
 
