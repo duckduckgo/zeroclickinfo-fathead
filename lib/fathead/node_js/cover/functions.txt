@@ -92,7 +92,7 @@ child.send
 worker.disconnect
 worker.isConnected
 worker.isDead
-worker.kill([signal='SIGTERM'])
+worker.kill
 worker.send
 cluster.disconnect
 cluster.fork
@@ -112,12 +112,12 @@ certificate.verifySpkac
 cipher.final
 cipher.setAAD
 cipher.getAuthTag
-cipher.setAutoPadding(auto_padding=true)
+cipher.setAutoPadding
 cipher.update
 decipher.final
 decipher.setAAD
 decipher.setAuthTag
-decipher.setAutoPadding(auto_padding=true)
+decipher.setAutoPadding
 decipher.update
 diffieHellman.computeSecret
 diffieHellman.generateKeys
