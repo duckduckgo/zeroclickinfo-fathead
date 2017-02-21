@@ -18,7 +18,7 @@ url_fmt = 'http://doc.pytest.org/en/latest/builtin.html%s'
 
 def clean_output(output):
     """Remove newlines from abstract."""
-    return re.sub('\r?\n+', ' ', output)
+    return re.sub('\r?\n+', '', output)
 
 
 def clean_code(code):
@@ -29,11 +29,10 @@ def clean_code(code):
 def generate_api_example(api_examples):
     """Generate a new output entry."""
     for api_example in api_examples:
-#       print(api_example)
+
         title = api_example.dt.get('id')
         link = api_example.find("a", {'class': 'headerlink'}).extract()
         url = url_fmt % link['href']
-
         # if the example contains code, add it to the abstract
         if api_example.pre:
             code = clean_code(api_example.pre.text)
@@ -43,21 +42,27 @@ def generate_api_example(api_examples):
 
         abstract = clean_output(api_example.dd.p.text)
         abstract = abstract_fmt.format(abstract, code)
-
+       
         yield [title, 'A', '', '', '', '', '', '', '', '', '', abstract, url]
-
-
+  
 def main():
     with open(INFILE, 'r', encoding='utf-8') as f, open(OUTFILE, 'w', encoding='utf-8') as o:
-
-        html = BeautifulSoup(f, 'html.parser')
-        api_examples = html.select('dl[class=function]')
-
-        for api_example in generate_api_example(api_examples):
-            output = '\t'.join(api_example)
+        soup = BeautifulSoup(f, 'html.parser')
+        api_functions = soup.select('dl[class="function"]')
+        #print(api_functions)
+        for api_function in generate_api_example(api_functions):
+            output = '\t'.join(api_function)
             o.write(output + '\n')
+        api_attributes = soup.select('dl[class="attribute"]')
+        #print(api_attributes)
+        for api_attribute in generate_api_example(api_attributes):
+            output = '\t'.join(api_attribute)
+            o.write(output + '\n')
+        api_classes = soup.select('dl[class="class"]')
+        
+        
 
-
+       
 if __name__ == '__main__':
     print('STARTING ' + __MODULE__ + ' PARSING')
     print('PARSING ...')
