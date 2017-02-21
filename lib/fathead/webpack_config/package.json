@@ -1,0 +1,17 @@
+{
+  "name": "webpack-config-fathead",
+  "version": "1.0.0",
+  "description": "Webpack config fathead ======================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "itai421",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "jsdom": "^9.9.1"
+  },
+  "devDependencies": {}
+}
