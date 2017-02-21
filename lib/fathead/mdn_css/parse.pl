@@ -305,7 +305,7 @@ sub create_abstract {
     $initial_value =~ s/\r?\n+/\\n/g if $initial_value;
     $code = _clean_code($code) if $code;
     my $out = "<p>$description</p>" if $description;
-    $out = _escape_input_elements($out) if $out =~ /<input|progress>/;
+    $out = _clean_input_elements($out) if $out =~ /<input|progress>?/;
     $out .= "<p>$initial_value</p>"         if $initial_value;
     $out .= "<pre><code>$code</code></pre>" if $code;
     $out = sprintf '<section class="prog__container">%s</section>', $out;
@@ -504,15 +504,10 @@ sub _clean_string {
     return $input;
 }
 
-#Wrap <progress> and <input> elements in <code>
-sub _escape_input_elements {
-    my $input = Mojo::DOM->new(shift);
-    $input->find('input, progress')->each(
-        sub {
-            $_->replace( '<code>' . $_ . '</code>' );
-        }
-    );
-    return $input;
+sub _clean_input_elements {
+    my $abstract = shift;
+    $abstract =~ s![</>]!!gc;
+    return $abstract;
 }
 
 # Build Article string for given title, description, and link
