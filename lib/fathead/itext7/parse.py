@@ -70,11 +70,11 @@ class Parser(object):
             description = self.get_class_description(soup)
             page_link = self.create_page_link(class_name, soup)
 
-            itext_class = ITextFathead(class_name,
-                                       description,
-                                       page_link)
-
-            self.itext_classes[class_name] = itext_class
+            if description:
+                itext_class = ITextFathead(class_name,
+                                           description,
+                                           page_link)
+                self.itext_classes[class_name] = itext_class
             self.parse_methods_from_class(class_name, page_link, soup)
 
     def parse_methods_from_class(self, class_name, page_link, soup):
@@ -119,7 +119,7 @@ class Parser(object):
     def get_class_description(soup):
         description_list = soup.select('div.contentContainer div.description div')
         if len(description_list) != 1:
-            description = ''
+            description = None 
         else:
             description = description_list[0].text
         return description
