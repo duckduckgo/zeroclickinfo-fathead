@@ -59,7 +59,10 @@ def main():
             output = '\t'.join(api_attribute)
             o.write(output + '\n')
         api_classes = soup.select('dl[class="class"]')
-        
+        #print(api_classes)
+        for api_class in generate_api_example(api_classes):
+            output = '\t'.join(api_class)
+            o.write(output + '\n')
         
 
        
