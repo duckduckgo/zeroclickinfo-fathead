@@ -38,21 +38,91 @@ POST a Multipart-Encoded File	A										<section class="prog__container"><p>Req
 Passing Parameters In URLs	A										<section class="prog__container"><p>You often want to send some sort of data in the URL's query string. If you were constructing the URL by hand, this data would be given as key/value pairs in the URL after a question mark, e.g. httpbin.org/get?key=val. Requests allows you to provide these arguments as a dictionary, using the params keyword argument. As an example, if you wanted to pass key1=value1 and key2=value2 to httpbin.org/get, you would use the following code:You can see that the URL has been correctly encoded by printing the URL:Note that any dictionary key whose value is None will not be added to the URL's query string.You can also pass a list of items as a value:</p><pre><code>>>> payload = {'key1': 'value1', 'key2': 'value2'}\n>>> r = requests.get('http://httpbin.org/get', params=payload)\n>>> print(r.url)\nhttp://httpbin.org/get?key2=value2&key1=value1\n>>> payload = {'key1': 'value1', 'key2': ['value2', 'value3']}\n\n>>> r = requests.get('http://httpbin.org/get', params=payload)\n>>> print(r.url)\nhttp://httpbin.org/get?key1=value1&key2=value2&key2=value3\n</code></pre></section>	http://docs.python-requests.org/en/master/user/quickstart/#passing-parameters-in-urls
 Prepared Requests	A										<section class="prog__container"><p>Whenever you receive a Response object from an API call or a Session call, the request attribute is actually the PreparedRequest that was used. In some cases you may wish to do some extra work to the body or headers (or anything else really) before sending a request. The simple recipe for this is the following:Since you are not doing anything special with the Request object, you prepare it immediately and modify the PreparedRequest object. You then send that with the other parameters you would have sent to requests.* or Session.*.However, the above code will lose some of the advantages of having a Requests Session object. In particular, Session-level state such as cookies will not get applied to your request. To get a PreparedRequest with that state applied, replace the call to Request.prepare() with a call to Session.prepare_request(), like this:</p><pre><code>from requests import Request, Session\n\ns = Session()\n\nreq = Request('POST', url, data=data, headers=headers)\nprepped = req.prepare()\n\n# do something with prepped.body\nprepped.body = 'No, I want exactly this as the body.'\n\n# do something with prepped.headers\ndel prepped.headers['Content-Type']\n\nresp = s.send(prepped,\n    stream=stream,\n    verify=verify,\n    proxies=proxies,\n    cert=cert,\n    timeout=timeout\n)\n\nprint(resp.status_code)\nfrom requests import Request, Session\n\ns = Session()\nreq = Request('GET',  url, data=data, headers=headers)\n\nprepped = s.prepare_request(req)\n\n# do something with prepped.body\nprepped.body = 'Seriously, send exactly these bytes.'\n\n# do something with prepped.headers\nprepped.headers['Keep-Dead'] = 'parrot'\n\nresp = s.send(prepped,\n    stream=stream,\n    verify=verify,\n    proxies=proxies,\n    cert=cert,\n    timeout=timeout\n)\n\nprint(resp.status_code)\n</code></pre></section>	http://docs.python-requests.org/en/master/user/advanced/#prepared-requests
 PreparedRequest	R	class requests.PreparedRequest										
+PreparedRequest body	R	body										
+PreparedRequest deregister_hook	R	deregister_hook(event, hook)										
+PreparedRequest headers	R	headers										
+PreparedRequest hooks	R	hooks										
+PreparedRequest method	R	method										
+PreparedRequest path_url	R	path_url										
+PreparedRequest prepare	R	prepare(method=None, url=None, headers=None, files=None, data=None, params=None, auth=None, cookies=None, hooks=None, json=None)										
+PreparedRequest prepare_auth	R	prepare_auth(auth, url='')										
+PreparedRequest prepare_body	R	prepare_body(data, files, json=None)										
+PreparedRequest prepare_content_length	R	prepare_content_length(body)										
+PreparedRequest prepare_cookies	R	prepare_cookies(cookies)										
+PreparedRequest prepare_headers	R	prepare_headers(headers)										
+PreparedRequest prepare_hooks	R	prepare_hooks(hooks)										
+PreparedRequest prepare_method	R	prepare_method(method)										
+PreparedRequest prepare_url	R	prepare_url(url, params)										
+PreparedRequest register_hook	R	register_hook(event, hook)										
+PreparedRequest url	R	url										
 Proxies	A										<section class="prog__container"><p>If you need to use a proxy, you can configure individual requests with the proxies argument to any request method:You can also configure proxies by setting the environment variables HTTP_PROXY and HTTPS_PROXY.To use HTTP Basic Auth with your proxy, use the http://user:password@host/ syntax:To give a proxy for a specific scheme and host, use the scheme://hostname form for the key.  This will match for any request to the given scheme and exact hostname.Note that proxy URLs must include the scheme.</p><pre><code>import requests\n\nproxies = {\n  'http': 'http://10.10.1.10:3128',\n  'https': 'http://10.10.1.10:1080',\n}\n\nrequests.get('http://example.org', proxies=proxies)\n$ export HTTP_PROXY="http://10.10.1.10:3128"\n$ export HTTPS_PROXY="http://10.10.1.10:1080"\n\n$ python\n>>> import requests\n>>> requests.get('http://example.org')\nproxies = {'http': 'http://user:pass@10.10.1.10:3128/'}\nproxies = {'http://10.20.1.128': 'http://10.10.1.10:5323'}\n$ pip install requests[socks]\n</code></pre></section>	http://docs.python-requests.org/en/master/user/advanced/#proxies
 Raw Response Content	A										<section class="prog__container"><p>In the rare case that you'd like to get the raw socket response from the server, you can access r.raw. If you want to do this, make sure you set stream=True in your initial request. Once you do, you can do this:In general, however, you should use a pattern like this to save what is being streamed to a file:Using Response.iter_content will handle a lot of what you would otherwise have to handle when using Response.raw directly. When streaming a download, the above is the preferred and recommended way to retrieve the content. Note that chunk_size can be freely adjusted to a number that may better fit your use cases.</p><pre><code>>>> r = requests.get('https://api.github.com/events', stream=True)\n\n>>> r.raw\n<requests.packages.urllib3.response.HTTPResponse object at 0x101194810>\n\n>>> r.raw.read(10)\nb"'\\x1f\\x8b\\x08\\x00\\x00\\x00\\x00\\x00\\x00\\x03'"\nwith open(filename, 'wb'b')' as fd:\n    for chunk in r.iter_content(chunk_size=128b')':\n        fd.write(chunkb')'\n</code></pre></section>	http://docs.python-requests.org/en/master/user/quickstart/#raw-response-content
 ReadTimeout	R	exception requests.ReadTimeout(*args, **kwargs)										
 Redirection and History	A										<section class="prog__container"><p>By default Requests will perform location redirection for all verbs except HEAD.We can use the history property of the Response object to track redirection.The Response.history list contains the Response objects that were created in order to complete the request. The list is sorted from the oldest to the most recent response.For example, GitHub redirects all HTTP requests to HTTPS:If you're using GET, OPTIONS, POST, PUT, PATCH or DELETE, you can disable redirection handling with the allow_redirects parameter:If you're using HEAD, you can enable redirection as well:</p><pre><code>>>> r = requests.get('http://github.com')\n\n>>> r.url\n'https://github.com/'\n\n>>> r.status_code\n200\n\n>>> r.history\n[<Response [301]>]\n>>> r = requests.get('http://github.com', allow_redirects=False)\n\n>>> r.status_code\n301\n\n>>> r.history\n[]\n>>> r = requests.head('http://github.com', allow_redirects=True)\n\n>>> r.url\n'https://github.com/'\n\n>>> r.history\n[<Response [301]>]\n</code></pre></section>	http://docs.python-requests.org/en/master/user/quickstart/#redirection-and-history
 Request	R	class requests.Request(method=None, url=None, headers=None, files=None, data=None, params=None, auth=None, cookies=None, hooks=None, json=None)										
 Request and Response Objects	A										<section class="prog__container"><p>Whenever a call is made to requests.get() and friends, you are doing two major things. First, you are constructing a Request object which will be sent off to a server to request or query some resource. Second, a Response object is generated once Requests gets a response back from the server. The Response object contains all of the information returned by the server and also contains the Request object you created originally. Here is a simple request to get some very important information from Wikipedia's servers:If we want to access the headers the server sent back to us, we do this:However, if we want to get the headers we sent the server, we simply access the request, and then the request's headers:</p><pre><code>>>> r = requests.get('http://en.wikipedia.org/wiki/Monty_Python')\n>>> r.headers\n{'content-length': '56170', 'x-content-type-options': 'nosniff', 'x-cache':\n'HIT from cp1006.eqiad.wmnet, MISS from cp1010.eqiad.wmnet', 'content-encoding':\n'gzip', 'age': '3080', 'content-language': 'en', 'vary': 'Accept-Encoding,Cookie',\n'server': 'Apache', 'last-modified': 'Wed, 13 Jun 2012 01:33:50 GMT',\n'connection': 'close', 'cache-control': 'private, s-maxage=0, max-age=0,\nmust-revalidate', 'date': 'Thu, 14 Jun 2012 12:59:39 GMT', 'content-type':\n'text/html; charset=UTF-8', 'x-cache-lookup': 'HIT from cp1006.eqiad.wmnet:3128,\nMISS from cp1010.eqiad.wmnet:80'}\n>>> r.request.headers\n{'Accept-Encoding': 'identity, deflate, compress, gzip',\n'Accept': '*/*', 'User-Agent': 'python-requests/1.2.0'}\n</code></pre></section>	http://docs.python-requests.org/en/master/user/advanced/#request-and-response-objects
+Request deregister_hook	R	deregister_hook(event, hook)										
+Request prepare	R	prepare()										
+Request register_hook	R	register_hook(event, hook)										
 RequestException	R	exception requests.RequestException(*args, **kwargs)										
 RequestsCookieJar	R	class requests.cookies.RequestsCookieJar(policy=None)										
 Response	R	class requests.Response										
 Response Content	A										<section class="prog__container"><p>We can read the content of the server's response. Consider the GitHub timeline again:Requests will automatically decode content from the server. Most unicode charsets are seamlessly decoded.When you make a request, Requests makes educated guesses about the encoding of the response based on the HTTP headers. The text encoding guessed by Requests is used when you access r.text. You can find out what encoding Requests is using, and change it, using the r.encoding property:If you change the encoding, Requests will use the new value of r.encoding whenever you call r.text. You might want to do this in any situation where you can apply special logic to work out what the encoding of the content will be. For example, HTTP and XML have the ability to specify their encoding in their body. In situations like this, you should use r.content to find the encoding, and then set r.encoding. This will let you use r.text with the correct encoding.Requests will also use custom encodings in the event that you need them. If you have created your own encoding and registered it with the codecs module, you can simply use the codec name as the value of r.encoding and Requests will handle the decoding for you.</p><pre><code>>>> import requests\n\n>>> r = requests.get('https://api.github.com/events')\n>>> r.text\nu'[{"repository":{"open_issues":0,"url":"https://github.com/...\n>>> r.encoding\n'utf-8'\n>>> r.encoding = 'ISO-8859-1'\n</code></pre></section>	http://docs.python-requests.org/en/master/user/quickstart/#response-content
 Response Headers	A										<section class="prog__container"><p>We can view the server's response headers using a Python dictionary:The dictionary is special, though: it's made just for HTTP headers. According to RFC 7230, HTTP Header names are case-insensitive.So, we can access the headers using any capitalization we want:It is also special in that the server could have sent the same header multiple times with different values, but requests combines them so they can be represented in the dictionary within a single mapping, as per RFC 7230:</p><pre><code>>>> r.headers\n{\n    'content-encoding': 'gzip',\n    'transfer-encoding': 'chunked',\n    'connection': 'close',\n    'server': 'nginx/1.0.4',\n    'x-runtime': '148ms',\n    'etag': '"e1ca502697e5c9317743dc078f67693f"',\n    'content-type': 'application/json'\n}\n>>> r.headers['Content-Type']\n'application/json'\n\n>>> r.headers.get('content-type')\n'application/json'\n</code></pre></section>	http://docs.python-requests.org/en/master/user/quickstart/#response-headers
 Response Status Codes	A										<section class="prog__container"><p>We can check the response status code:Requests also comes with a built-in status code lookup object for easy reference:If we made a bad request (a 4XX client error or 5XX server error response), we can raise it with Response.raise_for_status():But, since our status_code for r was 200, when we call raise_for_status() we get:All is well.</p><pre><code>>>> r = requests.get('http://httpbin.org/get')\n>>> r.status_code\n200\n>>> r.status_code == requests.codes.ok\nTrue\n>>> bad_r = requests.get('http://httpbin.org/status/404')\n>>> bad_r.status_code\n404\n\n>>> bad_r.raise_for_status()\nTraceback (most recent call last):\n  File "requests/models.py", line 832, in raise_for_status\n    raise http_error\nrequests.exceptions.HTTPError: 404 Client Error\n>>> r.raise_for_status()\nNone\n</code></pre></section>	http://docs.python-requests.org/en/master/user/quickstart/#response-status-codes
+Response apparent_encoding	R	apparent_encoding										
+Response close	R	close()										
+Response content	R	content										
+Response cookies	R	cookies										
+Response elapsed	R	elapsed										
+Response encoding	R	encoding										
+Response headers	R	headers										
+Response history	R	history										
+Response is_permanent_redirect	R	is_permanent_redirect										
+Response is_redirect	R	is_redirect										
+Response iter_content	R	iter_content(chunk_size=1, decode_unicode=False)										
+Response iter_lines	R	iter_lines(chunk_size=512, decode_unicode=None, delimiter=None)										
+Response json	R	json(**kwargs)										
+Response links	R	links										
+Response raise_for_status	R	raise_for_status()										
+Response raw	R	raw										
+Response reason	R	reason										
+Response request	R	request										
+Response status_code	R	status_code										
+Response text	R	text										
+Response url	R	url										
 SSL Cert Verification	A										<section class="prog__container"><p>Requests verifies SSL certificates for HTTPS requests, just like a web browser. By default, SSL verification is enabled, and Requests will throw a SSLError if it's unable to verify the certificate:I don't have SSL setup on this domain, so it throws an exception. Excellent. GitHub does though:You can pass verify the path to a CA_BUNDLE file or directory with certificates of trusted CAs:or persistent:This list of trusted CAs can also be specified through the REQUESTS_CA_BUNDLE environment variable.Requests can also ignore verifying the SSL certificate if you set verify to False:By default, verify is set to True. Option verify only applies to host certs.You can also specify a local cert to use as client side certificate, as a single file (containing the private key and the certificate) or as a tuple of both file's path:or persistent:If you specify a wrong path or an invalid cert, you'll get a SSLError:</p><pre><code>>>> requests.get('https://requestb.in')\nrequests.exceptions.SSLError: hostname 'requestb.in' doesn't match either of '*.herokuapp.com', 'herokuapp.com'\n>>> requests.get('https://github.com')\n<Response [200]>\n>>> requests.get('https://github.com', verify='/path/to/certfile')\ns = requests.Session()\ns.verify = '/path/to/certfile'\n>>> requests.get('https://kennethreitz.org', verify=False)\n<Response [200]>\n>>> requests.get('https://kennethreitz.org', cert=('/path/client.cert', '/path/client.key'))\n<Response [200]>\ns = requests.Session()\ns.cert = '/path/client.cert'\n>>> requests.get('https://kennethreitz.org', cert='/wrong_path/client.pem')\nSSLError: [Errno 336265225] _ssl.c:347: error:140B0009:SSL routines:SSL_CTX_use_PrivateKey_file:PEM lib\n</code></pre></section>	http://docs.python-requests.org/en/master/user/advanced/#ssl-cert-verification
 Session	R	class requests.Session										
 Session Objects	A										<section class="prog__container"><p>The Session object allows you to persist certain parameters across requests. It also persists cookies across all requests made from the Session instance, and will use urllib3's connection pooling. So if you're making several requests to the same host, the underlying TCP connection will be reused, which can result in a significant performance increase (see HTTP persistent connection).A Session object has all the methods of the main Requests API.Let's persist some cookies across requests:Sessions can also be used to provide default data to the request methods. This is done by providing data to the properties on a Session object:Any dictionaries that you pass to a request method will be merged with the session-level values that are set. The method-level parameters override session parameters.Note, however, that method-level parameters will not be persisted across requests, even if using a session. This example will only send the cookies with the first request, but not the second:If you want to manually add cookies to your session, use the Cookie utility functions to manipulate Session.cookies.Sessions can also be used as context managers:This will make sure the session is closed as soon as the with block is exited, even if unhandled exceptions occurred.All values that are contained within a session are directly available to you. See the Session API Docs to learn more.</p><pre><code>s = requests.Session()\n\ns.get('http://httpbin.org/cookies/set/sessioncookie/123456789')\nr = s.get('http://httpbin.org/cookies')\n\nprint(r.text)\n# '{"cookies": {"sessioncookie": "123456789"}}'\ns = requests.Session()\ns.auth = ('user', 'pass')\ns.headers.update({'x-test': 'true'})\n\n# both 'x-test' and 'x-test2' are sent\ns.get('http://httpbin.org/headers', headers={'x-test2': 'true'})\ns = requests.Session()\n\nr = s.get('http://httpbin.org/cookies', cookies={'from-my': 'browser'})\nprint(r.text)\n# '{"cookies": {"from-my": "browser"}}'\n\nr = s.get('http://httpbin.org/cookies')\nprint(r.text)\n# '{"cookies": {}}'\nwith requests.Session() as s:\n    s.get('http://httpbin.org/cookies/set/sessioncookie/123456789')\n</code></pre></section>	http://docs.python-requests.org/en/master/user/advanced/#session-objects
+Session auth	R	auth										
+Session cert	R	cert										
+Session close	R	close()										
+Session cookies	R	cookies										
+Session delete	R	delete(url, **kwargs)										
+Session get	R	get(url, **kwargs)										
+Session get_adapter	R	get_adapter(url)										
+Session head	R	head(url, **kwargs)										
+Session headers	R	headers										
+Session hooks	R	hooks										
+Session max_redirects	R	max_redirects										
+Session merge_environment_settings	R	merge_environment_settings(url, proxies, stream, verify, cert)										
+Session mount	R	mount(prefix, adapter)										
+Session options	R	options(url, **kwargs)										
+Session params	R	params										
+Session patch	R	patch(url, data=None, **kwargs)										
+Session post	R	post(url, data=None, json=None, **kwargs)										
+Session prepare_request	R	prepare_request(request)										
+Session proxies	R	proxies										
+Session put	R	put(url, data=None, **kwargs)										
+Session rebuild_auth	R	rebuild_auth(prepared_request, response)										
+Session rebuild_method	R	rebuild_method(prepared_request, response)										
+Session rebuild_proxies	R	rebuild_proxies(prepared_request, proxies)										
+Session request	R	request(method, url, params=None, data=None, headers=None, cookies=None, files=None, auth=None, timeout=None, allow_redirects=True, proxies=None, hooks=None, stream=None, verify=None, cert=None, json=None)										
+Session resolve_redirects	R	resolve_redirects(resp, req, stream=False, timeout=None, verify=True, cert=None, proxies=None, **adapter_kwargs)										
+Session send	R	send(request, **kwargs)										
+Session stream	R	stream										
+Session trust_env	R	trust_env										
+Session verify	R	verify										
 Streaming Requests	A										<section class="prog__container"><p>With Response.iter_lines() you can easily iterate over streaming APIs such as the Twitter Streaming API. Simply set stream to True and iterate over the response with iter_lines:When using decode_unicode=True with Response.iter_lines() or Response.iter_content(), you'll want to provide a fallback encoding in the event the server doesn't provide one:</p><pre><code>import json\nimport requests\n\nr = requests.get('http://httpbin.org/stream/20', stream=True)\n\nfor line in r.iter_lines():\n\n    # filter out keep-alive new lines\n    if line:\n        decoded_line = line.decode('utf-8')\n        print(json.loads(decoded_line))\nr = requests.get('http://httpbin.org/stream/20', stream=True)\n\nif r.encoding is None:\n    r.encoding = 'utf-8'\n\nfor line in r.iter_lines(decode_unicode=True):\n    if line:\n        print(json.loads(line))\nlines = r.iter_lines()\n# Save the first line for later or just skip it\n\nfirst_line = next(lines)\n\nfor line in lines:\n    print(line)\n</code></pre></section>	http://docs.python-requests.org/en/master/user/advanced/#streaming-requests
 Streaming Uploads	A										<section class="prog__container"><p>Requests supports streaming uploads, which allow you to send large streams or files without reading them into memory. To stream and upload, simply provide a file-like object for your body:</p><pre><code>with open('massive-body', 'rb') as f:\n    requests.post('http://some.url/streamed', data=f)\n</code></pre></section>	http://docs.python-requests.org/en/master/user/advanced/#streaming-uploads
 Timeout	R	exception requests.Timeout(*args, **kwargs)										
@@ -60,6 +130,20 @@ Timeouts	A										<section class="prog__container"><p>Most requests to externa
 TooManyRedirects	R	exception requests.TooManyRedirects(*args, **kwargs)										
 Transport Adapters	A										<section class="prog__container"><p>As of v1.0.0, Requests has moved to a modular internal design. Part of the reason this was done was to implement Transport Adapters, originally described here. Transport Adapters provide a mechanism to define interaction methods for an HTTP service. In particular, they allow you to apply per-service configuration.Requests ships with a single Transport Adapter, the HTTPAdapter. This adapter provides the default Requests interaction with HTTP and HTTPS using the powerful urllib3 library. Whenever a Requests Session is initialized, one of these is attached to the Session object for HTTP, and one for HTTPS.Requests enables users to create and use their own Transport Adapters that provide specific functionality. Once created, a Transport Adapter can be mounted to a Session object, along with an indication of which web services it should apply to.The mount call registers a specific instance of a Transport Adapter to a prefix. Once mounted, any HTTP request made using that session whose URL starts with the given prefix will use the given Transport Adapter.Many of the details of implementing a Transport Adapter are beyond the scope of this documentation, but take a look at the next example for a simple SSL use- case. For more than that, you might look at subclassing the BaseAdapter.</p><pre><code>>>> s = requests.Session()\n>>> s.mount('http://www.github.com', MyAdapter())\nimport ssl\n\nfrom requests.adapters import HTTPAdapter\nfrom requests.packages.urllib3.poolmanager import PoolManager\n\n\nclass Ssl3HttpAdapter(HTTPAdapter):\n    """"Transport adapter" that allows us to use SSLv3."""\n\n    def init_poolmanager(self, connections, maxsize, block=False):\n        self.poolmanager = PoolManager(\n            num_pools=connections, maxsize=maxsize,\n            block=block, ssl_version=ssl.PROTOCOL_SSLv3)\n</code></pre></section>	http://docs.python-requests.org/en/master/user/advanced/#transport-adapters
 URLRequired	R	exception requests.URLRequired(*args, **kwargs)										
+adapters BaseAdapter	R	class requests.adapters.BaseAdapter										
+adapters BaseAdapter close	R	close()										
+adapters BaseAdapter send	R	send(request, stream=False, timeout=None, verify=True, cert=None, proxies=None)										
+adapters HTTPAdapter	R	class requests.adapters.HTTPAdapter(pool_connections=10, pool_maxsize=10, max_retries=0, pool_block=False)										
+adapters HTTPAdapter add_headers	R	add_headers(request, **kwargs)										
+adapters HTTPAdapter build_response	R	build_response(req, resp)										
+adapters HTTPAdapter cert_verify	R	cert_verify(conn, url, verify, cert)										
+adapters HTTPAdapter close	R	close()										
+adapters HTTPAdapter get_connection	R	get_connection(url, proxies=None)										
+adapters HTTPAdapter init_poolmanager	R	init_poolmanager(connections, maxsize, block=False, **pool_kwargs)										
+adapters HTTPAdapter proxy_headers	R	proxy_headers(proxy)										
+adapters HTTPAdapter proxy_manager_for	R	proxy_manager_for(proxy, **proxy_kwargs)										
+adapters HTTPAdapter request_url	R	request_url(request, proxies)										
+adapters HTTPAdapter send	R	send(request, stream=False, timeout=None, verify=True, cert=None, proxies=None)										
 add cookie header	R	add_cookie_header(request)										
 add dict to cookiejar	R	requests.utils.add_dict_to_cookiejar(cj, cookie_dict)										
 add headers	R	add_headers(request, **kwargs)										
@@ -71,6 +155,10 @@ add_headers(request, **kwargs)	A										<section class="prog__container"><p>Ad
 apparent encoding	R	apparent_encoding										
 apparent_encoding	A										<section class="prog__container"><p>The apparent encoding, provided by the chardet library</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.apparent_encoding
 auth	A										<section class="prog__container"><p>Default Authentication tuple or object to attach to Request.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.auth
+auth AuthBase	R	class requests.auth.AuthBase										
+auth HTTPBasicAuth	R	class requests.auth.HTTPBasicAuth(username, password)										
+auth HTTPDigestAuth	R	class requests.auth.HTTPDigestAuth(username, password)										
+auth HTTPProxyAuth	R	class requests.auth.HTTPProxyAuth(username, password)										
 body	A										<section class="prog__container"><p>request body to send to the server.</p></section>	http://docs.python-requests.org/en/master/api/#requests.PreparedRequest.body
 build response	R	build_response(req, resp)										
 build_response	R	build_response(req, resp)										
@@ -105,6 +193,33 @@ content	A										<section class="prog__container"><p>Content of the response, 
 cookiejar from dict	R	requests.cookies.cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)										
 cookiejar_from_dict	R	requests.cookies.cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)										
 cookies	A										<section class="prog__container"><p>A CookieJar containing all currently outstanding cookies set on this session. By default it is a RequestsCookieJar, but may be any other cookielib.CookieJar compatible object.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.cookies
+cookies CookieConflictError	R	class requests.cookies.CookieConflictError										
+cookies RequestsCookieJar	R	class requests.cookies.RequestsCookieJar(policy=None)										
+cookies RequestsCookieJar add_cookie_header	R	add_cookie_header(request)										
+cookies RequestsCookieJar clear	R	clear(domain=None, path=None, name=None)										
+cookies RequestsCookieJar clear_expired_cookies	R	clear_expired_cookies()										
+cookies RequestsCookieJar clear_session_cookies	R	clear_session_cookies()										
+cookies RequestsCookieJar copy	R	copy()										
+cookies RequestsCookieJar extract_cookies	R	extract_cookies(response, request)										
+cookies RequestsCookieJar get	R	get(name, default=None, domain=None, path=None)										
+cookies RequestsCookieJar get_dict	R	get_dict(domain=None, path=None)										
+cookies RequestsCookieJar items	R	items()										
+cookies RequestsCookieJar iteritems	R	iteritems()										
+cookies RequestsCookieJar iterkeys	R	iterkeys()										
+cookies RequestsCookieJar itervalues	R	itervalues()										
+cookies RequestsCookieJar keys	R	keys()										
+cookies RequestsCookieJar list_domains	R	list_domains()										
+cookies RequestsCookieJar list_paths	R	list_paths()										
+cookies RequestsCookieJar make_cookies	R	make_cookies(response, request)										
+cookies RequestsCookieJar multiple_domains	R	multiple_domains()										
+cookies RequestsCookieJar pop	R	pop(k[, d])										
+cookies RequestsCookieJar popitem	R	popitem()										
+cookies RequestsCookieJar set	R	set(name, value, **kwargs)										
+cookies RequestsCookieJar set_cookie_if_ok	R	set_cookie_if_ok(cookie, request)										
+cookies RequestsCookieJar setdefault	R	setdefault(k[, d])										
+cookies RequestsCookieJar update	R	update(other)										
+cookies RequestsCookieJar values	R	values()										
+cookies cookiejar_from_dict	R	requests.cookies.cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)										
 copy	R	copy()										
 copy()	A										<section class="prog__container"><p>Return a copy of this RequestsCookieJar.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.copy
 delete	R	requests.delete(url, **kwargs)										
@@ -584,6 +699,11 @@ trust_env	A										<section class="prog__container"><p>Trust environment setti
 update	R	update(other)										
 update(other)	A										<section class="prog__container"><p>Updates this jar with cookies from another CookieJar or dict-like</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.update
 url	A										<section class="prog__container"><p>Final URL location of Response.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.url
+utils add_dict_to_cookiejar	R	requests.utils.add_dict_to_cookiejar(cj, cookie_dict)										
+utils dict_from_cookiejar	R	requests.utils.dict_from_cookiejar(cj)										
+utils get_encoding_from_headers	R	requests.utils.get_encoding_from_headers(headers)										
+utils get_encodings_from_content	R	requests.utils.get_encodings_from_content(content)										
+utils get_unicode_from_response	R	requests.utils.get_unicode_from_response(r)										
 values	R	values()										
 values()	A										<section class="prog__container"><p>Dict-like values() that returns a list of values of cookies from the jar.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.values
 verify	A										<section class="prog__container"><p>SSL Verification default.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.verify
