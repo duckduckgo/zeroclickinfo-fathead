@@ -84,6 +84,12 @@ def create_redirect_titles(func_with_params='', func_without_params=''):
     possible_redirect_titles = [module_func, func_without_params,
                                 isolated_func_name,
                                 spaced_func_without_params]
+
+    if 'requests ' in module_func:
+        # e.g requests PreparedRequest becomes PreparedRequest
+        name = module_func.replace('requests ', '')
+        possible_redirect_titles.append(name)
+
     redirect_titles = [i for i in set(possible_redirect_titles) if i and
                        i is not func_with_params]
     return redirect_titles
