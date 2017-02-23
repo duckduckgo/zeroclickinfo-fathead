@@ -1,5 +1,5 @@
 #!/bin/bash
 
-mkdir downloads
+mkdir -p downloads
 rm -f downloads/*.html 
-wget -O download/docs.html http://doc.pytest.org/en/latest/builtin.html --quiet
+wget -O downloads/docs.html http://expressjs.com/en/api.html --quiet
