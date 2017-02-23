@@ -49,8 +49,9 @@ def create_article(title, abstract, url):
 
 def create_redirect(redirect_title, original_title):
     print('REDIRECT: {0} ~> {1}\n'.format(redirect_title, original_title))
-    SEEN_REDIRECTS.append(redirect_title)
-    data = [
+    if redirect_title not in SEEN_REDIRECTS:
+        SEEN_REDIRECTS.append(redirect_title)
+        data = [
             redirect_title,  # title
             'R',             # type is article
             original_title,  # redirect title
@@ -107,7 +108,8 @@ def parse_dl(dl, page_url):
     dt = dl.find('dt')
     func_with_params = clean_title(dt.text.strip())
     abstract = ''
-    func_without_params = dt.get('id').strip()
+    func_without_params = dt.get('id')
+    func_with_params = func_with_params.strip()
     if '→' in func_with_params:
         # see /en/master/api/#requests.cookies.RequestsCookieJar.pop
         func_with_params, abstract = func_with_params.split('→')
