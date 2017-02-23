@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-
+import re
 from bs4 import BeautifulSoup
 
 SQLALCHEMY_TOC_BASE_URL = 'https://docs.sqlalchemy.org/en/latest/'
@@ -204,6 +204,7 @@ class DataParser(object):
             path = a['href']
             a['href'] = a['href'].replace(a['href'],'https://docs.sqlalchemy.org/en/latest/'+path)
         return parameters
+
     def create_url(self, anchor):
         """
         Helper method to create URL back to document
@@ -291,7 +292,7 @@ class DataOutput(object):
                         'A',                        # type is article
                         '',                         # redirect data
                         '',                         # ignore
-                        'SQLAlchemy TOC',           # categories
+                        '',                         # categories
                         '',                         # ignore
                         '',                         # no related topics
                         '',                         # ignore
@@ -303,7 +304,8 @@ class DataOutput(object):
                     
                     line = '\t'.join(list_of_data)
                     
-                    output_file.write(line+'\n')
+                    output_file.write(re.escape(line)+'\n')
+
     def create_redirect(self):
         """
         Iterate through the data and add redirects to output.txt file, appending to file as necessary.
@@ -333,7 +335,7 @@ class DataOutput(object):
                     
                     line = '\t'.join(list_of_data)
                     
-                    output_file.write(line+'\n')
+                    output_file.write(re.escape(line)+'\n')
 
 if __name__ == "__main__":
     file_path = 'download/genindex.html'
