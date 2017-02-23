@@ -304,7 +304,9 @@ sub create_abstract {
     }
     $initial_value =~ s/\r?\n+/\\n/g if $initial_value;
     $code = _clean_code($code) if $code;
-    my $out = "<p>$description</p>" if $description;
+    my $out = $description;
+    $out = _clean_input_elements($out) if $out =~ /<input|progress>?/;
+    $out = "<p>$out</p>";
     $out .= "<p>$initial_value</p>"         if $initial_value;
     $out .= "<pre><code>$code</code></pre>" if $code;
     $out = sprintf '<section class="prog__container">%s</section>', $out;
@@ -501,6 +503,12 @@ sub _clean_string {
     trim($input);
     say "Cleaned: '$input'";
     return $input;
+}
+
+sub _clean_input_elements {
+    my $abstract = shift;
+    $abstract =~ s![</>]!!gc;
+    return $abstract;
 }
 
 # Build Article string for given title, description, and link
