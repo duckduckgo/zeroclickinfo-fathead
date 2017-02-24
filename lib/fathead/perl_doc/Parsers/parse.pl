@@ -319,6 +319,7 @@ sub entry {
     my $category_text = join '\n', @{$article{categories} || []};
     return warn "No text for '$title'" unless $text;
     $text =~ s/\t/&#09;/g;
+    $text = qq{<section class="prog__container">$text</section>};
     $self->insert({
         abstract => $text,
         categories => $category_text,
@@ -538,6 +539,8 @@ sub build_description_functions {
     my $syntax = Mojo::DOM->new("<pre>$syntaxes[0]</pre>");
     map { $syntax->at('pre')->append_content("<br />$_") }
         @syntaxes[1..$#syntaxes];
+    # Remove empty <p> tags that are sometimes included
+    $description =~ s{<p>\s*</p>}{}g;
     $description = $syntax->to_string . $description;
     return $description;
 }

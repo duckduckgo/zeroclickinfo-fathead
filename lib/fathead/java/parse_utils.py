@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import os
 import sys
 import string
+import re
 
 BASE_JAVADOC_URL = "https://docs.oracle.com/javase/8/docs/api/index.html?"
 BASE_LOCAL_JAVADOC_DIR = "./docs/api/"
@@ -19,6 +20,82 @@ def getClass(directory, fname):
   filename = "%s/%s" % (directory, fname)
   return getDocs(filename)
 
+"""
+Retrieves all methods of a specified class and saves them to methods.txt for coverage and appends formatted data to output.txt.
+parameters: name of class
+"""
+def getClassMethods(filename, classname):
+    content = BeautifulSoup(getcontent(classname), "html.parser")
+    # Note: this will not find methods inherited from other classes/interfaces
+    for method in content.find_all("table", {"summary" : re.compile("method")}):
+        methodclass = getDocs(classname)[0]
+        methodbaseurl = getDocs(classname)[2]
+        method_output(filename, extractMethodData(method, methodclass, methodbaseurl, True))
+        method_output('output.txt', extractMethodData(method, methodclass, methodbaseurl, False))
+"""
+Extracts data of a method, formatting it for either coverage or output.
+parameters: method html table entry, class, url of the class, boolean coverage
+returns: all method data and the class it belongs to
+"""
+def extractMethodData(method, methodclass, baseurl, coverage):
+    method_names = []
+    method_class = remove_keywords(methodclass)
+    if method_class is not "":
+        if coverage is True:
+            for td in method.find_all("td", {"class" : "colLast"}):
+                method_names.append(method_class + " " + extractMethodName(td.find("code").text.replace(" ", "")))
+                # method name without parameters:
+                method_names.append(method_class + " " + td.find("a").text.replace(" ", ""))
+        elif coverage is False:
+            for td in method.find_all("td", {"class" : "colLast"}):
+                method_names.append(method_class + " " + format(td, baseurl, True))
+                method_names.append(method_class + " " + format(td, baseurl, False))
+    return method_names
+
+"""
+Extracts a method's name and parameters
+parameters: data entry of a method
+returns: formatted method and parameters for output.txt and methods.txt
+"""
+def extractMethodName(tabledata):
+    methodname = ""
+    if "()" in tabledata:
+        methodname = tabledata.replace("\n", "").replace("()", "")
+    else:
+        methodname = tabledata.replace(" ", "").replace("\n", "").replace("&nbsp;", "").replace(")", "").replace("(", " ")
+    return methodname
+
+"""
+Formats output for method data to be appended to output.txt
+parameters: data entry of a method, base class url needed to construct a full url for the method, boolean determines whether parameters are to be included or not
+returns: a formatted string for output.txt
+"""
+def format(tabledata, baseurl, parameters):
+    method_name = ""
+    if parameters is True:
+        method_name = extractMethodName(tabledata.find("code").text)
+    elif parameters is False:
+        method_name = str(tabledata.find("span").text)
+    method_description = ""
+    if tabledata.find("div") is not None:
+        method_description = tabledata.find("div").get_text().replace("\n", "")
+    url_matcher = re.search(r'#(.*)', tabledata.find("a").get("href"))
+    method_url = baseurl.replace("index.html?", "") + url_matcher.group(0)
+    formatted_string = method_name + "\tA\t\t\t\t\t\t\t\t\t\t" + "<section class=\"prog__container\"><p>" + method_description + "</p></section>" + "\t" + method_url
+    return formatted_string
+    
+"""
+Appends a formatted line of data of a method to a specified file
+parameters: filename (output.txt), list of method data
+"""
+def method_output(file, data):
+    f = open(file, 'a')
+    for d in data:
+        method_data = d + "\n"
+        for line in method_data:
+             f.write(line)
+    f.close()
+
 def getDocs(filename):
   if filename.endswith('.html') and 'package-' not in filename and 'doc-files' not in filename:
     content = BeautifulSoup(getcontent(filename), 'html.parser')
@@ -33,17 +110,19 @@ def getDocs(filename):
 
 def cutlength(description):
 #  if len(description) > 100:
-  description = description[0:description.rfind('.', 0, 100) + 1]
+  description = description[0:description.rfind('.', 0, 300) + 1]
   return description.replace("\n", "")
 
 def remove_keywords(line):
-  if isinstance(line, basestring):
-    return line.replace('Class ', '').replace('Enum ', '').replace('Interface ', '').replace('Annotation Type ', '')
+  if isinstance(line, str): # replaced basestring with str. basestring is deprecated in python 3.x
+    line = re.sub(r'<\w,?\w?>', '', line)
+    return line.replace('Class ', '').replace('Enum ', '').replace('Interface ', '').replace('Annotation Type ', '').replace(' ', '')
   else:
     return ''
 
 def getcontent(filename):
-  f = open(filename, 'r')
+  f = open(filename, 'rb')
+  # added 'b' to option. forces bytes rather than string.
   lines = f.read()
   f.close()
   return lines
@@ -67,6 +146,7 @@ def concat(clazz, description, url):
   ten = ''
   image = ''
   abstract = description.replace("\n", "\\n").replace("\t", "\\t") or "No abstract found"
+  abstract = '<section class="prog__container">' + abstract + '</section>'
   url = url or "No URL found"
 
   data = [title, typez, redirect, four, categories, six, related_topics, eight, external_links, ten, image, abstract, url]
@@ -76,6 +156,6 @@ def concat(clazz, description, url):
 def output(filename, data_list):
   line = concat_list(data_list)
   if not line.startswith("No class found") and line != "" and not ("No abstract found" in line):
-    f = open(filename, 'a')
+    f = open(filename, 'ab')
     f.write(line.encode('utf'))
     f.close()

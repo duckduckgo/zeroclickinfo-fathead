@@ -74,7 +74,7 @@ class PythonDataParser(object):
         for header in self.soup.find_all('h3'):
             section = self.parse_section(header)
             section['example'] = self.clean_unicode_numerals(self.get_example(header))
-            section['abstract'] = '{}<br><pre><code>{}</code></pre>'.format(section['paragraph'], section['example'])
+            section['abstract'] = '<section class="prog__container"><p>{}</p><pre><code>{}</code></pre></section>'.format(section['paragraph'], section['example'])
             self.sub_sections.append(section)
 
         self.parsed_data = self.main_sections + self.sub_sections

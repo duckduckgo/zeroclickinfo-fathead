@@ -12,7 +12,7 @@ use Mojo::URL;
 use Mojo::Util 'slurp';
 use Text::Trim;
 use HTML::Strip;
-use HTML::Entities; # Used by HTML::Strip
+use HTML::Entities;    # Used by HTML::Strip
 use Data::Printer return_value => 'dump';
 use YAML::XS 'LoadFile';
 
@@ -22,53 +22,57 @@ This script extracts data from html files under the downloads folder
 
 # Keep track of unique keys
 my %SEEN;
+my %REDIRECT_ENTRIES;
 
 # Map categories to redirect keywords
 # These are used to create additional redirects
 my %redirect_map = (
     'css pseudo elements' => 'pseudo element',
-    'css pseudo classes' => 'pseudo class',
-    'css properties' => 'property',
-    'css functions' => 'function',
-    'css data types' => 'data type',
-    'css at rules' => 'at rule',
+    'css pseudo classes'  => 'pseudo class',
+    'css properties'      => 'property',
+    'css functions'       => 'function',
+    'css data types'      => 'data type',
+    'css at rules'        => 'at rule',
 );
 
 # Inverse css_categories.yml
 #  - The per-category structure is easier read/edit
 #  - The inverse mapping is used to lookup titles as we create articles
-my ($categories, $extra_categories, $units) = LoadFile('css_categories.yml');
+my ( $categories, $extra_categories, $units ) = LoadFile('css_categories.yml');
 my %titles;
 my %units;
 
-
 # Map titles to categories
-while(my($category, $array) = each %{$categories}) {
-    foreach my $title (@{$array}) {
+while ( my ( $category, $array ) = each %{$categories} ) {
+    foreach my $title ( @{$array} ) {
         $titles{$title}{categories} = [];
-        push $titles{$title}{categories}, $category;
+        push @{ $titles{$title}{categories} }, $category;
     }
 }
 
 # Map titles to extra categories
-while(my($category, $array) = each %{$extra_categories}) {
-    foreach my $title (@{$array}) {
+while ( my ( $category, $array ) = each %{$extra_categories} ) {
+    foreach my $title ( @{$array} ) {
         $titles{$title}{extra_categories} = [];
-        push $titles{$title}{extra_categories}, $category;
+        push @{ $titles{$title}{extra_categories} }, $category;
     }
 }
 
 # Map titles to units
-while(my($unit, $array) = each %{$units}) {
-    foreach my $title (@{$array}) {
+while ( my ( $unit, $array ) = each %{$units} ) {
+    foreach my $title ( @{$array} ) {
         $units{$title} = $unit;
     }
 }
 
+# Read redirect_urls.yml to get -webkit and -moz properties,
+# which redirect to properties without prefix
+my $redirects     = LoadFile('redirect_urls.yml');
+my %redirect_urls = %{ $redirects->{redirects} };
+
 # p(%redirect_map);
 # p(%titles);
 # p(%units);
-
 
 =begin
 Process fragment data like matrix3d() in
@@ -97,7 +101,6 @@ if ( -e $fragments_file ) {
 
 open( my $fh, ">", 'output.txt' ) or croak $!;
 
-
 ###############
 # PARSING LOOP
 ###############
@@ -123,7 +126,7 @@ foreach my $html_file ( glob 'download/*.html' ) {
     ref="https://developer.mozilla.org/en-US/docs/Web/CSS/:right" >
 =cut
 
-    my ( $title, $link, $description, @entries );
+    my ( $title, $link, $description, $initial_value, @entries );
 
     # Get canonical link to article
     $link = $dom->find('link')->first(
@@ -132,7 +135,8 @@ foreach my $html_file ( glob 'download/*.html' ) {
             return 1 if $lnk->attr('rel') and $lnk->attr('rel') =~ /canonical/;
         }
     );
-    $link = $link->attr('href') if $link;
+    next unless $link;
+    $link = $link->attr('href');
     chomp $link;
     $link = Mojo::URL->new($link);
 
@@ -150,26 +154,99 @@ foreach my $html_file ( glob 'download/*.html' ) {
         }
     );
     $title = lc $meta_with_title->attr('content') if $meta_with_title;
+    $title =~ s/using (css)? ?//g;
+    my @alternate_titles;
 
     my $h2 = $dom->at('h2#Summary');
     if ($h2) {
         my $p = $h2->next;
         if ($p) {
             $description = $p->all_text;
+
+=begin
+	Some titles have a variant form in the description text which is
+	going to be used to make redirects. An example is any which has
+	the following description:
+	<p>The <code>:any()</code> pseudo-class lets you quickly...</p>
+=cut
+
+            my $alt_titles = $p->find('code')->grep(
+                sub {
+                    #if it has a link, it has its own article entry
+                    $_->parent->tag ne 'a';
+                }
+            ) if $p->tag eq 'p';
+            if ( $alt_titles && $alt_titles->size ) {
+                for my $alt_title ( $alt_titles->each ) {
+                    $alt_title = trim $alt_title->all_text;
+                    next if $alt_title =~ /^\d+|\*\.|\.$/;
+                    next if index( $title, $alt_title ) != -1;
+                    next if index( $alt_title, "=" ) != -1;
+                    push @alternate_titles, $alt_title
+                      if $alt_title ne $title;
+                }
+            }
             my $next = $p->next;
             if ( $next && $next->tag eq 'ul' ) {
-                $description .= $next->find('li')->map('all_text')->join(', ');
+                my $li = $next->at('li');
+                my $a = $li->at('a') if $li;
+                if ( $a && $a->text =~ /Initial value/ ) {
+                    $initial_value = $li->text;
+                    $initial_value =~ s/://;
+                    $initial_value = _build_initial_value($initial_value);
+                }
+                else {
+                    $description .=
+                      $next->find('li')->map('all_text')->join(', ');
+                }
             }
         }
     }
-
-    # Check if article already processed
-    if ( exists $SEEN{$title} ) {
-        say "SKIPPING: $title!";
-        next;
+    else {
+        my $wiki_article = $dom->at('article#wikiArticle');
+        if ($wiki_article) {
+            my $div = $wiki_article->at('div');
+            if ($div) {
+                my $next_element = $div->next;
+                if ( $next_element && $next_element->tag eq 'p' ) {
+                    $description = $next_element->all_text;
+                }
+            }
+        }
+    }
+    unless ($description) {
+        my $meta_with_description = $dom->find('meta')->first(
+            sub {
+                my $meta     = $_;
+                my $property = $meta->attr('property');
+                $property && $property =~ /og\:description/;
+            }
+        );
+        $description = $meta_with_description->attr('content');
     }
 
-    $SEEN{$title} = 1;
+    my $units;
+    if ( $title eq 'font-variant-alternates' ) {
+        $units = $dom->find('#Units, #Feature_value_blocks, #Values')->first;
+    }
+    else {
+        $units = $dom->find('#Units, #Feature_value_blocks')->first;
+    }
+    if ($units) {
+        my $dl = $dom->at('dl');
+        if ($dl) {
+            for my $dt ( $dl->find('dt')->each ) {
+                my $title = $dt->all_text;
+                my $description = $dt->next->all_text if $dt->next;
+                next unless $description;
+                $description = create_abstract($description);
+                my $id = $dt->at('a')->attr('name') if $dt->at('a');
+                $id ||= $units->attr('id');
+                my $href = $link->clone->fragment($id);
+                create_article( $title, $description, $href );
+            }
+        }
+    }
 
     # Get syntax code snippet
     my $code;
@@ -181,17 +258,18 @@ foreach my $html_file ( glob 'download/*.html' ) {
     if ( my $pre = $dom->at('#Syntax ~ pre') ) {
 
         if ( $pre->child_nodes->first->matches('code') ) {
-            $code = $pre->child_nodes->first->text;
+            $code = $pre->child_nodes->first->all_text;
         }
         else {
             $code = $pre->to_string;
         }
 
         $code = trim($code);
+        $code =~ s!\\0!\\\\0!;
+
         # say '';
         # say $code;
     }
-    my $initial_value;
 
     #initial value is found in the table properties
     my $table_properties = $dom->at('table.properties');
@@ -202,20 +280,19 @@ foreach my $html_file ( glob 'download/*.html' ) {
 
     next unless $title && $link && $description;
 
-    create_article( $title, $description, $link );
-    if ($title =~ m/[():<>@]/ || exists $titles{$title}) {
-        create_redirects( $title );
+    create_article( $title, $description, $link, @alternate_titles );
+    if ( $title =~ m/[():<>@]/ || exists $titles{$title} ) {
+        say "title in parse: $title";
+        create_redirects($title);
     }
 }
 
-
+process_redirects();
 
 ####################
 # HELPER FUNCTIONS
 ####################
 
-
-# Build HTML string containing Initial Value data
 sub create_abstract {
     my ( $description, $code, $initial_value ) = @_;
     if ($description) {
@@ -227,14 +304,16 @@ sub create_abstract {
     }
     $initial_value =~ s/\r?\n+/\\n/g if $initial_value;
     $code = _clean_code($code) if $code;
-    my $out;
-    $out .= "<p>$description</p>"           if $description;
+    my $out = $description;
+    $out = _clean_input_elements($out) if $out =~ /<input|progress>?/;
+    $out = "<p>$out</p>";
     $out .= "<p>$initial_value</p>"         if $initial_value;
     $out .= "<pre><code>$code</code></pre>" if $code;
+    $out = sprintf '<section class="prog__container">%s</section>', $out;
     return $out;
 }
 
-
+# Build HTML string containing Initial Value data
 sub parse_initial_value {
     my ($table_properties) = @_;
 
@@ -262,48 +341,55 @@ sub parse_initial_value {
     return $initial_value;
 }
 
-
 # Create Article and Redirects as needed
 # Write to output files
 sub create_article {
-    my ( $title, $description, $link ) = @_;
+    my ( $title, $description, $link, @alternate_titles ) = @_;
+    $title = lc $title;
+
+    #No need for redirects for titles like <'border-color'>.
+    #See: /en-US/docs/Web/CSS/border-inline-end-color#Values
+    $title =~ s/'//g if index( $title, "'" ) != -1;
+    return if $SEEN{$title}++;
     my @data;
 
     my $categories = '';
-    my $lookup = _category_title($title);
+    my $lookup     = _category_title($title);
 
-    if (exists $titles{$lookup}) {
+    if ( exists $titles{$lookup} ) {
         say "CATEGORY MATCH: ";
-        p($titles{$lookup});
-        my @cats = @{$titles{$lookup}->{categories}};
+        p( $titles{$lookup} );
+        my @cats = @{ $titles{$lookup}->{categories} };
         p(@cats);
         $categories = join '\\n', @cats;
     }
 
-    push @data, _build_article($title, $categories, $description, $link);
+    push @data, _build_article( $title, $categories, $description, $link );
+    _build_redirect( $_, $title ) for @alternate_titles;
     _write_to_file(@data);
 }
-
 
 sub create_redirects {
 
 =begin
-    Check for CSS Functions like not() or for titles
-    beginning with @ like @page and replace "()"
-    with "function" in title e.g. "not()" -> "not function".
-    remove @ and create output entry with redirect field
+	Check for CSS Functions like not() or for titles
+	beginning with @ like @page and replace "()"
+	with "function" in title e.g. "not()" -> "not function".
+	remove @ and create output entry with redirect field
 =cut
 
-    my $title = shift;
+    my $title       = shift;
     my $title_clean = _clean_string($title);
+    my $title_with_space;
     my $lookup = _category_title($title);
     my @data;
     my $postfix;
     my $outputline;
 
-    if (exists $titles{$lookup}) {
-        #TODO If multiple categories per article exist, improve redirect creation
-        my $category = @{$titles{$lookup}->{categories}}[0];
+    if ( exists $titles{$lookup} ) {
+
+       #TODO If multiple categories per article exist, improve redirect creation
+        my $category = @{ $titles{$lookup}->{categories} }[0];
         $postfix = $redirect_map{$category};
         say "POSTFIX: $postfix";
     }
@@ -317,32 +403,67 @@ sub create_redirects {
         say "OUTER: $outer";
         say "INNER: $inner";
         my $inner_clean = _clean_string($inner);
-        push @data, _build_redirect($outer, $title);
-        push @data, _build_redirect($inner, $title);
-        push @data, _build_redirect($inner_clean, $title);
+        _build_redirect( $outer,       $title );
+        _build_redirect( $inner,       $title );
+        _build_redirect( $inner_clean, $title );
 
-        if ($postfix){
-            push @data, _build_redirect("$inner $postfix", $title);
-            push @data, _build_redirect("$outer $postfix", $title);
-            push @data, _build_redirect("$inner_clean $postfix", $title);
+        if ($postfix) {
+            _build_redirect( "$inner $postfix",       $title );
+            _build_redirect( "$outer $postfix",       $title );
+            _build_redirect( "$inner_clean $postfix", $title );
         }
     }
-    elsif ($title_clean ne $title) {
-        push @data, _build_redirect($title_clean, $title);
-        push @data, _build_redirect("$title_clean $postfix", $title) if $postfix;
+    elsif ( $title_clean ne $title ) {
+        _build_redirect( $title_clean,            $title );
+        _build_redirect( "$title_clean $postfix", $title )
+          if $postfix;
+
+        # if the cleaned title was different from the title,
+        # and a property redirects to the cleaned title, include it
+        if ( exists $redirect_urls{$title_clean} ) {
+            _build_redirect( $_, $title ) for @{ $redirect_urls{$title_clean} };
+        }
     }
-    elsif ($postfix){
-        push @data, _build_redirect("$title $postfix", $title);
+    elsif ($postfix) {
+        _build_redirect( "$title $postfix", $title );
     }
+    if ( $title =~ /^:\S+()/ ) {
+        my $title_with_preceeding_colon = $title;
+        $title_with_preceeding_colon =~ s/[()]/ /g;
+        $title_with_preceeding_colon =~ s/\s+/ /g;
+        _build_redirect( trim($title_with_preceeding_colon), $title )
+          if $title_with_preceeding_colon ne $title;
+    }
+
+    # if a -moz or -webkit property redirects to  this title, include it
+    if ( exists $redirect_urls{$title} ) {
+        _build_redirect( $_, $title ) for @{ $redirect_urls{$title} };
+    }
+
     _write_to_file(@data);
 }
 
+sub process_redirects {
 
+=begin
+	For each redirect, check if there is a title with the same
+	name, if it is there, discard the redirect, else write to file
+=cut
+
+    for my $title ( keys %REDIRECT_ENTRIES ) {
+        unless ( exists $SEEN{$title} ) {
+            my $redirect = $REDIRECT_ENTRIES{$title};
+            my $output   = join "\t",
+              ( $title, 'R', $redirect, '', '', '', '', '', '', '', '', '',
+                '' );
+            _write_to_file($output);
+        }
+    }
+}
 
 ####################
 # PRIVATE FUNCTIONS
 ####################
-
 
 # Build HTML string containing Initial Value data
 sub _build_initial_value {
@@ -357,14 +478,12 @@ sub _build_initial_value {
 # - escape newlines
 sub _clean_code {
     my ($code) = @_;
-    my $hs = HTML::Strip->new( emit_spaces => 0 );
+    my $hs = HTML::Strip->new( emit_spaces => 0, auto_reset => 1 );
     $code = $hs->parse($code);
     $code =~ tr/ / /s;
     $code =~ s/\r?\n/\\n/g;
-    $hs->eof;
     return $code;
 }
-
 
 # Clean up title for lookup in Categories hash
 sub _category_title {
@@ -375,38 +494,45 @@ sub _category_title {
     return $title;
 }
 
-
 # Remove certain non-alphanumeric characters
 sub _clean_string {
     my $input = shift;
     say "Input: '$input'";
+    $input =~ s/\(/ (/ if $input =~ /\S\(/;
     $input =~ s/[:<>@()]//g;
     trim($input);
     say "Cleaned: '$input'";
     return $input;
 }
 
+sub _clean_input_elements {
+    my $abstract = shift;
+    $abstract =~ s![</>]!!gc;
+    return $abstract;
+}
 
 # Build Article string for given title, description, and link
 sub _build_article {
-    my ($title, $categories, $description, $link) = @_;
+    my ( $title, $categories, $description, $link ) = @_;
     say '';
     say "ARTICLE: $title";
     say "LINK: $link";
     say "CATEGORIES: $categories";
+
     # say "DESCRIPTION: $description" if $description;
     return join "\t",
-    ( $title, 'A', '', '', $categories, '', '', '', '', '', '', $description, $link );
+      (
+        $title, 'A', '', '', $categories, '', '', '', '', '', '',
+        $description, $link
+      );
 }
-
 
 sub _build_redirect {
-    my ($title, $redirect) = @_;
+    my ( $title, $redirect ) = @_;
+    $REDIRECT_ENTRIES{$title} = $redirect;
     say "REDIRECT: $title =========> $redirect";
-    return join "\t",
-    ( $title, 'R', $redirect, '', '', '', '', '', '', '', '', '', '' );
-}
 
+}
 
 sub _write_to_file {
     my @parts = @_;
@@ -414,8 +540,6 @@ sub _write_to_file {
         say $fh $part;
     }
 }
-
-
 
 ####################
 # PARSING FRAGMENTS

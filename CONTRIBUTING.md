@@ -1,12 +1,10 @@
 # Contributing an Instant Answer to DuckDuckGo.com
 
-We're a community dedicated to improving search results with open source, "Instant Answers." Instant Answers use the Web's best APIs and data to solve searches in few or zero clicks. Together and openly, we can create the best search engine for every type of search.
+**The DuckDuckHack community and DuckDuckGo staff are working together on a mission to create the best search engine for programmers. To fully focus there, we are only accepting Pull Requests and Issues related to the [Programming Mission](https://forum.duckduckhack.com/t/duckduckhack-programming-mission-overview/53).**
 
-**The DuckDuckHack community and DuckDuckGo staff are working together on a mission to create the best search engine for programmers. To fully focus there, we are only accepting Pull Requests and Issues related to the [Programming Mission](https://forum.duckduckhack.com/t/duckduckhack-programming-mission-overview/53).** By working directly with contributors to this mission, we can more quickly provide search data and open source tools which give contributors and their Instant Answers more impact than ever before!
+## How to Contribute to the Programming Mission
 
-[**Join the Programming Mission!**](https://forum.duckduckhack.com/t/duckduckhack-programming-mission-overview/53)  
-
-*Your help and expertise can have a huge impact on improving the search experience for developers and DuckDuckGo users around the world!* 
+Before sending a pull request, please read the [**contribution guidelines**](https://forum.duckduckhack.com/t/how-to-contribute-to-the-programming-mission/881).
 
 ## Formatting Your Pull Request
 
@@ -14,13 +12,13 @@ When submitting a pull request, the following guidelines help speed up the revie
 
 ### New Instant Answers
 
-1. New IAs should be titled as follows: **`New {IA TOPIC} {IA TYPE}`**. For example, `New Instagram Spice` or `New Firefox Cheat Sheet`
+1. New IAs should be titled as follows: **`New {IA TOPIC} {IA TYPE}`**. For example, `New NodeJS Spice` or `New Python Cheat Sheet`
 
 2. Paste the relevant [Instant Answer Page URL](https://duck.co/ia/new_ia) in the description field. This will automatically link the PR to the Instant Answer.
-	
+
 ### Improvements
 
-1. Fixes should be titled as follows: **`{IA NAME}: Brief explanation`**. For example: `PeopleInSpace: Use smaller local image, fallback to API when needed.`
+1. Fixes should be titled as follows: **`{IA NAME}: Brief explanation`**. For example: `Java resources: Use smaller local image, fallback to API when needed.`
 
 2. Paste the relevant [Instant Answer Page URL](https://duck.co/ia/new_ia) in the description field. This will automatically link the PR to the Instant Answer.
 

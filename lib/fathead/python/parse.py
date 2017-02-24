@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import csv
-import sys
 from bs4 import BeautifulSoup
-
-reload(sys)
-sys.setdefaultencoding('utf8')
 
 PYTHON_VERSIONS = {
     'python3': {'download_path': 'download/python-3.5.2-docs-html', 'doc_base_url': 'https://docs.python.org/3.5{}',
@@ -83,13 +79,24 @@ class PythonDataParser(object):
             if methods:
                 self.method_sections.extend(methods)
 
-        intro = soup_data.find_all('p', limit=2)
+        intro = []
+        # If there is a horizontal ruler with class 'docutils', take the 
+        # paragraphs after this as intro_text. (Some pages has a paragraph
+        # "Source code:" above this hr)
+        # If there isn't a horizontal ruler, this page does not describe a 
+        # module and thus, has not intro text.
+        hr=soup_data.find_all('hr', {'class': 'docutils'})
+        if hr:
+            first_paragraph_after_hr=soup_data.hr.find_next('p')
+            intro.append(first_paragraph_after_hr)
+            second_paragraph_after_hr = first_paragraph_after_hr.find_next('p')
+            intro.append(second_paragraph_after_hr)
         for p in intro:
             self.intro_text += p.text.replace('  ', ' ').replace('\n', ' ').replace('\\n', r'\\n')
 
-        title = soup_data.find('a', {'class': 'reference internal'})
-        if title:
-            self.title = title.text
+        module_title = soup_data.find('a', {'class': 'reference internal'})
+        if module_title:
+            self.title = module_title.text
 
     def parse_for_module_name(self, section):
         """
@@ -304,7 +311,7 @@ class PythonDataOutput(object):
             for data_element in self.data:
                 if data_element.get('module') or data_element.get('function'):
                     method_signature = data_element.get('method_signature')
-                    first_paragraph = data_element.get('first_paragraph')
+                    first_paragraph = '<p>' + data_element.get('first_paragraph') + '</p>'
                     name, redirect = self.create_names_from_data(data_element)
 
                     if first_paragraph.startswith('Source code:'):
@@ -312,7 +319,7 @@ class PythonDataOutput(object):
                         if len(temp) > 1:
                             first_paragraph = temp[0] + '.py<br>' + temp[1]
 
-                    abstract = '{}{}{}'.format(method_signature, '<br>' if method_signature and first_paragraph else '', first_paragraph)
+                    abstract = '<section class="prog__container">' + '{}{}{}'.format(first_paragraph, '' , method_signature) + '</section>'
                     url = data_element.get('url')
                     list_of_data = [
                         name,                       # unique name

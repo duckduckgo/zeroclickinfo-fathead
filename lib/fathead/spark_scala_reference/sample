@@ -1,0 +1,1150 @@
+download/org.apache.spark.Accumulable.html None A data type that can be accumulated, i.e. has a commutative and associative "add" operation, but where the result type, R, may be different from the element type being added, T. You must define how to add data, and how to merge two of these together. For some data types, such as a counter, these might be the same operation. In that case, you can use the simpler org.apache.spark.Accumulator. They won't always be the same, though -- e.g., imagine you are accumulating a set. You will add items to the set, and you will union two sets together. Operations are not thread-safe.
+
+download/org.apache.spark.AccumulableParam.html None Helper object defining how to accumulate values of a particular type. An implicit AccumulableParam needs to be available when you create Accumulables of a specific type.
+
+download/org.apache.spark.Accumulator.html None A simpler value of Accumulable where the result type being accumulated is the same as the types of elements being merged, i.e. variables that are only "added" to through an associative and commutative operation and can therefore be efficiently supported in parallel. They can be used to implement counters (as in MapReduce) or sums. Spark natively supports accumulators of numeric value types, and programmers can add support for new types. An accumulator is created from an initial value v by calling SparkContext.accumulator. Tasks running on the cluster can then add to it using the += operator. However, they cannot read its value. Only the driver program can read the accumulator's value, using its #value method. The interpreter session below shows an accumulator being used to add up the elements of an array:
+
+download/org.apache.spark.AccumulatorParam.html None A simpler version of org.apache.spark.AccumulableParam where the only data type you can add in is the same type as the accumulated value. An implicit AccumulatorParam object needs to be available when you create Accumulators of a specific type.
+
+download/org.apache.spark.Aggregator.html DeveloperApi A set of functions used to aggregate data.
+
+download/org.apache.spark.ComplexFutureAction.html None A FutureAction for actions that could trigger multiple Spark jobs. Examples include take, takeSample. Cancellation works by setting the cancelled flag to true and cancelling any pending jobs.
+
+download/org.apache.spark.Dependency.html DeveloperApi Base class for dependencies.
+
+download/org.apache.spark.ExceptionFailure.html DeveloperApi Task failed due to a runtime exception. This is the most common failure case and also captures user program exceptions. stackTrace contains the stack trace of the exception itself. It still exists for backward compatibility. It's better to use this(e: Throwable, metrics: Option[TaskMetrics]) to create ExceptionFailure as it will handle the backward compatibility properly. fullStackTrace is a better representation of the stack trace because it contains the whole stack trace including the exception and its causes exception is the actual exception that caused the task to fail. It may be None in the case that the exception is not in fact serializable. If a task fails more than once (due to retries), exception is that one that caused the last failure.
+
+download/org.apache.spark.ExecutorLostFailure.html DeveloperApi The task failed because the executor that it was running on was lost. This may happen because the task crashed the JVM.
+
+download/org.apache.spark.FetchFailed.html DeveloperApi Task failed to fetch shuffle data from a remote node. Probably means we have lost the remote executors the task is trying to fetch from, and thus need to rerun the previous stage.
+
+download/org.apache.spark.FutureAction.html None A future for the result of an action to support cancellation. This is an extension of the Scala Future interface to support cancellation.
+
+download/org.apache.spark.HashPartitioner.html None A org.apache.spark.Partitioner that implements hash-based partitioning using Java's Object.hashCode. Java arrays have hashCodes that are based on the arrays' identities rather than their contents, so attempting to partition an RDD[Array[_]] or RDD[(Array[_], _)] using a HashPartitioner will produce an unexpected or incorrect result.
+
+download/org.apache.spark.InterruptibleIterator.html DeveloperApi An iterator that wraps around an existing iterator to provide task killing functionality. It works by checking the interrupted flag in TaskContext.
+
+download/org.apache.spark.JobSubmitter.html None Handle via which a "run" function passed to a ComplexFutureAction can submit jobs for execution.
+
+download/org.apache.spark.NarrowDependency.html DeveloperApi Base class for dependencies where each partition of the child RDD depends on a small number of partitions of the parent RDD. Narrow dependencies allow for pipelined execution.
+
+download/org.apache.spark.OneToOneDependency.html DeveloperApi Represents a one-to-one dependency between partitions of the parent and child RDDs.
+
+download/org.apache.spark.Partition.html None An identifier for a partition in an RDD.
+
+download/org.apache.spark.Partitioner.html None An object that defines how the elements in a key-value pair RDD are partitioned by key. Maps each key to a partition ID, from 0 to numPartitions - 1.
+
+download/org.apache.spark.RangeDependency.html DeveloperApi Represents a one-to-one dependency between ranges of partitions in the parent and child RDDs.
+
+download/org.apache.spark.RangePartitioner.html None A org.apache.spark.Partitioner that partitions sortable records by range into roughly equal ranges. The ranges are determined by sampling the content of the RDD passed in. Note that the actual number of partitions created by the RangePartitioner might not be the same as the partitions parameter, in the case where the number of sampled records is less than the value of partitions.
+
+download/org.apache.spark.Resubmitted$.html DeveloperApi A org.apache.spark.scheduler.ShuffleMapTask that completed successfully earlier, but we lost the executor before the stage completed. This means Spark needs to reschedule the task to be re-executed on a different executor.
+
+download/org.apache.spark.ShuffleDependency.html DeveloperApi Represents a dependency on the output of a shuffle stage. Note that in the case of shuffle, the RDD is transient since we don't need it on the executor side.
+
+download/org.apache.spark.SimpleFutureAction.html None A FutureAction holding the result of an action that triggers a single job. Examples include count, collect, reduce.
+
+download/org.apache.spark.SparkConf.html None Configuration for a Spark application. Used to set various Spark parameters as key-value pairs. Most of the time, you would create a SparkConf object with new SparkConf(), which will load values from any spark.* Java system properties set in your application as well. In this case, parameters you set directly on the SparkConf object take priority over system properties. For unit tests, you can also call new SparkConf(false) to skip loading external settings and get the same configuration no matter what the system properties are. All setter methods in this class support chaining. For example, you can write new SparkConf().setMaster("local").setAppName("My app"). Note that once a SparkConf object is passed to Spark, it is cloned and can no longer be modified by the user. Spark does not support modifying the configuration at runtime.
+
+download/org.apache.spark.SparkContext.html None Main entry point for Spark functionality. A SparkContext represents the connection to a Spark cluster, and can be used to create RDDs, accumulators and broadcast variables on that cluster. Only one SparkContext may be active per JVM. You must stop() the active SparkContext before creating a new one. This limitation may eventually be removed; see SPARK-2243 for more details.
+
+download/org.apache.spark.SparkEnv.html DeveloperApi Holds all the runtime environment objects for a running Spark instance (either master or worker), including the serializer, RpcEnv, block manager, map output tracker, etc. Currently Spark code finds the SparkEnv through a global variable, so all the threads can access the same SparkEnv. It can be accessed by SparkEnv.get (e.g. after creating a SparkContext). NOTE: This is not intended for external use. This is exposed for Shark and may be made private in a future release.
+
+download/org.apache.spark.SparkFiles$.html None Resolves paths to files added through SparkContext.addFile().
+
+download/org.apache.spark.SparkStatusTracker.html None Low-level status reporting APIs for monitoring job and stage progress. These APIs intentionally provide very weak consistency semantics; consumers of these APIs should be prepared to handle empty / missing information. For example, a job's stage ids may be known but the status API may not have any information about the details of those stages, so getStageInfo could potentially return None for a valid stage id. To limit memory usage, these APIs only provide information on recent jobs / stages. These APIs will provide information for the last spark.ui.retainedStages stages and spark.ui.retainedJobs jobs. NOTE: this class's constructor should be considered private and may be subject to change.
+
+download/org.apache.spark.Success$.html DeveloperApi Task succeeded.
+
+download/org.apache.spark.TaskCommitDenied.html DeveloperApi Task requested the driver to commit, but was denied.
+
+download/org.apache.spark.TaskContext.html None Contextual information about a task which can be read or mutated during execution. To access the TaskContext for a running task, use:
+
+download/org.apache.spark.TaskEndReason.html DeveloperApi Various possible reasons why a task ended. The low-level TaskScheduler is supposed to retry tasks several times for "ephemeral" failures, and only report back failures that require some old stages to be resubmitted, such as shuffle map fetch failures.
+
+download/org.apache.spark.TaskFailedReason.html DeveloperApi Various possible reasons why a task failed.
+
+download/org.apache.spark.TaskKilled$.html DeveloperApi Task was killed intentionally and needs to be rescheduled.
+
+download/org.apache.spark.TaskKilledException.html DeveloperApi Exception thrown when a task is explicitly killed (i.e., task failure is expected).
+
+download/org.apache.spark.TaskResultLost$.html DeveloperApi The task finished successfully, but the result was lost from the executor's block manager before it was fetched.
+
+download/org.apache.spark.UnknownReason$.html DeveloperApi We don't know why the task ended -- for example, because of a ClassNotFound exception when deserializing the task result.
+
+download/org.apache.spark.api.java.JavaRDDLike.html None Defines operations common to several Java RDD implementations. Note that this trait is not intended to be implemented by user code.
+
+download/org.apache.spark.api.java.JavaSparkContext.html None A Java-friendly version of org.apache.spark.SparkContext that returns org.apache.spark.api.java.JavaRDDs and works with Java collections instead of Scala ones. Only one SparkContext may be active per JVM. You must stop() the active SparkContext before creating a new one. This limitation may eventually be removed; see SPARK-2243 for more details.
+
+download/org.apache.spark.api.java.JavaSparkStatusTracker.html None Low-level status reporting APIs for monitoring job and stage progress. These APIs intentionally provide very weak consistency semantics; consumers of these APIs should be prepared to handle empty / missing information. For example, a job's stage ids may be known but the status API may not have any information about the details of those stages, so getStageInfo could potentially return null for a valid stage id. To limit memory usage, these APIs only provide information on recent jobs / stages. These APIs will provide information for the last spark.ui.retainedStages stages and spark.ui.retainedJobs jobs. NOTE: this class's constructor should be considered private and may be subject to change.
+
+download/org.apache.spark.broadcast.Broadcast.html None A broadcast variable. Broadcast variables allow the programmer to keep a read-only variable cached on each machine rather than shipping a copy of it with tasks. They can be used, for example, to give every node a copy of a large input dataset in an efficient manner. Spark also attempts to distribute broadcast variables using efficient broadcast algorithms to reduce communication cost. Broadcast variables are created from a variable v by calling org.apache.spark.SparkContext#broadcast. The broadcast variable is a wrapper around v, and its value can be accessed by calling the value method. The interpreter session below shows this: After the broadcast variable is created, it should be used instead of the value v in any functions run on the cluster so that v is not shipped to the nodes more than once. In addition, the object v should not be modified after it is broadcast in order to ensure that all nodes get the same value of the broadcast variable (e.g. if the variable is shipped to a new node later).
+
+download/org.apache.spark.graphx.Edge.html None A single directed edge consisting of a source id, target id, and the data associated with the edge.
+
+download/org.apache.spark.graphx.EdgeContext.html None Represents an edge along with its neighboring vertices and allows sending messages along the edge. Used in Graph#aggregateMessages.
+
+download/org.apache.spark.graphx.EdgeDirection.html None The direction of a directed edge relative to a vertex.
+
+download/org.apache.spark.graphx.EdgeRDD.html None EdgeRDD[ED, VD] extends RDD[Edge[ED]] by storing the edges in columnar format on each partition for performance. It may additionally store the vertex attributes associated with each edge to provide the triplet view. Shipping of the vertex attributes is managed by impl.ReplicatedVertexView.
+
+download/org.apache.spark.graphx.EdgeTriplet.html None An edge triplet represents an edge along with the vertex attributes of its neighboring vertices.
+
+download/org.apache.spark.graphx.Graph.html None The Graph abstractly represents a graph with arbitrary objects associated with vertices and edges. The graph provides basic operations to access and manipulate the data associated with vertices and edges as well as the underlying structure. Like Spark RDDs, the graph is a functional data-structure in which mutating operations return new graphs.
+
+download/org.apache.spark.graphx.GraphLoader$.html None Provides utilities for loading Graphs from files.
+
+download/org.apache.spark.graphx.GraphOps.html None Contains additional functionality for Graph. All operations are expressed in terms of the efficient GraphX API. This class is implicitly constructed for each Graph object.
+
+download/org.apache.spark.graphx.PartitionStrategy.html None Represents the way edges are assigned to edge partitions based on their source and destination vertex IDs.
+
+download/org.apache.spark.graphx.Pregel$.html None Implements a Pregel-like bulk-synchronous message-passing API. Unlike the original Pregel API, the GraphX Pregel API factors the sendMessage computation over edges, enables the message sending computation to read both vertex attributes, and constrains messages to the graph structure. These changes allow for substantially more efficient distributed execution while also exposing greater flexibility for graph-based computation.
+
+download/org.apache.spark.graphx.VertexRDD.html None Extends RDD[(VertexId, VD)] by ensuring that there is only one entry for each vertex and by pre-indexing the entries for fast, efficient joins. Two VertexRDDs with the same index can be joined efficiently. All operations except reindex preserve the index. To construct a VertexRDD, use the VertexRDD object. Additionally, stores routing information to enable joining the vertex attributes with an EdgeRDD.
+
+download/org.apache.spark.graphx.impl.GraphImpl.html None An implementation of org.apache.spark.graphx.Graph to support computation on graphs. Graphs are represented using two RDDs: vertices, which contains vertex attributes and the routing information for shipping vertex attributes to edge partitions, and replicatedVertexView, which contains edges and the vertex attributes mentioned by each edge.
+
+download/org.apache.spark.graphx.lib.ConnectedComponents$.html None Connected components algorithm.
+
+download/org.apache.spark.graphx.lib.LabelPropagation$.html None Label Propagation algorithm.
+
+download/org.apache.spark.graphx.lib.PageRank$.html None PageRank algorithm implementation. There are two implementations of PageRank implemented. The first implementation uses the standalone Graph interface and runs PageRank for a fixed number of iterations: The second implementation uses the Pregel interface and runs PageRank until convergence: alpha is the random reset probability (typically 0.15), inNbrs[i] is the set of neighbors which link to i and outDeg[j] is the out degree of vertex j. Note that this is not the "normalized" PageRank and as a consequence pages that have no inlinks will have a PageRank of alpha.
+
+download/org.apache.spark.graphx.lib.ShortestPaths$.html None Computes shortest paths to the given set of landmark vertices, returning a graph where each vertex attribute is a map containing the shortest-path distance to each reachable landmark.
+
+download/org.apache.spark.graphx.lib.StronglyConnectedComponents$.html None Strongly connected components algorithm implementation.
+
+download/org.apache.spark.graphx.lib.SVDPlusPlus$.html None Implementation of SVD++ algorithm.
+
+download/org.apache.spark.graphx.lib.TriangleCount$.html None Compute the number of triangles passing through each vertex. The algorithm is relatively straightforward and can be computed in three steps: There are two implementations. The default TriangleCount.run implementation first removes self cycles and canonicalizes the graph to ensure that the following conditions hold: However, the canonicalization procedure is costly as it requires repartitioning the graph. If the input data is already in "canonical form" with self cycles removed then the TriangleCount.runPreCanonicalized should be used instead.
+
+download/org.apache.spark.graphx.util.GraphGenerators$.html None A collection of graph generating functions.
+
+download/org.apache.spark.input.PortableDataStream.html None A class that allows DataStreams to be serialized and moved around by not creating them until they need to be read
+
+download/org.apache.spark.io.CompressionCodec.html DeveloperApi CompressionCodec allows the customization of choosing different compression implementations to be used in block storage. Note: The wire protocol for a codec is not guaranteed compatible across versions of Spark. This is intended for use as an internal compression utility within a single Spark application.
+
+download/org.apache.spark.io.LZ4CompressionCodec.html DeveloperApi LZ4 implementation of org.apache.spark.io.CompressionCodec. Block size can be configured by spark.io.compression.lz4.blockSize. Note: The wire protocol for this codec is not guaranteed to be compatible across versions of Spark. This is intended for use as an internal compression utility within a single Spark application.
+
+download/org.apache.spark.io.LZFCompressionCodec.html DeveloperApi LZF implementation of org.apache.spark.io.CompressionCodec. Note: The wire protocol for this codec is not guaranteed to be compatible across versions of Spark. This is intended for use as an internal compression utility within a single Spark application.
+
+download/org.apache.spark.io.SnappyCompressionCodec.html DeveloperApi Snappy implementation of org.apache.spark.io.CompressionCodec. Block size can be configured by spark.io.compression.snappy.blockSize. Note: The wire protocol for this codec is not guaranteed to be compatible across versions of Spark. This is intended for use as an internal compression utility within a single Spark application.
+
+download/org.apache.spark.metrics.source.CodegenMetrics$.html Experimental Metrics for code generation.
+
+download/org.apache.spark.ml.Estimator.html DeveloperApi Abstract class for estimators that fit models to data.
+
+download/org.apache.spark.ml.Model.html DeveloperApi A fitted model, i.e., a Transformer produced by an Estimator.
+
+download/org.apache.spark.ml.Pipeline.html None A simple pipeline, which acts as an estimator. A Pipeline consists of a sequence of stages, each of which is either an Estimator or a Transformer. When Pipeline#fit is called, the stages are executed in order. If a stage is an Estimator, its Estimator#fit method will be called on the input dataset to fit a model. Then the model, which is a transformer, will be used to transform the dataset as the input to the next stage. If a stage is a Transformer, its Transformer#transform method will be called to produce the dataset for the next stage. The fitted model from a Pipeline is a PipelineModel, which consists of fitted models and transformers, corresponding to the pipeline stages. If there are no stages, the pipeline acts as an identity transformer.
+
+download/org.apache.spark.ml.PipelineModel.html None Represents a fitted pipeline.
+
+download/org.apache.spark.ml.PipelineStage.html DeveloperApi A stage in a pipeline, either an Estimator or a Transformer.
+
+download/org.apache.spark.ml.PredictionModel.html DeveloperApi Abstraction for a model for prediction tasks (regression and classification).
+
+download/org.apache.spark.ml.Predictor.html DeveloperApi Abstraction for prediction problems (regression and classification).
+
+download/org.apache.spark.ml.Transformer.html DeveloperApi Abstract class for transformers that transform one dataset into another.
+
+download/org.apache.spark.ml.UnaryTransformer.html DeveloperApi Abstract class for transformers that take one input column, apply transformation, and output the result as a new column.
+
+download/org.apache.spark.ml.attribute.Attribute.html DeveloperApi Abstract class for ML attributes.
+
+download/org.apache.spark.ml.attribute.AttributeGroup.html DeveloperApi Attributes that describe a vector ML column.
+
+download/org.apache.spark.ml.attribute.AttributeType.html DeveloperApi An enum-like type for attribute types: AttributeType$#Numeric, AttributeType$#Nominal, and AttributeType$#Binary.
+
+download/org.apache.spark.ml.attribute.BinaryAttribute.html DeveloperApi A binary attribute.
+
+download/org.apache.spark.ml.attribute.NominalAttribute.html DeveloperApi A nominal attribute.
+
+download/org.apache.spark.ml.attribute.NumericAttribute.html DeveloperApi A numeric attribute with optional summary statistics.
+
+download/org.apache.spark.ml.attribute.UnresolvedAttribute$.html DeveloperApi An unresolved attribute.
+
+download/org.apache.spark.ml.classification.BinaryLogisticRegressionSummary.html Experimental Binary Logistic regression results for a given model.
+
+download/org.apache.spark.ml.classification.BinaryLogisticRegressionTrainingSummary.html Experimental Logistic regression training results.
+
+download/org.apache.spark.ml.classification.ClassificationModel.html DeveloperApi Model produced by a Classifier. Classes are indexed {0, 1, ..., numClasses - 1}.
+
+download/org.apache.spark.ml.classification.Classifier.html DeveloperApi Single-label binary or multiclass classification. Classes are indexed {0, 1, ..., numClasses - 1}.
+
+download/org.apache.spark.ml.classification.DecisionTreeClassificationModel.html None Decision tree model (http://en.wikipedia.org/wiki/Decision_tree_learning) for classification. It supports both binary and multiclass labels, as well as both continuous and categorical features.
+
+download/org.apache.spark.ml.classification.DecisionTreeClassifier.html None Decision tree learning algorithm (http://en.wikipedia.org/wiki/Decision_tree_learning) for classification. It supports both binary and multiclass labels, as well as both continuous and categorical features.
+
+download/org.apache.spark.ml.classification.GBTClassificationModel.html None Gradient-Boosted Trees (GBTs) (http://en.wikipedia.org/wiki/Gradient_boosting) model for classification. It supports binary labels, as well as both continuous and categorical features. Note: Multiclass labels are not currently supported.
+
+download/org.apache.spark.ml.classification.GBTClassifier.html None Gradient-Boosted Trees (GBTs) (http://en.wikipedia.org/wiki/Gradient_boosting) learning algorithm for classification. It supports binary labels, as well as both continuous and categorical features. Note: Multiclass labels are not currently supported. The implementation is based upon: J.H. Friedman. "Stochastic Gradient Boosting." 1999. Notes on Gradient Boosting vs. TreeBoost:
+
+download/org.apache.spark.ml.classification.LogisticRegression.html None Logistic regression. Currently, this class only supports binary classification. It will support multiclass in the future.
+
+download/org.apache.spark.ml.classification.LogisticRegressionModel.html None Model produced by LogisticRegression.
+
+download/org.apache.spark.ml.classification.LogisticRegressionSummary.html None Abstraction for Logistic Regression Results for a given model.
+
+download/org.apache.spark.ml.classification.LogisticRegressionTrainingSummary.html None Abstraction for multinomial Logistic Regression Training results. Currently, the training summary ignores the training weights except for the objective trace.
+
+download/org.apache.spark.ml.classification.MultilayerPerceptronClassificationModel.html Experimental Classification model based on the Multilayer Perceptron. Each layer has sigmoid activation function, output layer has softmax.
+
+download/org.apache.spark.ml.classification.MultilayerPerceptronClassifier.html Experimental Classifier trainer based on the Multilayer Perceptron. Each layer has sigmoid activation function, output layer has softmax. Number of inputs has to be equal to the size of feature vectors. Number of outputs has to be equal to the total number of labels.
+
+download/org.apache.spark.ml.classification.NaiveBayes.html None Naive Bayes Classifiers. It supports both Multinomial NB (http://nlp.stanford.edu/IR-book/html/htmledition/naive-bayes-text-classification-1.html) which can handle finitely supported discrete data. For example, by converting documents into TF-IDF vectors, it can be used for document classification. By making every vector a binary (0/1) data, it can also be used as Bernoulli NB (http://nlp.stanford.edu/IR-book/html/htmledition/the-bernoulli-model-1.html). The input feature values must be nonnegative.
+
+download/org.apache.spark.ml.classification.NaiveBayesModel.html None Model produced by NaiveBayes
+
+download/org.apache.spark.ml.classification.OneVsRest.html None Reduction of Multiclass Classification to Binary Classification. Performs reduction using one against all strategy. For a multiclass classification with k classes, train k models (one per class). Each example is scored against all k models and the model with highest score is picked to label the example.
+
+download/org.apache.spark.ml.classification.OneVsRestModel.html None Model produced by OneVsRest. This stores the models resulting from training k binary classifiers: one for each class. Each example is scored against all k models, and the model with the highest score is picked to label the example.
+
+download/org.apache.spark.ml.classification.ProbabilisticClassificationModel.html DeveloperApi Model produced by a ProbabilisticClassifier. Classes are indexed {0, 1, ..., numClasses - 1}.
+
+download/org.apache.spark.ml.classification.ProbabilisticClassifier.html DeveloperApi Single-label binary or multiclass classifier which can output class conditional probabilities.
+
+download/org.apache.spark.ml.classification.RandomForestClassificationModel.html None Random Forest model for classification. It supports both binary and multiclass labels, as well as both continuous and categorical features.
+
+download/org.apache.spark.ml.classification.RandomForestClassifier.html None Random Forest learning algorithm for classification. It supports both binary and multiclass labels, as well as both continuous and categorical features.
+
+download/org.apache.spark.ml.clustering.BisectingKMeans.html Experimental A bisecting k-means algorithm based on the paper "A comparison of document clustering techniques" by Steinbach, Karypis, and Kumar, with modification to fit Spark. The algorithm starts from a single cluster that contains all points. Iteratively it finds divisible clusters on the bottom level and bisects each of them using k-means, until there are k leaf clusters in total or no leaf clusters are divisible. The bisecting steps of clusters on the same level are grouped together to increase parallelism. If bisecting all divisible clusters on the bottom level would result more than k leaf clusters, larger clusters get higher priority.
+
+download/org.apache.spark.ml.clustering.BisectingKMeansModel.html Experimental Model fitted by BisectingKMeans.
+
+download/org.apache.spark.ml.clustering.DistributedLDAModel.html Experimental Distributed model fitted by LDA. This type of model is currently only produced by Expectation-Maximization (EM). This model stores the inferred topics, the full training dataset, and the topic distribution for each training document.
+
+download/org.apache.spark.ml.clustering.GaussianMixture.html Experimental Gaussian Mixture clustering. This class performs expectation maximization for multivariate Gaussian Mixture Models (GMMs). A GMM represents a composite distribution of independent Gaussian distributions with associated "mixing" weights specifying each's contribution to the composite. Given a set of sample points, this class will maximize the log-likelihood for a mixture of k Gaussians, iterating until the log-likelihood changes by less than convergenceTol, or until it has reached the max number of iterations. While this process is generally guaranteed to converge, it is not guaranteed to find a global optimum. Note: For high-dimensional data (with many features), this algorithm may perform poorly. This is due to high-dimensional data (a) making it difficult to cluster at all (based on statistical/theoretical arguments) and (b) numerical issues with Gaussian distributions.
+
+download/org.apache.spark.ml.clustering.GaussianMixtureModel.html Experimental Multivariate Gaussian Mixture Model (GMM) consisting of k Gaussians, where points are drawn from each Gaussian i with probability weights(i).
+
+download/org.apache.spark.ml.clustering.GaussianMixtureSummary.html Experimental Summary of GaussianMixture.
+
+download/org.apache.spark.ml.clustering.KMeans.html Experimental K-means clustering with support for k-means|| initialization proposed by Bahmani et al.
+
+download/org.apache.spark.ml.clustering.KMeansModel.html Experimental Model fitted by KMeans.
+
+download/org.apache.spark.ml.clustering.KMeansSummary.html Experimental Summary of KMeans.
+
+download/org.apache.spark.ml.clustering.LDA.html Experimental Latent Dirichlet Allocation (LDA), a topic model designed for text documents. Terminology: Original LDA paper (journal version): Blei, Ng, and Jordan. "Latent Dirichlet Allocation." JMLR, 2003. Input data (featuresCol): LDA is given a collection of documents as input data, via the featuresCol parameter. Each document is specified as a Vector of length vocabSize, where each entry is the count for the corresponding term (word) in the document. Feature transformers such as org.apache.spark.ml.feature.Tokenizer and org.apache.spark.ml.feature.CountVectorizer can be useful for converting text to word count vectors.
+
+download/org.apache.spark.ml.clustering.LDAModel.html Experimental Model fitted by LDA.
+
+download/org.apache.spark.ml.clustering.LocalLDAModel.html Experimental Local (non-distributed) model fitted by LDA. This model stores the inferred topics only; it does not store info about the training dataset.
+
+download/org.apache.spark.ml.evaluation.BinaryClassificationEvaluator.html Experimental Evaluator for binary classification, which expects two input columns: rawPrediction and label. The rawPrediction column can be of type double (binary 0/1 prediction, or probability of label 1) or of type vector (length-2 vector of raw predictions, scores, or label probabilities).
+
+download/org.apache.spark.ml.evaluation.Evaluator.html DeveloperApi Abstract class for evaluators that compute metrics from predictions.
+
+download/org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator.html Experimental Evaluator for multiclass classification, which expects two input columns: prediction and label.
+
+download/org.apache.spark.ml.evaluation.RegressionEvaluator.html Experimental Evaluator for regression, which expects two input columns: prediction and label.
+
+download/org.apache.spark.ml.feature.Binarizer.html None Binarize a column of continuous features given a threshold.
+
+download/org.apache.spark.ml.feature.Bucketizer.html None Bucketizer maps a column of continuous features to a column of feature buckets.
+
+download/org.apache.spark.ml.feature.ChiSqSelector.html None Chi-Squared feature selection, which selects categorical features to use for predicting a categorical label.
+
+download/org.apache.spark.ml.feature.ChiSqSelectorModel.html None Model fitted by ChiSqSelector.
+
+download/org.apache.spark.ml.feature.CountVectorizer.html None Extracts a vocabulary from document collections and generates a CountVectorizerModel.
+
+download/org.apache.spark.ml.feature.CountVectorizerModel.html None Converts a text document to a sparse vector of token counts.
+
+download/org.apache.spark.ml.feature.DCT.html None A feature transformer that takes the 1D discrete cosine transform of a real vector. No zero padding is performed on the input vector. It returns a real vector of the same length representing the DCT. The return vector is scaled such that the transform matrix is unitary (aka scaled DCT-II). More information on Wikipedia.
+
+download/org.apache.spark.ml.feature.ElementwiseProduct.html None Outputs the Hadamard product (i.e., the element-wise product) of each input vector with a provided "weight" vector. In other words, it scales each column of the dataset by a scalar multiplier.
+
+download/org.apache.spark.ml.feature.HashingTF.html None Maps a sequence of terms to their term frequencies using the hashing trick. Currently we use Austin Appleby's MurmurHash 3 algorithm (MurmurHash3_x86_32) to calculate the hash code value for the term object. Since a simple modulo is used to transform the hash function to a column index, it is advisable to use a power of two as the numFeatures parameter; otherwise the features will not be mapped evenly to the columns.
+
+download/org.apache.spark.ml.feature.IDF.html None Compute the Inverse Document Frequency (IDF) given a collection of documents.
+
+download/org.apache.spark.ml.feature.IDFModel.html None Model fitted by IDF.
+
+download/org.apache.spark.ml.feature.IndexToString.html None A Transformer that maps a column of indices back to a new column of corresponding string values. The index-string mapping is either from the ML attributes of the input column, or from user-supplied labels (which take precedence over ML attributes).
+
+download/org.apache.spark.ml.feature.Interaction.html None Implements the feature interaction transform. This transformer takes in Double and Vector type columns and outputs a flattened vector of their feature interactions. To handle interaction, we first one-hot encode any nominal features. Then, a vector of the feature cross-products is produced. For example, given the input feature values Double(2) and Vector(3, 4), the output would be Vector(6, 8) if all input features were numeric. If the first feature was instead nominal with four categories, the output would then be Vector(0, 0, 0, 0, 3, 4, 0, 0).
+
+download/org.apache.spark.ml.feature.LabeledPoint.html Experimental Class that represents the features and labels of a data point.
+
+download/org.apache.spark.ml.feature.MaxAbsScaler.html Experimental Rescale each feature individually to range [-1, 1] by dividing through the largest maximum absolute value in each feature. It does not shift/center the data, and thus does not destroy any sparsity.
+
+download/org.apache.spark.ml.feature.MaxAbsScalerModel.html Experimental Model fitted by MaxAbsScaler.
+
+download/org.apache.spark.ml.feature.MinMaxScaler.html None Rescale each feature individually to a common range [min, max] linearly using column summary statistics, which is also known as min-max normalization or Rescaling. The rescaled value for feature E is calculated as, Rescaled(e_i) = \frac{e_i - E_{min}}{E_{max} - E_{min}} * (max - min) + min For the case E_{max} == E_{min}, Rescaled(e_i) = 0.5 * (max + min). Note that since zero values will probably be transformed to non-zero values, output of the transformer will be DenseVector even for sparse input.
+
+download/org.apache.spark.ml.feature.MinMaxScalerModel.html None Model fitted by MinMaxScaler.
+
+download/org.apache.spark.ml.feature.NGram.html None A feature transformer that converts the input array of strings into an array of n-grams. Null values in the input array are ignored. It returns an array of n-grams where each n-gram is represented by a space-separated string of words. When the input is empty, an empty array is returned. When the input array length is less than n (number of elements per n-gram), no n-grams are returned.
+
+download/org.apache.spark.ml.feature.Normalizer.html None Normalize a vector to have unit norm using the given p-norm.
+
+download/org.apache.spark.ml.feature.OneHotEncoder.html None A one-hot encoder that maps a column of category indices to a column of binary vectors, with at most a single one-value per row that indicates the input category index. For example with 5 categories, an input value of 2.0 would map to an output vector of [0.0, 0.0, 1.0, 0.0]. The last category is not included by default (configurable via OneHotEncoder!.dropLast because it makes the vector entries sum up to one, and hence linearly dependent. So an input value of 4.0 maps to [0.0, 0.0, 0.0, 0.0]. Note that this is different from scikit-learn's OneHotEncoder, which keeps all categories. The output vectors are sparse.
+
+download/org.apache.spark.ml.feature.PCA.html None PCA trains a model to project vectors to a lower dimensional space of the top PCA!.k principal components.
+
+download/org.apache.spark.ml.feature.PCAModel.html None Model fitted by PCA. Transforms vectors to a lower dimensional space.
+
+download/org.apache.spark.ml.feature.PolynomialExpansion.html None Perform feature expansion in a polynomial space. As said in wikipedia of Polynomial Expansion, which is available at http://en.wikipedia.org/wiki/Polynomial_expansion, "In mathematics, an expansion of a product of sums expresses it as a sum of products by using the fact that multiplication distributes over addition". Take a 2-variable feature vector as an example: (x, y), if we want to expand it with degree 2, then we get (x, x * x, y, x * y, y * y).
+
+download/org.apache.spark.ml.feature.QuantileDiscretizer.html None QuantileDiscretizer takes a column with continuous features and outputs a column with binned categorical features. The number of bins can be set using the numBuckets parameter. The bin ranges are chosen using an approximate algorithm (see the documentation for approxQuantile for a detailed description). The precision of the approximation can be controlled with the relativeError parameter. The lower and upper bin bounds will be -Infinity and +Infinity, covering all real values.
+
+download/org.apache.spark.ml.feature.RegexTokenizer.html None A regex based tokenizer that extracts tokens either by using the provided regex pattern to split the text (default) or repeatedly matching the regex (if gaps is false). Optional parameters also allow filtering tokens using a minimal length. It returns an array of strings that can be empty.
+
+download/org.apache.spark.ml.feature.RFormula.html Experimental Implements the transforms required for fitting a dataset against an R model formula. Currently we support a limited subset of the R operators, including '~', '.', ':', '+', and '-'. Also see the R formula docs here: http://stat.ethz.ch/R-manual/R-patched/library/stats/html/formula.html The basic operators are: Suppose a and b are double columns, we use the following simple examples to illustrate the effect of RFormula: RFormula produces a vector column of features and a double or string column of label. Like when formulas are used in R for linear regression, string input columns will be one-hot encoded, and numeric columns will be cast to doubles. If the label column is of type string, it will be first transformed to double with StringIndexer. If the label column does not exist in the DataFrame, the output label column will be created from the specified response variable in the formula.
+
+download/org.apache.spark.ml.feature.RFormulaModel.html Experimental Model fitted by RFormula. Fitting is required to determine the factor levels of formula terms.
+
+download/org.apache.spark.ml.feature.SQLTransformer.html None Implements the transformations which are defined by SQL statement. Currently we only support SQL syntax like 'SELECT ... FROM THIS ...' where 'THIS' represents the underlying table of the input dataset. The select clause specifies the fields, constants, and expressions to display in the output, it can be any select clause that Spark SQL supports. Users can also use Spark SQL built-in function and UDFs to operate on these selected columns. For example, SQLTransformer supports statements like:
+
+download/org.apache.spark.ml.feature.StandardScaler.html None Standardizes features by removing the mean and scaling to unit variance using column summary statistics on the samples in the training set. The "unit std" is computed using the corrected sample standard deviation, which is computed as the square root of the unbiased sample variance.
+
+download/org.apache.spark.ml.feature.StandardScalerModel.html None Model fitted by StandardScaler.
+
+download/org.apache.spark.ml.feature.StopWordsRemover.html None A feature transformer that filters out stop words from input. Note: null values from input array are preserved unless adding null to stopWords explicitly.
+
+download/org.apache.spark.ml.feature.StringIndexer.html None A label indexer that maps a string column of labels to an ML column of label indices. If the input column is numeric, we cast it to string and index the string values. The indices are in [0, numLabels), ordered by label frequencies. So the most frequent label gets index 0.
+
+download/org.apache.spark.ml.feature.StringIndexerModel.html None Model fitted by StringIndexer. NOTE: During transformation, if the input column does not exist, StringIndexerModel.transform would return the input dataset unmodified. This is a temporary fix for the case when target labels do not exist during prediction.
+
+download/org.apache.spark.ml.feature.Tokenizer.html None A tokenizer that converts the input string to lowercase and then splits it by white spaces.
+
+download/org.apache.spark.ml.feature.VectorAssembler.html None A feature transformer that merges multiple columns into a vector column.
+
+download/org.apache.spark.ml.feature.VectorIndexer.html None Class for indexing categorical feature columns in a dataset of Vector. This has 2 usage modes: This returns a model which can transform categorical features to use 0-based indices. Index stability: TODO: Future extensions: The following functionality is planned for the future:
+
+download/org.apache.spark.ml.feature.VectorIndexerModel.html None Model fitted by VectorIndexer. Transform categorical features to use 0-based indices instead of their original values. This maintains vector sparsity.
+
+download/org.apache.spark.ml.feature.VectorSlicer.html None This class takes a feature vector and outputs a new feature vector with a subarray of the original features. The subset of features can be specified with either indices (setIndices()) or names (setNames()). At least one feature must be selected. Duplicate features are not allowed, so there can be no overlap between selected indices and names. The output vector will order features with the selected indices first (in the order given), followed by the selected names (in the order given).
+
+download/org.apache.spark.ml.feature.Word2Vec.html None Word2Vec trains a model of Map(String, Vector), i.e. transforms a word into a code for further natural language processing or machine learning process.
+
+download/org.apache.spark.ml.feature.Word2VecModel.html None Model fitted by Word2Vec.
+
+download/org.apache.spark.ml.linalg.DenseMatrix.html None Column-major dense matrix. The entry values are stored in a single array of doubles with columns listed in sequence. For example, the following matrix is stored as [1.0, 3.0, 5.0, 2.0, 4.0, 6.0].
+
+download/org.apache.spark.ml.linalg.DenseVector.html None A dense vector represented by a value array.
+
+download/org.apache.spark.ml.linalg.Matrices$.html None Factory methods for org.apache.spark.ml.linalg.Matrix.
+
+download/org.apache.spark.ml.linalg.Matrix.html None Trait for a local matrix.
+
+download/org.apache.spark.ml.linalg.SparseMatrix.html None Column-major sparse matrix. The entry values are stored in Compressed Sparse Column (CSC) format. For example, the following matrix is stored as values: [1.0, 2.0, 3.0, 4.0, 5.0, 6.0], rowIndices=[0, 2, 1, 0, 1, 2], colPointers=[0, 2, 3, 6].
+
+download/org.apache.spark.ml.linalg.SparseVector.html None A sparse vector represented by an index array and a value array.
+
+download/org.apache.spark.ml.linalg.SQLDataTypes$.html DeveloperApi SQL data types for vectors and matrices.
+
+download/org.apache.spark.ml.linalg.Vector.html None Represents a numeric vector, whose index type is Int and value type is Double. Note: Users should not implement this interface.
+
+download/org.apache.spark.ml.linalg.Vectors$.html None Factory methods for org.apache.spark.ml.linalg.Vector. We don't use the name Vector because Scala imports scala.collection.immutable.Vector by default.
+
+download/org.apache.spark.ml.param.BooleanParam.html DeveloperApi Specialized version of Param[Boolean] for Java.
+
+download/org.apache.spark.ml.param.DoubleArrayParam.html DeveloperApi Specialized version of Param[Array[Double]] for Java.
+
+download/org.apache.spark.ml.param.DoubleParam.html DeveloperApi Specialized version of Param[Double] for Java.
+
+download/org.apache.spark.ml.param.FloatParam.html DeveloperApi Specialized version of Param[Float] for Java.
+
+download/org.apache.spark.ml.param.IntArrayParam.html DeveloperApi Specialized version of Param[Array[Int]] for Java.
+
+download/org.apache.spark.ml.param.IntParam.html DeveloperApi Specialized version of Param[Int] for Java.
+
+download/org.apache.spark.ml.param.JavaParams.html DeveloperApi Java-friendly wrapper for Params. Java developers who need to extend Params should use this class instead. If you need to extend an abstract class which already extends Params, then that abstract class should be Java-friendly as well.
+
+download/org.apache.spark.ml.param.LongParam.html DeveloperApi Specialized version of Param[Long] for Java.
+
+download/org.apache.spark.ml.param.Param.html DeveloperApi A param with self-contained documentation and optionally default value. Primitive-typed param should use the specialized versions, which are more friendly to Java users.
+
+download/org.apache.spark.ml.param.ParamMap.html None A param to value map.
+
+download/org.apache.spark.ml.param.ParamPair.html None A param and its value.
+
+download/org.apache.spark.ml.param.Params.html DeveloperApi Trait for components that take parameters. This also provides an internal param map to store parameter values attached to the instance.
+
+download/org.apache.spark.ml.param.ParamValidators$.html DeveloperApi Factory methods for common validation functions for Param.isValid. The numerical methods only support Int, Long, Float, and Double.
+
+download/org.apache.spark.ml.param.StringArrayParam.html DeveloperApi Specialized version of Param[Array[String]] for Java.
+
+download/org.apache.spark.ml.recommendation.ALS.html None Alternating Least Squares (ALS) matrix factorization. ALS attempts to estimate the ratings matrix R as the product of two lower-rank matrices, X and Y, i.e. X * Yt = R. Typically these approximations are called 'factor' matrices. The general approach is iterative. During each iteration, one of the factor matrices is held constant, while the other is solved for using least squares. The newly-solved factor matrix is then held constant while solving for the other factor matrix. This is a blocked implementation of the ALS factorization algorithm that groups the two sets of factors (referred to as "users" and "products") into blocks and reduces communication by only sending one copy of each user vector to each product block on each iteration, and only for the product blocks that need that user's feature vector. This is achieved by pre-computing some information about the ratings matrix to determine the "out-links" of each user (which blocks of products it will contribute to) and "in-link" information for each product (which of the feature vectors it receives from each user block it will depend on). This allows us to send only an array of feature vectors between each user block and product block, and have the product block find the users' ratings and update the products based on these messages. For implicit preference data, the algorithm used is based on "Collaborative Filtering for Implicit Feedback Datasets", available at http://dx.doi.org/10.1109/ICDM.2008.22, adapted for the blocked approach used here. Essentially instead of finding the low-rank approximations to the rating matrix R, this finds the approximations for a preference matrix P where the elements of P are 1 if r > 0 and 0 if r <= 0. The ratings then act as 'confidence' values related to strength of indicated user preferences rather than explicit ratings given to items.
+
+download/org.apache.spark.ml.recommendation.ALSModel.html None Model fitted by ALS.
+
+download/org.apache.spark.ml.regression.AFTSurvivalRegression.html Experimental Fit a parametric survival regression model named accelerated failure time (AFT) model (https://en.wikipedia.org/wiki/Accelerated_failure_time_model) based on the Weibull distribution of the survival time.
+
+download/org.apache.spark.ml.regression.AFTSurvivalRegressionModel.html Experimental Model produced by AFTSurvivalRegression.
+
+download/org.apache.spark.ml.regression.DecisionTreeRegressionModel.html None Decision tree model for regression. It supports both continuous and categorical features.
+
+download/org.apache.spark.ml.regression.DecisionTreeRegressor.html None Decision tree learning algorithm for regression. It supports both continuous and categorical features.
+
+download/org.apache.spark.ml.regression.GBTRegressionModel.html None Gradient-Boosted Trees (GBTs) model for regression. It supports both continuous and categorical features.
+
+download/org.apache.spark.ml.regression.GBTRegressor.html None Gradient-Boosted Trees (GBTs) learning algorithm for regression. It supports both continuous and categorical features. The implementation is based upon: J.H. Friedman. "Stochastic Gradient Boosting." 1999. Notes on Gradient Boosting vs. TreeBoost:
+
+download/org.apache.spark.ml.regression.GeneralizedLinearRegression.html Experimental Fit a Generalized Linear Model (https://en.wikipedia.org/wiki/Generalized_linear_model) specified by giving a symbolic description of the linear predictor (link function) and a description of the error distribution (family). It supports "gaussian", "binomial", "poisson" and "gamma" as family. Valid link functions for each family is listed below. The first link function of each family is the default one.
+
+download/org.apache.spark.ml.regression.GeneralizedLinearRegressionModel.html Experimental Model produced by GeneralizedLinearRegression.
+
+download/org.apache.spark.ml.regression.GeneralizedLinearRegressionSummary.html Experimental Summary of GeneralizedLinearRegression model and predictions.
+
+download/org.apache.spark.ml.regression.GeneralizedLinearRegressionTrainingSummary.html Experimental Summary of GeneralizedLinearRegression fitting and model.
+
+download/org.apache.spark.ml.regression.IsotonicRegression.html None Isotonic regression. Currently implemented using parallelized pool adjacent violators algorithm. Only univariate (single feature) algorithm supported. Uses org.apache.spark.mllib.regression.IsotonicRegression.
+
+download/org.apache.spark.ml.regression.IsotonicRegressionModel.html None Model fitted by IsotonicRegression. Predicts using a piecewise linear function. For detailed rules see org.apache.spark.mllib.regression.IsotonicRegressionModel.predict().
+
+download/org.apache.spark.ml.regression.LinearRegression.html None Linear regression. The learning objective is to minimize the squared error, with regularization. The specific squared error loss function used is: L = 1/2n ||A coefficients - y||2 This supports multiple types of regularization:
+
+download/org.apache.spark.ml.regression.LinearRegressionModel.html None Model produced by LinearRegression.
+
+download/org.apache.spark.ml.regression.LinearRegressionSummary.html Experimental Linear regression results evaluated on a dataset.
+
+download/org.apache.spark.ml.regression.LinearRegressionTrainingSummary.html Experimental Linear regression training results. Currently, the training summary ignores the training weights except for the objective trace.
+
+download/org.apache.spark.ml.regression.RandomForestRegressionModel.html None Random Forest model for regression. It supports both continuous and categorical features.
+
+download/org.apache.spark.ml.regression.RandomForestRegressor.html None Random Forest learning algorithm for regression. It supports both continuous and categorical features.
+
+download/org.apache.spark.ml.regression.RegressionModel.html DeveloperApi Model produced by a Regressor.
+
+download/org.apache.spark.ml.source.libsvm.LibSVMDataSource.html None libsvm package implements Spark SQL data source API for loading LIBSVM data as DataFrame. The loaded DataFrame has two columns: label containing labels stored as doubles and features containing feature vectors stored as Vectors. To use LIBSVM data source, you need to set "libsvm" as the format in DataFrameReader and optionally specify options, for example: LIBSVM data source supports the following options: Note that this class is public for documentation purpose. Please don't use this class directly. Rather, use the data source API as illustrated above.
+
+download/org.apache.spark.ml.stat.distribution.MultivariateGaussian.html None This class provides basic functionality for a Multivariate Gaussian (Normal) Distribution. In the event that the covariance matrix is singular, the density will be computed in a reduced dimensional subspace under which the distribution is supported. (see http://en.wikipedia.org/wiki/Multivariate_normal_distribution#Degenerate_case)
+
+download/org.apache.spark.ml.tree.CategoricalSplit.html None Split which tests a categorical feature.
+
+download/org.apache.spark.ml.tree.ContinuousSplit.html None Split which tests a continuous feature.
+
+download/org.apache.spark.ml.tree.InternalNode.html None Internal Decision Tree node.
+
+download/org.apache.spark.ml.tree.LeafNode.html None Decision tree leaf node.
+
+download/org.apache.spark.ml.tree.Node.html None Decision tree node interface.
+
+download/org.apache.spark.ml.tree.Split.html None Interface for a "Split," which specifies a test made at a decision tree node to choose the left or right path.
+
+download/org.apache.spark.ml.tuning.CrossValidator.html None K-fold cross validation.
+
+download/org.apache.spark.ml.tuning.CrossValidatorModel.html None Model from k-fold cross validation.
+
+download/org.apache.spark.ml.tuning.ParamGridBuilder.html None Builder for a param grid used in grid search-based model selection.
+
+download/org.apache.spark.ml.tuning.TrainValidationSplit.html None Validation for hyper-parameter tuning. Randomly splits the input dataset into train and validation sets, and uses evaluation metric on the validation set to select the best model. Similar to CrossValidator, but only splits the set once.
+
+download/org.apache.spark.ml.tuning.TrainValidationSplitModel.html None Model from train validation split.
+
+download/org.apache.spark.ml.util.DefaultParamsReadable.html DeveloperApi Helper trait for making simple Params types readable. If a Params class stores all data as org.apache.spark.ml.param.Param values, then extending this trait will provide a default implementation of reading saved instances of the class. This only handles simple org.apache.spark.ml.param.Param types; e.g., it will not handle org.apache.spark.sql.Dataset.
+
+download/org.apache.spark.ml.util.DefaultParamsWritable.html DeveloperApi Helper trait for making simple Params types writable. If a Params class stores all data as org.apache.spark.ml.param.Param values, then extending this trait will provide a default implementation of writing saved instances of the class. This only handles simple org.apache.spark.ml.param.Param types; e.g., it will not handle org.apache.spark.sql.Dataset.
+
+download/org.apache.spark.ml.util.Identifiable.html DeveloperApi Trait for an object with an immutable unique ID that identifies itself and its derivatives. WARNING: There have not yet been final discussions on this API, so it may be broken in future releases.
+
+download/org.apache.spark.ml.util.MLReadable.html Experimental Trait for objects that provide MLReader.
+
+download/org.apache.spark.ml.util.MLReader.html Experimental Abstract class for utility classes that can load ML instances.
+
+download/org.apache.spark.ml.util.MLWritable.html Experimental Trait for classes that provide MLWriter.
+
+download/org.apache.spark.ml.util.MLWriter.html Experimental Abstract class for utility classes that can save ML instances.
+
+download/org.apache.spark.mllib.classification.ClassificationModel.html None Represents a classification model that predicts to which of a set of categories an example belongs. The categories are represented by double values: 0.0, 1.0, 2.0, etc.
+
+download/org.apache.spark.mllib.classification.LogisticRegressionModel.html None Classification model trained using Multinomial/Binary Logistic Regression.
+
+download/org.apache.spark.mllib.classification.LogisticRegressionWithLBFGS.html None Train a classification model for Multinomial/Binary Logistic Regression using Limited-memory BFGS. Standard feature scaling and L2 regularization are used by default. NOTE: Labels used in Logistic Regression should be {0, 1, ..., k - 1} for k classes multi-label classification problem. Earlier implementations of LogisticRegressionWithLBFGS applies a regularization penalty to all elements including the intercept. If this is called with one of standard updaters (L1Updater, or SquaredL2Updater) this is translated into a call to ml.LogisticRegression, otherwise this will use the existing mllib GeneralizedLinearAlgorithm trainer, resulting in a regularization penalty to the intercept.
+
+download/org.apache.spark.mllib.classification.LogisticRegressionWithSGD.html None Train a classification model for Binary Logistic Regression using Stochastic Gradient Descent. By default L2 regularization is used, which can be changed via LogisticRegressionWithSGD.optimizer. NOTE: Labels used in Logistic Regression should be {0, 1, ..., k - 1} for k classes multi-label classification problem. Using LogisticRegressionWithLBFGS is recommended over this.
+
+download/org.apache.spark.mllib.classification.NaiveBayes.html None Trains a Naive Bayes model given an RDD of (label, features) pairs. This is the Multinomial NB (http://tinyurl.com/lsdw6p) which can handle all kinds of discrete data. For example, by converting documents into TF-IDF vectors, it can be used for document classification. By making every vector a 0-1 vector, it can also be used as Bernoulli NB (http://tinyurl.com/p7c96j6). The input feature values must be nonnegative.
+
+download/org.apache.spark.mllib.classification.NaiveBayesModel.html None Model for Naive Bayes Classifiers.
+
+download/org.apache.spark.mllib.classification.StreamingLogisticRegressionWithSGD.html None Train or predict a logistic regression model on streaming data. Training uses Stochastic Gradient Descent to update the model based on each new batch of incoming data from a DStream (see LogisticRegressionWithSGD for model equation) Each batch of data is assumed to be an RDD of LabeledPoints. The number of data points per batch can vary, but the number of features must be constant. An initial weight vector must be provided. Use a builder pattern to construct a streaming logistic regression analysis in an application, like:
+
+download/org.apache.spark.mllib.classification.SVMModel.html None Model for Support Vector Machines (SVMs).
+
+download/org.apache.spark.mllib.classification.SVMWithSGD.html None Train a Support Vector Machine (SVM) using Stochastic Gradient Descent. By default L2 regularization is used, which can be changed via SVMWithSGD.optimizer. NOTE: Labels used in SVM should be {0, 1}.
+
+download/org.apache.spark.mllib.clustering.BisectingKMeans.html None A bisecting k-means algorithm based on the paper "A comparison of document clustering techniques" by Steinbach, Karypis, and Kumar, with modification to fit Spark. The algorithm starts from a single cluster that contains all points. Iteratively it finds divisible clusters on the bottom level and bisects each of them using k-means, until there are k leaf clusters in total or no leaf clusters are divisible. The bisecting steps of clusters on the same level are grouped together to increase parallelism. If bisecting all divisible clusters on the bottom level would result more than k leaf clusters, larger clusters get higher priority.
+
+download/org.apache.spark.mllib.clustering.BisectingKMeansModel.html None Clustering model produced by BisectingKMeans. The prediction is done level-by-level from the root node to a leaf node, and at each node among its children the closest to the input point is selected.
+
+download/org.apache.spark.mllib.clustering.DistributedLDAModel.html None Distributed LDA model. This model stores the inferred topics, the full training dataset, and the topic distributions.
+
+download/org.apache.spark.mllib.clustering.EMLDAOptimizer.html DeveloperApi Optimizer for EM algorithm which stores data + parameter graph, plus algorithm parameters. Currently, the underlying implementation uses Expectation-Maximization (EM), implemented according to the Asuncion et al. (2009) paper referenced below. References:
+
+download/org.apache.spark.mllib.clustering.GaussianMixture.html None This class performs expectation maximization for multivariate Gaussian Mixture Models (GMMs). A GMM represents a composite distribution of independent Gaussian distributions with associated "mixing" weights specifying each's contribution to the composite. Given a set of sample points, this class will maximize the log-likelihood for a mixture of k Gaussians, iterating until the log-likelihood changes by less than convergenceTol, or until it has reached the max number of iterations. While this process is generally guaranteed to converge, it is not guaranteed to find a global optimum. Note: For high-dimensional data (with many features), this algorithm may perform poorly. This is due to high-dimensional data (a) making it difficult to cluster at all (based on statistical/theoretical arguments) and (b) numerical issues with Gaussian distributions.
+
+download/org.apache.spark.mllib.clustering.GaussianMixtureModel.html None Multivariate Gaussian Mixture Model (GMM) consisting of k Gaussians, where points are drawn from each Gaussian i=1..k with probability w(i); mu(i) and sigma(i) are the respective mean and covariance for each Gaussian distribution i=1..k.
+
+download/org.apache.spark.mllib.clustering.KMeans.html None K-means clustering with a k-means++ like initialization mode (the k-means|| algorithm by Bahmani et al). This is an iterative algorithm that will make multiple passes over the data, so any RDDs given to it should be cached by the user.
+
+download/org.apache.spark.mllib.clustering.KMeansModel.html None A clustering model for K-means. Each point belongs to the cluster with the closest center.
+
+download/org.apache.spark.mllib.clustering.LDA.html None Latent Dirichlet Allocation (LDA), a topic model designed for text documents. Terminology: References:
+
+download/org.apache.spark.mllib.clustering.LDAModel.html None Latent Dirichlet Allocation (LDA) model. This abstraction permits for different underlying representations, including local and distributed data structures.
+
+download/org.apache.spark.mllib.clustering.LDAOptimizer.html DeveloperApi An LDAOptimizer specifies which optimization/learning/inference algorithm to use, and it can hold optimizer-specific parameters for users to set.
+
+download/org.apache.spark.mllib.clustering.LocalLDAModel.html None Local LDA model. This model stores only the inferred topics.
+
+download/org.apache.spark.mllib.clustering.OnlineLDAOptimizer.html DeveloperApi An online optimizer for LDA. The Optimizer implements the Online variational Bayes LDA algorithm, which processes a subset of the corpus on each iteration, and updates the term-topic distribution adaptively. Original Online LDA paper: Hoffman, Blei and Bach, "Online Learning for Latent Dirichlet Allocation." NIPS, 2010.
+
+download/org.apache.spark.mllib.clustering.PowerIterationClustering.html None Power Iteration Clustering (PIC), a scalable graph clustering algorithm developed by Lin and Cohen. From the abstract: PIC finds a very low-dimensional embedding of a dataset using truncated power iteration on a normalized pair-wise similarity matrix of the data.
+
+download/org.apache.spark.mllib.clustering.PowerIterationClusteringModel.html None Model produced by PowerIterationClustering.
+
+download/org.apache.spark.mllib.clustering.StreamingKMeans.html None StreamingKMeans provides methods for configuring a streaming k-means analysis, training the model on streaming, and using the model to make predictions on streaming data. See KMeansModel for details on algorithm and update rules. Use a builder pattern to construct a streaming k-means analysis in an application, like:
+
+download/org.apache.spark.mllib.clustering.StreamingKMeansModel.html None StreamingKMeansModel extends MLlib's KMeansModel for streaming algorithms, so it can keep track of a continuously updated weight associated with each cluster, and also update the model by doing a single iteration of the standard k-means algorithm. The update algorithm uses the "mini-batch" KMeans rule, generalized to incorporate forgetfullness (i.e. decay). The update rule (for each cluster) is: Where c_t is the previously estimated centroid for that cluster, n_t is the number of points assigned to it thus far, x_t is the centroid estimated on the current batch, and m_t is the number of points assigned to that centroid in the current batch. The decay factor 'a' scales the contribution of the clusters as estimated thus far, by applying a as a discount weighting on the current point when evaluating new incoming data. If a=1, all batches are weighted equally. If a=0, new centroids are determined entirely by recent data. Lower values correspond to more forgetting. Decay can optionally be specified by a half life and associated time unit. The time unit can either be a batch of data or a single data point. Considering data arrived at time t, the half life h is defined such that at time t + h the discount applied to the data from t is 0.5. The definition remains the same whether the time unit is given as batches or points.
+
+download/org.apache.spark.mllib.evaluation.BinaryClassificationMetrics.html None Evaluator for binary classification.
+
+download/org.apache.spark.mllib.evaluation.MulticlassMetrics.html None Evaluator for multiclass classification.
+
+download/org.apache.spark.mllib.evaluation.MultilabelMetrics.html None Evaluator for multilabel classification.
+
+download/org.apache.spark.mllib.evaluation.RankingMetrics.html None Evaluator for ranking algorithms. Java users should use RankingMetrics$.of to create a RankingMetrics instance.
+
+download/org.apache.spark.mllib.evaluation.RegressionMetrics.html None Evaluator for regression.
+
+download/org.apache.spark.mllib.feature.ChiSqSelector.html None Creates a ChiSquared feature selector.
+
+download/org.apache.spark.mllib.feature.ChiSqSelectorModel.html None Chi Squared selector model.
+
+download/org.apache.spark.mllib.feature.ElementwiseProduct.html None Outputs the Hadamard product (i.e., the element-wise product) of each input vector with a provided "weight" vector. In other words, it scales each column of the dataset by a scalar multiplier.
+
+download/org.apache.spark.mllib.feature.HashingTF.html None Maps a sequence of terms to their term frequencies using the hashing trick.
+
+download/org.apache.spark.mllib.feature.IDF.html None Inverse document frequency (IDF). The standard formulation is used: idf = log((m + 1) / (d(t) + 1)), where m is the total number of documents and d(t) is the number of documents that contain term t. This implementation supports filtering out terms which do not appear in a minimum number of documents (controlled by the variable minDocFreq). For terms that are not in at least minDocFreq documents, the IDF is found as 0, resulting in TF-IDFs of 0.
+
+download/org.apache.spark.mllib.feature.IDFModel.html None Represents an IDF model that can transform term frequency vectors.
+
+download/org.apache.spark.mllib.feature.Normalizer.html None Normalizes samples individually to unit Lp norm For any 1 <= p < Double.PositiveInfinity, normalizes samples using sum(abs(vector).p)(1/p) as norm. For p = Double.PositiveInfinity, max(abs(vector)) will be used as norm for normalization.
+
+download/org.apache.spark.mllib.feature.PCA.html None A feature transformer that projects vectors to a low-dimensional space using PCA.
+
+download/org.apache.spark.mllib.feature.PCAModel.html None Model fitted by PCA that can project vectors to a low-dimensional space using PCA.
+
+download/org.apache.spark.mllib.feature.StandardScaler.html None Standardizes features by removing the mean and scaling to unit std using column summary statistics on the samples in the training set. The "unit std" is computed using the corrected sample standard deviation (https://en.wikipedia.org/wiki/Standard_deviation#Corrected_sample_standard_deviation), which is computed as the square root of the unbiased sample variance.
+
+download/org.apache.spark.mllib.feature.StandardScalerModel.html None Represents a StandardScaler model that can transform vectors.
+
+download/org.apache.spark.mllib.feature.VectorTransformer.html DeveloperApi Trait for transformation of a vector
+
+download/org.apache.spark.mllib.feature.Word2Vec.html None Word2Vec creates vector representation of words in a text corpus. The algorithm first constructs a vocabulary from the corpus and then learns vector representation of words in the vocabulary. The vector representation can be used as features in natural language processing and machine learning algorithms. We used skip-gram model in our implementation and hierarchical softmax method to train the model. The variable names in the implementation matches the original C implementation. For original C implementation, see https://code.google.com/p/word2vec/ For research papers, see Efficient Estimation of Word Representations in Vector Space and Distributed Representations of Words and Phrases and their Compositionality.
+
+download/org.apache.spark.mllib.feature.Word2VecModel.html None Word2Vec model
+
+download/org.apache.spark.mllib.fpm.AssociationRules.html None Generates association rules from a RDD[FreqItemset[Item]. This method only generates association rules which have a single item as the consequent.
+
+download/org.apache.spark.mllib.fpm.FPGrowth.html None A parallel FP-growth algorithm to mine frequent itemsets. The algorithm is described in Li et al., PFP: Parallel FP-Growth for Query Recommendation. PFP distributes computation in such a way that each worker executes an independent group of mining tasks. The FP-Growth algorithm is described in Han et al., Mining frequent patterns without candidate generation.
+
+download/org.apache.spark.mllib.fpm.FPGrowthModel.html None Model trained by FPGrowth, which holds frequent itemsets.
+
+download/org.apache.spark.mllib.fpm.PrefixSpan.html None A parallel PrefixSpan algorithm to mine frequent sequential patterns. The PrefixSpan algorithm is described in J. Pei, et al., PrefixSpan: Mining Sequential Patterns Efficiently by Prefix-Projected Pattern Growth (http://doi.org/10.1109/ICDE.2001.914830).
+
+download/org.apache.spark.mllib.fpm.PrefixSpanModel.html None Model fitted by PrefixSpan
+
+download/org.apache.spark.mllib.linalg.DenseMatrix.html None Column-major dense matrix. The entry values are stored in a single array of doubles with columns listed in sequence. For example, the following matrix is stored as [1.0, 3.0, 5.0, 2.0, 4.0, 6.0].
+
+download/org.apache.spark.mllib.linalg.DenseVector.html None A dense vector represented by a value array.
+
+download/org.apache.spark.mllib.linalg.Matrices$.html None Factory methods for org.apache.spark.mllib.linalg.Matrix.
+
+download/org.apache.spark.mllib.linalg.Matrix.html None Trait for a local matrix.
+
+download/org.apache.spark.mllib.linalg.QRDecomposition.html None Represents QR factors.
+
+download/org.apache.spark.mllib.linalg.SingularValueDecomposition.html None Represents singular value decomposition (SVD) factors.
+
+download/org.apache.spark.mllib.linalg.SparseMatrix.html None Column-major sparse matrix. The entry values are stored in Compressed Sparse Column (CSC) format. For example, the following matrix is stored as values: [1.0, 2.0, 3.0, 4.0, 5.0, 6.0], rowIndices=[0, 2, 1, 0, 1, 2], colPointers=[0, 2, 3, 6].
+
+download/org.apache.spark.mllib.linalg.SparseVector.html None A sparse vector represented by an index array and a value array.
+
+download/org.apache.spark.mllib.linalg.Vector.html None Represents a numeric vector, whose index type is Int and value type is Double. Note: Users should not implement this interface.
+
+download/org.apache.spark.mllib.linalg.Vectors$.html None Factory methods for org.apache.spark.mllib.linalg.Vector. We don't use the name Vector because Scala imports scala.collection.immutable.Vector by default.
+
+download/org.apache.spark.mllib.linalg.VectorUDT.html AlphaComponent User-defined type for Vector which allows easy interaction with SQL via org.apache.spark.sql.Dataset.
+
+download/org.apache.spark.mllib.linalg.distributed.BlockMatrix.html None Represents a distributed matrix in blocks of local matrices.
+
+download/org.apache.spark.mllib.linalg.distributed.CoordinateMatrix.html None Represents a matrix in coordinate format.
+
+download/org.apache.spark.mllib.linalg.distributed.DistributedMatrix.html None Represents a distributively stored matrix backed by one or more RDDs.
+
+download/org.apache.spark.mllib.linalg.distributed.IndexedRow.html None Represents a row of org.apache.spark.mllib.linalg.distributed.IndexedRowMatrix.
+
+download/org.apache.spark.mllib.linalg.distributed.IndexedRowMatrix.html None Represents a row-oriented org.apache.spark.mllib.linalg.distributed.DistributedMatrix with indexed rows.
+
+download/org.apache.spark.mllib.linalg.distributed.MatrixEntry.html None Represents an entry in a distributed matrix.
+
+download/org.apache.spark.mllib.linalg.distributed.RowMatrix.html None Represents a row-oriented distributed Matrix with no meaningful row indices.
+
+download/org.apache.spark.mllib.optimization.Gradient.html DeveloperApi Class used to compute the gradient for a loss function, given a single data point.
+
+download/org.apache.spark.mllib.optimization.GradientDescent.html None Class used to solve an optimization problem using Gradient Descent.
+
+download/org.apache.spark.mllib.optimization.HingeGradient.html DeveloperApi Compute gradient and loss for a Hinge loss function, as used in SVM binary classification. See also the documentation for the precise formulation. NOTE: This assumes that the labels are {0,1}
+
+download/org.apache.spark.mllib.optimization.L1Updater.html DeveloperApi Updater for L1 regularized problems. R(w) = ||w||_1 Uses a step-size decreasing with the square root of the number of iterations. Instead of subgradient of the regularizer, the proximal operator for the L1 regularization is applied after the gradient step. This is known to result in better sparsity of the intermediate solution. The corresponding proximal operator for the L1 norm is the soft-thresholding function. That is, each weight component is shrunk towards 0 by shrinkageVal. If w > shrinkageVal, set weight component to w-shrinkageVal. If w < -shrinkageVal, set weight component to w+shrinkageVal. If -shrinkageVal < w < shrinkageVal, set weight component to 0. Equivalently, set weight component to signum(w) * max(0.0, abs(w) - shrinkageVal)
+
+download/org.apache.spark.mllib.optimization.LBFGS.html DeveloperApi Class used to solve an optimization problem using Limited-memory BFGS. Reference: http://en.wikipedia.org/wiki/Limited-memory_BFGS
+
+download/org.apache.spark.mllib.optimization.LeastSquaresGradient.html DeveloperApi Compute gradient and loss for a Least-squared loss function, as used in linear regression. This is correct for the averaged least squares loss function (mean squared error) L = 1/2n ||A weights-y||^2 See also the documentation for the precise formulation.
+
+download/org.apache.spark.mllib.optimization.LogisticGradient.html DeveloperApi Compute gradient and loss for a multinomial logistic loss function, as used in multi-class classification (it is also used in binary logistic regression). In The Elements of Statistical Learning: Data Mining, Inference, and Prediction, 2nd Edition by Trevor Hastie, Robert Tibshirani, and Jerome Friedman, which can be downloaded from http://statweb.stanford.edu/~tibs/ElemStatLearn/ , Eq. (4.17) on page 119 gives the formula of multinomial logistic regression model. A simple calculation shows that for K classes multiclass classification problem. The model weights w = (w_1, w_2, ..., w_{K-1})^T becomes a matrix which has dimension of (K-1) * (N+1) if the intercepts are added. If the intercepts are not added, the dimension will be (K-1) * N. As a result, the loss of objective function for a single instance of data can be written as where \alpha(i) = 1 if i != 0, and \alpha(i) = 0 if i == 0, margins_i = x w_i. For optimization, we have to calculate the first derivative of the loss function, and a simple calculation shows that where \delta_{i, j} = 1 if i == j, \delta_{i, j} = 0 if i != j, and multiplier = \exp(margins_i) / (1 + \sum_k^{K-1} \exp(margins_i)) - (1-\alpha(y)\delta_{y, i+1}) If any of margins is larger than 709.78, the numerical computation of multiplier and loss function will be suffered from arithmetic overflow. This issue occurs when there are outliers in data which are far away from hyperplane, and this will cause the failing of training once infinity / infinity is introduced. Note that this is only a concern when max(margins) > 0. Fortunately, when max(margins) = maxMargin > 0, the loss function and the multiplier can be easily rewritten into the following equivalent numerically stable formula. where sum = \exp(-maxMargin) + \sum_i^{K-1}\exp(margins_i - maxMargin) - 1. Note that each term, (margins_i - maxMargin) in \exp is smaller than zero; as a result, overflow will not happen with this formula. For multiplier, similar trick can be applied as the following, where each term in \exp is also smaller than zero, so overflow is not a concern. For the detailed mathematical derivation, see the reference at http://www.slideshare.net/dbtsai/2014-0620-mlor-36132297
+
+download/org.apache.spark.mllib.optimization.Optimizer.html DeveloperApi Trait for optimization problem solvers.
+
+download/org.apache.spark.mllib.optimization.SimpleUpdater.html DeveloperApi A simple updater for gradient descent *without* any regularization. Uses a step-size decreasing with the square root of the number of iterations.
+
+download/org.apache.spark.mllib.optimization.SquaredL2Updater.html DeveloperApi Updater for L2 regularized problems. R(w) = 1/2 ||w||^2 Uses a step-size decreasing with the square root of the number of iterations.
+
+download/org.apache.spark.mllib.optimization.Updater.html DeveloperApi Class used to perform steps (weight update) using Gradient Descent methods. For general minimization problems, or for regularized problems of the form min L(w) + regParam * R(w), the compute function performs the actual update step, when given some (e.g. stochastic) gradient direction for the loss L(w), and a desired step-size (learning rate). The updater is responsible to also perform the update coming from the regularization term R(w) (if any regularization is used).
+
+download/org.apache.spark.mllib.pmml.PMMLExportable.html DeveloperApi Export model to the PMML format Predictive Model Markup Language (PMML) is an XML-based file format developed by the Data Mining Group (www.dmg.org).
+
+download/org.apache.spark.mllib.random.ExponentialGenerator.html DeveloperApi Generates i.i.d. samples from the exponential distribution with the given mean.
+
+download/org.apache.spark.mllib.random.GammaGenerator.html DeveloperApi Generates i.i.d. samples from the gamma distribution with the given shape and scale.
+
+download/org.apache.spark.mllib.random.LogNormalGenerator.html DeveloperApi Generates i.i.d. samples from the log normal distribution with the given mean and standard deviation.
+
+download/org.apache.spark.mllib.random.PoissonGenerator.html DeveloperApi Generates i.i.d. samples from the Poisson distribution with the given mean.
+
+download/org.apache.spark.mllib.random.RandomDataGenerator.html DeveloperApi Trait for random data generators that generate i.i.d. data.
+
+download/org.apache.spark.mllib.random.RandomRDDs$.html None Generator methods for creating RDDs comprised of i.i.d. samples from some distribution.
+
+download/org.apache.spark.mllib.random.StandardNormalGenerator.html DeveloperApi Generates i.i.d. samples from the standard normal distribution.
+
+download/org.apache.spark.mllib.random.UniformGenerator.html DeveloperApi Generates i.i.d. samples from U[0.0, 1.0]
+
+download/org.apache.spark.mllib.random.WeibullGenerator.html DeveloperApi Generates i.i.d. samples from the Weibull distribution with the given shape and scale parameter.
+
+download/org.apache.spark.mllib.rdd.MLPairRDDFunctions.html DeveloperApi Machine learning specific Pair RDD functions.
+
+download/org.apache.spark.mllib.rdd.RDDFunctions.html DeveloperApi Machine learning specific RDD functions.
+
+download/org.apache.spark.mllib.recommendation.ALS.html None Alternating Least Squares matrix factorization. ALS attempts to estimate the ratings matrix R as the product of two lower-rank matrices, X and Y, i.e. X * Yt = R. Typically these approximations are called 'factor' matrices. The general approach is iterative. During each iteration, one of the factor matrices is held constant, while the other is solved for using least squares. The newly-solved factor matrix is then held constant while solving for the other factor matrix. This is a blocked implementation of the ALS factorization algorithm that groups the two sets of factors (referred to as "users" and "products") into blocks and reduces communication by only sending one copy of each user vector to each product block on each iteration, and only for the product blocks that need that user's feature vector. This is achieved by precomputing some information about the ratings matrix to determine the "out-links" of each user (which blocks of products it will contribute to) and "in-link" information for each product (which of the feature vectors it receives from each user block it will depend on). This allows us to send only an array of feature vectors between each user block and product block, and have the product block find the users' ratings and update the products based on these messages. For implicit preference data, the algorithm used is based on "Collaborative Filtering for Implicit Feedback Datasets", available at http://dx.doi.org/10.1109/ICDM.2008.22, adapted for the blocked approach used here. Essentially instead of finding the low-rank approximations to the rating matrix R, this finds the approximations for a preference matrix P where the elements of P are 1 if r > 0 and 0 if r <= 0. The ratings then act as 'confidence' values related to strength of indicated user preferences rather than explicit ratings given to items.
+
+download/org.apache.spark.mllib.recommendation.MatrixFactorizationModel.html None Model representing the result of matrix factorization. Note: If you create the model directly using constructor, please be aware that fast prediction requires cached user/product features and their associated partitioners.
+
+download/org.apache.spark.mllib.recommendation.Rating.html None A more compact class to represent a rating than Tuple3[Int, Int, Double].
+
+download/org.apache.spark.mllib.regression.GeneralizedLinearAlgorithm.html DeveloperApi GeneralizedLinearAlgorithm implements methods to train a Generalized Linear Model (GLM). This class should be extended with an Optimizer to create a new GLM.
+
+download/org.apache.spark.mllib.regression.GeneralizedLinearModel.html DeveloperApi GeneralizedLinearModel (GLM) represents a model trained using GeneralizedLinearAlgorithm. GLMs consist of a weight vector and an intercept.
+
+download/org.apache.spark.mllib.regression.IsotonicRegression.html None Isotonic regression. Currently implemented using parallelized pool adjacent violators algorithm. Only univariate (single feature) algorithm supported. Sequential PAV implementation based on: Tibshirani, Ryan J., Holger Hoefling, and Robert Tibshirani. "Nearly-isotonic regression." Technometrics 53.1 (2011): 54-61. Available from http://www.stat.cmu.edu/~ryantibs/papers/neariso.pdf Sequential PAV parallelization based on: Kearsley, Anthony J., Richard A. Tapia, and Michael W. Trosset. "An approach to parallelizing isotonic regression." Applied Mathematics and Parallel Computing. Physica-Verlag HD, 1996. 141-147. Available from http://softlib.rice.edu/pub/CRPC-TRs/reports/CRPC-TR96640.pdf
+
+download/org.apache.spark.mllib.regression.IsotonicRegressionModel.html None Regression model for isotonic regression.
+
+download/org.apache.spark.mllib.regression.LabeledPoint.html None Class that represents the features and labels of a data point.
+
+download/org.apache.spark.mllib.regression.LassoModel.html None Regression model trained using Lasso.
+
+download/org.apache.spark.mllib.regression.LassoWithSGD.html None Train a regression model with L1-regularization using Stochastic Gradient Descent. This solves the l1-regularized least squares regression formulation f(weights) = 1/2n ||A weights-y||2 + regParam ||weights||_1 Here the data matrix has n rows, and the input RDD holds the set of rows of A, each with its corresponding right hand side label y. See also the documentation for the precise formulation.
+
+download/org.apache.spark.mllib.regression.LinearRegressionModel.html None Regression model trained using LinearRegression.
+
+download/org.apache.spark.mllib.regression.LinearRegressionWithSGD.html None Train a linear regression model with no regularization using Stochastic Gradient Descent. This solves the least squares regression formulation f(weights) = 1/n ||A weights-y||2 (which is the mean squared error). Here the data matrix has n rows, and the input RDD holds the set of rows of A, each with its corresponding right hand side label y. See also the documentation for the precise formulation.
+
+download/org.apache.spark.mllib.regression.RidgeRegressionModel.html None Regression model trained using RidgeRegression.
+
+download/org.apache.spark.mllib.regression.RidgeRegressionWithSGD.html None Train a regression model with L2-regularization using Stochastic Gradient Descent. This solves the l2-regularized least squares regression formulation f(weights) = 1/2n ||A weights-y||2 + regParam/2 ||weights||2 Here the data matrix has n rows, and the input RDD holds the set of rows of A, each with its corresponding right hand side label y. See also the documentation for the precise formulation.
+
+download/org.apache.spark.mllib.regression.StreamingLinearAlgorithm.html DeveloperApi StreamingLinearAlgorithm implements methods for continuously training a generalized linear model model on streaming data, and using it for prediction on (possibly different) streaming data. This class takes as type parameters a GeneralizedLinearModel, and a GeneralizedLinearAlgorithm, making it easy to extend to construct streaming versions of any analyses using GLMs. Initial weights must be set before calling trainOn or predictOn. Only weights will be updated, not an intercept. If the model needs an intercept, it should be manually appended to the input data. For example usage, see StreamingLinearRegressionWithSGD. NOTE: In some use cases, the order in which trainOn and predictOn are called in an application will affect the results. When called on the same DStream, if trainOn is called before predictOn, when new data arrive the model will update and the prediction will be based on the new model. Whereas if predictOn is called first, the prediction will use the model from the previous update. NOTE: It is ok to call predictOn repeatedly on multiple streams; this will generate predictions for each one all using the current model. It is also ok to call trainOn on different streams; this will update the model using each of the different sources, in sequence.
+
+download/org.apache.spark.mllib.regression.StreamingLinearRegressionWithSGD.html None Train or predict a linear regression model on streaming data. Training uses Stochastic Gradient Descent to update the model based on each new batch of incoming data from a DStream (see LinearRegressionWithSGD for model equation) Each batch of data is assumed to be an RDD of LabeledPoints. The number of data points per batch can vary, but the number of features must be constant. An initial weight vector must be provided. Use a builder pattern to construct a streaming linear regression analysis in an application, like: val model = new StreamingLinearRegressionWithSGD() .setStepSize(0.5) .setNumIterations(10) .setInitialWeights(Vectors.dense(...)) .trainOn(DStream)
+
+download/org.apache.spark.mllib.stat.KernelDensity.html None Kernel density estimation. Given a sample from a population, estimate its probability density function at each of the given evaluation points using kernels. Only Gaussian kernel is supported. Scala example:
+
+download/org.apache.spark.mllib.stat.MultivariateOnlineSummarizer.html DeveloperApi MultivariateOnlineSummarizer implements MultivariateStatisticalSummary to compute the mean, variance, minimum, maximum, counts, and nonzero counts for instances in sparse or dense vector format in an online fashion. Two MultivariateOnlineSummarizer can be merged together to have a statistical summary of the corresponding joint dataset. A numerically stable algorithm is implemented to compute the mean and variance of instances: Reference: variance-wiki Zero elements (including explicit zero values) are skipped when calling add(), to have time complexity O(nnz) instead of O(n) for each column. For weighted instances, the unbiased estimation of variance is defined by the reliability weights: https://en.wikipedia.org/wiki/Weighted_arithmetic_mean#Reliability_weights.
+
+download/org.apache.spark.mllib.stat.MultivariateStatisticalSummary.html None Trait for multivariate statistical summary of a data matrix.
+
+download/org.apache.spark.mllib.stat.Statistics$.html None API for statistical functions in MLlib.
+
+download/org.apache.spark.mllib.stat.distribution.MultivariateGaussian.html DeveloperApi This class provides basic functionality for a Multivariate Gaussian (Normal) Distribution. In the event that the covariance matrix is singular, the density will be computed in a reduced dimensional subspace under which the distribution is supported. (see http://en.wikipedia.org/wiki/Multivariate_normal_distribution#Degenerate_case)
+
+download/org.apache.spark.mllib.stat.test.BinarySample.html None Class that represents the group and value of a sample.
+
+download/org.apache.spark.mllib.stat.test.ChiSqTestResult.html None Object containing the test results for the chi-squared hypothesis test.
+
+download/org.apache.spark.mllib.stat.test.KolmogorovSmirnovTestResult.html None Object containing the test results for the Kolmogorov-Smirnov test.
+
+download/org.apache.spark.mllib.stat.test.StreamingTest.html None Performs online 2-sample significance testing for a stream of (Boolean, Double) pairs. The Boolean identifies which sample each observation comes from, and the Double is the numeric value of the observation. To address novelty affects, the peacePeriod specifies a set number of initial org.apache.spark.rdd.RDD batches of the DStream to be dropped from significance testing. The windowSize sets the number of batches each significance test is to be performed over. The window is sliding with a stride length of 1 batch. Setting windowSize to 0 will perform cumulative processing, using all batches seen so far. Different tests may be used for assessing statistical significance depending on assumptions satisfied by data. For more details, see StreamingTestMethod. The testMethod specifies which test will be used. Use a builder pattern to construct a streaming test in an application, for example:
+
+download/org.apache.spark.mllib.stat.test.TestResult.html None Trait for hypothesis test results.
+
+download/org.apache.spark.mllib.tree.DecisionTree.html None A class which implements a decision tree learning algorithm for classification and regression. It supports both continuous and categorical features.
+
+download/org.apache.spark.mllib.tree.GradientBoostedTrees.html None A class that implements Stochastic Gradient Boosting for regression and binary classification. The implementation is based upon: J.H. Friedman. "Stochastic Gradient Boosting." 1999. Notes on Gradient Boosting vs. TreeBoost:
+
+download/org.apache.spark.mllib.tree.configuration.Algo$.html None Enum to select the algorithm for the decision tree
+
+download/org.apache.spark.mllib.tree.configuration.BoostingStrategy.html None Configuration options for org.apache.spark.mllib.tree.GradientBoostedTrees.
+
+download/org.apache.spark.mllib.tree.configuration.FeatureType$.html None Enum to describe whether a feature is "continuous" or "categorical"
+
+download/org.apache.spark.mllib.tree.configuration.QuantileStrategy$.html None Enum for selecting the quantile calculation strategy
+
+download/org.apache.spark.mllib.tree.configuration.Strategy.html None Stores all the configuration options for tree construction
+
+download/org.apache.spark.mllib.tree.impurity.Entropy$.html None Class for calculating entropy during multiclass classification.
+
+download/org.apache.spark.mllib.tree.impurity.Gini$.html None Class for calculating the Gini impurity (http://en.wikipedia.org/wiki/Decision_tree_learning#Gini_impurity) during multiclass classification.
+
+download/org.apache.spark.mllib.tree.impurity.Impurity.html None Trait for calculating information gain. This trait is used for (a) setting the impurity parameter in org.apache.spark.mllib.tree.configuration.Strategy (b) calculating impurity values from sufficient statistics.
+
+download/org.apache.spark.mllib.tree.impurity.Variance$.html None Class for calculating variance during regression
+
+download/org.apache.spark.mllib.tree.loss.AbsoluteError$.html DeveloperApi Class for absolute error loss calculation (for regression). The absolute (L1) error is defined as: |y - F(x)| where y is the label and F(x) is the model prediction for features x.
+
+download/org.apache.spark.mllib.tree.loss.LogLoss$.html DeveloperApi Class for log loss calculation (for classification). This uses twice the binomial negative log likelihood, called "deviance" in Friedman (1999). The log loss is defined as: 2 log(1 + exp(-2 y F(x))) where y is a label in {-1, 1} and F(x) is the model prediction for features x.
+
+download/org.apache.spark.mllib.tree.loss.Loss.html DeveloperApi Trait for adding "pluggable" loss functions for the gradient boosting algorithm.
+
+download/org.apache.spark.mllib.tree.loss.SquaredError$.html DeveloperApi Class for squared error loss calculation. The squared (L2) error is defined as: (y - F(x))**2 where y is the label and F(x) is the model prediction for features x.
+
+download/org.apache.spark.mllib.tree.model.DecisionTreeModel.html None Decision tree model for classification or regression. This model stores the decision tree structure and parameters.
+
+download/org.apache.spark.mllib.tree.model.GradientBoostedTreesModel.html None Represents a gradient boosted trees model.
+
+download/org.apache.spark.mllib.tree.model.InformationGainStats.html DeveloperApi Information gain statistics for each split
+
+download/org.apache.spark.mllib.tree.model.Node.html DeveloperApi Node in a decision tree. About node indexing: Nodes are indexed from 1. Node 1 is the root; nodes 2, 3 are the left, right children. Node index 0 is not used.
+
+download/org.apache.spark.mllib.tree.model.Predict.html DeveloperApi Predicted value for a node
+
+download/org.apache.spark.mllib.tree.model.RandomForestModel.html None Represents a random forest model.
+
+download/org.apache.spark.mllib.tree.model.Split.html DeveloperApi Split applied to a feature
+
+download/org.apache.spark.mllib.util.DataValidators$.html DeveloperApi A collection of methods used to validate data before applying ML algorithms.
+
+download/org.apache.spark.mllib.util.KMeansDataGenerator$.html DeveloperApi Generate test data for KMeans. This class first chooses k cluster centers from a d-dimensional Gaussian distribution scaled by factor r and then creates a Gaussian cluster with scale 1 around each center.
+
+download/org.apache.spark.mllib.util.LinearDataGenerator$.html DeveloperApi Generate sample data used for Linear Data. This class generates uniformly random values for every feature and adds Gaussian noise with mean eps to the response variable Y.
+
+download/org.apache.spark.mllib.util.Loader.html DeveloperApi Trait for classes which can load models and transformers from files. This should be inherited by an object paired with the model class.
+
+download/org.apache.spark.mllib.util.LogisticRegressionDataGenerator$.html DeveloperApi Generate test data for LogisticRegression. This class chooses positive labels with probability probOne and scales features for positive examples by eps.
+
+download/org.apache.spark.mllib.util.MFDataGenerator$.html DeveloperApi Generate RDD(s) containing data for Matrix Factorization. This method samples training entries according to the oversampling factor 'trainSampFact', which is a multiplicative factor of the number of degrees of freedom of the matrix: rank*(m+n-rank). It optionally samples entries for a testing matrix using 'testSampFact', the percentage of the number of training entries to use for testing. This method takes the following inputs: sparkMaster (String) The master URL. outputPath (String) Directory to save output. m (Int) Number of rows in data matrix. n (Int) Number of columns in data matrix. rank (Int) Underlying rank of data matrix. trainSampFact (Double) Oversampling factor. noise (Boolean) Whether to add gaussian noise to training data. sigma (Double) Standard deviation of added gaussian noise. test (Boolean) Whether to create testing RDD. testSampFact (Double) Percentage of training data to use as test data.
+
+download/org.apache.spark.mllib.util.MLUtils$.html None Helper methods to load, save and pre-process data used in ML Lib.
+
+download/org.apache.spark.mllib.util.Saveable.html DeveloperApi Trait for models and transformers which may be saved as files. This should be inherited by the class which implements model instances.
+
+download/org.apache.spark.mllib.util.SVMDataGenerator$.html DeveloperApi Generate sample data used for SVM. This class generates uniform random values for the features and adds Gaussian noise with weight 0.1 to generate labels.
+
+download/org.apache.spark.partial.BoundedDouble.html None A Double value with error bars and associated confidence.
+
+download/org.apache.spark.rdd.AsyncRDDActions.html None A set of asynchronous RDD actions available through an implicit conversion.
+
+download/org.apache.spark.rdd.CoGroupedRDD.html DeveloperApi A RDD that cogroups its parents. For each key k in parent RDDs, the resulting RDD contains a tuple with the list of values for that key. Note: This is an internal API. We recommend users use RDD.cogroup(...) instead of instantiating this directly.
+
+download/org.apache.spark.rdd.DoubleRDDFunctions.html None Extra functions available on RDDs of Doubles through an implicit conversion.
+
+download/org.apache.spark.rdd.HadoopRDD.html DeveloperApi An RDD that provides core functionality for reading data stored in Hadoop (e.g., files in HDFS, sources in HBase, or S3), using the older MapReduce API (org.apache.hadoop.mapred). Note: Instantiating this class directly is not recommended, please use org.apache.spark.SparkContext.hadoopRDD()
+
+download/org.apache.spark.rdd.JdbcRDD.html None An RDD that executes a SQL query on a JDBC connection and reads results. For usage example, see test case JdbcRDDSuite.
+
+download/org.apache.spark.rdd.NewHadoopRDD.html DeveloperApi An RDD that provides core functionality for reading data stored in Hadoop (e.g., files in HDFS, sources in HBase, or S3), using the new MapReduce API (org.apache.hadoop.mapreduce). Note: Instantiating this class directly is not recommended, please use org.apache.spark.SparkContext.newAPIHadoopRDD()
+
+download/org.apache.spark.rdd.OrderedRDDFunctions.html None Extra functions available on RDDs of (key, value) pairs where the key is sortable through an implicit conversion. They will work with any key type K that has an implicit Ordering[K] in scope. Ordering objects already exist for all of the standard primitive types. Users can also define their own orderings for custom types, or to override the default ordering. The implicit ordering that is in the closest scope will be used.
+
+download/org.apache.spark.rdd.PairRDDFunctions.html None Extra functions available on RDDs of (key, value) pairs through an implicit conversion.
+
+download/org.apache.spark.rdd.PartitionCoalescer.html DeveloperApi A PartitionCoalescer defines how to coalesce the partitions of a given RDD.
+
+download/org.apache.spark.rdd.PartitionGroup.html DeveloperApi A group of Partitions
+
+download/org.apache.spark.rdd.PartitionPruningRDD.html DeveloperApi A RDD used to prune RDD partitions/partitions so we can avoid launching tasks on all partitions. An example use case: If we know the RDD is partitioned by range, and the execution DAG has a filter on the key, we can avoid launching tasks on partitions that don't have the range covering the key.
+
+download/org.apache.spark.rdd.RDD.html None A Resilient Distributed Dataset (RDD), the basic abstraction in Spark. Represents an immutable, partitioned collection of elements that can be operated on in parallel. This class contains the basic operations available on all RDDs, such as map, filter, and persist. In addition, org.apache.spark.rdd.PairRDDFunctions contains operations available only on RDDs of key-value pairs, such as groupByKey and join; org.apache.spark.rdd.DoubleRDDFunctions contains operations available only on RDDs of Doubles; and org.apache.spark.rdd.SequenceFileRDDFunctions contains operations available on RDDs that can be saved as SequenceFiles. All operations are automatically available on any RDD of the right type (e.g. RDD[(Int, Int)] through implicit. Internally, each RDD is characterized by five main properties: All of the scheduling and execution in Spark is done based on these methods, allowing each RDD to implement its own way of computing itself. Indeed, users can implement custom RDDs (e.g. for reading data from a new storage system) by overriding these functions. Please refer to the Spark paper for more details on RDD internals.
+
+download/org.apache.spark.rdd.SequenceFileRDDFunctions.html None Extra functions available on RDDs of (key, value) pairs to create a Hadoop SequenceFile, through an implicit conversion. Note that this can't be part of PairRDDFunctions because we need more implicit parameters to convert our keys and values to Writable.
+
+download/org.apache.spark.rdd.ShuffledRDD.html DeveloperApi The resulting RDD from a shuffle (e.g. repartitioning of data).
+
+download/org.apache.spark.scheduler.AccumulableInfo.html DeveloperApi Information about an org.apache.spark.Accumulable modified during a task or stage. Note: once this is JSON serialized the types of update and value will be lost and be cast to strings. This is because the user can define an accumulator of any type and it will be difficult to preserve the type in consumers of the event log. This does not apply to internal accumulators that represent task level metrics.
+
+download/org.apache.spark.scheduler.InputFormatInfo.html DeveloperApi Parses and holds information about inputFormat (and files) specified as a parameter.
+
+download/org.apache.spark.scheduler.JobResult.html DeveloperApi A result of a job in the DAGScheduler.
+
+download/org.apache.spark.scheduler.SchedulingMode$.html None "FAIR" and "FIFO" determines which policy is used to order tasks amongst a Schedulable's sub-queues "NONE" is used when the a Schedulable has no sub-queues.
+
+download/org.apache.spark.scheduler.SparkListener.html DeveloperApi A default implementation for SparkListenerInterface that has no-op implementations for all callbacks. Note that this is an internal interface which might change in different Spark releases.
+
+download/org.apache.spark.scheduler.SparkListenerExecutorMetricsUpdate.html None Periodic updates from executors.
+
+download/org.apache.spark.scheduler.StageInfo.html DeveloperApi Stores information about a stage to pass from the scheduler to SparkListeners.
+
+download/org.apache.spark.scheduler.StatsReportListener.html DeveloperApi Simple SparkListener that logs a few summary statistics when each stage completes.
+
+download/org.apache.spark.scheduler.TaskInfo.html DeveloperApi Information about a running task attempt inside a TaskSet.
+
+download/org.apache.spark.scheduler.cluster.ExecutorInfo.html DeveloperApi Stores information about an executor to pass from the scheduler to SparkListeners.
+
+download/org.apache.spark.security.GroupMappingServiceProvider.html None This Spark trait is used for mapping a given userName to a set of groups which it belongs to. This is useful for specifying a common group of admins/developers to provide them admin, modify and/or view access rights. Based on whether access control checks are enabled using spark.acls.enable, every time a user tries to access or modify the application, the SecurityManager gets the corresponding groups a user belongs to from the instance of the groups mapping provider specified by the entry spark.user.groups.mapping.
+
+download/org.apache.spark.serializer.DeserializationStream.html DeveloperApi A stream for reading serialized objects.
+
+download/org.apache.spark.serializer.JavaSerializer.html DeveloperApi A Spark serializer that uses Java's built-in serialization. Note that this serializer is not guaranteed to be wire-compatible across different versions of Spark. It is intended to be used to serialize/de-serialize data within a single Spark application.
+
+download/org.apache.spark.serializer.KryoRegistrator.html None Interface implemented by clients to register their classes with Kryo when using Kryo serialization.
+
+download/org.apache.spark.serializer.KryoSerializer.html None A Spark serializer that uses the Kryo serialization library. Note that this serializer is not guaranteed to be wire-compatible across different versions of Spark. It is intended to be used to serialize/de-serialize data within a single Spark application.
+
+download/org.apache.spark.serializer.SerializationStream.html DeveloperApi A stream for writing serialized objects.
+
+download/org.apache.spark.serializer.Serializer.html DeveloperApi A serializer. Because some serialization libraries are not thread safe, this class is used to create org.apache.spark.serializer.SerializerInstance objects that do the actual serialization and are guaranteed to only be called from one thread at a time. Implementations of this trait should implement: 1. a zero-arg constructor or a constructor that accepts a org.apache.spark.SparkConf as parameter. If both constructors are defined, the latter takes precedence. 2. Java serialization interface. Note that serializers are not required to be wire-compatible across different versions of Spark. They are intended to be used to serialize/de-serialize data within a single Spark application.
+
+download/org.apache.spark.serializer.SerializerInstance.html DeveloperApi An instance of a serializer, for use by one thread at a time. It is legal to create multiple serialization / deserialization streams from the same SerializerInstance as long as those streams are all used within the same thread.
+
+download/org.apache.spark.sql.AnalysisException.html DeveloperApi Thrown when a query fails to analyze, usually because the query itself is invalid.
+
+download/org.apache.spark.sql.Column.html None A column that will be computed based on the data in a DataFrame. A new column is constructed based on the input columns present in a dataframe: Column objects can be composed to form complex expressions:
+
+download/org.apache.spark.sql.ColumnName.html Experimental A convenient class used for constructing schema.
+
+download/org.apache.spark.sql.DataFrameNaFunctions.html Experimental Functionality for working with missing data in DataFrames.
+
+download/org.apache.spark.sql.DataFrameReader.html None Interface used to load a Dataset from external storage systems (e.g. file systems, key-value stores, etc). Use SparkSession.read to access this.
+
+download/org.apache.spark.sql.DataFrameStatFunctions.html Experimental Statistic functions for DataFrames.
+
+download/org.apache.spark.sql.DataFrameWriter.html None Interface used to write a Dataset to external storage systems (e.g. file systems, key-value stores, etc). Use Dataset.write to access this.
+
+download/org.apache.spark.sql.Dataset.html None A Dataset is a strongly typed collection of domain-specific objects that can be transformed in parallel using functional or relational operations. Each Dataset also has an untyped view called a DataFrame, which is a Dataset of Row. Operations available on Datasets are divided into transformations and actions. Transformations are the ones that produce new Datasets, and actions are the ones that trigger computation and return results. Example transformations include map, filter, select, and aggregate (groupBy). Example actions count, show, or writing data out to file systems. Datasets are "lazy", i.e. computations are only triggered when an action is invoked. Internally, a Dataset represents a logical plan that describes the computation required to produce the data. When an action is invoked, Spark's query optimizer optimizes the logical plan and generates a physical plan for efficient execution in a parallel and distributed manner. To explore the logical plan as well as optimized physical plan, use the explain function. To efficiently support domain-specific objects, an Encoder is required. The encoder maps the domain specific type T to Spark's internal type system. For example, given a class Person with two fields, name (string) and age (int), an encoder is used to tell Spark to generate code at runtime to serialize the Person object into a binary structure. This binary structure often has much lower memory footprint as well as are optimized for efficiency in data processing (e.g. in a columnar format). To understand the internal binary representation for data, use the schema function. There are typically two ways to create a Dataset. The most common way is by pointing Spark to some files on storage systems, using the read function available on a SparkSession. Datasets can also be created through transformations available on existing Datasets. For example, the following creates a new Dataset by applying a filter on the existing one: Dataset operations can also be untyped, through various domain-specific-language (DSL) functions defined in: Dataset (this class), Column, and functions. These operations are very similar to the operations available in the data frame abstraction in R or Python. To select a column from the Dataset, use apply method in Scala and col in Java. Note that the Column type can also be manipulated through its various functions. A more concrete example in Scala: and in Java:
+
+download/org.apache.spark.sql.DatasetHolder.html None A container for a Dataset, used for implicit conversions in Scala. To use this, import implicit conversions in SQL:
+
+download/org.apache.spark.sql.Encoder.html Experimental Used to convert a JVM object of type T to and from the internal Spark SQL representation. Encoders are generally created automatically through implicits from a SparkSession, or can be explicitly created by calling static methods on Encoders. Encoders are specified by calling static methods on Encoders. Encoders can be composed into tuples: Or constructed from Java Beans:
+
+download/org.apache.spark.sql.Encoders$.html Experimental Methods for creating an Encoder.
+
+download/org.apache.spark.sql.ExperimentalMethods.html Experimental Holder for experimental methods for the bravest. We make NO guarantee about the stability regarding binary compatibility and source compatibility of methods here.
+
+download/org.apache.spark.sql.ForeachWriter.html Experimental A class to consume data generated by a StreamingQuery. Typically this is used to send the generated data to external systems. Each partition will use a new deserialized instance, so you usually should do all the initialization (e.g. opening a connection or initiating a transaction) in the open method. Scala example: Java example:
+
+download/org.apache.spark.sql.functions$.html Experimental Functions available for DataFrame.
+
+download/org.apache.spark.sql.KeyValueGroupedDataset.html Experimental A Dataset has been logically grouped by a user specified grouping key. Users should not construct a KeyValueGroupedDataset directly, but should instead call groupByKey on an existing Dataset.
+
+download/org.apache.spark.sql.RelationalGroupedDataset.html None A set of methods for aggregations on a DataFrame, created by Dataset.groupBy. The main method is the agg function, which has multiple variants. This class also contains convenience some first order statistics such as mean, sum for convenience. This class was named GroupedData in Spark 1.x.
+
+download/org.apache.spark.sql.Row.html None Represents one row of output from a relational operator. Allows both generic access by ordinal, which will incur boxing overhead for primitives, as well as native primitive access. It is invalid to use the native primitive interface to retrieve a value that is null, instead a user must check isNullAt before attempting to retrieve a value that might be null. To create a new Row, use RowFactory.create() in Java or Row.apply() in Scala. A Row object can be constructed by providing field values. Example: A value of a row can be accessed through both generic access by ordinal, which will incur boxing overhead for primitives, as well as native primitive access. An example of generic access by ordinal: For native primitive access, it is invalid to use the native primitive interface to retrieve a value that is null, instead a user must check isNullAt before attempting to retrieve a value that might be null. An example of native primitive access: In Scala, fields in a Row object can be extracted in a pattern match. Example:
+
+download/org.apache.spark.sql.RuntimeConfig.html None Runtime configuration interface for Spark. To access this, use SparkSession.conf. Options set here are automatically propagated to the Hadoop configuration during I/O.
+
+download/org.apache.spark.sql.SparkSession.html None The entry point to programming Spark with the Dataset and DataFrame API. In environments that this has been created upfront (e.g. REPL, notebooks), use the builder to get an existing session: The builder can also be used to create a new session:
+
+download/org.apache.spark.sql.SQLContext.html None The entry point for working with structured data (rows and columns) in Spark 1.x. As of Spark 2.0, this is replaced by SparkSession. However, we are keeping the class here for backward compatibility.
+
+download/org.apache.spark.sql.SQLImplicits.html None A collection of implicit methods for converting common Scala objects into Datasets.
+
+download/org.apache.spark.sql.TypedColumn.html None A Column where an Encoder has been given for the expected input and return type. To create a TypedColumn, use the as function on a Column.
+
+download/org.apache.spark.sql.UDFRegistration.html None Functions for registering user-defined functions. Use SQLContext.udf to access this. Note that the user-defined functions must be deterministic.
+
+download/org.apache.spark.sql.catalog.Catalog.html None Catalog interface for Spark. To access this, use SparkSession.catalog.
+
+download/org.apache.spark.sql.catalog.Column.html None A column in Spark, as returned by listColumns method in Catalog.
+
+download/org.apache.spark.sql.catalog.Database.html None A database in Spark, as returned by the listDatabases method defined in Catalog.
+
+download/org.apache.spark.sql.catalog.Function.html None A user-defined function in Spark, as returned by listFunctions method in Catalog.
+
+download/org.apache.spark.sql.catalog.Table.html None A table in Spark, as returned by the listTables method in Catalog.
+
+download/org.apache.spark.sql.expressions.Aggregator.html Experimental A base class for user-defined aggregations, which can be used in Dataset operations to take all of the elements of a group and reduce them to a single value. For example, the following aggregator extracts an int from a specific class and adds them up: Based loosely on Aggregator from Algebird: https://github.com/twitter/algebird
+
+download/org.apache.spark.sql.expressions.MutableAggregationBuffer.html Experimental A Row representing a mutable aggregation buffer. This is not meant to be extended outside of Spark.
+
+download/org.apache.spark.sql.expressions.UserDefinedAggregateFunction.html Experimental The base class for implementing user-defined aggregate functions (UDAF).
+
+download/org.apache.spark.sql.expressions.UserDefinedFunction.html None A user-defined function. To create one, use the udf functions in functions. Note that the user-defined functions must be deterministic. Due to optimization, duplicate invocations may be eliminated or the function may even be invoked more times than it is present in the query. As an example:
+
+download/org.apache.spark.sql.expressions.Window.html Experimental Utility functions for defining window in DataFrames.
+
+download/org.apache.spark.sql.expressions.WindowSpec.html Experimental A window specification that defines the partitioning, ordering, and frame boundaries. Use the static methods in Window to create a WindowSpec.
+
+download/org.apache.spark.sql.expressions.scalalang.typed$.html Experimental Type-safe functions available for Dataset operations in Scala. Java users should use org.apache.spark.sql.expressions.javalang.typed.
+
+download/org.apache.spark.sql.hive.HiveContext.html None An instance of the Spark SQL execution engine that integrates with data stored in Hive. Configuration for Hive is read from hive-site.xml on the classpath.
+
+download/org.apache.spark.sql.hive.execution.CreateHiveTableAsSelectCommand.html None Create table and insert the query result into it.
+
+download/org.apache.spark.sql.hive.execution.HiveScriptIOSchema.html None The wrapper class of Hive input and output schema properties
+
+download/org.apache.spark.sql.hive.execution.ScriptTransformation.html None Transforms the input by forking and running the specified script.
+
+download/org.apache.spark.sql.hive.orc.OrcFileFormat.html None FileFormat for reading ORC files. If this is moved or renamed, please update DataSource's backwardCompatibilityMap.
+
+download/org.apache.spark.sql.internal.CatalogImpl.html None Internal implementation of the user-facing Catalog.
+
+download/org.apache.spark.sql.internal.VariableSubstitution.html None A helper class that enables substitution using syntax like ${var}, ${system:var} and ${env:var}. Variable substitution is controlled by SQLConf.variableSubstituteEnabled.
+
+download/org.apache.spark.sql.jdbc.JdbcDialect.html DeveloperApi Encapsulates everything (extensions, workarounds, quirks) to handle the SQL dialect of a certain database or jdbc driver. Lots of databases define types that aren't explicitly supported by the JDBC spec. Some JDBC drivers also report inaccurate information---for instance, BIT(n>1) being reported as a BIT type is quite common, even though BIT in JDBC is meant for single-bit values. Also, there does not appear to be a standard name for an unbounded string or binary type; we use BLOB and CLOB by default but override with database-specific alternatives when these are absent or do not behave correctly. Currently, the only thing done by the dialect is type mapping. getCatalystType is used when reading from a JDBC table and getJDBCType is used when writing to a JDBC table. If getCatalystType returns null, the default type handling is used for the given JDBC type. Similarly, if getJDBCType returns (null, None), the default type handling is used for the given Catalyst type.
+
+download/org.apache.spark.sql.jdbc.JdbcDialects$.html DeveloperApi Registry of dialects that apply to every new jdbc org.apache.spark.sql.DataFrame. If multiple matching dialects are registered then all matching ones will be tried in reverse order. A user-added dialect will thus be applied first, overwriting the defaults. Note that all new dialects are applied to new jdbc DataFrames only. Make sure to register your dialects first.
+
+download/org.apache.spark.sql.jdbc.JdbcType.html DeveloperApi A database type definition coupled with the jdbc type needed to send null values to the database.
+
+download/org.apache.spark.sql.sources.And.html None A filter that evaluates to true iff both left or right evaluate to true.
+
+download/org.apache.spark.sql.sources.BaseRelation.html DeveloperApi Represents a collection of tuples with a known schema. Classes that extend BaseRelation must be able to produce the schema of their data in the form of a StructType. Concrete implementation should inherit from one of the descendant Scan classes, which define various abstract methods for execution. BaseRelations must also define an equality function that only returns true when the two instances will return the same data. This equality function is used when determining when it is safe to substitute cached results for a given relation.
+
+download/org.apache.spark.sql.sources.CatalystScan.html Experimental An interface for experimenting with a more direct connection to the query planner. Compared to PrunedFilteredScan, this operator receives the raw expressions from the org.apache.spark.sql.catalyst.plans.logical.LogicalPlan. Unlike the other APIs this interface is NOT designed to be binary compatible across releases and thus should only be used for experimentation.
+
+download/org.apache.spark.sql.sources.DataSourceRegister.html DeveloperApi Data sources should implement this trait so that they can register an alias to their data source. This allows users to give the data source alias as the format type over the fully qualified class name. A new instance of this class will be instantiated each time a DDL call is made.
+
+download/org.apache.spark.sql.sources.EqualNullSafe.html None Performs equality comparison, similar to EqualTo. However, this differs from EqualTo in that it returns true (rather than NULL) if both inputs are NULL, and false (rather than NULL) if one of the input is NULL and the other is not NULL.
+
+download/org.apache.spark.sql.sources.EqualTo.html None A filter that evaluates to true iff the attribute evaluates to a value equal to value.
+
+download/org.apache.spark.sql.sources.Filter.html None A filter predicate for data sources.
+
+download/org.apache.spark.sql.sources.GreaterThan.html None A filter that evaluates to true iff the attribute evaluates to a value greater than value.
+
+download/org.apache.spark.sql.sources.GreaterThanOrEqual.html None A filter that evaluates to true iff the attribute evaluates to a value greater than or equal to value.
+
+download/org.apache.spark.sql.sources.In.html None A filter that evaluates to true iff the attribute evaluates to one of the values in the array.
+
+download/org.apache.spark.sql.sources.InsertableRelation.html DeveloperApi A BaseRelation that can be used to insert data into it through the insert method. If overwrite in insert method is true, the old data in the relation should be overwritten with the new data. If overwrite in insert method is false, the new data should be appended. InsertableRelation has the following three assumptions. 1. It assumes that the data (Rows in the DataFrame) provided to the insert method exactly matches the ordinal of fields in the schema of the BaseRelation. 2. It assumes that the schema of this relation will not be changed. Even if the insert method updates the schema (e.g. a relation of JSON or Parquet data may have a schema update after an insert operation), the new schema will not be used. 3. It assumes that fields of the data provided in the insert method are nullable. If a data source needs to check the actual nullability of a field, it needs to do it in the insert method.
+
+download/org.apache.spark.sql.sources.IsNotNull.html None A filter that evaluates to true iff the attribute evaluates to a non-null value.
+
+download/org.apache.spark.sql.sources.IsNull.html None A filter that evaluates to true iff the attribute evaluates to null.
+
+download/org.apache.spark.sql.sources.LessThan.html None A filter that evaluates to true iff the attribute evaluates to a value less than value.
+
+download/org.apache.spark.sql.sources.LessThanOrEqual.html None A filter that evaluates to true iff the attribute evaluates to a value less than or equal to value.
+
+download/org.apache.spark.sql.sources.Not.html None A filter that evaluates to true iff child is evaluated to false.
+
+download/org.apache.spark.sql.sources.Or.html None A filter that evaluates to true iff at least one of left or right evaluates to true.
+
+download/org.apache.spark.sql.sources.PrunedFilteredScan.html DeveloperApi A BaseRelation that can eliminate unneeded columns and filter using selected predicates before producing an RDD containing all matching tuples as Row objects. The actual filter should be the conjunction of all filters, i.e. they should be "and" together. The pushed down filters are currently purely an optimization as they will all be evaluated again. This means it is safe to use them with methods that produce false positives such as filtering partitions based on a bloom filter.
+
+download/org.apache.spark.sql.sources.PrunedScan.html DeveloperApi A BaseRelation that can eliminate unneeded columns before producing an RDD containing all of its tuples as Row objects.
+
+download/org.apache.spark.sql.sources.RelationProvider.html DeveloperApi Implemented by objects that produce relations for a specific kind of data source. When Spark SQL is given a DDL operation with a USING clause specified (to specify the implemented RelationProvider), this interface is used to pass in the parameters specified by a user. Users may specify the fully qualified class name of a given data source. When that class is not found Spark SQL will append the class name DefaultSource to the path, allowing for less verbose invocation. For example, 'org.apache.spark.sql.json' would resolve to the data source 'org.apache.spark.sql.json.DefaultSource' A new instance of this class will be instantiated each time a DDL call is made.
+
+download/org.apache.spark.sql.sources.SchemaRelationProvider.html DeveloperApi Implemented by objects that produce relations for a specific kind of data source with a given schema. When Spark SQL is given a DDL operation with a USING clause specified ( to specify the implemented SchemaRelationProvider) and a user defined schema, this interface is used to pass in the parameters specified by a user. Users may specify the fully qualified class name of a given data source. When that class is not found Spark SQL will append the class name DefaultSource to the path, allowing for less verbose invocation. For example, 'org.apache.spark.sql.json' would resolve to the data source 'org.apache.spark.sql.json.DefaultSource' A new instance of this class will be instantiated each time a DDL call is made. The difference between a RelationProvider and a SchemaRelationProvider is that users need to provide a schema when using a SchemaRelationProvider. A relation provider can inherits both RelationProvider and SchemaRelationProvider if it can support both schema inference and user-specified schemas.
+
+download/org.apache.spark.sql.sources.StreamSinkProvider.html Experimental Implemented by objects that can produce a streaming Sink for a specific format or system.
+
+download/org.apache.spark.sql.sources.StreamSourceProvider.html Experimental Implemented by objects that can produce a streaming Source for a specific format or system.
+
+download/org.apache.spark.sql.sources.StringContains.html None A filter that evaluates to true iff the attribute evaluates to a string that contains the string value.
+
+download/org.apache.spark.sql.sources.StringEndsWith.html None A filter that evaluates to true iff the attribute evaluates to a string that starts with value.
+
+download/org.apache.spark.sql.sources.StringStartsWith.html None A filter that evaluates to true iff the attribute evaluates to a string that starts with value.
+
+download/org.apache.spark.sql.sources.TableScan.html DeveloperApi A BaseRelation that can produce all of its tuples as an RDD of Row objects.
+
+download/org.apache.spark.sql.streaming.DataStreamReader.html None Interface used to load a streaming Dataset from external storage systems (e.g. file systems, key-value stores, etc). Use SparkSession.readStream to access this.
+
+download/org.apache.spark.sql.streaming.DataStreamWriter.html Experimental Interface used to write a streaming Dataset to external storage systems (e.g. file systems, key-value stores, etc). Use Dataset.writeStream to access this.
+
+download/org.apache.spark.sql.streaming.ProcessingTime.html Experimental A trigger that runs a query periodically based on the processing time. If interval is 0, the query will run as fast as possible. Scala Example: Java Example:
+
+download/org.apache.spark.sql.streaming.SinkStatus.html Experimental Status and metrics of a streaming sink.
+
+download/org.apache.spark.sql.streaming.SourceStatus.html Experimental Status and metrics of a streaming Source.
+
+download/org.apache.spark.sql.streaming.StreamingQuery.html Experimental A handle to a query that is executing continuously in the background as new data arrives. All these methods are thread-safe.
+
+download/org.apache.spark.sql.streaming.StreamingQueryException.html Experimental Exception that stopped a StreamingQuery. Use cause get the actual exception that caused the failure.
+
+download/org.apache.spark.sql.streaming.StreamingQueryListener.html Experimental Interface for listening to events related to StreamingQueries.
+
+download/org.apache.spark.sql.streaming.StreamingQueryManager.html Experimental A class to manage all the StreamingQuery active on a SparkSession.
+
+download/org.apache.spark.sql.streaming.StreamingQueryStatus.html Experimental A class used to report information about the progress of a StreamingQuery.
+
+download/org.apache.spark.sql.streaming.Trigger.html Experimental Used to indicate how often results should be produced by a StreamingQuery.
+
+download/org.apache.spark.sql.types.AnyDataType$.html None An AbstractDataType that matches any concrete data types.
+
+download/org.apache.spark.sql.types.ArrayType.html DeveloperApi The data type for collections of multiple values. Internally these are represented as columns that contain a scala.collection.Seq. Please use DataTypes.createArrayType() to create a specific instance. An ArrayType object comprises two fields, elementType: DataType and containsNull: Boolean. The field of elementType is used to specify the type of array elements. The field of containsNull is used to specify if the array has null values.
+
+download/org.apache.spark.sql.types.AtomicType.html None An internal type used to represent everything that is not null, UDTs, arrays, structs, and maps.
+
+download/org.apache.spark.sql.types.BinaryType.html DeveloperApi The data type representing Array[Byte] values. Please use the singleton DataTypes.BinaryType.
+
+download/org.apache.spark.sql.types.BooleanType.html DeveloperApi The data type representing Boolean values. Please use the singleton DataTypes.BooleanType.
+
+download/org.apache.spark.sql.types.ByteType.html DeveloperApi The data type representing Byte values. Please use the singleton DataTypes.ByteType.
+
+download/org.apache.spark.sql.types.CalendarIntervalType.html DeveloperApi The data type representing calendar time intervals. The calendar time interval is stored internally in two components: number of months the number of microseconds. Note that calendar intervals are not comparable. Please use the singleton DataTypes.CalendarIntervalType.
+
+download/org.apache.spark.sql.types.DataType.html DeveloperApi The base type of all Spark SQL data types.
+
+download/org.apache.spark.sql.types.DateType.html DeveloperApi A date type, supporting "0001-01-01" through "9999-12-31". Please use the singleton DataTypes.DateType. Internally, this is represented as the number of days from 1970-01-01.
+
+download/org.apache.spark.sql.types.Decimal.html None A mutable implementation of BigDecimal that can hold a Long if values are small enough. The semantics of the fields are as follows: - _precision and _scale represent the SQL precision and scale we are looking for - If decimalVal is set, it represents the whole decimal value - Otherwise, the decimal value is longVal / (10 ** _scale)
+
+download/org.apache.spark.sql.types.DecimalType.html DeveloperApi The data type representing java.math.BigDecimal values. A Decimal that must have fixed precision (the maximum number of digits) and scale (the number of digits on right side of dot). The precision can be up to 38, scale can also be up to 38 (less or equal to precision). The default precision and scale is (10, 0). Please use DataTypes.createDecimalType() to create a specific instance.
+
+download/org.apache.spark.sql.types.DoubleType.html DeveloperApi The data type representing Double values. Please use the singleton DataTypes.DoubleType.
+
+download/org.apache.spark.sql.types.FloatType.html DeveloperApi The data type representing Float values. Please use the singleton DataTypes.FloatType.
+
+download/org.apache.spark.sql.types.IntegerType.html DeveloperApi The data type representing Int values. Please use the singleton DataTypes.IntegerType.
+
+download/org.apache.spark.sql.types.LongType.html DeveloperApi The data type representing Long values. Please use the singleton DataTypes.LongType.
+
+download/org.apache.spark.sql.types.MapType.html DeveloperApi The data type for Maps. Keys in a map are not allowed to have null values. Please use DataTypes.createMapType() to create a specific instance.
+
+download/org.apache.spark.sql.types.Metadata.html DeveloperApi Metadata is a wrapper over Map[String, Any] that limits the value type to simple ones: Boolean, Long, Double, String, Metadata, Array[Boolean], Array[Long], Array[Double], Array[String], and Array[Metadata]. JSON is used for serialization. The default constructor is private. User should use either MetadataBuilder or Metadata.fromJson() to create Metadata instances.
+
+download/org.apache.spark.sql.types.MetadataBuilder.html DeveloperApi Builder for Metadata. If there is a key collision, the latter will overwrite the former.
+
+download/org.apache.spark.sql.types.NullType.html DeveloperApi The data type representing NULL values. Please use the singleton DataTypes.NullType.
+
+download/org.apache.spark.sql.types.NumericType.html DeveloperApi Numeric data types.
+
+download/org.apache.spark.sql.types.ShortType.html DeveloperApi The data type representing Short values. Please use the singleton DataTypes.ShortType.
+
+download/org.apache.spark.sql.types.StringType.html DeveloperApi The data type representing String values. Please use the singleton DataTypes.StringType.
+
+download/org.apache.spark.sql.types.StructField.html None A field inside a StructType.
+
+download/org.apache.spark.sql.types.StructType.html DeveloperApi A StructType object can be constructed by For a StructType object, one or multiple StructFields can be extracted by names. If multiple StructFields are extracted, a StructType object will be returned. If a provided name does not have a matching field, it will be ignored. For the case of extracting a single StructField, a null will be returned. Example: A org.apache.spark.sql.Row object is used as a value of the StructType. Example:
+
+download/org.apache.spark.sql.types.TimestampType.html DeveloperApi The data type representing java.sql.Timestamp values. Please use the singleton DataTypes.TimestampType.
+
+download/org.apache.spark.sql.util.ExecutionListenerManager.html Experimental Manager for QueryExecutionListener. See org.apache.spark.sql.SQLContext.listenerManager.
+
+download/org.apache.spark.sql.util.QueryExecutionListener.html Experimental The interface of query execution listener that can be used to analyze execution metrics. Note that implementations should guarantee thread-safety as they can be invoked by multiple different threads.
+
+download/org.apache.spark.storage.BlockId.html DeveloperApi Identifies a particular Block of data, usually associated with a single file. A Block can be uniquely identified by its filename, but each type of Block has a different set of keys which produce its unique name. If your BlockId should be serializable, be sure to add it to the BlockId.apply() method.
+
+download/org.apache.spark.storage.BlockManagerId.html DeveloperApi This class represent an unique identifier for a BlockManager. The first 2 constructors of this class is made private to ensure that BlockManagerId objects can be created only using the apply method in the companion object. This allows de-duplication of ID objects. Also, constructor parameters are private to ensure that parameters cannot be modified from outside this class.
+
+download/org.apache.spark.storage.BlockUpdatedInfo.html DeveloperApi Stores information about a block status in a block manager.
+
+download/org.apache.spark.storage.StorageLevel.html DeveloperApi Flags for controlling the storage of an RDD. Each StorageLevel records whether to use memory, or ExternalBlockStore, whether to drop the RDD to disk if it falls out of memory or ExternalBlockStore, whether to keep the data in memory in a serialized format, and whether to replicate the RDD partitions on multiple nodes. The org.apache.spark.storage.StorageLevel$ singleton object contains some static constants for commonly useful storage levels. To create your own storage level object, use the factory method of the singleton object (StorageLevel(...)).
+
+download/org.apache.spark.storage.StorageStatus.html DeveloperApi Storage information for each BlockManager. This class assumes BlockId and BlockStatus are immutable, such that the consumers of this class cannot mutate the source of the information. Accesses are not thread-safe.
+
+download/org.apache.spark.storage.StorageStatusListener.html DeveloperApi A SparkListener that maintains executor storage status. This class is thread-safe (unlike JobProgressListener)
+
+download/org.apache.spark.streaming.Milliseconds$.html None Helper object that creates instance of org.apache.spark.streaming.Duration representing a given number of milliseconds.
+
+download/org.apache.spark.streaming.Minutes$.html None Helper object that creates instance of org.apache.spark.streaming.Duration representing a given number of minutes.
+
+download/org.apache.spark.streaming.Seconds$.html None Helper object that creates instance of org.apache.spark.streaming.Duration representing a given number of seconds.
+
+download/org.apache.spark.streaming.State.html Experimental Abstract class for getting and updating the state in mapping function used in the mapWithState operation of a pair DStream (Scala) or a JavaPairDStream (Java). Scala example of using State: Java example of using State:
+
+download/org.apache.spark.streaming.StateSpec.html Experimental Abstract class representing all the specifications of the DStream transformation mapWithState operation of a pair DStream (Scala) or a JavaPairDStream (Java). Use StateSpec.function factory methods to create instances of this class. Example in Scala: Example in Java:
+
+download/org.apache.spark.streaming.StreamingContext.html None Main entry point for Spark Streaming functionality. It provides methods used to create org.apache.spark.streaming.dstream.DStreams from various input sources. It can be either created by providing a Spark master URL and an appName, or from a org.apache.spark.SparkConf configuration (see core Spark documentation), or from an existing org.apache.spark.SparkContext. The associated SparkContext can be accessed using context.sparkContext. After creating and transforming DStreams, the streaming computation can be started and stopped using context.start() and context.stop(), respectively. context.awaitTermination() allows the current thread to wait for the termination of the context by stop() or by an exception.
+
+download/org.apache.spark.streaming.Time.html None This is a simple class that represents an absolute instant of time. Internally, it represents time as the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC. This is the same format as what is returned by System.currentTimeMillis.
+
+download/org.apache.spark.streaming.api.java.JavaDStream.html None A Java-friendly interface to org.apache.spark.streaming.dstream.DStream, the basic abstraction in Spark Streaming that represents a continuous stream of data. DStreams can either be created from live data (such as, data from TCP sockets, Kafka, Flume, etc.) or it can be generated by transforming existing DStreams using operations such as map, window. For operations applicable to key-value pair DStreams, see org.apache.spark.streaming.api.java.JavaPairDStream.
+
+download/org.apache.spark.streaming.api.java.JavaInputDStream.html None A Java-friendly interface to org.apache.spark.streaming.dstream.InputDStream.
+
+download/org.apache.spark.streaming.api.java.JavaMapWithStateDStream.html Experimental DStream representing the stream of data generated by mapWithState operation on a JavaPairDStream. Additionally, it also gives access to the stream of state snapshots, that is, the state data of all keys after a batch has updated them.
+
+download/org.apache.spark.streaming.api.java.JavaPairDStream.html None A Java-friendly interface to a DStream of key-value pairs, which provides extra methods like reduceByKey and join.
+
+download/org.apache.spark.streaming.api.java.JavaPairInputDStream.html None A Java-friendly interface to org.apache.spark.streaming.dstream.InputDStream of key-value pairs.
+
+download/org.apache.spark.streaming.api.java.JavaPairReceiverInputDStream.html None A Java-friendly interface to org.apache.spark.streaming.dstream.ReceiverInputDStream, the abstract class for defining any input stream that receives data over the network.
+
+download/org.apache.spark.streaming.api.java.JavaReceiverInputDStream.html None A Java-friendly interface to org.apache.spark.streaming.dstream.ReceiverInputDStream, the abstract class for defining any input stream that receives data over the network.
+
+download/org.apache.spark.streaming.api.java.JavaStreamingContext.html None A Java-friendly version of org.apache.spark.streaming.StreamingContext which is the main entry point for Spark Streaming functionality. It provides methods to create org.apache.spark.streaming.api.java.JavaDStream and org.apache.spark.streaming.api.java.JavaPairDStream. from input sources. The internal org.apache.spark.api.java.JavaSparkContext (see core Spark documentation) can be accessed using context.sparkContext. After creating and transforming DStreams, the streaming computation can be started and stopped using context.start() and context.stop(), respectively. context.awaitTermination() allows the current thread to wait for the termination of a context by stop() or by an exception.
+
+download/org.apache.spark.streaming.dstream.ConstantInputDStream.html None An input stream that always returns the same RDD on each time step. Useful for testing.
+
+download/org.apache.spark.streaming.dstream.DStream.html None A Discretized Stream (DStream), the basic abstraction in Spark Streaming, is a continuous sequence of RDDs (of the same type) representing a continuous stream of data (see org.apache.spark.rdd.RDD in the Spark core documentation for more details on RDDs). DStreams can either be created from live data (such as, data from TCP sockets, Kafka, Flume, etc.) using a org.apache.spark.streaming.StreamingContext or it can be generated by transforming existing DStreams using operations such as map, window and reduceByKeyAndWindow. While a Spark Streaming program is running, each DStream periodically generates a RDD, either from live data or by transforming the RDD generated by a parent DStream. This class contains the basic operations available on all DStreams, such as map, filter and window. In addition, org.apache.spark.streaming.dstream.PairDStreamFunctions contains operations available only on DStreams of key-value pairs, such as groupByKeyAndWindow and join. These operations are automatically available on any DStream of pairs (e.g., DStream[(Int, Int)] through implicit conversions. A DStream internally is characterized by a few basic properties:
+
+download/org.apache.spark.streaming.dstream.InputDStream.html None This is the abstract base class for all input streams. This class provides methods start() and stop() which are called by Spark Streaming system to start and stop receiving data, respectively. Input streams that can generate RDDs from new data by running a service/thread only on the driver node (that is, without running a receiver on worker nodes), can be implemented by directly inheriting this InputDStream. For example, FileInputDStream, a subclass of InputDStream, monitors a HDFS directory from the driver for new files and generates RDDs with the new files. For implementing input streams that requires running a receiver on the worker nodes, use org.apache.spark.streaming.dstream.ReceiverInputDStream as the parent class.
+
+download/org.apache.spark.streaming.dstream.MapWithStateDStream.html Experimental DStream representing the stream of data generated by mapWithState operation on a pair DStream. Additionally, it also gives access to the stream of state snapshots, that is, the state data of all keys after a batch has updated them.
+
+download/org.apache.spark.streaming.dstream.PairDStreamFunctions.html None Extra functions available on DStream of (key, value) pairs through an implicit conversion.
+
+download/org.apache.spark.streaming.dstream.ReceiverInputDStream.html None Abstract class for defining any org.apache.spark.streaming.dstream.InputDStream that has to start a receiver on worker nodes to receive external data. Specific implementations of ReceiverInputDStream must define getReceiver function that gets the receiver object of type org.apache.spark.streaming.receiver.Receiver that will be sent to the workers to receive data.
+
+download/org.apache.spark.streaming.flume.SparkFlumeEvent.html None A wrapper class for AvroFlumeEvent's with a custom serialization format. This is necessary because AvroFlumeEvent uses inner data structures which are not serializable.
+
+download/org.apache.spark.streaming.kafka.Broker.html None Represents the host and port info for a Kafka broker. Differs from the Kafka project's internal kafka.cluster.Broker, which contains a server ID.
+
+download/org.apache.spark.streaming.kafka.HasOffsetRanges.html None Represents any object that has a collection of OffsetRanges. This can be used to access the offset ranges in RDDs generated by the direct Kafka DStream (see KafkaUtils.createDirectStream()).
+
+download/org.apache.spark.streaming.kafka.KafkaCluster.html DeveloperApi Convenience methods for interacting with a Kafka cluster. See A Guide To The Kafka Protocol for more details on individual api calls.
+
+download/org.apache.spark.streaming.kafka.OffsetRange.html None Represents a range of offsets from a single Kafka TopicAndPartition. Instances of this class can be created with OffsetRange.create().
+
+download/org.apache.spark.streaming.receiver.Receiver.html DeveloperApi Abstract class of a receiver that can be run on worker nodes to receive external data. A custom receiver can be defined by defining the functions onStart() and onStop(). onStart() should define the setup steps necessary to start receiving data, and onStop() should define the cleanup steps necessary to stop receiving data. Exceptions while receiving can be handled either by restarting the receiver with restart(...) or stopped completely by stop(...). A custom receiver in Scala would look like this. A custom receiver in Java would look like this.
+
+download/org.apache.spark.streaming.scheduler.BatchInfo.html DeveloperApi Class having information on completed batches.
+
+download/org.apache.spark.streaming.scheduler.OutputOperationInfo.html DeveloperApi Class having information on output operations.
+
+download/org.apache.spark.streaming.scheduler.ReceiverInfo.html DeveloperApi Class having information about a receiver
+
+download/org.apache.spark.streaming.scheduler.StatsReportListener.html DeveloperApi A simple StreamingListener that logs summary statistics across Spark Streaming batches
+
+download/org.apache.spark.streaming.scheduler.StreamingListener.html DeveloperApi A listener interface for receiving information about an ongoing streaming computation.
+
+download/org.apache.spark.streaming.scheduler.StreamingListenerEvent.html DeveloperApi Base trait for events related to StreamingListener
+
+download/org.apache.spark.streaming.scheduler.StreamInputInfo.html DeveloperApi Track the information of input stream at specified batch time.
+
+download/org.apache.spark.ui.env.EnvironmentListener.html DeveloperApi A SparkListener that prepares information to be displayed on the EnvironmentTab
+
+download/org.apache.spark.ui.exec.ExecutorsListener.html DeveloperApi A SparkListener that prepares information to be displayed on the ExecutorsTab
+
+download/org.apache.spark.ui.jobs.JobProgressListener.html DeveloperApi Tracks task-level information to be displayed in the UI. All access to the data structures in this class must be synchronized on the class, since the UI thread and the EventBus loop may otherwise be reading and updating the internal data structures concurrently.
+
+download/org.apache.spark.ui.storage.StorageListener.html DeveloperApi A SparkListener that prepares information to be displayed on the BlockManagerUI. This class is thread-safe (unlike JobProgressListener)
+
+download/org.apache.spark.util.AccumulatorV2.html None The base class for accumulators, that can accumulate inputs of type IN, and produce output of type OUT. OUT should be a type that can be read atomically (e.g., Int, Long), or thread-safely (e.g., synchronized collections) because it will be read from other threads.
+
+download/org.apache.spark.util.CollectionAccumulator.html None An accumulator for collecting a list of elements.
+
+download/org.apache.spark.util.DoubleAccumulator.html None An accumulator for computing sum, count, and averages for double precision floating numbers.
+
+download/org.apache.spark.util.LongAccumulator.html None An accumulator for computing sum, count, and averages for 64-bit integers.
+
+download/org.apache.spark.util.MutablePair.html DeveloperApi A tuple of 2 elements. This can be used as an alternative to Scala's Tuple2 when we want to minimize object allocation.
+
+download/org.apache.spark.util.SizeEstimator$.html DeveloperApi Estimates the sizes of Java objects (number of bytes of memory they occupy), for use in memory-aware caches. Based on the following JavaWorld article: http://www.javaworld.com/javaworld/javaqa/2003-12/02-qa-1226-sizeof.html
+
+download/org.apache.spark.util.StatCounter.html None A class for tracking the statistics of a set of numbers (count, mean and variance) in a numerically robust way. Includes support for merging two StatCounters. Based on Welford and Chan's algorithms for running variance.
+
+download/org.apache.spark.util.TaskCompletionListener.html DeveloperApi Listener providing a callback function to invoke when a task's execution completes.
+
+download/org.apache.spark.util.TaskFailureListener.html DeveloperApi Listener providing a callback function to invoke when a task's execution encounters an error. Operations defined here must be idempotent, as onTaskFailure can be called multiple times.
+
+download/org.apache.spark.util.random.BernoulliCellSampler.html DeveloperApi A sampler based on Bernoulli trials for partitioning a data sequence.
+
+download/org.apache.spark.util.random.BernoulliSampler.html DeveloperApi A sampler based on Bernoulli trials.
+
+download/org.apache.spark.util.random.PoissonSampler.html DeveloperApi A sampler for sampling with replacement, based on values drawn from Poisson distribution.
+
+download/org.apache.spark.util.random.Pseudorandom.html DeveloperApi A class with pseudorandom behavior.
+
+download/org.apache.spark.util.random.RandomSampler.html DeveloperApi A pseudorandom sampler. It is possible to change the sampled item type. For example, we might want to add weights for stratified sampling or importance sampling. Should only use transformations that are tied to the sampler and cannot be applied after sampling.
+
