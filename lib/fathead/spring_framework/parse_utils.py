@@ -37,7 +37,7 @@ def get_docs(filename, classUrl):
         url = ""
         if len(classUrl) != 0:
             url = BASE_JAVADOC_URL + classUrl
-        return classname, description, url
+        return classname, description, url, classUrl.replace('/', '.')
 
 
 def cut_length(description):
@@ -81,18 +81,17 @@ def concat_redirect(title, redirect_location):
     return concat(title, 'R', redirect_location=redirect_location)
 
 
-def concat(title, entry_type, abstract='', url='', redirect_location=''):
+def concat(title, entry_type, abstract='', url='', redirect_location='', disambiguaions=''):
     four = ''
     categories = ''
     six = ''
     related_topics = ''  # [[Perl Data Language|PDL]], can be multiples?
     eight = ''
     external_links = ''  # [$url title text]\\n, can be multiples
-    ten = ''
     image = ''
 
     data = [title, entry_type, redirect_location, four, categories, six,
-            related_topics, eight, external_links, ten, image, abstract, url]
+            related_topics, eight, external_links, disambituaions, image, abstract, url]
     line = "\t".join(data) + "\n"
     return line
 
@@ -106,10 +105,33 @@ def add_redirects(f, clazz):
         f.write(line.encode('utf'))
 
 
-def output(filename, data_list):
-    line = concat_list(data_list)
+def add_article(filename, article_data):
+    line = concat_list(article_data)
     if not line.startswith("No class found") and line != "" and not ("No abstract found" in line):
         f = open(filename, 'a')
         f.write(line.encode('utf'))
-        add_redirects(f, data_list[0])
+        add_redirects(f, article_data[0])
         f.close()
+
+
+def add_disambiguation(filename, title, linked_entries):
+    disambiguation_list = []
+    for entry in linked_entries:
+        disambiguation_list.append([entry[3]])
+        disambiguation_list.append(entry[1])
+    line = concat(title, 'D', disambiguaions='*{}'.format(str(disambiguation_list).replace(', [[', '\n*[[')))
+    f = open(filename, 'a')
+    f.write(line.encode('utf'))
+    f.close()
+
+
+def output(filename, data_list):
+    if len(data_list) == 1:  # There is only one class with the given name
+        add_article(filename, data_list[0])
+    else:  # There are mutliple articles sharing the same title.  So we need a disambiguation entry.
+        common_title = data_list[0][0]
+        for article in data_list:
+            add_article(filename, (article[3], article[1], article[2]))
+
+        add_disambiguation(filename, common_title, data_list)
+
