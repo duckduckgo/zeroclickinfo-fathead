@@ -14,7 +14,7 @@ items.each do |item| # Looping through the Index URLs
     rescue OpenURI::HTTPError
     end
 
-    unless doc_index.css('#class-index .entries a').empty? || doc_index.css('#class-index .entries a').nil?
+    next if doc_index.nil? || doc_index.css('#class-index .entries a').nil? || doc_index.css('#class-index .entries a').empty?
 
         class_entries = doc_index.css('#class-index .entries a')
 
@@ -31,9 +31,8 @@ items.each do |item| # Looping through the Index URLs
             end
             open('output.txt', 'a') { |f| f.print class_title + "\t" + 'A' + "\t" + ' ' + "\t" + ' ' + "\t" + 'Ruby Class' + "\t" + ' ' + "\t" + class_related + "\t" + ' ' + "\t" + ' ' + "\t" + ' ' + "\t" + ' ' + class_description + class_url + "\n" }
         end
-    end
 
-    next if doc_index.css('#method-index .entries p:not(.nodoc)').empty? || doc_index.css('#method-index .entries p').nil?
+    next if doc_index.nil? || doc_index.css('#method-index .entries p').nil? || doc_index.css('#method-index .entries p:not(.nodoc)').empty?
 
     methods_entries = doc_index.css('#method-index .entries a').first
 
