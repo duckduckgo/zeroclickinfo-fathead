@@ -1,0 +1,5 @@
+venv/
+*.pyc
+download/
+test.py
+archive.py
