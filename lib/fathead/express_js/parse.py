@@ -11,7 +11,6 @@ __AUTHOR__ = 'adityatandon007@DDG_COMMUNITY'
 INFILE = 'downloads/docs.html'
 OUTFILE = 'output.txt'
 
-
 abstract_fmt = '<section class="prog__container"><p>{}</p>{}</section>'
 url_fmt = 'http://expressjs.com/en/api.html'
 
@@ -20,9 +19,11 @@ def clean_para(para):
     """ Remove newlines from paragraph """
     return re.sub('\r?\n+', '', para)
  
+
 def clean_code(code):
     """ Escape newlines and tabs """
     return code.replace('\n', '\\n').replace('\t', '    ')
+
 
 """ Headings generator """
 
@@ -30,9 +31,8 @@ def get_headings(h2s):
     
     """ Parsing headings """
     
-    #h2s = parsing_doc.find_all('h2')
     for h2 in h2s:
-        
+    
         """ Generating titles and urls for headings """  
         
         title = h2.get('id')
@@ -60,9 +60,6 @@ def get_headings(h2s):
         
         yield [title, 'A', '', '', '', '', '', '', '', '', '', abstract, url]
             
-            
-            
-
 
 """ Methods and Properties generator """
         
@@ -70,7 +67,6 @@ def get_methods_properties(sections):
     
     """ Parsing methods and properties """
 
-    #sections = parsing_doc.find_all('section')
     for sect in sections:
         h3 = sect.find('h3')
         if h3:
@@ -99,6 +95,7 @@ def get_methods_properties(sections):
            
             yield [title, 'A', '', '', '', '', '', '', '', '', '', abstract, url]
          
+
         
 def main():
     """ Creating the soup """
@@ -123,6 +120,7 @@ def main():
             o.write(output + '\n')
 
     
+
 if __name__ == '__main__':
     print('STARTING ' + __MODULE__)
     print('PARSING.....')
