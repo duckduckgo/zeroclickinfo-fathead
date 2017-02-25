@@ -13,5 +13,5 @@ cd ./download/
   wget --quiet --no-check-certificate --no-cookies -O overview-summary.html http://docs.spring.io/spring/docs/current/javadoc-api/overview-summary.html
 #fi
 cd ..
-python ./fetch.py
+python3 ./fetch.py
 unzip -q ./download/*.zip -d ./docs/

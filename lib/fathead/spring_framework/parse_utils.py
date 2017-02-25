@@ -9,9 +9,9 @@ BASE_JAVADOC_FILE = BASE_LOCAL_JAVADOC_DIR + "/allclasses-noframe.html"
 
 
 def read_root_file():
-    rootFile = open(BASE_JAVADOC_FILE, 'r')
-    lines = rootFile.read()
-    rootFile.close()
+    root_file = open(BASE_JAVADOC_FILE, 'r')
+    lines = root_file.read()
+    root_file.close()
     return lines
 
 
@@ -47,7 +47,7 @@ def cut_length(description):
 
 
 def remove_keywords(line):
-    if isinstance(line, basestring):
+    if isinstance(line, str):
         line = re.sub(r'<\w,?\w?>', '', line)
         return line.replace('Class ', '').replace('Enum ', '').replace('Interface ', '').replace('Annotation Type ', '')
     else:
@@ -102,13 +102,13 @@ def add_redirects(f, clazz):
     if len(uppercase_words) > 1:
         redirect_title = ' '.join(uppercase_words)
         line = concat_redirect(redirect_title, clazz)
-        f.write(line.encode('utf'))
+        f.write(line)
 
 
 def add_article(f, article_data, should_redirect=True):
     line = concat_list(article_data)
     if not line.startswith("No class found") and line != "" and not ("No abstract found" in line):
-        f.write(line.encode('utf'))
+        f.write(line)
         if should_redirect:
                 add_redirects(f, article_data[0])
 
@@ -119,14 +119,14 @@ def add_disambiguation(f, title, linked_entries):
         disambiguation_string += '[[{}]], {}\n*'.format(entry[3], entry[1])
     disambiguation_string = disambiguation_string[:-3]
     line = concat(title, 'D', disambiguaions=disambiguation_string)
-    f.write(line.encode('utf'))
+    f.write(line)
 
 
 def output(filename, data_list):
     f = open(filename, 'a')
     if len(data_list) == 1:  # There is only one class with the given name
         add_article(f, data_list[0])
-    else:  # There are mutliple articles sharing the same title.  So we need a disambiguation entry.
+    else:  # There are multiple articles sharing the same title.  So we need a disambiguation entry.
         common_title = data_list[0][0]
         for article in data_list:
             add_article(f, (article[3], article[1], article[2]), False)
