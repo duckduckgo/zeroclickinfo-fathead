@@ -116,7 +116,7 @@ def add_article(f, article_data, should_redirect=True):
 def add_disambiguation(f, title, linked_entries):
     disambiguation_string = '*'
     for entry in linked_entries:
-        disambiguation_string += '[[{}]], {}\n*'.format(entry[3], entry[1])
+        disambiguation_string += '[[{}]], {}\\n*'.format(entry[3], entry[1])
     disambiguation_string = disambiguation_string[:-3]
     line = concat(title, 'D', disambiguaions=disambiguation_string)
     f.write(line)
