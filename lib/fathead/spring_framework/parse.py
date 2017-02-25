@@ -25,7 +25,7 @@ if __name__ == '__main__':
         if len(result) != 0:
             classUrl = result[0].get('href')
 
-        data = parse_utils.get_docs(f, classUrl)
+        data = parse_utils.get_docs(f, classUrl[:-5])
         output[data[KEY]].append(data)
 
     for value in output.values():

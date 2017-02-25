@@ -91,7 +91,7 @@ def concat(title, entry_type, abstract='', url='', redirect_location='', disambi
     image = ''
 
     data = [title, entry_type, redirect_location, four, categories, six,
-            related_topics, eight, external_links, disambituaions, image, abstract, url]
+            related_topics, eight, external_links, disambiguaions, image, abstract, url]
     line = "\t".join(data) + "\n"
     return line
 
@@ -105,33 +105,31 @@ def add_redirects(f, clazz):
         f.write(line.encode('utf'))
 
 
-def add_article(filename, article_data):
+def add_article(f, article_data, should_redirect=True):
     line = concat_list(article_data)
     if not line.startswith("No class found") and line != "" and not ("No abstract found" in line):
-        f = open(filename, 'a')
         f.write(line.encode('utf'))
-        add_redirects(f, article_data[0])
-        f.close()
+        if should_redirect:
+                add_redirects(f, article_data[0])
 
 
-def add_disambiguation(filename, title, linked_entries):
-    disambiguation_list = []
+def add_disambiguation(f, title, linked_entries):
+    disambiguation_string = '*'
     for entry in linked_entries:
-        disambiguation_list.append([entry[3]])
-        disambiguation_list.append(entry[1])
-    line = concat(title, 'D', disambiguaions='*{}'.format(str(disambiguation_list).replace(', [[', '\n*[[')))
-    f = open(filename, 'a')
+        disambiguation_string += '[[{}]], {}\n*'.format(entry[3], entry[1])
+    disambiguation_string = disambiguation_string[:-3]
+    line = concat(title, 'D', disambiguaions=disambiguation_string)
     f.write(line.encode('utf'))
-    f.close()
 
 
 def output(filename, data_list):
+    f = open(filename, 'a')
     if len(data_list) == 1:  # There is only one class with the given name
-        add_article(filename, data_list[0])
+        add_article(f, data_list[0])
     else:  # There are mutliple articles sharing the same title.  So we need a disambiguation entry.
         common_title = data_list[0][0]
         for article in data_list:
-            add_article(filename, (article[3], article[1], article[2]))
-
-        add_disambiguation(filename, common_title, data_list)
-
+            add_article(f, (article[3], article[1], article[2]), False)
+        add_redirects(f, common_title)
+        add_disambiguation(f, common_title, data_list)
+    f.close()
