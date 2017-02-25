@@ -132,7 +132,8 @@ for page in pages:
     for l in list_of_data:
         final = final + l + '\t'
 
-    final = final + '\n'
+    final = final[:-1]
+    final += '\n'
     outyo.write(final)
 
 
