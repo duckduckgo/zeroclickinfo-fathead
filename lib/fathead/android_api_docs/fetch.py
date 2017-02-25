@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''
-    Coulter Peterson
-'''
 from bs4 import BeautifulSoup
 
 import requests
@@ -14,11 +11,12 @@ session = requests.Session()
 index = 'https://developer.android.com/reference/packages.html'
 baseurl = 'https://developer.android.com/'
 
-#Layer 1, more to be made for the drill downs
+
+# Layer 1, more to be made for the drill downs
 def layer_1_pull(url_data):
-    '''
+    """
     Downloads the html source files listed on the first packages index page
-    '''
+    """
     # BeautifulSoup the page data for searching
     soup = BeautifulSoup(url_data.text, 'html.parser')
 
@@ -28,7 +26,6 @@ def layer_1_pull(url_data):
     for tr in trs:
         # Wrap url pull in a try/except in case there is a tr without an href in it
         try:
-            #title = tr.td.a.contents[0]
             url = (tr.find('a')['href'])
             print("Layer 1 URL Pull:" + url)
             # Get the folder path of the doc for saving and later parsing
@@ -41,7 +38,7 @@ def layer_1_pull(url_data):
                 if not os.path.exists(os.path.dirname(filename)):
                     try:
                         os.makedirs(os.path.dirname(filename))
-                    except OSError as exc: # Guard against race condition
+                    except OSError as exc:  # Guard against race condition
                         if exc.errno != errno.EEXIST:
                             raise
 
@@ -54,10 +51,11 @@ def layer_1_pull(url_data):
         # Pass each URL on for further page download
         layer_2_pull(r)
 
+
 def layer_2_pull(url_data):
-    '''
+    """
     Downloads the html source files listed on the page passed as an argument
-    '''
+    """
 
     # BeautifulSoup the page data for searching
     soup = BeautifulSoup(url_data.text, 'html.parser')
@@ -68,16 +66,15 @@ def layer_2_pull(url_data):
     for tr in trs:
         # Wrap url pull in a try/except in case there is a tr without an href in it
         try:
-            #title = tr.td.a.contents[0]
             url = (tr.find('a')['href'])
             print("Layer 2 URL Pull:" + url)
             # Get the folder path of the doc for saving and later parsing
             if 'https://developer.android.com/' in url:
-                urlPath= url.replace('https://developer.android.com/', '')
+                url_path = url.replace('https://developer.android.com/', '')
 
                 # Save this page in its relative local folder
                 # Credit to Krumelur on stackoverflow.com for the path existence check
-                filename = "download/" + urlPath
+                filename = "download/" + url_path
                 if not os.path.exists(os.path.dirname(filename)):
                     try:
                         os.makedirs(os.path.dirname(filename))
