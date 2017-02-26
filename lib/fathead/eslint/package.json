@@ -1,20 +1,21 @@
 {
-    "name": "zeroclickinfo-fathead-eslint",
-    "version": "1.0.0",
-    "description": "Fathead project for ESLint.",
-    "main": "parse.js",
-    "scripts": {
-        "build": "node_modules/.bin/eslint ./",
-        "test": "node_modules/.bin/jasmine"
-    },
-    "author": "zodiac403",
-    "license": "Apache-2.0",
-    "dependencies": {
-        "js-yaml": "^3.7.0",
-        "markdown": "^0.5.0"
-    },
-    "devDependencies": {
-        "eslint": "^3.12.2",
-        "jasmine": "^2.5.2"
-    }
+  "name": "zeroclickinfo-fathead-eslint",
+  "version": "1.0.0",
+  "description": "Fathead project for ESLint.",
+  "main": "parse.js",
+  "scripts": {
+    "build": "node_modules/.bin/eslint ./",
+    "test": "node_modules/.bin/jasmine"
+  },
+  "author": "zodiac403",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "js-yaml": "^3.8.0",
+    "markdown": "^0.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.16.0",
+    "jasmine": "^2.5.2",
+    "proxyquire": "^1.7.11"
+  }
 }
