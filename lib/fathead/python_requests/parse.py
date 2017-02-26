@@ -96,7 +96,7 @@ def create_redirect_titles(func_with_params='', func_without_params=''):
 
 
 def format_abstract(abstract, code=None):
-    abstract = '<p>{}</p>'.format(abstract)
+    abstract = '<p>{}</p>'.format(abstract) if abstract else ''
     section = '<section class="prog__container">{0}{1}</section>'
     if code:
         code = '<pre><code>{}</code></pre>'.format(code)
