@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import os
 import re
 
-BASE_JAVADOC_URL = "http://docs.spring.io/spring/docs/current/javadoc-api/"
+BASE_JAVADOC_URL = "http://docs.spring.io/spring/docs/current/javadoc-api"
 BASE_LOCAL_JAVADOC_DIR = "./docs/javadoc-api"
 BASE_JAVADOC_FILE = BASE_LOCAL_JAVADOC_DIR + "/allclasses-noframe.html"
 
@@ -25,7 +25,7 @@ def collect_doc_files_from(dir):
     return docFiles
 
 
-def get_docs(filename, classUrl):
+def get_docs(filename, class_path):
     if filename.endswith('.html') and 'package-' not in filename and 'doc-files' not in filename:
         content = BeautifulSoup(get_content(filename), 'html.parser')
         classname = remove_keywords(content.find_all('h2')[0].string)
@@ -35,9 +35,9 @@ def get_docs(filename, classUrl):
             description = block[0].get_text()
             description = cut_length(description)
         url = ""
-        if len(classUrl) != 0:
-            url = BASE_JAVADOC_URL + classUrl
-        return classname, description, url, classUrl.replace('/', '.')
+        if len(class_path) != 0:
+            url = '{}{}.html'.format(BASE_JAVADOC_URL, class_path)
+        return classname, description, url, class_path.replace('/', '.')
 
 
 def cut_length(description):
