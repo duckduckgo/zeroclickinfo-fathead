@@ -72,9 +72,7 @@ class PyMongoParser():
                 abstract = '<section class="prog_container">' + \
                            '<pre><code>' + code + '</pre></code><p>' + \
                            description + '</p></section>'
-
                 title = element.dt["id"].replace('.', ' ')
-
 
                 filename_removed_dir = filename.replace('download/', '')
                 headerlink = self.baseurl + filename_removed_dir + anchor_link
@@ -119,7 +117,6 @@ class PyMongoParser():
                     for item in tag.dt.contents:
                         tag_code += str(item)
                     tag_code = self._clean_html_tags(tag_code)
-
                     for item in tag.dd.contents:
                         tag_description += str(item)
                     tag_description = self._clean_html_tags(tag_description)
@@ -128,7 +125,6 @@ class PyMongoParser():
                     abstract = '<section class="prog_container">' + \
                                 '<pre><code>' + tag_code + '</pre></code><p>' + \
                                 tag_description + '</p></section>'
-
                     title = tag.dt["id"].replace('.', ' ')
                     tag.decompose()
 
@@ -170,6 +166,13 @@ class PyMongoParser():
         """
         html_soup_cleaner = BeautifulSoup(html_to_clean, 'html.parser')
 
+        # Remove code tags so only the ones we want are displayed
+        tags_to_replace = ['code']
+        for tag in html_soup_cleaner.find_all(tags_to_replace):
+            if tag.attrs:
+                del tag.attrs
+            del tag.name
+
         # Replace code tag from documentation to expected
         for tag in html_soup_cleaner.find_all("div", {"class": "highlight-default"}):
             tag.name = "pre"
@@ -194,7 +197,7 @@ class PyMongoParser():
                 del tag.attrs
 
         # Remove any formatting attributes from tags we want
-        tags_to_replace = ['th', 'td', 'tl', 'tr', 'table', 'em' 'p', 'dd', 'dt', 'col', 'code']
+        tags_to_replace = ['th', 'td', 'tl', 'tr', 'table', 'em' 'p', 'dd', 'dt', 'col']
         for tag in html_soup_cleaner.find_all(tags_to_replace):
             if tag.attrs:
                 del tag.attrs
@@ -202,6 +205,11 @@ class PyMongoParser():
         for tag in html_soup_cleaner.find_all("ul"):
             if tag.attrs:
                 del tag.attrs
+
+        for tag in html_soup_cleaner.find_all("em", {"class": "property"}):
+            if tag.attrs:
+                del tag.attrs
+            del tag.name
 
         # Change <cite> tags to more relevant <code> tags
         for tag in html_soup_cleaner.find_all("cite"):
