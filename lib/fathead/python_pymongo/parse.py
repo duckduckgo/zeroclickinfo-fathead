@@ -53,7 +53,6 @@ class PyMongoParser():
                         for item in tag.dt.contents:
                             tag_code += str(item)
                         tag_code = self._clean_html_tags(tag_code)
-
                         for item in tag.dd.contents:
                             tag_description += str(item)
                         tag_description = self._clean_html_tags(tag_description)
@@ -64,6 +63,7 @@ class PyMongoParser():
                 for item in element.dt.contents:
                     code += str(item)
                 code = self._clean_html_tags(code)
+                code = self._clean_code_tags(code)
                 for item in element.dd.contents:
                     description += str(item)
 
@@ -117,6 +117,7 @@ class PyMongoParser():
                     for item in tag.dt.contents:
                         tag_code += str(item)
                     tag_code = self._clean_html_tags(tag_code)
+                    tag_code = self._clean_code_tags(tag_code)
                     for item in tag.dd.contents:
                         tag_description += str(item)
                     tag_description = self._clean_html_tags(tag_description)
@@ -158,6 +159,30 @@ class PyMongoParser():
                     output_line += headerlink
                     print(output_line)
 
+    def _clean_code_tags(self, code_html_to_clean):
+        """
+        Cleans <code> tags from html. Should only be used in 'code" section to prevent
+        <code> tags from doubling up within the <pre><code> section
+        :param code_html_to_clean: String of html to remove code tags
+        :return: html with removed code tags
+        """
+
+        html_soup_cleaner = BeautifulSoup(code_html_to_clean, 'html.parser')
+
+        # Remove code tags so only the ones we want are displayed
+        for tag in html_soup_cleaner.find_all("code"):
+            if tag.attrs:
+                del tag.attrs
+            del tag.name
+
+        cleaned_html = str(html_soup_cleaner)
+        cleaned_html = cleaned_html.replace("<None>", '')
+        cleaned_html = cleaned_html.replace("</None>", '')
+        cleaned_html = cleaned_html.replace("<none>", '')
+        cleaned_html = cleaned_html.replace("</none>", '')
+
+        return cleaned_html
+
     def _clean_html_tags(self, html_to_clean):
         """
         Cleans unwanted tags from html for DDG Fathead output
@@ -167,11 +192,9 @@ class PyMongoParser():
         html_soup_cleaner = BeautifulSoup(html_to_clean, 'html.parser')
 
         # Remove code tags so only the ones we want are displayed
-        tags_to_replace = ['code']
-        for tag in html_soup_cleaner.find_all(tags_to_replace):
+        for tag in html_soup_cleaner.find_all("code"):
             if tag.attrs:
                 del tag.attrs
-            del tag.name
 
         # Replace code tag from documentation to expected
         for tag in html_soup_cleaner.find_all("div", {"class": "highlight-default"}):
@@ -180,6 +203,12 @@ class PyMongoParser():
             tag.next_element.name = "code"
             del tag.next_element.attrs
             tag.next_element.next_element.name = "span"
+
+        # replace the version_modified spans with italics
+        for tag in html_soup_cleaner.find_all("span", {"class": "versionmodified"}):
+            tag.name = "i"
+            if tag.attrs:
+                del tag.attrs
 
         # Remove tags we don't want
         tags_to_replace = ['span', 'div', 'blockquote']
@@ -197,7 +226,7 @@ class PyMongoParser():
                 del tag.attrs
 
         # Remove any formatting attributes from tags we want
-        tags_to_replace = ['th', 'td', 'tl', 'tr', 'table', 'em' 'p', 'dd', 'dt', 'col']
+        tags_to_replace = ['th', 'td', 'tl', 'tr', 'table', 'p', 'dd', 'dt', 'col', 'tbody']
         for tag in html_soup_cleaner.find_all(tags_to_replace):
             if tag.attrs:
                 del tag.attrs
@@ -209,7 +238,6 @@ class PyMongoParser():
         for tag in html_soup_cleaner.find_all("em", {"class": "property"}):
             if tag.attrs:
                 del tag.attrs
-            del tag.name
 
         # Change <cite> tags to more relevant <code> tags
         for tag in html_soup_cleaner.find_all("cite"):
@@ -219,6 +247,8 @@ class PyMongoParser():
         cleaned_html = cleaned_html.replace("¶", "")
         cleaned_html = cleaned_html.replace("<None>", '')
         cleaned_html = cleaned_html.replace("</None>", '')
+        cleaned_html = cleaned_html.replace("<none>", '')
+        cleaned_html = cleaned_html.replace("</none>", '')
         cleaned_html = cleaned_html.replace('\n', '\\n').strip('\n')
 
         return cleaned_html
