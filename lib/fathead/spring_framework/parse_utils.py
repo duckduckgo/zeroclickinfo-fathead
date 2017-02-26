@@ -97,6 +97,13 @@ def concat(title, entry_type, abstract='', url='', redirect_location='', disambi
 
 
 def add_redirects(f, clazz):
+    # We eliminate the outer class for inner class entries
+    separator = clazz.find('.')
+    if separator != -1:
+        line = concat_redirect(clazz[separator + 1:], clazz)
+        f.write(line)
+        clazz = clazz[separator + 1:]
+
     # Regex splits on uppercase letters.  Won't split on SQL since it's used in a few class names
     uppercase_words = re.findall(r'[A-Z](?:QL)?[^A-Z]*', clazz)
     if len(uppercase_words) > 1:
