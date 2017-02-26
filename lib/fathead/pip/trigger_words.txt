@@ -1,2 +1,1 @@
-pip
 python pip
