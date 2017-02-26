@@ -75,11 +75,13 @@ class Parser(object):
                 continue
 
             for tag in div.find_all('dl'):
-                '''Get the module name '''
-                if tag.dt.select('code')[1].get_text(strip=True) != 'six.':
-                    module_name = tag.dt.select('code')[1].get_text(strip=True)
-                else:
-                    module_name = tag.dt.select('code')[2].get_text(strip=True)
+                '''Get the module names '''
+                module_names = []
+                for dt in tag.find_all('dt'):
+                    if dt.select('code')[1].get_text(strip=True) != 'six.':
+                        module_names.append(dt.select('code')[1].get_text(strip=True))
+                    else:
+                        module_names.append(dt.select('code')[2].get_text(strip=True))
 
                 '''Get the module desc '''
                 description = tag.dd.p.getText()
@@ -91,10 +93,11 @@ class Parser(object):
                 is_function = tag.get('class')[0] == u'function'
 
                 # Create the SixModule object
-                module = SixModule(module_name, description, file.replace('download/', ''), is_function)
-                module.usage = code
-                # Add the module in SixModule
-                self.six_module.append(module)
+                for name in module_names:
+                    module = SixModule(name, description, file.replace('download/', ''), is_function)
+                    module.usage = code
+                    # Add the module in SixModule
+                    self.six_module.append(module)
 
 
 if __name__ == '__main__':

@@ -6,6 +6,7 @@ get_function_code
 get_function_defaults
 get_function_globals
 next
+advance_iterator
 callable
 iterkeys
 itervalues
