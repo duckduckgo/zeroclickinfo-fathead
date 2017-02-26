@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 import os
 import re
+import html
 
 BASE_JAVADOC_URL = "http://docs.spring.io/spring/docs/current/javadoc-api/"
 BASE_LOCAL_JAVADOC_DIR = "./docs/javadoc-api"
@@ -70,7 +71,7 @@ def concat_list(data_list=['', '', '']):
 
 def concat_article(clazz, description, url):
     description = description.replace("\n", "\\n").replace("\t", "\\t") or "No abstract found"
-    abstract = '<section class="prog__container">' + description + '</section>'
+    abstract = '<section class="prog__container">' + html.escape(description) + '</section>'
 
     url = url or "No URL found"
 
