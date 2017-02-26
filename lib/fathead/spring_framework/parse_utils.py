@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import os
 import re
 
-BASE_JAVADOC_URL = "http://docs.spring.io/spring/docs/current/javadoc-api"
+BASE_JAVADOC_URL = "http://docs.spring.io/spring/docs/current/javadoc-api/"
 BASE_LOCAL_JAVADOC_DIR = "./docs/javadoc-api"
 BASE_JAVADOC_FILE = BASE_LOCAL_JAVADOC_DIR + "/allclasses-noframe.html"
 
@@ -16,19 +16,19 @@ def read_root_file():
 
 
 def collect_doc_files_from(dir):
-    docFiles = []
+    doc_files = []
     for (path, dirs, files) in os.walk(dir):
         if 'class-use' not in path and 'index-files' not in path:
             for f in files:
                 if f.endswith('.html') and 'package-' not in f and 'doc-files' not in f:
-                    docFiles.append("%s/%s" % (path, f))
-    return docFiles
+                    doc_files.append("%s/%s" % (path, f))
+    return doc_files
 
 
 def get_docs(filename, class_path):
     if filename.endswith('.html') and 'package-' not in filename and 'doc-files' not in filename:
         content = BeautifulSoup(get_content(filename), 'html.parser')
-        classname = remove_keywords(content.find_all('h2')[0].string)
+        classname = remove_keywords(content.find_all('h2')[0].text)
         block = content.find_all('div', 'block', limit=1)
         description = ""
         if len(block) > 0:
@@ -48,7 +48,7 @@ def cut_length(description):
 
 def remove_keywords(line):
     if isinstance(line, str):
-        line = re.sub(r'<\w,?\w?>', '', line)
+        line = re.sub(r'<.*?>', '', line)
         return line.replace('Class ', '').replace('Enum ', '').replace('Interface ', '').replace('Annotation Type ', '')
     else:
         return ''
@@ -62,7 +62,7 @@ def get_content(filename):
 
 
 def concat_list(data_list=['', '', '']):
-    if data_list != None:
+    if data_list is not None:
         return concat_article(data_list[0], data_list[1], data_list[2])
     else:
         return ""
@@ -107,7 +107,7 @@ def add_redirects(f, clazz):
 
 def add_article(f, article_data, should_redirect=True):
     line = concat_list(article_data)
-    if not line.startswith("No class found") and line != "" and not ("No abstract found" in line):
+    if line != "" and not ("No abstract found" in line):
         f.write(line)
         if should_redirect:
                 add_redirects(f, article_data[0])
