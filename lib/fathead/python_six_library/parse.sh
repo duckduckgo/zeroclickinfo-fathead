@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rf coverage
+rm -rf cover
 
-mkdir coverage
+mkdir cover
 python parse.py
