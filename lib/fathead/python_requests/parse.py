@@ -162,8 +162,9 @@ def parse_dl(dl, page_url):
         code = dl.pre.text.replace('\n', '\\n')
     if abstract:
         abstract = format_abstract(abstract, code)
-        out = create_article(func_with_params, abstract, permalink)
-        output_data.append(out)
+        if not is_duplicate_entry(func_with_params):
+            out = create_article(func_with_params, abstract, permalink)
+            output_data.append(out)
         for redirect_title in redirect_titles:
             if not is_duplicate_entry(redirect_title):
                 redirect = create_redirect(redirect_title,
@@ -207,7 +208,7 @@ def parse_h2(h2_parent, page_url):
     abstract = abstract.lstrip()
     abstract = abstract.strip('\n')
     abstract = format_abstract(abstract, code)
-    if title not in SEEN_TITLES:
+    if not is_duplicate_entry(title):
         return create_article(title, abstract, url)
 
 
