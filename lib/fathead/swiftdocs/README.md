@@ -20,14 +20,13 @@ Screencaps:
 <img width="712" alt="screen shot 2016-07-27 at 3 04 21 pm" src="https://cloud.githubusercontent.com/assets/81969/17188568/b05d6ac2-540b-11e6-9233-57b0a002e400.png">
 <img width="438" alt="screen shot 2016-07-27 at 3 04 32 pm" src="https://cloud.githubusercontent.com/assets/81969/17188569/b05d788c-540b-11e6-83b5-fffe0156c606.png">
 
-Dependencies:
-------------
-npm and node
+What's missing?
+----
 
-How to test this:
-----------------
-Navigate to the swiftdocs directory under lib/fathead/ and run these commands
-1. npm install
-2. ./parse.sh
- 
+Disambiguation is currently missing but I think we can make a PR for that instead in the future. What we have here should be an MVP.
 
+How do I test this?
+-----
+You need `node` and `npm` installed on your machine. After that, run:
+
+`cd lib/fathead/swift && npm install && ./parse.sh`
