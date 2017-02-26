@@ -125,6 +125,7 @@ def parse_dl(dl, page_url):
     redirect_titles = create_redirect_titles(func_with_params,
                                              func_without_params)
     dd = dl.find('dd')
+    code = ''
     if dd.p:
         abstract += dd.p.text
         next_sibling = dd.p.find_next_sibling(text=None)
@@ -157,19 +158,22 @@ def parse_dl(dl, page_url):
                         abstract += ' ' + tr.td.text.strip()
 
         abstract = abstract.replace('\n', ' ')
-    code = ''
+    else:
+        if 'codes' in func_without_params:
+            next_div = dl.find_next_sibling(text=None)
+            code = next_div.text.replace('\n', '\\n')
     if dl.pre:
         code = dl.pre.text.replace('\n', '\\n')
-    if abstract:
+    if abstract or code:
         abstract = format_abstract(abstract, code)
-        if not is_duplicate_entry(func_with_params):
-            out = create_article(func_with_params, abstract, permalink)
-            output_data.append(out)
-        for redirect_title in redirect_titles:
-            if not is_duplicate_entry(redirect_title):
-                redirect = create_redirect(redirect_title,
-                                           func_with_params)
-                output_data.append(redirect)
+    if not is_duplicate_entry(func_with_params):
+        out = create_article(func_with_params, abstract, permalink)
+        output_data.append(out)
+    for redirect_title in redirect_titles:
+        if not is_duplicate_entry(redirect_title):
+            redirect = create_redirect(redirect_title,
+                                       func_with_params)
+            output_data.append(redirect)
     output_data = [d for d in output_data if d]
     return output_data
 
