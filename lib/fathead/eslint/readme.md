@@ -55,3 +55,21 @@ Quick draft how the content should get displayed on the search page.
 > ```
 >
 > &#x2714; Recommended: <b>yes</b> | <b>&#x2192;</b> Fixable: <b>no</b>
+
+## Road Map
+### V 1.0
+#### Fetch
+- Fetch `rules.yml` as **summary**
+
+#### Parse
+- Parse **summary**, display rule **names** and **descriptions**
+- Basic markdown support for **descriptions**
+
+### V 1.1
+#### Fetch
+- Fetch `rules/` folder as **details**
+
+#### Parse
+- Use *fixable* and *recommended* properties as **categories**
+- Parse MD file with **details** for each rule. Extract content of first two sections.
+- Markdown support for rule details (including code blocks)
