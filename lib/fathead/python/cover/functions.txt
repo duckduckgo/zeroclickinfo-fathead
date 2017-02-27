@@ -110,7 +110,6 @@ csv read, csv.reader
 enum list, enumerate
 call process, subprocess
 __import__, __import__
-datetime.datetime.strptime 
 datetime.datetime, datetime
 datetime tzinfo, datetime.datetime.timetz
 datetime to timestamp, datetime.datetime.timestamp
