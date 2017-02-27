@@ -39,6 +39,7 @@ items.each do |item| # Looping through the Index URLs
     method_url = item_url.chomp('index.html') + methods_entries['href']
     method_doc = Nokogiri::HTML(open(method_url))
     method_doc_detail = method_doc.css('.method-detail')
+
     method_id =
     method_related = item_url
 
@@ -46,10 +47,13 @@ items.each do |item| # Looping through the Index URLs
 
     method_doc_detail.each do |id|
         method_id = id['id']
-        method_title = method_doc.at("##{method_id} span").text.gsub(/::/, ' ')
+
+        next if method_doc.at("##{method_id} span").text.gsub(/::/, ' ').include? "click to toggle source"
+
+          method_title = method_doc.at("##{method_id} span").text.gsub(/::/, ' ')
+
         if method_doc.at('#' + "#{method_id} p").nil?
             method_description = 'No description provided'
-
         else
             method_description = method_doc.at('#' + "#{method_id} p").text.tr("\n", ' ').tr("\r", ' ')
         end
