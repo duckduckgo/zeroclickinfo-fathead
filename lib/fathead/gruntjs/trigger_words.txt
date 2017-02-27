@@ -1,4 +1,0 @@
-grunt
-gruntjs
-grunt.js
-grunt javascript
