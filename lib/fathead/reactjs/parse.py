@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 from bs4 import BeautifulSoup
+from bs4 import element
 
 DOWNLOADED_HTML_PATH = 'download/'
 REACT_API_DOCS_URL = "https://facebook.github.io/react/docs/"
@@ -91,7 +92,12 @@ class APIDocsParser(object):
         Extract the Example Code Snippet
         """
         example_code = ''
+        # The example code snippet is inside a pre-tag in a div-tag 
+        # Ignore any components that are not tag elements.
         for tag in api.next_siblings:
+            if not isinstance(tag, element.Tag):
+                continue
+
             if tag.name == 'div':
                 code = str(tag.find('pre'))
                 if code != 'None':
@@ -107,10 +113,17 @@ class APIDocsParser(object):
 
     def parse_content(self, api):
         """
-        Extracts the Content from API Docs
+        Extracts the Abstract from API Docs
         """
         abstract = ''
+        # This will take all text in p tags to be the abstract.
+        # It will break off at the next hr and blockquote tag.
+        # Everything that is not a tag element will be ignored 
+        # (such as line breaks).
         for tag in api.next_siblings:
+            if not isinstance(tag, element.Tag):
+                continue
+
             if tag.name == 'hr' or tag.name == 'blockquote':
                 break
             elif tag.name == 'div':
@@ -183,6 +196,7 @@ if __name__ == "__main__":
     with open('output.txt', 'w') as output_file:
         for dir_path, dir_name, file_names in os.walk(DOWNLOADED_HTML_PATH):
             for file_name in file_names:
+                print("Parsing %s" % file_name)
                 file_path = os.path.join(dir_path, file_name)
                 file_data = HtmlFileData(file_path)
                 parsed_api_docs = APIDocsParser(file_data)
