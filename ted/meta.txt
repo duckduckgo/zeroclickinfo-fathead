@@ -1,0 +1,5 @@
+Name: TED Talks
+Domain: ted.com
+Type: Videos
+MediaWiki:0
+Keywords: TED2006, Al Gore
