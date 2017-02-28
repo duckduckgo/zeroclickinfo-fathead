@@ -1,82 +1,352 @@
-__init__
-add_column
-add_columns
-add_entity
-all
-as_scalar
-autoflush
-correlate
-count
-cte
-delete
-distinct
-enable_assertions
-enable_eagerloads
-except_
-except_all
-execution_options
-exists
-filter
-filter_by
-first
-from_self
-from_statement
-get
-group_by
-having
-instances
-intersect
-intersect_all
-join
-label
-limit
-merge_result
-offset
-one
-one_or_none
-options
-order_by
-outerjoin
-params
-populate_existing
-prefix_with
-reset_joinpoint
-scalar
-select_entity_from
-select_from
-slice
-subquery
-suffix_with
-union
-union_all
-update
+RelationshipProperty.mapper
+merge(session, source_state, source_dict, dest_state, dest_dict, load, _recursive, _resolve_conflict_map)
+like(other, escape=None)
+between(cleft, cright, symmetric=False)
+attrs
+class sqlalchemy.orm.base.InspectionAttrInfo
+__init__(comparator_factory, descriptor=None, doc=None, info=None)
+ColumnProperty.extension_type = symbol('NOT_EXTENSION')
+contains(other, **kwargs)
+isnot(other)
+post_instrument_class(mapper)
+in_(other)
+class sqlalchemy.orm.attributes.InstrumentedAttribute(class_, key, impl=None, comparator=None, parententity=None, of_type=None)
+after_configured()
+match(other, **kwargs)
+detached_to_persistent(session, instance)
+all_()
+ColumnProperty.__init__(*columns, **kwargs)
+any(criterion=None, **kwargs)
+notlike(other, escape=None)
+session
+distinct()
+distinct()
+ColumnProperty.init()
+asc()
+ilike(other, escape=None)
+after_update(mapper, connection, target)
+after_flush(session, flush_context)
+append(target, value, initiator)
+adapter
+mapper_configured(mapper, class_)
+loaded_value
+after_soft_rollback(session, previous_transaction)
+startswith(other, **kwargs)
+is_property = False
+identity_key
+any_()
+exception sqlalchemy.orm.exc.MultipleResultsFound
+items() → list of D's (key, value) pairs, as 2-tuples
+match(other, **kwargs)
+class sqlalchemy.orm.base.InspectionAttr
+in_(other)
+desc()
+extension_type = symbol('NOT_EXTENSION')
+persistent_to_transient(session, instance)
+after_delete(mapper, connection, target)
+post_instrument_class(mapper)
+filter_states_for_dep(dep, states)
+is_(other)
+exception sqlalchemy.orm.exc.DetachedInstanceError
+exception sqlalchemy.orm.exc.ObjectDereferencedError
+notilike(other, escape=None)
+any_()
+class sqlalchemy.orm.events.AttributeEvents
+setup(context, entity, path, adapter, **kwargs)
+after_bulk_update(update_context)
+match(other, **kwargs)
+transient
+concat(other)
+fromkeys(S[, v]) → New dict with keys from S and values equal to v.
+values() → list of D's values
+detached
+pickle(target, state_dict)
+history
+distinct()
+cascade_iterator(type_, state, visited_instances=None, halt_on=None)
+after_transaction_create(session, transaction)
+exception sqlalchemy.orm.exc.UnmappedInstanceError(obj, msg=None)
+concat(other)
+__init__(name, map_column=None, descriptor=None, comparator_factory=None, doc=None, info=None)
+class Comparator(prop, parentmapper, adapt_to_entity=None, of_type=None)
+after_begin(session, transaction, connection)
+all_()
+desc()
+exception sqlalchemy.orm.exc.UnmappedError
+contains(other, **kwargs)
+class_uninstrument(cls)
+collate(collation)
+is_instance = False
+persistent_to_detached(session, instance)
+all_()
+is_mapper = False
+before_compile(query)
+between(cleft, cright, symmetric=False)
+before_insert(mapper, connection, target)
+callables = ()
+of_type(class_)
+startswith(other, **kwargs)
+CompositeProperty.do_init()
+__lt__
+adapt_to_entity(adapt_to_entity)
+iteritems() → an iterator over the (key, value) items of D
+class sqlalchemy.orm.session.UOWTransaction(session)
+collate(collation)
+asc()
+loaded_as_persistent(session, instance)
+dispose()
+notlike(other, escape=None)
+merge(session, source_state, source_dict, dest_state, dest_dict, load, _recursive, _resolve_conflict_map)
+all_()
+pending
+isnot_distinct_from(other)
+after_attach(session, instance)
+instrument_class(mapper, class_)
+iterkeys() → an iterator over the keys of D
+startswith(other, **kwargs)
+unregister()
+ilike(other, escape=None)
+refresh(target, context, attrs)
+any_()
+class sqlalchemy.orm.attributes.Event(attribute_impl, op)
+unloaded
+was_already_deleted(state)
+has_identity
+mapper
+class sqlalchemy.orm.properties.ComparableProperty(comparator_factory, descriptor=None, doc=None, info=None)
+viewkeys() → a set-like object providing a view on D's keys
+is_selectable = False
+init_scalar(target, value, dict_)
+__le__(other)
+operate(op, *other, **kwargs)
+nullslast()
+check_modified()
+pending_to_transient(session, instance)
+RelationshipProperty.set_parent(parent, init)
+setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D
+class sqlalchemy.orm.properties.ColumnProperty(*columns, **kwargs)
+isnot_distinct_from(other)
+like(other, escape=None)
+desc()
+in_(other)
+adapter
+__delete__(instance)
+like(other, escape=None)
+__le__
+adapter
+has(criterion=None, **kwargs)
+class_attribute
+__le__(other)
+load_history()
+__lt__(other)
+copy() → a shallow copy of D
+class Comparator(prop, parentmapper, adapt_to_entity=None)
+op(opstring, precedence=0, is_comparison=False)
+endswith(other, **kwargs)
+__ne__(other)
+info
+CompositeProperty.get_history(state, dict_, passive=symbol('PASSIVE_OFF'))
+init()
+before_flush(session, flush_context, instances)
+RelationshipProperty.__init__(argument, secondary=None, primaryjoin=None, secondaryjoin=None, foreign_keys=None, uselist=None, order_by=False, backref=None, back_populates=None, post_update=False, cascade=False, extension=None, viewonly=False, lazy=True, collection_class=None, passive_deletes=False, passive_updates=True, remote_side=None, enable_typechecks=True, join_depth=None, comparator_factory=None, single_parent=False, innerjoin=False, distinct_target_key=None, doc=None, active_history=False, cascade_backrefs=True, load_on_pending=False, bake_queries=True, _local_remote_pairs=None, query_class=None, info=None)
+do_init()
+is_aliased_class = False
+RelationshipProperty.cascade
+collate(collation)
+before_configured()
+exception sqlalchemy.orm.exc.UnmappedColumnError
+exception sqlalchemy.orm.exc.FlushError
+__ne__
+exception sqlalchemy.orm.exc.ObjectDeletedError(state, msg=None)
+first_init(manager, cls)
+object
+__lt__(other)
+nullslast()
+sqlalchemy.orm.interfaces.MANYTOONE = symbol('MANYTOONE')
+notilike(other, escape=None)
+is_clause_element = False
+was_deleted
+is_(other)
+is_distinct_from(other)
+viewvalues() → an object providing a view on D's values
+init()
+clear() → None.  Remove all items from D.
+exception sqlalchemy.orm.exc.StaleDataError
+notin_(other)
+concat(other)
+transient_to_pending(session, instance)
+notin_(other)
+dispose_collection(target, collection, collection_adpater)
+has_key(k) → True if D has a key k, else False
+info
+__eq__(other)
+class sqlalchemy.orm.events.InstrumentationEvents
+sqlalchemy.orm.interfaces.NOT_EXTENSION = symbol('NOT_EXTENSION')
+init_failure(target, args, kwargs)
+isnot(other)
+dict
+class sqlalchemy.orm.state.InstanceState(obj, manager)
+get_attribute_history(state, key, passive=symbol('PASSIVE_NO_INITIALIZE'))
+init_collection(target, collection, collection_adapter)
+isnot_distinct_from(other)
+class_attribute
+get(k[, d]) → D[k] if k in D, else d.  d defaults to None.
+after_bulk_delete(delete_context)
+class sqlalchemy.orm.descriptor_props.CompositeProperty(class_, *attrs, **kwargs)
+class sqlalchemy.orm.events.QueryEvents
+popitem() → (k, v), remove and return some (key, value) pair as a
+match(other, **kwargs)
+__ne__(other)
+remove(target, value, initiator)
+set(target, value, oldvalue, initiator)
+after_flush_postexec(session, flush_context)
+notin_(other)
+__eq__(other)
+after_rollback(session)
+contains(other, **kwargs)
+adapt_to_entity(adapt_to_entity)
+viewitems() → a set-like object providing a view on D's items
+parent
+persistent_to_deleted(session, instance)
+create_row_processor(context, path, mapper, result, adapter, populators)
+__lt__(other)
+between(cleft, cright, symmetric=False)
+class sqlalchemy.orm.attributes.QueryableAttribute(class_, key, impl=None, comparator=None, parententity=None, of_type=None)
+after_transaction_end(session, transaction)
+pending_to_persistent(session, instance)
+adapter
+set_parent(parent, init)
+ColumnProperty.expression
+distinct()
+load(target, context)
+has(criterion=None, **kwargs)
+class Comparator(prop, parentmapper, adapt_to_entity=None)
+before_commit(session)
+RelationshipProperty.table
+setup(context, entity, path, adapter, **kwargs)
+__set__(instance, value)
+sqlalchemy.orm.interfaces.MANYTOMANY = symbol('MANYTOMANY')
+__ne__(other)
+before_update(mapper, connection, target)
+class sqlalchemy.orm.events.InstanceEvents
+itervalues() → an iterator over the values of D
+cascade_iterator(type_, state, visited_instances=None, halt_on=None)
+state_getter()
+class sqlalchemy.orm.events.SessionEvents
+isnot(other)
+nullslast()
+like(other, escape=None)
+is_deleted(state)
+nullsfirst()
 value
-values
-with_entities
-with_for_update
-with_hint
-with_labels
-with_lockmode
-with_parent
-with_polymorphic
-with_session
-with_statement_hint
-with_transformation
-yield_per
-create_row_processor
-label
-_asdict
-keys
-baked_lazyload
-contains_eager
-defaultload
-defer
-immediateload
-joinedload
-lazyload
-load_only
-noload
-raiseload
-subqueryload
-undefer
-undefer_group
+notin_(other)
+property
+any(criterion=None, **kwargs)
+between(cleft, cright, symmetric=False)
+op(opstring, precedence=0, is_comparison=False)
+info
+extension_type = symbol('NOT_EXTENSION')
+keys() → list of D's keys
+sqlalchemy.orm.exc.NO_STATE = (
+<type>, <type>)</type></type>
+in_(other)
+RelationshipProperty.init()
+unpickle(target, state_dict)
+nullsfirst()
+of_type(class_)
+is_distinct_from(other)
+identity
+class_instrument(cls)
+__le__(other)
+ilike(other, escape=None)
+any(criterion=None, **kwargs)
+notlike(other, escape=None)
+notilike(other, escape=None)
+CompositeProperty.__init__(class_, *attrs, **kwargs)
+is_attribute = False
+__eq__(other)
+expired_attributes = None
+before_attach(session, instance)
+RelationshipProperty.extension_type = symbol('NOT_EXTENSION')
+class sqlalchemy.orm.state.AttributeState(state, key)
+class sqlalchemy.orm.identity.IdentityMap
+manage()
+op(opstring, precedence=0, is_comparison=False)
+pop(k[, d]) → v, remove specified key and return the corresponding value.
+class sqlalchemy.orm.properties.RelationshipProperty(argument, secondary=None, primaryjoin=None, secondaryjoin=None, foreign_keys=None, uselist=None, order_by=False, backref=None, back_populates=None, post_update=False, cascade=False, extension=None, viewonly=False, lazy=True, collection_class=None, passive_deletes=False, passive_updates=True, remote_side=None, enable_typechecks=True, join_depth=None, comparator_factory=None, single_parent=False, innerjoin=False, distinct_target_key=None, doc=None, active_history=False, cascade_backrefs=True, load_on_pending=False, bake_queries=True, _local_remote_pairs=None, query_class=None, info=None)
+has(criterion=None, **kwargs)
+nullsfirst()
+extension_type = symbol('NOT_EXTENSION')
+__lt__(other)
+do_init()
+class sqlalchemy.orm.descriptor_props.SynonymProperty(name, map_column=None, descriptor=None, comparator_factory=None, doc=None, info=None)
+has_parent(state, key, optimistic=False)
+operate(op, *other, **kwargs)
+__init__(prop, parentmapper, adapt_to_entity=None, of_type=None)
+ColumnProperty.class_attribute
+finalize_flush_changes()
+isnot_distinct_from(other)
+class sqlalchemy.orm.instrumentation.ClassManager(class_)
+has(criterion=None, **kwargs)
+deleted_to_detached(session, instance)
+__le__(other)
+deleted
+op(opstring, precedence=0, is_comparison=False)
+expire(target, attrs)
+ColumnProperty.set_parent(parent, init)
+instrument_class(mapper)
+sqlalchemy.orm.exc.ConcurrentModificationError
+sqlalchemy.orm.interfaces.ONETOMANY = symbol('ONETOMANY')
+desc()
+class sqlalchemy.orm.interfaces.PropComparator(prop, parentmapper, adapt_to_entity=None)
+cascade = frozenset([])
+is_(other)
+endswith(other, **kwargs)
+class sqlalchemy.orm.util.CascadeOptions
+reverse_operate(op, other, **kwargs)
+contains(other, **kwargs)
+endswith(other, **kwargs)
+class sqlalchemy.orm.interfaces.MapperProperty
+asc()
+ilike(other, escape=None)
+exception sqlalchemy.orm.exc.UnmappedClassError(cls, msg=None)
+unmodified
+concat(other)
+startswith(other, **kwargs)
+class sqlalchemy.orm.query.QueryContext(query)
+__ne__(other)
+is_distinct_from(other)
+nullsfirst()
+create_row_processor(context, path, mapper, result, adapter, populators)
+__get__(instance, owner)
+unmodified_intersection(keys)
+endswith(other, **kwargs)
+notilike(other, escape=None)
+is_property = True
+RelationshipProperty.class_attribute
+any(criterion=None, **kwargs)
+isnot(other)
+after_insert(mapper, connection, target)
+collate(collation)
+before_delete(mapper, connection, target)
+ColumnProperty.cascade_iterator(type_, state, visited_instances=None, halt_on=None)
+of_type(cls)
+class sqlalchemy.orm.events.MapperEvents
+__eq__(other)
+exception sqlalchemy.orm.exc.NoResultFound
+update([E, ]**F) → None.  Update D from dict/iterable E and F.
+remove_state_actions(state)
+is_(other)
+notlike(other, escape=None)
+is_distinct_from(other)
+any_()
+init(target, args, kwargs)
+reverse_operate(op, other, **kwargs)
+mapper
+refresh_flush(target, flush_context, attrs)
+attribute_instrument(cls, key, inst)
+persistent
+asc()
+deleted_to_persistent(session, instance)
+nullslast()
+original_init
