@@ -78,7 +78,7 @@ before_update
 state_getter
 unpickle
 pop
-do_init()
+do_init
 expire
 unmodified_intersection
 endswith
