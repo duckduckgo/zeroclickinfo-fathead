@@ -126,7 +126,7 @@ def create_fathead(database):
             prop = pack['redirect'][0][1]
             pack['name'] = cl + "." + prop
 
-            pack['alt_names'] = [cl + " " + prop, prop + " " + cl, prop]
+            pack['alt_names'] = [cl + " " + prop, prop + " " + cl]
         else:
             pack['redirect'] = None
 
