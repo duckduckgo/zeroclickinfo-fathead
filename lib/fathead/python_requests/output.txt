@@ -189,6 +189,7 @@ clear_session_cookies	R	clear_session_cookies()
 clear_session_cookies()	A										<section class="prog__container"><p>Discard all session cookies.Note that the .save() method won't save session cookies anyway, unless you ask otherwise by passing a true ignore_discard argument.</p></section>	http://docs.python-requests.org/en/master/api/#requests.cookies.RequestsCookieJar.clear_session_cookies
 close	R	close()										
 close()	A										<section class="prog__container"><p>Closes all adapters and as such the session</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.close
+codes	R	requests.codes										
 content	A										<section class="prog__container"><p>Content of the response, in bytes.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.content
 cookiejar from dict	R	requests.cookies.cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)										
 cookiejar_from_dict	R	requests.cookies.cookiejar_from_dict(cookie_dict, cookiejar=None, overwrite=True)										
@@ -380,7 +381,6 @@ rebuild_proxies(prepared_request, proxies)	A										<section class="prog__cont
 register hook	R	register_hook(event, hook)										
 register_hook	R	register_hook(event, hook)										
 register_hook(event, hook)	A										<section class="prog__container"><p>Properly register a hook.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Request.register_hook
-request	A										<section class="prog__container"><p>The PreparedRequest object to which this is a response.</p></section>	http://docs.python-requests.org/en/master/api/#requests.Response.request
 request	R	requests.request(method, url, **kwargs)										
 request url	R	request_url(request, proxies)										
 request(method, url, params=None, data=None, headers=None, cookies=None, files=None, auth=None, timeout=None, allow_redirects=True, proxies=None, hooks=None, stream=None, verify=None, cert=None, json=None)	A										<section class="prog__container"><p>Constructs a Request, prepares it and sends it. Returns Response object.\n<b>Parameters:</b><ul><li><b>method</b> -- method for the new Request object.</li><li><b>url</b> -- URL for the new Request object.</li><li><b>params</b> -- (optional) Dictionary or bytes to be sent in the query string for the Request.</li><li><b>data</b> -- (optional) Dictionary, bytes, or file-like object to send in the body of the Request.</li><li><b>json</b> -- (optional) json to send in the body of the Request.</li><li><b>headers</b> -- (optional) Dictionary of HTTP Headers to send with the Request.</li><li><b>cookies</b> -- (optional) Dict or CookieJar object to send with the Request.</li><li><b>files</b> -- (optional) Dictionary of 'filename': file-like-objects for multipart encoding upload.</li><li><b>auth</b> -- (optional) Auth tuple or callable to enable Basic/Digest/Custom HTTP Auth.</li><li><b>timeout (float or tuple)</b> -- (optional) How long to wait for the server to send data before giving up, as a float, or a (connect timeout, read timeout) tuple.</li><li><b>allow_redirects (bool)</b> -- (optional) Set to True by default.</li><li><b>proxies</b> -- (optional) Dictionary mapping protocol or protocol and hostname to the URL of the proxy.</li><li><b>stream</b> -- (optional) whether to immediately download the response content. Defaults to False.</li><li><b>verify</b> -- (optional) whether the SSL cert will be verified. A CA_BUNDLE path can also be provided. Defaults to True.</li><li><b>cert</b> -- (optional) if String, path to ssl client cert file (.pem). If Tuple, ('cert', 'key') pair.</li></ul><b>Return type:</b> requests.Response</p></section>	http://docs.python-requests.org/en/master/api/#requests.Session.request
@@ -486,6 +486,7 @@ requests auth AuthBase	R	class requests.auth.AuthBase
 requests auth HTTPBasicAuth	R	class requests.auth.HTTPBasicAuth(username, password)										
 requests auth HTTPDigestAuth	R	class requests.auth.HTTPDigestAuth(username, password)										
 requests auth HTTPProxyAuth	R	class requests.auth.HTTPProxyAuth(username, password)										
+requests codes	R	requests.codes										
 requests cookies CookieConflictError	R	class requests.cookies.CookieConflictError										
 requests cookies RequestsCookieJar	R	class requests.cookies.RequestsCookieJar(policy=None)										
 requests cookies RequestsCookieJar add_cookie_header	R	add_cookie_header(request)										
@@ -625,6 +626,7 @@ requests.auth.AuthBase	R	class requests.auth.AuthBase
 requests.auth.HTTPBasicAuth	R	class requests.auth.HTTPBasicAuth(username, password)										
 requests.auth.HTTPDigestAuth	R	class requests.auth.HTTPDigestAuth(username, password)										
 requests.auth.HTTPProxyAuth	R	class requests.auth.HTTPProxyAuth(username, password)										
+requests.codes	A										<section class="prog__container"><pre><code>>>> requests.codes['temporary_redirect']\n307\n\n>>> requests.codes.teapot\n418\n\n>>> requests.codes['\o/']\n200\n\n</code></pre></section>	http://docs.python-requests.org/en/master/api/#requests.codes
 requests.cookies.CookieConflictError	R	class requests.cookies.CookieConflictError										
 requests.cookies.RequestsCookieJar	R	class requests.cookies.RequestsCookieJar(policy=None)										
 requests.cookies.RequestsCookieJar.add_cookie_header	R	add_cookie_header(request)										
