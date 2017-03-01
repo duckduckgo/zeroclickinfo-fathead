@@ -33,7 +33,7 @@ class Command(object):
         if usage_cleaned:
             # Make the abstract have the description as well as a code block
             # for the usage of the command
-            abstract = '{}\\n<pre><code>{}</pre></code>'.format(self.description,
+            abstract = '{}\\n<pre><code>{}</code></pre>'.format(self.description,
                                                                 usage_cleaned)
         else:
             abstract = self.description
