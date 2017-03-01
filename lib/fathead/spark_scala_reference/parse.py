@@ -4,31 +4,40 @@ import glob
 spark_scala_base_url = open('data.url').read().strip()
 
 class Description(object):
-	def __init__(self, name, annotation, description, source_url):
+	def __init__(self, name, annotation, description, source_url, redirect):
 		self.name = name
 		self.description = '<p>{}</p>'.format(description)
 		self.annotation = annotation
 		self.source_url = source_url
-	
+		self.redirect = redirect
+		
+		
 	def get_description(self):
 		if self.annotation:
 			self.description = '<p>{}</p>{}'.format(self.annotation, self.description)
 		self.description = '<section class="prog__container">{}</section>'.format(self.description)
 		return '\t'.join([
-            self.name,  # Full article title
-            'A',  # Type of article
-            '',  # For redirects only
-            '',  # Ignore
-            '',  # Categories
-            '',  # Ignore
-            '',  # Related Topis
-            '',  # Ignore
-            '',  # External links
-            '',  # For disambiguation pages only
-            '',  # Image
+			self.name,  # Full article title
+			'A',  # Type of article
+			'',  # For redirects only
+			'',  # Ignore
+			'',  # Categories
+			'',  # Ignore
+			'',  # Related Topis
+			'',  # Ignore
+			'',  # External links
+			'',  # For disambiguation pages only
+			'',  # Image
 			self.description, # Abstract
 			self.source_url
 		])
+		
+	def get_redirect(self):
+		return '\t'.join([
+			self.redirect,  # Full redirect title
+			'R',  # Type of article
+			self.name # Redirect to this 
+			])
 	
 class Parser(object):
 	
@@ -41,9 +50,10 @@ class Parser(object):
 		#self.descriptions = []
 		with open('output.txt', 'wb') as output:
 			for file in self.files_to_parse:
+
 				soup = BeautifulSoup(open(file), 'html.parser')
 				name = file.split("/")[1].replace('.html', '')
-
+				redirect = name.replace('.', ' ')[17:]
 				source_url = '{}{}.html'.format(spark_scala_base_url, name.replace('.', '/'))
 				comment_element = soup.find('div', id = 'comment').find(class_ = 'comment cmt')
 
@@ -69,8 +79,11 @@ class Parser(object):
 
 				description = u' '.join(unicode.split(description))
 
-				description_object = Description(name, annotation, description, source_url)
+				description_object = Description(name, annotation, description, source_url, redirect)
 				output.write((description_object.get_description() + '\n').encode('utf-8'))
+				
+				#For redirects
+				output.write((description_object.get_redirect() + '\n').encode('utf-8'))
 
 if __name__ == '__main__':
 	parser = Parser()
