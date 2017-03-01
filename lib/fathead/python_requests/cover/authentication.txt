@@ -1,0 +1,5 @@
+class requests.auth.AuthBase
+class requests.auth.HTTPBasicAuth(username, password)
+class requests.auth.HTTPProxyAuth(username, password)
+class requests.auth.HTTPDigestAuth(username, password)
+
