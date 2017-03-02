@@ -13,6 +13,7 @@ register
 search
 update
 uninstall
+unregister
 version
 force
 json 
