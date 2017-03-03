@@ -8,8 +8,8 @@ import os.path
 # Shared requests session for quicker pulls
 session = requests.Session()
 
-index = 'https://developer.android.com/reference/packages.html'
-baseurl = 'https://developer.android.com/'
+INDEX = 'https://developer.android.com/reference/packages.html'
+BASE_URL = 'https://developer.android.com/'
 
 
 # Layer 1, more to be made for the drill downs
@@ -30,11 +30,11 @@ def layer_1_pull(url_data):
             print("Layer 1 URL Pull:" + url)
             # Get the folder path of the doc for saving and later parsing
             if 'https://developer.android.com/' in url:
-                urlPath= url.replace('https://developer.android.com/', '')
+                url_path = url.replace('https://developer.android.com/', '')
 
                 # Save this page in its relative local folder
                 # Credit to Krumelur on stackoverflow.com for the path existence check
-                filename = "download/" + urlPath
+                filename = "download/" + url_path
                 if not os.path.exists(os.path.dirname(filename)):
                     try:
                         os.makedirs(os.path.dirname(filename))
@@ -89,8 +89,5 @@ def layer_2_pull(url_data):
             continue
 
 if __name__ == '__main__':
-    # Base URL for git documentation -- list of commands are defined in this
-    # base URL and the individual command pages use this base
-    # URL + /git-<command_name>
-    request = session.get(index)
+    request = session.get(INDEX)
     layer_1_pull(request)
