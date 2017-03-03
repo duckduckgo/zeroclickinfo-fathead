@@ -109,15 +109,10 @@ try
 csv read, csv.reader
 enum list, enumerate
 call process, subprocess
-__import__, __import__
+import, __import__
 datetime.datetime, datetime
 datetime tzinfo, datetime.datetime.timetz
 datetime to timestamp, datetime.datetime.timestamp
-datetime tzinfo, datetime.datetime.timetz
 format string, string.Formatter.format
-glob, glob
-logging, logging 
 multithreading, threading
-next, next
 os mkdir, os.mkdir
-os.chdir, os.chdir
