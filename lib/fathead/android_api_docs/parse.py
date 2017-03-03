@@ -12,6 +12,11 @@ sys.setdefaultencoding('utf8')
 BASE_URL = 'https://developer.android.com/'
 
 
+def remove_anchor_tags(method_details):
+    for a in method_details.findAll('a'):
+        a.unwrap()
+
+
 def build_summary_article(soup, file_path, file_name):
     # If soup can't find the proper h1, use the filename as title without the .html
     try:
@@ -74,8 +79,10 @@ def build_article(soup, file_path, file_name):
     try:
         # First line of expample code listed
         first_code = soup.find('code')
+        remove_anchor_tags(first_code)
         # Second line of example code in doc
         second_code = first_code.find_next_sibling().find('code')
+        remove_anchor_tags(second_code)
 
         # Credit for crlf removal: http://stackoverflow.com/questions/16149649/remove-carriage-return-in-python
         # Credit for the sporadic whitespace removal: http://stackoverflow.com/questions/2077897/substitute-multiple-whitespace-with-single-whitespace-in-python
@@ -91,6 +98,7 @@ def build_article(soup, file_path, file_name):
         second_code = ' '.join(second_code.split())
 
         class_description = soup.find("hr").find_next("p")
+        remove_anchor_tags(class_description)
         class_description = class_description.prettify()
         class_description = class_description.encode('utf-8')
 
