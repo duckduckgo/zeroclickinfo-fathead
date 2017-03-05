@@ -1,6 +1,7 @@
 #!/usr/bin env python
 # encoding=utf8
 import sys
+import re
 from bs4 import BeautifulSoup
 from os import walk
 
@@ -133,7 +134,8 @@ def build_article(soup, file_path, file_name):
 
         # Build the abstract from the description and example code usage
         abstract = ""
-        abstract += class_description.encode('utf-8')
+        if re.search(r'<p>\s*</p>', class_description) is None:
+            abstract += class_description.encode('utf-8')
         abstract += "<pre><code>%s</code></pre>" % ((first_code + "\\n" + second_code).encode('utf-8'))
         abstract = '<section class="prog__container">%s</section>' % abstract
     except:
