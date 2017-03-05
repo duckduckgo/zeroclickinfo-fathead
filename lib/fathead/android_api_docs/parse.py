@@ -84,13 +84,9 @@ def build_article(soup, file_path, file_name):
     else:
         class_description = ''
 
-    # Use DuckDuckHack's recommended code snippet wraps
-    class_description = class_description.replace("<code>", "<pre><code>")
-    class_description = class_description.replace("</code>", "</code></pre>")
-
     # Build the abstract from the description and example code usage
-    abstract = class_description
-    abstract += "<pre><code>{}</code></pre>".format(class_signature)
+    abstract = "<pre><code>{}</code></pre>".format(class_signature)
+    abstract += class_description
     abstract = '<section class="prog__container">{}</section>'.format(abstract)
 
     print('Title %s ' % title)
