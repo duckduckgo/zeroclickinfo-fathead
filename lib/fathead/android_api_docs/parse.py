@@ -15,8 +15,8 @@ def remove_anchor_tags(method_details):
 
 def build_summary_article(soup, file_path, file_name):
     title_list = soup.select('#jd-content > h1')
-    if len(title_list) != 1:
-        raise Exception('Summary title not found for file {}'.format(file_name))
+    if len(title_list) == 0:
+        raise Exception('Summary title not found for file {}'.format(file_path))
     title = title_list[0].text
 
     file_path = file_path[11:]
@@ -61,65 +61,37 @@ def build_summary_article(soup, file_path, file_name):
 
 
 def build_article(soup, file_path, file_name):
-    title = str(file_name).partition(".html")[0]
+    title = file_name.partition(".html")[0]
 
     file_path = file_path[11:]
     url = BASE_URL + file_path
 
-    # On the off chance soup can't find the desired snippets, use fallback
-    # First line of expample code listed
-    first_code = soup.find('code')
-    remove_anchor_tags(first_code)
-    # Second line of example code in doc
-    second_code = first_code.find_next_sibling().find('code')
-    remove_anchor_tags(second_code)
+    class_signature_elements = soup.select('#jd-content > p > code.api-signature')
 
-    # Credit for crlf removal: http://stackoverflow.com/questions/16149649/remove-carriage-return-in-python
-    # Credit for the sporadic whitespace removal: http://stackoverflow.com/questions/2077897/substitute-multiple-whitespace-with-single-whitespace-in-python
-    first_code = first_code.contents[0].encode('utf-8')
-    first_code = ''.join(first_code.splitlines())
-    first_code = ' '.join(first_code.split())
+    class_signature = ''
+    for signature_element in class_signature_elements:
+        remove_anchor_tags(signature_element)
+        class_signature += ' '.join(signature_element.decode_contents(formatter="html").split())
+        class_signature += ' '
+    class_signature = class_signature[:-1]
 
-    # Credit for full inner html: http://stackoverflow.com/questions/8112922/beautifulsoup-innerhtml
-    second_code = second_code.decode_contents(formatter="html")
-    second_code = second_code.encode('utf-8')
-    # Remove carriage returns and extra whitespace
-    second_code = ''.join(second_code.splitlines())
-    second_code = ' '.join(second_code.split())
-
-    class_description = soup.find("hr").find_next("p")
+    class_description = soup.findAll('hr')[0]
     remove_anchor_tags(class_description)
-    class_description = class_description.prettify()
-    class_description = class_description.encode('utf-8')
-
-    # Google unfortunately didn't close quite a few p tags, so we need to grab the description contents this way
-    # Credit for partition: http://stackoverflow.com/questions/14801057/python-splitting-to-the-newline-character
-    class_description = class_description.partition("<h2")[0]
-
-    class_description = class_description.partition("<h3")[0]
-
-    class_description = class_description.partition("<div")[0]
-
-    # Add missing closing p tags where needed
-    class_description = class_description.partition("</p>")[0]
-    class_description += "</p>"
-
-    # Remove carriage returns and extra whitespace
-    class_description = ''.join(class_description.splitlines())
-    class_description = ' '.join(class_description.split())
+    class_description = class_description.decode_contents(formatter="html")
+    match = re.match(r'^\s*<p>(.*?)</?p>', class_description, re.DOTALL)
+    if match is not None:
+        class_description = ' '.join(match.group(1).split())
+    else:
+        class_description = ''
 
     # Use DuckDuckHack's recommended code snippet wraps
     class_description = class_description.replace("<code>", "<pre><code>")
     class_description = class_description.replace("</code>", "</code></pre>")
 
     # Build the abstract from the description and example code usage
-    abstract = ""
-    if re.search(r'<p>\s*</p>', class_description) is None:
-        abstract += class_description.encode('utf-8')
-    abstract += "<pre><code>%s</code></pre>" % ((first_code + "\\n" + second_code).encode('utf-8'))
-    abstract = '<section class="prog__container">%s</section>' % abstract
-
-    abstract = abstract.encode('utf-8')
+    abstract = class_description
+    abstract += "<pre><code>{}</code></pre>".format(class_signature)
+    abstract = '<section class="prog__container">{}</section>'.format(abstract)
 
     print('Title %s ' % title)
     print('URL %s' % url)
@@ -156,12 +128,11 @@ if __name__ == '__main__':
                 if fname == "package-summary.html":
                     print("\tThe summary file:" + fname)
                     data = build_summary_article(soup, filePath, fname)
-                    if data is not None:
-                        data = '\t'.join(data)
-                        fp.write('{}\n'.format(data))
                 else:
                     # Build regular article with code highlighting
                     print('\tThe file:%s' % fname)
-                    # data = build_article(soup, filePath, fname)
-                    # data = '\t'.join(data)
-                    # fp.write('{}\n'.format(data))
+                    data = build_article(soup, filePath, fname)
+
+                if data is not None:
+                    data = '\t'.join(data)
+                    fp.write('{}\n'.format(data))
