@@ -1,3 +1,5 @@
+.DS_Store	A										For more information, see https://developer.android.com/reference/.DS_Store	https://developer.android.com/reference/.DS_Store
+.DS_Store	A										For more information, see https://developer.android.com/reference/android/.DS_Store	https://developer.android.com/reference/android/.DS_Store
 Manifest	A										<section class="prog__container"><pre><code>public final class Manifest\nextends Object</code></pre></section>	https://developer.android.com/reference/android/Manifest.html
 Manifest.permission	A										<section class="prog__container"><p> Allows read/write access to the "properties" table in the checkin database, to change values that get uploaded.</p><pre><code>public static final class Manifest.permission\nextends Object</code></pre></section>	https://developer.android.com/reference/android/Manifest.permission.html
 Manifest.permission_group	A										<section class="prog__container"><p> Used for runtime permissions related to user's calendar.</p><pre><code>public static final class Manifest.permission_group\nextends Object</code></pre></section>	https://developer.android.com/reference/android/Manifest.permission_group.html

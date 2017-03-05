@@ -20,18 +20,12 @@ def remove_anchor_tags(method_details):
 
 def build_summary_article(soup, file_path, file_name):
     # If soup can't find the proper h1, use the filename as title without the .html
-    try:
-        title = soup.find('h1').contents[0].encode('utf-8')
-    except:
-        title = str(file_name).partition(".html")[0]
+    title = soup.find('h1').contents[0].encode('utf-8')
 
     file_path = file_path[11:]
     url = BASE_URL + file_path
 
-    try:
-        abstract = soup.find('p').contents[0].encode('utf-8')
-    except:
-        abstract = "For more information, see " + url
+    abstract = soup.find('p').contents[0].encode('utf-8')
 
     # Remove carriage returns and extra whitespace
     abstract = ''.join(abstract.splitlines())
