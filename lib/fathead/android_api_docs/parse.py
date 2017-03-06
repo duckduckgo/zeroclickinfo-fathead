@@ -170,7 +170,7 @@ if __name__ == '__main__':
                     data = '\t'.join(entry_article)
                     fp.write('{}\n'.format(data))
 
-                    disambiguation_string += '[[{}]] {}\\n*'.format(entry_article[12][:-5].split('/')[-2:],
+                    disambiguation_string += '[[{}]] {}\\n*'.format(entry_article[12][:-5].split('/')[-3:],
                                                                     entry_article[11])
                 disambiguation_string = disambiguation_string[:-3]
                 data = [
@@ -188,5 +188,5 @@ if __name__ == '__main__':
                     '',  # abstract
                     '',  # anchor to specific section
                 ]
-                data = '\t'.join(entry_article)
+                data = '\t'.join(data)
                 fp.write('{}\n'.format(data))
