@@ -184,7 +184,7 @@ if __name__ == '__main__':
                 for entry_article in article:  # Add article addressed by unique classpath
                     data = '\t'.join(entry_article)
                     fp.write('{}\n'.format(data))
-                    disambiguation_string += '[[{}]] {}\\n*'.format(entry_article[0], entry_article[11])
+                    disambiguation_string += '[[{}]], {}\\n*'.format(entry_article[0], entry_article[11])
                 disambiguation_string = disambiguation_string[:-3]
                 data = [
                     common_title,  # title
