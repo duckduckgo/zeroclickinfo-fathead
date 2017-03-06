@@ -111,6 +111,17 @@ def build_article(soup, file_path, file_name):
             url,             # anchor to specific section
         ]
 
+
+def titles_same(articles, index):
+    titles = [article[0] for article in articles]
+    same_count = 0
+    for article in articles:
+        if titles.count(article[0]) > 1:
+            same_count += 1
+            article[0] = article[12][:-5].split('/')[index] + '.' + article[0]
+    return same_count > 0
+
+
 if __name__ == '__main__':
     articles = defaultdict(list)
 
@@ -165,13 +176,15 @@ if __name__ == '__main__':
             else:
                 common_title = article[0][0]
                 disambiguation_string = '*'
+
+                split_index = -2
+                while titles_same(article, split_index):
+                    split_index -= 1
+
                 for entry_article in article:  # Add article addressed by unique classpath
-                    entry_article[0] = '.'.join(entry_article[12][:-5].split('/')[-3:])
                     data = '\t'.join(entry_article)
                     fp.write('{}\n'.format(data))
-
-                    disambiguation_string += '[[{}]] {}\\n*'.format('.'.join(entry_article[12][:-5].split('/')[-3:]),
-                                                                    entry_article[11])
+                    disambiguation_string += '[[{}]] {}\\n*'.format(entry_article[0], entry_article[11])
                 disambiguation_string = disambiguation_string[:-3]
                 data = [
                     common_title,  # title
