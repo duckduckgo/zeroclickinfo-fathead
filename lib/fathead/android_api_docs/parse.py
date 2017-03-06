@@ -162,13 +162,31 @@ if __name__ == '__main__':
             if len(article) == 1:
                 data = '\t'.join(article[0])
                 fp.write('{}\n'.format(data))
-            else:  # TODO: Create a disambiguation entry
+            else:
                 common_title = article[0][0]
+                disambiguation_string = '*'
                 for entry_article in article:  # Add article addressed by unique classpath
                     entry_article[0] = '.'.join(entry_article[12][:-5].split('/')[-2:])
                     data = '\t'.join(entry_article)
                     fp.write('{}\n'.format(data))
 
-
-
-
+                    disambiguation_string += '[[{}]] {}\\n*'.format(entry_article[12][:-5].split('/')[-2:],
+                                                                    entry_article[11])
+                disambiguation_string = disambiguation_string[:-3]
+                data = [
+                    common_title,  # title
+                    'D',  # type is article
+                    '',  # no redirect data
+                    '',  # ignore
+                    '',  # no categories
+                    '',  # ignore
+                    '',  # no related topics
+                    '',  # ignore
+                    '',  # external link
+                    disambiguation_string,  # disambiguation
+                    '',  # images
+                    '',  # abstract
+                    '',  # anchor to specific section
+                ]
+                data = '\t'.join(entry_article)
+                fp.write('{}\n'.format(data))
