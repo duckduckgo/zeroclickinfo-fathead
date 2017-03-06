@@ -126,13 +126,36 @@ if __name__ == '__main__':
             if fname == "package-summary.html":
                 print("\tThe summary file:" + fname)
                 data = build_summary_article(soup, filePath, fname)
+                if data is not None:
+                    articles[data[0]].append(data)
+                for tr in soup.findAll('tr'):
+                    if len(tr.select('td.jd-linkcol a')) == 0 and len(tr.select('td.jd-linkcol')) == 1:
+                        title = tr.select('td.jd-linkcol')[0].text
+                        description = ' '.join(tr.select('td.jd-descrcol')[0].decode_contents(formatter="html").split())
+                        description = description.replace('&nbsp;', '')
+                        if description != '':
+                            data = [
+                                title,  # title
+                                'A',  # type is article
+                                '',  # no redirect data
+                                '',  # ignore
+                                '',  # no categories
+                                '',  # ignore
+                                '',  # no related topics
+                                '',  # ignore
+                                '',  # external link
+                                '',  # no disambiguation
+                                '',  # images
+                                description,  # abstract
+                                BASE_URL + filePath[11:],  # anchor to specific section
+                            ]
+                            articles[data[0]].append(data)
             else:
                 # Build regular article with code highlighting
                 print('\tThe file:%s' % fname)
                 data = build_article(soup, filePath, fname)
-
-            if data is not None:
-                articles[data[0]].append(data)
+                if data is not None:
+                    articles[data[0]].append(data)
 
     with open('output.txt', 'w') as fp:
         for article in articles.values():
