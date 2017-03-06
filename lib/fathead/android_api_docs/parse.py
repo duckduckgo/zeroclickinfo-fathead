@@ -166,11 +166,11 @@ if __name__ == '__main__':
                 common_title = article[0][0]
                 disambiguation_string = '*'
                 for entry_article in article:  # Add article addressed by unique classpath
-                    entry_article[0] = '.'.join(entry_article[12][:-5].split('/')[-2:])
+                    entry_article[0] = '.'.join(entry_article[12][:-5].split('/')[-3:])
                     data = '\t'.join(entry_article)
                     fp.write('{}\n'.format(data))
 
-                    disambiguation_string += '[[{}]] {}\\n*'.format(entry_article[12][:-5].split('/')[-3:],
+                    disambiguation_string += '[[{}]] {}\\n*'.format('.'.join(entry_article[12][:-5].split('/')[-3:]),
                                                                     entry_article[11])
                 disambiguation_string = disambiguation_string[:-3]
                 data = [
