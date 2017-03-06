@@ -69,7 +69,7 @@ def process_span_nd_pre(body):
 		item.attrs=[]
 #------------------------------------------------------------
 def clean_rest_of_the_page(body):
-	tags = body.find_all("",attrs={"id":re.compile("See_[aA]lso|References|Notes")})
+	tags = body.find_all("",attrs={"id":re.compile("See_[aA]lso|References|Notes|Example")})
 	if(len(list(tags))>0):
 		for tag in tags:
 			while(tag.parent.next_sibling is not None):
@@ -131,8 +131,10 @@ def process_abstract(soup):
 	processed_body_text=processed_body_text.strip("\n")\
 	.replace("\n", "\\n")\
 	.replace("\t", "    ")\
-	.replace("&lt;br&gt;","<br>")
-	return processed_body_text.decode('unicode-escape')
+	.replace("&lt;br&gt;","<br>")\
+	.replace("&nbsp;"," ")
+	# print processed_body_text
+	return processed_body_text
 #------------------------------------------------------------
 def cleanse_newlines(soup):
        qnt=1
@@ -144,7 +146,7 @@ def cleanse_newlines(soup):
                                f.extract()
 #------------------------------------------------------------
 def return_bare_abstract(soup):
-	cleanse_newlines(soup)
+	# cleanse_newlines(soup)
 
 	for ch in soup.children:
 		# print repr(ch)
@@ -160,6 +162,7 @@ def return_bare_abstract(soup):
 
 	h3s=soup.find_all('h3')
 	for ele in h3s:
+		ele.wrap(soup.new_tag("b"))
 		ele.name="span"
 		ele.attrs={"class":"prog__sub"}
 #------------------------------------------------------------
@@ -201,10 +204,10 @@ def process_file(filepath):
 
 	create_abstract_from_page(soup)
 	try:
-		_12_abstract=process_abstract(soup).encode('unicode-escape')
+		_12_abstract=process_abstract(soup)
 
 		# with open("./output.html",'w') as f:
-			# f.write(_12_abstract)
+		# 	f.write(_12_abstract)
 
 		f_values = [_1_title, 
 					_2_type_of_entry, 
@@ -222,7 +225,7 @@ def process_file(filepath):
 
 		with open("./output.txt",'a') as f:
 			f.write('\t'.join(f_values)+'\n')
-	except Exception:
+	except Exception as e:
 		print "Error in parsing"
 #------------------------------------------------------------
 if __name__ == "__main__":
