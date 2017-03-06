@@ -3,6 +3,7 @@
 import re
 from bs4 import BeautifulSoup
 from os import walk
+from collections import defaultdict
 
 
 BASE_URL = 'https://developer.android.com/'
@@ -111,24 +112,40 @@ def build_article(soup, file_path, file_name):
         ]
 
 if __name__ == '__main__':
+    articles = defaultdict(list)
+
+    # Set the directory you want to start from
+    rootDir = './download/reference'
+    for dirName, subdirList, fileList in walk(rootDir):
+
+        # These are all .html files in a package, one of which is package-summary.html
+        for fname in fileList:
+            filePath = dirName + "/" + fname
+            soup = BeautifulSoup(open(filePath), 'html.parser')
+            # The package summary needs to be built differently
+            if fname == "package-summary.html":
+                print("\tThe summary file:" + fname)
+                data = build_summary_article(soup, filePath, fname)
+            else:
+                # Build regular article with code highlighting
+                print('\tThe file:%s' % fname)
+                data = build_article(soup, filePath, fname)
+
+            if data is not None:
+                articles[data[0]].append(data)
+
     with open('output.txt', 'w') as fp:
-        # Set the directory you want to start from
-        rootDir = './download/reference'
-        for dirName, subdirList, fileList in walk(rootDir):
-
-            # These are all .html files in a package, one of which is package-summary.html
-            for fname in fileList:
-                filePath = dirName + "/" + fname
-                soup = BeautifulSoup(open(filePath), 'html.parser')
-                # The package summary needs to be built differently
-                if fname == "package-summary.html":
-                    print("\tThe summary file:" + fname)
-                    data = build_summary_article(soup, filePath, fname)
-                else:
-                    # Build regular article with code highlighting
-                    print('\tThe file:%s' % fname)
-                    data = build_article(soup, filePath, fname)
-
-                if data is not None:
-                    data = '\t'.join(data)
+        for article in articles.values():
+            if len(article) == 1:
+                data = '\t'.join(article[0])
+                fp.write('{}\n'.format(data))
+            else:  # TODO: Create a disambiguation entry
+                common_title = article[0][0]
+                for entry_article in article:  # Add article addressed by unique classpath
+                    entry_article[0] = '.'.join(entry_article[12][:-5].split('/')[-2:])
+                    data = '\t'.join(entry_article)
                     fp.write('{}\n'.format(data))
+
+
+
+

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env
 from bs4 import BeautifulSoup
 
 import requests
@@ -24,28 +24,20 @@ def layer_1_pull(url_data):
 
     for tr in trs:
         # Wrap url pull in a try/except in case there is a tr without an href in it
-        try:
-            url = (tr.find('a')['href'])
-            print("Layer 1 URL Pull:" + url)
-            # Get the folder path of the doc for saving and later parsing
-            if 'https://developer.android.com/' in url:
-                url_path = url.replace('https://developer.android.com/', '')
+        url = (tr.find('a')['href'])
+        print("Layer 1 URL Pull:" + url)
+        # Get the folder path of the doc for saving and later parsing
+        if 'https://developer.android.com/' in url:
+            url_path = url.replace('https://developer.android.com/', '')
 
-                # Save this page in its relative local folder
-                # Credit to Krumelur on stackoverflow.com for the path existence check
-                filename = "download/" + url_path
-                if not os.path.exists(os.path.dirname(filename)):
-                    try:
-                        os.makedirs(os.path.dirname(filename))
-                    except OSError as exc:  # Guard against race condition
-                        if exc.errno != errno.EEXIST:
-                            raise
+            # Save this page in its relative local folder
+            filename = "download/" + url_path
+            if not os.path.exists(os.path.dirname(filename)):
+                os.makedirs(os.path.dirname(filename))
 
-                r = session.get(url)
-                with open(filename, 'wb') as outfile:
-                    outfile.write(r.text.encode('utf-8'))
-        except:
-            continue
+            r = session.get(url)
+            with open(filename, 'wb') as outfile:
+                outfile.write(r.text.encode('utf-8'))
 
         # Pass each URL on for further page download
         layer_2_pull(r)
@@ -64,28 +56,23 @@ def layer_2_pull(url_data):
 
     for tr in trs:
         # Wrap url pull in a try/except in case there is a tr without an href in it
-        try:
-            url = (tr.find('a')['href'])
+        url_list = tr.select('td.jd-linkcol a')
+        if len(url_list) == 1:
+            url = url_list[0]['href']
             print("Layer 2 URL Pull:" + url)
             # Get the folder path of the doc for saving and later parsing
             if 'https://developer.android.com/' in url:
                 url_path = url.replace('https://developer.android.com/', '')
 
                 # Save this page in its relative local folder
-                # Credit to Krumelur on stackoverflow.com for the path existence check
                 filename = "download/" + url_path
                 if not os.path.exists(os.path.dirname(filename)):
-                    try:
-                        os.makedirs(os.path.dirname(filename))
-                    except OSError as exc:  # Guard against race condition
-                        if exc.errno != errno.EEXIST:
-                            raise
+                    os.makedirs(os.path.dirname(filename))
 
                 r = session.get(url)
                 with open(filename, 'wb') as outfile:
                     outfile.write(r.text.encode('utf-8'))
-        except:
-            continue
+
 
 if __name__ == '__main__':
     request = session.get(INDEX)
