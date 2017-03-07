@@ -1,0 +1,15 @@
+# This is the name of the source as people would refer to it, e.g. Wikipedia or PerlDoc
+Name: Shopobot
+
+# This is the base domain where the source pages are located.
+Domain: shopobot.com
+
+# This is what gets put in quotes next to the source
+# It can be blank if it is a source with completely general info spanning many types of topics like Facebook.
+Type: Shopping
+
+# Whether the source is from MediaWiki (1) or not (0).
+MediaWiki: 0
+
+# Keywords uses to trigger (or prefer) the source over others.
+Keywords: shop
