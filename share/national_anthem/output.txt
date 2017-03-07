@@ -1,0 +1,188 @@
+national anthem	(Afghanistan)	A	"Millī Surūd" 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/0/0a/National_anthem_of_Afghanistan.ogg'type='audio/ogg'></audio>
+national anthem	(Albania)	A	Himni i Flamurit 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/5/52/Hymni_i_Flamurit_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Algeria)	A	Kassaman 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/6/6a/National_Anthem_of_Algeria.ogg'type='audio/ogg'></audio>
+national anthem	(Andorra)	A	El Gran Carlemany 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/8/8a/Anthem_of_Andorra.ogg'type='audio/ogg'></audio>
+national anthem	(Angola)	A	Angola Avante 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/2/2e/Angola_Avante_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Antigua and Barbuda)	A	Fair Antigua, We Salute Thee 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/0/07/Fair_Antigua_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Argentina)	A	Himno Nacional Argentino 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/e/ef/United_States_Navy_Band_-_Himno_Nacional_Argentino.ogg'type='audio/ogg'></audio>
+national anthem	(Armenia)	A	Mer Hayrenik 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/c7/Mer_Hayrenik_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Australia)	A	Advance Australia Fair 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/a/a6/U.S._Navy_Band%2C_Advance_Australia_Fair_%28instrumental%29.ogg'type='audio/ogg'></audio>
+national anthem	(Austria)	A	Land der Berge, Land am Strome 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/7c/Land_der_Berge_Land_am_Strome_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Azerbaijan)	A	Azərbaycan marşı 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/9/91/National_Anthem_of_the_Republic_of_Azerbaijan_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Bahamas)	A	March On, Bahamaland 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/e/e2/National_Anthem_of_Bahamas.ogg'type='audio/ogg'></audio>
+national anthem	(Bahrain)	A	Bahrainona 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/2/21/Bahraini_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Bangladesh)	A	Amar Shonar Bangla 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/3/3b/Amar_Shonar_Bangla_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Barbados)	A	National Anthem of Barbados 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/73/In_Plenty_and_In_Time_of_Need_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Belarus)	A	My Belarusy 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/3/35/My_Belarusy_vocal.ogg'type='audio/ogg'></audio>
+national anthem	(Belgium)	A	Brabançonne 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/c0/The_Brabanconne.ogg'type='audio/ogg'></audio>
+national anthem	(Belize)	A	Land of the Free 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/0/00/Land_of_the_Free_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Benin)	A	L'Aube Nouvelle 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/74/L%27Aube_Nouvelle.ogg'type='audio/ogg'></audio>
+national anthem	(Bhutan)	A	Druk tsendhen 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/2/2c/National_Anthem_of_Bhutan.ogg'type='audio/ogg'></audio>
+national anthem	(Bolivia)	A	Himno Nacional de Bolivia 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/5/54/Himno_Nacional_de_Bolivia_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Bosnia and Herzegovina)	A	Državna himna Bosne i Hercegovine 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/en/5/53/Bosnia_and_Herzegovina_anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Botswana)	A	Fatshe leno la rona 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/cb/United_States_Navy_Band_-_Fatshe_leno_la_rona.ogg'type='audio/ogg'></audio>
+national anthem	(Brazil)	A	Hino Nacional Brasileiro 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/9/9b/Hino_Nacional_Brasileiro_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Brunei)	A	Allah Peliharakan Sultan 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/b2/United_States_Navy_Band_-_Allah_Peliharakan_Sultan.oga'type='audio/ogg'></audio>
+national anthem	(Bulgaria)	A	Mila Rodino 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/4f/Mila_Rodino_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Burkina Faso)	A	Une Seule Nuit 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/2/21/National_Anthem_of_Burkina-Faso.ogg'type='audio/ogg'></audio>
+national anthem	(Myanmar)	A	Kaba Ma Kyei 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/a/ae/US_NAVY_Band_-_Kaba_Ma_Kyei.ogg'type='audio/ogg'></audio>
+national anthem	(Burundi)	A	Burundi Bwacu 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/b1/National_Anthem_of_Burundi.ogg'type='audio/ogg'></audio>
+national anthem	(Cambodia)	A	Nokor Reach 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/a/af/United_States_Navy_Band_-_Nokoreach.ogg'type='audio/ogg'></audio>
+national anthem	(Cameroon)	A	O Cameroun, Berceau de nos Ancêtres 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/cc/United_States_Navy_Band_-_Chant_de_Ralliement.ogg'type='audio/ogg'></audio>
+national anthem	(Canada)	A	O Canada 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/b4/United_States_Navy_Band_-_O_Canada.ogg'type='audio/ogg'></audio>
+national anthem	(Cape Verde)	A	Cântico da Liberdade 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/ba/National_Anthem_of_Cape_Verde.ogg'type='audio/ogg'></audio>
+national anthem	(Central African Republic)	A	La Renaissance 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/8/85/La_Renaissance.ogg'type='audio/ogg'></audio>
+national anthem	(Chad)	A	La Tchadienne 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/a/a7/National_Anthem_of_Chad.ogg'type='audio/ogg'></audio>
+national anthem	(Chile)	A	Himno Nacional de Chile 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/6/6e/United_States_Navy_Band_-_National_Anthem_of_Chile.ogg'type='audio/ogg'></audio>
+national anthem	(People's Republic of China)	A	Yìyǒngjūn Jìnxíngqǔ 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/b9/March_of_the_Volunteers_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Colombia)	A	Himno Nacional de la República de Colombia 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/5/55/United_States_Navy_Band_-_%C2%A1Oh%2C_gloria_inmarcesible%21.ogg'type='audio/ogg'></audio>
+national anthem	(Comoros)	A	Udzima wa ya Masiwa 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/4b/National_Anthem_of_Comoros_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Democratic Republic of the Congo)	A	Debout Congolais 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/70/National_Anthem_of_Democratic_Republic_of_the_Congo_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Republic of the Congo)	A	La Congolaise 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/a/a3/National_Anthem_of_Republic_of_the_Congo.ogg'type='audio/ogg'></audio>
+national anthem	(Costa Rica)	A	Himno Nacional de Costa Rica 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/79/Costa_Rica_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Côte d'Ivoire)	A	L'Abidjanaise 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/a/a3/Hymne_National_de_C%C3%B4te_d%27Ivoire.ogg'type='audio/ogg'></audio>
+national anthem	(Croatia)	A	Lijepa naša domovino 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/df/Lijepa_nasa_domovino_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Cuba)	A	El Himno de Bayamo 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/cf/United_States_Navy_Band_-_La_Bayamesa.ogg'type='audio/ogg'></audio>
+national anthem	(Cyprus)	A	Ýmnos eis tīn Eleutherían 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/db/Hymn_to_liberty_instrumental.oga'type='audio/ogg'></audio>
+national anthem	(Czech Republic)	A	Kde domov můj 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/6/6e/Czech_anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Denmark)	A	Der er et yndigt land 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/0/06/United_States_Navy_Band_-_Der_er_et_yndigt_land.ogg'type='audio/ogg'></audio>
+national anthem	(Djibouti)	A	"Djibouti" 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/bf/The_Djiboutian_anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Dominica)	A	Isle of Beauty, Isle of Splendour 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/9/9a/National_Anthem_of_Dominica_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Dominican Republic)	A	Himno Nacional 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/bb/Dominican_Republic_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(East Timor)	A	Pátria 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/d0/National_anthem_of_East_Timor.ogg'type='audio/ogg'></audio>
+national anthem	(Ecuador)	A	Salve, Oh Patria 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/6/6e/Anthem_of_Ecuador.ogg'type='audio/ogg'></audio>
+national anthem	(Egypt)	A	Bilady, Bilady, Bilady 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/f/f2/Bilady%2C_Bilady%2C_Bilady.ogg'type='audio/ogg'></audio>
+national anthem	(El Salvador)	A	Himno Nacional de El Salvador 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/4e/El_Salvador_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Equatorial Guinea)	A	Caminemos pisando las sendas de nuestra inmensa felicidad 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/de/National_Anthem_of_Equatorial_Guinea.ogg'type='audio/ogg'></audio>
+national anthem	(Eritrea)	A	Ertra, Ertra, Ertra 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/4f/National_Anthem_of_Eritrea_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Estonia)	A	Mu isamaa, mu õnn ja rõõm 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/5/52/US_Navy_band_-_National_anthem_of_Estonia.ogg'type='audio/ogg'></audio>
+national anthem	(Ethiopia)	A	Wodefit Gesgeshi, Widd Innat Ityopp'ya 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/8/83/Wedefit_Gesgeshi_Widd_Innat_Ittyoppya.ogg'type='audio/ogg'></audio>
+national anthem	(Fiji)	A	Meda Dau Doka 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/ca/Fiji_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Finland)	A	Maamme 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/6/61/United_States_Navy_Band_-_Maamme.ogg'type='audio/ogg'></audio>
+national anthem	(France)	A	La Marseillaise 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/3/30/La_Marseillaise.ogg'type='audio/ogg'></audio>
+national anthem	(Gabon)	A	La Concorde 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/f/fc/La_Concorde.ogg'type='audio/ogg'></audio>
+national anthem	(The Gambia)	A	For The Gambia Our Homeland 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/2/23/National_Anthem_of_Gambia_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Georgia)	A	Tavisupleba 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/7b/Tavisupleba_vocal.ogg'type='audio/ogg'></audio>
+national anthem	(Germany)	A	Deutschlandlied 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/cb/National_anthem_of_Germany_-_U.S._Army_1st_Armored_Division_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Ghana)	A	God Bless Our Homeland Ghana 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/43/National_Anthem_of_Ghana.ogg'type='audio/ogg'></audio>
+national anthem	(Greece)	A	Ýmnos eis tīn Eleutherían 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/db/Hymn_to_liberty_instrumental.oga'type='audio/ogg'></audio>
+national anthem	(Grenada)	A	Hail Grenada 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/76/HailGrenada.ogg'type='audio/ogg'></audio>
+national anthem	(Guatemala)	A	Himno Nacional de Guatemala 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/d8/National_Anthem_of_Guatemala_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Guinea)	A	Liberté 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/6/65/National_Anthem_of_Guinea_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Guinea-Bissau)	A	Esta É a Nossa Pátria Bem Amada 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/40/National_Anthem_of_Guinea-Bissau_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Guyana)	A	Dear Land of Guyana, of Rivers and Plains 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/8/85/National_Anthem_of_Guyana.ogg'type='audio/ogg'></audio>
+national anthem	(Haiti)	A	La Dessalinienne 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/4f/Haiti_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Honduras)	A	Himno Nacional de Honduras 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/b3/Honduras_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Hungary)	A	Himnusz 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/6/63/Hu-magyarhimnusz.ogg'type='audio/ogg'></audio>
+national anthem	(Iceland)	A	Lofsöngur 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/4b/Lofs%C3%B6ngur.ogg'type='audio/ogg'></audio>
+national anthem	(India)	A	Jana Gana Mana 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/9/94/Jana_Gana_Mana_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Indonesia)	A	Indonesia Raya 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/3/32/Indonesiaraya.ogg'type='audio/ogg'></audio>
+national anthem	(Iran)	A	Soroud-e Melli-e Jomhouri-e Eslami-e Iran 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/e/e2/National_Anthem_of_I.R.Iran.ogg'type='audio/ogg'></audio>
+national anthem	(Iraq)	A	Mawtini 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/1/16/United_States_Navy_Band_-_Mawtini.ogg'type='audio/ogg'></audio>
+national anthem	(Ireland)	A	Amhrán na bhFiann 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/7c/United_States_Navy_Band_-_Amhr%C3%A1n_na_bhFiann.ogg'type='audio/ogg'></audio>
+national anthem	(Israel)	A	HaTikvah 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/2/26/Hatikvah_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Italy)	A	Il Canto degli Italiani 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/0/0e/Inno_di_Mameli_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Jamaica)	A	Jamaica, Land We Love 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/1/11/Anthems_-_National_Anthem_Of_Jamaica.ogg'type='audio/ogg'></audio>
+national anthem	(Japan)	A	Kimigayo 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/a/a3/Kimi_ga_Yo_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Jordan)	A	Al-salam Al-malaki Al-urdoni 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/e/ee/National_anthem_of_Jordan_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Kazakhstan)	A	Meniñ Qazaqstanım 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/5/52/Kazakhstan_2006.ogg'type='audio/ogg'></audio>
+national anthem	(Kenya)	A	Ee Mungu Nguvu Yetu 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/49/National_Anthem_of_Kenya.ogg'type='audio/ogg'></audio>
+national anthem	(Kiribati)	A	Teirake Kaini Kiribati 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/9/9f/National_Anthem_of_Kiribati.ogg'type='audio/ogg'></audio>
+national anthem	(North Korea)	A	Aegukka 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/b1/National_Anthem_of_North_Korea.ogg'type='audio/ogg'></audio>
+national anthem	(South Korea)	A	Aegukga 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/0/0c/The_National_Anthem_of_the_Republic_of_Korea.ogg'type='audio/ogg'></audio>
+national anthem	(Kuwait)	A	Al-Nasheed Al-Watani 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Kuwait.ogg'type='audio/ogg'></audio>
+national anthem	(Kyrgyzstan)	A	Kyrgyz Respublikasynyn Mamlekettik Gimni 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/b5/National_Anthem_of_Kyrgyzstan.ogg'type='audio/ogg'></audio>
+national anthem	(Laos)	A	Pheng Xat Lao 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/e/ee/National_Anthem_of_Laos.ogg'type='audio/ogg'></audio>
+national anthem	(Latvia)	A	Dievs, svētī Latviju! 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/1/12/Latvian_National_Anthem_%28instrumental%29.ogg'type='audio/ogg'></audio>
+national anthem	(Lebanon)	A	Lebanese National Anthem 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/9/97/Lebanese_national_anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Liberia)	A	All Hail, Liberia, Hail! 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/6/65/Liberia_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Libya)	A	Libya, Libya, Libya 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/1/18/National_Anthem_of_Libya.ogg'type='audio/ogg'></audio>
+national anthem	(Liechtenstein)	A	Oben am jungen Rhein 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/de/United_States_Navy_Band_-_God_Save_the_Queen.ogg'type='audio/ogg'></audio>
+national anthem	(Lithuania)	A	Tautiška giesmė 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/ca/Tauti%C5%A1ka_giesme_instumental.ogg'type='audio/ogg'></audio>
+national anthem	(Luxembourg)	A	Ons Heemecht 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/45/Luxembourg_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Macedonia)	A	Denes nad Makedonija 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/en/3/34/Anthem_of_the_Republic_of_Macedonia_%28Instrumental%29.ogg'type='audio/ogg'></audio>
+national anthem	(Madagascar)	A	Ry Tanindrazanay malala ô! 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/d3/National_Anthem_of_Madagascar_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Malawi)	A	Mulungu dalitsa Malaŵi 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/cb/Malawi.ogg'type='audio/ogg'></audio>
+national anthem	(Malaysia)	A	Negaraku 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/e/ee/Negaraku_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Maldives)	A	Gaumii salaam 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Gaumii_salaam.ogg'type='audio/ogg'></audio>
+national anthem	(Mali)	A	Pour l'Afrique et pour toi, Mali 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/7d/National_Anthem_of_Mali.ogg'type='audio/ogg'></audio>
+national anthem	(Malta)	A	L-Innu Malti 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/6/6d/Malta_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Marshall Islands)	A	Forever Marshall Islands 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/a/a3/National_Anthem_of_Marshall_Islands_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Mauritania)	A	National anthem of Mauritania 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/1/12/National_Anthem_of_Mauritania_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Mauritius)	A	"Motherland" 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/45/National_Anthem_of_Mauritius_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Mexico)	A	Himno Nacional Mexicano 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/9/9d/Himno_Nacional_Mexicano_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Federated States of Micronesia)	A	Patriots of Micronesia 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/6/6e/Micronesia_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Moldova)	A	Limba noastră 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/a/ad/Imnul_Republicii_Moldova_US_NAVY.ogg'type='audio/ogg'></audio>
+national anthem	(Monaco)	A	Hymne Monégasque 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/c2/Monaco_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Mongolia)	A	Mongol ulsiin töriin duulal 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/8/8f/Mongol_Ulsyn_Duulal.OGG'type='audio/ogg'></audio>
+national anthem	(Montenegro)	A	Oj, svijetla majska zoro 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/a/a2/National_Anthem_of_Montenegro.ogg'type='audio/ogg'></audio>
+national anthem	(Morocco)	A	Hymne Chérifien 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/3/3f/National_Anthem_of_Morocco.ogg'type='audio/ogg'></audio>
+national anthem	(Mozambique)	A	Pátria Amada 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/0/0c/National_Anthem_of_Mozambique_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Namibia)	A	Namibia, Land of the Brave 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/ce/National_Anthem_of_Namibia.ogg'type='audio/ogg'></audio>
+national anthem	(Nepal)	A	Sayaun Thunga Phool Ka 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/a/ae/Nepal_anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Netherlands)	A	Wilhelmus 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/2/2e/United_States_Navy_Band_-_Het_Wilhelmus.ogg'type='audio/ogg'></audio>
+national anthem	(New Zealand)	A	God Defend New Zealand 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/d6/God_Defend_New_Zealand_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Nicaragua)	A	Salve a ti, Nicaragua 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/db/National_Anthem_of_Nicaragua.ogg'type='audio/ogg'></audio>
+national anthem	(Niger)	A	La Nigérienne 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/cf/National_Anthem_of_Niger.ogg'type='audio/ogg'></audio>
+national anthem	(Nigeria)	A	Arise, O Compatriots 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/de/United_States_Navy_Band_-_Arise_O_Compatriots.ogg'type='audio/ogg'></audio>
+national anthem	(Norway)	A	Ja, vi elsker dette landet 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/f/f6/Norway_%28National_Anthem%29.ogg'type='audio/ogg'></audio>
+national anthem	(Oman)	A	Nashid as-Salaam as-Sultani 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/b0/National_Anthem_of_Oman_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Pakistan)	A	Qaumī Tarāna 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/en/5/5f/Qaumi_Tarana_Instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Palau)	A	Belau rekid 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/a/ac/National_Anthem_of_Palau_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Panama)	A	Himno Istmeño 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/4a/Panama_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Paraguay)	A	Paraguayos, República o Muerte 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/f/fd/Paraguay_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Peru)	A	Himno Nacional del Perú 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/cc/United_States_Navy_Band_-_Marcha_Nacional_del_Per%C3%BA.ogg'type='audio/ogg'></audio>
+national anthem	(Philippines)	A	Lupang Hinirang 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/2/2b/Lupang_Hinirang_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Poland)	A	Mazurek Dąbrowskiego 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Mazurek_Dabrowskiego.ogg'type='audio/ogg'></audio>
+national anthem	(Portugal)	A	A Portuguesa 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/5/58/A_Portuguesa.ogg'type='audio/ogg'></audio>
+national anthem	(Qatar)	A	As Salam al Amiri 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/8/8a/As_Salam_Al_Amiri_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Romania)	A	Deșteaptă-te, române! 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/77/Desteapta-te%2C_romane%21.ogg'type='audio/ogg'></audio>
+national anthem	(Russia)	A	Gosudarstvenny Gimn Rossiyskoy Federatsii 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/41/National_Anthem_of_Russia_%282000%29%2C_instrumental%2C_one_verse.ogg'type='audio/ogg'></audio>
+national anthem	(Rwanda)	A	Rwanda Nziza 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/0/0e/Hymne_National_du_Rwanda.ogg'type='audio/ogg'></audio>
+national anthem	(Saint Kitts and Nevis)	A	O Land of Beauty! 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/3/3f/United_States_Navy_Band_-_O_Land_of_Beauty.ogg'type='audio/ogg'></audio>
+national anthem	(Saint Lucia)	A	Sons and Daughters of Saint Lucia 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/6/6f/National_Anthem_of_Saint_Lucia.ogg'type='audio/ogg'></audio>
+national anthem	(Saint Vincent and the Grenadines)	A	Saint Vincent, Land so beautiful 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/c7/National_Anthem_of_Saint_Vincent_and_the_Grenadines.ogg'type='audio/ogg'></audio>
+national anthem	(San Marino)	A	Inno Nazionale della Repubblica 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/b6/Anthem_of_San_Marino.ogg'type='audio/ogg'></audio>
+national anthem	(Sao Tome and Principe)	A	Independência total 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/e/ed/National_Anthem_of_Sao_Tome_and_Principe_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Saudi Arabia)	A	As-Salam Al Malaki 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/f/f0/Aash_Al_Maleek_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Senegal)	A	Pincez Tous vos Koras, Frappez les Balafons 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/8/8c/National_Anthem_of_Senegal.ogg'type='audio/ogg'></audio>
+national anthem	(Serbia)	A	Bože pravde 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/d0/Serbian_National_Anthem_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Seychelles)	A	Kosta seywa 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/6/66/National_Anthem_of_Seychelles_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Sierra Leone)	A	High We Exalt Thee, Realm of the Free 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/5/57/National_Anthem_of_Sierra_Leone_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Singapore)	A	Majulah Singapura 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/74/Majulah_Singapura.ogg'type='audio/ogg'></audio>
+national anthem	(Slovakia)	A	Nad Tatrou sa blýska 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/b5/Slovak_anthem1.ogg'type='audio/ogg'></audio>
+national anthem	(Slovenia)	A	Zdravljica 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/de/Zdravljica.ogg'type='audio/ogg'></audio>
+national anthem	(Solomon Islands)	A	God Save Our Solomon Islands 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/0/0b/National_Anthem_of_Solomon_Islands.ogg'type='audio/ogg'></audio>
+national anthem	(Somalia)	A	Qolobaa Calankeed 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/5/5a/QolobaaCalankeed.ogg'type='audio/ogg'></audio>
+national anthem	(South Africa)	A	National anthem of South Africa 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/7e/South_Africa_National_Anthem.ogg'type='audio/ogg'></audio>
+national anthem	(South Sudan)	A	South Sudan Oyee! 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/0/03/South_Sudan_Oyee%21.ogg'type='audio/ogg'></audio>
+national anthem	(Spain)	A	"La Marcha Real" 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/c/c8/Marcha_Real-Royal_March_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Sri Lanka)	A	Sri Lanka Matha 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/47/National_Anthem_of_Sri_Lanka_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Sudan)	A	Nahnu Jund Allah Jund Al-watan 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/75/Sudan.ogg'type='audio/ogg'></audio>
+national anthem	(Suriname)	A	God zij met ons Suriname 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/f/ff/National_Anthem_of_Suriname.ogg'type='audio/ogg'></audio>
+national anthem	(Swaziland)	A	Nkulunkulu Mnikati wetibusiso temaSwati 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/9/97/Swaziland.ogg'type='audio/ogg'></audio>
+national anthem	(Sweden)	A	Du gamla, Du fria 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/0/02/United_States_Navy_Band_-_Sweden.ogg'type='audio/ogg'></audio>
+national anthem	(Switzerland)	A	"Schweizerpsalm" 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/0/00/Swiss_Psalm.ogg'type='audio/ogg'></audio>
+national anthem	(Syria)	A	Humāt ad-Diyār 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/f/fc/National_Anthem_of_Syria.ogg'type='audio/ogg'></audio>
+national anthem	(Tajikistan)	A	Surudi Milli 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/b9/Tajikistan_anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Tanzania)	A	Mungu ibariki Afrika 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/2/22/National_Anthem_of_Tanzania_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Thailand)	A	Phleng Chat 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/f/f3/Thai_National_Anthem_-_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Togo)	A	Salut à toi, pays de nos aïeux 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/1/19/National_Anthem_of_Togo.ogg'type='audio/ogg'></audio>
+national anthem	(Tonga)	A	None 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/4/47/National_Anthem_of_Tonga.ogg'type='audio/ogg'></audio>
+national anthem	(Trinidad and Tobago)	A	Forged from the Love of Liberty 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/f/f7/National_Anthem_of_Trinidad_and_Tobago_by_US_Navy_Band.ogg'type='audio/ogg'></audio>
+national anthem	(Tunisia)	A	Humat al-Hima 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/2/23/Humat_al-Hima.ogg'type='audio/ogg'></audio>
+national anthem	(Turkey)	A	İstiklâl Marşı 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/9/99/Istikl%C3%A2l_Marsi_instrumetal.ogg'type='audio/ogg'></audio>
+national anthem	(Turkmenistan)	A	"Garaşsyz, Bitarap Türkmenistanyň Döwlet Gimni" 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/3/3e/US_Navy_Band_-_National_Anthem_of_Turkmenistan.ogg'type='audio/ogg'></audio>
+national anthem	(Uganda)	A	Oh Uganda, Land of Beauty 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/1/1f/Uganda_flag_and_national_anthem_-_Oh_Uganda_Land_o.ogg'type='audio/ogg'></audio>
+national anthem	(Ukraine)	A	Shche ne vmerla Ukraina 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/f/ff/Anthem_of_Ukraine_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(United Arab Emirates)	A	Ishy Biladi 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/b/b0/National_anthem_of_the_United_Arab_Emirates.ogg'type='audio/ogg'></audio>
+national anthem	(United Kingdom)	A	God Save the Queen 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/d/de/United_States_Navy_Band_-_God_Save_the_Queen.ogg'type='audio/ogg'></audio>
+national anthem	(United States)	A	The Star-Spangled Banner 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/6/65/Star_Spangled_Banner_instrumental.ogg'type='audio/ogg'></audio>
+national anthem	(Uruguay)	A	"Himno Nacional" 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/2/2b/United_States_Navy_Band_-_National_Anthem_of_Uruguay_%28complete%29.ogg'type='audio/ogg'></audio>
+national anthem	(Uzbekistan)	A	"O`zbekiston Respublikasining Davlat Madhiyasi" 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/a/af/Uzbekistan_anthem.ogg'type='audio/ogg'></audio>
+national anthem	(Vanuatu)	A	Yumi, Yumi, Yumi 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/7f/United_States_Navy_Band_-_Yumi%2C_Yumi%2C_Yumi.ogg'type='audio/ogg'></audio>
+national anthem	(Venezuela)	A	Gloria al Bravo Pueblo 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/f/f0/United_States_Navy_Band_-_Gloria_al_Bravo_Pueblo.ogg'type='audio/ogg'></audio>
+national anthem	(Vietnam)	A	Tiến Quân Ca 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/7/73/United_States_Navy_Band_-_Ti%E1%BA%BFn_Qu%C3%A2n_Ca.ogg'type='audio/ogg'></audio>
+national anthem	(Yemen)	A	National anthem of Yemen 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/1/13/United_States_Navy_Band_-_United_Republic.ogg'type='audio/ogg'></audio>
+national anthem	(Zambia)	A	Stand and Sing of Zambia, Proud and Free 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/9/91/National_Anthem_of_Zambia.ogg'type='audio/ogg'></audio>
+national anthem	(Zimbabwe)	A	Simudzai Mureza WeZimbabwe 	<audio controls><source src='https://upload.wikimedia.org/wikipedia/commons/9/97/National_Anthem_of_Zimbabwe.ogg'type='audio/ogg'></audio>
