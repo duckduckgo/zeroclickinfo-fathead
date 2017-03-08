@@ -7,6 +7,7 @@ from collections import defaultdict
 
 
 BASE_URL = 'https://developer.android.com/'
+OUTPUT_FILE = 'output.txt'
 
 
 def remove_anchor_tags(method_details):
@@ -122,57 +123,68 @@ def titles_same(articles, index):
     return same_count > 0
 
 
-if __name__ == '__main__':
+def parse_table_entries(soup, articles, file_path):
+    for tr in soup.findAll('tr'):
+        if len(tr.select('td.jd-linkcol a')) == 0 and len(tr.select('td.jd-linkcol')) == 1:
+            title = tr.select('td.jd-linkcol')[0].text
+            description = ' '.join(tr.select('td.jd-descrcol')[0].decode_contents(formatter="html").split())
+            description = description.replace('&nbsp;', '')
+            if description != '':
+                data = [
+                    title,  # title
+                    'A',  # type is article
+                    '',  # no redirect data
+                    '',  # ignore
+                    '',  # no categories
+                    '',  # ignore
+                    '',  # no related topics
+                    '',  # ignore
+                    '',  # external link
+                    '',  # no disambiguation
+                    '',  # images
+                    description,  # abstract
+                    BASE_URL + file_path[11:],  # anchor to specific section
+                ]
+                articles[data[0]].append(data)
+
+
+def write_data_to_file(f, data):
+    data = '\t'.join(data)
+    fp.write('{}\n'.format(data))
+
+
+def gather_articles():
     articles = defaultdict(list)
 
     # Set the directory you want to start from
-    rootDir = './download/reference'
-    for dirName, subdirList, fileList in walk(rootDir):
+    root_dir = './download/reference'
+    for dir_name, subdir_list, file_list in walk(root_dir):
 
         # These are all .html files in a package, one of which is package-summary.html
-        for fname in fileList:
-            filePath = dirName + "/" + fname
-            soup = BeautifulSoup(open(filePath), 'html.parser')
+        for fname in file_list:
+            file_path = dir_name + "/" + fname
+            soup = BeautifulSoup(open(file_path), 'html.parser')
             # The package summary needs to be built differently
             if fname == "package-summary.html":
                 print("\tThe summary file:" + fname)
                 data = build_summary_article(soup, filePath, fname)
                 if data is not None:
                     articles[data[0]].append(data)
-                for tr in soup.findAll('tr'):
-                    if len(tr.select('td.jd-linkcol a')) == 0 and len(tr.select('td.jd-linkcol')) == 1:
-                        title = tr.select('td.jd-linkcol')[0].text
-                        description = ' '.join(tr.select('td.jd-descrcol')[0].decode_contents(formatter="html").split())
-                        description = description.replace('&nbsp;', '')
-                        if description != '':
-                            data = [
-                                title,  # title
-                                'A',  # type is article
-                                '',  # no redirect data
-                                '',  # ignore
-                                '',  # no categories
-                                '',  # ignore
-                                '',  # no related topics
-                                '',  # ignore
-                                '',  # external link
-                                '',  # no disambiguation
-                                '',  # images
-                                description,  # abstract
-                                BASE_URL + filePath[11:],  # anchor to specific section
-                            ]
-                            articles[data[0]].append(data)
+                parse_table_entries(soup, articles, file_path)
             else:
                 # Build regular article with code highlighting
                 print('\tThe file:%s' % fname)
                 data = build_article(soup, filePath, fname)
                 if data is not None:
                     articles[data[0]].append(data)
+    return articles
 
-    with open('output.txt', 'w') as fp:
+
+def write_articles_to_output(articles, file_name):
+    with open(file_name, 'w') as fp:
         for article in articles.values():
             if len(article) == 1:
-                data = '\t'.join(article[0])
-                fp.write('{}\n'.format(data))
+                write_data_to_file(fp, article[0])
             else:
                 common_title = article[0][0]
                 disambiguation_string = '*'
@@ -182,8 +194,7 @@ if __name__ == '__main__':
                     split_index -= 1
 
                 for entry_article in article:  # Add article addressed by unique classpath
-                    data = '\t'.join(entry_article)
-                    fp.write('{}\n'.format(data))
+                    write_data_to_file(fp, entry_article)
                     disambiguation_string += '[[{}]], {}\\n*'.format(entry_article[0], entry_article[11])
                 disambiguation_string = disambiguation_string[:-3]
                 data = [
@@ -201,5 +212,15 @@ if __name__ == '__main__':
                     '',  # abstract
                     '',  # anchor to specific section
                 ]
-                data = '\t'.join(data)
-                fp.write('{}\n'.format(data))
+                write_data_to_file(fp, data)
+
+
+def main():
+    articles = gather_articles()
+    write_articles_to_output(articles, OUTPUT_FILE)
+
+
+if __name__ == '__main__':
+    main()
+
+
