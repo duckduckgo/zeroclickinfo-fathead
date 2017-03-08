@@ -7,6 +7,7 @@ from collections import defaultdict
 
 
 BASE_URL = 'https://developer.android.com/'
+ROOT_DIRECTORY = './download/reference'
 OUTPUT_FILE = 'output.txt'
 
 
@@ -15,7 +16,74 @@ def remove_anchor_tags(method_details):
         a.unwrap()
 
 
-def build_summary_article(soup, file_path, file_name):
+def build_data(title, type, disambiguation='', abstract='', url=''):
+    return [
+        title,  # title
+        type,  # type is article
+        '',  # no redirect data
+        '',  # ignore
+        '',  # no categories
+        '',  # ignore
+        '',  # no related topics
+        '',  # ignore
+        '',  # external link
+        disambiguation,  # no disambiguation
+        '',  # images
+        abstract,  # abstract
+        url,  # anchor to specific section
+    ]
+
+
+def write_data_to_file(f, data):
+    data = '\t'.join(data)
+    f.write('{}\n'.format(data))
+
+
+def gather_articles():
+    """
+    Walks over all of the HTML downloaded by fetch.py and stores information from each article into a dictionary
+    :return: A Dictionary Mapping Article titles to a list of all entries with that title.
+    """
+    articles = defaultdict(list)
+
+    for dir_name, subdir_list, file_list in walk(ROOT_DIRECTORY):
+
+        # These are all .html files in a package, one of which is package-summary.html
+        for fname in file_list:
+            file_path = dir_name + "/" + fname
+            soup = BeautifulSoup(open(file_path), 'html.parser')
+            # The package summary needs to be built differently
+            if fname == "package-summary.html":
+                parse_summary_page(articles, file_path, fname, soup)
+            else:
+                # Build regular article with code highlighting
+                parse_class_documentation(articles, file_path, fname, soup)
+    return articles
+
+
+def parse_summary_page(articles, file_path, fname, soup):
+    print("\tThe summary file:" + fname)
+    data = build_summary_article(soup, file_path)
+    if data is not None:
+        articles[data[0]].append(data)
+    parse_table_entries(soup, articles, file_path)
+
+
+def parse_table_entries(soup, articles, file_path):
+    """
+    Adds articles for the entries in the table that don't have a hyperlink to class documentation.
+    """
+    for tr in soup.findAll('tr'):
+        if len(tr.select('td.jd-linkcol a')) == 0 and len(tr.select('td.jd-linkcol')) == 1:
+            title = tr.select('td.jd-linkcol')[0].text
+            description = ' '.join(tr.select('td.jd-descrcol')[0].decode_contents(formatter="html").split())
+            description = description.replace('&nbsp;', '')
+            if description != '':
+                data = build_data(title, 'A', abstract=description, url=BASE_URL + file_path[11:])
+                articles[data[0]].append(data)
+
+
+def build_summary_article(soup, file_path):
     title_list = soup.select('#jd-content > h1')
     if len(title_list) == 0:
         raise Exception('Summary title not found for file {}'.format(file_path))
@@ -45,21 +113,14 @@ def build_summary_article(soup, file_path, file_name):
     print('Description %s' % abstract)
     print("=======================================================================")
 
-    return [
-            title,           # title
-            'A',             # type is article
-            '',              # no redirect data
-            '',              # ignore
-            '',              # no categories
-            '',              # ignore
-            '',              # no related topics
-            '',              # ignore
-            '',              # external link
-            '',              # no disambiguation
-            '',              # images
-            abstract,        # abstract
-            url,             # anchor to specific section
-        ]
+    return build_data(title, 'A', abstract=abstract, url=url)
+
+
+def parse_class_documentation(articles, file_path, fname, soup):
+    print('\tThe file:%s' % fname)
+    data = build_article(soup, file_path, fname)
+    if data is not None:
+        articles[data[0]].append(data)
 
 
 def build_article(soup, file_path, file_name):
@@ -80,6 +141,8 @@ def build_article(soup, file_path, file_name):
     class_description = soup.findAll('hr')[0]
     remove_anchor_tags(class_description)
     class_description = class_description.decode_contents(formatter="html")
+
+    # HTML is not formed nicely enough to use bs4 to parse, so default to regex.
     match = re.match(r'^\s*<p>(.*?)</?p>', class_description, re.DOTALL)
     if match is not None:
         class_description = ' '.join(match.group(1).split())
@@ -96,122 +159,47 @@ def build_article(soup, file_path, file_name):
     print('Description %s' % abstract)
     print("=======================================================================")
 
-    return [
-            title,           # title
-            'A',             # type is article
-            '',              # no redirect data
-            '',              # ignore
-            '',              # no categories
-            '',              # ignore
-            '',              # no related topics
-            '',              # ignore
-            '',              # external link
-            '',              # no disambiguation
-            '',              # images
-            abstract,        # abstract
-            url,             # anchor to specific section
-        ]
+    return build_data(title, 'A', abstract=abstract, url=url)
 
 
-def titles_same(articles, index):
-    titles = [article[0] for article in articles]
-    same_count = 0
-    for article in articles:
-        if titles.count(article[0]) > 1:
-            same_count += 1
-            article[0] = article[12][:-5].split('/')[index] + '.' + article[0]
-    return same_count > 0
-
-
-def parse_table_entries(soup, articles, file_path):
-    for tr in soup.findAll('tr'):
-        if len(tr.select('td.jd-linkcol a')) == 0 and len(tr.select('td.jd-linkcol')) == 1:
-            title = tr.select('td.jd-linkcol')[0].text
-            description = ' '.join(tr.select('td.jd-descrcol')[0].decode_contents(formatter="html").split())
-            description = description.replace('&nbsp;', '')
-            if description != '':
-                data = [
-                    title,  # title
-                    'A',  # type is article
-                    '',  # no redirect data
-                    '',  # ignore
-                    '',  # no categories
-                    '',  # ignore
-                    '',  # no related topics
-                    '',  # ignore
-                    '',  # external link
-                    '',  # no disambiguation
-                    '',  # images
-                    description,  # abstract
-                    BASE_URL + file_path[11:],  # anchor to specific section
-                ]
-                articles[data[0]].append(data)
-
-
-def write_data_to_file(f, data):
-    data = '\t'.join(data)
-    fp.write('{}\n'.format(data))
-
-
-def gather_articles():
-    articles = defaultdict(list)
-
-    # Set the directory you want to start from
-    root_dir = './download/reference'
-    for dir_name, subdir_list, file_list in walk(root_dir):
-
-        # These are all .html files in a package, one of which is package-summary.html
-        for fname in file_list:
-            file_path = dir_name + "/" + fname
-            soup = BeautifulSoup(open(file_path), 'html.parser')
-            # The package summary needs to be built differently
-            if fname == "package-summary.html":
-                print("\tThe summary file:" + fname)
-                data = build_summary_article(soup, filePath, fname)
-                if data is not None:
-                    articles[data[0]].append(data)
-                parse_table_entries(soup, articles, file_path)
-            else:
-                # Build regular article with code highlighting
-                print('\tThe file:%s' % fname)
-                data = build_article(soup, filePath, fname)
-                if data is not None:
-                    articles[data[0]].append(data)
-    return articles
+def adjust_titles(articles):
+    index = -2
+    titles_same = True
+    while titles_same:
+        titles = [article[0] for article in articles]
+        same_count = 0
+        for article in articles:
+            if titles.count(article[0]) > 1:
+                same_count += 1
+                # Include the next level package to try and get a unique title.
+                article[0] = article[12][:-5].split('/')[index] + '.' + article[0]
+        if same_count == 0:
+            titles_same = False
+        else:
+            index -= 1
 
 
 def write_articles_to_output(articles, file_name):
+    """
+    Given a dictionary mapping titles to all articles associated with that title, finds the shortest unique title for
+      each of the entries and adds a disambiguation entry if necessary.
+    """
     with open(file_name, 'w') as fp:
         for article in articles.values():
             if len(article) == 1:
                 write_data_to_file(fp, article[0])
-            else:
+            else:  # Multiple articles with the same title.
                 common_title = article[0][0]
                 disambiguation_string = '*'
 
-                split_index = -2
-                while titles_same(article, split_index):
-                    split_index -= 1
+                adjust_titles(article)
 
                 for entry_article in article:  # Add article addressed by unique classpath
                     write_data_to_file(fp, entry_article)
                     disambiguation_string += '[[{}]], {}\\n*'.format(entry_article[0], entry_article[11])
+
                 disambiguation_string = disambiguation_string[:-3]
-                data = [
-                    common_title,  # title
-                    'D',  # type is article
-                    '',  # no redirect data
-                    '',  # ignore
-                    '',  # no categories
-                    '',  # ignore
-                    '',  # no related topics
-                    '',  # ignore
-                    '',  # external link
-                    disambiguation_string,  # disambiguation
-                    '',  # images
-                    '',  # abstract
-                    '',  # anchor to specific section
-                ]
+                data = build_data(common_title, 'D', disambiguation=disambiguation_string)
                 write_data_to_file(fp, data)
 
 
@@ -222,5 +210,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
