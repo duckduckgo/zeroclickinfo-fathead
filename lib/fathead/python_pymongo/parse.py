@@ -180,6 +180,7 @@ class PyMongoParser():
         cleaned_html = cleaned_html.replace("</None>", '')
         cleaned_html = cleaned_html.replace("<none>", '')
         cleaned_html = cleaned_html.replace("</none>", '')
+        cleaned_html = cleaned_html.strip()
 
         return cleaned_html
 
@@ -206,9 +207,7 @@ class PyMongoParser():
 
         # replace the version_modified spans with italics
         for tag in html_soup_cleaner.find_all("span", {"class": "versionmodified"}):
-            tag.name = "i"
-            if tag.attrs:
-                del tag.attrs
+            tag.decompose()
 
         # Remove tags we don't want
         tags_to_replace = ['span', 'div', 'blockquote']
@@ -226,14 +225,18 @@ class PyMongoParser():
                 del tag.attrs
 
         # Remove any formatting attributes from tags we want
-        tags_to_replace = ['th', 'td', 'tl', 'tr', 'table', 'p', 'dd', 'dt', 'col', 'tbody']
-        for tag in html_soup_cleaner.find_all(tags_to_replace):
-            if tag.attrs:
-                del tag.attrs
+        #tags_to_replace = ['th', 'td', 'tl', 'tr', 'table', 'p', 'dd', 'dt', 'col', 'tbody']
+        #for tag in html_soup_cleaner.find_all(tags_to_replace):
+        #    if tag.attrs:
+        #        del tag.attrs
 
-        for tag in html_soup_cleaner.find_all("ul"):
-            if tag.attrs:
-                del tag.attrs
+        #for tag in html_soup_cleaner.find_all("ul"):
+        #    if tag.attrs:
+        #        del tag.attrs
+        for tag in html_soup_cleaner.find_all('table'):
+            if tag.ul:
+                tag.contents = tag.ul.contents
+                tag.insert(0, '\<span class="progr__sub\>Parameters\</span\>')
 
         for tag in html_soup_cleaner.find_all("em", {"class": "property"}):
             if tag.attrs:
@@ -249,7 +252,8 @@ class PyMongoParser():
         cleaned_html = cleaned_html.replace("</None>", '')
         cleaned_html = cleaned_html.replace("<none>", '')
         cleaned_html = cleaned_html.replace("</none>", '')
-        cleaned_html = cleaned_html.replace('\n', '\\n').strip('\n')
+        cleaned_html = cleaned_html.strip()
+        cleaned_html = cleaned_html.replace('\n', '\\n')
 
         return cleaned_html
 
