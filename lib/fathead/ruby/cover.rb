@@ -31,7 +31,7 @@ entries.each do |entry| # Looping through the Index URLs
   methods_entries = doc_index.css('#method-index .entries a')
 
   methods_entries.each do |entry|
-    open('stdlib.txt', 'a') { |f| f.print entry.text + "\n" }
+    open('cover/stdlib.txt', 'a') { |f| f.print entry.text + "\n" }
   end
 end
 
@@ -43,9 +43,9 @@ core_classes = core_toc.css('#class-index .entries .class a')
 core_methods = core_toc.css('#method-index .entries a')
 
 core_classes.each do |entry|
-  open('core.txt', 'a') { |f| f.puts entry.text + "\n" }
+  open('cover/core.txt', 'a') { |f| f.puts entry.text + "\n" }
 end
 
 core_methods.each do |entry|
-  open('core.txt', 'a') { |f| f.puts entry.text + "\n" }
+  open('cover/core.txt', 'a') { |f| f.puts entry.text + "\n" }
 end
