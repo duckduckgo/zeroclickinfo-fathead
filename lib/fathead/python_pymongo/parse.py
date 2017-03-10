@@ -175,6 +175,18 @@ class PyMongoParser():
                 del tag.attrs
             del tag.name
 
+        # Reformat tables
+        for tag in html_soup_cleaner.find_all('table'):
+            if tag.attrs:
+                del tag.name
+                del tag.attrs
+            if tag.ul:
+                tag.contents = tag.ul.contents
+                tmp_tag = html_soup_cleaner.new_tag("span")
+                tmp_tag.attrs = {"class": "progr__sub"}
+                tmp_tag.string = "Parameters"
+                tag.insert(0, tmp_tag)
+
         cleaned_html = str(html_soup_cleaner)
         cleaned_html = cleaned_html.replace("<None>", '')
         cleaned_html = cleaned_html.replace("</None>", '')
@@ -224,19 +236,17 @@ class PyMongoParser():
                 del tag.name
                 del tag.attrs
 
-        # Remove any formatting attributes from tags we want
-        #tags_to_replace = ['th', 'td', 'tl', 'tr', 'table', 'p', 'dd', 'dt', 'col', 'tbody']
-        #for tag in html_soup_cleaner.find_all(tags_to_replace):
-        #    if tag.attrs:
-        #        del tag.attrs
-
-        #for tag in html_soup_cleaner.find_all("ul"):
-        #    if tag.attrs:
-        #        del tag.attrs
+        # Reformat tables
         for tag in html_soup_cleaner.find_all('table'):
+            if tag.attrs:
+                del tag.name
+                del tag.attrs
             if tag.ul:
                 tag.contents = tag.ul.contents
-                tag.insert(0, '\<span class="progr__sub\>Parameters\</span\>')
+                tmp_tag = html_soup_cleaner.new_tag("span")
+                tmp_tag.attrs = {"class": "progr__sub"}
+                tmp_tag.string = "Parameters"
+                tag.insert(0, tmp_tag)
 
         for tag in html_soup_cleaner.find_all("em", {"class": "property"}):
             if tag.attrs:
