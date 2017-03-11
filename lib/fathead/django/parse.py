@@ -91,11 +91,10 @@ class DataParser(object):
 
     def _parse_for_first_paragraph(self, section):
         """
-        Returns the first paragraph of text for a given function
+        Returns the first paragraph of text for a given section
         Fixes up some weird double spacing and newlines.
         Args:
-            section: A section of parsed HTML that represents a function 
-            definition
+            section: A section of parsed HTML that represents a section
 
         Returns:
             First paragraph found with text
@@ -105,6 +104,25 @@ class DataParser(object):
         for paragraph in paragraphs:
             if paragraph.text:
                 return self._format_output(paragraph.text)
+        return ''
+    
+    def _parse_for_first_element_paragraph(self, section):
+        """
+        Returns the first paragraph of text for a given element section
+        Fixes up some weird double spacing and newlines.
+        Args:
+            section: A section of parsed HTML that represents an element 
+            definition
+
+        Returns:
+            First paragraph found with text
+
+        """
+        id=section.dt.get('id')
+        # The first paragraph is outside of the section for elements
+        paragraph=section.parent.find('dt', {'id': id}).find_next('p')
+        if paragraph and paragraph.text:
+            return self._format_output(paragraph.text)
         return ''
 
     def _parse_for_anchor(self, section):
@@ -213,7 +231,6 @@ class DataParser(object):
         intro_text=''
         if first_paragraph:
             intro_text = self._format_output(first_paragraph.text)
-            
         section_anchor=self._parse_for_anchor(div_section)
         if intro_text and module_name:
             data_elements = {
@@ -267,7 +284,8 @@ class DataParser(object):
         for section in sections:
             name=self._parse_for_element_name(section)
             signature=self._parse_for_signature(section)
-            first_paragraph=self._parse_for_first_paragraph(section)
+            first_paragraph=self._parse_for_first_element_paragraph(section)
+            
             anchor=self._parse_for_anchor(section)
             data_element = {
                     'module': module_name,
