@@ -4,7 +4,7 @@ We're a community of open source developers from around the world, contributing 
 
 ## How to contribute
 
-- [**Create new Fatheads, and improve existing ones**](https://github.com/duckduckgo/zeroclickinfo-fathead/issues?q=is%3Aopen+is%3Aissue+label%3A"Mission%3A+Programming")
+- [**Create new Fatheads, and improve existing ones**](https://github.com/duckduckgo/zeroclickinfo-fathead/issues")
     - **Note**: Fatheads are written in Perl, Python, Ruby, or JavaScript (Node.js)
 - [**Visit DuckDuckHack**](https://duckduckhack.com/#get-help) to learn more about the Programming Mission, and how you can help!
 
