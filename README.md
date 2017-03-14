@@ -6,7 +6,7 @@ We're a community of open source developers from around the world, contributing 
 
 - [**Create new Fatheads, and improve existing ones**](https://duckduckhack.com/issues)
     - **Note**: Fatheads are written in Perl, Python, Ruby, or JavaScript (Node.js)
-- [**Visit DuckDuckHack**](https://duckduckhack.com/#get-help) to learn more about the Programming Mission, and how you can help!
+- [**Visit DuckDuckHack**](https://duckduckhack.com/#get-help) to learn more how you can help!
 
 
 ### What are Fathead Instant Answers?
