@@ -42,14 +42,15 @@ def generate_answers(data):
 
         # Generate abstract
         abstract = u'<p>{}</p>'.format(feature_data['description'])
-
+        abstract += u'<ul>'
         for browser in ['ie', 'firefox', 'chrome', 'safari', 'ios_saf', 'android']:
             agent = data['agents'][browser]
             out = browser_support(
                 browser=agent['browser'],
                 prefix=agent['prefix'],
                 stats=feature_data['stats'][browser])
-            abstract += u'<br>' + out
+            abstract += u'<li>' + out + u'</li>'
+        abstract += u'</ul>'
 
         # Add notes to abstract, if there are any
         notes = feature_data.get('notes', '')
@@ -59,7 +60,17 @@ def generate_answers(data):
             for a in bs.findAll('a'):
                 a.replaceWithChildren()
             contents = bs.renderContents()
-            abstract += u'<p><b>Notes:</b> {}</p>'.format(contents.decode('utf-8'))
+            # Replace all the p tags because they are useless
+            contents = contents.replace('<p>','').replace('</p>','')
+            # Match a full stop and a space
+            # This is to prevent false positives while trying to parse strings which
+            # Have words like e.g. or ios 8.1
+            contents_arr = re.sub(r"\.\s+","|",contents).split("|")
+            # Add Li tag to all array elements for formatting
+            for i in range(len(contents_arr)):
+                contents_arr[i] = '<li>'+contents_arr[i]+'</li>'
+            contents = ''.join([(i) for i in contents_arr])
+            abstract += u'<span class="prog__sub">Notes:</span> <ul> {} </ul>'.format(contents.decode('utf-8'))
 
         abstract = '<section class="prog__container">' + abstract.replace('\n', '').replace('\r', '') + '</section>'
         print abstract
