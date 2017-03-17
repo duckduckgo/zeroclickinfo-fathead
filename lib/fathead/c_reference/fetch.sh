@@ -1,16 +1,21 @@
-mkdir -p download
+# Got the Archive link from 
+# http://en.cppreference.com/w/Cppreference:Archives
+# Right now, link is entered manually, 
+# It will take additional effort to automate this.
+# Will pickup later
 
-START=$(date +%s)
-wget -r -nc -k -P ./download -l 4 -I /w/c  http://en.cppreference.com/w/
-END=$(date +%s)
-DIFF=$(( $END - $START ))
-echo "It took $DIFF seconds"
+mkdir -p download 
+# wget http://upload.cppreference.com/mwiki/images/e/e1/html_book_20170214.zip
+unzip html_book_20170214.zip -d html_book
+mv html_book/reference/en/c/ download/
+rm -rf html_book
 
+cd "download/c/"
 
-#for file in $(find download/ -type f)
-#do echo "Moving file" $file
-#mv $file download/
-#done
+for file in *.html
+do 
+if [ -d "${file%%.html}" ]; then
+	rm $file
+fi
+done
 
-echo "Deleting Empty directories"
-find download/ -empty -type d -delete
