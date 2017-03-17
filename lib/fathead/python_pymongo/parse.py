@@ -75,7 +75,7 @@ class PyMongoParser():
                            description + '</p></section>'
                 title = element.dt["id"]
                 with open('redirects.txt', 'a') as f:
-                    f.write("{}, {}\n".format(title, title.replace('.', ' ')))
+                    f.write("{}, {}\n".format(title.replace('.', ' '), title))
 
                 filename_removed_dir = filename.replace('download/', '')
                 headerlink = self.baseurl + filename_removed_dir + anchor_link
@@ -132,7 +132,7 @@ class PyMongoParser():
                                 tag_description + '</p></section>'
                     title = tag.dt["id"]
                     with open('redirects.txt', 'a') as f:
-                        f.write("{}, {}\n".format(title, title.replace('.', ' ')))
+                        f.write("{}, {}\n".format(title.replace('.', ' '), title))
 
                     tag.decompose()
 
@@ -199,7 +199,7 @@ class PyMongoParser():
         cleaned_html = cleaned_html.replace("</None>", '')
         cleaned_html = cleaned_html.replace("<none>", '')
         cleaned_html = cleaned_html.replace("</none>", '')
-        cleaned_html = cleaned_html.strip()
+        # cleaned_html = cleaned_html.strip()
 
         return cleaned_html
 
