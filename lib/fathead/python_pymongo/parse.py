@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import argparse
 import re
+import os
 
 from bs4 import BeautifulSoup
 
@@ -72,7 +73,9 @@ class PyMongoParser():
                 abstract = '<section class="prog_container">' + \
                            '<pre><code>' + code + '</pre></code><p>' + \
                            description + '</p></section>'
-                title = element.dt["id"].replace('.', ' ')
+                title = element.dt["id"]
+                with open('redirects.txt', 'a') as f:
+                    f.write("{}, {}\n".format(title, title.replace('.', ' ')))
 
                 filename_removed_dir = filename.replace('download/', '')
                 headerlink = self.baseurl + filename_removed_dir + anchor_link
@@ -126,7 +129,10 @@ class PyMongoParser():
                     abstract = '<section class="prog_container">' + \
                                 '<pre><code>' + tag_code + '</pre></code><p>' + \
                                 tag_description + '</p></section>'
-                    title = tag.dt["id"].replace('.', ' ')
+                    title = tag.dt["id"]
+                    with open('redirects.txt', 'a') as f:
+                        f.write("{}, {}\n".format(title, title.replace('.', ' ')))
+
                     tag.decompose()
 
                     filename_removed_dir = filename.replace('download/', '')
@@ -276,6 +282,9 @@ def main():
     parser.add_argument("-u", "--baseurl", help="Entry URL to parse for class documentation", required=True)
     args = parser.parse_args()
 
+    # remove the redirects.txt if it exists, we're creating it new
+    if os.path.isfile('redirects.txt'):
+        os.remove('redirects.txt')
     pymongo_parse = PyMongoParser(args.baseurl, args.downloaddir)
 
 if __name__ == '__main__':
