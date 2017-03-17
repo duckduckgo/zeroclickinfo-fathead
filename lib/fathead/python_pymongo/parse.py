@@ -123,6 +123,7 @@ class PyMongoParser():
                     tag_code = self._clean_code_tags(tag_code)
                     for item in tag.dd.contents:
                         tag_description += str(item)
+
                     tag_description = self._clean_html_tags(tag_description)
 
                     output_line = ""
@@ -228,13 +229,27 @@ class PyMongoParser():
             tag.decompose()
 
         # Remove tags we don't want
-        tags_to_replace = ['span', 'div', 'blockquote']
+        tags_to_replace = ['div', 'blockquote']
         for tag_to_replace in tags_to_replace:
             regex_pattern = "^{}*".format(tag_to_replace)
             for tag in html_soup_cleaner.find_all(re.compile(regex_pattern)):
                 del tag.name
                 if tag.attrs:
                     del tag.attrs
+
+        # Remove span tags *if* we didn't add them
+        regex_pattern = "^{}*".format('span')
+        for tag in html_soup_cleaner.find_all(re.compile(regex_pattern)):
+            if tag.attrs:
+                if tag.attrs == {'class': ['prog__sub']}:
+                    # do nothing to these
+                    pass
+                else:
+                    # we didn't add it, delete the span attributes
+                    del tag.attrs
+            else:
+                # we didn't add it, delete the tag name
+                del tag.name
 
         # Remove links
         for tag in html_soup_cleaner.find_all("a"):
