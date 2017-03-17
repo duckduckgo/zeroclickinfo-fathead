@@ -199,7 +199,7 @@ class PyMongoParser():
         cleaned_html = cleaned_html.replace("</None>", '')
         cleaned_html = cleaned_html.replace("<none>", '')
         cleaned_html = cleaned_html.replace("</none>", '')
-        # cleaned_html = cleaned_html.strip()
+        cleaned_html = cleaned_html.strip()
 
         return cleaned_html
 
