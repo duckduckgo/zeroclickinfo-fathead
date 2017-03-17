@@ -189,7 +189,7 @@ class PyMongoParser():
             if tag.ul:
                 tag.contents = tag.ul.contents
                 tmp_tag = html_soup_cleaner.new_tag("span")
-                tmp_tag.attrs = {"class": "progr__sub"}
+                tmp_tag.attrs = {"class": "prog__sub"}
                 tmp_tag.string = "Parameters"
                 tag.insert(0, tmp_tag)
 
@@ -250,7 +250,7 @@ class PyMongoParser():
             if tag.ul:
                 tag.contents = tag.ul.contents
                 tmp_tag = html_soup_cleaner.new_tag("span")
-                tmp_tag.attrs = {"class": "progr__sub"}
+                tmp_tag.attrs = {"class": "prog__sub"}
                 tmp_tag.string = "Parameters"
                 tag.insert(0, tmp_tag)
 
