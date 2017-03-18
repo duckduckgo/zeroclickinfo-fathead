@@ -273,7 +273,9 @@ class PyMongoParser():
         # remove any version notes
         tags_to_decompose = ['versionmodified', 'versionadded', 'versionchanged']
         for tag_to_decompose in tags_to_decompose:
-            for tag in html_soup_cleaner.find_all("span", {"class": str(tag_to_decompose)}):
+            for tag in html_soup_cleaner.find_all("span", {"class": re.compile(tag_to_decompose)}):
+                tag.decompose()
+            for tag in html_soup_cleaner.find_all("div", {"class": re.compile(tag_to_decompose)}):
                 tag.decompose()
 
         # Remove tags we don't want
