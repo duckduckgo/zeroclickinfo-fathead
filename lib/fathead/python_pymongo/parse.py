@@ -6,6 +6,7 @@ import os
 
 from bs4 import BeautifulSoup
 
+
 class PyMongoParser():
     def __init__(self, baseurl, downloaddir):
         """
@@ -46,9 +47,10 @@ class PyMongoParser():
                 code = ""
                 description = ""
                 # Format methods/classmethods/functions/attributes/exceptions within a class
-                tags_to_replace = ['method', 'classmethod', 'function', 'attribute', 'exception', 'describe']
+                tags_to_replace = ['method', 'classmethod', 'function', 'attribute', 'exception']
                 for tag_to_replace in tags_to_replace:
                     for tag in element.find_all("dl", {"class": tag_to_replace}):
+                        # Anything inside the class, create it's own output
                         tag_code = ""
                         tag_description = ""
                         for item in tag.dt.contents:
@@ -57,8 +59,47 @@ class PyMongoParser():
                         for item in tag.dd.contents:
                             tag_description += str(item)
                         tag_description = self._clean_html_tags(tag_description)
-                        description += tag_code
-                        description += tag_description
+                        abstract = '<section class="prog_container">' + \
+                                   '<pre><code>' + tag_code + '</pre></code><p>' + \
+                                   tag_description + '</p></section>'
+                        tag_title = tag.dt["id"]
+                        with open('redirects.txt', 'a') as f:
+                            f.write("{}, {}\n".format(tag_title.replace('.', ' '), tag_title))
+
+                        tag_anchor_link = ""
+                        if tag.find("a", {"class": "headerlink"}):
+                            tag_anchor_link = tag.find("a", {"class": "headerlink"})["href"]
+                        filename_removed_dir = filename.replace('download/', '')
+                        headerlink = self.baseurl + filename_removed_dir + tag_anchor_link
+                        output_line = ""
+                        # 1. Full article title
+                        output_line += tag_title + "\t"
+                        # 2. Type of entry (A for article)
+                        output_line += "A" + "\t"
+                        # 3. For redirects only
+                        output_line += "" + "\t"
+                        # 4. Empty
+                        output_line += "" + "\t"
+                        # 5. Categories
+                        output_line += "" + "\t"
+                        # 6. Empty
+                        output_line += "" + "\t"
+                        # 7. Related topics
+                        output_line += "" + "\t"
+                        # 8. Empty
+                        output_line += "" + "\t"
+                        # 9. External Links (official site) [$url link_text]
+                        output_line += "" + "\t"
+                        # 10. Disambiguation pages only
+                        output_line += "" + "\t"
+                        # 11. Image
+                        output_line += "" + "\t"
+                        # 12. Abstract (Main content)
+                        output_line += abstract + "\t"
+                        # 13. Full URL to source (url with anchor)
+                        output_line += headerlink
+                        if output_line:
+                            print(output_line)
                         tag.decompose()
                 output_line = ""
                 for item in element.dt.contents:
@@ -105,7 +146,8 @@ class PyMongoParser():
                 output_line += abstract + "\t"
                 # 13. Full URL to source (url with anchor)
                 output_line += headerlink
-                print(output_line)
+                if output_line:
+                    print(output_line)
                 element.decompose()
 
             # get anything else that may be in there, not in a class
@@ -128,8 +170,8 @@ class PyMongoParser():
 
                     output_line = ""
                     abstract = '<section class="prog_container">' + \
-                                '<pre><code>' + tag_code + '</pre></code><p>' + \
-                                tag_description + '</p></section>'
+                               '<pre><code>' + tag_code + '</pre></code><p>' + \
+                               tag_description + '</p></section>'
                     title = tag.dt["id"]
                     with open('redirects.txt', 'a') as f:
                         f.write("{}, {}\n".format(title.replace('.', ' '), title))
@@ -164,7 +206,8 @@ class PyMongoParser():
                     output_line += abstract + "\t"
                     # 13. Full URL to source (url with anchor)
                     output_line += headerlink
-                    print(output_line)
+                    if output_line:
+                        print(output_line)
 
     def _clean_code_tags(self, code_html_to_clean):
         """
@@ -199,6 +242,9 @@ class PyMongoParser():
         cleaned_html = cleaned_html.replace("</None>", '')
         cleaned_html = cleaned_html.replace("<none>", '')
         cleaned_html = cleaned_html.replace("</none>", '')
+        # clean empty paragraph tags from removed tags
+        while '<p></p>' in cleaned_html:
+            cleaned_html = cleaned_html.replace('<p></p>', '')
         cleaned_html = cleaned_html.strip()
 
         return cleaned_html
@@ -224,9 +270,11 @@ class PyMongoParser():
             del tag.next_element.attrs
             tag.next_element.next_element.name = "span"
 
-        # replace the version_modified spans with italics
-        for tag in html_soup_cleaner.find_all("span", {"class": "versionmodified"}):
-            tag.decompose()
+        # remove any version notes
+        tags_to_decompose = ['versionmodified', 'versionadded', 'versionchanged']
+        for tag_to_decompose in tags_to_decompose:
+            for tag in html_soup_cleaner.find_all("span", {"class": str(tag_to_decompose)}):
+                tag.decompose()
 
         # Remove tags we don't want
         tags_to_replace = ['div', 'blockquote']
@@ -247,6 +295,7 @@ class PyMongoParser():
                 else:
                     # we didn't add it, delete the span attributes
                     del tag.attrs
+                    del tag.name
             else:
                 # we didn't add it, delete the tag name
                 del tag.name
@@ -256,6 +305,11 @@ class PyMongoParser():
             if tag.attrs:
                 del tag.name
                 del tag.attrs
+
+        # Remove paragraph tags if they contain no contents, or extra attributes
+        for tag in html_soup_cleaner.find_all("p"):
+            if tag.attrs:
+                tag.decompose()
 
         # Reformat tables
         for tag in html_soup_cleaner.find_all('table'):
@@ -286,7 +340,16 @@ class PyMongoParser():
         cleaned_html = cleaned_html.strip()
         cleaned_html = cleaned_html.replace('\n', '\\n')
 
+        # clean up some extra things from removed tags
+        # extra newlines
+        while '\\n\\n' in cleaned_html:
+            cleaned_html = cleaned_html.replace('\\n\\n', '\\n')
+        # empty paragraph tags
+        while '<p></p>' in cleaned_html:
+            cleaned_html = cleaned_html.replace('<p></p>', '')
+
         return cleaned_html
+
 
 def main():
     """
@@ -300,7 +363,7 @@ def main():
     # remove the redirects.txt if it exists, we're creating it new
     if os.path.isfile('redirects.txt'):
         os.remove('redirects.txt')
-    pymongo_parse = PyMongoParser(args.baseurl, args.downloaddir)
+    PyMongoParser(args.baseurl, args.downloaddir)
 
 if __name__ == '__main__':
     main()
