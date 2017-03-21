@@ -15,7 +15,7 @@ def main():
 
 	for p in filepath:
 		# p="download/c/language/escape.html"
-		print p
+		#print p
 		process_file(p)
 		# raw_input()
 #------------------------------------------------------------
@@ -221,9 +221,12 @@ def process_file(filepath):
 			g.write(str(soup))
 
 	filepath_elements = filepath.split("/")
+	print filepath_elements
+
 	filename = filepath_elements[-1][:-len(".html")]
 	actual_page_title = soup.title.string[:-len(" - cppreference.com")]
 
+	parent_topic = filepath_elements[-2]
 	
 	_1_title = filename #This will always be distinct
 	_2_type_of_entry = 'A'
@@ -262,7 +265,7 @@ def process_file(filepath):
 		_12_abstract=process_abstract(soup)		
 		with open("./output.html",'w') as f:
 			f.write(_12_abstract)
-		print "Written to output.html"
+		#print "Written to output.html"
 
 		f_values = [_1_title, 
 					_2_type_of_entry, 
@@ -280,12 +283,29 @@ def process_file(filepath):
 					
 		try:
 			with open("./output.txt",'a') as f:
-				for fv in f_values:
-					f.write(fv+"\t")
+				i=0
+				for i in xrange(len(f_values)):
+					f.write(f_values[i])
+					if(i!=12): f.write("\t")
 				f.write("\n")
 		except Exception as e1:
 			print "Error in writing to output.TXT"
 			print(str(e1))
+
+		if(parent_topic=="keyword"):
+			try:
+				with open("./cover/keywords.txt",'a') as keywordsfile:
+					keywordsfile.write(filename+"\n")
+			except Exception as e2:
+				print "Error in writinf to cover/keywords.txt"
+				print(str(e2))
+		else:
+			try:
+				with open("./cover/functions.txt",'a') as keywordsfile:
+					keywordsfile.write(filename+"\n")
+			except Exception as e4:
+				print "Error in writinf to cover/functions.txt"
+				print(str(e4))
 
 	except Exception as e:
 		print "Error in Processing : "
