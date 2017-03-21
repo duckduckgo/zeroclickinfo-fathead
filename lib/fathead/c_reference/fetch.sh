@@ -5,7 +5,7 @@
 # Will pickup later
 
 mkdir -p download 
-# wget http://upload.cppreference.com/mwiki/images/e/e1/html_book_20170214.zip
+wget http://upload.cppreference.com/mwiki/images/e/e1/html_book_20170214.zip
 unzip html_book_20170214.zip -d html_book
 mv html_book/reference/en/c/ download/
 rm -rf html_book
@@ -18,4 +18,3 @@ if [ -d "${file%%.html}" ]; then
 	rm $file
 fi
 done
-
