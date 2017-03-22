@@ -1,0 +1,667 @@
+ Exit	R	_Exit											
+ATOMIC VAR INIT	R	ATOMIC_VAR_INIT											
+ATOMIC_VAR_INIT	A										<section class="prog__container">\n<p>Expands to an expression that can be used to initialize an atomic variable of the same type as <code>value</code>.</p>\n<pre><code>#define ATOMIC_VAR_INIT(value) /* unspecified */</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/ATOMIC_VAR_INIT
+ATOMIC_VAR_INIT	R	ATOMIC_VAR_INIT											
+CMPLX	A										<section class="prog__container">\n<p>Each of these macros expands to an expression that evaluates to the value of the specified complex type, with the real part having the value of <code>real</code> (converted to the specified argument...</p>\n<pre><code>double complex      CMPLX( double real, double imag );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/CMPLX
+CMPLX	R	CMPLX											
+CMPLXF	A										<section class="prog__container">\n<p>Each of these macros expands to an expression that evaluates to the value of the specified complex type, with the real part having the value of <code>real</code> (converted to the specified argument...</p>\n<pre><code>float complex       CMPLXF( float real, float imag );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/CMPLX
+CMPLXF	R	CMPLXF											
+CMPLXL	A										<section class="prog__container">\n<p>Each of these macros expands to an expression that evaluates to the value of the specified complex type, with the real part having the value of <code>real</code> (converted to the specified argument...</p>\n<pre><code>long double complex CMPLXL( long double real, long double imag );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/CMPLX
+CMPLXL	R	CMPLXL											
+_Exit	A										<section class="prog__container">\n<p>Causes normal program termination to occur without completely cleaning the resources.</p>\n<pre><code>void _Exit( int exit_code );\n\n_Noreturn void _Exit( int exit_code );</code></pre>\n</section>	http://en.cppreference.com/w/c/program/_Exit
+_Exit	R	_Exit											
+abort	A										<section class="prog__container">\n<p>Causes abnormal program termination unless SIGABRT is being caught by a signal handler passed to signal and the handler does not return.</p>\n<pre><code>_Noreturn void abort(void);</code></pre>\n</section>	http://en.cppreference.com/w/c/program/abort
+abort	R	abort											
+abs	A										<section class="prog__container">\n<p>Computes the absolute value of an integer number.</p>\n<pre><code>int        abs( int n );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/abs
+abs	R	abs											
+asctime	A										<section class="prog__container">\n<p> Converts given calendar time tm to a textual representation of the following fixed 25-character form: <code>Www Mmm dd hh:mm:ss yyyy\n</code> <code>Www</code> - three-letter English abbreviated day...</p>\n<pre><code>char* asctime( const struct tm* time_ptr );</code></pre>\n</section>	http://en.cppreference.com/w/c/chrono/asctime
+asctime	R	asctime											
+assert	A										<section class="prog__container">\n<p>The definition of the macro <code>assert</code> depends on another macro, <code>NDEBUG</code>, which is not defined by the standard library.</p>\n<pre><code>#ifdef NDEBUG\n#define assert(condition) ((void)0)\n#else\n#define assert(condition) /*implementation defined*/\n#endif</code></pre>\n</section>	http://en.cppreference.com/w/c/error/assert
+assert	R	assert											
+at quick exit	R	at_quick_exit											
+at_quick_exit	A										<section class="prog__container">\n<p>Registers the function pointed to by <code>func</code> to be called on quick program termination (via quick_exit).</p>\n<pre><code>int at_quick_exit( void (*func)(void) );</code></pre>\n</section>	http://en.cppreference.com/w/c/program/at_quick_exit
+at_quick_exit	R	at_quick_exit											
+atexit	A										<section class="prog__container">\n<p>Registers the function pointed to by <code>func</code> to be called on normal program termination (via exit() or returning from <code>main()</code>).</p>\n<pre><code>int atexit( void (*func)(void) );</code></pre>\n</section>	http://en.cppreference.com/w/c/program/atexit
+atexit	R	atexit											
+atof	A										<section class="prog__container">\n<p>Interprets a floating-point value in a byte string pointed to by <code>str</code>.</p>\n<pre><code>double atof( const char* str );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/atof
+atof	R	atof											
+atoi	A										<section class="prog__container">\n<p>Interprets an integer value in a byte string pointed to by <code>str</code>.</p>\n<pre><code>int       atoi( const char *str );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/atoi
+atoi	R	atoi											
+atol	A										<section class="prog__container">\n<p>Interprets an integer value in a byte string pointed to by <code>str</code>.</p>\n<pre><code>long      atol( const char *str );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/atoi
+atol	R	atol											
+atoll	A										<section class="prog__container">\n<p>Interprets an integer value in a byte string pointed to by <code>str</code>.</p>\n<pre><code>long long atoll( const char *str );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/atoi
+atoll	R	atoll											
+atomic compare exchange strong	R	atomic_compare_exchange_strong											
+atomic compare exchange strong explicit	R	atomic_compare_exchange_strong_explicit											
+atomic compare exchange weak	R	atomic_compare_exchange_weak											
+atomic compare exchange weak explicit	R	atomic_compare_exchange_weak_explicit											
+atomic exchange	R	atomic_exchange											
+atomic exchange explicit	R	atomic_exchange_explicit											
+atomic fetch add	R	atomic_fetch_add											
+atomic fetch add explicit	R	atomic_fetch_add_explicit											
+atomic fetch and	R	atomic_fetch_and											
+atomic fetch and explicit	R	atomic_fetch_and_explicit											
+atomic fetch or	R	atomic_fetch_or											
+atomic fetch or explicit	R	atomic_fetch_or_explicit											
+atomic fetch sub	R	atomic_fetch_sub											
+atomic fetch sub explicit	R	atomic_fetch_sub_explicit											
+atomic fetch xor	R	atomic_fetch_xor											
+atomic fetch xor explicit	R	atomic_fetch_xor_explicit											
+atomic flag clear	R	atomic_flag_clear											
+atomic flag clear explicit	R	atomic_flag_clear_explicit											
+atomic flag test and set	R	atomic_flag_test_and_set											
+atomic flag test and set explicit	R	atomic_flag_test_and_set_explicit											
+atomic init	R	atomic_init											
+atomic is lock free	R	atomic_is_lock_free											
+atomic load	R	atomic_load											
+atomic load explicit	R	atomic_load_explicit											
+atomic signal fence	R	atomic_signal_fence											
+atomic store	R	atomic_store											
+atomic store explicit	R	atomic_store_explicit											
+atomic thread fence	R	atomic_thread_fence											
+atomic_compare_exchange_strong	A										<section class="prog__container">\n<p>Atomically compares the value pointed to by <code>obj</code> with the value pointed to by <code>expected</code>, and if those are equal, replaces the former with <code>desired</code> (performs...</p>\n<pre><code>_Bool atomic_compare_exchange_strong( volatile A* obj,\n                                      C* expected, C desired );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_compare_exchange
+atomic_compare_exchange_strong	R	atomic_compare_exchange_strong											
+atomic_compare_exchange_strong_explicit	A										<section class="prog__container">\n<p>Atomically compares the value pointed to by <code>obj</code> with the value pointed to by <code>expected</code>, and if those are equal, replaces the former with <code>desired</code> (performs...</p>\n<pre><code>_Bool atomic_compare_exchange_strong_explicit( volatile A* obj, \n                                               C* expected, C desired,\n                                               memory_order succ, \n                                               memory_order fail );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_compare_exchange
+atomic_compare_exchange_strong_explicit	R	atomic_compare_exchange_strong_explicit											
+atomic_compare_exchange_weak	A										<section class="prog__container">\n<p>Atomically compares the value pointed to by <code>obj</code> with the value pointed to by <code>expected</code>, and if those are equal, replaces the former with <code>desired</code> (performs...</p>\n<pre><code>_Bool atomic_compare_exchange_weak( volatile A *obj, \n                                    C* expected, C desired );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_compare_exchange
+atomic_compare_exchange_weak	R	atomic_compare_exchange_weak											
+atomic_compare_exchange_weak_explicit	A										<section class="prog__container">\n<p>Atomically compares the value pointed to by <code>obj</code> with the value pointed to by <code>expected</code>, and if those are equal, replaces the former with <code>desired</code> (performs...</p>\n<pre><code>_Bool atomic_compare_exchange_weak_explicit( volatile A *obj, \n                                             C* expected, C desired,\n                                             memory_order succ, \n                                             memory_order fail );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_compare_exchange
+atomic_compare_exchange_weak_explicit	R	atomic_compare_exchange_weak_explicit											
+atomic_exchange	A										<section class="prog__container">\n<p>Atomically replaces the value pointed by <code>obj</code> with <code>desired</code> and returns the value <code>obj</code> held previously.</p>\n<pre><code>C atomic_exchange( volatile A* obj, C desired );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_exchange
+atomic_exchange	R	atomic_exchange											
+atomic_exchange_explicit	A										<section class="prog__container">\n<p>Atomically replaces the value pointed by <code>obj</code> with <code>desired</code> and returns the value <code>obj</code> held previously.</p>\n<pre><code>C atomic_exchange_explicit( volatile A* obj, C desired, memory_order order );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_exchange
+atomic_exchange_explicit	R	atomic_exchange_explicit											
+atomic_fetch_add	A										<section class="prog__container">\n<p>Atomically replaces the value pointed by <code>obj</code> with the result of addition of <code>arg</code> to the old value of <code>obj</code>, and returns the value <code>obj</code> held previously.</p>\n<pre><code>C atomic_fetch_add( volatile A* obj, M arg );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_fetch_add
+atomic_fetch_add	R	atomic_fetch_add											
+atomic_fetch_add_explicit	A										<section class="prog__container">\n<p>Atomically replaces the value pointed by <code>obj</code> with the result of addition of <code>arg</code> to the old value of <code>obj</code>, and returns the value <code>obj</code> held previously.</p>\n<pre><code>C atomic_fetch_add_explicit( volatile A* obj, M arg, memory_order order );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_fetch_add
+atomic_fetch_add_explicit	R	atomic_fetch_add_explicit											
+atomic_fetch_and	A										<section class="prog__container">\n<p>Atomically replaces the value pointed by <code>obj</code> with the result of bitwise AND between the old value of <code>obj</code> and <code>arg</code>, and returns the value <code>obj</code> held...</p>\n<pre><code>C atomic_fetch_and( volatile A* obj, M arg );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_fetch_and
+atomic_fetch_and	R	atomic_fetch_and											
+atomic_fetch_and_explicit	A										<section class="prog__container">\n<p>Atomically replaces the value pointed by <code>obj</code> with the result of bitwise AND between the old value of <code>obj</code> and <code>arg</code>, and returns the value <code>obj</code> held...</p>\n<pre><code>C atomic_fetch_and_explicit( volatile A* obj, M arg, memory_order order );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_fetch_and
+atomic_fetch_and_explicit	R	atomic_fetch_and_explicit											
+atomic_fetch_or	A										<section class="prog__container">\n<p>Atomically replaces the value pointed by <code>obj</code> with the result of bitwise OR between the old value of <code>obj</code> and <code>arg</code>, and returns the value <code>obj</code> held...</p>\n<pre><code>C atomic_fetch_or( volatile A* obj, M arg );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_fetch_or
+atomic_fetch_or	R	atomic_fetch_or											
+atomic_fetch_or_explicit	A										<section class="prog__container">\n<p>Atomically replaces the value pointed by <code>obj</code> with the result of bitwise OR between the old value of <code>obj</code> and <code>arg</code>, and returns the value <code>obj</code> held...</p>\n<pre><code>C atomic_fetch_or_explicit( volatile A* obj, M arg, memory_order order );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_fetch_or
+atomic_fetch_or_explicit	R	atomic_fetch_or_explicit											
+atomic_fetch_sub	A										<section class="prog__container">\n<p>Atomically replaces the value pointed by <code>obj</code> with the result of subtraction of <code>arg</code> from the old value of <code>obj</code>, and returns the value <code>obj</code> held...</p>\n<pre><code>C atomic_fetch_sub( volatile A* obj, M arg );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_fetch_sub
+atomic_fetch_sub	R	atomic_fetch_sub											
+atomic_fetch_sub_explicit	A										<section class="prog__container">\n<p>Atomically replaces the value pointed by <code>obj</code> with the result of subtraction of <code>arg</code> from the old value of <code>obj</code>, and returns the value <code>obj</code> held...</p>\n<pre><code>C atomic_fetch_sub_explicit( volatile A* obj, M arg, memory_order order );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_fetch_sub
+atomic_fetch_sub_explicit	R	atomic_fetch_sub_explicit											
+atomic_fetch_xor	A										<section class="prog__container">\n<p>Atomically replaces the value pointed by <code>obj</code> with the result of bitwise XOR between the old value of <code>obj</code> and <code>arg</code>, and returns the value <code>obj</code> held...</p>\n<pre><code>C atomic_fetch_xor( volatile A* obj, M arg );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_fetch_xor
+atomic_fetch_xor	R	atomic_fetch_xor											
+atomic_fetch_xor_explicit	A										<section class="prog__container">\n<p>Atomically replaces the value pointed by <code>obj</code> with the result of bitwise XOR between the old value of <code>obj</code> and <code>arg</code>, and returns the value <code>obj</code> held...</p>\n<pre><code>C atomic_fetch_xor_explicit( volatile A* obj, M arg, memory_order order );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_fetch_xor
+atomic_fetch_xor_explicit	R	atomic_fetch_xor_explicit											
+atomic_flag_clear	A										<section class="prog__container">\n<p>Atomically changes the state of a <code>atomic_flag</code> pointed to by <code>obj</code> to clear (<code>false</code>).</p>\n<pre><code>void atomic_flag_clear( volatile atomic_flag* obj );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_flag_clear
+atomic_flag_clear	R	atomic_flag_clear											
+atomic_flag_clear_explicit	A										<section class="prog__container">\n<p>Atomically changes the state of a <code>atomic_flag</code> pointed to by <code>obj</code> to clear (<code>false</code>).</p>\n<pre><code>void atomic_flag_clear_explicit( volatile atomic_flag* obj, memory_order order );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_flag_clear
+atomic_flag_clear_explicit	R	atomic_flag_clear_explicit											
+atomic_flag_test_and_set	A										<section class="prog__container">\n<p>Atomically changes the state of a <code>atomic_flag</code> pointed to by <code>obj</code> to set (<code>true</code>) and returns the previous value.</p>\n<pre><code>_Bool atomic_flag_test_and_set( volatile atomic_flag* obj );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_flag_test_and_set
+atomic_flag_test_and_set	R	atomic_flag_test_and_set											
+atomic_flag_test_and_set_explicit	A										<section class="prog__container">\n<p>Atomically changes the state of a <code>atomic_flag</code> pointed to by <code>obj</code> to set (<code>true</code>) and returns the previous value.</p>\n<pre><code>_Bool atomic_flag_test_and_set_explicit( volatile atomic_flag* obj, memory_order order );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_flag_test_and_set
+atomic_flag_test_and_set_explicit	R	atomic_flag_test_and_set_explicit											
+atomic_init	A										<section class="prog__container">\n<p>Initializes the default-constructed atomic object <code>obj</code> with the value <code>desired</code>.</p>\n<pre><code>void atomic_init( volatile A* obj, C desired );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_init
+atomic_init	R	atomic_init											
+atomic_is_lock_free	A										<section class="prog__container">\n<p>Determines if the atomic operations on all objects of the type <code>A</code> (the type of the object pointed to by <code>obj</code>) are lock-free.</p>\n<pre><code>_Bool atomic_is_lock_free( const volatile A* obj );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_is_lock_free
+atomic_is_lock_free	R	atomic_is_lock_free											
+atomic_load	A										<section class="prog__container">\n<p>Atomically loads and returns the current value of the atomic variable pointed to by <code>obj</code>.</p>\n<pre><code>C atomic_load( const volatile A* obj );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_load
+atomic_load	R	atomic_load											
+atomic_load_explicit	A										<section class="prog__container">\n<p>Atomically loads and returns the current value of the atomic variable pointed to by <code>obj</code>.</p>\n<pre><code>C atomic_load_explicit( const volatile A* obj, memory_order order );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_load
+atomic_load_explicit	R	atomic_load_explicit											
+atomic_signal_fence	A										<section class="prog__container">\n<p>Establishes memory synchronization ordering of non-atomic and relaxed atomic accesses, as instructed by <code>order</code>, between a thread and a signal handler executed on the same thread.</p>\n<pre><code>void atomic_signal_fence( memory_order order );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_signal_fence
+atomic_signal_fence	R	atomic_signal_fence											
+atomic_store	A										<section class="prog__container">\n<p>Atomically replaces the value of the atomic variable pointed to by <code>obj</code> with <code>desired</code>.</p>\n<pre><code>void atomic_store( volatile A* obj , C desired);</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_store
+atomic_store	R	atomic_store											
+atomic_store_explicit	A										<section class="prog__container">\n<p>Atomically replaces the value of the atomic variable pointed to by <code>obj</code> with <code>desired</code>.</p>\n<pre><code>void atomic_store_explicit( volatile A* obj, C desired, memory_order order );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_store
+atomic_store_explicit	R	atomic_store_explicit											
+atomic_thread_fence	A										<section class="prog__container">\n<p>Establishes memory synchronization ordering of non-atomic and relaxed atomic accesses, as instructed by <code>order</code>, without an associated atomic operation.</p>\n<pre><code>void atomic_thread_fence( memory_order order );</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/atomic_thread_fence
+atomic_thread_fence	R	atomic_thread_fence											
+bsearch	A										<section class="prog__container">\n<p> Finds an element equal to element pointed to by <code>key</code> in an array pointed to by <code>ptr</code>.</p>\n<pre><code>void* bsearch( const void *key, const void *ptr, size_t count, size_t size,\n               int (*comp)(const void*, const void*) );</code></pre>\n</section>	http://en.cppreference.com/w/c/algorithm/bsearch
+bsearch	R	bsearch											
+btowc	A										<section class="prog__container">\n<p>Widens a single-byte character <code>c</code> (reinterpreted as <code>unsigned char</code>) to its wide character equivalent.</p>\n<pre><code>wint_t btowc( int c );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/btowc
+btowc	R	btowc											
+c16rtomb	A										<section class="prog__container">\n<p>Converts a single code point from its variable-length 16-bit wide character representation (typically, UTF-16) to its narrow multibyte character representation.</p>\n<pre><code>size_t c16rtomb( char* s, char16_t c16, mbstate_t* ps );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/c16rtomb
+c16rtomb	R	c16rtomb											
+c32rtomb	A										<section class="prog__container">\n<p>Converts a single code point from its variable-length 32-bit wide character representation (but typically, UTF-32) to its narrow multibyte character representation.</p>\n<pre><code>size_t c32rtomb( char* s, char32_t c32, mbstate_t* ps );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/c32rtomb
+c32rtomb	R	c32rtomb											
+cabs	A										<section class="prog__container">\n<p> Computes the complex absolute value (also known as norm, modulus, or magnitude) of <code>z</code>.</p>\n<pre><code>double      cabs( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/cabs
+cabs	R	cabs											
+cacos	A										<section class="prog__container">\n<p> Computes the complex arc cosine of <code>z</code> with branch cuts outside the interval [−1,+1] along the real axis.</p>\n<pre><code>double complex      cacos( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/cacos
+cacos	R	cacos											
+cacosh	A										<section class="prog__container">\n<p> Computes complex arc hyperbolic cosine of a complex value <code>z</code> with branch cut at values less than 1 along the real axis.</p>\n<pre><code>double complex      cacosh( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/cacosh
+cacosh	R	cacosh											
+call once	R	call_once											
+call_once	A										<section class="prog__container">\n<p> Calls function <code>func</code> exactly once, even if invoked from several threads.</p>\n<pre><code>void call_once( once_flag* flag, void (*func)(void) );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/call_once
+call_once	R	call_once											
+calloc	A										<section class="prog__container">\n<p>Allocates memory for an array of <code>num</code> objects of size <code>size</code> and initializes all bytes in the allocated storage to zero.</p>\n<pre><code>void* calloc( size_t num, size_t size );</code></pre>\n</section>	http://en.cppreference.com/w/c/memory/calloc
+calloc	R	calloc											
+cargf	A										<section class="prog__container">\n<p> Computes the argument (also called phase angle) of <code>z</code>, with a branch cut along the negative real axis.</p>\n<pre><code>float       cargf( float complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/carg
+cargf	R	cargf											
+casin	A										<section class="prog__container">\n<p> Computes the complex arc sine of <code>z</code> with branch cuts outside the interval [−1,+1] along the real axis.</p>\n<pre><code>double complex      casin( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/casin
+casin	R	casin											
+casinh	A										<section class="prog__container">\n<p> Computes the complex arc hyperbolic sine of <code>z</code> with branch cuts outside the interval [−i; +i] along the imaginary axis.</p>\n<pre><code>double complex      casinh( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/casinh
+casinh	R	casinh											
+catan	A										<section class="prog__container">\n<p> Computes the complex arc tangent of <code>z</code> with branch cuts outside the interval [−i,+i] along the imaginary axis.</p>\n<pre><code>double complex      catan( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/catan
+catan	R	catan											
+catanh	A										<section class="prog__container">\n<p> Computes the complex arc hyperbolic tangent of <code>z</code> with branch cuts outside the interval [−1; +1] along the real axis.</p>\n<pre><code>double complex      catanh( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/catanh
+catanh	R	catanh											
+ccos	A										<section class="prog__container">\n<p> Computes the complex cosine of <code>z</code>.</p>\n<pre><code>double complex      ccos( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/ccos
+ccos	R	ccos											
+ccosh	A										<section class="prog__container">\n<p> Computes the complex hyperbolic cosine of <code>z</code>.</p>\n<pre><code>double complex      ccosh( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/ccosh
+ccosh	R	ccosh											
+cexp	A										<section class="prog__container">\n<p> Computes the complex base-<i>e</i> exponential of <code>z</code>.</p>\n<pre><code>double complex      cexp( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/cexp
+cexp	R	cexp											
+cimagf	A										<section class="prog__container">\n<p> Returns the imaginary part of <code>z</code>.</p>\n<pre><code>float       cimagf( float complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/cimag
+cimagf	R	cimagf											
+clearerr	A										<section class="prog__container">\n<p>Resets the error flags and the <code>EOF</code> indicator for the given file stream.</p>\n<pre><code>void clearerr( FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/clearerr
+clearerr	R	clearerr											
+clock	A										<section class="prog__container">\n<p>Returns the approximate processor time used by the process since the beginning of an implementation-defined era related to the program's execution.</p>\n<pre><code>clock_t clock(void);</code></pre>\n</section>	http://en.cppreference.com/w/c/chrono/clock
+clock	R	clock											
+clog	A										<section class="prog__container">\n<p> Computes the complex natural (base-<i>e</i>) logarithm of <code>z</code> with branch cut along the negative real axis.</p>\n<pre><code>double complex      clog( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/clog
+clog	R	clog											
+cnd broadcast	R	cnd_broadcast											
+cnd destroy	R	cnd_destroy											
+cnd init	R	cnd_init											
+cnd signal	R	cnd_signal											
+cnd timedwait	R	cnd_timedwait											
+cnd wait	R	cnd_wait											
+cnd_broadcast	A										<section class="prog__container">\n<p>Unblocks all thread that currently wait on condition variable pointed to by <code>cond</code>.</p>\n<pre><code>int cnd_broadcast( cnd_t *cond );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/cnd_broadcast
+cnd_broadcast	R	cnd_broadcast											
+cnd_destroy	A										<section class="prog__container">\n<p>Destroys the condition variable pointed to by <code>cond</code>.</p>\n<pre><code>void cnd_destroy( cnd_t* cond );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/cnd_destroy
+cnd_destroy	R	cnd_destroy											
+cnd_init	A										<section class="prog__container">\n<p>Initializes new condition variable.</p>\n<pre><code>int cnd_init( cnd_t* cond );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/cnd_init
+cnd_init	R	cnd_init											
+cnd_signal	A										<section class="prog__container">\n<p>Unblocks one thread that currently waits on condition variable pointed to by <code>cond</code>.</p>\n<pre><code>int cnd_signal( cnd_t *cond );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/cnd_signal
+cnd_signal	R	cnd_signal											
+cnd_timedwait	A										<section class="prog__container">\n<p>Atomically unlocks the mutex pointed to by <code>mutex</code> and blocks on the condition variable pointed to by <code>cond</code> until the thread is signalled by cnd_signal or cnd_broadcast, or...</p>\n<pre><code>int cnd_timedwait( cnd_t* restrict cond, mtx_t* restrict mutex,\n                   const struct timespec* restrict time_point );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/cnd_timedwait
+cnd_timedwait	R	cnd_timedwait											
+cnd_wait	A										<section class="prog__container">\n<p>Atomically unlocks the mutex pointed to by <code>mutex</code> and blocks on the condition variable pointed to by <code>cond</code> until the thread is signalled by cnd_signal or cnd_broadcast.</p>\n<pre><code>int cnd_wait( cnd_t* cond, mtx_t* mutex );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/cnd_wait
+cnd_wait	R	cnd_wait											
+conjf	A										<section class="prog__container">\n<p> Computes the complex conjugate of <code>z</code> by reversing the sign of the imaginary part.</p>\n<pre><code>float complex       conjf( float complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/conj
+conjf	R	conjf											
+cpow	A										<section class="prog__container">\n<p> Computes the complex power function xy, with branch cut for the first parameter along the negative real axis.</p>\n<pre><code>double complex      cpow( double complex x, double complex y );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/cpow
+cpow	R	cpow											
+cprojf	A										<section class="prog__container">\n<p> Computes the projection of <code>z</code> on the Riemann sphere.</p>\n<pre><code>float       cprojf( float complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/cproj
+cprojf	R	cprojf											
+crealf	A										<section class="prog__container">\n<p> Returns the real part of <code>z</code>.</p>\n<pre><code>float       crealf( float complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/creal
+crealf	R	crealf											
+csin	A										<section class="prog__container">\n<p> Computes the complex sine of <code>z</code>.</p>\n<pre><code>double complex      csin( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/csin
+csin	R	csin											
+csinh	A										<section class="prog__container">\n<p> Computes the complex hyperbolic sine of <code>z</code>.</p>\n<pre><code>double complex      csinh( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/csinh
+csinh	R	csinh											
+csqrt	A										<section class="prog__container">\n<p> Computes the complex square root of <code>z</code> with branch cut along the negative real axis.</p>\n<pre><code>double complex      csqrt( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/csqrt
+csqrt	R	csqrt											
+ctan	A										<section class="prog__container">\n<p> Computes the complex tangent of <code>z</code>.</p>\n<pre><code>double complex      ctan( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/ctan
+ctan	R	ctan											
+ctanh	A										<section class="prog__container">\n<p> Computes the complex hyperbolic tangent of <code>z</code>.</p>\n<pre><code>double complex      ctanh( double complex z );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/complex/ctanh
+ctanh	R	ctanh											
+ctime	A										<section class="prog__container">\n<p> Converts given time since epoch to a calendar local time and then to a textual representation, as if by calling <code>asctime(localtime(time))</code>.</p>\n<pre><code>char* ctime( const time_t* time );</code></pre>\n</section>	http://en.cppreference.com/w/c/chrono/ctime
+ctime	R	ctime											
+difftime	A										<section class="prog__container">\n<p>Computes difference between two calendar times as time_t objects (<code>time_end - time_beg</code>) in seconds.</p>\n<pre><code>double difftime( time_t time_end, time_t time_beg );</code></pre>\n</section>	http://en.cppreference.com/w/c/chrono/difftime
+difftime	R	difftime											
+div	A										<section class="prog__container">\n<p>Computes both the quotient and the remainder of the division of the numerator <code>x</code> by the denominator <code>y</code>.</p>\n<pre><code>div_t     div( int x, int y );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/div
+div	R	div											
+exit	A										<section class="prog__container">\n<p>Causes normal program termination to occur.</p>\n<pre><code>_Noreturn void exit( int exit_code );</code></pre>\n</section>	http://en.cppreference.com/w/c/program/exit
+exit	R	exit											
+fclose	A										<section class="prog__container">\n<p>Closes the given file stream.</p>\n<pre><code>int fclose( FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fclose
+fclose	R	fclose											
+feclearexcept	A										<section class="prog__container">\n<p>Attempts to clear the floating-point exceptions that are listed in the bitmask argument <code>excepts</code>, which is a bitwise OR of the floating point exception macros.</p>\n<pre><code>int feclearexcept( int excepts );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/fenv/feclearexcept
+feclearexcept	R	feclearexcept											
+fegetenv	A										<section class="prog__container">\n<p>1) Attempts to store the status of the floating-point environment in the object pointed to by <code>envp</code>.</p>\n<pre><code>int fegetenv( fenv_t* envp );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/fenv/feenv
+fegetenv	R	fegetenv											
+fegetexceptflag	A										<section class="prog__container">\n<p>1) Attempts to obtain the full contents of the floating-point exception flags that are listed in the bitmask argument <code>excepts</code>, which is a bitwise OR of the floating point exception...</p>\n<pre><code>int fegetexceptflag( fexcept_t* flagp, int excepts );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/fenv/feexceptflag
+fegetexceptflag	R	fegetexceptflag											
+fegetround	A										<section class="prog__container">\n<p>1) Attempts to establish the floating-point rounding direction equal to the argument argument <code>round</code>, which is expected to be one of the floating point rounding macros.</p>\n<pre><code>int fegetround();</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/fenv/feround
+fegetround	R	fegetround											
+feholdexcept	A										<section class="prog__container">\n<p>First, saves the current floating-point environment to the object pointed to by <code>envp</code> (similar to fegetenv), then clears all floating-point status flags, and then installs the non-stop...</p>\n<pre><code>int feholdexcept( fenv_t* envp );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/fenv/feholdexcept
+feholdexcept	R	feholdexcept											
+feof	A										<section class="prog__container">\n<p>Checks if the end of the given file stream has been reached.</p>\n<pre><code>int feof( FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/feof
+feof	R	feof											
+feraiseexcept	A										<section class="prog__container">\n<p>Attempts to raise all floating point exceptions listed in <code>excepts</code> (a bitwise OR of the floating point exception macros).</p>\n<pre><code>int feraiseexcept( int excepts );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/fenv/feraiseexcept
+feraiseexcept	R	feraiseexcept											
+ferror	A										<section class="prog__container">\n<p>Checks the given stream for errors.</p>\n<pre><code>int ferror( FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/ferror
+ferror	R	ferror											
+fesetenv	A										<section class="prog__container">\n<p>1) Attempts to store the status of the floating-point environment in the object pointed to by <code>envp</code>.</p>\n<pre><code>int fesetenv( const fenv_t* envp );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/fenv/feenv
+fesetenv	R	fesetenv											
+fesetexceptflag	A										<section class="prog__container">\n<p>1) Attempts to obtain the full contents of the floating-point exception flags that are listed in the bitmask argument <code>excepts</code>, which is a bitwise OR of the floating point exception...</p>\n<pre><code>int fesetexceptflag( const fexcept_t* flagp, int excepts );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/fenv/feexceptflag
+fesetexceptflag	R	fesetexceptflag											
+fesetround	A										<section class="prog__container">\n<p>1) Attempts to establish the floating-point rounding direction equal to the argument argument <code>round</code>, which is expected to be one of the floating point rounding macros.</p>\n<pre><code>int fesetround( int round );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/fenv/feround
+fesetround	R	fesetround											
+fetestexcept	A										<section class="prog__container">\n<p>Determines which of the specified subset of the floating point exceptions are currently set.</p>\n<pre><code>int fetestexcept( int excepts );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/fenv/fetestexcept
+fetestexcept	R	fetestexcept											
+feupdateenv	A										<section class="prog__container">\n<p>First, remembers the currently raised floating-point exceptions, then restores the floating-point environment from the object pointed to by <code>envp</code> (similar to fesetenv), then raises the...</p>\n<pre><code>int feupdateenv( const fenv_t* envp );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/fenv/feupdateenv
+feupdateenv	R	feupdateenv											
+fflush	A										<section class="prog__container">\n<p>For output streams (and for update streams on which the last operation was output), writes any unwritten data from the <code>stream</code>'s buffer to the associated output device.</p>\n<pre><code>int fflush( FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fflush
+fflush	R	fflush											
+fgetc	A										<section class="prog__container">\n<p>Reads the next character from the given input stream.</p>\n<pre><code>int fgetc( FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fgetc
+fgetc	R	fgetc											
+fgetpos	A										<section class="prog__container">\n<p>Obtains the file position indicator and the current parse state (if any) for the file stream <code>stream</code> and stores them in the object pointed to by <code>pos</code>.</p>\n<pre><code>int fgetpos( FILE *restrict stream, fpos_t *restrict pos );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fgetpos
+fgetpos	R	fgetpos											
+fgets	A										<section class="prog__container">\n<p>Reads at most <code>count - 1</code> characters from the given file stream and stores them in the character array pointed to by <code>str</code>.</p>\n<pre><code>char *fgets( char *restrict str, int count, FILE *restrict stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fgets
+fgets	R	fgets											
+fgetwc	A										<section class="prog__container">\n<p>Reads the next wide character from the given input stream.</p>\n<pre><code>wint_t fgetwc( FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fgetwc
+fgetwc	R	fgetwc											
+fpclassify	A										<section class="prog__container">\n<p>Categorizes floating point value <code>arg</code> into the following categories: zero, subnormal, normal, infinite, NAN, or implementation-defined category.</p>\n<pre><code>#define fpclassify(arg) /* implementation defined */</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/fpclassify
+fpclassify	R	fpclassify											
+fprintf	A										<section class="prog__container">\n<p>Loads the data from the given locations, converts them to character string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>int fprintf( FILE *restrict stream, const char *restrict format, ... );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fprintf
+fprintf	R	fprintf											
+fputc	A										<section class="prog__container">\n<p>Writes a character <code>ch</code> to the given output stream <code>stream</code>.</p>\n<pre><code>int fputc( int ch, FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fputc
+fputc	R	fputc											
+fputs	A										<section class="prog__container">\n<p>Writes every character from the null-terminated string <code>str</code> to the output stream <code>stream</code>, as if by repeatedly executing fputc.</p>\n<pre><code>int fputs( const char *restrict str, FILE *restrict stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fputs
+fputs	R	fputs											
+fputwc	A										<section class="prog__container">\n<p>Writes a wide character <code>ch</code> to the given output stream <code>stream</code>.</p>\n<pre><code>wint_t fputwc( wchar_t ch, FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fputwc
+fputwc	R	fputwc											
+fputws	A										<section class="prog__container">\n<p>Writes every character from the null-terminated wide string <code>str</code> to the output stream <code>stream</code>, as if by repeatedly executing fputwc.</p>\n<pre><code>int fputws( const wchar_t * restrict str, FILE * restrict stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fputws
+fputws	R	fputws											
+fread	A										<section class="prog__container">\n<p>Reads up to <code>count</code> objects into the array <code>buffer</code> from the given input stream <code>stream</code> as if by calling fgetc <code>size</code> times for each object, and storing...</p>\n<pre><code>size_t fread( void *restrict buffer, size_t size, size_t count, \n              FILE *restrict stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fread
+fread	R	fread											
+free	A										<section class="prog__container">\n<p>Deallocates the space previously allocated by malloc(), calloc(), aligned_alloc, (since C11) or realloc().</p>\n<pre><code>void free( void* ptr );</code></pre>\n</section>	http://en.cppreference.com/w/c/memory/free
+free	R	free											
+fscanf	A										<section class="prog__container">\n<p>Reads data from the a variety of sources, interprets it according to <code>format</code> and stores the results into given locations.</p>\n<pre><code>int fscanf( FILE *restrict stream, const char *restrict format, ... );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fscanf
+fscanf	R	fscanf											
+fseek	A										<section class="prog__container">\n<p>Sets the file position indicator for the file stream <code>stream</code> to the value pointed to by <code>offset</code>.</p>\n<pre><code>int fseek( FILE *stream, long offset, int origin );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fseek
+fseek	R	fseek											
+fsetpos	A										<section class="prog__container">\n<p>Sets the file position indicator and the multibyte parsing state (if any) for the file stream <code>stream</code> according to the value pointed to by <code>pos</code>.</p>\n<pre><code>int fsetpos( FILE *stream, const fpos_t *pos );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fsetpos
+fsetpos	R	fsetpos											
+ftell	A										<section class="prog__container">\n<p>Returns the file position indicator for the file stream <code>stream</code>.</p>\n<pre><code>long ftell( FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/ftell
+ftell	R	ftell											
+fwprintf	A										<section class="prog__container">\n<p>Loads the data from the given locations, converts them to wide string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>int fwprintf( FILE *stream, const wchar_t* format, ... );\n\nint fwprintf( FILE *restrict stream,\n              const wchar_t *restrict format, ... );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fwprintf
+fwprintf	R	fwprintf											
+fwrite	A										<section class="prog__container">\n<p>Writes <code>count</code> of objects from the given array <code>buffer</code> to the output stream <code>stream</code>.</p>\n<pre><code>size_t fwrite( const void *restrict buffer, size_t size, size_t count, \n               FILE *restrict stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fwrite
+fwrite	R	fwrite											
+fwscanf	A										<section class="prog__container">\n<p>Reads data from the a variety of sources, interprets it according to <code>format</code> and stores the results into given locations.</p>\n<pre><code>int fwscanf( FILE *stream, const wchar_t *format, ... );\n\nint fwscanf( FILE *restrict stream,\n             const wchar_t *restrict format, ... );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fwscanf
+fwscanf	R	fwscanf											
+getc	A										<section class="prog__container">\n<p>Reads the next character from the given input stream.</p>\n<pre><code>int getc( FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fgetc
+getc	R	getc											
+getchar	A										<section class="prog__container">\n<p>Reads the next character from stdin.</p>\n<pre><code>int getchar(void);</code></pre>\n</section>	http://en.cppreference.com/w/c/io/getchar
+getchar	R	getchar											
+getenv	A										<section class="prog__container">\n<p> Searches for an environmental variable with name <code>name</code> in the host-specified environment list and returns a pointer to the string that is associated with the matched environment variable.</p>\n<pre><code>char *getenv( const char *name );</code></pre>\n</section>	http://en.cppreference.com/w/c/program/getenv
+getenv	R	getenv											
+getwchar	A										<section class="prog__container">\n<p>Reads the next wide character from stdin.</p>\n<pre><code>wint_t getwchar(void);</code></pre>\n</section>	http://en.cppreference.com/w/c/io/getwchar
+getwchar	R	getwchar											
+gmtime	A										<section class="prog__container">\n<p> Converts given time since epoch (a time_t value pointed to by <code>time</code>) into calendar time, expressed in Coordinated Universal Time (UTC) in the struct tm format.</p>\n<pre><code>struct tm *gmtime( const time_t *time );</code></pre>\n</section>	http://en.cppreference.com/w/c/chrono/gmtime
+gmtime	R	gmtime											
+isalnum	A										<section class="prog__container">\n<p>Checks if the given character is an alphanumeric character as classified by the current C locale.</p>\n<pre><code>int isalnum( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/isalnum
+isalnum	R	isalnum											
+isalpha	A										<section class="prog__container">\n<p>Checks if the given character is an alphabetic character, i.e. either an uppercase letter (<code>ABCDEFGHIJKLMNOPQRSTUVWXYZ</code>), or a lowercase letter (<code>abcdefghijklmnopqrstuvwxyz</code>).</p>\n<pre><code>int isalpha( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/isalpha
+isalpha	R	isalpha											
+isblank	A										<section class="prog__container">\n<p>Checks if the given character is a blank character in the current C locale.</p>\n<pre><code>int isblank( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/isblank
+isblank	R	isblank											
+iscntrl	A										<section class="prog__container">\n<p>Checks if the given character is a control character, i.e. codes <code>0x00-0x1F</code> and <code>0x7F</code>.</p>\n<pre><code>int iscntrl( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/iscntrl
+iscntrl	R	iscntrl											
+isdigit	A										<section class="prog__container">\n<p>Checks if the given character is a numeric character (<code>0123456789</code>).</p>\n<pre><code>int isdigit( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/isdigit
+isdigit	R	isdigit											
+isfinite	A										<section class="prog__container">\n<p>Determines if the given floating point number <code>arg</code> has finite value i.e. it is normal, subnormal or zero, but not infinite or NaN.</p>\n<pre><code>#define isfinite(arg) /* implementation defined */</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/isfinite
+isfinite	R	isfinite											
+isgraph	A										<section class="prog__container">\n<p>Checks if the given character has a graphical representation...</p>\n<pre><code>int isgraph( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/isgraph
+isgraph	R	isgraph											
+isinf	A										<section class="prog__container">\n<p>Determines if the given floating point number <code>arg</code> is positive or negative infinity.</p>\n<pre><code>#define isinf(arg) /* implementation defined */</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/isinf
+isinf	R	isinf											
+islower	A										<section class="prog__container">\n<p>Checks if the given character is classified as a lowercase character according to the current C locale.</p>\n<pre><code>int islower( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/islower
+islower	R	islower											
+isnan	A										<section class="prog__container">\n<p>Determines if the given floating point number <code>arg</code> is a not-a-number (NaN) value.</p>\n<pre><code>#define isnan(arg) /* implementation defined */</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/isnan
+isnan	R	isnan											
+isnormal	A										<section class="prog__container">\n<p>Determines if the given floating point number <code>arg</code> is normal, i.e. is neither zero, subnormal, infinite, nor <code>NaN</code>.</p>\n<pre><code>#define isnormal(arg) /* implementation defined */</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/isnormal
+isnormal	R	isnormal											
+isprint	A										<section class="prog__container">\n<p>Checks if the given character can be printed...</p>\n<pre><code>int isprint( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/isprint
+isprint	R	isprint											
+ispunct	A										<section class="prog__container">\n<p>Checks if the given character is a punctuation character in the current C locale.</p>\n<pre><code>int ispunct( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/ispunct
+ispunct	R	ispunct											
+isspace	A										<section class="prog__container">\n<p>Checks if the given character is a whitespace character...</p>\n<pre><code>int isspace( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/isspace
+isspace	R	isspace											
+isupper	A										<section class="prog__container">\n<p>Checks if the given character is an uppercase character according to the current C locale.</p>\n<pre><code>int isupper( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/isupper
+isupper	R	isupper											
+iswalnum	A										<section class="prog__container">\n<p>Checks if the given wide character is an alphanumeric character...</p>\n<pre><code>int iswalnum( wint_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/iswalnum
+iswalnum	R	iswalnum											
+iswalpha	A										<section class="prog__container">\n<p>Checks if the given wide character is an alphabetic character...</p>\n<pre><code>int iswalpha( wint_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/iswalpha
+iswalpha	R	iswalpha											
+iswblank	A										<section class="prog__container">\n<p>Checks if the given wide character is classified as blank character (that is, a whitespace character used to separate words in a sentence) by the current C locale.</p>\n<pre><code>int iswblank( wint_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/iswblank
+iswblank	R	iswblank											
+iswcntrl	A										<section class="prog__container">\n<p>Checks if the given wide character is a control character, i.e. codes <code>0x00-0x1F</code> and <code>0x7F</code> and any control characters specific to the current locale.</p>\n<pre><code>int iswcntrl( wint_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/iswcntrl
+iswcntrl	R	iswcntrl											
+iswctype	A										<section class="prog__container">\n<p>Classifies the wide character <code>wc</code> using the current C locale's LC_CTYPE category identified by <code>desc</code>.</p>\n<pre><code>int iswctype( wint_t wc, wctype_t desc );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/iswctype
+iswctype	R	iswctype											
+iswdigit	A										<section class="prog__container">\n<p>Checks if the given wide character corresponds (if narrowed) to one of the ten decimal digit characters 0123456789.</p>\n<pre><code>int iswdigit( wint_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/iswdigit
+iswdigit	R	iswdigit											
+iswgraph	A										<section class="prog__container">\n<p>Checks if the given wide character has a graphical representation...</p>\n<pre><code>int iswgraph( wint_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/iswgraph
+iswgraph	R	iswgraph											
+iswlower	A										<section class="prog__container">\n<p>Checks if the given wide character is a lowercase letter, i.e. one of <code>abcdefghijklmnopqrstuvwxyz</code> or any lowercase letter specific to the current locale.</p>\n<pre><code>int iswlower( wint_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/iswlower
+iswlower	R	iswlower											
+iswprint	A										<section class="prog__container">\n<p>Checks if the given wide character can be printed...</p>\n<pre><code>int iswprint( wint_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/iswprint
+iswprint	R	iswprint											
+iswpunct	A										<section class="prog__container">\n<p>Checks if the given wide character is a punctuation character, i.e. it is one of <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code> or any punctuation character specific to the current locale.</p>\n<pre><code>int iswpunct( wint_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/iswpunct
+iswpunct	R	iswpunct											
+iswspace	A										<section class="prog__container">\n<p>Checks if the given wide character is a whitespace character...</p>\n<pre><code>int iswspace( wint_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/iswspace
+iswspace	R	iswspace											
+iswupper	A										<section class="prog__container">\n<p>Checks if the given wide character is an uppercase letter, i.e. one of <code>ABCDEFGHIJKLMNOPQRSTUVWXYZ</code> or any uppercase letter specific to the current locale.</p>\n<pre><code>int iswupper( wint_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/iswupper
+iswupper	R	iswupper											
+iswxdigit	A										<section class="prog__container">\n<p>Checks if the given wide character corresponds (if narrowed) to a hexadecimal numeric character, i.e. one of <code>0123456789abcdefABCDEF</code>.</p>\n<pre><code>int iswxdigit( wint_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/iswxdigit
+iswxdigit	R	iswxdigit											
+isxdigit	A										<section class="prog__container">\n<p>Checks if the given character is a hexadecimal numeric character (<code>0123456789abcdefABCDEF</code>) or is classified as a hexadecimal character.</p>\n<pre><code>int isxdigit( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/isxdigit
+isxdigit	R	isxdigit											
+kill dependency	R	kill_dependency											
+kill_dependency	A										<section class="prog__container">\n<p>Informs the compiler that the dependency tree started by an memory_order_consume atomic load operation does not extend past the return value of <code>kill_dependency</code>...</p>\n<pre><code>A kill_dependency(A y);</code></pre>\n</section>	http://en.cppreference.com/w/c/atomic/kill_dependency
+kill_dependency	R	kill_dependency											
+labs	A										<section class="prog__container">\n<p>Computes the absolute value of an integer number.</p>\n<pre><code>long       labs( long n );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/abs
+labs	R	labs											
+lconv	A										<section class="prog__container">\n<p>The struct <code>lconv</code> contains numeric and monetary formatting rules as defined by a C locale.</p>\n<pre><code>struct lconv;</code></pre>\n</section>	http://en.cppreference.com/w/c/locale/lconv
+lconv	R	lconv											
+ldiv	A										<section class="prog__container">\n<p>Computes both the quotient and the remainder of the division of the numerator <code>x</code> by the denominator <code>y</code>.</p>\n<pre><code>ldiv_t    ldiv( long x, long y );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/div
+ldiv	R	ldiv											
+llabs	A										<section class="prog__container">\n<p>Computes the absolute value of an integer number.</p>\n<pre><code>long long llabs( long long n );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/abs
+llabs	R	llabs											
+localeconv	A										<section class="prog__container">\n<p>The <code>localeconv</code> function obtains a pointer to a static object of type lconv, which represents numeric and monetary formatting rules of the current C locale.</p>\n<pre><code>lconv* localeconv();</code></pre>\n</section>	http://en.cppreference.com/w/c/locale/localeconv
+localeconv	R	localeconv											
+localtime	A										<section class="prog__container">\n<p> Converts given time since epoch (a time_t value pointed to by <code>time</code>) into calendar time, expressed in local time, in the struct tm format.</p>\n<pre><code>struct tm *localtime( const time_t *time );</code></pre>\n</section>	http://en.cppreference.com/w/c/chrono/localtime
+localtime	R	localtime											
+longjmp	A										<section class="prog__container">\n<p>Loads the execution context <code>env</code> saved by a previous call to setjmp.</p>\n<pre><code>_Noreturn void longjmp( jmp_buf env, int status );</code></pre>\n</section>	http://en.cppreference.com/w/c/program/longjmp
+longjmp	R	longjmp											
+malloc	A										<section class="prog__container">\n<p>Allocates <code>size</code> bytes of uninitialized storage.</p>\n<pre><code>void* malloc( size_t size );</code></pre>\n</section>	http://en.cppreference.com/w/c/memory/malloc
+malloc	R	malloc											
+mblen	A										<section class="prog__container">\n<p>Determines the size, in bytes, of the multibyte character whose first byte is pointed to by <code>s</code>.</p>\n<pre><code>int mblen( const char* s, size_t n );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/mblen
+mblen	R	mblen											
+mbrlen	A										<section class="prog__container">\n<p>Determines the size, in bytes, of the remainder of the multibyte character whose first byte is pointed to by <code>s</code>, given the current conversion state <code>ps</code>.</p>\n<pre><code>size_t mbrlen( const char* s, size_t n, mbstate_t* ps );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/mbrlen
+mbrlen	R	mbrlen											
+mbrtoc16	A										<section class="prog__container">\n<p>Converts a single code point from its narrow multibyte character representation to its variable-length 16-bit wide character representation (typically, UTF-16).</p>\n<pre><code>size_t mbrtoc16( char16_t* pc16, const char* s, size_t n, mbstate_t* ps );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/mbrtoc16
+mbrtoc16	R	mbrtoc16											
+mbrtoc32	A										<section class="prog__container">\n<p>Converts a single code point from its narrow multibyte character representation to its variable-length 32-bit wide character representation (but typically, UTF-32).</p>\n<pre><code>size_t mbrtoc32( char32_t* pc32, const char* s, size_t n, mbstate_t* ps );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/mbrtoc32
+mbrtoc32	R	mbrtoc32											
+mbrtowc	A										<section class="prog__container">\n<p>Converts a narrow multibyte character to a wide character.</p>\n<pre><code>size_t mbrtowc( wchar_t* pwc, const char* s, size_t n, mbstate_t* ps );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/mbrtowc
+mbrtowc	R	mbrtowc											
+mbsinit	A										<section class="prog__container">\n<p>If <code>ps</code> is not a null pointer, the <code>mbsinit</code> function determines whether the pointed-to mbstate_t object describes the initial conversion state.</p>\n<pre><code>int mbsinit( const mbstate_t* ps);</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/mbsinit
+mbsinit	R	mbsinit											
+mbsrtowcs	A										<section class="prog__container">\n<p> Converts a null-terminated multibyte character sequence, which begins in the conversion state described by <code>*ps</code>, from the array whose first element is pointed to by <code>*src</code> to...</p>\n<pre><code>size_t mbsrtowcs( wchar_t* dst, const char** src, size_t len, mbstate_t* ps )</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/mbsrtowcs
+mbsrtowcs	R	mbsrtowcs											
+mbstate t	R	mbstate_t											
+mbstate_t	A										<section class="prog__container">\n<p>The type <code>mbstate_t</code> is a trivial non-array type that can represent any of the conversion states that can occur in an implementation-defined set of supported multibyte character encoding...</p>\n<pre><code>struct mbstate_t;</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/mbstate_t
+mbstate_t	R	mbstate_t											
+mbtowc	A										<section class="prog__container">\n<p>Converts a multibyte character whose first byte is pointed to by <code>s</code> to a wide character, written to <code>*pwc</code> if <code>pwc</code> is not null.</p>\n<pre><code>int mbtowc( wchar_t *restrict pwc, const char *restrict s, size_t n )</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/mbtowc
+mbtowc	R	mbtowc											
+memchr	A										<section class="prog__container">\n<p>Finds the first occurrence of <code>ch</code> (after conversion to <code>unsigned char</code> as if by <code>(unsigned char)ch</code>) in the initial <code>count</code> characters (each interpreted...</p>\n<pre><code>void* memchr( const void* ptr, int ch, size_t count );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/memchr
+memchr	R	memchr											
+memcmp	A										<section class="prog__container">\n<p>Compares the first <code>count</code> characters of the objects pointed to by <code>lhs</code> and <code>rhs</code>.</p>\n<pre><code>int memcmp( const void* lhs, const void* rhs, size_t count );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/memcmp
+memcmp	R	memcmp											
+memmove	A										<section class="prog__container">\n<p> Copies <code>count</code> characters from the object pointed to by <code>src</code> to the object pointed to by <code>dest</code>.</p>\n<pre><code>void* memmove( void* dest, const void* src, size_t count );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/memmove
+memmove	R	memmove											
+memset	A										<section class="prog__container">\n<p> Copies the value <code>ch</code> (after conversion to <code>unsigned char</code> as if by <code>(unsigned char)ch</code>) into each of the first <code>count</code> characters of the object pointed...</p>\n<pre><code>void *memset( void *dest, int ch, size_t count );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/memset
+memset	R	memset											
+mktime	A										<section class="prog__container">\n<p>Renormalizes local calendar time expressed as a struct tm object and also converts it to time since epoch as a time_t object.</p>\n<pre><code>time_t mktime( struct tm *time );</code></pre>\n</section>	http://en.cppreference.com/w/c/chrono/mktime
+mktime	R	mktime											
+modf	A										<section class="prog__container">\n<p> Decomposes given floating point value <code>arg</code> into integral and fractional parts, each having the same type and sign as <code>arg</code>.</p>\n<pre><code>double      modf( double arg, double* iptr );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/modf
+modf	R	modf											
+mtx destroy	R	mtx_destroy											
+mtx init	R	mtx_init											
+mtx lock	R	mtx_lock											
+mtx timedlock	R	mtx_timedlock											
+mtx trylock	R	mtx_trylock											
+mtx unlock	R	mtx_unlock											
+mtx_destroy	A										<section class="prog__container">\n<p>Destroys the mutex pointed to by <code>mutex</code>.</p>\n<pre><code>void mtx_destroy( mtx_t *mutex );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/mtx_destroy
+mtx_destroy	R	mtx_destroy											
+mtx_init	A										<section class="prog__container">\n<p>Creates a new mutex object with <code>type</code>.</p>\n<pre><code>int mtx_init( mtx_t* mutex, int type );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/mtx_init
+mtx_init	R	mtx_init											
+mtx_lock	A										<section class="prog__container">\n<p>Blocks the current thread until the mutex pointed to by <code>mutex</code> is locked.</p>\n<pre><code>int mtx_lock( mtx_t* mutex );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/mtx_lock
+mtx_lock	R	mtx_lock											
+mtx_timedlock	A										<section class="prog__container">\n<p>Blocks the current thread until the mutex pointed to by <code>mutex</code> is locked or until the <code>TIME_UTC</code> based time point pointed to by <code>time_point</code> has been reached.</p>\n<pre><code>int mtx_timedlock( mtx_t *restrict mutex,\n                   const struct timespec *restrict time_point );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/mtx_timedlock
+mtx_timedlock	R	mtx_timedlock											
+mtx_trylock	A										<section class="prog__container">\n<p>Tries to lock the mutex pointed to by <code>mutex</code> without blocking.</p>\n<pre><code>int mtx_trylock( mtx_t *mutex );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/mtx_trylock
+mtx_trylock	R	mtx_trylock											
+mtx_unlock	A										<section class="prog__container">\n<p>Unlocks the mutex pointed to by <code>mutex</code>.</p>\n<pre><code>int mtx_unlock( mtx_t *mutex );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/mtx_unlock
+mtx_unlock	R	mtx_unlock											
+nan	A										<section class="prog__container">\n<p>Converts the implementation-defined character string <code>arg</code> into the corresponding quiet NaN value, as if by calling strtof, strtod, or strtold, respectively, as follows...</p>\n<pre><code>double      nan( const char* arg );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/nan
+nan	R	nan											
+nanf	A										<section class="prog__container">\n<p>Converts the implementation-defined character string <code>arg</code> into the corresponding quiet NaN value, as if by calling strtof, strtod, or strtold, respectively, as follows...</p>\n<pre><code>float       nanf( const char* arg );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/nan
+nanf	R	nanf											
+nanl	A										<section class="prog__container">\n<p>Converts the implementation-defined character string <code>arg</code> into the corresponding quiet NaN value, as if by calling strtof, strtod, or strtold, respectively, as follows...</p>\n<pre><code>long double nanl( const char* arg );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/nan
+nanl	R	nanl											
+offsetof	A										<section class="prog__container">\n<p>The macro offsetof expands to a constant of type size_t, the value of which is the offset, in bytes, from the beginning of an object of specified type to its specified member, including padding if...</p>\n<pre><code>#define offsetof(type, member) /*implementation-defined*/</code></pre>\n</section>	http://en.cppreference.com/w/c/types/offsetof
+offsetof	R	offsetof											
+perror	A										<section class="prog__container">\n<p>Prints to stderr the contents of the null-terminated character string pointed to by <code>s</code> (unless <code>s</code> is a null pointer), followed by the two characters <code>": "</code>...</p>\n<pre><code>void perror( const char *s );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/perror
+perror	R	perror											
+printf	A										<section class="prog__container">\n<p>Loads the data from the given locations, converts them to character string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>​int printf( const char *restrict format, ... );​</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fprintf
+printf	R	printf											
+putc	A										<section class="prog__container">\n<p>Writes a character <code>ch</code> to the given output stream <code>stream</code>.</p>\n<pre><code>int putc( int ch, FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fputc
+putc	R	putc											
+putchar	A										<section class="prog__container">\n<p>Writes a character <code>ch</code> to <code>stdout</code>.</p>\n<pre><code>int putchar( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/putchar
+putchar	R	putchar											
+puts	A										<section class="prog__container">\n<p>Writes every character from the null-terminated string <code>str</code> and one additional newline character <code>'\n'</code> to the output stream <code>stdout</code>, as if by repeatedly executing...</p>\n<pre><code>int puts( const char *str );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/puts
+puts	R	puts											
+putwchar	A										<section class="prog__container">\n<p>Writes a wide character <code>ch</code> to <code>stdout</code>...</p>\n<pre><code>wint_t putwchar( wchar_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/putwchar
+putwchar	R	putwchar											
+qsort	A										<section class="prog__container">\n<p> Sorts the given array pointed to by <code>ptr</code> in ascending order.</p>\n<pre><code>void qsort( void *ptr, size_t count, size_t size,\n            int (*comp)(const void *, const void *) );</code></pre>\n</section>	http://en.cppreference.com/w/c/algorithm/qsort
+qsort	R	qsort											
+quick exit	R	quick_exit											
+quick_exit	A										<section class="prog__container">\n<p>Causes normal program termination to occur without completely cleaning the resources.</p>\n<pre><code>_Noreturn void quick_exit( int exit_code );</code></pre>\n</section>	http://en.cppreference.com/w/c/program/quick_exit
+quick_exit	R	quick_exit											
+raise	A										<section class="prog__container">\n<p>Sends signal sig to the program.</p>\n<pre><code>int raise( int sig );</code></pre>\n</section>	http://en.cppreference.com/w/c/program/raise
+raise	R	raise											
+rand	A										<section class="prog__container">\n<p>Returns a pseudo-random integer value between <code>​0​</code> and RAND_MAX (0 and <code>RAND_MAX</code> included).</p>\n<pre><code>int rand();</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/random/rand
+rand	R	rand											
+realloc	A										<section class="prog__container">\n<p>Reallocates the given area of memory.</p>\n<pre><code>void *realloc( void *ptr, size_t new_size );</code></pre>\n</section>	http://en.cppreference.com/w/c/memory/realloc
+realloc	R	realloc											
+remove	A										<section class="prog__container">\n<p>Deletes the file identified by character string pointed to by <code>fname</code>.</p>\n<pre><code>int remove( const char *fname );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/remove
+remove	R	remove											
+rename	A										<section class="prog__container">\n<p>Changes the filename of a file.</p>\n<pre><code>int rename( const char *old_filename, const char *new_filename );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/rename
+rename	R	rename											
+rewind	A										<section class="prog__container">\n<p>Moves the file position indicator to the beginning of the given file stream.</p>\n<pre><code>void rewind( FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/rewind
+rewind	R	rewind											
+scanf	A										<section class="prog__container">\n<p>Reads data from the a variety of sources, interprets it according to <code>format</code> and stores the results into given locations.</p>\n<pre><code>​int scanf( const char *restrict format, ... );​</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fscanf
+scanf	R	scanf											
+setbuf	A										<section class="prog__container">\n<p>Sets the internal buffer to use for stream operations.</p>\n<pre><code>void setbuf( FILE *restrict stream, char *restrict buffer );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/setbuf
+setbuf	R	setbuf											
+setjmp	A										<section class="prog__container">\n<p>Saves the current execution context into a variable <code>env</code> of type jmp_buf.</p>\n<pre><code>#define setjmp(env) /* implementation-defined */</code></pre>\n</section>	http://en.cppreference.com/w/c/program/setjmp
+setjmp	R	setjmp											
+setlocale	A										<section class="prog__container">\n<p>The <code>setlocale</code> function installs the specified system locale or its portion as the new C locale.</p>\n<pre><code>char* setlocale( int category, const char* locale);</code></pre>\n</section>	http://en.cppreference.com/w/c/locale/setlocale
+setlocale	R	setlocale											
+setvbuf	A										<section class="prog__container">\n<p>Changes the the buffering mode of the given file stream <code>stream</code> as indicated by the argument <code>mode</code>.</p>\n<pre><code>int setvbuf( FILE *restrict stream, char *restrict buffer, \n             int mode, size_t size );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/setvbuf
+setvbuf	R	setvbuf											
+signal	A										<section class="prog__container">\n<p>Sets the error handler for signal <code>sig</code>.</p>\n<pre><code>void (*signal( int sig, void (*handler) (int))) (int);</code></pre>\n</section>	http://en.cppreference.com/w/c/program/signal
+signal	R	signal											
+signbit	A										<section class="prog__container">\n<p>Determines if the given floating point number <code>arg</code> is negative.</p>\n<pre><code>#define signbit(arg) /* implementation defined */</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/math/signbit
+signbit	R	signbit											
+snprintf	A										<section class="prog__container">\n<p>Loads the data from the given locations, converts them to character string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>int snprintf( char *restrict buffer, int bufsz, \n              const char *restrict format, ... );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fprintf
+snprintf	R	snprintf											
+sprintf	A										<section class="prog__container">\n<p>Loads the data from the given locations, converts them to character string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>int sprintf( char *restrict buffer, const char *restrict format, ... );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fprintf
+sprintf	R	sprintf											
+srand	A										<section class="prog__container">\n<p>Seeds the pseudo-random number generator used by rand() with the value <code>seed</code>.</p>\n<pre><code>void srand( unsigned seed );</code></pre>\n</section>	http://en.cppreference.com/w/c/numeric/random/srand
+srand	R	srand											
+sscanf	A										<section class="prog__container">\n<p>Reads data from the a variety of sources, interprets it according to <code>format</code> and stores the results into given locations.</p>\n<pre><code>int sscanf( const char *restrict buffer, const char *restrict format, ... );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fscanf
+sscanf	R	sscanf											
+strchr	A										<section class="prog__container">\n<p>Finds the first occurrence of <code>ch</code> (after conversion to <code>char</code> as if by <code>(char)ch</code>) in the null-terminated byte string pointed to by <code>str</code> (each character...</p>\n<pre><code>char *strchr( const char *str, int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strchr
+strchr	R	strchr											
+strcmp	A										<section class="prog__container">\n<p>Compares two null-terminated byte strings lexicographically.</p>\n<pre><code>int strcmp( const char *lhs, const char *rhs );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strcmp
+strcmp	R	strcmp											
+strcoll	A										<section class="prog__container">\n<p>Compares two null-terminated byte strings according to the current locale as defined by the LC_COLLATE category.</p>\n<pre><code>int strcoll( const char *lhs, const char *rhs );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strcoll
+strcoll	R	strcoll											
+strcspn	A										<section class="prog__container">\n<p>Returns the length of the maximum initial segment of the null-terminated byte string pointed to by <code>dest</code>, that consists of only the characters <i>not</i> found in the null-terminated byte...</p>\n<pre><code>size_t strcspn( const char *dest, const char *src );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strcspn
+strcspn	R	strcspn											
+strerror	A										<section class="prog__container">\n<p> Returns a pointer to the textual description of the system error code <code>errnum</code>, identical to the description that would be printed by perror().</p>\n<pre><code>char* strerror( int errnum );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strerror
+strerror	R	strerror											
+strftime	A										<section class="prog__container">\n<p>Converts the date and time information from a given calendar time <code>time</code> to a null-terminated multibyte character string <code>str</code> according to format string <code>format</code>.</p>\n<pre><code>size_t strftime( char *restrict str, size_t count, \n                 const char *restrict format, const struct tm *restrict time );</code></pre>\n</section>	http://en.cppreference.com/w/c/chrono/strftime
+strftime	R	strftime											
+strlen	A										<section class="prog__container">\n<p> Returns the length of the given null-terminated byte string...</p>\n<pre><code>size_t strlen( const char *str );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strlen
+strlen	R	strlen											
+strncmp	A										<section class="prog__container">\n<p>Compares at most <code>count</code> characters of two possibly null-terminated arrays.</p>\n<pre><code>int strncmp( const char *lhs, const char *rhs, size_t count );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strncmp
+strncmp	R	strncmp											
+strpbrk	A										<section class="prog__container">\n<p>Scans the null-terminated byte string pointed to by <code>dest</code> for any character from the null-terminated byte string pointed to by <code>breakset</code>, and returns a pointer to that...</p>\n<pre><code>char* strpbrk( const char* dest, const char* breakset );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strpbrk
+strpbrk	R	strpbrk											
+strrchr	A										<section class="prog__container">\n<p>Finds the last occurrence of <code>ch</code> (after conversion to <code>char</code> as if by <code>(char)ch</code>) in the null-terminated byte string pointed to by <code>str</code> (each character...</p>\n<pre><code>char *strrchr( const char *str, int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strrchr
+strrchr	R	strrchr											
+strspn	A										<section class="prog__container">\n<p>Returns the length of the maximum initial segment (span) of the null-terminated byte string pointed to by <code>dest</code>, that consists of only the characters found in the null-terminated byte...</p>\n<pre><code>size_t strspn( const char *dest, const char *src );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strspn
+strspn	R	strspn											
+strstr	A										<section class="prog__container">\n<p>Finds the first occurrence of the null-terminated byte string pointed to by <code>substr</code> in the null-terminated byte string pointed to by <code>str</code>.</p>\n<pre><code>char *strstr( const char* str, const char* substr );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strstr
+strstr	R	strstr											
+strtod	A										<section class="prog__container">\n<p>Interprets a floating-point value in a byte string pointed to by <code>str</code>.</p>\n<pre><code>double      strtod( const char *restrict str, char **restrict str_end );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strtof
+strtod	R	strtod											
+strtof	A										<section class="prog__container">\n<p>Interprets a floating-point value in a byte string pointed to by <code>str</code>.</p>\n<pre><code>float       strtof( const char *restrict str, char **restrict str_end );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strtof
+strtof	R	strtof											
+strtoimax	A										<section class="prog__container">\n<p>Interprets an integer value in a byte string pointed to by <code>nptr</code>.</p>\n<pre><code>intmax_t strtoimax( const char *restrict nptr, \n                    char **restrict endptr, int base );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strtoimax
+strtoimax	R	strtoimax											
+strtol	A										<section class="prog__container">\n<p>Interprets an integer value in a byte string pointed to by <code>str</code>.</p>\n<pre><code>long      strtol( const char *restrict str, char **restrict str_end, int base );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strtol
+strtol	R	strtol											
+strtold	A										<section class="prog__container">\n<p>Interprets a floating-point value in a byte string pointed to by <code>str</code>.</p>\n<pre><code>long double strtold( const char *restrict str, char **restrict str_end );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strtof
+strtold	R	strtold											
+strtoll	A										<section class="prog__container">\n<p>Interprets an integer value in a byte string pointed to by <code>str</code>.</p>\n<pre><code>long long strtoll( const char *restrict str, char **restrict str_end, int base );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strtol
+strtoll	R	strtoll											
+strtoul	A										<section class="prog__container">\n<p>Interprets an unsigned integer value in a byte string pointed to by <code>str</code>.</p>\n<pre><code>unsigned long      strtoul( const char *restrict str, char **restrict str_end, \n                            int base );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strtoul
+strtoul	R	strtoul											
+strtoull	A										<section class="prog__container">\n<p>Interprets an unsigned integer value in a byte string pointed to by <code>str</code>.</p>\n<pre><code>unsigned long long strtoull( const char *restrict str, char **restrict str_end,\n                             int base );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strtoul
+strtoull	R	strtoull											
+strtoumax	A										<section class="prog__container">\n<p>Interprets an integer value in a byte string pointed to by <code>nptr</code>.</p>\n<pre><code>uintmax_t strtoumax( const char *restrict nptr, \n                     char **restrict endptr, int base );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strtoimax
+strtoumax	R	strtoumax											
+strxfrm	A										<section class="prog__container">\n<p>Transforms the null-terminated byte string pointed to by <code>src</code> into the implementation-defined form such that comparing two transformed strings with strcmp gives the same result as...</p>\n<pre><code>size_t strxfrm( char *restrict dest, const char *restrict src, \n                size_t count );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/strxfrm
+strxfrm	R	strxfrm											
+swprintf	A										<section class="prog__container">\n<p>Loads the data from the given locations, converts them to wide string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>int swprintf( wchar_t *buffer, size_t bufsz,\n              const wchar_t* format, ... );\n\nint swprintf( wchar_t *restrict buffer, size_t bufsz,\n              const wchar_t *restrict format, ... );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fwprintf
+swprintf	R	swprintf											
+swscanf	A										<section class="prog__container">\n<p>Reads data from the a variety of sources, interprets it according to <code>format</code> and stores the results into given locations.</p>\n<pre><code>int swscanf( const wchar_t *buffer, const wchar_t *format, ... );\n\nint swscanf( const wchar_t *restrict buffer,\n             const wchar_t *restrict format, ... );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fwscanf
+swscanf	R	swscanf											
+system	A										<section class="prog__container">\n<p>Calls the host environment's command processor with command parameter.</p>\n<pre><code>int system( const char *command );</code></pre>\n</section>	http://en.cppreference.com/w/c/program/system
+system	R	system											
+thrd create	R	thrd_create											
+thrd current	R	thrd_current											
+thrd detach	R	thrd_detach											
+thrd equal	R	thrd_equal											
+thrd exit	R	thrd_exit											
+thrd join	R	thrd_join											
+thrd sleep	R	thrd_sleep											
+thrd yield	R	thrd_yield											
+thrd_create	A										<section class="prog__container">\n<p>Creates a new thread executing the function <code>func</code>.</p>\n<pre><code>int thrd_create( thrd_t *thr, thrd_start_t func, void *arg );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/thrd_create
+thrd_create	R	thrd_create											
+thrd_current	A										<section class="prog__container">\n<p>Returns the identifier of the calling thread.</p>\n<pre><code>thrd_t thrd_current(void);</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/thrd_current
+thrd_current	R	thrd_current											
+thrd_detach	A										<section class="prog__container">\n<p>Detaches the thread identified by <code>thr</code> from the current environment.</p>\n<pre><code>int thrd_detach( thrd_t thr );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/thrd_detach
+thrd_detach	R	thrd_detach											
+thrd_equal	A										<section class="prog__container">\n<p>Checks whether <code>lhs</code> and <code>rhs</code> refer to the same thread.</p>\n<pre><code>int thrd_equal( thrd_t lhs, thrd_t rhs );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/thrd_equal
+thrd_equal	R	thrd_equal											
+thrd_exit	A										<section class="prog__container">\n<p>First, for every thread-specific storage key which was created with a non-null destructor and for which the associated value is non-null (see tss_create), <code>thrd_exit</code> sets the value...</p>\n<pre><code>_Noreturn void thrd_exit( int res );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/thrd_exit
+thrd_exit	R	thrd_exit											
+thrd_join	A										<section class="prog__container">\n<p>Blocks the current thread until the thread identified by <code>thr</code> finishes execution.</p>\n<pre><code>int thrd_join( thrd_t thr, int *res );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/thrd_join
+thrd_join	R	thrd_join											
+thrd_sleep	A										<section class="prog__container">\n<p>Blocks the execution of the current thread for <i>at least</i> until the TIME_UTC based time point pointed to by <code>time_point</code> has been reached.</p>\n<pre><code>int thrd_sleep( const struct timespec* time_point,\n                struct timespec* remaining );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/thrd_sleep
+thrd_sleep	R	thrd_sleep											
+thrd_yield	A										<section class="prog__container">\n<p>Provides a hint to the implementation to reschedule the execution of threads, allowing other threads to run.</p>\n<pre><code>void thrd_yield();</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/thrd_yield
+thrd_yield	R	thrd_yield											
+time	A										<section class="prog__container">\n<p>Returns the current calendar time encoded as a time_t object, and also stores it in the time_t object pointed to by <code>arg</code> (unless <code>arg</code> is a null pointer)...</p>\n<pre><code>time_t time( time_t *arg );</code></pre>\n</section>	http://en.cppreference.com/w/c/chrono/time
+time	R	time											
+tm	A										<section class="prog__container">\n<p>Structure holding a calendar date and time broken down into its components.</p>\n<pre><code>struct tm;</code></pre>\n</section>	http://en.cppreference.com/w/c/chrono/tm
+tm	R	tm											
+tmpfile	A										<section class="prog__container">\n<p> Creates and opens a temporary file.</p>\n<pre><code>FILE *tmpfile(void);</code></pre>\n</section>	http://en.cppreference.com/w/c/io/tmpfile
+tmpfile	R	tmpfile											
+tmpnam	A										<section class="prog__container">\n<p> Creates a unique valid file name (no longer than L_tmpnam in length) and stores it in character string pointed to by <code>filename</code>.</p>\n<pre><code>char *tmpnam( char *filename );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/tmpnam
+tmpnam	R	tmpnam											
+tolower	A										<section class="prog__container">\n<p>Converts the given character to lowercase according to the character conversion rules defined by the currently installed C locale.</p>\n<pre><code>int tolower( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/tolower
+tolower	R	tolower											
+toupper	A										<section class="prog__container">\n<p>Converts the given character to uppercase according to the character conversion rules defined by the currently installed C locale.</p>\n<pre><code>int toupper( int ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/byte/toupper
+toupper	R	toupper											
+towctrans	A										<section class="prog__container">\n<p>Maps the wide character <code>wc</code> using the current C locale's LC_CTYPE mapping category identified by <code>desc</code>.</p>\n<pre><code>wint_t towctrans( wint_t wc, wctrans_t desc );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/towctrans
+towctrans	R	towctrans											
+towlower	A										<section class="prog__container">\n<p>Converts the given wide character to lowercase, if possible.</p>\n<pre><code>wint_t towlower( wint_t wc );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/towlower
+towlower	R	towlower											
+towupper	A										<section class="prog__container">\n<p>Converts the given wide character to uppercase, if possible.</p>\n<pre><code>wint_t towupper( wint_t wc );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/towupper
+towupper	R	towupper											
+tss create	R	tss_create											
+tss delete	R	tss_delete											
+tss get	R	tss_get											
+tss set	R	tss_set											
+tss_create	A										<section class="prog__container">\n<p>Creates new thread-specific storage key and stores it in the object pointed to by <code>tss_key</code>.</p>\n<pre><code>int tss_create( tss_t* tss_key, tss_dtor_t destructor );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/tss_create
+tss_create	R	tss_create											
+tss_delete	A										<section class="prog__container">\n<p>Destroys the thread-specific storage identified by <code>tss_id</code>.</p>\n<pre><code>void tss_delete( tss_t tss_id );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/tss_delete
+tss_delete	R	tss_delete											
+tss_get	A										<section class="prog__container">\n<p>Returns the value held in thread-specific storage for the current thread identified by <code>tss_key</code>.</p>\n<pre><code>void *tss_get( tss_t tss_key );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/tss_get
+tss_get	R	tss_get											
+tss_set	A										<section class="prog__container">\n<p>Sets the value of the thread-specific storage identified by <code>tss_id</code> for the current thread to <code>val</code>.</p>\n<pre><code>int tss_set( tss_t tss_id, void *val );</code></pre>\n</section>	http://en.cppreference.com/w/c/thread/tss_set
+tss_set	R	tss_set											
+ungetc	A										<section class="prog__container">\n<p>If <code>ch</code> does not equal EOF, pushes the character <code>ch</code> (reinterpreted as <code>unsigned char</code>) into the input buffer associated with the stream <code>stream</code> in such...</p>\n<pre><code>int ungetc( int ch, FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/ungetc
+ungetc	R	ungetc											
+ungetwc	A										<section class="prog__container">\n<p>If <code>ch</code> does not equal WEOF, pushes the wide character <code>ch</code> into the input buffer associated with the stream <code>stream</code> in such a manner that subsequent read operation...</p>\n<pre><code>wint_t ungetwc( wint_t ch, FILE *stream );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/ungetwc
+ungetwc	R	ungetwc											
+vfprintf	A										<section class="prog__container">\n<p>Loads the data from the locations, defined by <code>vlist</code>, converts them to character string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>int vfprintf( FILE *restrict stream, const char *restrict format, \n              va_list vlist );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/vfprintf
+vfprintf	R	vfprintf											
+vfscanf	A										<section class="prog__container">\n<p>Reads data from the a variety of sources, interprets it according to <code>format</code> and stores the results into locations defined by <code>vlist</code>.</p>\n<pre><code>int vfscanf( FILE *restrict stream, const char *restrict format, \n             va_list vlist );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/vfscanf
+vfscanf	R	vfscanf											
+vfwprintf	A										<section class="prog__container">\n<p>Loads the data from locations, defined by <code>vlist</code>, converts them to wide string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>int vfwprintf( FILE* stream, const wchar_t *format, va_list vlist );\n\nint vfwprintf( FILE *restrict stream,\n               const wchar_t *restrict format, va_list vlist );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/vfwprintf
+vfwprintf	R	vfwprintf											
+vfwscanf	A										<section class="prog__container">\n<p>Reads data from the a variety of sources, interprets it according to <code>format</code> and stores the results into locations defined by <code>vlist</code>.</p>\n<pre><code>int vfwscanf( FILE *restrict stream,\n              const wchar_t *restrict format, va_list vlist );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/vfwscanf
+vfwscanf	R	vfwscanf											
+vprintf	A										<section class="prog__container">\n<p>Loads the data from the locations, defined by <code>vlist</code>, converts them to character string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>​int vprintf( const char *restrict format, va_list vlist );​</code></pre>\n</section>	http://en.cppreference.com/w/c/io/vfprintf
+vprintf	R	vprintf											
+vscanf	A										<section class="prog__container">\n<p>Reads data from the a variety of sources, interprets it according to <code>format</code> and stores the results into locations defined by <code>vlist</code>.</p>\n<pre><code>​int vscanf( const char *restrict format, va_list vlist );​</code></pre>\n</section>	http://en.cppreference.com/w/c/io/vfscanf
+vscanf	R	vscanf											
+vsnprintf	A										<section class="prog__container">\n<p>Loads the data from the locations, defined by <code>vlist</code>, converts them to character string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>int vsnprintf( char *restrict buffer, int bufsz, \n               const char *restrict format, va_list vlist );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/vfprintf
+vsnprintf	R	vsnprintf											
+vsprintf	A										<section class="prog__container">\n<p>Loads the data from the locations, defined by <code>vlist</code>, converts them to character string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>int vsprintf( char *restrict buffer, const char *restrict format, \n              va_list vlist );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/vfprintf
+vsprintf	R	vsprintf											
+vsscanf	A										<section class="prog__container">\n<p>Reads data from the a variety of sources, interprets it according to <code>format</code> and stores the results into locations defined by <code>vlist</code>.</p>\n<pre><code>int vsscanf( const char *restrict buffer, const char *restrict format, \n             va_list vlist );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/vfscanf
+vsscanf	R	vsscanf											
+vswprintf	A										<section class="prog__container">\n<p>Loads the data from locations, defined by <code>vlist</code>, converts them to wide string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>int vswprintf( wchar_t *buffer, size_t bufsz,\n               const wchar_t *format, va_list vlist );\n\nint vswprintf( wchar_t *restrict buffer, size_t bufsz,\n               const wchar_t *restrict format, va_list vlist );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/vfwprintf
+vswprintf	R	vswprintf											
+vswscanf	A										<section class="prog__container">\n<p>Reads data from the a variety of sources, interprets it according to <code>format</code> and stores the results into locations defined by <code>vlist</code>.</p>\n<pre><code>int vswscanf( const wchar_t *restrict buffer,\n              const wchar_t *restrict format, va_list vlist );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/vfwscanf
+vswscanf	R	vswscanf											
+vwprintf	A										<section class="prog__container">\n<p>Loads the data from locations, defined by <code>vlist</code>, converts them to wide string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>int vwprintf( const wchar_t *format, va_list vlist );\n\nint vwprintf( const wchar_t *restrict format, va_list vlist );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/vfwprintf
+vwprintf	R	vwprintf											
+vwscanf	A										<section class="prog__container">\n<p>Reads data from the a variety of sources, interprets it according to <code>format</code> and stores the results into locations defined by <code>vlist</code>.</p>\n<pre><code>int vwscanf( const wchar_t *restrict format, va_list vlist );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/vfwscanf
+vwscanf	R	vwscanf											
+wcrtomb	A										<section class="prog__container">\n<p>Converts a wide character to its narrow multibyte representation.</p>\n<pre><code>size_t wcrtomb( char *s, wchar_t wc, mbstate_t *ps);</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/wcrtomb
+wcrtomb	R	wcrtomb											
+wcschr	A										<section class="prog__container">\n<p>Finds the first occurrence of the wide character <code>ch</code> in the wide string pointed to by <code>str</code>.</p>\n<pre><code>wchar_t* wcschr( const wchar_t* str, wchar_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcschr
+wcschr	R	wcschr											
+wcscmp	A										<section class="prog__container">\n<p>Compares two null-terminated wide strings lexicographically.</p>\n<pre><code>int wcscmp( const wchar_t *lhs, const wchar_t *rhs );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcscmp
+wcscmp	R	wcscmp											
+wcscoll	A										<section class="prog__container">\n<p>Compares two null-terminated wide strings according to the collation order defined by the LC_COLLATE category of the currently installed locale.</p>\n<pre><code>int wcscoll( const wchar_t *lhs, const wchar_t *rhs );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcscoll
+wcscoll	R	wcscoll											
+wcscspn	A										<section class="prog__container">\n<p>Returns the length of the maximum initial segment of the wide string pointed to by <code>dest</code>, that consists of only the characters <i>not</i> found in wide string pointed to by...</p>\n<pre><code>size_t wcscspn( const wchar_t* dest, const wchar_t* src );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcscspn
+wcscspn	R	wcscspn											
+wcsftime	A										<section class="prog__container">\n<p>Converts the date and time information from a given calendar time <code>time</code> to a null-terminated wide character string <code>str</code> according to format string <code>format</code>.</p>\n<pre><code>size_t wcsftime( wchar_t* str, size_t count, const wchar_t* format, tm* time );</code></pre>\n</section>	http://en.cppreference.com/w/c/chrono/wcsftime
+wcsftime	R	wcsftime											
+wcslen	A										<section class="prog__container">\n<p> Returns the length of a wide string, that is the number of non-null wide characters that precede the terminating null wide character.</p>\n<pre><code>size_t wcslen( const wchar_t *str );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcslen
+wcslen	R	wcslen											
+wcsncmp	A										<section class="prog__container">\n<p>Compares at most <code>count</code> wide characters of two null-terminated wide strings.</p>\n<pre><code>int wcsncmp( const wchar_t* lhs, const wchar_t* rhs, size_t count );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcsncmp
+wcsncmp	R	wcsncmp											
+wcspbrk	A										<section class="prog__container">\n<p>Finds the first character in wide string pointed to by <code>dest</code>, that is also in wide string pointed to by <code>str</code>.</p>\n<pre><code>wchar_t* wcspbrk( const wchar_t* dest, const wchar_t* str );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcspbrk
+wcspbrk	R	wcspbrk											
+wcsrchr	A										<section class="prog__container">\n<p>Finds the last occurrence of the wide character <code>ch</code> in the wide string pointed to by <code>str</code>.</p>\n<pre><code>wchar_t* wcsrchr( const wchar_t* str, wchar_t ch );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcsrchr
+wcsrchr	R	wcsrchr											
+wcsrtombs	A										<section class="prog__container">\n<p> Converts a sequence of wide characters from the array whose first element is pointed to by <code>*src</code> to its narrow multibyte representation that begins in the conversion state described by...</p>\n<pre><code>size_t wcsrtombs( char *dst, const wchar_t **src, size_t len, mbstate_t* ps )</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/wcsrtombs
+wcsrtombs	R	wcsrtombs											
+wcsspn	A										<section class="prog__container">\n<p>Returns the length of the maximum initial segment of the wide string pointed to by <code>dest</code>, that consists of only the characters found in wide string pointed to by <code>src</code>.</p>\n<pre><code>size_t wcsspn( const wchar_t* dest, const wchar_t* src );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcsspn
+wcsspn	R	wcsspn											
+wcsstr	A										<section class="prog__container">\n<p>Finds the first occurrence of the wide string <code>src</code> in the wide string pointed to by <code>dest</code>.</p>\n<pre><code>wchar_t* wcsstr( const wchar_t* dest, const wchar_t* src );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcsstr
+wcsstr	R	wcsstr											
+wcstod	A										<section class="prog__container">\n<p>Interprets a floating point value in a wide string pointed to by <code>str</code>.</p>\n<pre><code>double      wcstod( const wchar_t* str, wchar_t** str_end );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcstof
+wcstod	R	wcstod											
+wcstof	A										<section class="prog__container">\n<p>Interprets a floating point value in a wide string pointed to by <code>str</code>.</p>\n<pre><code>float       wcstof( const wchar_t* str, wchar_t** str_end );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcstof
+wcstof	R	wcstof											
+wcstoimax	A										<section class="prog__container">\n<p>Interprets an unsigned integer value in a wide string pointed to by <code>nptr</code>.</p>\n<pre><code>intmax_t wcstoimax( const wchar_t *restrict nptr, \n                    wchar_t **restrict endptr, int base );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcstoimax
+wcstoimax	R	wcstoimax											
+wcstol	A										<section class="prog__container">\n<p>Interprets an integer value in a wide string pointed to by <code>str</code>.</p>\n<pre><code>long      wcstol( const wchar_t* str, wchar_t** str_end, int base );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcstol
+wcstol	R	wcstol											
+wcstold	A										<section class="prog__container">\n<p>Interprets a floating point value in a wide string pointed to by <code>str</code>.</p>\n<pre><code>long double wcstold( const wchar_t* str, wchar_t** str_end );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcstof
+wcstold	R	wcstold											
+wcstoll	A										<section class="prog__container">\n<p>Interprets an integer value in a wide string pointed to by <code>str</code>.</p>\n<pre><code>long long wcstoll( const wchar_t* str, wchar_t** str_end, int base );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcstol
+wcstoll	R	wcstoll											
+wcstoul	A										<section class="prog__container">\n<p>Interprets an unsigned integer value in a wide string pointed to by <code>str</code>.</p>\n<pre><code>unsigned long      wcstoul( const wchar_t* str, wchar_t** str_end, int base );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcstoul
+wcstoul	R	wcstoul											
+wcstoull	A										<section class="prog__container">\n<p>Interprets an unsigned integer value in a wide string pointed to by <code>str</code>.</p>\n<pre><code>unsigned long long wcstoull( const wchar_t* str, wchar_t** str_end, int base );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcstoul
+wcstoull	R	wcstoull											
+wcstoumax	A										<section class="prog__container">\n<p>Interprets an unsigned integer value in a wide string pointed to by <code>nptr</code>.</p>\n<pre><code>uintmax_t wcstoumax( const wchar_t *restrict nptr,\n                     wchar_t **restrict endptr, int base );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcstoimax
+wcstoumax	R	wcstoumax											
+wcsxfrm	A										<section class="prog__container">\n<p>Transforms the null-terminated wide string pointed to by <code>src</code> into the implementation-defined form such that comparing two transformed strings with wcscmp gives the same result as...</p>\n<pre><code>size_t wcsxfrm( wchar_t* restrict dest, const wchar_t* restrict src, size_t count );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wcsxfrm
+wcsxfrm	R	wcsxfrm											
+wctob	A										<section class="prog__container">\n<p>Narrows a wide character <code>c</code> if its multibyte character equivalent in the initial shift state is a single byte.</p>\n<pre><code>int wctob( wint_t c );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/wctob
+wctob	R	wctob											
+wctomb	A										<section class="prog__container">\n<p> Converts a wide character <code>wc</code> to multibyte encoding and stores it (including any shift sequences) in the char array whose first element is pointed to by <code>s</code>.</p>\n<pre><code>int wctomb( char *s, wchar_t wc );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/multibyte/wctomb
+wctomb	R	wctomb											
+wctrans	A										<section class="prog__container">\n<p>Constructs a value of type <code>wctrans_t</code> that describes a LC_CTYPE category of wide character mapping.</p>\n<pre><code>wctrans_t wctrans( const char* str );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wctrans
+wctrans	R	wctrans											
+wctype	A										<section class="prog__container">\n<p>Constructs a value of type <code>wctype_t</code> that describes a LC_CTYPE category of wide character classification.</p>\n<pre><code>wctype_t wctype( const char* str );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wctype
+wctype	R	wctype											
+wmemchr	A										<section class="prog__container">\n<p>Locates the first occurrence of wide character <code>ch</code> in the initial <code>count</code> wide characters of the wide character array or integer array of compatible type, pointed to by...</p>\n<pre><code>wchar_t *wmemchr( const wchar_t *ptr, wchar_t ch, size_t count );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wmemchr
+wmemchr	R	wmemchr											
+wmemcmp	A										<section class="prog__container">\n<p>Compares the first <code>count</code> wide characters of the wide character (or compatible integer type) arrays pointed to by <code>lhs</code> and <code>rhs</code>.</p>\n<pre><code>int wmemcmp( const wchar_t *lhs, const wchar_t *rhs, size_t count );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wmemcmp
+wmemcmp	R	wmemcmp											
+wmemmove	A										<section class="prog__container">\n<p> Copies exactly <code>count</code> successive wide characters from the wide character array pointed to by <code>src</code> to the wide character array pointed to by <code>dest</code>.</p>\n<pre><code>wchar_t* wmemmove( wchar_t* dest, const wchar_t* src, size_t count );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wmemmove
+wmemmove	R	wmemmove											
+wmemset	A										<section class="prog__container">\n<p>Copies the wide character <code>ch</code> into each of the first <code>count</code> wide characters of the wide character array (or integer array of compatible type) pointed to by <code>dest</code>.</p>\n<pre><code>wchar_t *wmemset( wchar_t *dest, wchar_t ch, size_t count );</code></pre>\n</section>	http://en.cppreference.com/w/c/string/wide/wmemset
+wmemset	R	wmemset											
+wprintf	A										<section class="prog__container">\n<p>Loads the data from the given locations, converts them to wide string equivalents and writes the results to a variety of sinks.</p>\n<pre><code>int wprintf( const wchar_t *format, ... );\n\nint wprintf( const wchar_t *restrict format, ... );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fwprintf
+wprintf	R	wprintf											
+wscanf	A										<section class="prog__container">\n<p>Reads data from the a variety of sources, interprets it according to <code>format</code> and stores the results into given locations.</p>\n<pre><code>int wscanf( const wchar_t *format, ... );\n\nint wscanf( const wchar_t *restrict format, ... );</code></pre>\n</section>	http://en.cppreference.com/w/c/io/fwscanf
+wscanf	R	wscanf											
