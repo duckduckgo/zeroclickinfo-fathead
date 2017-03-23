@@ -1,0 +1,505 @@
+header, C Standard Library header files
+language.1, C language
+bsearch, bsearch_s
+qsort, qsort_s
+atomic_compare_exchange, atomic_compare_exchange_weak
+atomic_compare_exchange, atomic_compare_exchange_strong
+atomic_compare_exchange, atomic_compare_exchange_weak_explicit
+atomic_compare_exchange, atomic_compare_exchange_strong_explicit
+atomic_exchange, atomic_exchange_explicit
+atomic_fetch_add, atomic_fetch_add_explicit
+atomic_fetch_and, atomic_fetch_and_explicit
+atomic_fetch_or, atomic_fetch_or_explicit
+atomic_fetch_sub, atomic_fetch_sub_explicit
+atomic_fetch_xor, atomic_fetch_xor_explicit
+atomic_flag_clear, atomic_flag_clear_explicit
+atomic_flag_test_and_set, atomic_flag_test_and_set_explicit
+atomic_load, atomic_load_explicit
+atomic_store, atomic_store_explicit
+asctime, asctime_s
+ctime, ctime_s
+gmtime, gmtime_s
+localtime, localtime_s
+errno_macros, Error numbers
+set_constraint_handler_s, constraint_handler_t
+dynamic, Dynamic memory extensions
+fpext4, Floating-point extensions part 4: supplementary functions
+getline, getwline
+getline, getdelim
+getline, getwdelim
+fgetc, getc
+fopen, fopen_s
+fprintf, printf
+fprintf, fprintf
+fprintf, sprintf
+fprintf, snprintf
+fprintf, printf_s
+fprintf, fprintf_s
+fputc, putc
+fputwc, putwc
+freopen, freopen_s
+fscanf, scanf
+fscanf, fscanf
+fscanf, sscanf
+fscanf, scanf_s
+fscanf, fscanf_s
+fscanf, sscanf_s
+fwprintf, wprintf
+fwprintf, fwprintf
+fwprintf, swprintf
+fwprintf, wprintf_s
+fwprintf, fwprintf_s
+fwprintf, swprintf_s
+fwscanf, wscanf
+fwscanf, fwscanf
+fwscanf, swscanf
+fwscanf, wscanf_s
+fwscanf, fwscanf_s
+fwscanf, swscanf_s
+gets, gets_s
+tmpfile, tmpfile_s
+tmpnam, tmpnam_s
+vfprintf, vprintf
+vfprintf, vfprintf
+vfprintf, vsprintf
+vfprintf, vsnprintf
+vfprintf, vprintf_s
+vfprintf, vfprintf_s
+vfscanf, vscanf
+vfscanf, vfscanf
+vfscanf, vsscanf
+vfscanf, vscanf_s
+vfscanf, vfscanf_s
+vfscanf, vsscanf_s
+vfwprintf, vwprintf
+vfwprintf, vfwprintf
+vfwprintf, vswprintf
+vfwprintf, vwprintf_s
+vfwprintf, vfwprintf_s
+vfwprintf, vswprintf_s
+vfwscanf, vwscanf
+vfwscanf, vfwscanf
+vfwscanf, vswscanf
+vfwscanf, vwscanf_s
+vfwscanf, vfwscanf_s
+vfwscanf, vswscanf_s
+_Alignas, C keywords: _Alignas (since C11)
+_Alignof, C keywords: _Alignof (since C11)
+_Atomic, C keywords: _Atomic
+_Bool, C keywords: _Bool
+_Complex, C keywords: _Complex
+_Generic, C keywords: _Generic
+_Imaginary, C keywords: _Imaginary
+_Noreturn, C keywords: _Noreturn (since C11)
+_Static_assert, C keywords: _Static_assert
+_Thread_local, C keywords: _Thread_local (since C11)
+auto, C keywords: auto
+break, C keywords:  break
+case, C keywords: case
+char, C keywords: char
+const, C keywords: const
+continue, C keywords: continue
+default, C keywords: default
+do, C keywords: do
+double, C keywords: double
+else, C keywords: else
+enum, C keywords: enum
+extern, C keywords: extern
+float, C keywords: float
+for, C keywords: for
+fortran, C keywords: fortran
+goto, C keywords: goto
+if, C keywords: if
+inline, C keywords: inline (since C99)
+int, C keywords: int
+long, C keywords: long
+register, C keywords: register
+restrict, C keywords: restrict
+return, C keywords: return
+short, C keywords: short
+signed, C keywords: signed
+sizeof, C keywords: sizeof
+static, C keywords: static
+struct, C keywords: struct
+switch, C keywords: switch
+typedef, C keywords: typedef
+union, C keywords: union
+unsigned, C keywords: unsigned
+void, C keywords: void
+volatile, C keywords: volatile
+while, C keywords: while
+_Alignof, _Alignof operator
+_Noreturn, _Noreturn function specifier
+_Static_assert, static assert declaration
+alignof, _Alignof operator
+arithmetic_types, Arithmetic types
+array, Array declaration
+array_initialization, Array initialization
+ascii, ASCII Chart
+atomic, atomic types
+basic_concepts, Basic concepts
+behavior, Undefined behavior
+bit_field, Bit fields
+break, break statement
+cast, cast operator
+character_constant, character constant
+compound_literal, compound literals
+const, const type qualifier
+constant_expression, Constant expressions
+continue, continue statement
+conversion, Implicit conversions
+do, do-while loop
+escape, Escape sequences
+eval_order, Order of evaluation
+extern, External and tentative definitions
+file_scope, File scope
+floating_constant, floating constant
+for, for loop
+function_declaration, Function declarations
+function_definition, Function definitions
+generic, Generic selection
+goto, goto statement
+history, History of C
+if, if statement
+inline, inline function specifier
+integer_constant, integer constant
+main_function, Main function
+memory_model, Memory model
+name_space, Lookup and name spaces
+noreturn, _Noreturn function specifier
+object, Objects and alignment
+operator_alternative, Alternative operators and tokens
+operator_arithmetic, Arithmetic operators
+operator_assignment, Assignment operators
+operator_comparison, Comparison operators
+operator_incdec, Increment/decrement operators
+operator_logical, Logical operators
+operator_member_access, Member access operators
+operator_other, Other operators
+operator_precedence, C Operator Precedence
+pointer, Pointer declaration
+restrict, restrict type qualifier
+return, return statement
+scalar_initialization, Scalar initialization
+sizeof, sizeof operator
+static_assert, static assert declaration
+static_storage_duration, Static storage duration
+storage_duration, Storage-class specifiers
+string_literal, string literals
+struct, Struct declaration
+struct_initialization, Struct and union initialization
+switch, switch statement
+thread_storage_duration, Thread storage duration
+translation_phases, Phases of translation
+typedef, Typedef declaration
+union, Union declaration
+value_category, Value categories
+variadic, Variadic arguments
+volatile, volatile type qualifier
+while, while loop
+libs, A list of open source C libraries
+LC_categories, LC_ALL
+LC_categories, LC_COLLATE
+LC_categories, LC_CTYPE
+LC_categories, LC_MONETARY
+LC_categories, LC_NUMERIC
+LC_categories, LC_TIME
+complex, Complex number arithmetic
+fenv, Floating-point environment
+math, Common mathematical functions
+random, Pseudo-random number generation
+tgmath, Type-generic math
+cabs, cabsf
+cabs, cabs
+cabs, cabsl
+cacos, cacosf
+cacos, cacos
+cacos, cacosl
+cacosh, cacoshf
+cacosh, cacosh
+cacosh, cacoshl
+carg, cargf
+carg, carg
+carg, cargl
+casin, casinf
+casin, casin
+casin, casinl
+casinh, casinhf
+casinh, casinh
+casinh, casinhl
+catan, catanf
+catan, catan
+catan, catanl
+catanh, catanhf
+catanh, catanh
+catanh, catanhl
+ccos, ccosf
+ccos, ccos
+ccos, ccosl
+ccosh, ccoshf
+ccosh, ccosh
+ccosh, ccoshl
+cexp, cexpf
+cexp, cexp
+cexp, cexpl
+cimag, cimagf
+cimag, cimag
+cimag, cimagl
+clog, clogf
+clog, clog
+clog, clogl
+CMPLX, CMPLXF
+CMPLX, CMPLX
+CMPLX, CMPLXL
+conj, conjf
+conj, conj
+conj, conjl
+cpow, cpowf
+cpow, cpow
+cpow, cpowl
+cproj, cprojf
+cproj, cproj
+cproj, cprojl
+creal, crealf
+creal, creal
+creal, creall
+csin, csinf
+csin, csin
+csin, csinl
+csinh, csinhf
+csinh, csinh
+csinh, csinhl
+csqrt, csqrtf
+csqrt, csqrt
+csqrt, csqrtl
+ctan, ctanf
+ctan, ctan
+ctan, ctanl
+ctanh, ctanhf
+ctanh, ctanh
+ctanh, ctanhl
+FE_exceptions, FE_DIVBYZERO
+FE_exceptions, FE_INEXACT
+FE_exceptions, FE_INVALID
+FE_exceptions, FE_OVERFLOW
+FE_exceptions, FE_UNDERFLOW
+FE_exceptions, FE_ALL_EXCEPT
+FE_round, FE_DOWNWARD
+FE_round, FE_TONEAREST
+FE_round, FE_TOWARDZERO
+FE_round, FE_UPWARD
+feenv, fegetenv
+feenv, fesetenv
+feexceptflag, fegetexceptflag
+feexceptflag, fesetexceptflag
+feround, fegetround
+feround, fesetround
+abs, labs
+abs, llabs
+abs, imaxabs
+acos, acosf
+acos, acosl
+acosh, acoshf
+acosh, acoshl
+asin, asinf
+asin, asinl
+asinh, asinhf
+asinh, asinhl
+atan, atanf
+atan, atanl
+atan2, atan2f
+atan2, atan2l
+atanh, atanhf
+atanh, atanhl
+cbrt, cbrtf
+cbrt, cbrtl
+ceil, ceilf
+ceil, ceill
+copysign, copysignf
+copysign, copysignl
+cos, cosf
+cos, cosl
+cosh, coshf
+cosh, coshl
+div, ldiv
+div, lldiv
+div, imaxdiv
+erf, erff
+erf, erfl
+erfc, erfcf
+erfc, erfcl
+exp, expf
+exp, expl
+exp2, exp2f
+exp2, exp2l
+expm1, expm1f
+expm1, expm1l
+fabs, fabsf
+fabs, fabsl
+float_t, double_t
+floor, floorf
+floor, floorl
+fma, fmaf
+fma, fmal
+fmax, fmaxf
+fmax, fmaxl
+fmin, fminf
+fmin, fminl
+fmod, fmodf
+fmod, fmodl
+FP_categories, FP_NORMAL
+FP_categories, FP_SUBNORMAL
+FP_categories, FP_ZERO
+FP_categories, FP_INFINITE
+FP_categories, FP_NAN
+frexp, frexpf
+frexp, frexpl
+HUGE_VAL, HUGE_VALF
+HUGE_VAL, HUGE_VAL
+HUGE_VAL, HUGE_VALL
+hypot, hypotf
+hypot, hypotl
+ilogb, ilogbf
+ilogb, ilogbl
+ldexp, ldexpf
+ldexp, ldexpl
+lgamma, lgammaf
+lgamma, lgammal
+log, logf
+log, logl
+log10, log10f
+log10, log10l
+log1p, log1pf
+log1p, log1pl
+log2, log2f
+log2, log2l
+logb, logbf
+logb, logbl
+math_errhandling, MATH_ERRNO
+math_errhandling, MATH_ERREXCEPT
+math_errhandling, math_errhandling
+modf, modff
+modf, modfl
+nan, nanf
+nan, nanl
+nearbyint, nearbyintf
+nearbyint, nearbyintl
+nextafter, nextafterf
+nextafter, nextafterl
+nextafter, nexttoward
+nextafter, nexttowardf
+nextafter, nexttowardl
+pow, powf
+pow, powl
+remainder, remainderf
+remainder, remainderl
+remquo, remquof
+remquo, remquol
+rint, rintf
+rint, rintl
+rint, lrint
+rint, lrintf
+rint, lrintl
+rint, llrint
+rint, llrintf
+rint, llrintl
+round, roundf
+round, roundl
+round, lround
+round, lroundf
+round, lroundl
+round, llround
+round, llroundf
+round, llroundl
+scalbn, scalbnf
+scalbn, scalbnl
+scalbn, scalbln
+scalbn, scalblnf
+scalbn, scalblnl
+sin, sinf
+sin, sinl
+sinh, sinhf
+sinh, sinhl
+sqrt, sqrtf
+sqrt, sqrtl
+tan, tanf
+tan, tanl
+tanh, tanhf
+tanh, tanhl
+tgamma, tgammaf
+tgamma, tgammal
+trunc, truncf
+trunc, truncl
+conditional, Conditional inclusion
+error, Error directive
+impl, Implementation defined behavior control
+include, Source file inclusion
+line, Filename and line information
+replace, Replacing text macros
+EXIT_status, EXIT_SUCCESS
+EXIT_status, EXIT_FAILURE
+getenv, getenv_s
+SIG_strategies, SIG_DFL
+SIG_strategies, SIG_IGN
+SIG_types, SIGTERM
+SIG_types, SIGSEGV
+SIG_types, SIGINT
+SIG_types, SIGILL
+SIG_types, SIGABRT
+SIG_types, SIGFPE
+byte, Null-terminated byte strings
+multibyte, Null-terminated multibyte strings
+wide, Null-terminated wide strings
+atoi, atol
+atoi, atoll
+memcpy, memcpy_s
+memmove, memmove_s
+memset, memset_s
+strcat, strcat_s
+strcpy, strcpy_s
+strerror, strerror_s
+strerror, strerrorlen_s
+strlen, strnlen_s
+strncat, strncat_s
+strncpy, strncpy_s
+strtof, strtod
+strtof, strtold
+strtoimax, strtoumax
+strtok, strtok_s
+strtol, strtoll
+strtoul, strtoull
+mbsrtowcs, mbsrtowcs_s
+mbstowcs, mbstowcs_s
+wcrtomb, wcrtomb_s
+wcsrtombs, wcsrtombs_s
+wcstombs, wcstombs_s
+wctomb, wctomb_s
+wcscat, wcscat_s
+wcscpy, wcscpy_s
+wcslen, wcsnlen_s
+wcsncat, wcsncat_s
+wcsncpy, wcsncpy_s
+wcstof, wcstod
+wcstof, wcstold
+wcstoimax, wcstoumax
+wcstok, wcstok_s
+wcstol, wcstoll
+wcstoul, wcstoull
+wmemcpy, wmemcpy_s
+wmemmove, wmemmove_s
+call_once, once_flag
+call_once, ONCE_FLAG_INIT
+mtx_types, mtx_plain
+mtx_types, mtx_recursive
+mtx_types, mtx_timed
+ONCE_FLAG_INIT, call_once
+ONCE_FLAG_INIT, once_flag
+ONCE_FLAG_INIT, ONCE_FLAG_INIT
+thrd_errors, thrd_success
+thrd_errors, thrd_timedout
+thrd_errors, thrd_busy
+thrd_errors, thrd_nomem
+thrd_errors, thrd_error
+boolean, Boolean type support library
+integer, Fixed width integer types (since C99)
+limits, Numeric limits
