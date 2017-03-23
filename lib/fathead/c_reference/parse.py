@@ -13,7 +13,7 @@ def main():
 		    	filepath.append(fp)
 	filescount=0
 	for p in filepath:
-		# p="download/c/numeric/math/asin.html"
+		# p="download/c/io/fprintf.html"
 		filescount=filescount+1
 		print filescount, p
 		process_file(p)
@@ -135,10 +135,6 @@ def process_divs(soup):
 	for tag in soup.find_all('div'):
 		tag.unwrap()
 #------------------------------------------------------------
-def rem_attr(soup, tag):
-	_tag = soup.find_all(tag)
-	for t in _tag:
-		t.attrs = {}
 #------------------------------------------------------------
 def cleanup_code_tag_for_ps(soup):
 	ps=[]
@@ -153,9 +149,6 @@ def cleanup_code_tag_for_ps(soup):
 
 #------------------------------------------------------------
 def process_abstract(soup):
-	#BS functions
-	tags = ["table","tr","td"]
-	[rem_attr(soup,t) for t in tags]
 
 	clean_rest_of_the_page(soup)
 	# print "rest of page\n\n",soup
