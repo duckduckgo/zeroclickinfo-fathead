@@ -73,3 +73,8 @@ Quick draft how the content should get displayed on the search page.
 - Use *fixable* and *recommended* properties as **categories**
 - Parse MD file with **details** for each rule. Extract content of first two sections.
 - Markdown support for rule details (including code blocks)
+
+### V 1.2
+#### Parse
+- (Some) links in details are not working. Fix them or remove them from the output.
+- Introduce logging: Maintaining the scripts without proper logging info will be hard.
