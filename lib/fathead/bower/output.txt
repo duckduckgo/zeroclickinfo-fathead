@@ -16,7 +16,7 @@ list	A										<section class="prog__container"><p>List local packages and poss
 list command	R	list										
 lookup	A										<section class="prog__container"><p>Look up a package URL by name</p><pre><code>$ bower lookup <name></code></pre></section>	https://bower.io/docs/api/#lookup
 lookup command	R	lookup										
-login	A										<section class="prog__container"><p>Authenticate with GitHub and store credentials.</p><pre><code>$ bower login</code></pre></section>	https://bower.io/docs/api/#login
+login	A										<section class="prog__container"><p>Authenticate with GitHub and store credentials. Required to unregister packages.</p><pre><code>$ bower login</code></pre></section>	https://bower.io/docs/api/#login
 login command	R	login										
 prune	A										<section class="prog__container"><p>Uninstalls local extraneous packages</p><pre><code>$ bower prune</code></pre></section>	https://bower.io/docs/api/#prune
 prune command	R	prune										
@@ -28,9 +28,11 @@ update	A										<section class="prog__container"><p>Updates installed packages
 update command	R	update										
 uninstall	A										<section class="prog__container"><p>Uninstalls a package locally from your bower_components directory</p><pre><code>$ bower uninstall <name> [<name> ..] [<options>]</code></pre></section>	https://bower.io/docs/api/#uninstall
 uninstall command	R	uninstall										
+unregister	A										<section class="prog__container"><p>Unregisters a package.</p><pre><code>$ bower unregister <package></code></pre></section>	https://bower.io/docs/api/#unregister
+unregister command	R	unregister										
 version	A										<section class="prog__container"><p>Run this in a package directory to bump the version and write the new data back to the bower.json file.\n\nThe newversion argument should be a valid semver string, or a valid second argument to semver.inc (one of "build", "patch", "minor", or "major"). In the second case, the existing version will be incremented by 1 in the specified field.\n\nIf run in a git repo, it will also create a version commit and tag, and fail if the repo is not clean.</p><pre><code>$ bower version [<newversion> | major | minor | patch]</code></pre></section>	https://bower.io/docs/api/#version
 version command	R	version										
-force	A										<section class="prog__container"><p>Makes various commands more forceful\n\n- `bower install --force` re-installs all installed components. It also forces installation even when there are non-bower directories with the same name in the components directory. Adding `--force` also bypasses the cache, and writes to the cache anyway.\n- `bower uninstall <package> --force` continues uninstallation even after a dependency conflict\n- `bower register <package> --force` bypasses confirmation. Login is still needed.</p><pre><code>-f, --force</code></pre></section>	https://bower.io/docs/api/#force
+force	A										<section class="prog__container"><p>Makes various commands more forceful\n\n- `bower install --force` re-installs all installed components. It also forces installation even when there are non-bower directories with the same name in the components directory. Adding `--force` also bypasses the cache, and writes to the cache anyway.\n- `bower uninstall <package> --force` continues uninstallation even after a dependency conflict\n- `bower register <package> --force` and `bower unregister <package> --force` bypasses confirmation. Login is still needed.</p><pre><code>-f, --force</code></pre></section>	https://bower.io/docs/api/#force
 force command	R	force										
 json	A										<section class="prog__container"><p>Output consumable JSON</p><pre><code>-j, --json</code></pre></section>	https://bower.io/docs/api/#json
 json command	R	json										
