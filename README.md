@@ -2,17 +2,11 @@
 We're a community of open source developers from around the world, contributing code to improve the DuckDuckGo search engine.
 
 
-### The Programming Mission
-We want every programming search to have great results, providing the information you need instantly. The Programming Mission empowers the community to create Instant Answers for reference, libraries, help, and tools.
-
-For now, we are **only accepting Pull Requests and Issues related to the Programming Mission**.
-
-
 ## How to contribute
 
-- [**Create new Fatheads, and improve existing ones**](https://github.com/duckduckgo/zeroclickinfo-fathead/issues?q=is%3Aopen+is%3Aissue+label%3A"Mission%3A+Programming")
+- [**Create new Fatheads, and improve existing ones**](https://duckduckhack.com/issues)
     - **Note**: Fatheads are written in Perl, Python, Ruby, or JavaScript (Node.js)
-- [**Visit DuckDuckHack**](https://duckduckhack.com/#get-help) to learn more about the Programming Mission, and how you can help!
+- [**Visit DuckDuckHack**](https://duckduckhack.com/#get-help) to learn more how you can help!
 
 
 ### What are Fathead Instant Answers?

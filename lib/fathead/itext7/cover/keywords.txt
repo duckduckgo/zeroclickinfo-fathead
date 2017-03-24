@@ -1,0 +1,5445 @@
+AESCipher
+AESCipher doFinal
+AESCipher update
+AESCipherCBCnoPad
+AESCipherCBCnoPad processBlock
+ARCFOUREncryption
+ARCFOUREncryption encryptARCFOUR
+ARCFOUREncryption prepareARCFOURKey
+ASCII85DecodeFilter
+ASCII85DecodeFilter ASCII85Decode
+ASCII85DecodeFilter decode
+ASCIIHexDecodeFilter
+ASCIIHexDecodeFilter ASCIIHexDecode
+ASCIIHexDecodeFilter decode
+AbstractCMap
+AbstractCMap decodeStringToByte
+AbstractCMap getName
+AbstractCMap getOrdering
+AbstractCMap getRegistry
+AbstractCMap getSupplement
+AbstractCMap toUnicodeString
+AbstractElement
+AbstractElement addStyle
+AbstractElement createRendererSubTree
+AbstractElement getProperty
+AbstractElement getRenderer
+AbstractElement hasProperty
+AbstractElement isEmpty
+AbstractElement makeNewRenderer
+AbstractElement propagateArtifactRoleToChildElements
+AbstractElement setAction
+AbstractElement setNextRenderer
+AbstractElement setPageNumber
+AbstractRenderer
+AbstractRenderer addAllProperties
+AbstractRenderer addChild
+AbstractRenderer alignChildHorizontally
+AbstractRenderer applyAbsolutePositioningTranslation
+AbstractRenderer applyAction
+AbstractRenderer applyBorderBox
+AbstractRenderer applyDestination
+AbstractRenderer applyMargins
+AbstractRenderer applyPaddings
+AbstractRenderer calculateAbsolutePdfBBox
+AbstractRenderer calculateBBox
+AbstractRenderer deleteOwnProperty
+AbstractRenderer deleteProperty
+AbstractRenderer draw
+AbstractRenderer drawBackground
+AbstractRenderer drawBorder
+AbstractRenderer drawChildren
+AbstractRenderer getBorderAreaBBox
+AbstractRenderer getBorders
+AbstractRenderer getChildRenderers
+AbstractRenderer getDefaultProperty
+AbstractRenderer getFirstYLineRecursively
+AbstractRenderer getInnerAreaBBox
+AbstractRenderer getMargins
+AbstractRenderer getModelElement
+AbstractRenderer getOccupiedArea
+AbstractRenderer getOccupiedAreaBBox
+AbstractRenderer getOwnProperties
+AbstractRenderer getOwnProperty
+AbstractRenderer getPaddings
+AbstractRenderer getProperty
+AbstractRenderer getPropertyAsBoolean
+AbstractRenderer getPropertyAsColor
+AbstractRenderer getPropertyAsFloat
+AbstractRenderer getPropertyAsFont
+AbstractRenderer getPropertyAsInteger
+AbstractRenderer hasOwnOrModelProperty
+AbstractRenderer hasOwnProperty
+AbstractRenderer hasProperty
+AbstractRenderer initElementAreas
+AbstractRenderer isFixedLayout
+AbstractRenderer isFlushed
+AbstractRenderer isKeepTogether
+AbstractRenderer isNotFittingHeight
+AbstractRenderer isNotFittingLayoutArea
+AbstractRenderer isPositioned
+AbstractRenderer isRelativePosition
+AbstractRenderer move
+AbstractRenderer rectangleToPointsList
+AbstractRenderer retrieveHeight
+AbstractRenderer retrieveUnitValue
+AbstractRenderer retrieveWidth
+AbstractRenderer setBorders
+AbstractRenderer setParent
+AbstractRenderer setProperty
+AbstractRenderer toString
+AbstractRenderer transformPoints
+AccessibilityProperties
+AccessibilityProperties addAttributes
+AccessibilityProperties addNewAttributesToAttributesArray
+AccessibilityProperties clearAttributes
+AccessibilityProperties combineAttributesList
+AccessibilityProperties getActualText
+AccessibilityProperties getAlternateDescription
+AccessibilityProperties getAttributesList
+AccessibilityProperties getExpansion
+AccessibilityProperties getLanguage
+AccessibilityProperties setActualText
+AccessibilityProperties setAlternateDescription
+AccessibilityProperties setExpansion
+AccessibilityProperties setLanguage
+AccessibleAttributesApplier
+AccessibleAttributesApplier applyLayoutAttributes
+AccessibleAttributesApplier applyListAttributes
+AccessibleAttributesApplier applyTableAttributes
+ActualTextIterator
+ActualTextIterator hasNext
+ActualTextIterator next
+ActualTextIterator remove
+AdobeGlyphList
+AdobeGlyphList getNameToUnicodeLength
+AdobeGlyphList getUnicodeToNameLength
+AdobeGlyphList nameToUnicode
+AdobeGlyphList unicodeToName
+AesDecryptor
+AesDecryptor finish
+AesDecryptor update
+AffineTransform
+AffineTransform clone
+AffineTransform concatenate
+AffineTransform createInverse
+AffineTransform deltaTransform
+AffineTransform getDeterminant
+AffineTransform getMatrix
+AffineTransform getRotateInstance
+AffineTransform getScaleInstance
+AffineTransform getScaleX
+AffineTransform getScaleY
+AffineTransform getShearInstance
+AffineTransform getShearX
+AffineTransform getShearY
+AffineTransform getTranslateInstance
+AffineTransform getTranslateX
+AffineTransform getTranslateY
+AffineTransform getType
+AffineTransform inverseTransform
+AffineTransform isIdentity
+AffineTransform preConcatenate
+AffineTransform rotate
+AffineTransform scale
+AffineTransform setToIdentity
+AffineTransform setToRotation
+AffineTransform setToScale
+AffineTransform setToShear
+AffineTransform setToTranslation
+AffineTransform setTransform
+AffineTransform shear
+AffineTransform transform
+AffineTransform translate
+AliasOptions
+AliasOptions defineOptionName
+AliasOptions getValidOptions
+AliasOptions isArray
+AliasOptions isArrayAltText
+AliasOptions isArrayAlternate
+AliasOptions isArrayOrdered
+AliasOptions isSimple
+AliasOptions setArray
+AliasOptions setArrayAltText
+AliasOptions setArrayAlternate
+AliasOptions setArrayOrdered
+AliasOptions toPropertyOptions
+AlphabetNumbering
+AlphabetNumbering toAlphabetNumber
+AreaBreak
+AreaBreak getPageSize
+AreaBreak getType
+AreaBreak makeNewRenderer
+AreaBreak setPageSize
+AreaBreakRenderer
+AreaBreakRenderer addChild
+AreaBreakRenderer deleteOwnProperty
+AreaBreakRenderer draw
+AreaBreakRenderer getChildRenderers
+AreaBreakRenderer getDefaultProperty
+AreaBreakRenderer getModelElement
+AreaBreakRenderer getNextRenderer
+AreaBreakRenderer getOccupiedArea
+AreaBreakRenderer getOwnProperty
+AreaBreakRenderer getProperty
+AreaBreakRenderer hasOwnProperty
+AreaBreakRenderer hasProperty
+AreaBreakRenderer isFlushed
+AreaBreakRenderer layout
+AreaBreakRenderer move
+AreaBreakRenderer setParent
+AreaBreakRenderer setProperty
+AreaBreakType
+AreaBreakType valueOf
+AreaBreakType values
+ArrayUtil
+ArrayUtil cloneArray
+ArrayUtil fillWithValue
+ArrayUtil hashCode
+ArrayUtil shortenArray
+ArrayUtil toArray
+Background
+Background getColor
+Background getExtraBottom
+Background getExtraLeft
+Background getExtraRight
+Background getExtraTop
+BadPasswordException
+Barcode128
+Barcode128 createAwtImage
+Barcode128 getBarcodeSize
+Barcode128 getBarsCode128Raw
+Barcode128 getCodeSet
+Barcode128 getHumanReadableUCCEAN
+Barcode128 getRawText
+Barcode128 placeBarcode
+Barcode128 removeFNC1
+Barcode128 setCode
+Barcode128 setCodeSet
+Barcode128.Barcode128CodeSet
+Barcode128.Barcode128CodeSet valueOf
+Barcode128.Barcode128CodeSet values
+Barcode1D
+Barcode1D createAwtImage
+Barcode1D createFormXObject
+Barcode1D fitWidth
+Barcode1D getAltText
+Barcode1D getBarHeight
+Barcode1D getBarcodeSize
+Barcode1D getBaseline
+Barcode1D getCode
+Barcode1D getCodeType
+Barcode1D getDescender
+Barcode1D getFont
+Barcode1D getInkSpreading
+Barcode1D getN
+Barcode1D getSize
+Barcode1D getTextAlignment
+Barcode1D getX
+Barcode1D isChecksumText
+Barcode1D isExtended
+Barcode1D isGenerateChecksum
+Barcode1D isGuardBars
+Barcode1D isStartStopText
+Barcode1D placeBarcode
+Barcode1D setAltText
+Barcode1D setBarHeight
+Barcode1D setBaseline
+Barcode1D setChecksumText
+Barcode1D setCode
+Barcode1D setCodeType
+Barcode1D setExtended
+Barcode1D setFont
+Barcode1D setGenerateChecksum
+Barcode1D setGuardBars
+Barcode1D setInkSpreading
+Barcode1D setN
+Barcode1D setSize
+Barcode1D setStartStopText
+Barcode1D setTextAlignment
+Barcode1D setX
+Barcode2D
+Barcode2D createFormXObject
+Barcode2D getBarcodeSize
+Barcode2D placeBarcode
+Barcode39
+Barcode39 createAwtImage
+Barcode39 getBarcodeSize
+Barcode39 getBarsCode39
+Barcode39 getCode39Ex
+Barcode39 placeBarcode
+BarcodeCodabar
+BarcodeCodabar calculateChecksum
+BarcodeCodabar createAwtImage
+BarcodeCodabar getBarcodeSize
+BarcodeCodabar getBarsCodabar
+BarcodeCodabar placeBarcode
+BarcodeDataMatrix
+BarcodeDataMatrix createAwtImage
+BarcodeDataMatrix createFormXObject
+BarcodeDataMatrix getBarcodeSize
+BarcodeDataMatrix getEncoding
+BarcodeDataMatrix getHeight
+BarcodeDataMatrix getOptions
+BarcodeDataMatrix getWidth
+BarcodeDataMatrix getWs
+BarcodeDataMatrix placeBarcode
+BarcodeDataMatrix setCode
+BarcodeDataMatrix setEncoding
+BarcodeDataMatrix setHeight
+BarcodeDataMatrix setOptions
+BarcodeDataMatrix setWidth
+BarcodeDataMatrix setWs
+BarcodeEAN
+BarcodeEAN calculateEANParity
+BarcodeEAN convertUPCAtoUPCE
+BarcodeEAN createAwtImage
+BarcodeEAN getBarcodeSize
+BarcodeEAN getBarsEAN13
+BarcodeEAN getBarsEAN8
+BarcodeEAN getBarsSupplemental2
+BarcodeEAN getBarsSupplemental5
+BarcodeEAN getBarsUPCE
+BarcodeEAN placeBarcode
+BarcodeEANSUPP
+BarcodeEANSUPP createAwtImage
+BarcodeEANSUPP getBarcodeSize
+BarcodeEANSUPP placeBarcode
+BarcodeInter25
+BarcodeInter25 createAwtImage
+BarcodeInter25 getBarcodeSize
+BarcodeInter25 getBarsInter25
+BarcodeInter25 getChecksum
+BarcodeInter25 keepNumbers
+BarcodeInter25 placeBarcode
+BarcodePDF417
+BarcodePDF417 assemble
+BarcodePDF417 basicNumberCompaction
+BarcodePDF417 byteCompaction6
+BarcodePDF417 calculateErrorCorrection
+BarcodePDF417 checkSegmentType
+BarcodePDF417 createAwtImage
+BarcodePDF417 createFormXObject
+BarcodePDF417 dumpList
+BarcodePDF417 getAspectRatio
+BarcodePDF417 getBarcodeSize
+BarcodePDF417 getBitColumns
+BarcodePDF417 getCode
+BarcodePDF417 getCodeColumns
+BarcodePDF417 getCodeRows
+BarcodePDF417 getCodewords
+BarcodePDF417 getErrorLevel
+BarcodePDF417 getLenCodewords
+BarcodePDF417 getMaxSquare
+BarcodePDF417 getOptions
+BarcodePDF417 getOutBits
+BarcodePDF417 getSegmentLength
+BarcodePDF417 getTextTypeAndValue
+BarcodePDF417 getYHeight
+BarcodePDF417 maxPossibleErrorLevel
+BarcodePDF417 numberCompaction
+BarcodePDF417 outCodeword
+BarcodePDF417 outCodeword17
+BarcodePDF417 outCodeword18
+BarcodePDF417 outPaintCode
+BarcodePDF417 outStartPattern
+BarcodePDF417 outStopPattern
+BarcodePDF417 paintCode
+BarcodePDF417 placeBarcode
+BarcodePDF417 setAspectRatio
+BarcodePDF417 setCode
+BarcodePDF417 setCodeColumns
+BarcodePDF417 setCodeRows
+BarcodePDF417 setDefaultParameters
+BarcodePDF417 setErrorLevel
+BarcodePDF417 setLenCodewords
+BarcodePDF417 setMacroFileId
+BarcodePDF417 setMacroSegmentCount
+BarcodePDF417 setMacroSegmentId
+BarcodePDF417 setOptions
+BarcodePDF417 setYHeight
+BarcodePDF417 textCompaction
+BarcodePDF417.Segment
+BarcodePDF417.SegmentList
+BarcodePDF417.SegmentList add
+BarcodePDF417.SegmentList get
+BarcodePDF417.SegmentList remove
+BarcodePDF417.SegmentList size
+BarcodePostnet
+BarcodePostnet createAwtImage
+BarcodePostnet fitWidth
+BarcodePostnet getBarcodeSize
+BarcodePostnet getBarsPostnet
+BarcodePostnet placeBarcode
+BarcodeQRCode
+BarcodeQRCode createAwtImage
+BarcodeQRCode createFormXObject
+BarcodeQRCode getBarcodeSize
+BarcodeQRCode getCode
+BarcodeQRCode getHints
+BarcodeQRCode placeBarcode
+BarcodeQRCode regenerate
+BarcodeQRCode setCode
+BarcodeQRCode setHints
+Base64
+Base64 decode
+Base64 encode
+Base64.InputStream
+Base64.InputStream read
+Base64.OutputStream
+Base64.OutputStream close
+Base64.OutputStream flushBase64
+Base64.OutputStream resumeEncoding
+Base64.OutputStream suspendEncoding
+Base64.OutputStream write
+BaseDirection
+BaseDirection valueOf
+BaseDirection values
+BezierCurve
+BezierCurve getBasePoints
+BezierCurve getPiecewiseLinearApproximation
+BlockElement
+BlockElement getMarginBottom
+BlockElement getMarginLeft
+BlockElement getMarginRight
+BlockElement getMarginTop
+BlockElement getPaddingBottom
+BlockElement getPaddingLeft
+BlockElement getPaddingRight
+BlockElement getPaddingTop
+BlockElement isKeepTogether
+BlockElement isKeepWithNext
+BlockElement setKeepTogether
+BlockElement setKeepWithNext
+BlockElement setMargin
+BlockElement setMarginBottom
+BlockElement setMarginLeft
+BlockElement setMarginRight
+BlockElement setMarginTop
+BlockElement setMargins
+BlockElement setPadding
+BlockElement setPaddingBottom
+BlockElement setPaddingLeft
+BlockElement setPaddingRight
+BlockElement setPaddingTop
+BlockElement setPaddings
+BlockElement setRotationAngle
+BlockElement setSpacingRatio
+BlockElement setVerticalAlignment
+BlockRenderer
+BlockRenderer applyRotation
+BlockRenderer applyRotationLayout
+BlockRenderer applyVerticalAlignment
+BlockRenderer beginRotationIfApplied
+BlockRenderer createOverflowRenderer
+BlockRenderer createRotationTransformInsideOccupiedArea
+BlockRenderer createSplitRenderer
+BlockRenderer draw
+BlockRenderer endRotationIfApplied
+BlockRenderer getOccupiedAreaBBox
+BlockRenderer layout
+BmpImageData
+BmpImageData getSize
+BmpImageData isNoHeader
+Border
+Border draw
+Border drawCellBorder
+Border equals
+Border getBorderSide
+Border getColor
+Border getType
+Border getWidth
+Border hashCode
+Border setColor
+Border setWidth
+Border.Side
+Border.Side valueOf
+Border.Side values
+Border3D
+Border3D draw
+Border3D drawCellBorder
+Border3D getDarkerColor
+Border3D setInnerHalfColor
+Border3D setOuterHalfColor
+BouncyCastleDigest
+BouncyCastleDigest getMessageDigest
+ByteArrayOutputStream
+ByteArrayOutputStream assignBytes
+ByteBuffer
+ByteBuffer append
+ByteBuffer byteAt
+ByteBuffer charAt
+ByteBuffer getByteStream
+ByteBuffer getEncoding
+ByteBuffer length
+ByteBufferOutputStream
+ByteBufferOutputStream append
+ByteBufferOutputStream appendHex
+ByteBufferOutputStream append_i
+ByteBufferOutputStream fillCache
+ByteBufferOutputStream formatDouble
+ByteBufferOutputStream getBuffer
+ByteBufferOutputStream reset
+ByteBufferOutputStream setCacheSize
+ByteBufferOutputStream setSize
+ByteBufferOutputStream size
+ByteBufferOutputStream toByteArray
+ByteBufferOutputStream toString
+ByteBufferOutputStream write
+ByteBufferOutputStream writeTo
+ByteMatrix
+ByteMatrix clear
+ByteMatrix get
+ByteMatrix getArray
+ByteMatrix getHeight
+ByteMatrix getWidth
+ByteMatrix set
+ByteMatrix toString
+ByteUtils
+ByteUtils getIsoBytes
+ByteVector
+ByteVector alloc
+ByteVector capacity
+ByteVector get
+ByteVector getArray
+ByteVector length
+ByteVector put
+ByteVector trimToSize
+CCITTFaxDecodeFilter
+CCITTFaxDecodeFilter decode
+CCITTG4Encoder
+CCITTG4Encoder close
+CCITTG4Encoder compress
+CCITTG4Encoder fax4Encode
+CFFFont
+CFFFont exists
+CFFFont getCID
+CFFFont getDictItem
+CFFFont getEntireIndexRange
+CFFFont getNames
+CFFFont getString
+CFFFont isCID
+CFFFont.DictNumberItem
+CFFFont.DictNumberItem emit
+CFFFont.DictNumberItem increment
+CFFFont.DictOffsetItem
+CFFFont.DictOffsetItem emit
+CFFFont.DictOffsetItem increment
+CFFFont.IndexBaseItem
+CFFFont.IndexMarkerItem
+CFFFont.IndexMarkerItem xref
+CFFFont.IndexOffsetItem
+CFFFont.IndexOffsetItem emit
+CFFFont.IndexOffsetItem increment
+CFFFont.Item
+CFFFont.Item emit
+CFFFont.Item increment
+CFFFont.Item xref
+CFFFont.MarkerItem
+CFFFont.MarkerItem xref
+CFFFont.OffsetItem
+CFFFont.OffsetItem set
+CFFFont.RangeItem
+CFFFont.RangeItem emit
+CFFFont.RangeItem increment
+CFFFont.StringItem
+CFFFont.StringItem emit
+CFFFont.StringItem increment
+CFFFont.SubrMarkerItem
+CFFFont.SubrMarkerItem xref
+CFFFont.UInt16Item
+CFFFont.UInt16Item emit
+CFFFont.UInt16Item increment
+CFFFont.UInt24Item
+CFFFont.UInt24Item emit
+CFFFont.UInt24Item increment
+CFFFont.UInt32Item
+CFFFont.UInt32Item emit
+CFFFont.UInt32Item increment
+CFFFont.UInt8Item
+CFFFont.UInt8Item emit
+CFFFont.UInt8Item increment
+CFFFontSubset
+CFFFontSubset AssembleIndex
+CFFFontSubset BuildFDArrayUsed
+CFFFontSubset BuildFDSubrsOffsets
+CFFFontSubset BuildGSubrsUsed
+CFFFontSubset BuildIndexHeader
+CFFFontSubset BuildNewCharString
+CFFFontSubset BuildNewFile
+CFFFontSubset BuildNewIndex
+CFFFontSubset BuildNewLGSubrs
+CFFFontSubset BuildSubrUsed
+CFFFontSubset CalcBias
+CFFFontSubset CalcHints
+CFFFontSubset CopyHeader
+CFFFontSubset CreateCharset
+CFFFontSubset CreateFDArray
+CFFFontSubset CreateFDSelect
+CFFFontSubset CreateKeys
+CFFFontSubset CreateNewStringIndex
+CFFFontSubset EmptyStack
+CFFFontSubset HandelStack
+CFFFontSubset PopStack
+CFFFontSubset Process
+CFFFontSubset PushStack
+CFFFontSubset ReadASubr
+CFFFontSubset ReadCommand
+CFFFontSubset ReadFDArray
+CFFFontSubset StackOpp
+CFFFontSubset countEntireIndexRange
+CFFFontSubset readFDSelect
+CMapByteCid
+CMapByteCid decodeSequence
+CMapByteCid decodeSingle
+CMapByteCid.Cursor
+CMapCidByte
+CMapCidByte getReversMap
+CMapCidByte lookup
+CMapCidUni
+CMapCidUni getCids
+CMapCidUni lookup
+CMapContentParser
+CMapContentParser decodeCMapObject
+CMapContentParser decodeName
+CMapContentParser nextValidToken
+CMapContentParser parse
+CMapContentParser readArray
+CMapContentParser readDictionary
+CMapContentParser readObject
+CMapContentParser toHex
+CMapEncoding
+CMapEncoding getCidCode
+CMapEncoding getCmapCode
+CMapEncoding getCmapName
+CMapEncoding getOrdering
+CMapEncoding getRegistry
+CMapEncoding getSupplement
+CMapEncoding getUniMapName
+CMapEncoding hasUniMap
+CMapEncoding isDirect
+CMapLocationFromBytes
+CMapLocationFromBytes getLocation
+CMapLocationResource
+CMapLocationResource getLocation
+CMapObject
+CMapObject getType
+CMapObject getValue
+CMapObject isArray
+CMapObject isDictionary
+CMapObject isHexString
+CMapObject isLiteral
+CMapObject isName
+CMapObject isNumber
+CMapObject isString
+CMapObject isToken
+CMapObject setValue
+CMapObject toString
+CMapParser
+CMapParser parseCid
+CMapToUnicode
+CMapToUnicode createDirectMapping
+CMapToUnicode createReverseMapping
+CMapToUnicode getCodes
+CMapToUnicode getIdentity
+CMapToUnicode hasByteMappings
+CMapToUnicode lookup
+CMapUniCid
+CMapUniCid exportToUnicode
+CMapUniCid lookup
+CRLVerifier
+CRLVerifier getCRL
+CRLVerifier isSignatureValid
+CRLVerifier verify
+CalGray
+CalRgb
+Canvas
+Canvas close
+Canvas enableAutoTagging
+Canvas ensureRootRendererNotNull
+Canvas flush
+Canvas getPage
+Canvas getPdfCanvas
+Canvas getPdfDocument
+Canvas getRootArea
+Canvas isAutoTaggingEnabled
+Canvas relayout
+Canvas setRenderer
+CanvasArtifact
+CanvasGraphicsState
+CanvasGraphicsState getAlphaIsShape
+CanvasGraphicsState getAutomaticStrokeAdjustment
+CanvasGraphicsState getBlackGenerationFunction
+CanvasGraphicsState getBlackGenerationFunction2
+CanvasGraphicsState getBlendMode
+CanvasGraphicsState getCharSpacing
+CanvasGraphicsState getCtm
+CanvasGraphicsState getDashPattern
+CanvasGraphicsState getFillColor
+CanvasGraphicsState getFillOpacity
+CanvasGraphicsState getFillOverprint
+CanvasGraphicsState getFlatnessTolerance
+CanvasGraphicsState getFont
+CanvasGraphicsState getFontSize
+CanvasGraphicsState getHTP
+CanvasGraphicsState getHalftone
+CanvasGraphicsState getHorizontalScaling
+CanvasGraphicsState getLeading
+CanvasGraphicsState getLineCapStyle
+CanvasGraphicsState getLineJoinStyle
+CanvasGraphicsState getLineWidth
+CanvasGraphicsState getMiterLimit
+CanvasGraphicsState getOverprintMode
+CanvasGraphicsState getRenderingIntent
+CanvasGraphicsState getSmoothnessTolerance
+CanvasGraphicsState getSoftMask
+CanvasGraphicsState getStrokeColor
+CanvasGraphicsState getStrokeOpacity
+CanvasGraphicsState getStrokeOverprint
+CanvasGraphicsState getTextKnockout
+CanvasGraphicsState getTextRenderingMode
+CanvasGraphicsState getTextRise
+CanvasGraphicsState getTransferFunction
+CanvasGraphicsState getTransferFunction2
+CanvasGraphicsState getUnderColorRemovalFunction
+CanvasGraphicsState getUnderColorRemovalFunction2
+CanvasGraphicsState getWordSpacing
+CanvasGraphicsState setCharSpacing
+CanvasGraphicsState setDashPattern
+CanvasGraphicsState setFillColor
+CanvasGraphicsState setFlatnessTolerance
+CanvasGraphicsState setFont
+CanvasGraphicsState setFontSize
+CanvasGraphicsState setHorizontalScaling
+CanvasGraphicsState setLeading
+CanvasGraphicsState setLineCapStyle
+CanvasGraphicsState setLineJoinStyle
+CanvasGraphicsState setLineWidth
+CanvasGraphicsState setMiterLimit
+CanvasGraphicsState setRenderingIntent
+CanvasGraphicsState setStrokeColor
+CanvasGraphicsState setTextRenderingMode
+CanvasGraphicsState setTextRise
+CanvasGraphicsState setWordSpacing
+CanvasGraphicsState updateCtm
+CanvasGraphicsState updateFromExtGState
+CanvasRenderer
+CanvasRenderer addChild
+CanvasRenderer flushSingleRenderer
+CanvasRenderer getNextRenderer
+CanvasRenderer updateCurrentArea
+CanvasTag
+CanvasTag addProperty
+CanvasTag getActualText
+CanvasTag getMcid
+CanvasTag getProperties
+CanvasTag getProperty
+CanvasTag getRole
+CanvasTag hasMcid
+CanvasTag removeProperty
+CanvasTag setProperties
+Cell
+Cell add
+Cell clone
+Cell getAccessibilityProperties
+Cell getCol
+Cell getColspan
+Cell getDefaultProperty
+Cell getRenderer
+Cell getRole
+Cell getRow
+Cell getRowspan
+Cell makeNewRenderer
+Cell setRole
+Cell toString
+Cell updateCellIndexes
+CellRenderer
+CellRenderer applyBorderBox
+CellRenderer createOverflowRenderer
+CellRenderer createSplitRenderer
+CellRenderer drawBackground
+CellRenderer drawBorder
+CellRenderer getModelElement
+CellRenderer getNextRenderer
+CertificateInfo
+CertificateInfo getIssuer
+CertificateInfo getIssuerFields
+CertificateInfo getSubject
+CertificateInfo getSubjectFields
+CertificateInfo.X500Name
+CertificateInfo.X500Name getField
+CertificateInfo.X500Name getFieldArray
+CertificateInfo.X500Name getFields
+CertificateInfo.X500Name toString
+CertificateInfo.X509NameTokenizer
+CertificateInfo.X509NameTokenizer hasMoreTokens
+CertificateInfo.X509NameTokenizer nextToken
+CertificateUtil
+CertificateUtil getCRL
+CertificateUtil getCRLURL
+CertificateUtil getOCSPURL
+CertificateUtil getTSAURL
+CertificateVerification
+CertificateVerification verifyCertificate
+CertificateVerification verifyCertificates
+CertificateVerification verifyOcspCertificates
+CertificateVerification verifyTimestampCertificates
+CertificateVerifier
+CertificateVerifier setOnlineCheckingAllowed
+CertificateVerifier verify
+CharVector
+CharVector alloc
+CharVector capacity
+CharVector clear
+CharVector get
+CharVector getArray
+CharVector length
+CharVector put
+CharVector trimToSize
+CidFont
+CidFont compatibleWith
+CidFont getKerning
+CidFont getPdfFontFlags
+CidFont isFontSpecific
+CidFontProperties
+CidFontProperties getAllFonts
+CidFontProperties getCompatibleFont
+CidFontProperties getRegistryNames
+CidFontProperties isCidFont
+ClipperBase
+ClipperBase addPath
+ClipperBase addPaths
+ClipperBase clear
+ClipperBase isPreserveCollinear
+ClipperBase parseFirstLeft
+ClipperBase popLocalMinima
+ClipperBase reset
+ClipperBridge
+ClipperBridge addContour
+ClipperBridge addPath
+ClipperBridge addRectToClipper
+ClipperBridge convertToFloatPoints
+ClipperBridge convertToLongPoints
+ClipperBridge convertToPath
+ClipperBridge getEndType
+ClipperBridge getFillType
+ClipperBridge getJoinType
+ClipperOffset
+ClipperOffset addPath
+ClipperOffset addPaths
+ClipperOffset clear
+ClipperOffset execute
+ClippingPathInfo
+ClippingPathInfo getClippingPath
+ClippingPathInfo getCtm
+Color
+Color convertCmykToRgb
+Color convertRgbToCmyk
+Color equals
+Color getColorSpace
+Color getColorValue
+Color getNumberOfComponents
+Color hashCode
+Color makeColor
+Color setColorValue
+ColumnDocumentRenderer
+ColumnDocumentRenderer getNextAreaNumber
+ColumnDocumentRenderer updateCurrentArea
+CompareTool
+CompareTool compareArrays
+CompareTool compareBooleans
+CompareTool compareByCatalog
+CompareTool compareByContent
+CompareTool compareDictionaries
+CompareTool compareDocumentInfo
+CompareTool compareLinkAnnotations
+CompareTool compareNames
+CompareTool compareNumbers
+CompareTool compareStreams
+CompareTool compareStrings
+CompareTool compareTagStructures
+CompareTool compareVisually
+CompareTool compareXmls
+CompareTool compareXmp
+CompareTool disableCachedPagesComparison
+CompareTool enableEncryptionCompare
+CompareTool getCmpReaderProperties
+CompareTool getOutReaderProperties
+CompareTool setCompareByContentErrorsLimit
+CompareTool setGenerateCompareByContentXmlReport
+CompressionConstants
+ContextualSubTable
+ContextualSubTable checkIfContextMatch
+ContextualSubTable getMatchingContextRule
+ContextualSubTable getSetOfRulesForStartGlyph
+ContextualSubstRule
+ContextualSubstRule getBacktrackContextLength
+ContextualSubstRule getContextLength
+ContextualSubstRule getLookaheadContextLength
+ContextualSubstRule getSubstLookupRecords
+ContextualSubstRule isGlyphMatchesBacktrack
+ContextualSubstRule isGlyphMatchesInput
+ContextualSubstRule isGlyphMatchesLookahead
+CountOutputStream
+CountOutputStream getBytesWritten
+CountOutputStream write
+Counter
+Counter getCounter
+Counter onDocumentRead
+Counter onDocumentWritten
+CounterFactory
+CounterFactory getCounter
+CounterFactory getInstance
+CounterFactory setCounter
+CrlClientOffline
+CrlClientOffline getEncoded
+CrlClientOnline
+CrlClientOnline addUrl
+CrlClientOnline getEncoded
+CryptoUtil
+CryptoUtil readPrivateKeyFromPKCS12KeyStore
+CryptoUtil readPublicCertificate
+DashedBorder
+DashedBorder draw
+DashedBorder drawCellBorder
+DashedBorder getDotsGap
+DashedBorder getType
+DashedLine
+DashedLine draw
+DashedLine getColor
+DashedLine getLineWidth
+DashedLine setColor
+DashedLine setLineWidth
+DateTimeUtil
+DateTimeUtil getCurrentTimeCalendar
+DateTimeUtil getCurrentTimeDate
+DateTimeUtil getUtcMillisFromEpoch
+DecimalFormatUtil
+DecimalFormatUtil formatNumber
+DefaultClipper
+DefaultClipper execute
+DefaultClipper minkowskiDiff
+DefaultClipper minkowskiSum
+DefaultClipper reset
+DefaultClipper simplifyPolygon
+DefaultClipper simplifyPolygons
+DefaultCounter
+DefaultCounter getCounter
+DefaultCounter onDocumentRead
+DefaultCounter onDocumentWritten
+DefaultSplitCharacters
+DefaultSplitCharacters isSplitCharacter
+DeflaterOutputStream
+DeflaterOutputStream close
+DeflaterOutputStream finish
+DeviceCmyk
+DeviceCmyk makeDarker
+DeviceCmyk makeLighter
+DeviceGray
+DeviceGray makeDarker
+DeviceGray makeLighter
+DeviceN
+DeviceRgb
+DeviceRgb makeDarker
+DeviceRgb makeLighter
+DigestAlgorithms
+DigestAlgorithms digest
+DigestAlgorithms getAllowedDigest
+DigestAlgorithms getDigest
+DigestAlgorithms getMessageDigest
+DigestAlgorithms getMessageDigestFromOid
+DigestAlgorithms normalizeDigestName
+Div
+Div add
+Div getAccessibilityProperties
+Div getRole
+Div makeNewRenderer
+Div setRole
+DivRenderer
+DivRenderer getNextRenderer
+DmParams
+DoNothingFilter
+DoNothingFilter decode
+DoNothingFilter getLastFilterName
+Document
+Document add
+Document checkClosingStatus
+Document close
+Document ensureRootRendererNotNull
+Document flush
+Document getBottomMargin
+Document getLeftMargin
+Document getPageEffectiveArea
+Document getPdfDocument
+Document getRightMargin
+Document getTopMargin
+Document relayout
+Document setBottomMargin
+Document setLeftMargin
+Document setMargins
+Document setRenderer
+Document setRightMargin
+Document setTopMargin
+DocumentRenderer
+DocumentRenderer addNewPage
+DocumentRenderer flushSingleRenderer
+DocumentRenderer getNextRenderer
+DocumentRenderer getOccupiedArea
+DocumentRenderer updateCurrentArea
+DottedBorder
+DottedBorder draw
+DottedBorder drawCellBorder
+DottedBorder getDotsGap
+DottedBorder getType
+DottedLine
+DottedLine draw
+DottedLine getColor
+DottedLine getGap
+DottedLine getLineWidth
+DottedLine setColor
+DottedLine setGap
+DottedLine setLineWidth
+DoubleBorder
+DoubleBorder draw
+DoubleBorder drawCellBorder
+DoubleBorder getType
+DrawContext
+DrawContext getCanvas
+DrawContext getDocument
+DrawContext isTaggingEnabled
+DrawContext setTaggingEnabled
+ElementPropertyContainer
+ElementPropertyContainer deleteOwnProperty
+ElementPropertyContainer getDefaultProperty
+ElementPropertyContainer getHeight
+ElementPropertyContainer getOwnProperty
+ElementPropertyContainer getProperty
+ElementPropertyContainer getSplitCharacters
+ElementPropertyContainer getStrokeColor
+ElementPropertyContainer getStrokeWidth
+ElementPropertyContainer getTextRenderingMode
+ElementPropertyContainer getWidth
+ElementPropertyContainer hasOwnProperty
+ElementPropertyContainer hasProperty
+ElementPropertyContainer setBackgroundColor
+ElementPropertyContainer setBaseDirection
+ElementPropertyContainer setBold
+ElementPropertyContainer setBorder
+ElementPropertyContainer setBorderBottom
+ElementPropertyContainer setBorderLeft
+ElementPropertyContainer setBorderRight
+ElementPropertyContainer setBorderTop
+ElementPropertyContainer setCharacterSpacing
+ElementPropertyContainer setDestination
+ElementPropertyContainer setFixedPosition
+ElementPropertyContainer setFont
+ElementPropertyContainer setFontColor
+ElementPropertyContainer setFontKerning
+ElementPropertyContainer setFontScript
+ElementPropertyContainer setFontSize
+ElementPropertyContainer setHeight
+ElementPropertyContainer setHorizontalAlignment
+ElementPropertyContainer setHyphenation
+ElementPropertyContainer setItalic
+ElementPropertyContainer setLineThrough
+ElementPropertyContainer setProperty
+ElementPropertyContainer setRelativePosition
+ElementPropertyContainer setSplitCharacters
+ElementPropertyContainer setStrokeColor
+ElementPropertyContainer setStrokeWidth
+ElementPropertyContainer setTextAlignment
+ElementPropertyContainer setTextRenderingMode
+ElementPropertyContainer setUnderline
+ElementPropertyContainer setWidth
+ElementPropertyContainer setWidthPercent
+ElementPropertyContainer setWordSpacing
+EncodeHintType
+EncodingUtil
+EncodingUtil convertToBytes
+EncodingUtil convertToString
+EncryptionAlgorithms
+EncryptionAlgorithms getAlgorithm
+EncryptionConstants
+EncryptionProperties
+EncryptionProperties setPublicKeyEncryption
+EncryptionProperties setStandardEncryption
+EnglishAlphabetNumbering
+EnglishAlphabetNumbering toLatinAlphabetNumber
+EnglishAlphabetNumbering toLatinAlphabetNumberLowerCase
+EnglishAlphabetNumbering toLatinAlphabetNumberUpperCase
+ErrorCorrectionLevel
+ErrorCorrectionLevel forBits
+ErrorCorrectionLevel getBits
+ErrorCorrectionLevel getName
+ErrorCorrectionLevel ordinal
+ErrorCorrectionLevel toString
+Event
+Event getType
+EventDispatcher
+EventDispatcher addEventHandler
+EventDispatcher dispatchEvent
+EventDispatcher hasEventHandler
+EventDispatcher removeAllHandlers
+EventDispatcher removeEventHandler
+EventType
+EventType valueOf
+EventType values
+ExternalBlankSignatureContainer
+ExternalBlankSignatureContainer modifySigningDictionary
+ExternalBlankSignatureContainer sign
+FeatureRecord
+FileChannelRandomAccessSource
+FileChannelRandomAccessSource close
+FileChannelRandomAccessSource get
+FileChannelRandomAccessSource length
+FileUtil
+FileUtil createDirectories
+FileUtil createPrintWriter
+FileUtil createTempFile
+FileUtil directoryExists
+FileUtil fileExists
+FileUtil getBufferedOutputStream
+FileUtil getFileName
+FileUtil getFileOutputStream
+FileUtil getFontsDir
+FileUtil getRandomAccessFile
+FileUtil listFilesInDirectory
+FileUtil listFilesInDirectoryByFilter
+FileUtil wrapWithBufferedOutputStream
+FilterHandlers
+FilterHandlers getDefaultFilterHandlers
+FilterUtil
+FilterUtil flateDecode
+FilterUtil getInflaterInputStream
+FilterUtil inflateData
+FilteredEventListener
+FilteredEventListener attachEventListener
+FilteredEventListener eventOccurred
+FilteredEventListener getSupportedEvents
+FilteredTextEventListener
+FilteredTextEventListener getResultantText
+FixASCIIControlsReader
+FixASCIIControlsReader read
+FlateDecodeFilter
+FlateDecodeFilter decode
+FlateDecodeFilter decodePredictor
+FlateDecodeFilter flateDecode
+FontCache
+FontCache getAllFonts
+FontCache getAllPredefinedCidFonts
+FontCache getByte2CidCmap
+FontCache getCid2Byte
+FontCache getCid2UniCmap
+FontCache getCompatibleCidFont
+FontCache getCompatibleCmaps
+FontCache getFont
+FontCache getRegistryNames
+FontCache getUni2CidCmap
+FontCache isPredefinedCidFont
+FontCache saveFont
+FontConstants
+FontEncoding
+FontEncoding addSymbol
+FontEncoding canDecode
+FontEncoding canEncode
+FontEncoding convertToByte
+FontEncoding convertToBytes
+FontEncoding createEmptyFontEncoding
+FontEncoding createFontEncoding
+FontEncoding createFontSpecificEncoding
+FontEncoding fillCustomEncoding
+FontEncoding fillNamedEncoding
+FontEncoding fillStandardEncoding
+FontEncoding getBaseEncoding
+FontEncoding getDifference
+FontEncoding getUnicode
+FontEncoding getUnicodeDifference
+FontEncoding hasDifferences
+FontEncoding isFontSpecific
+FontEncoding normalizeEncoding
+FontIdentification
+FontIdentification getPanose
+FontIdentification getTtfUniqueId
+FontIdentification getTtfVersion
+FontIdentification getType1Xuid
+FontIdentification setPanose
+FontIdentification setTtfUniqueId
+FontIdentification setTtfVersion
+FontIdentification setType1Xuid
+FontKerning
+FontKerning valueOf
+FontKerning values
+FontMetrics
+FontMetrics getAdvanceWidthMax
+FontMetrics getAscender
+FontMetrics getBbox
+FontMetrics getCapHeight
+FontMetrics getDescender
+FontMetrics getGlyphWidths
+FontMetrics getItalicAngle
+FontMetrics getLineGap
+FontMetrics getMaxGlyphId
+FontMetrics getStemH
+FontMetrics getStemV
+FontMetrics getStrikeoutPosition
+FontMetrics getStrikeoutSize
+FontMetrics getSubscriptOffset
+FontMetrics getSubscriptSize
+FontMetrics getSuperscriptOffset
+FontMetrics getSuperscriptSize
+FontMetrics getTypoAscender
+FontMetrics getTypoDescender
+FontMetrics getUnderlinePosition
+FontMetrics getUnderlineThickness
+FontMetrics getUnitsPerEm
+FontMetrics getWinAscender
+FontMetrics getWinDescender
+FontMetrics getXHeight
+FontMetrics isFixedPitch
+FontMetrics setAdvanceWidthMax
+FontMetrics setAscender
+FontMetrics setBbox
+FontMetrics setCapHeight
+FontMetrics setDescender
+FontMetrics setGlyphWidths
+FontMetrics setIsFixedPitch
+FontMetrics setItalicAngle
+FontMetrics setLineGap
+FontMetrics setMaxGlyphId
+FontMetrics setStemH
+FontMetrics setStemV
+FontMetrics setStrikeoutPosition
+FontMetrics setStrikeoutSize
+FontMetrics setSubscriptOffset
+FontMetrics setSubscriptSize
+FontMetrics setSuperscriptOffset
+FontMetrics setSuperscriptSize
+FontMetrics setTypoAscender
+FontMetrics setTypoDescender
+FontMetrics setUnderlinePosition
+FontMetrics setUnderlineThickness
+FontMetrics setUnitsPerEm
+FontMetrics setWinAscender
+FontMetrics setWinDescender
+FontMetrics setXHeight
+FontMetrics updateBbox
+FontNames
+FontNames allowEmbedding
+FontNames convertFontWeight
+FontNames getCidFontName
+FontNames getFamilyName
+FontNames getFontName
+FontNames getFontWeight
+FontNames getFontWidth
+FontNames getFullName
+FontNames getMacStyle
+FontNames getNames
+FontNames getStyle
+FontNames getSubfamily
+FontNames isBold
+FontNames isCondensed
+FontNames isExtended
+FontNames isItalic
+FontNames isOutline
+FontNames isShadow
+FontNames isUnderline
+FontNames setAllNames
+FontNames setAllowEmbedding
+FontNames setCidFontName
+FontNames setFamilyName
+FontNames setFontName
+FontNames setFontWeight
+FontNames setFontWidth
+FontNames setFullName
+FontNames setMacStyle
+FontNames setStyle
+FontNames setSubfamily
+FontNames setWeight
+FontNames setWidth
+FontProgram
+FontProgram checkFilePath
+FontProgram countOfGlyphs
+FontProgram fixSpaceIssue
+FontProgram getAvgWidth
+FontProgram getBaseName
+FontProgram getCharBBox
+FontProgram getFontIdentification
+FontProgram getFontMetrics
+FontProgram getFontNames
+FontProgram getGlyph
+FontProgram getGlyphByCode
+FontProgram getKerning
+FontProgram getPdfFontFlags
+FontProgram getRegistry
+FontProgram getWidth
+FontProgram hasKernPairs
+FontProgram isFontSpecific
+FontProgram setBbox
+FontProgram setBold
+FontProgram setCapHeight
+FontProgram setFixedPitch
+FontProgram setFontFamily
+FontProgram setFontName
+FontProgram setFontWeight
+FontProgram setFontWidth
+FontProgram setItalicAngle
+FontProgram setRegistry
+FontProgram setStemH
+FontProgram setStemV
+FontProgram setTypoAscender
+FontProgram setTypoDescender
+FontProgram setXHeight
+FontProgramFactory
+FontProgramFactory createFont
+FontProgramFactory createRegisteredFont
+FontProgramFactory createType1Font
+FontProgramFactory getRegisteredFontFamilies
+FontProgramFactory getRegisteredFonts
+FontProgramFactory isRegisteredFont
+FontProgramFactory registerFont
+FontProgramFactory registerFontDirectory
+FontProgramFactory registerFontFamily
+FontProgramFactory registerSystemFontDirectories
+FontReadingException
+GenericArray
+GenericArray get
+GenericArray set
+GetBufferedRandomAccessSource
+GetBufferedRandomAccessSource close
+GetBufferedRandomAccessSource get
+GetBufferedRandomAccessSource length
+GifImageData
+GifImageData addFrame
+GifImageData getData
+GifImageData getFrames
+GifImageData getLogicalHeight
+GifImageData getLogicalWidth
+GifImageData getUrl
+GifImageData setLogicalHeight
+GifImageData setLogicalWidth
+GifImageHelper
+GifImageHelper processImage
+Glyph
+Glyph equals
+Glyph getAnchorDelta
+Glyph getBbox
+Glyph getChars
+Glyph getCode
+Glyph getUnicode
+Glyph getWidth
+Glyph getXAdvance
+Glyph getXPlacement
+Glyph getYAdvance
+Glyph getYPlacement
+Glyph hasAdvance
+Glyph hasOffsets
+Glyph hasPlacement
+Glyph hasValidUnicode
+Glyph hashCode
+Glyph isMark
+Glyph setAnchorDelta
+Glyph setChars
+Glyph setUnicode
+Glyph setXAdvance
+Glyph setXPlacement
+Glyph setYAdvance
+Glyph setYPlacement
+Glyph toString
+GlyphEventListener
+GlyphEventListener eventOccurred
+GlyphEventListener getSupportedEvents
+GlyphLine
+GlyphLine add
+GlyphLine copy
+GlyphLine filter
+GlyphLine get
+GlyphLine iterator
+GlyphLine replaceContent
+GlyphLine set
+GlyphLine setActualText
+GlyphLine setGlyphs
+GlyphLine size
+GlyphLine substituteManyToOne
+GlyphLine substituteOneToMany
+GlyphLine substituteOneToOne
+GlyphLine toUnicodeString
+GlyphLine.ActualText
+GlyphLine.GlyphLinePart
+GlyphLine.IGlyphLineFilter
+GlyphLine.IGlyphLineFilter accept
+GlyphPositioningTableReader
+GlyphPositioningTableReader readLookupTable
+GlyphSubstitutionTableReader
+GlyphSubstitutionTableReader readLookupTable
+GlyphTextEventListener
+GlyphTextEventListener getResultantText
+GposAnchor
+GposLookupType2
+GposLookupType2 readSubTable
+GposLookupType2 transformOne
+GposLookupType4
+GposLookupType4 readSubTable
+GposLookupType4 transformOne
+GposLookupType4.MarkToBase
+GposLookupType5
+GposLookupType5 readSubTable
+GposLookupType5 transformOne
+GposLookupType5.MarkToLigature
+GposLookupType6
+GposLookupType6 readSubTable
+GposLookupType6 transformOne
+GposValueRecord
+GreekAlphabetNumbering
+GreekAlphabetNumbering toGreekAlphabetNumber
+GreekAlphabetNumbering toGreekAlphabetNumberLowerCase
+GreekAlphabetNumbering toGreekAlphabetNumberUpperCase
+GrooveBorder
+GrooveBorder getType
+GrooveBorder setInnerHalfColor
+GrooveBorder setOuterHalfColor
+GsubLookupType1
+GsubLookupType1 hasSubstitution
+GsubLookupType1 readSubTable
+GsubLookupType1 transformOne
+GsubLookupType2
+GsubLookupType2 hasSubstitution
+GsubLookupType2 readSubTable
+GsubLookupType2 transformOne
+GsubLookupType3
+GsubLookupType3 hasSubstitution
+GsubLookupType3 readSubTable
+GsubLookupType3 transformOne
+GsubLookupType4
+GsubLookupType4 readSubTable
+GsubLookupType4 transformOne
+GsubLookupType5
+GsubLookupType5 readSubTable
+GsubLookupType5 readSubTableFormat1
+GsubLookupType5 readSubTableFormat2
+GsubLookupType5 readSubTableFormat3
+GsubLookupType5 transformOne
+GsubLookupType6
+GsubLookupType6 readSubTableFormat1
+GsubLookupType6 readSubTableFormat2
+GsubLookupType6 readSubTableFormat3
+HashCode
+HashCode append
+HashCode combine
+HashCode hashCode
+HorizontalAlignment
+HorizontalAlignment valueOf
+HorizontalAlignment values
+Hyphen
+Hyphen toString
+Hyphenation
+Hyphenation getHyphenationPoints
+Hyphenation getPostHyphenText
+Hyphenation getPreHyphenText
+Hyphenation length
+Hyphenation toString
+HyphenationConfig
+HyphenationConfig getHyphenSymbol
+HyphenationConfig hyphenate
+HyphenationConfig setHyphenSymbol
+HyphenationException
+HyphenationTree
+HyphenationTree addClass
+HyphenationTree addException
+HyphenationTree addPattern
+HyphenationTree findPattern
+HyphenationTree getValues
+HyphenationTree hstrcmp
+HyphenationTree hyphenate
+HyphenationTree loadPatterns
+HyphenationTree packValues
+HyphenationTree searchPatterns
+HyphenationTree unpackValues
+HyphenationTreeCache
+HyphenationTreeCache cache
+HyphenationTreeCache constructLlccKey
+HyphenationTreeCache constructUserKey
+HyphenationTreeCache getHyphenationTree
+HyphenationTreeCache isMissing
+HyphenationTreeCache noteMissing
+Hyphenator
+Hyphenator clearHyphenationTreeCache
+Hyphenator getHyphenationTree
+Hyphenator getHyphenationTree2
+Hyphenator getHyphenationTreeCache
+Hyphenator hyphenate
+Hyphenator registerAdditionalHyphenationFileDirectory
+IAccessibleElement
+IAccessibleElement getAccessibilityProperties
+IAccessibleElement getRole
+IAccessibleElement setRole
+ICMapLocation
+ICMapLocation getLocation
+IClipper
+IClipper addPath
+IClipper addPaths
+IClipper clear
+IClipper execute
+IClipper.ClipType
+IClipper.ClipType valueOf
+IClipper.ClipType values
+IClipper.Direction
+IClipper.Direction valueOf
+IClipper.Direction values
+IClipper.EndType
+IClipper.EndType valueOf
+IClipper.EndType values
+IClipper.IZFillCallback
+IClipper.IZFillCallback zFill
+IClipper.JoinType
+IClipper.JoinType valueOf
+IClipper.JoinType values
+IClipper.PolyFillType
+IClipper.PolyFillType valueOf
+IClipper.PolyFillType values
+IClipper.PolyType
+IClipper.PolyType valueOf
+IClipper.PolyType values
+IContentOperator
+IContentOperator invoke
+ICrlClient
+ICrlClient getEncoded
+IDecryptor
+IDecryptor finish
+IDecryptor update
+IElement
+IElement createRendererSubTree
+IElement getRenderer
+IElement setNextRenderer
+IEventData
+IEventDispatcher
+IEventDispatcher addEventHandler
+IEventDispatcher dispatchEvent
+IEventDispatcher hasEventHandler
+IEventDispatcher removeAllHandlers
+IEventDispatcher removeEventHandler
+IEventFilter
+IEventFilter accept
+IEventHandler
+IEventHandler handleEvent
+IEventListener
+IEventListener eventOccurred
+IEventListener getSupportedEvents
+IExternalDecryptionProcess
+IExternalDecryptionProcess getCmsRecipient
+IExternalDecryptionProcess getCmsRecipientId
+IExternalDigest
+IExternalDigest getMessageDigest
+IExternalSignature
+IExternalSignature getEncryptionAlgorithm
+IExternalSignature getHashAlgorithm
+IExternalSignature sign
+IExternalSignatureContainer
+IExternalSignatureContainer modifySigningDictionary
+IExternalSignatureContainer sign
+IExtraEncoding
+IExtraEncoding byteToChar
+IExtraEncoding charToByte
+IFilterHandler
+IFilterHandler decode
+ILargeElement
+ILargeElement complete
+ILargeElement flush
+ILargeElement flushContent
+ILargeElement isComplete
+ILargeElement setDocument
+ILeafElement
+ILineDrawer
+ILineDrawer draw
+ILineDrawer getColor
+ILineDrawer getLineWidth
+ILineDrawer setColor
+ILineDrawer setLineWidth
+IOException
+IOException getMessage
+IOException getMessageParams
+IOException setMessageParams
+IOcspClient
+IOcspClient getEncoded
+IPatternConsumer
+IPatternConsumer addClass
+IPatternConsumer addException
+IPatternConsumer addPattern
+IPdfOCG
+IPdfOCG getIndirectReference
+IPdfOCG getPdfObject
+IPdfPageExtraCopier
+IPdfPageExtraCopier copy
+IPdfStructElem
+IPdfStructElem getKids
+IPdfStructElem getParent
+IPdfStructElem getRole
+IPropertyContainer
+IPropertyContainer deleteOwnProperty
+IPropertyContainer getDefaultProperty
+IPropertyContainer getOwnProperty
+IPropertyContainer getProperty
+IPropertyContainer hasOwnProperty
+IPropertyContainer hasProperty
+IPropertyContainer setProperty
+IRandomAccessSource
+IRandomAccessSource close
+IRandomAccessSource get
+IRandomAccessSource length
+IRenderer
+IRenderer addChild
+IRenderer draw
+IRenderer getChildRenderers
+IRenderer getModelElement
+IRenderer getNextRenderer
+IRenderer getOccupiedArea
+IRenderer getProperty
+IRenderer isFlushed
+IRenderer layout
+IRenderer move
+IRenderer setParent
+ISO8601Converter
+ISO8601Converter parse
+ISO8601Converter render
+IShape
+IShape getBasePoints
+ISplitCharacters
+ISplitCharacters isSplitCharacter
+ITSAClient
+ITSAClient getMessageDigest
+ITSAClient getTimeStampToken
+ITSAClient getTokenSizeEstimate
+ITSAInfoBouncyCastle
+ITSAInfoBouncyCastle inspectTimeStampTokenInfo
+ITextExtractionStrategy
+ITextExtractionStrategy getResultantText
+IVGenerator
+IVGenerator getIV
+IXObjectDoHandler
+IXObjectDoHandler handleXObject
+IccBased
+IccProfile
+IccProfile getData
+IccProfile getIccColorSpaceName
+IccProfile getIccDeviceClass
+IccProfile getIccNumberOfComponents
+IccProfile getInstance
+IccProfile getNumComponents
+IdelOutputStream
+IdelOutputStream write
+Image
+Image getAccessibilityProperties
+Image getImageHeight
+Image getImageScaledHeight
+Image getImageScaledWidth
+Image getImageWidth
+Image getMarginBottom
+Image getMarginLeft
+Image getMarginRight
+Image getMarginTop
+Image getRole
+Image getXObject
+Image makeNewRenderer
+Image scale
+Image scaleAbsolute
+Image scaleToFit
+Image setAutoScale
+Image setAutoScaleHeight
+Image setAutoScaleWidth
+Image setFixedPosition
+Image setMarginBottom
+Image setMarginLeft
+Image setMarginRight
+Image setMarginTop
+Image setMargins
+Image setRole
+Image setRotationAngle
+ImageData
+ImageData canBeMask
+ImageData canImageBeInline
+ImageData getBpc
+ImageData getColorSpace
+ImageData getColorTransform
+ImageData getData
+ImageData getDecode
+ImageData getDecodeParms
+ImageData getDpiX
+ImageData getDpiY
+ImageData getFilter
+ImageData getHeight
+ImageData getImageAttributes
+ImageData getImageMask
+ImageData getOriginalType
+ImageData getProfile
+ImageData getRotation
+ImageData getTransparency
+ImageData getUrl
+ImageData getWidth
+ImageData getXYRatio
+ImageData isDeflated
+ImageData isInterpolation
+ImageData isInverted
+ImageData isMask
+ImageData isRawImage
+ImageData isSoftMask
+ImageData makeMask
+ImageData setBpc
+ImageData setColorSpace
+ImageData setColorTransform
+ImageData setDecode
+ImageData setDeflated
+ImageData setDpi
+ImageData setFilter
+ImageData setHeight
+ImageData setImageAttributes
+ImageData setImageMask
+ImageData setInterpolation
+ImageData setInverted
+ImageData setProfile
+ImageData setRotation
+ImageData setTransparency
+ImageData setUrl
+ImageData setWidth
+ImageData setXYRatio
+ImageDataFactory
+ImageDataFactory create
+ImageDataFactory createBmp
+ImageDataFactory createGif
+ImageDataFactory createGifFrame
+ImageDataFactory createGifFrames
+ImageDataFactory createJbig2
+ImageDataFactory createJpeg
+ImageDataFactory createJpeg2000
+ImageDataFactory createPng
+ImageDataFactory createRawImage
+ImageDataFactory createTiff
+ImageRenderInfo
+ImageRenderInfo getArea
+ImageRenderInfo getColorSpaceDictionary
+ImageRenderInfo getImage
+ImageRenderInfo getImageCtm
+ImageRenderInfo getStartPoint
+ImageRenderInfo isInline
+ImageRenderer
+ImageRenderer autoScale
+ImageRenderer draw
+ImageRenderer getNextRenderer
+ImageRenderer layout
+ImageType
+ImageType valueOf
+ImageType values
+IndependentRandomAccessSource
+IndependentRandomAccessSource close
+IndependentRandomAccessSource get
+IndependentRandomAccessSource length
+Indexed
+InlineImageParsingUtils
+InlineImageParsingUtils parse
+InlineImageParsingUtils.InlineImageParseException
+InputMeta
+InputMeta getLength
+InputMeta readByte
+InputMeta readColor
+InputMeta readInt
+InputMeta readShort
+InputMeta readWord
+InputMeta skip
+InsetBorder
+InsetBorder getType
+InsetBorder setInnerHalfColor
+InsetBorder setOuterHalfColor
+IntHashtable
+IntHashtable clear
+IntHashtable clone
+IntHashtable contains
+IntHashtable containsKey
+IntHashtable containsValue
+IntHashtable get
+IntHashtable getKeys
+IntHashtable getOneKey
+IntHashtable isEmpty
+IntHashtable put
+IntHashtable rehash
+IntHashtable remove
+IntHashtable size
+IntHashtable toOrderedKeys
+IntHashtable.Entry
+IntHashtable.Entry clone
+IntHashtable.Entry getKey
+IntHashtable.Entry getValue
+IntHashtable.Entry toString
+IsoKey
+IsoKey valueOf
+IsoKey values
+IteratorOptions
+IteratorOptions defineOptionName
+IteratorOptions getValidOptions
+IteratorOptions isJustChildren
+IteratorOptions isJustLeafname
+IteratorOptions isJustLeafnodes
+IteratorOptions isOmitQualifiers
+IteratorOptions setJustChildren
+IteratorOptions setJustLeafname
+IteratorOptions setJustLeafnodes
+IteratorOptions setOmitQualifiers
+Jbig2ImageData
+Jbig2ImageData canImageBeInline
+Jbig2ImageData getNumberOfPages
+Jbig2ImageData getPage
+Jbig2SegmentReader
+Jbig2SegmentReader copyByteArray
+Jbig2SegmentReader getGlobal
+Jbig2SegmentReader getPage
+Jbig2SegmentReader getPageHeight
+Jbig2SegmentReader getPageWidth
+Jbig2SegmentReader numberOfPages
+Jbig2SegmentReader read
+Jbig2SegmentReader toString
+Jbig2SegmentReader.Jbig2Page
+Jbig2SegmentReader.Jbig2Page addSegment
+Jbig2SegmentReader.Jbig2Page getData
+Jbig2SegmentReader.Jbig2Segment
+Jbig2SegmentReader.Jbig2Segment compareTo
+Jpeg2000ImageData
+Jpeg2000ImageData canImageBeInline
+Jpeg2000ImageData getParameters
+Jpeg2000ImageData.ColorSpecBox
+Jpeg2000ImageData.ColorSpecBox getApprox
+Jpeg2000ImageData.ColorSpecBox getColorProfile
+Jpeg2000ImageData.ColorSpecBox getEnumCs
+Jpeg2000ImageData.ColorSpecBox getMeth
+Jpeg2000ImageData.ColorSpecBox getPrec
+Jpeg2000ImageData.Parameters
+JpegImageData
+KeyStoreUtil
+KeyStoreUtil loadCacertsKeyStore
+LZWCompressor
+LZWCompressor compress
+LZWCompressor flush
+LZWDecodeFilter
+LZWDecodeFilter LZWDecode
+LZWDecodeFilter decode
+LZWDecoder
+LZWDecoder addStringToTable
+LZWDecoder composeString
+LZWDecoder decode
+LZWDecoder getNextCode
+LZWDecoder initializeStringTable
+LZWDecoder writeString
+LZWStringTable
+LZWStringTable AddCharString
+LZWStringTable ClearTable
+LZWStringTable FindCharString
+LZWStringTable Hash
+LZWStringTable dump
+LZWStringTable expandCode
+Lab
+LanguageRecord
+Latin1Converter
+Latin1Converter convert
+LayoutArea
+LayoutArea clone
+LayoutArea equals
+LayoutArea getBBox
+LayoutArea getPageNumber
+LayoutArea hashCode
+LayoutArea isEmptyArea
+LayoutArea setBBox
+LayoutArea setEmptyArea
+LayoutArea toString
+LayoutContext
+LayoutContext getArea
+LayoutContext toString
+LayoutPosition
+LayoutResult
+LayoutResult getAreaBreak
+LayoutResult getCauseOfNothing
+LayoutResult getOccupiedArea
+LayoutResult getOverflowRenderer
+LayoutResult getSplitRenderer
+LayoutResult getStatus
+LayoutResult setAreaBreak
+LayoutResult setOverflowRenderer
+LayoutResult setSplitRenderer
+LayoutResult toString
+Leading
+Leading equals
+Leading getType
+Leading getValue
+Leading hashCode
+Line
+Line getBasePoints
+LineLayoutResult
+LineLayoutResult isSplitForcedByNewline
+LineLayoutResult setSplitForcedByNewline
+LineRenderer
+LineRenderer adjustChildrenYLine
+LineRenderer baseCharactersCount
+LineRenderer containsImage
+LineRenderer createOverflowRenderer
+LineRenderer createSplitRenderer
+LineRenderer getFirstYLineRecursively
+LineRenderer getLeadingValue
+LineRenderer getMaxAscent
+LineRenderer getMaxDescent
+LineRenderer getNextRenderer
+LineRenderer getNumberOfSpaces
+LineRenderer getYLine
+LineRenderer justify
+LineRenderer layout
+LineRenderer length
+LineRenderer split
+LineRenderer toString
+LineRenderer trimLast
+LineSegment
+LineSegment containsPoint
+LineSegment containsSegment
+LineSegment getBoundingRectange
+LineSegment getBoundingRectangle
+LineSegment getEndPoint
+LineSegment getLength
+LineSegment getStartPoint
+LineSegment transformBy
+LineSeparator
+LineSeparator getAccessibilityProperties
+LineSeparator getRole
+LineSeparator makeNewRenderer
+LineSeparator setRole
+LineSeparatorRenderer
+LineSeparatorRenderer drawChildren
+LineSeparatorRenderer getNextRenderer
+LineSeparatorRenderer layout
+Link
+Link getLinkAnnotation
+Link makeNewRenderer
+LinkRenderer
+LinkRenderer draw
+LinkRenderer getNextRenderer
+List
+List add
+List getAccessibilityProperties
+List getDefaultProperty
+List getPostSymbolText
+List getPreSymbolText
+List getRole
+List getSymbolIndent
+List makeNewRenderer
+List setItemStartIndex
+List setListSymbol
+List setListSymbolAlignment
+List setPostSymbolText
+List setPreSymbolText
+List setRole
+List setSymbolIndent
+ListItem
+ListItem makeNewRenderer
+ListItem setListSymbol
+ListItemRenderer
+ListItemRenderer addSymbolRenderer
+ListItemRenderer createOverflowRenderer
+ListItemRenderer createSplitRenderer
+ListItemRenderer draw
+ListItemRenderer getNextRenderer
+ListItemRenderer layout
+ListNumberingType
+ListNumberingType valueOf
+ListNumberingType values
+ListRenderer
+ListRenderer createOverflowRenderer
+ListRenderer createSplitRenderer
+ListRenderer getNextRenderer
+ListRenderer layout
+ListRenderer makeListSymbolRenderer
+ListSymbolAlignment
+ListSymbolAlignment valueOf
+ListSymbolAlignment values
+LocationTextExtractionStrategy
+LocationTextExtractionStrategy eventOccurred
+LocationTextExtractionStrategy getResultantText
+LocationTextExtractionStrategy getSupportedEvents
+LocationTextExtractionStrategy isChunkAtWordBoundary
+LocationTextExtractionStrategy isUseActualText
+LocationTextExtractionStrategy setUseActualText
+LocationTextExtractionStrategy.ITextChunkLocation
+LocationTextExtractionStrategy.ITextChunkLocation distParallelEnd
+LocationTextExtractionStrategy.ITextChunkLocation distParallelStart
+LocationTextExtractionStrategy.ITextChunkLocation distPerpendicular
+LocationTextExtractionStrategy.ITextChunkLocation distanceFromEndOf
+LocationTextExtractionStrategy.ITextChunkLocation getCharSpaceWidth
+LocationTextExtractionStrategy.ITextChunkLocation getEndLocation
+LocationTextExtractionStrategy.ITextChunkLocation getStartLocation
+LocationTextExtractionStrategy.ITextChunkLocation isAtWordBoundary
+LocationTextExtractionStrategy.ITextChunkLocation orientationMagnitude
+LocationTextExtractionStrategy.ITextChunkLocation sameLine
+LocationTextExtractionStrategy.ITextChunkLocationStrategy
+LocationTextExtractionStrategy.ITextChunkLocationStrategy createLocation
+LocationTextExtractionStrategy.TextChunk
+LocationTextExtractionStrategy.TextChunk compareTo
+LocationTextExtractionStrategy.TextChunk getLocation
+LocationTextExtractionStrategy.TextChunk getText
+LocationTextExtractionStrategy.TextChunkLocationDefaultImp
+LocationTextExtractionStrategy.TextChunkLocationDefaultImp compareTo
+LocationTextExtractionStrategy.TextChunkLocationDefaultImp distParallelEnd
+LocationTextExtractionStrategy.TextChunkLocationDefaultImp distParallelStart
+LocationTextExtractionStrategy.TextChunkLocationDefaultImp distPerpendicular
+LocationTextExtractionStrategy.TextChunkLocationDefaultImp distanceFromEndOf
+LocationTextExtractionStrategy.TextChunkLocationDefaultImp getCharSpaceWidth
+LocationTextExtractionStrategy.TextChunkLocationDefaultImp getEndLocation
+LocationTextExtractionStrategy.TextChunkLocationDefaultImp getStartLocation
+LocationTextExtractionStrategy.TextChunkLocationDefaultImp isAtWordBoundary
+LocationTextExtractionStrategy.TextChunkLocationDefaultImp orientationMagnitude
+LocationTextExtractionStrategy.TextChunkLocationDefaultImp sameLine
+LogMessageConstant
+LongRect
+LtvVerification
+LtvVerification addVerification
+LtvVerification convertToHex
+LtvVerification merge
+LtvVerification.CertificateInclusion
+LtvVerification.CertificateInclusion valueOf
+LtvVerification.CertificateInclusion values
+LtvVerification.CertificateOption
+LtvVerification.CertificateOption valueOf
+LtvVerification.CertificateOption values
+LtvVerification.Level
+LtvVerification.Level valueOf
+LtvVerification.Level values
+LtvVerifier
+LtvVerifier coversWholeDocument
+LtvVerifier getCRLsFromDSS
+LtvVerifier getOCSPResponsesFromDSS
+LtvVerifier setCertificateOption
+LtvVerifier setVerifier
+LtvVerifier setVerifyRootCertificate
+LtvVerifier switchToPreviousRevision
+LtvVerifier verify
+LtvVerifier verifyChain
+LtvVerifier verifySignature
+MapFailedException
+MarkTable
+MarkTable isMark
+Matrix
+Matrix equals
+Matrix get
+Matrix getDeterminant
+Matrix hashCode
+Matrix multiply
+Matrix subtract
+Matrix toString
+MetaBrush
+MetaBrush getColor
+MetaBrush getHatch
+MetaBrush getStyle
+MetaBrush init
+MetaDo
+MetaDo isNullStrokeFill
+MetaDo outputText
+MetaDo readAll
+MetaDo strokeAndFill
+MetaDo wrapBMP
+MetaDo writeDWord
+MetaDo writeWord
+MetaFont
+MetaFont getAngle
+MetaFont getEncoding
+MetaFont getFont
+MetaFont getFontSize
+MetaFont init
+MetaFont isStrikeout
+MetaFont isUnderline
+MetaObject
+MetaObject getType
+MetaPen
+MetaPen getColor
+MetaPen getPenWidth
+MetaPen getStyle
+MetaPen init
+MetaState
+MetaState addMetaObject
+MetaState cleanup
+MetaState deleteMetaObject
+MetaState getBackgroundMode
+MetaState getCurrentBackgroundColor
+MetaState getCurrentBrush
+MetaState getCurrentFont
+MetaState getCurrentPen
+MetaState getCurrentPoint
+MetaState getCurrentTextColor
+MetaState getLineNeutral
+MetaState getPolyFillMode
+MetaState getTextAlign
+MetaState restoreState
+MetaState saveState
+MetaState selectMetaObject
+MetaState setBackgroundMode
+MetaState setCurrentBackgroundColor
+MetaState setCurrentPoint
+MetaState setCurrentTextColor
+MetaState setExtentWx
+MetaState setExtentWy
+MetaState setLineJoinPolygon
+MetaState setLineJoinRectangle
+MetaState setMetaState
+MetaState setOffsetWx
+MetaState setOffsetWy
+MetaState setPolyFillMode
+MetaState setScalingX
+MetaState setScalingY
+MetaState setTextAlign
+MetaState transformAngle
+MetaState transformX
+MetaState transformY
+NoOpCounter
+NoOpCounter getCounter
+NoOpCounter onDocumentRead
+NoOpCounter onDocumentWritten
+NoninvertibleTransformException
+OCSPVerifier
+OCSPVerifier getOcspResponse
+OCSPVerifier isSignatureValid
+OCSPVerifier isValidResponse
+OCSPVerifier verify
+OCSPVerifier verifyResponse
+OcspClientBouncyCastle
+OcspClientBouncyCastle getBasicOCSPResp
+OcspClientBouncyCastle getEncoded
+OpenTableLookup
+OpenTableLookup getLookupFlag
+OpenTableLookup hasSubstitution
+OpenTableLookup readSubTable
+OpenTableLookup readSubTables
+OpenTableLookup transformLine
+OpenTableLookup transformOne
+OpenTableLookup.GlyphIndexer
+OpenTableLookup.GlyphIndexer nextGlyph
+OpenTableLookup.GlyphIndexer previousGlyph
+OpenTypeFeature
+OpenTypeFeature getRecord
+OpenTypeFeature getRecords
+OpenTypeFontTableReader
+OpenTypeFontTableReader getFeatureRecords
+OpenTypeFontTableReader getFeatures
+OpenTypeFontTableReader getGlyph
+OpenTypeFontTableReader getGlyphClass
+OpenTypeFontTableReader getLanguageRecord
+OpenTypeFontTableReader getLookupTable
+OpenTypeFontTableReader getLookups
+OpenTypeFontTableReader getRequiredFeature
+OpenTypeFontTableReader getScriptRecords
+OpenTypeFontTableReader getSpecificFeatures
+OpenTypeFontTableReader getUnitsPerEm
+OpenTypeFontTableReader isSkip
+OpenTypeFontTableReader readClassDefinition
+OpenTypeFontTableReader readCoverageFormat
+OpenTypeFontTableReader readCoverages
+OpenTypeFontTableReader readLookupTable
+OpenTypeFontTableReader readSubstLookupRecords
+OpenTypeFontTableReader readTagAndLocations
+OpenTypeFontTableReader readUShortArray
+OpenTypeGdefTableReader
+OpenTypeGdefTableReader getGlyphClassTable
+OpenTypeGdefTableReader isSkip
+OpenTypeGdefTableReader readTable
+OpenTypeScript
+OpenTypeScript getLanguageRecord
+OpenTypeScript getScriptRecords
+Options
+Options assertConsistency
+Options clear
+Options containsAllOptions
+Options containsOneOf
+Options defineOptionName
+Options equals
+Options getOption
+Options getOptions
+Options getOptionsString
+Options getValidOptions
+Options hashCode
+Options isExactly
+Options setOption
+Options setOptions
+Options toString
+OtfClass
+OtfClass getOtfClass
+OtfClass hasClass
+OtfClass isMarkOtfClass
+OtfMarkRecord
+OtfReadCommon
+OtfReadCommon readAnchorArray
+OtfReadCommon readBaseArray
+OtfReadCommon readCoverageFormat
+OtfReadCommon readCoverages
+OtfReadCommon readGposAnchor
+OtfReadCommon readGposValueRecord
+OtfReadCommon readLigatureArray
+OtfReadCommon readMarkArray
+OtfReadCommon readSubstLookupRecords
+OtfReadCommon readUShortArray
+OutputStream
+OutputStream assignBytes
+OutputStream close
+OutputStream flush
+OutputStream getCurrentPos
+OutputStream getHighPrecision
+OutputStream getOutputStream
+OutputStream isCloseStream
+OutputStream reset
+OutputStream setCloseStream
+OutputStream setHighPrecision
+OutputStream write
+OutputStream writeByte
+OutputStream writeBytes
+OutputStream writeDouble
+OutputStream writeFloat
+OutputStream writeFloats
+OutputStream writeInteger
+OutputStream writeLong
+OutputStream writeNewLine
+OutputStream writeSpace
+OutputStream writeString
+OutputStreamAesEncryption
+OutputStreamAesEncryption finish
+OutputStreamAesEncryption write
+OutputStreamEncryption
+OutputStreamEncryption close
+OutputStreamEncryption finish
+OutputStreamEncryption flush
+OutputStreamEncryption write
+OutputStreamStandardEncryption
+OutputStreamStandardEncryption finish
+OutputStreamStandardEncryption write
+OutsetBorder
+OutsetBorder getType
+OutsetBorder setInnerHalfColor
+OutsetBorder setOuterHalfColor
+PageLabelNumberingStyleConstants
+PageLabelNumberingStyleConstants valueOf
+PageLabelNumberingStyleConstants values
+PageRange
+PageRange addPageSequence
+PageRange addSinglePage
+PageRange equals
+PageRange getAllPages
+PageRange hashCode
+PageRange isPageInRange
+PageSize
+PageSize clone
+PageSize rotate
+Paragraph
+Paragraph add
+Paragraph addAll
+Paragraph addTabStops
+Paragraph getAccessibilityProperties
+Paragraph getDefaultProperty
+Paragraph getRole
+Paragraph makeNewRenderer
+Paragraph removeTabStop
+Paragraph setFirstLineIndent
+Paragraph setFixedLeading
+Paragraph setMultipliedLeading
+Paragraph setRole
+ParagraphRenderer
+ParagraphRenderer createOverflowRenderer
+ParagraphRenderer createSplitRenderer
+ParagraphRenderer drawChildren
+ParagraphRenderer getDefaultProperty
+ParagraphRenderer getFirstYLineRecursively
+ParagraphRenderer getNextRenderer
+ParagraphRenderer layout
+ParagraphRenderer move
+ParagraphRenderer split
+ParagraphRenderer toString
+ParseOptions
+ParseOptions defineOptionName
+ParseOptions getAcceptLatin1
+ParseOptions getFixControlChars
+ParseOptions getOmitNormalization
+ParseOptions getRequireXMPMeta
+ParseOptions getStrictAliasing
+ParseOptions getValidOptions
+ParseOptions setAcceptLatin1
+ParseOptions setFixControlChars
+ParseOptions setOmitNormalization
+ParseOptions setRequireXMPMeta
+ParseOptions setStrictAliasing
+ParseRDF
+ParserGraphicsState
+ParserGraphicsState clip
+ParserGraphicsState getClippingPath
+ParserGraphicsState setClippingPath
+ParserGraphicsState updateCtm
+Path
+Path TranslatePath
+Path area
+Path cleanPolygon
+Path isPointInPolygon
+Path orientation
+Path reverse
+Path.Maxima
+PathRenderInfo
+PathRenderInfo getClippingRule
+PathRenderInfo getCtm
+PathRenderInfo getFillColor
+PathRenderInfo getLineCapStyle
+PathRenderInfo getLineDashPattern
+PathRenderInfo getLineJoinStyle
+PathRenderInfo getLineWidth
+PathRenderInfo getMiterLimit
+PathRenderInfo getOperation
+PathRenderInfo getPath
+PathRenderInfo getRule
+PathRenderInfo getStrokeColor
+PathRenderInfo isPathModifiesClippingPath
+Paths
+Paths addPolyNode
+Paths cleanPolygons
+Paths closedPathsFromPolyTree
+Paths getBounds
+Paths makePolyTreeToPaths
+Paths openPathsFromPolyTree
+Paths reversePaths
+PatternColor
+PatternColor equals
+PatternColor getPattern
+PatternColor setPattern
+PatternParser
+PatternParser characters
+PatternParser endElement
+PatternParser error
+PatternParser fatalError
+PatternParser getExternalClasses
+PatternParser parse
+PatternParser startElement
+PatternParser warning
+Pdf3DAnnotation
+Pdf3DAnnotation getActivationDictionary
+Pdf3DAnnotation getDefaultInitialView
+Pdf3DAnnotation getSubtype
+Pdf3DAnnotation getViewBox
+Pdf3DAnnotation isInteractive
+Pdf3DAnnotation setActivationDictionary
+Pdf3DAnnotation setDefaultInitialView
+Pdf3DAnnotation setInteractive
+Pdf3DAnnotation setViewBox
+PdfA1Checker
+PdfA1Checker checkAction
+PdfA1Checker checkAnnotation
+PdfA1Checker checkCanvasStack
+PdfA1Checker checkCatalogValidEntries
+PdfA1Checker checkColor
+PdfA1Checker checkColorSpace
+PdfA1Checker checkColorsUsages
+PdfA1Checker checkExtGState
+PdfA1Checker checkFileSpec
+PdfA1Checker checkFont
+PdfA1Checker checkForm
+PdfA1Checker checkFormXObject
+PdfA1Checker checkImage
+PdfA1Checker checkInlineImage
+PdfA1Checker checkLogicalStructure
+PdfA1Checker checkMetaData
+PdfA1Checker checkNonSymbolicTrueTypeFont
+PdfA1Checker checkOutputIntents
+PdfA1Checker checkPageObject
+PdfA1Checker checkPageSize
+PdfA1Checker checkPdfNumber
+PdfA1Checker checkPdfStream
+PdfA1Checker checkPdfString
+PdfA1Checker checkRenderingIntent
+PdfA1Checker checkSymbolicTrueTypeFont
+PdfA1Checker checkTrailer
+PdfA1Checker getAllowedNamedActions
+PdfA1Checker getForbiddenActions
+PdfA1Checker getFormFields
+PdfA1Checker getMaxRealValue
+PdfA1Checker getMaxStringLength
+PdfA2Checker
+PdfA2Checker checkAnnotation
+PdfA2Checker checkCatalogValidEntries
+PdfA2Checker checkColor
+PdfA2Checker checkColorSpace
+PdfA2Checker checkColorsUsages
+PdfA2Checker checkExtGState
+PdfA2Checker checkFileSpec
+PdfA2Checker checkForm
+PdfA2Checker checkFormXObject
+PdfA2Checker checkImage
+PdfA2Checker checkInlineImage
+PdfA2Checker checkNonSymbolicTrueTypeFont
+PdfA2Checker checkOutputIntents
+PdfA2Checker checkPageObject
+PdfA2Checker checkPageSize
+PdfA2Checker checkPdfStream
+PdfA2Checker getAllowedNamedActions
+PdfA2Checker getForbiddenActions
+PdfA2Checker getMaxRealValue
+PdfA2Checker getMaxStringLength
+PdfA3Checker
+PdfA3Checker checkFileSpec
+PdfAChecker
+PdfAChecker checkAction
+PdfAChecker checkAnnotation
+PdfAChecker checkCanvasStack
+PdfAChecker checkCatalogValidEntries
+PdfAChecker checkColor
+PdfAChecker checkColorSpace
+PdfAChecker checkColorsUsages
+PdfAChecker checkDocument
+PdfAChecker checkExtGState
+PdfAChecker checkFileSpec
+PdfAChecker checkFlag
+PdfAChecker checkFont
+PdfAChecker checkForm
+PdfAChecker checkFormXObject
+PdfAChecker checkImage
+PdfAChecker checkInlineImage
+PdfAChecker checkLogicalStructure
+PdfAChecker checkMetaData
+PdfAChecker checkNonSymbolicTrueTypeFont
+PdfAChecker checkOutputIntents
+PdfAChecker checkPageObject
+PdfAChecker checkPageSize
+PdfAChecker checkPdfNumber
+PdfAChecker checkPdfObject
+PdfAChecker checkPdfStream
+PdfAChecker checkPdfString
+PdfAChecker checkRenderingIntent
+PdfAChecker checkResources
+PdfAChecker checkResourcesOfAppearanceStreams
+PdfAChecker checkSinglePage
+PdfAChecker checkStructure
+PdfAChecker checkSymbolicTrueTypeFont
+PdfAChecker checkTagStructureElement
+PdfAChecker checkTrailer
+PdfAChecker getAllowedNamedActions
+PdfAChecker getConformanceLevel
+PdfAChecker getForbiddenActions
+PdfAChecker isAlreadyChecked
+PdfAChecker objectIsChecked
+PdfAConformanceException
+PdfAConformanceLevel
+PdfAConformanceLevel getConformance
+PdfAConformanceLevel getConformanceLevel
+PdfAConformanceLevel getPart
+PdfADocument
+PdfADocument addCustomMetadataExtensions
+PdfADocument checkIsoConformance
+PdfADocument checkShowTextIsoConformance
+PdfADocument flushFonts
+PdfADocument flushObject
+PdfADocument getConformanceLevel
+PdfADocument getCounter
+PdfADocument initTagStructureContext
+PdfADocument setChecker
+PdfADocument updateXmpMetadata
+PdfAXMPUtil
+PdfAcroForm
+PdfAcroForm addField
+PdfAcroForm addFieldAppearanceToPage
+PdfAcroForm copyField
+PdfAcroForm flattenFields
+PdfAcroForm getAcroForm
+PdfAcroForm getCalculationOrder
+PdfAcroForm getDefaultAppearance
+PdfAcroForm getDefaultJustification
+PdfAcroForm getDefaultResources
+PdfAcroForm getField
+PdfAcroForm getFields
+PdfAcroForm getFormFields
+PdfAcroForm getNeedAppearances
+PdfAcroForm getSignatureFlags
+PdfAcroForm getXFAResource
+PdfAcroForm getXfaForm
+PdfAcroForm hasXfaForm
+PdfAcroForm isGenerateAppearance
+PdfAcroForm isWrappedObjectMustBeIndirect
+PdfAcroForm partialFormFlattening
+PdfAcroForm put
+PdfAcroForm release
+PdfAcroForm removeField
+PdfAcroForm removeXfaForm
+PdfAcroForm renameField
+PdfAcroForm replaceField
+PdfAcroForm setCalculationOrder
+PdfAcroForm setDefaultAppearance
+PdfAcroForm setDefaultJustification
+PdfAcroForm setDefaultResources
+PdfAcroForm setGenerateAppearance
+PdfAcroForm setNeedAppearances
+PdfAcroForm setSignatureFlag
+PdfAcroForm setSignatureFlags
+PdfAcroForm setXFAResource
+PdfAction
+PdfAction createGoTo
+PdfAction createGoToE
+PdfAction createGoToR
+PdfAction createHide
+PdfAction createJavaScript
+PdfAction createLaunch
+PdfAction createMovie
+PdfAction createNamed
+PdfAction createRendition
+PdfAction createResetForm
+PdfAction createSetOcgState
+PdfAction createSound
+PdfAction createSubmitForm
+PdfAction createThread
+PdfAction createURI
+PdfAction flush
+PdfAction isWrappedObjectMustBeIndirect
+PdfAction next
+PdfAction put
+PdfAction setAdditionalAction
+PdfActionOcgState
+PdfActionOcgState getObjectList
+PdfActionOcgState getOcgs
+PdfActionOcgState getState
+PdfAnnotation
+PdfAnnotation flush
+PdfAnnotation getAction
+PdfAnnotation getAdditionalAction
+PdfAnnotation getAppearanceCharacteristics
+PdfAnnotation getAppearanceDictionary
+PdfAnnotation getAppearanceObject
+PdfAnnotation getAppearanceState
+PdfAnnotation getBorder
+PdfAnnotation getBorderStyle
+PdfAnnotation getColorObject
+PdfAnnotation getContents
+PdfAnnotation getDate
+PdfAnnotation getDownAppearanceObject
+PdfAnnotation getFlags
+PdfAnnotation getName
+PdfAnnotation getNormalAppearanceObject
+PdfAnnotation getOpen
+PdfAnnotation getPage
+PdfAnnotation getPageObject
+PdfAnnotation getQuadPoints
+PdfAnnotation getRectangle
+PdfAnnotation getRolloverAppearanceObject
+PdfAnnotation getStructParentIndex
+PdfAnnotation getSubtype
+PdfAnnotation getTitle
+PdfAnnotation hasFlag
+PdfAnnotation isWrappedObjectMustBeIndirect
+PdfAnnotation makeAnnotation
+PdfAnnotation put
+PdfAnnotation remove
+PdfAnnotation resetFlag
+PdfAnnotation setAction
+PdfAnnotation setAdditionalAction
+PdfAnnotation setAppearance
+PdfAnnotation setAppearanceCharacteristics
+PdfAnnotation setAppearanceState
+PdfAnnotation setBorder
+PdfAnnotation setBorderStyle
+PdfAnnotation setColor
+PdfAnnotation setContents
+PdfAnnotation setDashPattern
+PdfAnnotation setDate
+PdfAnnotation setDownAppearance
+PdfAnnotation setFlag
+PdfAnnotation setFlags
+PdfAnnotation setLayer
+PdfAnnotation setName
+PdfAnnotation setNormalAppearance
+PdfAnnotation setOpen
+PdfAnnotation setPage
+PdfAnnotation setQuadPoints
+PdfAnnotation setRectangle
+PdfAnnotation setRolloverAppearance
+PdfAnnotation setStructParentIndex
+PdfAnnotation setTitle
+PdfAnnotationAppearance
+PdfAnnotationAppearance getStateObject
+PdfAnnotationAppearance getStates
+PdfAnnotationAppearance isWrappedObjectMustBeIndirect
+PdfAnnotationAppearance setState
+PdfAnnotationAppearance setStateObject
+PdfArray
+PdfArray add
+PdfArray addAll
+PdfArray clear
+PdfArray contains
+PdfArray copyContent
+PdfArray copyTo
+PdfArray directIterator
+PdfArray get
+PdfArray getAsArray
+PdfArray getAsBoolean
+PdfArray getAsDictionary
+PdfArray getAsName
+PdfArray getAsNumber
+PdfArray getAsStream
+PdfArray getAsString
+PdfArray getType
+PdfArray indexOf
+PdfArray isEmpty
+PdfArray iterator
+PdfArray makeIndirect
+PdfArray newInstance
+PdfArray releaseContent
+PdfArray remove
+PdfArray set
+PdfArray size
+PdfArray subList
+PdfArray toRectangle
+PdfArray toString
+PdfBoolean
+PdfBoolean copyContent
+PdfBoolean copyTo
+PdfBoolean equals
+PdfBoolean generateContent
+PdfBoolean getType
+PdfBoolean getValue
+PdfBoolean hashCode
+PdfBoolean makeIndirect
+PdfBoolean newInstance
+PdfBoolean toString
+PdfBorderArray
+PdfBorderArray isWrappedObjectMustBeIndirect
+PdfButtonFormField
+PdfButtonFormField getFormType
+PdfButtonFormField isPushButton
+PdfButtonFormField isRadio
+PdfButtonFormField isRadiosInUnison
+PdfButtonFormField isToggleOff
+PdfButtonFormField setImage
+PdfButtonFormField setImageAsForm
+PdfButtonFormField setPushButton
+PdfButtonFormField setRadio
+PdfButtonFormField setRadiosInUnison
+PdfButtonFormField setToggleOff
+PdfCanvas
+PdfCanvas attachContentStream
+PdfCanvas beginText
+PdfCanvas beginVariableText
+PdfCanvas concatMatrix
+PdfCanvas endText
+PdfCanvas endVariableText
+PdfCanvas getGraphicsState
+PdfCanvas getResources
+PdfCanvas moveText
+PdfCanvas release
+PdfCanvas restoreState
+PdfCanvas saveState
+PdfCanvas setFontAndSize
+PdfCanvas setLeading
+PdfCanvasConstants
+PdfCanvasConstants.FillingRule
+PdfCanvasConstants.LineCapStyle
+PdfCanvasConstants.LineJoinStyle
+PdfCanvasConstants.TextRenderingMode
+PdfCanvasParser
+PdfCanvasParser getTokeniser
+PdfCanvasParser nextValidToken
+PdfCanvasParser parse
+PdfCanvasParser readArray
+PdfCanvasParser readDictionary
+PdfCanvasParser readObject
+PdfCanvasParser setTokeniser
+PdfCanvasProcessor
+PdfCanvasProcessor beginMarkedContent
+PdfCanvasProcessor endMarkedContent
+PdfCanvasProcessor getEventListener
+PdfCanvasProcessor getFont
+PdfCanvasProcessor getGraphicsState
+PdfCanvasProcessor getRegisteredOperatorStrings
+PdfCanvasProcessor getResources
+PdfCanvasProcessor getXObjectStream
+PdfCanvasProcessor invokeOperator
+PdfCanvasProcessor paintPath
+PdfCanvasProcessor populateOperators
+PdfCanvasProcessor populateXObjectDoHandlers
+PdfCanvasProcessor processContent
+PdfCanvasProcessor processPageContent
+PdfCanvasProcessor registerContentOperator
+PdfCanvasProcessor registerXObjectDoHandler
+PdfCanvasProcessor reset
+PdfCanvasProcessor.PopGraphicsStateOperator
+PdfCanvasProcessor.PopGraphicsStateOperator invoke
+PdfCaretAnnotation
+PdfCaretAnnotation getSubtype
+PdfCaretAnnotation getSymbol
+PdfCaretAnnotation setSymbol
+PdfCatalog
+PdfCatalog flush
+PdfCatalog getDocument
+PdfCatalog getOCProperties
+PdfCatalog setAdditionalAction
+PdfCatalog setOpenAction
+PdfCatalog setPageMode
+PdfChoiceFormField
+PdfChoiceFormField getFormType
+PdfChoiceFormField getIndices
+PdfChoiceFormField getTopIndex
+PdfChoiceFormField isCombo
+PdfChoiceFormField isCommitOnSelChange
+PdfChoiceFormField isEdit
+PdfChoiceFormField isMultiSelect
+PdfChoiceFormField isSort
+PdfChoiceFormField isSpellCheck
+PdfChoiceFormField setCombo
+PdfChoiceFormField setCommitOnSelChange
+PdfChoiceFormField setEdit
+PdfChoiceFormField setIndices
+PdfChoiceFormField setListSelected
+PdfChoiceFormField setMultiSelect
+PdfChoiceFormField setSort
+PdfChoiceFormField setSpellCheck
+PdfChoiceFormField setTopIndex
+PdfCieBasedCs
+PdfCieBasedCs flush
+PdfCieBasedCs isWrappedObjectMustBeIndirect
+PdfCieBasedCs.CalGray
+PdfCieBasedCs.CalGray getNumberOfComponents
+PdfCieBasedCs.CalRgb
+PdfCieBasedCs.CalRgb getNumberOfComponents
+PdfCieBasedCs.IccBased
+PdfCieBasedCs.IccBased getIccProfileStream
+PdfCieBasedCs.IccBased getNumberOfComponents
+PdfCieBasedCs.Lab
+PdfCieBasedCs.Lab getNumberOfComponents
+PdfCircleAnnotation
+PdfCircleAnnotation getSubtype
+PdfCollection
+PdfCollection getInitialDocument
+PdfCollection getSchema
+PdfCollection getSort
+PdfCollection getView
+PdfCollection isWrappedObjectMustBeIndirect
+PdfCollection setInitialDocument
+PdfCollection setSchema
+PdfCollection setSort
+PdfCollection setView
+PdfCollectionField
+PdfCollectionField getEditable
+PdfCollectionField getOrder
+PdfCollectionField getValue
+PdfCollectionField getVisibility
+PdfCollectionField isWrappedObjectMustBeIndirect
+PdfCollectionField setEditable
+PdfCollectionField setOrder
+PdfCollectionField setVisibility
+PdfCollectionItem
+PdfCollectionItem addItem
+PdfCollectionItem isWrappedObjectMustBeIndirect
+PdfCollectionItem setPrefix
+PdfCollectionSchema
+PdfCollectionSchema addField
+PdfCollectionSchema getField
+PdfCollectionSchema isWrappedObjectMustBeIndirect
+PdfCollectionSort
+PdfCollectionSort isWrappedObjectMustBeIndirect
+PdfCollectionSort setSortOrder
+PdfColorSpace
+PdfColorSpace getNumberOfComponents
+PdfColorSpace makeColorSpace
+PdfConst
+PdfDashPattern
+PdfDashPattern getDash
+PdfDashPattern getGap
+PdfDashPattern getPhase
+PdfDate
+PdfDate decode
+PdfDate getW3CDate
+PdfDate isWrappedObjectMustBeIndirect
+PdfDestination
+PdfDestination getDestinationPage
+PdfDestination makeDestination
+PdfDestination replaceNamedDestination
+PdfDeveloperExtension
+PdfDeveloperExtension getBaseVersion
+PdfDeveloperExtension getDeveloperExtensions
+PdfDeveloperExtension getExtensionLevel
+PdfDeveloperExtension getPrefix
+PdfDeviceCs
+PdfDeviceCs isWrappedObjectMustBeIndirect
+PdfDeviceCs.Cmyk
+PdfDeviceCs.Cmyk getNumberOfComponents
+PdfDeviceCs.Gray
+PdfDeviceCs.Gray getNumberOfComponents
+PdfDeviceCs.Rgb
+PdfDeviceCs.Rgb getNumberOfComponents
+PdfDictionary
+PdfDictionary clear
+PdfDictionary clone
+PdfDictionary containsKey
+PdfDictionary containsValue
+PdfDictionary copyContent
+PdfDictionary copyTo
+PdfDictionary directEntrySet
+PdfDictionary directValues
+PdfDictionary entrySet
+PdfDictionary get
+PdfDictionary getAsArray
+PdfDictionary getAsBool
+PdfDictionary getAsBoolean
+PdfDictionary getAsDictionary
+PdfDictionary getAsFloat
+PdfDictionary getAsInt
+PdfDictionary getAsName
+PdfDictionary getAsNumber
+PdfDictionary getAsRectangle
+PdfDictionary getAsStream
+PdfDictionary getAsString
+PdfDictionary getType
+PdfDictionary isEmpty
+PdfDictionary keySet
+PdfDictionary makeIndirect
+PdfDictionary mergeDifferent
+PdfDictionary newInstance
+PdfDictionary put
+PdfDictionary putAll
+PdfDictionary releaseContent
+PdfDictionary remove
+PdfDictionary size
+PdfDictionary toString
+PdfDictionary values
+PdfDictionaryFS
+PdfDocument
+PdfDocument addCustomMetadataExtensions
+PdfDocument addEventHandler
+PdfDocument addFileAttachment
+PdfDocument addNamedDestination
+PdfDocument addNewPage
+PdfDocument addOutputIntent
+PdfDocument addPage
+PdfDocument checkAndAddPage
+PdfDocument checkClosingStatus
+PdfDocument checkIsoConformance
+PdfDocument checkShowTextIsoConformance
+PdfDocument close
+PdfDocument copyPagesTo
+PdfDocument createNextIndirectReference
+PdfDocument dispatchEvent
+PdfDocument flushFonts
+PdfDocument flushObject
+PdfDocument getCatalog
+PdfDocument getCounter
+PdfDocument getDefaultPageSize
+PdfDocument getDocumentFonts
+PdfDocument getDocumentInfo
+PdfDocument getFirstPage
+PdfDocument getLastPage
+PdfDocument getNextStructParentIndex
+PdfDocument getNumberOfPages
+PdfDocument getNumberOfPdfObjects
+PdfDocument getOutlines
+PdfDocument getPage
+PdfDocument getPageLabels
+PdfDocument getPageNumber
+PdfDocument getPdfObject
+PdfDocument getPdfVersion
+PdfDocument getReader
+PdfDocument getStructTreeRoot
+PdfDocument getTagStructureContext
+PdfDocument getTrailer
+PdfDocument getWriter
+PdfDocument getXmpMetadata
+PdfDocument hasEventHandler
+PdfDocument hasOutlines
+PdfDocument initTagStructureContext
+PdfDocument initializeOutlines
+PdfDocument isAppendMode
+PdfDocument isCloseReader
+PdfDocument isCloseWriter
+PdfDocument isClosed
+PdfDocument isFlushUnusedObjects
+PdfDocument isTagged
+PdfDocument listIndirectReferences
+PdfDocument markObjectAsMustBeFlushed
+PdfDocument open
+PdfDocument removeAllHandlers
+PdfDocument removeEventHandler
+PdfDocument removePage
+PdfDocument setCloseReader
+PdfDocument setCloseWriter
+PdfDocument setDefaultPageSize
+PdfDocument setFlushUnusedObjects
+PdfDocument setTagged
+PdfDocument setUserProperties
+PdfDocument setXmpMetadata
+PdfDocument storeLinkAnnotation
+PdfDocument updateDefaultXmpMetadata
+PdfDocument updateXmpMetadata
+PdfDocumentContentParser
+PdfDocumentContentParser processContent
+PdfDocumentEvent
+PdfDocumentEvent getDocument
+PdfDocumentEvent getPage
+PdfDocumentInfo
+PdfDocumentInfo addCreationDate
+PdfDocumentInfo addModDate
+PdfDocumentInfo flush
+PdfDocumentInfo getAuthor
+PdfDocumentInfo getCreator
+PdfDocumentInfo getKeywords
+PdfDocumentInfo getProducer
+PdfDocumentInfo getSubject
+PdfDocumentInfo getTitle
+PdfDocumentInfo isWrappedObjectMustBeIndirect
+PdfDocumentInfo setAuthor
+PdfDocumentInfo setCreator
+PdfDocumentInfo setKeywords
+PdfDocumentInfo setMoreInfo
+PdfDocumentInfo setSubject
+PdfDocumentInfo setTitle
+PdfEncodings
+PdfEncodings addExtraEncoding
+PdfEncodings convertToBytes
+PdfEncodings convertToString
+PdfEncodings isPdfDocEncoding
+PdfEncryption
+PdfEncryption computeUserPassword
+PdfEncryption createInfoId
+PdfEncryption decryptByteArray
+PdfEncryption encryptByteArray
+PdfEncryption flush
+PdfEncryption generateNewDocumentId
+PdfEncryption getCryptoMode
+PdfEncryption getDocumentId
+PdfEncryption getEncryptionStream
+PdfEncryption getPermissions
+PdfEncryption isEmbeddedFilesOnly
+PdfEncryption isMetadataEncrypted
+PdfEncryption isOpenedWithFullPermission
+PdfEncryption isWrappedObjectMustBeIndirect
+PdfEncryption setHashKeyForNextObject
+PdfEncryptor
+PdfEncryptor encrypt
+PdfEncryptor getContent
+PdfEncryptor getPermissionsVerbose
+PdfEncryptor isAssemblyAllowed
+PdfEncryptor isCopyAllowed
+PdfEncryptor isDegradedPrintingAllowed
+PdfEncryptor isFillInAllowed
+PdfEncryptor isModifyAnnotationsAllowed
+PdfEncryptor isModifyContentsAllowed
+PdfEncryptor isPrintingAllowed
+PdfEncryptor isScreenReadersAllowed
+PdfException
+PdfException getMessage
+PdfException getMessageParams
+PdfException setMessageParams
+PdfExplicitDestination
+PdfExplicitDestination create
+PdfExplicitDestination createFit
+PdfExplicitDestination createFitB
+PdfExplicitDestination createFitBH
+PdfExplicitDestination createFitBV
+PdfExplicitDestination createFitH
+PdfExplicitDestination createFitR
+PdfExplicitDestination createFitV
+PdfExplicitDestination createXYZ
+PdfExplicitDestination getDestinationPage
+PdfExplicitDestination isWrappedObjectMustBeIndirect
+PdfExplicitDestination replaceNamedDestination
+PdfExtGState
+PdfExtGState flush
+PdfExtGState getAlphaSourceFlag
+PdfExtGState getAutomaticStrokeAdjustmentFlag
+PdfExtGState getBlackGenerationFunction
+PdfExtGState getBlackGenerationFunction2
+PdfExtGState getBlendMode
+PdfExtGState getDashPattern
+PdfExtGState getFillOpacity
+PdfExtGState getFillOverprintFlag
+PdfExtGState getFlatnessTolerance
+PdfExtGState getFont
+PdfExtGState getHTP
+PdfExtGState getHalftone
+PdfExtGState getLineCapStyle
+PdfExtGState getLineJoinStyle
+PdfExtGState getLineWidth
+PdfExtGState getMiterLimit
+PdfExtGState getOverprintMode
+PdfExtGState getRenderingIntent
+PdfExtGState getSmothnessTolerance
+PdfExtGState getSoftMask
+PdfExtGState getStrokeOpacity
+PdfExtGState getStrokeOverprintFlag
+PdfExtGState getTextKnockoutFlag
+PdfExtGState getTransferFunction
+PdfExtGState getTransferFunction2
+PdfExtGState getUndercolorRemovalFunction
+PdfExtGState getUndercolorRemovalFunction2
+PdfExtGState isWrappedObjectMustBeIndirect
+PdfExtGState put
+PdfExtGState setAlphaSourceFlag
+PdfExtGState setAutomaticStrokeAdjustmentFlag
+PdfExtGState setBlackGenerationFunction
+PdfExtGState setBlackGenerationFunction2
+PdfExtGState setBlendMode
+PdfExtGState setDashPattern
+PdfExtGState setFillOpacity
+PdfExtGState setFillOverPrintFlag
+PdfExtGState setFlatnessTolerance
+PdfExtGState setFont
+PdfExtGState setHTP
+PdfExtGState setHalftone
+PdfExtGState setLineCapStryle
+PdfExtGState setLineCapStyle
+PdfExtGState setLineJoinStyle
+PdfExtGState setLineWidth
+PdfExtGState setMiterLimit
+PdfExtGState setOverprintMode
+PdfExtGState setRenderingIntent
+PdfExtGState setSmoothnessTolerance
+PdfExtGState setSoftMask
+PdfExtGState setStrokeOpacity
+PdfExtGState setStrokeOverPrintFlag
+PdfExtGState setTextKnockoutFlag
+PdfExtGState setTransferFunction
+PdfExtGState setTransferFunction2
+PdfExtGState setUndercolorRemovalFunction
+PdfExtGState setUndercolorRemovalFunction2
+PdfFileAttachmentAnnotation
+PdfFileAttachmentAnnotation getFileSpecObject
+PdfFileAttachmentAnnotation getSubtype
+PdfFileSpec
+PdfFileSpec createEmbeddedFileSpec
+PdfFileSpec createExternalFileSpec
+PdfFileSpec getFileIdentifier
+PdfFileSpec isVolatile
+PdfFileSpec isWrappedObjectMustBeIndirect
+PdfFileSpec put
+PdfFileSpec setCollectionItem
+PdfFileSpec setFileIdentifier
+PdfFileSpec setVolatile
+PdfFixedPrint
+PdfFixedPrint getHorizontalTranslation
+PdfFixedPrint getMatrix
+PdfFixedPrint getVerticalTranslation
+PdfFixedPrint isWrappedObjectMustBeIndirect
+PdfFixedPrint setHorizontalTranslation
+PdfFixedPrint setMatrix
+PdfFixedPrint setVerticalTranslation
+PdfFont
+PdfFont addSubsetRange
+PdfFont checkFontDictionary
+PdfFont checkTrueTypeFontDictionary
+PdfFont compactRanges
+PdfFont containsGlyph
+PdfFont convertToBytes
+PdfFont createGlyphLine
+PdfFont createSubsetPrefix
+PdfFont decode
+PdfFont flush
+PdfFont getAscent
+PdfFont getContentWidth
+PdfFont getDescent
+PdfFont getFontDescriptor
+PdfFont getFontMatrix
+PdfFont getFontProgram
+PdfFont getGlyph
+PdfFont getPdfFontStream
+PdfFont getWidth
+PdfFont isEmbedded
+PdfFont isSubset
+PdfFont isWrappedObjectMustBeIndirect
+PdfFont setSubset
+PdfFont splitString
+PdfFont writeText
+PdfFontFactory
+PdfFontFactory checkFontDictionary
+PdfFontFactory createFont
+PdfFontFactory createRegisteredFont
+PdfFontFactory createTtcFont
+PdfFontFactory createType3Font
+PdfFontFactory getRegisteredFamilies
+PdfFontFactory getRegisteredFonts
+PdfFontFactory isRegistered
+PdfFontFactory register
+PdfFontFactory registerDirectory
+PdfFontFactory registerFamily
+PdfFontFactory registerSystemDirectories
+PdfFormField
+PdfFormField addKid
+PdfFormField createButton
+PdfFormField createCheckBox
+PdfFormField createChoice
+PdfFormField createComboBox
+PdfFormField createEmptyField
+PdfFormField createList
+PdfFormField createMultilineText
+PdfFormField createPushButton
+PdfFormField createRadioButton
+PdfFormField createRadioGroup
+PdfFormField createSignature
+PdfFormField createText
+PdfFormField drawBorder
+PdfFormField drawButton
+PdfFormField drawCheckAppearance
+PdfFormField drawCheckBox
+PdfFormField drawMultiLineTextAppearance
+PdfFormField drawPdfA1CheckAppearance
+PdfFormField drawPdfA1RadioAppearance
+PdfFormField drawPdfA2CheckAppearance
+PdfFormField drawPdfACheckBox
+PdfFormField drawPushButtonAppearance
+PdfFormField drawRadioAppearance
+PdfFormField drawRadioBorder
+PdfFormField drawRadioField
+PdfFormField drawTextAppearance
+PdfFormField generateDefaultAppearanceString
+PdfFormField getAdditionalAction
+PdfFormField getAlternativeName
+PdfFormField getAppearanceStates
+PdfFormField getBorderWidth
+PdfFormField getDefaultAppearance
+PdfFormField getDefaultStyle
+PdfFormField getDefaultValue
+PdfFormField getDocument
+PdfFormField getFieldFlag
+PdfFormField getFieldFlags
+PdfFormField getFieldName
+PdfFormField getFont
+PdfFormField getFontAndSize
+PdfFormField getFormType
+PdfFormField getJustification
+PdfFormField getKids
+PdfFormField getMappingName
+PdfFormField getOptions
+PdfFormField getParent
+PdfFormField getRect
+PdfFormField getRichText
+PdfFormField getValue
+PdfFormField getValueAsString
+PdfFormField getWidgets
+PdfFormField isMultiline
+PdfFormField isNoExport
+PdfFormField isPassword
+PdfFormField isReadOnly
+PdfFormField isRequired
+PdfFormField isWrappedObjectMustBeIndirect
+PdfFormField makeFieldFlag
+PdfFormField makeFormField
+PdfFormField processOptions
+PdfFormField put
+PdfFormField regenerateField
+PdfFormField release
+PdfFormField setAction
+PdfFormField setAdditionalAction
+PdfFormField setAlternativeName
+PdfFormField setAppearance
+PdfFormField setBackgroundColor
+PdfFormField setBorderColor
+PdfFormField setBorderStyle
+PdfFormField setBorderWidth
+PdfFormField setCheckType
+PdfFormField setColor
+PdfFormField setDefaultAppearance
+PdfFormField setDefaultStyle
+PdfFormField setDefaultValue
+PdfFormField setFieldFlag
+PdfFormField setFieldFlags
+PdfFormField setFieldName
+PdfFormField setFont
+PdfFormField setFontAndSize
+PdfFormField setFontSize
+PdfFormField setJustification
+PdfFormField setMappingName
+PdfFormField setNoExport
+PdfFormField setOptions
+PdfFormField setPage
+PdfFormField setParent
+PdfFormField setReadOnly
+PdfFormField setRequired
+PdfFormField setRichText
+PdfFormField setRotation
+PdfFormField setValue
+PdfFormField setVisibility
+PdfFormField splitDAelements
+PdfFormXObject
+PdfFormXObject flush
+PdfFormXObject getBBox
+PdfFormXObject getHeight
+PdfFormXObject getMarkStyle
+PdfFormXObject getProcessColorModel
+PdfFormXObject getResources
+PdfFormXObject getSeparationColorNames
+PdfFormXObject getTrapRegions
+PdfFormXObject getTrapStyles
+PdfFormXObject getWidth
+PdfFormXObject put
+PdfFormXObject setBBox
+PdfFormXObject setGroup
+PdfFormXObject setMarkStyle
+PdfFormXObject setProcessColorModel
+PdfFormXObject setSeparationColorNames
+PdfFormXObject setTrapRegions
+PdfFormXObject setTrapStyles
+PdfFreeTextAnnotation
+PdfFreeTextAnnotation getCalloutLine
+PdfFreeTextAnnotation getDefaultStyleString
+PdfFreeTextAnnotation getLineEndingStyle
+PdfFreeTextAnnotation getSubtype
+PdfFreeTextAnnotation setCalloutLine
+PdfFreeTextAnnotation setDefaultStyleString
+PdfFreeTextAnnotation setLineEndingStyle
+PdfFunction
+PdfFunction checkCompatibilityWithColorSpace
+PdfFunction flush
+PdfFunction getInputSize
+PdfFunction getOutputSize
+PdfFunction getType
+PdfFunction isWrappedObjectMustBeIndirect
+PdfFunction makeFunction
+PdfFunction.Type0
+PdfFunction.Type0 checkCompatibilityWithColorSpace
+PdfFunction.Type2
+PdfFunction.Type3
+PdfFunction.Type4
+PdfFunction.Type4 checkCompatibilityWithColorSpace
+PdfImageXObject
+PdfImageXObject copyTo
+PdfImageXObject createPdfStream
+PdfImageXObject flush
+PdfImageXObject getBufferedImage
+PdfImageXObject getHeight
+PdfImageXObject getImageBytes
+PdfImageXObject getWidth
+PdfImageXObject identifyImageFileExtension
+PdfImageXObject identifyImageType
+PdfImageXObject put
+PdfIndirectReference
+PdfIndirectReference compareTo
+PdfIndirectReference copyContent
+PdfIndirectReference equals
+PdfIndirectReference getDocument
+PdfIndirectReference getGenNumber
+PdfIndirectReference getIndex
+PdfIndirectReference getObjNumber
+PdfIndirectReference getObjStreamNumber
+PdfIndirectReference getOffset
+PdfIndirectReference getReader
+PdfIndirectReference getRefersTo
+PdfIndirectReference getType
+PdfIndirectReference getWriter
+PdfIndirectReference hashCode
+PdfIndirectReference isFree
+PdfIndirectReference newInstance
+PdfIndirectReference setFree
+PdfIndirectReference setRefersTo
+PdfIndirectReference setState
+PdfIndirectReference toString
+PdfInkAnnotation
+PdfInkAnnotation getSubtype
+PdfLayer
+PdfLayer addChild
+PdfLayer addOCGRadioGroup
+PdfLayer createTitle
+PdfLayer createTitleSilent
+PdfLayer getChildren
+PdfLayer getDocument
+PdfLayer getIndirectReference
+PdfLayer getIntents
+PdfLayer getParent
+PdfLayer getTitle
+PdfLayer getUsage
+PdfLayer isLocked
+PdfLayer isOn
+PdfLayer isOnPanel
+PdfLayer isWrappedObjectMustBeIndirect
+PdfLayer setCreatorInfo
+PdfLayer setExport
+PdfLayer setIntents
+PdfLayer setLanguage
+PdfLayer setLocked
+PdfLayer setName
+PdfLayer setOn
+PdfLayer setOnPanel
+PdfLayer setPageElement
+PdfLayer setPrint
+PdfLayer setUser
+PdfLayer setView
+PdfLayer setZoom
+PdfLayerMembership
+PdfLayerMembership addLayer
+PdfLayerMembership getDocument
+PdfLayerMembership getIndirectReference
+PdfLayerMembership getLayers
+PdfLayerMembership getVisibilityExpression
+PdfLayerMembership getVisibilityPolicy
+PdfLayerMembership isWrappedObjectMustBeIndirect
+PdfLayerMembership setVisibilityExpression
+PdfLayerMembership setVisibilityPolicy
+PdfLineAnnotation
+PdfLineAnnotation getCaptionOffset
+PdfLineAnnotation getCaptionPosition
+PdfLineAnnotation getContentsAsCaption
+PdfLineAnnotation getLeaderLine
+PdfLineAnnotation getLeaderLineExtension
+PdfLineAnnotation getLeaderLineLength
+PdfLineAnnotation getLeaderLineOffset
+PdfLineAnnotation getLine
+PdfLineAnnotation getLineEndingStyles
+PdfLineAnnotation getMeasure
+PdfLineAnnotation getSubtype
+PdfLineAnnotation setCaptionOffset
+PdfLineAnnotation setCaptionPosition
+PdfLineAnnotation setContentsAsCaption
+PdfLineAnnotation setLeaderLine
+PdfLineAnnotation setLeaderLineExtension
+PdfLineAnnotation setLeaderLineLength
+PdfLineAnnotation setLeaderLineOffset
+PdfLineAnnotation setLineEndingStyles
+PdfLineAnnotation setMeasure
+PdfLinkAnnotation
+PdfLinkAnnotation getDestinationObject
+PdfLinkAnnotation getHighlightMode
+PdfLinkAnnotation getSubtype
+PdfLinkAnnotation getUriActionObject
+PdfLinkAnnotation setAction
+PdfLinkAnnotation setDestination
+PdfLinkAnnotation setHighlightMode
+PdfLinkAnnotation setUriAction
+PdfLiteral
+PdfLiteral copyContent
+PdfLiteral equals
+PdfLiteral generateContent
+PdfLiteral getBytesCount
+PdfLiteral getPosition
+PdfLiteral getType
+PdfLiteral hashCode
+PdfLiteral newInstance
+PdfLiteral setPosition
+PdfLiteral toString
+PdfMarkupAnnotation
+PdfMarkupAnnotation getBorderEffect
+PdfMarkupAnnotation getCreationDate
+PdfMarkupAnnotation getDefaultAppearance
+PdfMarkupAnnotation getExternalData
+PdfMarkupAnnotation getIconName
+PdfMarkupAnnotation getInReplyTo
+PdfMarkupAnnotation getInReplyToObject
+PdfMarkupAnnotation getIntent
+PdfMarkupAnnotation getInteriorColor
+PdfMarkupAnnotation getJustification
+PdfMarkupAnnotation getOpacity
+PdfMarkupAnnotation getPopup
+PdfMarkupAnnotation getPopupObject
+PdfMarkupAnnotation getRectangleDifferences
+PdfMarkupAnnotation getReplyType
+PdfMarkupAnnotation getRichText
+PdfMarkupAnnotation getSubject
+PdfMarkupAnnotation getText
+PdfMarkupAnnotation setBorderEffect
+PdfMarkupAnnotation setCreationDate
+PdfMarkupAnnotation setDefaultAppearance
+PdfMarkupAnnotation setExternalData
+PdfMarkupAnnotation setIconName
+PdfMarkupAnnotation setInReplyTo
+PdfMarkupAnnotation setIntent
+PdfMarkupAnnotation setInteriorColor
+PdfMarkupAnnotation setJustification
+PdfMarkupAnnotation setOpacity
+PdfMarkupAnnotation setPopup
+PdfMarkupAnnotation setRectangleDifferences
+PdfMarkupAnnotation setReplyType
+PdfMarkupAnnotation setRichText
+PdfMarkupAnnotation setSubject
+PdfMarkupAnnotation setText
+PdfMcr
+PdfMcr getKids
+PdfMcr getMcid
+PdfMcr getPageObject
+PdfMcr getParent
+PdfMcr getRole
+PdfMcr isWrappedObjectMustBeIndirect
+PdfMcrDictionary
+PdfMcrDictionary getMcid
+PdfMcrDictionary getPageObject
+PdfMcrNumber
+PdfMcrNumber getMcid
+PdfMcrNumber getPageObject
+PdfMediaClipData
+PdfMediaClipData flush
+PdfMediaClipData isWrappedObjectMustBeIndirect
+PdfMerger
+PdfMerger close
+PdfMerger merge
+PdfMerger setCloseSourceDocuments
+PdfName
+PdfName compareTo
+PdfName copyContent
+PdfName copyTo
+PdfName equals
+PdfName generateContent
+PdfName generateValue
+PdfName getType
+PdfName getValue
+PdfName hashCode
+PdfName makeIndirect
+PdfName newInstance
+PdfName toString
+PdfNameTree
+PdfNameTree addEntry
+PdfNameTree buildTree
+PdfNameTree getNames
+PdfNameTree isModified
+PdfNamedDestination
+PdfNamedDestination getDestinationPage
+PdfNamedDestination isWrappedObjectMustBeIndirect
+PdfNamedDestination replaceNamedDestination
+PdfNull
+PdfNull copyContent
+PdfNull copyTo
+PdfNull equals
+PdfNull generateContent
+PdfNull getType
+PdfNull hashCode
+PdfNull makeIndirect
+PdfNull newInstance
+PdfNull toString
+PdfNumTree
+PdfNumTree addEntry
+PdfNumTree buildTree
+PdfNumTree getNumbers
+PdfNumber
+PdfNumber copyContent
+PdfNumber copyTo
+PdfNumber decrement
+PdfNumber doubleValue
+PdfNumber equals
+PdfNumber floatValue
+PdfNumber generateContent
+PdfNumber generateValue
+PdfNumber getType
+PdfNumber getValue
+PdfNumber hashCode
+PdfNumber increment
+PdfNumber intValue
+PdfNumber isDoubleNumber
+PdfNumber longValue
+PdfNumber makeIndirect
+PdfNumber newInstance
+PdfNumber setValue
+PdfNumber toString
+PdfOCProperties
+PdfOCProperties addOCGRadioGroup
+PdfOCProperties fillDictionary
+PdfOCProperties flush
+PdfOCProperties getDocument
+PdfOCProperties getLayers
+PdfOCProperties isWrappedObjectMustBeIndirect
+PdfOCProperties registerLayer
+PdfObjRef
+PdfObjRef getMcid
+PdfObjRef getPageObject
+PdfObjRef getReferencedObject
+PdfObject
+PdfObject checkState
+PdfObject clearState
+PdfObject clone
+PdfObject copyContent
+PdfObject copyTo
+PdfObject flush
+PdfObject getIndirectReference
+PdfObject getType
+PdfObject isArray
+PdfObject isBoolean
+PdfObject isDictionary
+PdfObject isFlushed
+PdfObject isIndirect
+PdfObject isIndirectReference
+PdfObject isLiteral
+PdfObject isModified
+PdfObject isName
+PdfObject isNull
+PdfObject isNumber
+PdfObject isStream
+PdfObject isString
+PdfObject makeIndirect
+PdfObject newInstance
+PdfObject release
+PdfObject setIndirectReference
+PdfObject setModified
+PdfObject setState
+PdfObjectWrapper
+PdfObjectWrapper ensureObjectIsAddedToDocument
+PdfObjectWrapper flush
+PdfObjectWrapper getPdfObject
+PdfObjectWrapper isFlushed
+PdfObjectWrapper isWrappedObjectMustBeIndirect
+PdfObjectWrapper makeIndirect
+PdfObjectWrapper markObjectAsIndirect
+PdfObjectWrapper setForbidRelease
+PdfObjectWrapper setModified
+PdfObjectWrapper setPdfObject
+PdfObjectWrapper unsetForbidRelease
+PdfOutline
+PdfOutline addAction
+PdfOutline addDestination
+PdfOutline addOutline
+PdfOutline getAllChildren
+PdfOutline getContent
+PdfOutline getDestination
+PdfOutline getParent
+PdfOutline getTitle
+PdfOutline setColor
+PdfOutline setOpen
+PdfOutline setStyle
+PdfOutline setTitle
+PdfOutputIntent
+PdfOutputIntent getDestOutputProfile
+PdfOutputIntent getInfo
+PdfOutputIntent getOutputCondition
+PdfOutputIntent getOutputConditionIdentifier
+PdfOutputIntent getOutputIntentSubtype
+PdfOutputIntent getRegistryName
+PdfOutputIntent isWrappedObjectMustBeIndirect
+PdfOutputIntent setDestOutputProfile
+PdfOutputIntent setInfo
+PdfOutputIntent setOutputCondition
+PdfOutputIntent setOutputConditionIdentifier
+PdfOutputIntent setOutputIntentSubtype
+PdfOutputIntent setRegistryName
+PdfOutputStream
+PdfOutputStream checkEncryption
+PdfOutputStream containsFlateFilter
+PdfOutputStream decodeFlateBytes
+PdfOutputStream updateCompressionFilter
+PdfOutputStream write
+PdfPKCS7
+PdfPKCS7 getAuthenticatedAttributeBytes
+PdfPKCS7 getCRLs
+PdfPKCS7 getCertificates
+PdfPKCS7 getDigestAlgorithm
+PdfPKCS7 getDigestAlgorithmOid
+PdfPKCS7 getDigestEncryptionAlgorithmOid
+PdfPKCS7 getEncodedPKCS1
+PdfPKCS7 getEncodedPKCS7
+PdfPKCS7 getEncryptionAlgorithm
+PdfPKCS7 getFilterSubtype
+PdfPKCS7 getHashAlgorithm
+PdfPKCS7 getLocation
+PdfPKCS7 getOcsp
+PdfPKCS7 getReason
+PdfPKCS7 getSignCertificateChain
+PdfPKCS7 getSignDate
+PdfPKCS7 getSignName
+PdfPKCS7 getSigningCertificate
+PdfPKCS7 getSigningInfoVersion
+PdfPKCS7 getTimeStampDate
+PdfPKCS7 getTimeStampToken
+PdfPKCS7 getVersion
+PdfPKCS7 isRevocationValid
+PdfPKCS7 isTsp
+PdfPKCS7 setExternalDigest
+PdfPKCS7 setLocation
+PdfPKCS7 setReason
+PdfPKCS7 setSignDate
+PdfPKCS7 setSignName
+PdfPKCS7 update
+PdfPKCS7 verify
+PdfPKCS7 verifyTimestampImprint
+PdfPage
+PdfPage addAnnotation
+PdfPage containsAnnotation
+PdfPage copyAsFormXObject
+PdfPage copyTo
+PdfPage flush
+PdfPage getAnnotations
+PdfPage getAnnotsSize
+PdfPage getArtBox
+PdfPage getContentBytes
+PdfPage getContentStream
+PdfPage getContentStreamCount
+PdfPage getCropBox
+PdfPage getDocument
+PdfPage getFirstContentStream
+PdfPage getLastContentStream
+PdfPage getMediaBox
+PdfPage getNextMcid
+PdfPage getOutlines
+PdfPage getPageSize
+PdfPage getPageSizeWithRotation
+PdfPage getResources
+PdfPage getRotation
+PdfPage getStreamBytes
+PdfPage getStructParentIndex
+PdfPage getTrimBox
+PdfPage getXmpMetadata
+PdfPage isIgnorePageRotationForContent
+PdfPage isPageRotationInverseMatrixWritten
+PdfPage isWrappedObjectMustBeIndirect
+PdfPage newContentStreamAfter
+PdfPage newContentStreamBefore
+PdfPage put
+PdfPage removeAnnotation
+PdfPage setAdditionalAction
+PdfPage setArtBox
+PdfPage setCropBox
+PdfPage setIgnorePageRotationForContent
+PdfPage setMediaBox
+PdfPage setPageLabel
+PdfPage setPageRotationInverseMatrixWritten
+PdfPage setResources
+PdfPage setRotation
+PdfPage setTrimBox
+PdfPage setXmpMetadata
+PdfPageFormCopier
+PdfPageFormCopier copy
+PdfPattern
+PdfPattern flush
+PdfPattern getMatrix
+PdfPattern getPatternInstance
+PdfPattern isWrappedObjectMustBeIndirect
+PdfPattern setMatrix
+PdfPattern.Shading
+PdfPattern.Shading getShading
+PdfPattern.Shading setShading
+PdfPattern.Tiling
+PdfPattern.Tiling flush
+PdfPattern.Tiling getBBox
+PdfPattern.Tiling getResources
+PdfPattern.Tiling getTilingType
+PdfPattern.Tiling getXStep
+PdfPattern.Tiling getYStep
+PdfPattern.Tiling isColored
+PdfPattern.Tiling setBBox
+PdfPattern.Tiling setColored
+PdfPattern.Tiling setTilingType
+PdfPattern.Tiling setXStep
+PdfPattern.Tiling setYStep
+PdfPattern.Tiling.PaintType
+PdfPattern.Tiling.TilingType
+PdfPatternCanvas
+PdfPatternCanvas setColor
+PdfPolyGeomAnnotation
+PdfPolyGeomAnnotation createPolyLine
+PdfPolyGeomAnnotation createPolygon
+PdfPolyGeomAnnotation getLineEndingStyles
+PdfPolyGeomAnnotation getMeasure
+PdfPolyGeomAnnotation getSubtype
+PdfPolyGeomAnnotation getVertices
+PdfPolyGeomAnnotation setLineEndingStyles
+PdfPolyGeomAnnotation setMeasure
+PdfPolyGeomAnnotation setVertices
+PdfPopupAnnotation
+PdfPopupAnnotation getParent
+PdfPopupAnnotation getParentObject
+PdfPopupAnnotation getSubtype
+PdfPopupAnnotation setParent
+PdfPrimitiveObject
+PdfPrimitiveObject compareContent
+PdfPrimitiveObject copyContent
+PdfPrimitiveObject generateContent
+PdfPrimitiveObject getInternalContent
+PdfPrimitiveObject hasContent
+PdfPrimitiveObject makeIndirect
+PdfPrimitiveObject setIndirectReference
+PdfPrinterMarkAnnotation
+PdfPrinterMarkAnnotation getArbitraryTypeName
+PdfPrinterMarkAnnotation getSubtype
+PdfPrinterMarkAnnotation setArbitraryTypeName
+PdfReader
+PdfReader close
+PdfReader computeUserPassword
+PdfReader decodeBytes
+PdfReader fixXref
+PdfReader getCryptoMode
+PdfReader getFileLength
+PdfReader getLastXref
+PdfReader getOriginalFileId
+PdfReader getPdfAConformanceLevel
+PdfReader getPermissions
+PdfReader getSafeFile
+PdfReader hasFixedXref
+PdfReader hasHybridXref
+PdfReader hasRebuiltXref
+PdfReader hasXrefStm
+PdfReader isCloseStream
+PdfReader isEncrypted
+PdfReader isOpenedWithFullPermission
+PdfReader readArray
+PdfReader readDictionary
+PdfReader readObject
+PdfReader readObjectStream
+PdfReader readPdf
+PdfReader readPdfName
+PdfReader readStream
+PdfReader readStreamBytes
+PdfReader readStreamBytesRaw
+PdfReader readXref
+PdfReader readXrefSection
+PdfReader readXrefStream
+PdfReader rebuildXref
+PdfReader setCloseStream
+PdfReader setUnethicalReading
+PdfReader.ReusableRandomAccessSource
+PdfReader.ReusableRandomAccessSource close
+PdfReader.ReusableRandomAccessSource get
+PdfReader.ReusableRandomAccessSource length
+PdfRedactAnnotation
+PdfRedactAnnotation getOverlayText
+PdfRedactAnnotation getRedactRolloverAppearance
+PdfRedactAnnotation getRepeat
+PdfRedactAnnotation getSubtype
+PdfRedactAnnotation setOverlayText
+PdfRedactAnnotation setRedactRolloverAppearance
+PdfRedactAnnotation setRepeat
+PdfRendition
+PdfRendition flush
+PdfRendition isWrappedObjectMustBeIndirect
+PdfResourceCounter
+PdfResourceCounter getLength
+PdfResourceCounter getResources
+PdfResourceCounter loopOver
+PdfResourceCounter process
+PdfResources
+PdfResources addColorSpace
+PdfResources addExtGState
+PdfResources addFont
+PdfResources addForm
+PdfResources addImage
+PdfResources addPattern
+PdfResources addProperties
+PdfResources addShading
+PdfResources getResourceName
+PdfResources isModified
+PdfResources isReadOnly
+PdfResources setDefaultCmyk
+PdfResources setDefaultColorSpace
+PdfResources setDefaultGray
+PdfResources setDefaultRgb
+PdfResources setModified
+PdfResources setReadOnly
+PdfRichMediaAnnotation
+PdfRichMediaAnnotation getSubtype
+PdfScreenAnnotation
+PdfScreenAnnotation getSubtype
+PdfShading
+PdfShading flush
+PdfShading getColorSpace
+PdfShading getFunction
+PdfShading getShadingType
+PdfShading isWrappedObjectMustBeIndirect
+PdfShading makeShading
+PdfShading setFunction
+PdfShading.Axial
+PdfShading.Axial getCoords
+PdfShading.Axial getDomain
+PdfShading.Axial getExtend
+PdfShading.Axial setCoords
+PdfShading.Axial setDomain
+PdfShading.Axial setExtend
+PdfShading.CoonsPatchMesh
+PdfShading.CoonsPatchMesh getBitsPerComponent
+PdfShading.CoonsPatchMesh getBitsPerCoordinate
+PdfShading.CoonsPatchMesh getBitsPerFlag
+PdfShading.CoonsPatchMesh getDecode
+PdfShading.CoonsPatchMesh setBitsPerComponent
+PdfShading.CoonsPatchMesh setBitsPerCoordinate
+PdfShading.CoonsPatchMesh setBitsPerFlag
+PdfShading.CoonsPatchMesh setDecode
+PdfShading.FreeFormGouraudShadedTriangleMesh
+PdfShading.FreeFormGouraudShadedTriangleMesh getBitsPerComponent
+PdfShading.FreeFormGouraudShadedTriangleMesh getBitsPerCoordinate
+PdfShading.FreeFormGouraudShadedTriangleMesh getBitsPerFlag
+PdfShading.FreeFormGouraudShadedTriangleMesh getDecode
+PdfShading.FreeFormGouraudShadedTriangleMesh setBitsPerComponent
+PdfShading.FreeFormGouraudShadedTriangleMesh setBitsPerCoordinate
+PdfShading.FreeFormGouraudShadedTriangleMesh setBitsPerFlag
+PdfShading.FreeFormGouraudShadedTriangleMesh setDecode
+PdfShading.FunctionBased
+PdfShading.FunctionBased getDomain
+PdfShading.FunctionBased getMatrix
+PdfShading.FunctionBased setDomain
+PdfShading.FunctionBased setMatrix
+PdfShading.LatticeFormGouraudShadedTriangleMesh
+PdfShading.LatticeFormGouraudShadedTriangleMesh getBitsPerComponent
+PdfShading.LatticeFormGouraudShadedTriangleMesh getBitsPerCoordinate
+PdfShading.LatticeFormGouraudShadedTriangleMesh getDecode
+PdfShading.LatticeFormGouraudShadedTriangleMesh getVerticesPerRow
+PdfShading.LatticeFormGouraudShadedTriangleMesh setBitsPerComponent
+PdfShading.LatticeFormGouraudShadedTriangleMesh setBitsPerCoordinate
+PdfShading.LatticeFormGouraudShadedTriangleMesh setDecode
+PdfShading.LatticeFormGouraudShadedTriangleMesh setVerticesPerRow
+PdfShading.Radial
+PdfShading.Radial getCoords
+PdfShading.Radial getDomain
+PdfShading.Radial getExtend
+PdfShading.Radial setCoords
+PdfShading.Radial setDomain
+PdfShading.Radial setExtend
+PdfShading.TensorProductPatchMesh
+PdfShading.TensorProductPatchMesh getBitsPerComponent
+PdfShading.TensorProductPatchMesh getBitsPerCoordinate
+PdfShading.TensorProductPatchMesh getBitsPerFlag
+PdfShading.TensorProductPatchMesh getDecode
+PdfShading.TensorProductPatchMesh setBitsPerComponent
+PdfShading.TensorProductPatchMesh setBitsPerCoordinate
+PdfShading.TensorProductPatchMesh setBitsPerFlag
+PdfShading.TensorProductPatchMesh setDecode
+PdfSigFieldLockDictionary
+PdfSigFieldLockDictionary getLockActionValue
+PdfSigFieldLockDictionary getLockPermission
+PdfSigFieldLockDictionary isWrappedObjectMustBeIndirect
+PdfSigFieldLockDictionary setDocumentPermissions
+PdfSigFieldLockDictionary setFieldLock
+PdfSigFieldLockDictionary.LockAction
+PdfSigFieldLockDictionary.LockAction valueOf
+PdfSigFieldLockDictionary.LockAction values
+PdfSigFieldLockDictionary.LockPermissions
+PdfSigFieldLockDictionary.LockPermissions valueOf
+PdfSigFieldLockDictionary.LockPermissions values
+PdfSignature
+PdfSignature isWrappedObjectMustBeIndirect
+PdfSignature put
+PdfSignature setByteRange
+PdfSignature setCert
+PdfSignature setContact
+PdfSignature setContents
+PdfSignature setDate
+PdfSignature setLocation
+PdfSignature setName
+PdfSignature setReason
+PdfSignature setSignatureCreator
+PdfSignatureAppDictionary
+PdfSignatureAppDictionary isWrappedObjectMustBeIndirect
+PdfSignatureAppDictionary setSignatureCreator
+PdfSignatureAppearance
+PdfSignatureAppearance getAppearance
+PdfSignatureAppearance getCertificate
+PdfSignatureAppearance getContact
+PdfSignatureAppearance getImage
+PdfSignatureAppearance getImageScale
+PdfSignatureAppearance getLayer0
+PdfSignatureAppearance getLayer2
+PdfSignatureAppearance getLayer2Font
+PdfSignatureAppearance getLayer2Text
+PdfSignatureAppearance getLocation
+PdfSignatureAppearance getPageNumber
+PdfSignatureAppearance getPageRect
+PdfSignatureAppearance getReason
+PdfSignatureAppearance getRenderingMode
+PdfSignatureAppearance getSignDate
+PdfSignatureAppearance getSignatureCreator
+PdfSignatureAppearance getSignatureGraphic
+PdfSignatureAppearance isInvisible
+PdfSignatureAppearance setCertificate
+PdfSignatureAppearance setContact
+PdfSignatureAppearance setFieldName
+PdfSignatureAppearance setImage
+PdfSignatureAppearance setImageScale
+PdfSignatureAppearance setLayer2Font
+PdfSignatureAppearance setLayer2FontSize
+PdfSignatureAppearance setLayer2Text
+PdfSignatureAppearance setLocation
+PdfSignatureAppearance setLocationCaption
+PdfSignatureAppearance setPageNumber
+PdfSignatureAppearance setPageRect
+PdfSignatureAppearance setReason
+PdfSignatureAppearance setReasonCaption
+PdfSignatureAppearance setRenderingMode
+PdfSignatureAppearance setReuseAppearance
+PdfSignatureAppearance setSignDate
+PdfSignatureAppearance setSignatureCreator
+PdfSignatureAppearance setSignatureGraphic
+PdfSignatureAppearance.RenderingMode
+PdfSignatureAppearance.RenderingMode valueOf
+PdfSignatureAppearance.RenderingMode values
+PdfSignatureBuildProperties
+PdfSignatureBuildProperties isWrappedObjectMustBeIndirect
+PdfSignatureBuildProperties setSignatureCreator
+PdfSignatureFormField
+PdfSignatureFormField getFormType
+PdfSignatureFormField getSigFieldLockDictionary
+PdfSignatureFormField setValue
+PdfSigner
+PdfSigner addDeveloperExtension
+PdfSigner addDocMDP
+PdfSigner addFieldMDP
+PdfSigner close
+PdfSigner getCertificationLevel
+PdfSigner getDocument
+PdfSigner getFieldLockDict
+PdfSigner getFieldName
+PdfSigner getNewSigFieldName
+PdfSigner getRangeStream
+PdfSigner getSignDate
+PdfSigner getSignatureAppearance
+PdfSigner getSignatureDictionary
+PdfSigner getSignatureEvent
+PdfSigner getUnderlyingSource
+PdfSigner getWidgetPageNumber
+PdfSigner getWidgetRectangle
+PdfSigner isPreClosed
+PdfSigner preClose
+PdfSigner processCrl
+PdfSigner setCertificationLevel
+PdfSigner setDocument
+PdfSigner setFieldLockDict
+PdfSigner setFieldName
+PdfSigner setOriginalOutputStream
+PdfSigner setSignDate
+PdfSigner setSignatureEvent
+PdfSigner signDeferred
+PdfSigner signDetached
+PdfSigner signExternalContainer
+PdfSigner timestamp
+PdfSigner.CryptoStandard
+PdfSigner.CryptoStandard valueOf
+PdfSigner.CryptoStandard values
+PdfSigner.ISignatureEvent
+PdfSigner.ISignatureEvent getSignatureDictionary
+PdfSimpleFont
+PdfSimpleFont addFontStream
+PdfSimpleFont convertToBytes
+PdfSimpleFont createGlyphLine
+PdfSimpleFont decode
+PdfSimpleFont flushFontData
+PdfSimpleFont getContentWidth
+PdfSimpleFont getFontDescriptor
+PdfSimpleFont getFontEncoding
+PdfSimpleFont getFontProgram
+PdfSimpleFont isBuiltInFont
+PdfSimpleFont isForceWidthsOutput
+PdfSimpleFont setFontProgram
+PdfSimpleFont setForceWidthsOutput
+PdfSimpleFont writeText
+PdfSoundAnnotation
+PdfSoundAnnotation getSound
+PdfSoundAnnotation getSubtype
+PdfSpecialCs
+PdfSpecialCs flush
+PdfSpecialCs isWrappedObjectMustBeIndirect
+PdfSpecialCs.DeviceN
+PdfSpecialCs.DeviceN getBaseCs
+PdfSpecialCs.DeviceN getDeviceNCsArray
+PdfSpecialCs.DeviceN getNames
+PdfSpecialCs.DeviceN getNumberOfComponents
+PdfSpecialCs.Indexed
+PdfSpecialCs.Indexed getBaseCs
+PdfSpecialCs.Indexed getNumberOfComponents
+PdfSpecialCs.NChannel
+PdfSpecialCs.NChannel getNChannelCsArray
+PdfSpecialCs.Pattern
+PdfSpecialCs.Pattern getNumberOfComponents
+PdfSpecialCs.Pattern isWrappedObjectMustBeIndirect
+PdfSpecialCs.Separation
+PdfSpecialCs.Separation getBaseCs
+PdfSpecialCs.Separation getName
+PdfSpecialCs.Separation getNumberOfComponents
+PdfSpecialCs.UncoloredTilingPattern
+PdfSpecialCs.UncoloredTilingPattern flush
+PdfSpecialCs.UncoloredTilingPattern getNumberOfComponents
+PdfSpecialCs.UncoloredTilingPattern getUnderlyingColorSpace
+PdfSpecialCs.UncoloredTilingPattern isWrappedObjectMustBeIndirect
+PdfSplitter
+PdfSplitter extractPageRange
+PdfSplitter extractPageRanges
+PdfSplitter getNextPdfWriter
+PdfSplitter getPdfDocument
+PdfSplitter setPreserveOutlines
+PdfSplitter setPreserveTagged
+PdfSplitter splitByOutlines
+PdfSplitter splitByPageCount
+PdfSplitter splitByPageNumbers
+PdfSplitter splitBySize
+PdfSplitter.IDocumentReadyListener
+PdfSplitter.IDocumentReadyListener documentReady
+PdfSquareAnnotation
+PdfSquareAnnotation getSubtype
+PdfStampAnnotation
+PdfStampAnnotation getStampName
+PdfStampAnnotation getSubtype
+PdfStampAnnotation setStampName
+PdfStream
+PdfStream copyContent
+PdfStream copyTo
+PdfStream getBytes
+PdfStream getCompressionLevel
+PdfStream getInputStream
+PdfStream getLength
+PdfStream getOffset
+PdfStream getOutputStream
+PdfStream getType
+PdfStream initOutputStream
+PdfStream makeIndirect
+PdfStream newInstance
+PdfStream releaseContent
+PdfStream setCompressionLevel
+PdfStream setData
+PdfStream updateLength
+PdfString
+PdfString copyContent
+PdfString copyTo
+PdfString decrypt
+PdfString encodeBytes
+PdfString encrypt
+PdfString equals
+PdfString generateContent
+PdfString generateValue
+PdfString getEncoding
+PdfString getType
+PdfString getValue
+PdfString getValueBytes
+PdfString hashCode
+PdfString isHexWriting
+PdfString makeIndirect
+PdfString newInstance
+PdfString setEncoding
+PdfString setHexWriting
+PdfString toString
+PdfString toUnicodeString
+PdfStringDestination
+PdfStringDestination getDestinationPage
+PdfStringDestination isWrappedObjectMustBeIndirect
+PdfStringDestination replaceNamedDestination
+PdfStringFS
+PdfStringFS isWrappedObjectMustBeIndirect
+PdfStructElem
+PdfStructElem addKid
+PdfStructElem flush
+PdfStructElem getActualText
+PdfStructElem getAlt
+PdfStructElem getAttributes
+PdfStructElem getDocument
+PdfStructElem getE
+PdfStructElem getK
+PdfStructElem getKids
+PdfStructElem getLang
+PdfStructElem getParent
+PdfStructElem getRole
+PdfStructElem getType
+PdfStructElem identifyType
+PdfStructElem isStructElem
+PdfStructElem isWrappedObjectMustBeIndirect
+PdfStructElem put
+PdfStructElem removeKid
+PdfStructElem setActualText
+PdfStructElem setAlt
+PdfStructElem setAttributes
+PdfStructElem setE
+PdfStructElem setLang
+PdfStructElem setRole
+PdfStructTreeRoot
+PdfStructTreeRoot addKid
+PdfStructTreeRoot copyTo
+PdfStructTreeRoot createParentTreeEntryForPage
+PdfStructTreeRoot findMcrByMcid
+PdfStructTreeRoot findObjRefByStructParentIndex
+PdfStructTreeRoot flush
+PdfStructTreeRoot getDocument
+PdfStructTreeRoot getKids
+PdfStructTreeRoot getKidsObject
+PdfStructTreeRoot getNextMcidForPage
+PdfStructTreeRoot getPageMarkedContentReferences
+PdfStructTreeRoot getParent
+PdfStructTreeRoot getParentTreeNextKey
+PdfStructTreeRoot getRole
+PdfStructTreeRoot getRoleMap
+PdfStructTreeRoot isWrappedObjectMustBeIndirect
+PdfTargetDictionary
+PdfTargetDictionary createChildTarget
+PdfTargetDictionary createParentTarget
+PdfTargetDictionary getAnnotation
+PdfTargetDictionary getName
+PdfTargetDictionary getPage
+PdfTargetDictionary getTarget
+PdfTargetDictionary isWrappedObjectMustBeIndirect
+PdfTargetDictionary put
+PdfTargetDictionary setAnnotation
+PdfTargetDictionary setName
+PdfTargetDictionary setPage
+PdfTargetDictionary setTarget
+PdfTextAnnotation
+PdfTextAnnotation getState
+PdfTextAnnotation getStateModel
+PdfTextAnnotation getSubtype
+PdfTextAnnotation setState
+PdfTextAnnotation setStateModel
+PdfTextArray
+PdfTextArray add
+PdfTextArray addAll
+PdfTextExtractor
+PdfTextExtractor getTextFromPage
+PdfTextFormField
+PdfTextFormField getFormType
+PdfTextFormField getMaxLen
+PdfTextFormField isComb
+PdfTextFormField isFileSelect
+PdfTextFormField isRichText
+PdfTextFormField isScroll
+PdfTextFormField isSpellCheck
+PdfTextFormField setComb
+PdfTextFormField setFileSelect
+PdfTextFormField setMaxLen
+PdfTextFormField setMultiline
+PdfTextFormField setPassword
+PdfTextFormField setRichText
+PdfTextFormField setScroll
+PdfTextFormField setSpellCheck
+PdfTextMarkupAnnotation
+PdfTextMarkupAnnotation createHighLight
+PdfTextMarkupAnnotation createSquiggly
+PdfTextMarkupAnnotation createStrikeout
+PdfTextMarkupAnnotation createUnderline
+PdfTextMarkupAnnotation getSubtype
+PdfTokenizer
+PdfTokenizer backOnePosition
+PdfTokenizer checkFdfHeader
+PdfTokenizer checkObjectStart
+PdfTokenizer checkPdfHeader
+PdfTokenizer checkTrailer
+PdfTokenizer close
+PdfTokenizer decodeStringContent
+PdfTokenizer getByteContent
+PdfTokenizer getDecodedStringContent
+PdfTokenizer getGenNr
+PdfTokenizer getHeaderOffset
+PdfTokenizer getIntValue
+PdfTokenizer getLongValue
+PdfTokenizer getObjNr
+PdfTokenizer getPosition
+PdfTokenizer getSafeFile
+PdfTokenizer getStartxref
+PdfTokenizer getStringValue
+PdfTokenizer getTokenType
+PdfTokenizer isCloseStream
+PdfTokenizer isDelimiter
+PdfTokenizer isDelimiterWhitespace
+PdfTokenizer isHexString
+PdfTokenizer isWhitespace
+PdfTokenizer length
+PdfTokenizer nextToken
+PdfTokenizer nextValidToken
+PdfTokenizer read
+PdfTokenizer readFully
+PdfTokenizer readLineSegment
+PdfTokenizer readString
+PdfTokenizer seek
+PdfTokenizer setCloseStream
+PdfTokenizer throwError
+PdfTokenizer tokenValueEqualsTo
+PdfTokenizer.ReusableRandomAccessSource
+PdfTokenizer.ReusableRandomAccessSource close
+PdfTokenizer.ReusableRandomAccessSource get
+PdfTokenizer.ReusableRandomAccessSource length
+PdfTokenizer.TokenType
+PdfTokenizer.TokenType valueOf
+PdfTokenizer.TokenType values
+PdfTransparencyGroup
+PdfTransparencyGroup isWrappedObjectMustBeIndirect
+PdfTransparencyGroup put
+PdfTransparencyGroup setColorSpace
+PdfTransparencyGroup setIsolated
+PdfTransparencyGroup setKnockout
+PdfTrapNetworkAnnotation
+PdfTrapNetworkAnnotation getAnnotStates
+PdfTrapNetworkAnnotation getFauxedFonts
+PdfTrapNetworkAnnotation getLastModified
+PdfTrapNetworkAnnotation getSubtype
+PdfTrapNetworkAnnotation getVersion
+PdfTrapNetworkAnnotation setAnnotStates
+PdfTrapNetworkAnnotation setFauxedFonts
+PdfTrapNetworkAnnotation setLastModified
+PdfTrapNetworkAnnotation setVersion
+PdfTrueTypeFont
+PdfTrueTypeFont addFontStream
+PdfTrueTypeFont addRangeUni
+PdfTrueTypeFont flush
+PdfTrueTypeFont getGlyph
+PdfType0Font
+PdfType0Font addRangeUni
+PdfType0Font convertToBytes
+PdfType0Font createGlyphLine
+PdfType0Font decode
+PdfType0Font flush
+PdfType0Font getCidFontType2
+PdfType0Font getCmap
+PdfType0Font getContentWidth
+PdfType0Font getFontDescriptor
+PdfType0Font getGlyph
+PdfType0Font getToUnicode
+PdfType0Font getUniMapFromOrdering
+PdfType0Font writeText
+PdfType1Font
+PdfType1Font addFontStream
+PdfType1Font flush
+PdfType1Font getGlyph
+PdfType1Font isBuiltInFont
+PdfType1Font isSubset
+PdfType1Font setSubset
+PdfType3Font
+PdfType3Font addFontStream
+PdfType3Font addGlyph
+PdfType3Font flush
+PdfType3Font getDocument
+PdfType3Font getFontDescriptor
+PdfType3Font getFontMatrix
+PdfType3Font getGlyph
+PdfType3Font getType3Glyph
+PdfType3Font isEmbedded
+PdfType3Font isSubset
+PdfType3Font setFontMatrix
+PdfVersion
+PdfVersion compareTo
+PdfVersion fromPdfName
+PdfVersion fromString
+PdfVersion toPdfName
+PdfVersion toString
+PdfViewerPreferences
+PdfViewerPreferences isWrappedObjectMustBeIndirect
+PdfViewerPreferences put
+PdfViewerPreferences setCenterWindow
+PdfViewerPreferences setDirection
+PdfViewerPreferences setDisplayDocTitle
+PdfViewerPreferences setDuplex
+PdfViewerPreferences setFitWindow
+PdfViewerPreferences setHideMenubar
+PdfViewerPreferences setHideToolbar
+PdfViewerPreferences setHideWindowUI
+PdfViewerPreferences setNonFullScreenPageMode
+PdfViewerPreferences setNumCopies
+PdfViewerPreferences setPickTrayByPDFSize
+PdfViewerPreferences setPrintArea
+PdfViewerPreferences setPrintClip
+PdfViewerPreferences setPrintPageRange
+PdfViewerPreferences setPrintScaling
+PdfViewerPreferences setViewArea
+PdfViewerPreferences setViewClip
+PdfViewerPreferences.PdfViewerPreferencesConstants
+PdfViewerPreferences.PdfViewerPreferencesConstants valueOf
+PdfViewerPreferences.PdfViewerPreferencesConstants values
+PdfVisibilityExpression
+PdfVisibilityExpression addOperand
+PdfVisibilityExpression isWrappedObjectMustBeIndirect
+PdfWatermarkAnnotation
+PdfWatermarkAnnotation getFixedPrint
+PdfWatermarkAnnotation getSubtype
+PdfWatermarkAnnotation setFixedPrint
+PdfWidgetAnnotation
+PdfWidgetAnnotation getHighlightMode
+PdfWidgetAnnotation getSubtype
+PdfWidgetAnnotation releaseFormFieldFromWidgetAnnotation
+PdfWidgetAnnotation setHighlightMode
+PdfWidgetAnnotation setParent
+PdfWin
+PdfWin isWrappedObjectMustBeIndirect
+PdfWriter
+PdfWriter calculateIndRefKey
+PdfWriter close
+PdfWriter copyObject
+PdfWriter flushModifiedWaitingObjects
+PdfWriter flushObject
+PdfWriter flushWaitingObjects
+PdfWriter getCompressionLevel
+PdfWriter getCopyObjectKey
+PdfWriter isFullCompression
+PdfWriter setCompressionLevel
+PdfWriter setSmartMode
+PdfWriter write
+PdfWriter writeHeader
+PdfWriter writeToBody
+PdfXObject
+PdfXObject getHeight
+PdfXObject getWidth
+PdfXObject isWrappedObjectMustBeIndirect
+PdfXObject makeXObject
+PdfXObject setLayer
+Pfm2afm
+Pfm2afm convert
+Placement
+Placement doPlacement
+PngImageData
+PngWriter
+PngWriter outputInt
+PngWriter writeChunk
+PngWriter writeData
+PngWriter writeEnd
+PngWriter writeHeader
+PngWriter writeIccProfile
+PngWriter writePalette
+Point
+Point equals
+Point isPt2BetweenPt1AndPt3
+Point set
+Point setX
+Point setY
+Point setZ
+Point slopesEqual
+Point toString
+Point.DoublePoint
+Point.DoublePoint getX
+Point.DoublePoint getY
+Point.DoublePoint getZ
+Point.LongPoint
+Point.LongPoint getDeltaX
+Point.LongPoint getX
+Point.LongPoint getY
+Point.LongPoint getZ
+PolyNode
+PolyNode addChild
+PolyNode getChildCount
+PolyNode getChilds
+PolyNode getContour
+PolyNode getEndType
+PolyNode getJoinType
+PolyNode getNext
+PolyNode getParent
+PolyNode getPolygon
+PolyNode isHole
+PolyNode isOpen
+PolyNode setEndType
+PolyNode setJoinType
+PolyNode setOpen
+PolyNode setParent
+PolyTree
+PolyTree Clear
+PolyTree getAllPolys
+PolyTree getFirst
+PolyTree getTotalSize
+PrivateKeySignature
+PrivateKeySignature getEncryptionAlgorithm
+PrivateKeySignature getHashAlgorithm
+PrivateKeySignature sign
+Property
+Property isPropertyInherited
+PropertyOptions
+PropertyOptions assertConsistency
+PropertyOptions defineOptionName
+PropertyOptions equalArrayTypes
+PropertyOptions getHasLanguage
+PropertyOptions getHasQualifiers
+PropertyOptions getHasType
+PropertyOptions getValidOptions
+PropertyOptions isArray
+PropertyOptions isArrayAltText
+PropertyOptions isArrayAlternate
+PropertyOptions isArrayOrdered
+PropertyOptions isCompositeProperty
+PropertyOptions isOnlyArrayOptions
+PropertyOptions isQualifier
+PropertyOptions isSchemaNode
+PropertyOptions isSimple
+PropertyOptions isStruct
+PropertyOptions isURI
+PropertyOptions mergeWith
+PropertyOptions setArray
+PropertyOptions setArrayAltText
+PropertyOptions setArrayAlternate
+PropertyOptions setArrayOrdered
+PropertyOptions setHasLanguage
+PropertyOptions setHasQualifiers
+PropertyOptions setHasType
+PropertyOptions setQualifier
+PropertyOptions setSchemaNode
+PropertyOptions setStruct
+PropertyOptions setURI
+ProviderDigest
+ProviderDigest getMessageDigest
+PubKeySecurityHandler
+PubKeySecurityHandler addAllRecipients
+PubKeySecurityHandler computeGlobalKey
+PubKeySecurityHandler computeGlobalKeyOnReading
+PubKeySecurityHandler createRecipientsArray
+PubKeySecurityHandler getDigestAlgorithm
+PubKeySecurityHandler initKey
+PubKeySecurityHandler initKeyAndFillDictionary
+PubKeySecurityHandler initKeyAndReadDictionary
+PubKeySecurityHandler setPubSecSpecificHandlerDicEntries
+PubSecHandlerUsingAes128
+PubSecHandlerUsingAes128 getDecryptor
+PubSecHandlerUsingAes128 getDigestAlgorithm
+PubSecHandlerUsingAes128 getEncryptionStream
+PubSecHandlerUsingAes128 initKey
+PubSecHandlerUsingAes128 setHashKeyForNextObject
+PubSecHandlerUsingAes128 setPubSecSpecificHandlerDicEntries
+PubSecHandlerUsingAes256
+PubSecHandlerUsingAes256 getDigestAlgorithm
+PubSecHandlerUsingAes256 initKey
+PubSecHandlerUsingAes256 setHashKeyForNextObject
+PubSecHandlerUsingAes256 setPubSecSpecificHandlerDicEntries
+PubSecHandlerUsingStandard128
+PubSecHandlerUsingStandard128 setPubSecSpecificHandlerDicEntries
+PubSecHandlerUsingStandard40
+PubSecHandlerUsingStandard40 getDecryptor
+PubSecHandlerUsingStandard40 getDigestAlgorithm
+PubSecHandlerUsingStandard40 getEncryptionStream
+PubSecHandlerUsingStandard40 initKey
+PubSecHandlerUsingStandard40 setPubSecSpecificHandlerDicEntries
+PublicKeyRecipient
+PublicKeyRecipient getCertificate
+PublicKeyRecipient getCms
+PublicKeyRecipient getPermission
+PublicKeyRecipient setCms
+QName
+QName getLocalName
+QName getPrefix
+QName hasPrefix
+QRCodeWriter
+QRCodeWriter encode
+RASInputStream
+RASInputStream read
+RandomAccessFileOrArray
+RandomAccessFileOrArray close
+RandomAccessFileOrArray createSourceView
+RandomAccessFileOrArray createView
+RandomAccessFileOrArray getPosition
+RandomAccessFileOrArray length
+RandomAccessFileOrArray pushBack
+RandomAccessFileOrArray read
+RandomAccessFileOrArray readBoolean
+RandomAccessFileOrArray readByte
+RandomAccessFileOrArray readChar
+RandomAccessFileOrArray readCharLE
+RandomAccessFileOrArray readDouble
+RandomAccessFileOrArray readDoubleLE
+RandomAccessFileOrArray readFloat
+RandomAccessFileOrArray readFloatLE
+RandomAccessFileOrArray readFully
+RandomAccessFileOrArray readInt
+RandomAccessFileOrArray readIntLE
+RandomAccessFileOrArray readLine
+RandomAccessFileOrArray readLong
+RandomAccessFileOrArray readLongLE
+RandomAccessFileOrArray readShort
+RandomAccessFileOrArray readShortLE
+RandomAccessFileOrArray readString
+RandomAccessFileOrArray readUTF
+RandomAccessFileOrArray readUnsignedByte
+RandomAccessFileOrArray readUnsignedInt
+RandomAccessFileOrArray readUnsignedIntLE
+RandomAccessFileOrArray readUnsignedShort
+RandomAccessFileOrArray readUnsignedShortLE
+RandomAccessFileOrArray seek
+RandomAccessFileOrArray skip
+RandomAccessFileOrArray skipBytes
+RandomAccessSourceFactory
+RandomAccessSourceFactory createBestSource
+RandomAccessSourceFactory createRanged
+RandomAccessSourceFactory createSource
+RandomAccessSourceFactory setExclusivelyLockFile
+RandomAccessSourceFactory setForceRead
+RandomAccessSourceFactory setUsePlainRandomAccess
+RawImageData
+RawImageData getTypeCcitt
+RawImageData isRawImage
+RawImageData setTypeCcitt
+RawImageHelper
+RawImageHelper updateCcittImageParameters
+RawImageHelper updateImageAttributes
+RawImageHelper updateRawImageParameters
+ReaderProperties
+ReaderProperties setPassword
+ReaderProperties setPublicKeySecurityParams
+Rectangle
+Rectangle applyMargins
+Rectangle clone
+Rectangle decreaseHeight
+Rectangle equalsWithEpsilon
+Rectangle getBottom
+Rectangle getCommonRectangle
+Rectangle getHeight
+Rectangle getLeft
+Rectangle getRight
+Rectangle getTop
+Rectangle getWidth
+Rectangle getX
+Rectangle getY
+Rectangle increaseHeight
+Rectangle intersectsLine
+Rectangle moveDown
+Rectangle moveLeft
+Rectangle moveRight
+Rectangle moveUp
+Rectangle setBbox
+Rectangle setHeight
+Rectangle setWidth
+Rectangle setX
+Rectangle setY
+Rectangle toString
+ReedSolomon
+ReedSolomon generateECC
+ResourceUtil
+ResourceUtil getResourceStream
+RidgeBorder
+RidgeBorder getType
+RidgeBorder setInnerHalfColor
+RidgeBorder setOuterHalfColor
+RomanNumbering
+RomanNumbering convert
+RomanNumbering toRoman
+RomanNumbering toRomanLowerCase
+RomanNumbering toRomanUpperCase
+RootElement
+RootElement add
+RootElement deleteOwnProperty
+RootElement ensureRootRendererNotNull
+RootElement getDefaultProperty
+RootElement getOwnProperty
+RootElement getProperty
+RootElement getRenderer
+RootElement hasOwnProperty
+RootElement hasProperty
+RootElement setProperty
+RootElement showTextAligned
+RootElement showTextAlignedKerned
+RootRenderer
+RootRenderer addChild
+RootRenderer close
+RootRenderer flush
+RootRenderer flushSingleRenderer
+RootRenderer getCurrentArea
+RootRenderer layout
+RootRenderer updateCurrentArea
+RootStoreVerifier
+RootStoreVerifier setRootStore
+RootStoreVerifier verify
+RoundDotsBorder
+RoundDotsBorder draw
+RoundDotsBorder drawCellBorder
+RoundDotsBorder getDotsGap
+RoundDotsBorder getType
+RunLengthDecodeFilter
+RunLengthDecodeFilter decode
+ScriptRecord
+SecurityHandler
+SecurityHandler getDecryptor
+SecurityHandler getEncryptionStream
+SecurityHandler setHashKeyForNextObject
+SecurityIDs
+Separation
+SerializeOptions
+SerializeOptions clone
+SerializeOptions defineOptionName
+SerializeOptions getBaseIndent
+SerializeOptions getEncodeUTF16BE
+SerializeOptions getEncodeUTF16LE
+SerializeOptions getEncoding
+SerializeOptions getExactPacketLength
+SerializeOptions getIncludeThumbnailPad
+SerializeOptions getIndent
+SerializeOptions getNewline
+SerializeOptions getOmitPacketWrapper
+SerializeOptions getOmitVersionAttribute
+SerializeOptions getOmitXmpMetaElement
+SerializeOptions getPadding
+SerializeOptions getReadOnlyPacket
+SerializeOptions getSort
+SerializeOptions getUseCanonicalFormat
+SerializeOptions getUseCompactFormat
+SerializeOptions getValidOptions
+SerializeOptions setBaseIndent
+SerializeOptions setEncodeUTF16BE
+SerializeOptions setEncodeUTF16LE
+SerializeOptions setExactPacketLength
+SerializeOptions setIncludeThumbnailPad
+SerializeOptions setIndent
+SerializeOptions setNewline
+SerializeOptions setOmitPacketWrapper
+SerializeOptions setOmitXmpMetaElement
+SerializeOptions setPadding
+SerializeOptions setReadOnlyPacket
+SerializeOptions setSort
+SerializeOptions setUseCanonicalFormat
+SerializeOptions setUseCompactFormat
+SignaturePermissions
+SignaturePermissions getFieldLocks
+SignaturePermissions isAnnotationsAllowed
+SignaturePermissions isCertification
+SignaturePermissions isFillInAllowed
+SignatureUtil
+SignatureUtil asLongArray
+SignatureUtil doesSignatureFieldExist
+SignatureUtil extractRevision
+SignatureUtil getBlankSignatureNames
+SignatureUtil getRevision
+SignatureUtil getSignatureDictionary
+SignatureUtil getSignatureNames
+SignatureUtil getTotalRevisions
+SignatureUtil getTranslatedFieldName
+SignatureUtil signatureCoversWholeDocument
+SignatureUtil verifySignature
+SimpleTextExtractionStrategy
+SimpleTextExtractionStrategy appendTextChunk
+SimpleTextExtractionStrategy eventOccurred
+SimpleTextExtractionStrategy getResultantText
+SimpleTextExtractionStrategy getSupportedEvents
+SolidBorder
+SolidBorder draw
+SolidBorder drawCellBorder
+SolidBorder getType
+SolidLine
+SolidLine draw
+SolidLine getColor
+SolidLine getLineWidth
+SolidLine setColor
+SolidLine setLineWidth
+StampingProperties
+StampingProperties preserveEncryption
+StampingProperties useAppendMode
+StandardDecryptor
+StandardDecryptor finish
+StandardDecryptor update
+StandardHandlerUsingAes128
+StandardHandlerUsingAes128 getDecryptor
+StandardHandlerUsingAes128 getEncryptionStream
+StandardHandlerUsingAes128 setHashKeyForNextObject
+StandardHandlerUsingAes128 setSpecificHandlerDicEntries
+StandardHandlerUsingAes256
+StandardHandlerUsingAes256 getDecryptor
+StandardHandlerUsingAes256 getEncryptionStream
+StandardHandlerUsingAes256 isEncryptMetadata
+StandardHandlerUsingAes256 setHashKeyForNextObject
+StandardHandlerUsingStandard128
+StandardHandlerUsingStandard128 calculatePermissions
+StandardHandlerUsingStandard128 computeGlobalEncryptionKey
+StandardHandlerUsingStandard128 computeOwnerKey
+StandardHandlerUsingStandard128 computeUserKey
+StandardHandlerUsingStandard128 isValidPassword
+StandardHandlerUsingStandard128 setSpecificHandlerDicEntries
+StandardHandlerUsingStandard40
+StandardHandlerUsingStandard40 calculatePermissions
+StandardHandlerUsingStandard40 computeGlobalEncryptionKey
+StandardHandlerUsingStandard40 computeOwnerKey
+StandardHandlerUsingStandard40 computeUserKey
+StandardHandlerUsingStandard40 computeUserPassword
+StandardHandlerUsingStandard40 getDecryptor
+StandardHandlerUsingStandard40 getEncryptionStream
+StandardHandlerUsingStandard40 isValidPassword
+StandardHandlerUsingStandard40 setSpecificHandlerDicEntries
+StandardSecurityHandler
+StandardSecurityHandler equalsArray
+StandardSecurityHandler generateOwnerPasswordIfNullOrEmpty
+StandardSecurityHandler getIsoBytes
+StandardSecurityHandler getPermissions
+StandardSecurityHandler isUsedOwnerPassword
+StandardSecurityHandler setStandardHandlerDicEntries
+StreamUtil
+StreamUtil copyBytes
+StreamUtil createBufferedEscapedString
+StreamUtil createBufferedHexedString
+StreamUtil createEscapedString
+StreamUtil inputStreamToArray
+StreamUtil readFully
+StreamUtil skip
+StreamUtil transferBytes
+StreamUtil writeEscapedString
+StreamUtil writeHexedString
+Style
+Style getMarginBottom
+Style getMarginLeft
+Style getMarginRight
+Style getMarginTop
+Style getPaddingBottom
+Style getPaddingLeft
+Style getPaddingRight
+Style getPaddingTop
+Style isKeepTogether
+Style setKeepTogether
+Style setMargin
+Style setMarginBottom
+Style setMarginLeft
+Style setMarginRight
+Style setMarginTop
+Style setMargins
+Style setPadding
+Style setPaddingBottom
+Style setPaddingLeft
+Style setPaddingRight
+Style setPaddingTop
+Style setPaddings
+Style setRotationAngle
+Style setSpacingRatio
+Style setVerticalAlignment
+SubTableLookup5Format1
+SubTableLookup5Format1 getSetOfRulesForStartGlyph
+SubTableLookup5Format1.SubstRuleFormat1
+SubTableLookup5Format1.SubstRuleFormat1 getContextLength
+SubTableLookup5Format1.SubstRuleFormat1 getSubstLookupRecords
+SubTableLookup5Format1.SubstRuleFormat1 isGlyphMatchesInput
+SubTableLookup5Format2
+SubTableLookup5Format2 getSetOfRulesForStartGlyph
+SubTableLookup5Format2 setSubClassSets
+SubTableLookup5Format2.SubstRuleFormat2
+SubTableLookup5Format2.SubstRuleFormat2 getContextLength
+SubTableLookup5Format2.SubstRuleFormat2 getSubstLookupRecords
+SubTableLookup5Format2.SubstRuleFormat2 isGlyphMatchesInput
+SubTableLookup5Format3
+SubTableLookup5Format3 getSetOfRulesForStartGlyph
+SubTableLookup5Format3.SubstRuleFormat3
+SubTableLookup5Format3.SubstRuleFormat3 getContextLength
+SubTableLookup5Format3.SubstRuleFormat3 getSubstLookupRecords
+SubTableLookup5Format3.SubstRuleFormat3 isGlyphMatchesInput
+SubTableLookup6
+SubTableLookup6 checkIfBacktrackContextMatch
+SubTableLookup6 checkIfLookaheadContextMatch
+SubTableLookup6 getMatchingContextRule
+SubTableLookup6Format1
+SubTableLookup6Format1 getSetOfRulesForStartGlyph
+SubTableLookup6Format1.SubstRuleFormat1
+SubTableLookup6Format1.SubstRuleFormat1 getBacktrackContextLength
+SubTableLookup6Format1.SubstRuleFormat1 getContextLength
+SubTableLookup6Format1.SubstRuleFormat1 getLookaheadContextLength
+SubTableLookup6Format1.SubstRuleFormat1 getSubstLookupRecords
+SubTableLookup6Format1.SubstRuleFormat1 isGlyphMatchesBacktrack
+SubTableLookup6Format1.SubstRuleFormat1 isGlyphMatchesInput
+SubTableLookup6Format1.SubstRuleFormat1 isGlyphMatchesLookahead
+SubTableLookup6Format2
+SubTableLookup6Format2 getSetOfRulesForStartGlyph
+SubTableLookup6Format2 setSubClassSets
+SubTableLookup6Format2.SubstRuleFormat2
+SubTableLookup6Format2.SubstRuleFormat2 getBacktrackContextLength
+SubTableLookup6Format2.SubstRuleFormat2 getContextLength
+SubTableLookup6Format2.SubstRuleFormat2 getLookaheadContextLength
+SubTableLookup6Format2.SubstRuleFormat2 getSubstLookupRecords
+SubTableLookup6Format2.SubstRuleFormat2 isGlyphMatchesBacktrack
+SubTableLookup6Format2.SubstRuleFormat2 isGlyphMatchesInput
+SubTableLookup6Format2.SubstRuleFormat2 isGlyphMatchesLookahead
+SubTableLookup6Format3
+SubTableLookup6Format3 getSetOfRulesForStartGlyph
+SubTableLookup6Format3.SubstRuleFormat3
+SubTableLookup6Format3.SubstRuleFormat3 getBacktrackContextLength
+SubTableLookup6Format3.SubstRuleFormat3 getContextLength
+SubTableLookup6Format3.SubstRuleFormat3 getLookaheadContextLength
+SubTableLookup6Format3.SubstRuleFormat3 getSubstLookupRecords
+SubTableLookup6Format3.SubstRuleFormat3 isGlyphMatchesBacktrack
+SubTableLookup6Format3.SubstRuleFormat3 isGlyphMatchesInput
+SubTableLookup6Format3.SubstRuleFormat3 isGlyphMatchesLookahead
+Subpath
+Subpath addSegment
+Subpath getLastPoint
+Subpath getPiecewiseLinearApproximation
+Subpath getSegments
+Subpath getStartPoint
+Subpath isClosed
+Subpath isDegenerate
+Subpath isEmpty
+Subpath isSinglePointClosed
+Subpath isSinglePointOpen
+Subpath setClosed
+Subpath setStartPoint
+SubstLookupRecord
+SystemOutCounter
+SystemOutCounter getCounter
+SystemOutCounter onDocumentRead
+SystemOutCounter onDocumentWritten
+SystemUtil
+SystemUtil getFreeMemory
+SystemUtil getPropertyOrEnvironmentVariable
+SystemUtil getSystemTimeMillis
+SystemUtil runProcessAndWait
+TIFFConstants
+TIFFDirectory
+TIFFDirectory getField
+TIFFDirectory getFieldAsByte
+TIFFDirectory getFieldAsDouble
+TIFFDirectory getFieldAsFloat
+TIFFDirectory getFieldAsLong
+TIFFDirectory getFields
+TIFFDirectory getIFDOffset
+TIFFDirectory getNextIFDOffset
+TIFFDirectory getNumDirectories
+TIFFDirectory getNumEntries
+TIFFDirectory getTags
+TIFFDirectory isBigEndian
+TIFFDirectory isTagPresent
+TIFFFaxDecoder
+TIFFFaxDecoder decode1D
+TIFFFaxDecoder decode2D
+TIFFFaxDecoder decodeNextScanline
+TIFFFaxDecoder decodeT6
+TIFFFaxDecoder reverseBits
+TIFFFaxDecoder setRecoverFromImageError
+TIFFFaxDecompressor
+TIFFFaxDecompressor SetOptions
+TIFFFaxDecompressor decodeNextScanline
+TIFFFaxDecompressor decodeRLE
+TIFFFaxDecompressor decodeRaw
+TIFFFaxDecompressor decodeT4
+TIFFFaxDecompressor decodeT6
+TIFFField
+TIFFField compareTo
+TIFFField getAsBytes
+TIFFField getAsChars
+TIFFField getAsDouble
+TIFFField getAsDoubles
+TIFFField getAsFloat
+TIFFField getAsFloats
+TIFFField getAsInt
+TIFFField getAsInts
+TIFFField getAsLong
+TIFFField getAsLongs
+TIFFField getAsRational
+TIFFField getAsRationals
+TIFFField getAsSRational
+TIFFField getAsSRationals
+TIFFField getAsShorts
+TIFFField getAsString
+TIFFField getCount
+TIFFField getTag
+TIFFField getType
+TIFFLZWDecoder
+TIFFLZWDecoder addStringToTable
+TIFFLZWDecoder composeString
+TIFFLZWDecoder decode
+TIFFLZWDecoder getNextCode
+TIFFLZWDecoder initializeStringTable
+TIFFLZWDecoder writeString
+TSAClientBouncyCastle
+TSAClientBouncyCastle getMessageDigest
+TSAClientBouncyCastle getTSAResponse
+TSAClientBouncyCastle getTimeStampToken
+TSAClientBouncyCastle getTokenSizeEstimate
+TSAClientBouncyCastle setTSAInfo
+Tab
+Tab makeNewRenderer
+TabAlignment
+TabAlignment valueOf
+TabAlignment values
+TabRenderer
+TabRenderer draw
+TabRenderer getNextRenderer
+TabRenderer layout
+TabStop
+TabStop getTabAlignment
+TabStop getTabAnchor
+TabStop getTabLeader
+TabStop getTabPosition
+TabStop setTabAlignment
+TabStop setTabAnchor
+TabStop setTabLeader
+Table
+Table addCell
+Table addFooterCell
+Table addHeaderCell
+Table calculateWidths
+Table complete
+Table createRendererSubTree
+Table flush
+Table flushContent
+Table getAccessibilityProperties
+Table getCell
+Table getColumnWidth
+Table getFooter
+Table getHeader
+Table getLastRowBottomBorder
+Table getNumberOfColumns
+Table getNumberOfRows
+Table getRenderer
+Table getRole
+Table getRowGroups
+Table isComplete
+Table isSkipFirstHeader
+Table isSkipLastFooter
+Table makeNewRenderer
+Table setDocument
+Table setRole
+Table setSkipFirstHeader
+Table setSkipLastFooter
+Table setWidth
+Table startNewRow
+Table.RowRange
+Table.RowRange getFinishRow
+Table.RowRange getStartRow
+TableRenderer
+TableRenderer addChild
+TableRenderer calculateScaledColumnWidths
+TableRenderer createOverflowRenderer
+TableRenderer createSplitRenderer
+TableRenderer draw
+TableRenderer drawBorders
+TableRenderer drawChildren
+TableRenderer getNextRenderer
+TableRenderer layout
+TableRenderer move
+TableRenderer split
+TagAndLocation
+TagReference
+TagReference addProperty
+TagReference createNextMcid
+TagReference getProperties
+TagReference getProperty
+TagReference getRole
+TagReference removeProperty
+TagStructureContext
+TagStructureContext actualizeTagsProperties
+TagStructureContext flushPageTags
+TagStructureContext getAutoTaggingPointer
+TagStructureContext getTagStructureTargetVersion
+TagStructureContext isElementConnectedToTag
+TagStructureContext moveTagPointerToTag
+TagStructureContext normalizeDocumentRootTag
+TagStructureContext removeAllConnectionsToTags
+TagStructureContext removeAnnotationTag
+TagStructureContext removeContentItem
+TagStructureContext removeElementConnectionToTag
+TagStructureContext removePageTags
+TagStructureContext setForbidUnknownRoles
+TagTreePointer
+TagTreePointer addAnnotationTag
+TagTreePointer addTag
+TagTreePointer flushTag
+TagTreePointer getConnectedElement
+TagTreePointer getCurrentContentStream
+TagTreePointer getCurrentPage
+TagTreePointer getDocument
+TagTreePointer getKidsRoles
+TagTreePointer getProperties
+TagTreePointer getRole
+TagTreePointer getTagReference
+TagTreePointer isElementConnectedToTag
+TagTreePointer moveToKid
+TagTreePointer moveToParent
+TagTreePointer moveToRoot
+TagTreePointer moveToTag
+TagTreePointer relocateKid
+TagTreePointer removeElementConnectionToTag
+TagTreePointer removeTag
+TagTreePointer setContentStreamForTagging
+TagTreePointer setNextNewKidIndex
+TagTreePointer setPageForTagging
+TagTreePointer setRole
+TaggedPdfReaderTool
+TaggedPdfReaderTool convertToXml
+TaggedPdfReaderTool escapeXML
+TaggedPdfReaderTool fixTagName
+TaggedPdfReaderTool inspectAttributes
+TaggedPdfReaderTool inspectKid
+TaggedPdfReaderTool inspectKids
+TaggedPdfReaderTool isValidCharacterValue
+TaggedPdfReaderTool parseTag
+TaggedPdfReaderTool setRootTag
+TernaryTree
+TernaryTree balance
+TernaryTree find
+TernaryTree init
+TernaryTree insert
+TernaryTree insertBalanced
+TernaryTree keys
+TernaryTree knows
+TernaryTree size
+TernaryTree strcmp
+TernaryTree strcpy
+TernaryTree strlen
+TernaryTree trimToSize
+Text
+Text getAccessibilityProperties
+Text getHorizontalScaling
+Text getRole
+Text getText
+Text getTextRise
+Text makeNewRenderer
+Text setHorizontalScaling
+Text setRole
+Text setSkew
+Text setText
+Text setTextRise
+TextAlignment
+TextAlignment valueOf
+TextAlignment values
+TextLayoutResult
+TextLayoutResult isSplitForcedByNewline
+TextLayoutResult isWordHasBeenSplit
+TextLayoutResult setSplitForcedByNewline
+TextLayoutResult setWordHasBeenSplit
+TextMarginFinder
+TextMarginFinder eventOccurred
+TextMarginFinder getSupportedEvents
+TextMarginFinder getTextRectangle
+TextRegionEventFilter
+TextRegionEventFilter accept
+TextRenderInfo
+TextRenderInfo getActualText
+TextRenderInfo getAscentLine
+TextRenderInfo getBaseline
+TextRenderInfo getCanvasTagHierarchy
+TextRenderInfo getCharSpacing
+TextRenderInfo getCharacterRenderInfos
+TextRenderInfo getDescentLine
+TextRenderInfo getFillColor
+TextRenderInfo getFont
+TextRenderInfo getFontSize
+TextRenderInfo getHorizontalScaling
+TextRenderInfo getLeading
+TextRenderInfo getMcid
+TextRenderInfo getPdfString
+TextRenderInfo getRise
+TextRenderInfo getSingleSpaceWidth
+TextRenderInfo getStrokeColor
+TextRenderInfo getText
+TextRenderInfo getTextRenderMode
+TextRenderInfo getUnscaledBaseline
+TextRenderInfo getUnscaledWidth
+TextRenderInfo getWordSpacing
+TextRenderInfo hasMcid
+TextRenderer
+TextRenderer applyOtf
+TextRenderer baseCharactersCount
+TextRenderer calculateLineWidth
+TextRenderer charAt
+TextRenderer createOverflowRenderer
+TextRenderer createSplitRenderer
+TextRenderer draw
+TextRenderer drawBackground
+TextRenderer drawSingleUnderline
+TextRenderer getAscent
+TextRenderer getDescent
+TextRenderer getFirstYLineRecursively
+TextRenderer getNextRenderer
+TextRenderer getNumberOfSpaces
+TextRenderer getTabAnchorCharacterPosition
+TextRenderer getText
+TextRenderer getYLine
+TextRenderer isNewLine
+TextRenderer layout
+TextRenderer length
+TextRenderer lineLength
+TextRenderer moveYLineTo
+TextRenderer setText
+TextRenderer split
+TextRenderer toString
+TextRenderer trimFirst
+TextRenderer trimLast
+TextUtil
+TextUtil charToString
+TextUtil convertFromUtf32
+TextUtil convertFromUtf32ToCharArray
+TextUtil convertToUtf32
+TextUtil isSurrogateHigh
+TextUtil isSurrogateLow
+TextUtil isSurrogatePair
+TiffImageData
+TiffImageData getNumberOfPages
+TiffImageData getPage
+TiffImageData isDirect
+TiffImageData isRecoverFromImageError
+TiffImageData setOriginalType
+TiffWriter
+TiffWriter addField
+TiffWriter compressLZW
+TiffWriter getIfdSize
+TiffWriter writeFile
+TiffWriter writeLong
+TiffWriter writeShort
+TiffWriter.FieldAscii
+TiffWriter.FieldBase
+TiffWriter.FieldBase getTag
+TiffWriter.FieldBase getValueSize
+TiffWriter.FieldBase setOffset
+TiffWriter.FieldBase writeField
+TiffWriter.FieldBase writeValue
+TiffWriter.FieldByte
+TiffWriter.FieldImage
+TiffWriter.FieldLong
+TiffWriter.FieldRational
+TiffWriter.FieldShort
+TiffWriter.FieldUndefined
+TrueTypeCollection
+TrueTypeCollection getFontByTccIndex
+TrueTypeCollection getTTCSize
+TrueTypeCollection isCached
+TrueTypeCollection setCached
+TrueTypeFont
+TrueTypeFont getActiveCmap
+TrueTypeFont getCodePagesSupported
+TrueTypeFont getDirectoryOffset
+TrueTypeFont getFontStreamBytes
+TrueTypeFont getGdefTable
+TrueTypeFont getGposTable
+TrueTypeFont getGsubTable
+TrueTypeFont getKerning
+TrueTypeFont getPdfFontFlags
+TrueTypeFont getSubset
+TrueTypeFont hasKernPairs
+TrueTypeFont isCff
+TrueTypeFont readGdefTable
+TrueTypeFont readGposTable
+TrueTypeFont readGsubTable
+Type1Font
+Type1Font createStandardFont
+Type1Font getCharacterSet
+Type1Font getFontStreamBytes
+Type1Font getFontStreamLengths
+Type1Font getGlyph
+Type1Font getKerning
+Type1Font getPdfFontFlags
+Type1Font hasKernPairs
+Type1Font isBuiltInFont
+Type1Font process
+Type1Font setKerning
+Type3FontProgram
+Type3FontProgram getGlyphsCount
+Type3FontProgram getKerning
+Type3FontProgram getPdfFontFlags
+Type3FontProgram getType3Glyph
+Type3FontProgram isColorized
+Type3FontProgram isFontSpecific
+Type3Glyph
+Type3Glyph addImage
+Type3Glyph getLlx
+Type3Glyph getLly
+Type3Glyph getUrx
+Type3Glyph getUry
+Type3Glyph getWx
+Type3Glyph isColor
+Underline
+Underline getColor
+Underline getLineCapStyle
+Underline getThickness
+Underline getYPosition
+Underline getYPositionMul
+UnitValue
+UnitValue createPercentValue
+UnitValue createPointValue
+UnitValue equals
+UnitValue getUnitType
+UnitValue getValue
+UnitValue hashCode
+UnitValue isPercentValue
+UnitValue isPointValue
+UnitValue setUnitType
+UnitValue setValue
+UrlUtil
+UrlUtil openStream
+UrlUtil toURL
+Utils
+Utils escapeXML
+Utils isXMLName
+Utils isXMLNameNS
+Utils normalizeLangValue
+Vector
+Vector cross
+Vector dot
+Vector equals
+Vector get
+Vector hashCode
+Vector length
+Vector lengthSquared
+Vector multiply
+Vector normalize
+Vector subtract
+Vector toString
+VerificationException
+VerificationOK
+VerificationOK toString
+Version
+Version getInstance
+Version getKey
+Version getProduct
+Version getRelease
+Version getVersion
+Version isAGPLVersion
+Version isExpired
+VerticalAlignment
+VerticalAlignment valueOf
+VerticalAlignment values
+WebColors
+WebColors getRGBColor
+WindowRandomAccessSource
+WindowRandomAccessSource close
+WindowRandomAccessSource get
+WindowRandomAccessSource length
+WmfImageData
+WmfImageHelper
+WmfImageHelper createPdfForm
+WriterException
+WriterProperties
+WriterProperties addXmpMetadata
+WriterProperties setCompressionLevel
+WriterProperties setFullCompressionMode
+WriterProperties setPdfVersion
+WriterProperties setPublicKeyEncryption
+WriterProperties setStandardEncryption
+WriterProperties useDebugMode
+WriterProperties useSmartMode
+XMPAliasInfo
+XMPAliasInfo getAliasForm
+XMPAliasInfo getNamespace
+XMPAliasInfo getPrefix
+XMPAliasInfo getPropName
+XMPConst
+XMPDateTime
+XMPDateTime getCalendar
+XMPDateTime getDay
+XMPDateTime getHour
+XMPDateTime getISO8601String
+XMPDateTime getMinute
+XMPDateTime getMonth
+XMPDateTime getNanoSecond
+XMPDateTime getSecond
+XMPDateTime getTimeZone
+XMPDateTime getYear
+XMPDateTime hasDate
+XMPDateTime hasTime
+XMPDateTime hasTimeZone
+XMPDateTime setDay
+XMPDateTime setHour
+XMPDateTime setMinute
+XMPDateTime setMonth
+XMPDateTime setNanoSecond
+XMPDateTime setSecond
+XMPDateTime setTimeZone
+XMPDateTime setYear
+XMPDateTimeFactory
+XMPDateTimeFactory convertToLocalTime
+XMPDateTimeFactory convertToUTCTime
+XMPDateTimeFactory create
+XMPDateTimeFactory createFromCalendar
+XMPDateTimeFactory createFromISO8601
+XMPDateTimeFactory getCurrentDateTime
+XMPDateTimeFactory setLocalTimeZone
+XMPDateTimeImpl
+XMPDateTimeImpl compareTo
+XMPDateTimeImpl getCalendar
+XMPDateTimeImpl getDay
+XMPDateTimeImpl getHour
+XMPDateTimeImpl getISO8601String
+XMPDateTimeImpl getMinute
+XMPDateTimeImpl getMonth
+XMPDateTimeImpl getNanoSecond
+XMPDateTimeImpl getSecond
+XMPDateTimeImpl getTimeZone
+XMPDateTimeImpl getYear
+XMPDateTimeImpl hasDate
+XMPDateTimeImpl hasTime
+XMPDateTimeImpl hasTimeZone
+XMPDateTimeImpl setDay
+XMPDateTimeImpl setHour
+XMPDateTimeImpl setMinute
+XMPDateTimeImpl setMonth
+XMPDateTimeImpl setNanoSecond
+XMPDateTimeImpl setSecond
+XMPDateTimeImpl setTimeZone
+XMPDateTimeImpl setYear
+XMPDateTimeImpl toString
+XMPError
+XMPException
+XMPException getErrorCode
+XMPIterator
+XMPIterator skipSiblings
+XMPIterator skipSubtree
+XMPIteratorImpl
+XMPIteratorImpl getBaseNS
+XMPIteratorImpl getOptions
+XMPIteratorImpl hasNext
+XMPIteratorImpl next
+XMPIteratorImpl remove
+XMPIteratorImpl setBaseNS
+XMPIteratorImpl skipSiblings
+XMPIteratorImpl skipSubtree
+XMPMeta
+XMPMeta appendArrayItem
+XMPMeta clone
+XMPMeta countArrayItems
+XMPMeta deleteArrayItem
+XMPMeta deleteProperty
+XMPMeta deleteQualifier
+XMPMeta deleteStructField
+XMPMeta doesArrayItemExist
+XMPMeta doesPropertyExist
+XMPMeta doesQualifierExist
+XMPMeta doesStructFieldExist
+XMPMeta dumpObject
+XMPMeta getArrayItem
+XMPMeta getLocalizedText
+XMPMeta getObjectName
+XMPMeta getPacketHeader
+XMPMeta getProperty
+XMPMeta getPropertyBase64
+XMPMeta getPropertyBoolean
+XMPMeta getPropertyCalendar
+XMPMeta getPropertyDate
+XMPMeta getPropertyDouble
+XMPMeta getPropertyInteger
+XMPMeta getPropertyLong
+XMPMeta getPropertyString
+XMPMeta getQualifier
+XMPMeta getStructField
+XMPMeta insertArrayItem
+XMPMeta iterator
+XMPMeta normalize
+XMPMeta setArrayItem
+XMPMeta setLocalizedText
+XMPMeta setObjectName
+XMPMeta setProperty
+XMPMeta setPropertyBase64
+XMPMeta setPropertyBoolean
+XMPMeta setPropertyCalendar
+XMPMeta setPropertyDate
+XMPMeta setPropertyDouble
+XMPMeta setPropertyInteger
+XMPMeta setPropertyLong
+XMPMeta setQualifier
+XMPMeta setStructField
+XMPMeta sort
+XMPMetaFactory
+XMPMetaFactory create
+XMPMetaFactory getSchemaRegistry
+XMPMetaFactory getVersionInfo
+XMPMetaFactory parse
+XMPMetaFactory parseFromBuffer
+XMPMetaFactory parseFromString
+XMPMetaFactory reset
+XMPMetaFactory serialize
+XMPMetaFactory serializeToBuffer
+XMPMetaFactory serializeToString
+XMPMetaImpl
+XMPMetaImpl appendArrayItem
+XMPMetaImpl clone
+XMPMetaImpl countArrayItems
+XMPMetaImpl deleteArrayItem
+XMPMetaImpl deleteProperty
+XMPMetaImpl deleteQualifier
+XMPMetaImpl deleteStructField
+XMPMetaImpl doesArrayItemExist
+XMPMetaImpl doesPropertyExist
+XMPMetaImpl doesQualifierExist
+XMPMetaImpl doesStructFieldExist
+XMPMetaImpl dumpObject
+XMPMetaImpl getArrayItem
+XMPMetaImpl getLocalizedText
+XMPMetaImpl getObjectName
+XMPMetaImpl getPacketHeader
+XMPMetaImpl getProperty
+XMPMetaImpl getPropertyBase64
+XMPMetaImpl getPropertyBoolean
+XMPMetaImpl getPropertyCalendar
+XMPMetaImpl getPropertyDate
+XMPMetaImpl getPropertyDouble
+XMPMetaImpl getPropertyInteger
+XMPMetaImpl getPropertyLong
+XMPMetaImpl getPropertyObject
+XMPMetaImpl getPropertyString
+XMPMetaImpl getQualifier
+XMPMetaImpl getRoot
+XMPMetaImpl getStructField
+XMPMetaImpl insertArrayItem
+XMPMetaImpl iterator
+XMPMetaImpl normalize
+XMPMetaImpl setArrayItem
+XMPMetaImpl setLocalizedText
+XMPMetaImpl setObjectName
+XMPMetaImpl setPacketHeader
+XMPMetaImpl setProperty
+XMPMetaImpl setPropertyBase64
+XMPMetaImpl setPropertyBoolean
+XMPMetaImpl setPropertyCalendar
+XMPMetaImpl setPropertyDate
+XMPMetaImpl setPropertyDouble
+XMPMetaImpl setPropertyInteger
+XMPMetaImpl setPropertyLong
+XMPMetaImpl setQualifier
+XMPMetaImpl setStructField
+XMPMetaImpl sort
+XMPMetaParser
+XMPMetaParser parse
+XMPNodeUtils
+XMPNormalizer
+XMPPath
+XMPPath add
+XMPPath getSegment
+XMPPath size
+XMPPath toString
+XMPPathFactory
+XMPPathFactory composeArrayItemPath
+XMPPathFactory composeFieldSelector
+XMPPathFactory composeLangSelector
+XMPPathFactory composeQualifierPath
+XMPPathFactory composeStructFieldPath
+XMPPathParser
+XMPPathParser expandXPath
+XMPPathSegment
+XMPPathSegment getAliasForm
+XMPPathSegment getKind
+XMPPathSegment getName
+XMPPathSegment isAlias
+XMPPathSegment setAlias
+XMPPathSegment setAliasForm
+XMPPathSegment setKind
+XMPPathSegment setName
+XMPPathSegment toString
+XMPProperty
+XMPProperty getLanguage
+XMPProperty getOptions
+XMPProperty getValue
+XMPPropertyInfo
+XMPPropertyInfo getNamespace
+XMPPropertyInfo getOptions
+XMPPropertyInfo getPath
+XMPPropertyInfo getValue
+XMPSchemaRegistry
+XMPSchemaRegistry deleteNamespace
+XMPSchemaRegistry findAlias
+XMPSchemaRegistry findAliases
+XMPSchemaRegistry getAliases
+XMPSchemaRegistry getNamespacePrefix
+XMPSchemaRegistry getNamespaceURI
+XMPSchemaRegistry getNamespaces
+XMPSchemaRegistry getPrefixes
+XMPSchemaRegistry registerNamespace
+XMPSchemaRegistry resolveAlias
+XMPSchemaRegistryImpl
+XMPSchemaRegistryImpl deleteNamespace
+XMPSchemaRegistryImpl findAlias
+XMPSchemaRegistryImpl findAliases
+XMPSchemaRegistryImpl getAliases
+XMPSchemaRegistryImpl getNamespacePrefix
+XMPSchemaRegistryImpl getNamespaceURI
+XMPSchemaRegistryImpl getNamespaces
+XMPSchemaRegistryImpl getPrefixes
+XMPSchemaRegistryImpl registerNamespace
+XMPSchemaRegistryImpl resolveAlias
+XMPSerializerHelper
+XMPSerializerHelper serialize
+XMPSerializerHelper serializeToBuffer
+XMPSerializerHelper serializeToString
+XMPSerializerRDF
+XMPSerializerRDF checkOptionsConsistence
+XMPSerializerRDF serialize
+XMPUtils
+XMPUtils appendProperties
+XMPUtils catenateArrayItems
+XMPUtils convertFromBoolean
+XMPUtils convertFromDate
+XMPUtils convertFromDouble
+XMPUtils convertFromInteger
+XMPUtils convertFromLong
+XMPUtils convertToBoolean
+XMPUtils convertToDate
+XMPUtils convertToDouble
+XMPUtils convertToInteger
+XMPUtils convertToLong
+XMPUtils decodeBase64
+XMPUtils encodeBase64
+XMPUtils removeProperties
+XMPUtils separateArrayItems
+XMPUtilsImpl
+XMPUtilsImpl appendProperties
+XMPUtilsImpl catenateArrayItems
+XMPUtilsImpl removeProperties
+XMPUtilsImpl separateArrayItems
+XMPVersionInfo
+XMPVersionInfo getBuild
+XMPVersionInfo getMajor
+XMPVersionInfo getMessage
+XMPVersionInfo getMicro
+XMPVersionInfo getMinor
+XMPVersionInfo isDebug
+XfaForm
+XfaForm extractXFANodes
+XfaForm fillXfaForm
+XfaForm findDatasetsName
+XfaForm findDatasetsNode
+XfaForm findFieldName
+XfaForm getDatasetsNode
+XfaForm getDomDocument
+XfaForm getNodeText
+XfaForm getXfaFieldValue
+XfaForm isXfaPresent
+XfaForm setDomDocument
+XfaForm setNodeText
+XfaForm setXfaFieldValue
+XfaForm setXfaForm
+XfaForm write
+XmlDomWriter
+XmlDomWriter normalizeAndPrint
+XmlDomWriter setCanonical
+XmlDomWriter setOutput
+XmlDomWriter sortAttributes
+XmlDomWriter write
