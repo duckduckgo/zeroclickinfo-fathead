@@ -17,7 +17,6 @@ options(url, **kwargs)
 params
 patch(url, data=None, **kwargs)
 post(url, data=None, json=None, **kwargs)
-prepared_request(request)
 proxies
 put(url, data=None, **kwargs)
 rebuild_auth(prepared_request, response)
@@ -29,4 +28,3 @@ send(request, **kwargs)
 stream
 trust_env
 verify
-
