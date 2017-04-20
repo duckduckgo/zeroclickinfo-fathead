@@ -1,6 +1,6 @@
-class requests.Session
 auth
 cert
+class requests.Session
 close()
 cookies
 delete(url, **kwargs)

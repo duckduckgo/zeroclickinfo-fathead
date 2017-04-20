@@ -1,3 +1,3 @@
-requests.utils.get_encodings_from_content(content)
 requests.utils.get_encoding_from_headers(headers)
+requests.utils.get_encodings_from_content(content)
 requests.utils.get_unicode_from_response(r)
