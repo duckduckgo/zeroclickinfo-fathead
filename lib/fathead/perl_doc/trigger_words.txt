@@ -8,3 +8,9 @@ perl doc
 (perl 5)
 (perldoc)
 (perl doc)
+wallace
+bibble
+bobble
+bubble
+gromit
+grundle
