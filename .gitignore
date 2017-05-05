@@ -11,3 +11,4 @@ share/fathead/meta/metadata.json
 # Ignore plugin-generated files and directories.
 download
 zeroclickinfo-fathead.iml
+__pycache__
