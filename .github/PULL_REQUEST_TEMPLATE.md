@@ -1,57 +1,39 @@
-<!-- Use the appropriate format for your Pull Request title above ^^^^^:
+<!-- Please add the WIP label if the PR isn't complete. -->
 
-If this is a bug fix:
-{IA Name}: {Description of change}
+**Reviewer:**
 
-If this is a New Instant Answer:
-New {IA Name} Spice
-
-If this is something else:
-{Tests/Docs/Other}: {Short Description}
-
+<!-- Optional fields
+**CC:**
+**Depends on:** 
 -->
 
-
-## Description of new Instant Answer, or changes
-<!-- What does this new Instant Answer do? What changes does this PR introduce? -->
-
-
-## Related Issues and Discussions
-<!-- Link related issues here to automatically close them when PR is merged -->
-<!-- E.g. "Fixes #1234" -->
+## Description:
+<!-- Explain what is being changed, why, etc -->
 
 
-## People to notify
-<!-- Please @mention any relevant people/organizations here: -->
+## Steps to test this PR:
+<!-- List steps to test it manually 
+1. <STEP 1> 
+-->
 
-## Testing & Review
-To be completed by Language Leader (or DDG Staff) when reviewing Pull Request
+## Automated tests:
+- [ ] Unit tests
+- [ ] Integration tests
 
-**Pull Request**
-- [ ] Title follows correct format (Specifies Instant Answer + Purpose)
-- [ ] Description contains a valid Instant Answer Page Link (e.g. https://duck.co/ia/view/my_ia)
+###### Reviewer Checklist:
+- [ ] **Ensure the PR solves the problem**
+- [ ] **Review every line of code**
+- [ ] **Ensure the PR does no harm by testing the changes thoroughly**
+- [ ] **Get help if you're uncomfortable with any of the above!**
+- [ ] Determine if there are any quick wins that improve the implementation
 
-**Instant Answer Page** (for new Instant Answers)
-- [ ] Instant Answer page is correctly filled out and contains:
-    - One topic for the Search Space Language (Java, Python, Scala, Ruby, etc.)
-    - One topic from: Reference, Help, Libraries, Tools
-        - Documentation Fatheads are considered "Reference"
-    - Description, Data source, and 2+ example queries
-    - Perl Module (e.g. "DDG::Fathead::PerlDoc" -- we only need a name, not an actual file)
-    - Source Name (for "More at <source_name>" link)
-    - Source Domain (must contain http:// or https:// -- can be the same as Data Source)
-    - Source Info (used as Subtitle for each Article -- usually matches the IA Name)
-    - 'Skip Abstract' is checked off
-    - Source ID (ping @moollaza to assign one, once Fathead is ready for Beta deploy)
 
-**Code**
-- [ ] Uniformly indented, well commented
-- [ ] Fetch.sh and Parse.sh run without errors
-- [ ] Output contains no blank lines, or multi-line entries
-- [ ] Fathead Tests are passing (run `$ duckpan test <fathead_id>`)
-    - Tester should report any failures
-
-**Pull Request Review Guidelines**: https://docs.duckduckhack.com/programming-mission/pr-review.html
+###### PR Author Checklist:
+- [ ] Get advice or leverage existing code
+- [ ] Agree on technical approach with reviewer (if the changes are nuanced)
+- [ ] Ensure that there is a testing strategy (and documented non-automated tests)
+- [ ] Ensure there is a documented monitoring strategy (if necessary)
+- [ ] Consider systems implications 
 
 <!-- DO NOT REMOVE -->
 ---
