@@ -1,2 +1,7 @@
-mkdir download && cd download
-wget http://docs.sqlalchemy.org/en/latest/orm/tutorial.html
+#!/bin/bash
+
+rm -rf download
+mkdir -p download
+cd download
+wget https://docs.sqlalchemy.org/en/latest/genindex.html
+
