@@ -1,0 +1,23 @@
+{
+  "name": "apple_discussion_fathead",
+  "version": "1.0.0",
+  "description": "DuckDuckGo Fathead for the Apple discussion Q&A website",
+  "main": "parse.js",
+  "scripts": {
+    "parser": "node ./parse.js"
+  },
+  "keywords": [
+    "apple",
+    "discussion",
+    "fathead"
+  ],
+  "author": "PJ Hampton (DuckDuckGo Contractor)",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "colors": "^1.1.2"
+  },
+  "dependencies": {
+    "request": "^2.81.0"
+  }
+}
