@@ -1,8 +1,7 @@
 #!/bin/bash
-VERSION=0.20.1
 
 rm -rf docs-tmp
-wget -c pandas.pydata.org/pandas-docs/version/VERSION/pandas.zip
+wget -c pandas.pydata.org/pandas-docs/stable/pandas.zip
 unzip -d docs-tmp $DOCS_ZIP
 
 rm -rf pandas-docs
