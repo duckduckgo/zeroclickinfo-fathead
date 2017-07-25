@@ -27,7 +27,7 @@ TESTING = False
 fetch_errors = list()
 
 ## opens the url list
-with open('data/urls3.txt', 'r', encoding="latin1") as f:
+with open('data/urls.txt', 'r', encoding="latin1") as f:
     urls = f.read()
     urls = urls.split("\n")
 
