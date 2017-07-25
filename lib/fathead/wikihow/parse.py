@@ -28,7 +28,7 @@ from bs4 import BeautifulSoup
 
 CPU_COUNT = cpu_count()
 
-OUTPUT_TEMPLATE = """\
+OUTPUT = """\
 {title}\t
 {entry_type}\t
 {redirect_title}\t
@@ -73,9 +73,9 @@ def format_output(doc):
 
     # fh expectation for image format
     if not doc["image"] == "":
-        doc["image"] = "[[Image:" + val["image"] + "]]"
+        doc["image"] = "[[Image:" + doc["image"] + "]]"
 
-    document = OUTPUT_TEMPLATE.format(
+    document = OUTPUT.format(
         title = doc["title"],
         entry_type = "A",
         redirect_title = "",
@@ -88,13 +88,14 @@ def format_output(doc):
         abstract = intro,
         url = doc["url"],
     )
+
     return document
 
 def write_to_output(article):
     """
     Appends the parsed article to the `output.txt` file.
     """
-    with open('output.txt', 'a', encoding="utf-8") as f:
+    with open(__OUTPUT__, 'a', encoding="utf-8") as f:
         f.write(article + "\n")
 
 def parse_html(doc):
