@@ -6,4 +6,4 @@ unzip -d docs-tmp pandas.zip
 
 rm -rf pandas-docs
 mkdir -p pandas-docs
-cp docs-tmp/reference/generated/*html pandas-docs
+cp docs-tmp/html/generated/*html pandas-docs
