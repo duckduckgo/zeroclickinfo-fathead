@@ -18,14 +18,10 @@ class Python_Data(object):
         self.HTML = ""
         self.FILE = file
         self.load_data()
-
-    def load_data(self):
-        """
-        Open the HTML file and load it into the object.
-        """
+        
         with open(self.FILE, 'r') as data_file:
             self.HTML = data_file.read()
-    
+
     def get_raw_data(self):
         """
         Returns: The raw HTML that was loaded.
