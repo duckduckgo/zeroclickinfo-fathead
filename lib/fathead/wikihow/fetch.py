@@ -44,7 +44,7 @@ for i in range(len(urls)):
     try:
         response = urlopen(req)
         html_content = response.read()
-        with open("data/html3/" + filename, 'w') as f:
+        with open("data/" + filename, 'w') as f:
             f.write(html_content.decode("utf-8"))
     except:
         tmp_error["url"] = urls[i]
@@ -53,7 +53,7 @@ for i in range(len(urls)):
     if bool(tmp_error):
         fetch_errors.append(tmp_error)
 
-    time.sleep(.15) # slow me down
+    time.sleep(.1) # slow me down
 
 # Finish up and create errors/warnings report
 print("Fin.")
