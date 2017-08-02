@@ -3,7 +3,6 @@ Apple Discussions Fathead
 
 1. [Fetch the data](#fetch-the-data)
 2. [Parse the data](#parse-the-data)
-3. [Statistics](#statistics)
 
 ## Fetch the data
 

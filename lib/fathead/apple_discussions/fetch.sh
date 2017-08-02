@@ -1,4 +1,4 @@
 #!/bin/sh
 
 mkdir "apple_data"
-node ./fetch.js
+python3 ./fetch.py

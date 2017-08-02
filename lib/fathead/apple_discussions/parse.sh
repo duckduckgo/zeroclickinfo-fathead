@@ -1,4 +1,3 @@
 #!/bin/sh
 
-node parse.js
-node stats.js
+python3 parse.py
