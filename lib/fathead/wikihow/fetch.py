@@ -32,9 +32,10 @@ with open('data/urls.txt', 'r', encoding="latin1") as f:
     urls = urls.split("\n")
 
 ## iterates throuh and gets the html .5 seconds per URI
+seed_iterator = 171902
 for i in range(len(urls)):
     tmp_error = {}
-    filename = str(i) + ".txt"
+    filename = str(seed_iterator) + ".txt"
 
     print("Calling:", urls[i])
     req = Request(urls[i])
@@ -45,7 +46,10 @@ for i in range(len(urls)):
         response = urlopen(req)
         html_content = response.read()
         with open("data/" + filename, 'w') as f:
+            print(filename)
             f.write(html_content.decode("utf-8"))
+    except (KeyboardInterrupt, SystemExit):
+        break
     except:
         tmp_error["url"] = urls[i]
         tmp_error["reason"] = "bad response"
@@ -53,6 +57,7 @@ for i in range(len(urls)):
     if bool(tmp_error):
         fetch_errors.append(tmp_error)
 
+    seed_iterator += 1
     time.sleep(.1) # slow me down
 
 # Finish up and create errors/warnings report
