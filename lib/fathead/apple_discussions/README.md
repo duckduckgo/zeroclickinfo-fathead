@@ -1,9 +1,9 @@
-## Apple Discussions Fathea
+## Apple Discussions Fathead
 
 This project requires Python 3.3+
 
 ```
-$ cd lib/fathead/wikihow
+$ cd lib/fathead/apple_discussions
 $ pyvenv .
 $ source bin/activate
 $ pip install --upgrade pip
