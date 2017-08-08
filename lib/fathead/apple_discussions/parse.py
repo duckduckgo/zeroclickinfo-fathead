@@ -76,6 +76,14 @@ def parse_html(doc, url):
     else:
         return False
 
+    # Some last moment validation
+    if "dp-highlighter" in parsed_doc["body"]: # contains code
+        return False
+    if "blockquote" in parsed_doc["body"]:
+        return False
+    if len(parsed_doc["body"].split(" ")) > 400:
+        return False
+
     return parsed_doc
 
 
