@@ -67,8 +67,8 @@ def parse_html(doc, url):
 
     # Gets the title
     title = soup.h1.text
-    parsed_doc["title"] = title.strip()
-    print("Parsing", parsed_doc["title"].replace("Q: ", ""))
+    parsed_doc["title"] = title.strip().replace("Q: ", "")
+    print("Parsing", parsed_doc["title"])
 
     # Get's the most 'Recommended Answer'
     if soup.find("div", {"class": "recommended-answers"}):
