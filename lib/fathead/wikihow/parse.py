@@ -105,6 +105,7 @@ def parse_html(doc):
     title = soup.h1.text
     parsed_doc["title"] = title
     print("Parsing:", title)
+    print("-" * 20)
 
     # Gets the article image if it exists
     if soup.find("meta", property="og:image"):
@@ -128,6 +129,34 @@ def parse_html(doc):
     intro = soup.find(id="intro").find_all("p")[-1].text
     intro = re.sub(re.compile("\[\d+\]"), "", intro) # removes reference
     parsed_doc["intro"] = intro
+
+    body = soup.find("div", attrs={"id": "bodycontents"})
+    # print(body)
+    parsed_headings = []
+    for heading in body.find_all("span", attrs={"class": re.compile(r"mw-headline")}):
+        parsed_headings.append(heading.text)
+    parsed_headings.pop(0)
+
+    # print(parsed_headings)
+    stages = body.find_all("div", attrs={"id": re.compile(r"steps_\d+")})
+    steps = [stage.find_all("b", {"class" : "whb"}) for stage in stages]
+
+    parsed_steps = []
+
+    for step in steps:
+        step_cache = []
+        for s in step:
+            step_str = s.text
+            step_cache.append(step_str.strip())
+        parsed_steps.append(step_cache)
+
+    contents = {}
+    for i, step in enumerate(steps):
+        contents[i] = {"steps": parsed_steps, "heading": parsed_headings[i]}
+
+    for i, v in enumerate(contents):
+        print(contents[i]["heading"])
+        print(contents[i]["steps"][i])
 
     ## Gets the high level points
     points = soup.find_all("b", {"class" : "whb"})
