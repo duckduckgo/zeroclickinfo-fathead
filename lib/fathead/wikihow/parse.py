@@ -43,11 +43,7 @@ OUTPUT = """\
 """.replace("\n", "")
 
 FATHEAD_TEMPLATE = """\
-<section class="prog__container">
-<p>{intro}</p>
-<span class="prog__sub">
-<ol>{list_items}</ol>
-</section>
+{list_items}
 """
 
 def parse_file(filename):
@@ -63,13 +59,12 @@ def parse_file(filename):
 def format_output(doc):
 
     # formats the intro
-    intro = FATHEAD_TEMPLATE.format(
-                intro=doc["intro"],
-                list_items=doc["points"]
+    body = FATHEAD_TEMPLATE.format(
+                list_items=doc["body"]
             )
-    intro = "".join(intro.splitlines())
+    body = "".join(body.splitlines())
 
-    # fh expectation for image format
+    # reformat image
     if not doc["image"] == "":
         doc["image"] = "[[Image:" + doc["image"] + "]]"
 
@@ -83,7 +78,7 @@ def format_output(doc):
         external_links = "",
         disambiguation = "",
         image = doc["image"],
-        abstract = intro,
+        abstract = body,
         url = doc["url"],
     )
 
@@ -98,14 +93,13 @@ def write_to_output(article):
 
 def parse_html(doc):
     soup = BeautifulSoup(doc, "html.parser")
-    parsed_doc = {} # we'll build a dictionary of the article and pass it back
+    parsed_doc = {} # we'll build a dict of the article and pass it back
 
     ## Gets the title
     [x.extract() for x in soup.h1.findAll("span")]
     title = soup.h1.text
     parsed_doc["title"] = title
     print("Parsing:", title)
-    print("-" * 20)
 
     # Gets the article image if it exists
     if soup.find("meta", property="og:image"):
@@ -130,14 +124,13 @@ def parse_html(doc):
     intro = re.sub(re.compile("\[\d+\]"), "", intro) # removes reference
     parsed_doc["intro"] = intro
 
-    body = soup.find("div", attrs={"id": "bodycontents"})
-    # print(body)
+    body = soup.find("div", attrs={"id": "bodycontents"}) # cache the content area
     parsed_headings = []
     for heading in body.find_all("span", attrs={"class": re.compile(r"mw-headline")}):
         parsed_headings.append(heading.text)
     parsed_headings.pop(0)
 
-    # print(parsed_headings)
+    # break into stages and steps
     stages = body.find_all("div", attrs={"id": re.compile(r"steps_\d+")})
     steps = [stage.find_all("b", {"class" : "whb"}) for stage in stages]
 
@@ -146,7 +139,10 @@ def parse_html(doc):
     for step in steps:
         step_cache = []
         for s in step:
+            for script in s.find_all("script"): # removes embedded images (if any)
+                script.extract()
             step_str = s.text
+            step_str = re.sub(re.compile("\s+\."), ".", step_str) # Corrects spacing
             step_cache.append(step_str.strip())
         parsed_steps.append(step_cache)
 
@@ -154,20 +150,24 @@ def parse_html(doc):
     for i, step in enumerate(steps):
         contents[i] = {"steps": parsed_steps, "heading": parsed_headings[i]}
 
+    points = ""
     for i, v in enumerate(contents):
-        print(contents[i]["heading"])
-        print(contents[i]["steps"][i])
+        points += "<b>" + contents[i]["heading"] + "</b>"
+        points += "<ol>"
+        for step in contents[i]["steps"][i]:
+            points += "<li>" + step + "</li>"
+        points += "</ol>"
+    parsed_doc["body"] = points
 
-    ## Gets the high level points
-    points = soup.find_all("b", {"class" : "whb"})
-    if len(points) < 4:
-        parsed_doc["points"] = ""
-    else:
+    # if there is no body then there must only be steps
+    if(len(steps) == 0 and points == ""):
+        points = soup.find_all("b", {"class" : "whb"})
         points_list = list()
         points = [x.text for x in points]
-        points = ["<li> - " + x + "</li>" for x in points]
+        points = ["<li>" + x + "</li>" for x in points]
         points = "".join(points)
-        parsed_doc["points"] = points
+        points = "<ol>" + points + "</ol>"
+        parsed_doc["body"] = points
     return parsed_doc
 
 if __name__ == "__main__":
