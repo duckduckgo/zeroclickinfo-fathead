@@ -120,28 +120,50 @@ def parse_html(doc):
     parsed_doc["expert"] = expert_reviewed
 
     ## Gets the intro text
-    intro = soup.find(id="intro").find_all("p")[-1].text
-    intro = re.sub(re.compile("\[\d+\]"), "", intro) # removes reference
-    parsed_doc["intro"] = intro
+    # intro = soup.find(id="intro").find_all("p")[-1].text
+    # intro = re.sub(re.compile("\[\d+\]"), "", intro) # removes reference
+    # parsed_doc["intro"] = intro
 
     body = soup.find("div", attrs={"id": "bodycontents"}) # cache the content area
+
+    # Remove bonus (intro) sections
+    try:
+        body.find("div", attrs={"class": "10secondsummary"}).decompose()
+    except:
+        pass
+
+    try:
+        body.find("div", attrs={"class": "ingredients"}).decompose()
+    except:
+        pass
+
+    try:
+        body.find("div", attrs={"class": "thingsyoullneed"}).decompose()
+    except:
+        pass
+
+    for text_node in body.find_all(string=True):
+          text_node.replaceWith(text_node.replace("“", "\"").replace("”", "\""))
+
     parsed_headings = []
     for heading in body.find_all("span", attrs={"class": re.compile(r"mw-headline")}):
-        parsed_headings.append(heading.text)
-    parsed_headings.pop(0)
+        if heading.text != "Steps":
+            parsed_headings.append(heading.text)
 
     # break into stages and steps
     stages = body.find_all("div", attrs={"id": re.compile(r"steps_\d+")})
     steps = [stage.find_all("b", {"class" : "whb"}) for stage in stages]
 
     parsed_steps = []
-
     for step in steps:
         step_cache = []
         for s in step:
             for script in s.find_all("script"): # removes embedded images (if any)
                 script.extract()
             step_str = s.text
+            # if there is a missing closing quote
+            if(step_str.split(" ")[-1][0] == "\"" or step_str.split(" ")[-2][0] == "\""):
+                step_str += "\""
             step_str = re.sub(re.compile("\s+\."), ".", step_str) # Corrects spacing
             step_cache.append(step_str.strip())
         parsed_steps.append(step_cache)
