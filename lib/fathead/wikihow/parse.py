@@ -174,7 +174,7 @@ def parse_html(doc):
 
     points = ""
     for i, v in enumerate(contents):
-        points += "<b>" + contents[i]["heading"] + "</b>"
+        points += "<p><b>" + contents[i]["heading"] + "</b></p>"
         points += "<ol>"
         for step in contents[i]["steps"][i]:
             points += "<li>" + step + "</li>"
