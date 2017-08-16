@@ -190,6 +190,10 @@ def parse_html(doc):
         points = "".join(points)
         points = "<ol>" + points + "</ol>"
         parsed_doc["body"] = points
+
+    if(parsed_doc["body"] == "<ol></ol>"):
+        return False
+
     return parsed_doc
 
 if __name__ == "__main__":
