@@ -66,16 +66,16 @@ def create_fathead(database):
     # This long SQL query just gets the details about each class and method.
     # ZLANGUAGE = 3 means Swift
     # Note: The SQL query is different between different docsets.
-    for row in c.execute('''SELECT ZTOKENNAME, ZABSTRACT, ZTOKENMETAINFORMATION.ZANCHOR, ZDECLARATION, ZNODEURL.ZPATH, ZTOKENUSR, ZTOKEN.ZTOKENTYPE 
-                            FROM ZTOKEN, ZTOKENMETAINFORMATION, ZNODEURL 
-                            WHERE ZLANGUAGE=3 
-                            AND ZTOKENTYPE IN (1, 4, 5, 7, 8, 12, 14, 17) 
-                            AND ZTOKENMETAINFORMATION.ZTOKEN=ZTOKEN.Z_PK 
-                            AND ZTOKENNAME IS NOT NULL 
-                            AND ZABSTRACT IS NOT NULL 
-                            AND ZTOKENMETAINFORMATION.ZANCHOR IS NOT NULL 
-                            AND ZDECLARATION IS NOT NULL 
-                            AND ZTOKENUSR IS NOT NULL 
+    for row in c.execute('''SELECT ZTOKENNAME, ZABSTRACT, ZTOKENMETAINFORMATION.ZANCHOR, ZDECLARATION, ZNODEURL.ZPATH, ZTOKENUSR, ZTOKEN.ZTOKENTYPE
+                            FROM ZTOKEN, ZTOKENMETAINFORMATION, ZNODEURL
+                            WHERE ZLANGUAGE=3
+                            AND ZTOKENTYPE IN (1, 4, 5, 7, 8, 12, 14, 17)
+                            AND ZTOKENMETAINFORMATION.ZTOKEN=ZTOKEN.Z_PK
+                            AND ZTOKENNAME IS NOT NULL
+                            AND ZABSTRACT IS NOT NULL
+                            AND ZTOKENMETAINFORMATION.ZANCHOR IS NOT NULL
+                            AND ZDECLARATION IS NOT NULL
+                            AND ZTOKENUSR IS NOT NULL
                             AND ZNODEURL.ZPATH IS NOT NULL
                             AND ZNODEURL.ZNODE=ZTOKEN.ZPARENTNODE
                             ORDER BY ZTOKENNAME'''):
@@ -90,7 +90,7 @@ def create_fathead(database):
             "platform": "iOS",
             "snippet": snippet or "",
         }
-        
+
         # Remove all the tags inside the pre tags.
         snippet = re.sub(r'<[^>]*>', '', snippet)
         pack['snippet'] = "<pre><code>" + snippet + "</code></pre>"
@@ -110,25 +110,6 @@ def create_fathead(database):
             seen_list[pack['name']] = True
         else:
             continue
-
-        # ----------------
-        # Create redirects
-        # ----------------
-        # 
-        # This is where the variable `usr` will come in handy. It has information on whether a certain 
-        # method or variable belongs to a class which makes it useful for queries like "length nsstring",
-        # "nsstring length", or "nsstring.length" 
-
-        p = re.compile('c:objc\(..\)([a-zA-Z]+)\(..\)([a-zA-Z]+)')
-        if p.match(usr):
-            pack['redirect'] = p.findall(usr)
-            cl = pack['redirect'][0][0]
-            prop = pack['redirect'][0][1]
-            pack['name'] = cl + "." + prop
-
-            pack['alt_names'] = [cl + " " + prop, prop + " " + cl, prop]
-        else:
-            pack['redirect'] = None
 
         # Log
         print pack['name']
