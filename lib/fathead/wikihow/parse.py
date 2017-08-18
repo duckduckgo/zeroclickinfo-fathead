@@ -174,11 +174,12 @@ def parse_html(doc):
 
     points = ""
     for i, v in enumerate(contents):
-        points += "<p><b>" + contents[i]["heading"] + "</b></p>"
-        points += "<ol>"
-        for step in contents[i]["steps"][i]:
-            points += "<li>" + step + "</li>"
-        points += "</ol>"
+        if(len(contents[i]["steps"][i]) != 0):
+            points += "<p><b>" + contents[i]["heading"] + "</b></p>"
+            points += "<ol>"
+            for step in contents[i]["steps"][i]:
+                points += "<li>" + step + "</li>"
+            points += "</ol>"
     parsed_doc["body"] = points
 
     # if there is no body then there must only be steps
