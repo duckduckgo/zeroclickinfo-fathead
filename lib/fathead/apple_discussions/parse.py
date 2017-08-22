@@ -38,12 +38,12 @@ OUTPUT = """\
 {image}\t
 {abstract}\t
 {url}
-""".replace("\n", "")
+""".replace("\n", "").replace("\\n", "")
 
 FHTEMPLATE = """\
 <p><b>Answered by {username} ({date})</b></p>
 {information}
-""".replace("\n", "")
+""".replace("\n", "").replace("\\n", "")
 
 def parse_file(filename):
     """
@@ -124,6 +124,8 @@ def parse_html(doc, url):
 
         # Some last moment validation
         if "CodeBlockStart" in parsed_doc["body"]: # contains code
+            return False
+        if "<code" in parsed_doc["body"]: # contains code
             return False
         if "blockquote" in parsed_doc["body"]:
             return False
