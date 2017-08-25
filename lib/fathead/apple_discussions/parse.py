@@ -127,6 +127,8 @@ def parse_html(doc, url):
             return False
         if "<code" in parsed_doc["body"]: # contains code
             return False
+        if "<pre" in parsed_doc["body"]:
+            return False
         if "blockquote" in parsed_doc["body"]:
             return False
         if len(parsed_doc["body"].split(" ")) > 500:
