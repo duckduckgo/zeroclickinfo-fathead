@@ -38,12 +38,12 @@ OUTPUT = """\
 {image}\t
 {abstract}\t
 {url}
-""".replace("\n", "")
+""".replace("\n", "").replace("\\n", "")
 
 FHTEMPLATE = """\
 <p><b>Answered by {username} ({date})</b></p>
 {information}
-""".replace("\n", "")
+""".replace("\n", "").replace("\\n", "")
 
 def parse_file(filename):
     """
@@ -95,6 +95,10 @@ def parse_html(doc, url):
             if p.string:
                 p.string.replace_with(p.string.strip())
 
+        # ditch the span tags
+        for span in soup.findAll('span'):
+            span.decompose()
+
         username = soup.find("div", {"class", "recommended-answers"}).find("a", {"class": "username"}).text
         username = username.strip()
 
@@ -115,16 +119,23 @@ def parse_html(doc, url):
         contents = re.sub(re.compile("</div>"), "", contents)
         contents = re.sub(re.compile("<a>"), "", contents)
         contents = re.sub(re.compile("</a>"), "", contents)
+        contents = re.sub(re.compile("\n"), "\\n", contents)
         parsed_doc["body"] = contents
 
         # Some last moment validation
-        if "dp-highlighter" in parsed_doc["body"]: # contains code
+        if "CodeBlockStart" in parsed_doc["body"]: # contains code
+            return False
+        if "<code" in parsed_doc["body"]: # contains code
+            return False
+        if "<pre" in parsed_doc["body"]:
             return False
         if "blockquote" in parsed_doc["body"]:
             return False
         if len(parsed_doc["body"].split(" ")) > 500:
             return False
         if len(parsed_doc["body"].split(" ")) < 30:
+            return False
+        if parsed_doc["url"] == "" or parsed_doc["url"] == None:
             return False
     else:
         return False
