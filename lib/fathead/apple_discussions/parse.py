@@ -38,12 +38,12 @@ OUTPUT = """\
 {image}\t
 {abstract}\t
 {url}
-""".replace("\n", "").replace("\\n", "")
+""".replace("\n", "").replace("\\n", "").replace(r"\x", "\\x").replace("^M", "");
 
 FHTEMPLATE = """\
 <p><b>Answered by {username} ({date})</b></p>
 {information}
-""".replace("\n", "").replace("\\n", "")
+"""
 
 def parse_file(filename):
     """
@@ -97,7 +97,11 @@ def parse_html(doc, url):
 
         # ditch the span tags
         for span in soup.findAll('span'):
-            span.decompose()
+            span.replace_with(span.text)
+
+        # ditch the img tags
+        for img in soup.findAll('img'):
+            img.decompose()
 
         username = soup.find("div", {"class", "recommended-answers"}).find("a", {"class": "username"}).text
         username = username.strip()
