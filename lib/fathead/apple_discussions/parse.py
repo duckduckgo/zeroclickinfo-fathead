@@ -38,7 +38,7 @@ OUTPUT = """\
 {image}\t
 {abstract}\t
 {url}
-""".replace("\n", "").replace("\\n", "").replace(r"\x", "\\x").replace("^M", "");
+""".replace("\r\n", "").replace("\n", "").replace("\\n", "").replace(r"\x", "\\x")
 
 FHTEMPLATE = """\
 <p><b>Answered by {username} ({date})</b></p>
@@ -119,7 +119,7 @@ def parse_html(doc, url):
         # Does some regex replacements that the parser just won't hit with grace
         contents = FHTEMPLATE.format(information=str(content), username=username, date=posted)
         contents = re.sub(re.compile("<p></p>"), "", contents)
-        contents = re.sub(re.compile("<div ((.|\n)+?)>"), "", contents)
+        contents = re.sub(re.compile("<div\s?((.|\n)+?)>"), "", contents)
         contents = re.sub(re.compile("</div>"), "", contents)
         contents = re.sub(re.compile("<a>"), "", contents)
         contents = re.sub(re.compile("</a>"), "", contents)
