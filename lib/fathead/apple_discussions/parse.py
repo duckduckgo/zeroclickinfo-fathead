@@ -43,7 +43,7 @@ OUTPUT = """\
 FHTEMPLATE = """\
 <p><b>Answered by {username} ({date})</b></p>
 {information}
-"""
+""".replace("\r\n", "").replace("\n", "").replace("\\n", "").replace(r"\x", "\\x")
 
 def parse_file(filename):
     """
@@ -124,6 +124,7 @@ def parse_html(doc, url):
         contents = re.sub(re.compile("<a>"), "", contents)
         contents = re.sub(re.compile("</a>"), "", contents)
         contents = re.sub(re.compile("\n"), "\\n", contents)
+        contents = re.sub(re.compile("^(?!<p>).*"), wrap_p, contents)
         parsed_doc["body"] = contents
 
         # Some last moment validation
@@ -146,6 +147,12 @@ def parse_html(doc, url):
 
     return parsed_doc
 
+def wrap_p(match):
+    """
+    Wraps content in <p> tags
+    """
+    content = match.group(0)
+    return '<p>{}</p>'.format(content)
 
 def format_output(doc):
     """
