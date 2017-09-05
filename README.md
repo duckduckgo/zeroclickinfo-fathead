@@ -1,8 +1,8 @@
 # In Maintenance
 
-DuckDuckHack is now in maintenance mode. 
+DuckDuckHack is now in maintenance mode. During this time, we are only accepting pull requests for essential bug fixes.
 
-Please see [duckduckhack.com](https://duckduckhack.com) for more information. However, we are still accepting essential bug fixes!
+For more information see [duckduckhack.com](https://duckduckhack.com). 
 
 ## What are essential bug fixes?
 
