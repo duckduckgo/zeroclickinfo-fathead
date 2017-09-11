@@ -1,0 +1,7 @@
+exception requests.ConnectTimeout(*args, **kwargs)
+exception requests.ConnectionError(*args, **kwargs)
+exception requests.HttpError(*args, **kwargs)
+exception requests.RequestException(*args, **kwargs)
+exception requests.Timeout(*args, **kwargs)
+exception requests.TooManyRedirects(*args, **kwargs)
+exception requests.URLRequired(*args, **kwargs)

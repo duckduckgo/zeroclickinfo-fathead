@@ -1,0 +1,54 @@
+add_headers(request, **kwargs)
+apparent_encoding
+body
+build_response(req, resp)
+cert_verify(conn, url, verify, cert)
+class requests.PreparedRequest
+class requests.Request(method=None, url=None, headers=None, files=None, data=None, params=None, auth=None, cookies=None, hooks=None, json=None)
+class requests.Response
+class requests.adapters.BaseAdapter
+class requests.adapters.HTTPAdapter(pool_connections=10, pool_maxsize=10, max_retries=0, pool_block=False)
+close()
+content
+cookies
+deregister_hook(event, hook)
+elapsed
+encoding
+get_connection(url, proxies=None)
+headers
+headers
+history
+hooks
+init_poolmanager(connections, maxsize, block=False, **pool_kwargs)
+is_permanent_redirect
+is_redirect
+iter_content
+iter_lines
+json(**kwargs)
+links
+method
+ok
+path_url
+prepare()
+prepare(method=None, url=None, headers=None, files=None, data=None, params=None, auth=None, cookies=None, hooks=None, json=None)
+prepare_auth(auth, url='')
+prepare_body(data, files, json=None)
+prepare_content_length(body)
+prepare_cookies(cookies)
+prepare_headers(headers)
+prepare_hooks(hooks)
+prepare_method(method)
+prepare_url(url, params)
+proxy_headers(proxy)
+proxy_manager_for(proxy, **proxy_kwargs)
+raise_for_status()
+raw
+reason
+register_hook(event, hook)
+register_hook(event, hook)
+request
+request_url(request, proxies)
+send(request, stream=False, timeout=None, verify=True, cert=None, proxies=None)
+status_code
+text
+url

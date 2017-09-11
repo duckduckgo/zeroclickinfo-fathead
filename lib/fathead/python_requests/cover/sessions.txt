@@ -1,0 +1,30 @@
+auth
+cert
+class requests.Session
+close()
+cookies
+delete(url, **kwargs)
+get(url, **kwargs)
+get_adapter(url)
+get_redirect_target(resp)
+head(url, **kwargs)
+headers
+hooks
+max_redirects
+merge_environment_settings
+mount(prefix, adapter)
+options(url, **kwargs)
+params
+patch(url, data=None, **kwargs)
+post(url, data=None, json=None, **kwargs)
+proxies
+put(url, data=None, **kwargs)
+rebuild_auth(prepared_request, response)
+rebuild_method(prepared_request, response)
+rebuild_proxies(prepared_request, proxies)
+request(method, url, params=None, data=None, headers=None, cookies=None, files=None, auth=None, timeout=None, allow_redirects=True, proxies=None, hooks=None, stream=None, verify=None, cert=None, json=None)
+resolve_redirects(resp, req, stream=False, timeout=None, verify=True, cert=None, proxies=None, **adapter_kwargs)
+send(request, **kwargs)
+stream
+trust_env
+verify
