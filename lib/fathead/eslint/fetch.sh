@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # clean up
-rm -R download
+rm -fR download
 mkdir -p download
 
-# download
-mkdir -p download/summary
-curl https://raw.githubusercontent.com/eslint/eslint.github.io/master/_data/rules.yml -o ./download/summary/rules.yml
+# get full repo
+git clone https://github.com/eslint/eslint.github.io download/repo/
