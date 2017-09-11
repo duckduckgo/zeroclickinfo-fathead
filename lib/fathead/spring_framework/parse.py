@@ -1,20 +1,25 @@
 #!/usr/bin/python
 import os
-import re
 import parse_utils
-from bs4 import BeautifulSoup
+from collections import defaultdict
 
-# delete previous output
-if os.path.exists('output.txt'):
-    os.remove('output.txt')
+KEY = 0
 
-# Parse root file
-content = BeautifulSoup(parse_utils.readRootFile(), 'html.parser')
+if __name__ == '__main__':
+    # delete previous output
+    if os.path.exists('output.txt'):
+        os.remove('output.txt')
 
-# iterate classes
-for f in parse_utils.collectDocFilesFrom('./docs/javadoc-api/org'):
-    result = content.find_all(href=re.compile(f.replace("./docs/javadoc-api/", "")))
-    classUrl = ""
-    if len(result) != 0:
-        classUrl = result[0].get('href')
-    parse_utils.output("output.txt", parse_utils.getDocs(f, classUrl))
+    output = defaultdict(list)
+    # iterate classes
+    for f in parse_utils.collect_doc_files_from('./docs/javadoc-api/org'):
+        print(f)
+        # Remove root directory and filetype
+        class_path = f[19:-5]
+
+        data = parse_utils.get_docs(f, class_path)
+        output[data[KEY]].append(data)
+
+    for value in output.values():
+        parse_utils.output("output.txt", value)
+
