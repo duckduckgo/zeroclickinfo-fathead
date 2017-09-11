@@ -6,10 +6,9 @@ baseUrl = 'https://pip.pypa.io/en/stable/reference/'
 
 output = "output.txt"
 
-outyo = open(output, "w");
+outyo = open(output, "w")
 
 import os
-from os import path
 pages = [f for f in os.listdir('./download/')]
 
 out = {}
@@ -31,17 +30,17 @@ for page in pages:
         pip_show = soup.find("div",{"id":namestr})
 
         description = pip_show.findAll("div",{"class":"section","id":"description"})
-        usages = pip_show.findAll("div",{"class":"section","id":"usage"})
+        usages = pip_show.findAll("div", {"class": "section","id":"usage"})
 
         for usage in usages:
             for child in usage:
                 try:
                     text = child.text.strip()
-                    if(text not in hashtable):
+                    if text not in hashtable:
                         hashtable[text] = 1
                     else:
                         continue
-                    if(child.find('div','highlight')):
+                    if child.find('div','highlight'):
                         fin = ''
 
                         for t in text.split('...'):
@@ -54,11 +53,11 @@ for page in pages:
 
                         text = '<pre><code>' + fini +'</code></pre>'
 
-                    elif(child.find('a',{"class":"toc-backref"})):
+                    elif child.find('a',{"class":"toc-backref"}):
                         text = '<h4>'+text[:-1]+'</h4>'
 
                     for t in text.split('\n'):
-                        if(t.strip() == '' and finaltext[-4:] == '<br>'):
+                        if t.strip() == '' and finaltext[-4:] == '<br>':
                             continue;
                         finaltext += t.strip() + '<br>'
 
@@ -72,43 +71,43 @@ for page in pages:
                 try:
 
                     text = child.text.strip()
-                    if(text not in hashtable):
+                    if text not in hashtable:
                         hashtable[text] = 1
                     else:
                         continue
-                    if(child.find('div','highlight')):
+                    if child.find('div','highlight'):
                         break;
 
-                    elif(child.find('a',{"class":"toc-backref"})):
+                    elif child.find('a',{"class":"toc-backref"}):
                         if(text[:-1] != 'Description'):
                             break;
                         text = '<h4>'+text[:-1]+'</h4>'
 
                     for t in text.split('\n'):
-                        if(t.strip() == '' and finaltext[-4:] == '<br>'):
+                        if t.strip() == '' and finaltext[-4:] == '<br>':
                             continue;
                         finaltext += t.strip() + '<br>'
                 except:
                     pass
-                
-        if(page == 'pip.html'):
-            finaltext += 'pip is a package management system used to install and manage software packages written in Python. Many packages can be found in the Python Package Index (PyPI). <br>'
-        
+
+        if page == 'pip.html':
+            finaltext += 'pip is a package management system used to install and manage software packages written in ' \
+                         'Python. Many packages can be found in the Python Package Index (PyPI). <br>'
+
         finaltext = '<section class="prog__container">' + finaltext + '</section>'
 
         finaltext = ' '.join(finaltext.split())
-        finaltext = finaltext.replace('<br>','\\n')
-
-
-
+        finaltext = finaltext.replace('<br>', '\\n')
 
     usage = finaltext
     command = ''
 
-    for p in page[:-5].split('_'):
-        command += p + ' '
-
-
+    command_list = page[:-5].split('_')
+    if len(command_list) == 1:
+        command = command_list[0]
+    else:
+        for p in command_list[1:]:
+            command += p + ' '
 
     command_url = baseUrl + page
 
@@ -132,7 +131,8 @@ for page in pages:
     for l in list_of_data:
         final = final + l + '\t'
 
-    final = final + '\n'
+    final = final[:-1]
+    final += '\n'
     outyo.write(final)
 
 
