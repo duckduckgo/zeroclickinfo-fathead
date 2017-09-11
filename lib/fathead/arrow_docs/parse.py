@@ -38,7 +38,16 @@ def yield_api_example(api_examples):
         abstract = clean_output(api_example.dd.p.text)
         abstract = abstract_fmt.format(abstract, code)
 
-        yield [title, 'A', '', '', '', '', '', '', '', '', '', abstract, url]
+        # generate redirect entries
+        method_name = title.split('.')[-1]
+        redirect1 = 'Arrow.' + method_name
+        redirect2 = 'Arrow ' + method_name
+
+        yield [
+            [title, 'A', '', '', '', '', '', '', '', '', '', abstract, url],
+            [redirect1, 'R', '', title],
+            [redirect2, 'R', '', title]
+        ]
 
 
 def main():
@@ -49,8 +58,10 @@ def main():
         api_examples = html.select('dl[class=method]')
 
         for api_example in yield_api_example(api_examples):
-            output = '\t'.join(api_example)
-            o.write(output + '\n')
+
+            for line in api_example:
+                output = '\t'.join(line)
+                o.write(output + '\n')
 
 
 if __name__ == '__main__':
