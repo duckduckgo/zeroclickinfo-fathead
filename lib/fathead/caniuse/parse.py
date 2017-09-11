@@ -19,20 +19,30 @@ def main():
     with open(output_path, 'w') as f:
         f.write(csv)
 
-
 def generate_answers(data):
     answers = []
     for feature, feature_data in data['data'].items():
         # Generate titles of possible search terms
         title = feature_data['title'].lower().strip()
-        titles = set([
-            feature,
-            feature.replace('-', ' '),
+        titles = [
             title,
-            u' '.join(re.split('[ -]', title))
-        ])
-        print u','.join(titles)
+            feature,
+        ]
+	if feature.find('-') > -1:
+	    titles.append(feature.replace('-', ' '))
 
+	if title.find('-') > -1: 
+	    titles.append(u' '.join(re.split('[-]',title)))
+	else:
+	    titles.append(u'-'.join(re.split('[ ]',title)))
+	# Generate redirects for the title
+	redirects = []
+        for keyword in titles[1:]:
+	    if keyword == titles[0] or keyword in redirects: continue
+	    redirects.append(keyword)
+        print '************************'
+        print u','.join(titles)
+        print '************************'
         # Commented out for now -- we can revive if we ever have a way to display
         # external links in the Related Topics Infobox
         ## Generate Related Topics
@@ -43,13 +53,19 @@ def generate_answers(data):
         # Generate abstract
         abstract = u'<p>{}</p>'.format(feature_data['description'])
 
-        for browser in ['ie', 'firefox', 'chrome', 'safari', 'ios_saf', 'android']:
+        for count, browser in enumerate(['ie', 'firefox', 'chrome', 'safari', 'ios_saf', 'android']):
             agent = data['agents'][browser]
             out = browser_support(
                 browser=agent['browser'],
                 prefix=agent['prefix'],
                 stats=feature_data['stats'][browser])
-            abstract += u'<br>' + out
+	    # create an unordered list of supported browsers
+	    if count == 0:
+	        abstract += u'<ul><li>' + out + u'</li>'
+            elif count == 5:
+	        abstract += u'<li>' + out + u'</li></ul>'
+	    else:
+		abstract += u'<li>' + out + u'</li>'
 
         # Add notes to abstract, if there are any
         notes = feature_data.get('notes', '')
@@ -59,28 +75,36 @@ def generate_answers(data):
             for a in bs.findAll('a'):
                 a.replaceWithChildren()
             contents = bs.renderContents()
-            abstract += u'<p><b>Notes:</b> {}</p>'.format(contents.decode('utf-8'))
+	    contents = '<ul>' + contents.replace('<p>', '<li>').replace('</p>', '</li>') + '</ul>'
+            abstract += u'<span class="prog__sub">Notes:</span>{}'.format(contents.decode('utf-8'))
 
         abstract = '<section class="prog__container">' + abstract.replace('\n', '').replace('\r', '') + '</section>'
         print abstract
         print '------------------------------------------'
 
         source_url = u'http://caniuse.com/' + feature
-        for title in titles:
+#        for title in titles:
+        answers.append([
+        title,  # Title
+        'A',        # Type
+        '',         # Redirect
+        '',         # Other uses
+        '',         # Categories
+        '',         # References
+        related,    # See also
+        '',         # Further reading
+        '',         # External links
+        '',         # Disambiguation
+        '',         # Images
+        abstract,   # Abstract
+        source_url  # Source URL
+        ])
+
+        for redirect in redirects:
             answers.append([
-                title,      # Title
-                'A',        # Type
-                '',         # Redirect
-                '',         # Other uses
-                '',         # Categories
-                '',         # References
-                related,    # See also
-                '',         # Further reading
-                '',         # External links
-                '',         # Disambiguation
-                '',         # Images
-                abstract,   # Abstract
-                source_url  # Source URL
+                redirect,   # Title
+                'R',        # Type
+                title,      # Redirect
             ])
     return answers
 
