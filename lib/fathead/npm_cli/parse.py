@@ -13,7 +13,7 @@ RESULT_URLS = []
 
 
 # Print the content to the output file
-def print_article_line(title, code, content):
+def print_article_line(title, code, content, url):
 
     title = 'npm-' + title
     code = code.replace('\n', '\\n').replace('\t', '  ')
@@ -35,7 +35,7 @@ def print_article_line(title, code, content):
         '',         # 10.no disambiguation
         '',         # 11.images
         abstract,   # 12.abstract
-        START_URL   # 13.url to doc
+        url         # 13.url to doc
     ]
 
     OUTPUL_FILE.write('{}\n'.format('\t'.join(list_of_data)))
@@ -125,7 +125,7 @@ def get_func_desc():
         info = ob.findAll('p')
         content = info[0].text
 
-        print_article_line(title, code, content)
+        print_article_line(title, code, content, url)
         print_redirect_line(title, code)
 
 
