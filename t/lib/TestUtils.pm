@@ -16,6 +16,11 @@ use Term::ANSIColor qw(:constants);
 
 has fathead => ( is => 'ro' );
 
+has verbose => ( is => 'lazy' );
+sub _build_verbose {
+    $ENV{'DDG_VERBOSE_TEST'};
+}
+
 has project_root => ( is => 'lazy' );
 sub _build_project_root {
     my ( $self ) = @_;
@@ -171,6 +176,22 @@ sub _a_not_in_b {
     return wantarray ? @missing : \@missing;
 }
 
+sub report {
+    my ( $self, $elements, $limit ) = @_;
+
+    $limit ||= 20;
+
+    if ( scalar @$elements <= $limit || $self->verbose ) {
+        diag $_ for @$elements;
+    }
+    else {
+        my @slice = splice @$elements, $limit;
+        my $remaining = scalar @slice;
+        diag $_ for @$elements;
+        diag UNDERSCORE BOLD MAGENTA "PLUS $remaining MORE!", RESET, " (Use `duckpan test -v` to see full output)";
+    }
+}
+
 sub duplicates {
     my ( $self ) = @_;
     my @dupes = grep { $self->titles->{$_}->{count} > 1 } keys %{ $self->titles };
@@ -194,7 +215,7 @@ sub coverage {
     if (@missing){
         my $count = scalar @missing;
         diag YELLOW "\n$count TITLES MISSING IN OUTPUT FILE";
-        diag $_ for @missing;
+        $self->report(\@missing);
     }
     return @missing ? 0 : 1;
 }
@@ -207,7 +228,7 @@ sub types {
     if (@invalid_types){
         my $count = scalar @invalid_types;
         diag YELLOW "$count INVALID ARTICLE TYPES FOUND";
-        diag $_ for @invalid_types;
+        $self->report(\@invalid_types);
     }
     return @invalid_types ? 0 : 1;
 }
@@ -241,7 +262,7 @@ sub escapes {
     if (@unescaped){
         my $count = scalar @unescaped;
         diag YELLOW "\n$count POSSIBLY UNESCAPED CHARACTERS FOUND:";
-        diag $_ for @unescaped;
+        $self->report(\@unescaped);
     }
     return $r;
 }
@@ -256,7 +277,7 @@ sub disambiguations_format {
     if (@invalid){
         my $count = scalar @invalid;
         diag YELLOW "\n$count INVALID DISMABIGUATIONS FOUND:";
-        diag $_ for @invalid;
+        $self->report(\@invalid, 5);
     }
 
     return @invalid ? 0 : 1;
@@ -275,7 +296,7 @@ sub disambiguations_missing {
     if (@missing){
         my $count = scalar @missing;
         diag YELLOW "\n$count DISAMBIGUATION TITLES MISSING FROM ARTICLES:";
-        diag $_ for @missing;
+        $self->report(\@missing);
     }
     return @missing ? 0 : 1;
 }
@@ -293,8 +314,9 @@ sub category_clash {
     if (@clash){
         my $count = scalar @clash;
         diag YELLOW "$count CATEGORIES NAMES MATCHING ARTICLE TITLES";
-        diag $_ for @clash;
+        $self->report(\@clash)
     }
     return @clash ? 0 : 1;
 }
+
 1;
