@@ -38,12 +38,12 @@ OUTPUT = """\
 {image}\t
 {abstract}\t
 {url}
-""".replace("\n", "").replace("\\n", "")
+""".replace("\r\n", "").replace("\n", "").replace("\\n", "").replace(r"\x", "\\x")
 
 FHTEMPLATE = """\
 <p><b>Answered by {username} ({date})</b></p>
 {information}
-""".replace("\n", "").replace("\\n", "")
+""".replace("\r\n", "").replace("\n", "").replace("\\n", "").replace(r"\x", "\\x")
 
 def parse_file(filename):
     """
@@ -97,7 +97,11 @@ def parse_html(doc, url):
 
         # ditch the span tags
         for span in soup.findAll('span'):
-            span.decompose()
+            span.replace_with(span.text)
+
+        # ditch the img tags
+        for img in soup.findAll('img'):
+            img.decompose()
 
         username = soup.find("div", {"class", "recommended-answers"}).find("a", {"class": "username"}).text
         username = username.strip()
@@ -115,11 +119,12 @@ def parse_html(doc, url):
         # Does some regex replacements that the parser just won't hit with grace
         contents = FHTEMPLATE.format(information=str(content), username=username, date=posted)
         contents = re.sub(re.compile("<p></p>"), "", contents)
-        contents = re.sub(re.compile("<div ((.|\n)+?)>"), "", contents)
+        contents = re.sub(re.compile("<div\s?((.|\n)+?)>"), "", contents)
         contents = re.sub(re.compile("</div>"), "", contents)
         contents = re.sub(re.compile("<a>"), "", contents)
         contents = re.sub(re.compile("</a>"), "", contents)
         contents = re.sub(re.compile("\n"), "\\n", contents)
+        contents = re.sub(re.compile("^(?!<p>).*"), wrap_p, contents)
         parsed_doc["body"] = contents
 
         # Some last moment validation
@@ -142,6 +147,12 @@ def parse_html(doc, url):
 
     return parsed_doc
 
+def wrap_p(match):
+    """
+    Wraps content in <p> tags
+    """
+    content = match.group(0)
+    return '<p>{}</p>'.format(content)
 
 def format_output(doc):
     """
