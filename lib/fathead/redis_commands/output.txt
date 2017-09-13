@@ -1,0 +1,197 @@
+APPEND		http://redis.io/commands/append	Append a value to a key.	APPEND key value			
+AUTH		http://redis.io/commands/auth	Authenticate to the server.	AUTH password			
+BGREWRITEAOF		http://redis.io/commands/bgrewriteaof	Asynchronously rewrite the append-only file.	AUTH password			
+BGSAVE		http://redis.io/commands/bgsave	Asynchronously save the dataset to disk.	AUTH password			
+BITCOUNT		http://redis.io/commands/bitcount	Count set bits in a string.	BITCOUNT key [startend]			
+BITFIELD		http://redis.io/commands/bitfield	Perform arbitrary bitfield integer operations on strings.	BITFIELD key [GETtypeoffset] [SETtypeoffsetvalue] [INCRBYtypeoffsetincrement] [OVERFLOWWRAP|SAT|FAIL]			
+BITOP		http://redis.io/commands/bitop	Perform bitwise operations between strings.	BITOP operation destkey key[key...]			
+BITPOS		http://redis.io/commands/bitpos	Find first bit set or clear in a string.	BITPOS key bit [start] [end]			
+BLPOP		http://redis.io/commands/blpop	Remove and get the first element in a list, or block until one is available.	BLPOP key[key...] timeout			
+BRPOP		http://redis.io/commands/brpop	Remove and get the last element in a list, or block until one is available.	BRPOP key[key...] timeout			
+BRPOPLPUSH		http://redis.io/commands/brpoplpush	Pop a value from a list, push it to another list and return it; or block until one is available.	BRPOPLPUSH source destination timeout			
+CLIENT GETNAME		http://redis.io/commands/client-getname	Get the current connection name.	CLIENT KILL [ip:port] [IDclient-id] [TYPEnormal|master|slave|pubsub] [ADDRip:port] [SKIPMEyes/no]			
+CLIENT KILL		http://redis.io/commands/client-kill	Kill the connection of a client.	CLIENT KILL [ip:port] [IDclient-id] [TYPEnormal|master|slave|pubsub] [ADDRip:port] [SKIPMEyes/no]			
+CLIENT LIST		http://redis.io/commands/client-list	Get the list of client connections.	CLIENT KILL [ip:port] [IDclient-id] [TYPEnormal|master|slave|pubsub] [ADDRip:port] [SKIPMEyes/no]			
+CLIENT PAUSE		http://redis.io/commands/client-pause	Stop processing commands from clients for some time.	CLIENT PAUSE timeout			
+CLIENT REPLY		http://redis.io/commands/client-reply	Instruct the server whether to reply to commands.	CLIENT REPLY ON|OFF|SKIP			
+CLIENT SETNAME		http://redis.io/commands/client-setname	Set the current connection name.	CLIENT SETNAME connection-name			
+CLUSTER ADDSLOTS		http://redis.io/commands/cluster-addslots	Assign new hash slots to receiving node.	CLUSTER ADDSLOTS slot[slot...]			
+CLUSTER COUNT-FAILURE-REPORTS		http://redis.io/commands/cluster-count-failure-reports	Return the number of failure reports active for a given node.	CLUSTER COUNT-FAILURE-REPORTS node-id			
+CLUSTER COUNTKEYSINSLOT		http://redis.io/commands/cluster-countkeysinslot	Return the number of local keys in the specified hash slot.	CLUSTER COUNTKEYSINSLOT slot			
+CLUSTER DELSLOTS		http://redis.io/commands/cluster-delslots	Set hash slots as unbound in receiving node.	CLUSTER DELSLOTS slot[slot...]			
+CLUSTER FAILOVER		http://redis.io/commands/cluster-failover	Forces a slave to perform a manual failover of its master..	CLUSTER FAILOVER [FORCE|TAKEOVER]			
+CLUSTER FORGET		http://redis.io/commands/cluster-forget	Remove a node from the nodes table.	CLUSTER FORGET node-id			
+CLUSTER GETKEYSINSLOT		http://redis.io/commands/cluster-getkeysinslot	Return local key names in the specified hash slot.	CLUSTER GETKEYSINSLOT slot count			
+CLUSTER INFO		http://redis.io/commands/cluster-info	Provides info about Redis Cluster node state.	CLUSTER GETKEYSINSLOT slot count			
+CLUSTER KEYSLOT		http://redis.io/commands/cluster-keyslot	Returns the hash slot of the specified key.	CLUSTER KEYSLOT key			
+CLUSTER MEET		http://redis.io/commands/cluster-meet	Force a node cluster to handshake with another node.	CLUSTER MEET ip port			
+CLUSTER NODES		http://redis.io/commands/cluster-nodes	Get Cluster config for the node.	CLUSTER MEET ip port			
+CLUSTER REPLICATE		http://redis.io/commands/cluster-replicate	Reconfigure a node as a slave of the specified master node.	CLUSTER REPLICATE node-id			
+CLUSTER RESET		http://redis.io/commands/cluster-reset	Reset a Redis Cluster node.	CLUSTER RESET [HARD|SOFT]			
+CLUSTER SAVECONFIG		http://redis.io/commands/cluster-saveconfig	Forces the node to save cluster state on disk.	CLUSTER RESET [HARD|SOFT]			
+CLUSTER SET-CONFIG-EPOCH		http://redis.io/commands/cluster-set-config-epoch	Set the configuration epoch in a new node.	CLUSTER SET-CONFIG-EPOCH config-epoch			
+CLUSTER SETSLOT		http://redis.io/commands/cluster-setslot	Bind a hash slot to a specific node.	CLUSTER SETSLOT slot IMPORTING|MIGRATING|STABLE|NODE [node-id]			
+CLUSTER SLAVES		http://redis.io/commands/cluster-slaves	List slave nodes of the specified master node.	CLUSTER SLAVES node-id			
+CLUSTER SLOTS		http://redis.io/commands/cluster-slots	Get array of Cluster slot to node mappings.	CLUSTER SLAVES node-id			
+COMMAND		http://redis.io/commands/command	Get array of Redis command details.	CLUSTER SLAVES node-id			
+COMMAND COUNT		http://redis.io/commands/command-count	Get total number of Redis commands.	CLUSTER SLAVES node-id			
+COMMAND GETKEYS		http://redis.io/commands/command-getkeys	Extract keys given a full Redis command.	CLUSTER SLAVES node-id			
+COMMAND INFO		http://redis.io/commands/command-info	Get array of specific Redis command details.	COMMAND INFO command-name[command-name...]			
+CONFIG GET		http://redis.io/commands/config-get	Get the value of a configuration parameter.	CONFIG GET parameter			
+CONFIG RESETSTAT		http://redis.io/commands/config-resetstat	Reset the stats returned by INFO.	CONFIG SET parameter value			
+CONFIG REWRITE		http://redis.io/commands/config-rewrite	Rewrite the configuration file with the in memory configuration.	CONFIG GET parameter			
+CONFIG SET		http://redis.io/commands/config-set	Set a configuration parameter to the given value.	CONFIG SET parameter value			
+DBSIZE		http://redis.io/commands/dbsize	Return the number of keys in the selected database.	CONFIG SET parameter value			
+DEBUG OBJECT		http://redis.io/commands/debug-object	Get debugging information about a key.	DEBUG OBJECT key			
+DEBUG SEGFAULT		http://redis.io/commands/debug-segfault	Make the server crash.	DEBUG OBJECT key			
+DECR		http://redis.io/commands/decr	Decrement the integer value of a key by one.	DECR key			
+DECRBY		http://redis.io/commands/decrby	Decrement the integer value of a key by the given number.	DECRBY key decrement			
+DEL		http://redis.io/commands/del	Delete a key.	DEL key[key...]			
+DISCARD		http://redis.io/commands/discard	Discard all commands issued after MULTI.	DEL key[key...]			
+DUMP		http://redis.io/commands/dump	Return a serialized version of the value stored at the specified key..	DUMP key			
+ECHO		http://redis.io/commands/echo	Echo the given string.	ECHO message			
+EVAL		http://redis.io/commands/eval	Execute a Lua script server side.	EVAL script numkeys key[key...] arg[arg...]			
+EVALSHA		http://redis.io/commands/evalsha	Execute a Lua script server side.	EVALSHA sha1 numkeys key[key...] arg[arg...]			
+EXEC		http://redis.io/commands/exec	Execute all commands issued after MULTI.	EVALSHA sha1 numkeys key[key...] arg[arg...]			
+EXISTS		http://redis.io/commands/exists	Determine if a key exists.	EXISTS key[key...]			
+EXPIRE		http://redis.io/commands/expire	Set a key's time to live in seconds.	EXPIRE key seconds			
+EXPIREAT		http://redis.io/commands/expireat	Set the expiration for a key as a UNIX timestamp.	EXPIREAT key timestamp			
+FLUSHALL		http://redis.io/commands/flushall	Remove all keys from all databases.	EXPIREAT key timestamp			
+FLUSHDB		http://redis.io/commands/flushdb	Remove all keys from the current database.	EXPIREAT key timestamp			
+GEOADD		http://redis.io/commands/geoadd	Add one or more geospatial items in the geospatial index represented using a sorted set.	GEOADD key longitudelatitudemember[longitudelatitudemember...]			
+GEODIST		http://redis.io/commands/geodist	Returns the distance between two members of a geospatial index.	GEODIST key member1 member2 [unit]			
+GEOHASH		http://redis.io/commands/geohash	Returns members of a geospatial index as standard geohash strings.	GEOHASH key member[member...]			
+GEOPOS		http://redis.io/commands/geopos	Returns longitude and latitude of members of a geospatial index.	GEOPOS key member[member...]			
+GEORADIUS		http://redis.io/commands/georadius	Query a sorted set representing a geospatial index to fetch members matching a given maximum distance from a point.	GEORADIUS key longitude latitude radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNTcount] [ASC|DESC] [STOREkey] [STOREDISTkey]			
+GEORADIUSBYMEMBER		http://redis.io/commands/georadiusbymember	Query a sorted set representing a geospatial index to fetch members matching a given maximum distance from a member.	GEORADIUSBYMEMBER key member radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNTcount] [ASC|DESC] [STOREkey] [STOREDISTkey]			
+GET		http://redis.io/commands/get	Get the value of a key.	GET key			
+GETBIT		http://redis.io/commands/getbit	Returns the bit value at offset in the string value stored at key.	GETBIT key offset			
+GETRANGE		http://redis.io/commands/getrange	Get a substring of the string stored at a key.	GETRANGE key start end			
+GETSET		http://redis.io/commands/getset	Set the string value of a key and return its old value.	GETSET key value			
+HDEL		http://redis.io/commands/hdel	Delete one or more hash fields.	HDEL key field[field...]			
+HEXISTS		http://redis.io/commands/hexists	Determine if a hash field exists.	HEXISTS key field			
+HGET		http://redis.io/commands/hget	Get the value of a hash field.	HGET key field			
+HGETALL		http://redis.io/commands/hgetall	Get all the fields and values in a hash.	HGETALL key			
+HINCRBY		http://redis.io/commands/hincrby	Increment the integer value of a hash field by the given number.	HINCRBY key field increment			
+HINCRBYFLOAT		http://redis.io/commands/hincrbyfloat	Increment the float value of a hash field by the given amount.	HINCRBYFLOAT key field increment			
+HKEYS		http://redis.io/commands/hkeys	Get all the fields in a hash.	HKEYS key			
+HLEN		http://redis.io/commands/hlen	Get the number of fields in a hash.	HLEN key			
+HMGET		http://redis.io/commands/hmget	Get the values of all the given hash fields.	HMGET key field[field...]			
+HMSET		http://redis.io/commands/hmset	Set multiple hash fields to multiple values.	HMSET key fieldvalue[fieldvalue...]			
+HSCAN		http://redis.io/commands/hscan	Incrementally iterate hash fields and associated values.	HSCAN key cursor [MATCHpattern] [COUNTcount]			
+HSET		http://redis.io/commands/hset	Set the string value of a hash field.	HSET key field value			
+HSETNX		http://redis.io/commands/hsetnx	Set the value of a hash field, only if the field does not exist.	HSETNX key field value			
+HSTRLEN		http://redis.io/commands/hstrlen	Get the length of the value of a hash field.	HSTRLEN key field			
+HVALS		http://redis.io/commands/hvals	Get all the values in a hash.	HVALS key			
+INCR		http://redis.io/commands/incr	Increment the integer value of a key by one.	INCR key			
+INCRBY		http://redis.io/commands/incrby	Increment the integer value of a key by the given amount.	INCRBY key increment			
+INCRBYFLOAT		http://redis.io/commands/incrbyfloat	Increment the float value of a key by the given amount.	INCRBYFLOAT key increment			
+INFO		http://redis.io/commands/info	Get information and statistics about the server.	INFO [section]			
+KEYS		http://redis.io/commands/keys	Find all keys matching the given pattern.	KEYS pattern			
+LASTSAVE		http://redis.io/commands/lastsave	Get the UNIX time stamp of the last successful save to disk.	KEYS pattern			
+LINDEX		http://redis.io/commands/lindex	Get an element from a list by its index.	LINDEX key index			
+LINSERT		http://redis.io/commands/linsert	Insert an element before or after another element in a list.	LINSERT key BEFORE|AFTER pivot value			
+LLEN		http://redis.io/commands/llen	Get the length of a list.	LLEN key			
+LPOP		http://redis.io/commands/lpop	Remove and get the first element in a list.	LPOP key			
+LPUSH		http://redis.io/commands/lpush	Prepend one or multiple values to a list.	LPUSH key value[value...]			
+LPUSHX		http://redis.io/commands/lpushx	Prepend a value to a list, only if the list exists.	LPUSHX key value			
+LRANGE		http://redis.io/commands/lrange	Get a range of elements from a list.	LRANGE key start stop			
+LREM		http://redis.io/commands/lrem	Remove elements from a list.	LREM key count value			
+LSET		http://redis.io/commands/lset	Set the value of an element in a list by its index.	LSET key index value			
+LTRIM		http://redis.io/commands/ltrim	Trim a list to the specified range.	LTRIM key start stop			
+MGET		http://redis.io/commands/mget	Get the values of all the given keys.	MGET key[key...]			
+MIGRATE		http://redis.io/commands/migrate	Atomically transfer a key from a Redis instance to another one..	MIGRATE host port key|"" destination-db timeout [COPY] [REPLACE] [KEYSkey[key...]]			
+MONITOR		http://redis.io/commands/monitor	Listen for all requests received by the server in real time.	MIGRATE host port key|"" destination-db timeout [COPY] [REPLACE] [KEYSkey[key...]]			
+MOVE		http://redis.io/commands/move	Move a key to another database.	MOVE key db			
+MSET		http://redis.io/commands/mset	Set multiple keys to multiple values.	MSET keyvalue[keyvalue...]			
+MSETNX		http://redis.io/commands/msetnx	Set multiple keys to multiple values, only if none of the keys exist.	MSETNX keyvalue[keyvalue...]			
+MULTI		http://redis.io/commands/multi	Mark the start of a transaction block.	MSETNX keyvalue[keyvalue...]			
+OBJECT		http://redis.io/commands/object	Inspect the internals of Redis objects.	OBJECT subcommand [arguments[arguments...]]			
+PERSIST		http://redis.io/commands/persist	Remove the expiration from a key.	PERSIST key			
+PEXPIRE		http://redis.io/commands/pexpire	Set a key's time to live in milliseconds.	PEXPIRE key milliseconds			
+PEXPIREAT		http://redis.io/commands/pexpireat	Set the expiration for a key as a UNIX timestamp specified in milliseconds.	PEXPIREAT key milliseconds-timestamp			
+PFADD		http://redis.io/commands/pfadd	Adds the specified elements to the specified HyperLogLog..	PFADD key element[element...]			
+PFCOUNT		http://redis.io/commands/pfcount	Return the approximated cardinality of the set(s) observed by the HyperLogLog at key(s)..	PFCOUNT key[key...]			
+PFMERGE		http://redis.io/commands/pfmerge	Merge N different HyperLogLogs into a single one..	PFMERGE destkey sourcekey[sourcekey...]			
+PING		http://redis.io/commands/ping	Ping the server.	PING [message]			
+PSETEX		http://redis.io/commands/psetex	Set the value and expiration in milliseconds of a key.	PSETEX key milliseconds value			
+PSUBSCRIBE		http://redis.io/commands/psubscribe	Listen for messages published to channels matching the given patterns.	PSUBSCRIBE pattern[pattern...]			
+PTTL		http://redis.io/commands/pttl	Get the time to live for a key in milliseconds.	PTTL key			
+PUBLISH		http://redis.io/commands/publish	Post a message to a channel.	PUBLISH channel message			
+PUBSUB		http://redis.io/commands/pubsub	Inspect the state of the Pub/Sub subsystem.	PUBSUB subcommand [argument[argument...]]			
+PUNSUBSCRIBE		http://redis.io/commands/punsubscribe	Stop listening for messages posted to channels matching the given patterns.	PUNSUBSCRIBE [pattern[pattern...]]			
+QUIT		http://redis.io/commands/quit	Close the connection.	PUNSUBSCRIBE [pattern[pattern...]]			
+RANDOMKEY		http://redis.io/commands/randomkey	Return a random key from the keyspace.	PUNSUBSCRIBE [pattern[pattern...]]			
+READONLY		http://redis.io/commands/readonly	Enables read queries for a connection to a cluster slave node.	PUNSUBSCRIBE [pattern[pattern...]]			
+READWRITE		http://redis.io/commands/readwrite	Disables read queries for a connection to a cluster slave node.	PUNSUBSCRIBE [pattern[pattern...]]			
+RENAME		http://redis.io/commands/rename	Rename a key.	RENAME key newkey			
+RENAMENX		http://redis.io/commands/renamenx	Rename a key, only if the new key does not exist.	RENAMENX key newkey			
+RESTORE		http://redis.io/commands/restore	Create a key using the provided serialized value, previously obtained using DUMP..	RESTORE key ttl serialized-value [REPLACE]			
+ROLE		http://redis.io/commands/role	Return the role of the instance in the context of replication.	RESTORE key ttl serialized-value [REPLACE]			
+RPOP		http://redis.io/commands/rpop	Remove and get the last element in a list.	RPOP key			
+RPOPLPUSH		http://redis.io/commands/rpoplpush	Remove the last element in a list, prepend it to another list and return it.	RPOPLPUSH source destination			
+RPUSH		http://redis.io/commands/rpush	Append one or multiple values to a list.	RPUSH key value[value...]			
+RPUSHX		http://redis.io/commands/rpushx	Append a value to a list, only if the list exists.	RPUSHX key value			
+SADD		http://redis.io/commands/sadd	Add one or more members to a set.	SADD key member[member...]			
+SAVE		http://redis.io/commands/save	Synchronously save the dataset to disk.	SADD key member[member...]			
+SCAN		http://redis.io/commands/scan	Incrementally iterate the keys space.	SCAN cursor [MATCHpattern] [COUNTcount]			
+SCARD		http://redis.io/commands/scard	Get the number of members in a set.	SCARD key			
+SCRIPT DEBUG		http://redis.io/commands/script-debug	Set the debug mode for executed scripts..	SCRIPT DEBUG YES|SYNC|NO			
+SCRIPT EXISTS		http://redis.io/commands/script-exists	Check existence of scripts in the script cache..	SCRIPT EXISTS script[script...]			
+SCRIPT FLUSH		http://redis.io/commands/script-flush	Remove all the scripts from the script cache..	SCRIPT EXISTS script[script...]			
+SCRIPT KILL		http://redis.io/commands/script-kill	Kill the script currently in execution..	SCRIPT EXISTS script[script...]			
+SCRIPT LOAD		http://redis.io/commands/script-load	Load the specified Lua script into the script cache..	SCRIPT LOAD script			
+SDIFF		http://redis.io/commands/sdiff	Subtract multiple sets.	SDIFF key[key...]			
+SDIFFSTORE		http://redis.io/commands/sdiffstore	Subtract multiple sets and store the resulting set in a key.	SDIFFSTORE destination key[key...]			
+SELECT		http://redis.io/commands/select	Change the selected database for the current connection.	SELECT index			
+SET		http://redis.io/commands/set	Set the string value of a key.	SET key value [EXseconds] [PXmilliseconds] [NX|XX]			
+SETBIT		http://redis.io/commands/setbit	Sets or clears the bit at offset in the string value stored at key.	SETBIT key offset value			
+SETEX		http://redis.io/commands/setex	Set the value and expiration of a key.	SETEX key seconds value			
+SETNX		http://redis.io/commands/setnx	Set the value of a key, only if the key does not exist.	SETNX key value			
+SETRANGE		http://redis.io/commands/setrange	Overwrite part of a string at key starting at the specified offset.	SETRANGE key offset value			
+SHUTDOWN		http://redis.io/commands/shutdown	Synchronously save the dataset to disk and then shut down the server.	SHUTDOWN [NOSAVE|SAVE]			
+SINTER		http://redis.io/commands/sinter	Intersect multiple sets.	SINTER key[key...]			
+SINTERSTORE		http://redis.io/commands/sinterstore	Intersect multiple sets and store the resulting set in a key.	SINTERSTORE destination key[key...]			
+SISMEMBER		http://redis.io/commands/sismember	Determine if a given value is a member of a set.	SISMEMBER key member			
+SLAVEOF		http://redis.io/commands/slaveof	Make the server a slave of another instance, or promote it as master.	SLAVEOF host port			
+SLOWLOG		http://redis.io/commands/slowlog	Manages the Redis slow queries log.	SLOWLOG subcommand [argument]			
+SMEMBERS		http://redis.io/commands/smembers	Get all the members in a set.	SMEMBERS key			
+SMOVE		http://redis.io/commands/smove	Move a member from one set to another.	SMOVE source destination member			
+SORT		http://redis.io/commands/sort	Sort the elements in a list, set or sorted set.	SORT key [BYpattern] [LIMIToffsetcount] [GETpattern[GETpattern...]] [ASC|DESC] [ALPHA] [STOREdestination]			
+SPOP		http://redis.io/commands/spop	Remove and return one or multiple random members from a set.	SPOP key [count]			
+SRANDMEMBER		http://redis.io/commands/srandmember	Get one or multiple random members from a set.	SRANDMEMBER key [count]			
+SREM		http://redis.io/commands/srem	Remove one or more members from a set.	SREM key member[member...]			
+SSCAN		http://redis.io/commands/sscan	Incrementally iterate Set elements.	SSCAN key cursor [MATCHpattern] [COUNTcount]			
+STRLEN		http://redis.io/commands/strlen	Get the length of the value stored in a key.	STRLEN key			
+SUBSCRIBE		http://redis.io/commands/subscribe	Listen for messages published to the given channels.	SUBSCRIBE channel[channel...]			
+SUNION		http://redis.io/commands/sunion	Add multiple sets.	SUNION key[key...]			
+SUNIONSTORE		http://redis.io/commands/sunionstore	Add multiple sets and store the resulting set in a key.	SUNIONSTORE destination key[key...]			
+SYNC		http://redis.io/commands/sync	Internal command used for replication.	SUNIONSTORE destination key[key...]			
+TIME		http://redis.io/commands/time	Return the current server time.	SUNIONSTORE destination key[key...]			
+TTL		http://redis.io/commands/ttl	Get the time to live for a key.	TTL key			
+TYPE		http://redis.io/commands/type	Determine the type stored at key.	TYPE key			
+UNSUBSCRIBE		http://redis.io/commands/unsubscribe	Stop listening for messages posted to the given channels.	UNSUBSCRIBE [channel[channel...]]			
+UNWATCH		http://redis.io/commands/unwatch	Forget about all watched keys.	UNSUBSCRIBE [channel[channel...]]			
+WAIT		http://redis.io/commands/wait	Wait for the synchronous replication of all the write commands sent in the context of the current connection.	WAIT numslaves timeout			
+WATCH		http://redis.io/commands/watch	Watch the given keys to determine execution of the MULTI/EXEC block.	WATCH key[key...]			
+ZADD		http://redis.io/commands/zadd	Add one or more members to a sorted set, or update its score if it already exists.	ZADD key [NX|XX] [CH] [INCR] scoremember[scoremember...]			
+ZCARD		http://redis.io/commands/zcard	Get the number of members in a sorted set.	ZCARD key			
+ZCOUNT		http://redis.io/commands/zcount	Count the members in a sorted set with scores within the given values.	ZCOUNT key min max			
+ZINCRBY		http://redis.io/commands/zincrby	Increment the score of a member in a sorted set.	ZINCRBY key increment member			
+ZINTERSTORE		http://redis.io/commands/zinterstore	Intersect multiple sorted sets and store the resulting sorted set in a new key.	ZINTERSTORE destination numkeys key[key...] [WEIGHTSweight[weight...]] [AGGREGATESUM|MIN|MAX]			
+ZLEXCOUNT		http://redis.io/commands/zlexcount	Count the number of members in a sorted set between a given lexicographical range.	ZLEXCOUNT key min max			
+ZRANGE		http://redis.io/commands/zrange	Return a range of members in a sorted set, by index.	ZRANGE key start stop [WITHSCORES]			
+ZRANGEBYLEX		http://redis.io/commands/zrangebylex	Return a range of members in a sorted set, by lexicographical range.	ZRANGEBYLEX key min max [LIMIToffsetcount]			
+ZRANGEBYSCORE		http://redis.io/commands/zrangebyscore	Return a range of members in a sorted set, by score.	ZRANGEBYSCORE key min max [WITHSCORES] [LIMIToffsetcount]			
+ZRANK		http://redis.io/commands/zrank	Determine the index of a member in a sorted set.	ZRANK key member			
+ZREM		http://redis.io/commands/zrem	Remove one or more members from a sorted set.	ZREM key member[member...]			
+ZREMRANGEBYLEX		http://redis.io/commands/zremrangebylex	Remove all members in a sorted set between the given lexicographical range.	ZREMRANGEBYLEX key min max			
+ZREMRANGEBYRANK		http://redis.io/commands/zremrangebyrank	Remove all members in a sorted set within the given indexes.	ZREMRANGEBYRANK key start stop			
+ZREMRANGEBYSCORE		http://redis.io/commands/zremrangebyscore	Remove all members in a sorted set within the given scores.	ZREMRANGEBYSCORE key min max			
+ZREVRANGE		http://redis.io/commands/zrevrange	Return a range of members in a sorted set, by index, with scores ordered from high to low.	ZREVRANGE key start stop [WITHSCORES]			
+ZREVRANGEBYLEX		http://redis.io/commands/zrevrangebylex	Return a range of members in a sorted set, by lexicographical range, ordered from higher to lower strings..	ZREVRANGEBYLEX key max min [LIMIToffsetcount]			
+ZREVRANGEBYSCORE		http://redis.io/commands/zrevrangebyscore	Return a range of members in a sorted set, by score, with scores ordered from high to low.	ZREVRANGEBYSCORE key max min [WITHSCORES] [LIMIToffsetcount]			
+ZREVRANK		http://redis.io/commands/zrevrank	Determine the index of a member in a sorted set, with scores ordered from high to low.	ZREVRANK key member			
+ZSCAN		http://redis.io/commands/zscan	Incrementally iterate sorted sets elements and associated scores.	ZSCAN key cursor [MATCHpattern] [COUNTcount]			
+ZSCORE		http://redis.io/commands/zscore	Get the score associated with the given member in a sorted set.	ZSCORE key member			
+ZUNIONSTORE		http://redis.io/commands/zunionstore	Add multiple sorted sets and store the resulting sorted set in a new key.	ZUNIONSTORE destination numkeys key[key...] [WEIGHTSweight[weight...]] [AGGREGATESUM|MIN|MAX]			

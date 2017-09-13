@@ -7,41 +7,58 @@ import re
 url = "http://redis.io"
 output = "output.txt"
 
-f = open(output, "w");
+f = open(output, "w")
 
 tree = lxml.html.parse("download/raw.dat").getroot()
-commands = tree.find_class("command")
+
+"""
+Extract all <li> elements
+First 8 elements are website's meta links, so ignore them
+"""
+elements = tree.findall(".//li")[8:]
 
 data = {}
 
-for command in commands:
+# Iterate over all desired <li> elements
+for element in elements:
 
-    for row in command.findall('a'):
-        command_url = "%s%s" % (url, row.get('href'))
-        
-        for sibling in command.itersiblings():
-            usage = ""
-            
-            for command_args in command.findall('span'):
-                usage = "%s %s" % (row.text, command_args.text.replace(' ', '').replace('\n', ' ').strip())
+    # Find <a> tag within this <li> element
+    link = element.find('a')
+    # Save `href` attribute for this <a> tag
+    command_url = "{}{}".format(url, link.get('href'))
 
-            summary = "%s." % (re.sub('\.$', '', sibling.text))
+    # Find an element with class='command'
+    for command in link.find_class('command'):
+        # Save command name
+        command_text = command.text.strip()
 
-            data[command_url] = (row.text, summary, usage)
+        # Find an element with class='args'
+        for span in command.find_class('args'):
+            span_text = span.text.replace(' ', '').replace('\t', '').replace('\n', ' ').strip()
+            if len(span_text) > 0:
+                # Save command usage
+                command_usage = "{}{}".format(command_text, span_text)
 
-for command_url in data.keys():
+    # Find an element with class='summary'
+    for summary in link.find_class('summary'):
+        # Save command summary (description)
+        command_summary = "{}.".format(summary.text.strip())
+
+    data[command_url] = (command_text, command_summary, command_usage)
+
+for command_url in sorted(data.keys()):
     command, summary, usage = data[command_url]
     summary = unicode(summary).encode("utf-8")
     usage = unicode(usage).encode("utf-8")
-    
+
     f.write("\t".join([str(command),      # title
-                    "",                # namespace
-                    command_url,               # url
-                    summary,       # description
+                    "",                   # namespace
+                    command_url,          # url
+                    summary,              # description
                     usage,                # synopsis
-                    "",                # details
-                    "",                # type
-                    ""                 # lang
+                    "",                   # details
+                    "",                   # type
+                    ""                    # lang
                    ])
            )
     f.write("\n")
