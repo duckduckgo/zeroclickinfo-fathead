@@ -146,6 +146,13 @@ class Writer(object):
             abstract,        # abstract
             anchor           # anchor to specific section
         ]
+    
+    def generate_redirects(self, title):
+        res = []
+        key = title.split('.')[-1]
+        res.append([key, 'R', title])
+        res.append(['flask '+key, 'R', title])
+        return res
 
     def create_file(self):
         
@@ -167,6 +174,9 @@ class Writer(object):
                     anchor=anchor
                 )
                 list_of_data.append(entry)
+
+                for item in self.generate_redirects(title):
+                    list_of_data.append(item)
 
                 for data in list_of_data:
                     tsv = '{}\n'.format('\t'.join(data))
