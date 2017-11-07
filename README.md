@@ -1,4 +1,6 @@
 # In Maintenance
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fduckduckgo%2Fzeroclickinfo-fathead.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fduckduckgo%2Fzeroclickinfo-fathead?ref=badge_shield)
+
 
 DuckDuckHack is now in maintenance mode. During this time, we are only accepting pull requests for essential bug fixes.
 
@@ -16,3 +18,7 @@ Any other changes will not be accepted. For example:
 
   - spelling/comment changes
   - unsolicited improvements, changes, and code refactoring
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fduckduckgo%2Fzeroclickinfo-fathead.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fduckduckgo%2Fzeroclickinfo-fathead?ref=badge_large)
