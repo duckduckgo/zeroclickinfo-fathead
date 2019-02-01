@@ -49,7 +49,7 @@ my $synonyms_header = "Synonyms";
 my $specialist_dblinks_header = "Specialist Database Links";
 my $entrez_gene_id_header = "Entrez Gene ID (mapped data supplied by NCBI)";
 # external database link URLs
-my $hgnc_gene_symbol_base_url = "http://www.genenames.org/data/hgnc_data.php?hgnc_id=";
+my $hgnc_gene_symbol_base_url = "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/";
 my $entrez_gene_base_url = "http://www.ncbi.nlm.nih.gov/gene?term=";
 my $ensembl_homo_sapiens_gene_base_url = "www.ensembl.org/Homo_sapiens/Search/Details?species=Homo_sapiens;idx=Gene;end=1;q=";
 
